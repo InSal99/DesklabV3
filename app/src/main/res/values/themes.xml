@@ -1,0 +1,175 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.DesklabV3" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Background Colors -->
+        <item name="colorBackgroundPrimary">@color/neutralWhite</item>
+        <item name="colorBackgroundPrimaryTinted">@color/neutralGrayBlueLight10</item>
+        <item name="colorBackgroundPrimaryInverse">@color/neutralBlack</item>
+        <item name="colorBackgroundSecondary">@color/neutralGrayLight10</item>
+        <item name="colorBackgroundSecondaryTinted">@color/neutralGrayBlueLight20</item>
+        <item name="colorBackgroundTertiary">@color/neutralGrayLight20</item>
+        <item name="colorBackgroundOverlay">@color/neutralGrayLightA50</item>
+        <item name="colorBackgroundDisabled">@color/brandPrimaryLightA5</item>
+
+        <!-- Accent Background Colors -->
+        <item name="colorBackgroundAccentPrimarySubtle">@color/brandPrimaryLight10</item>
+        <item name="colorBackgroundAccentPrimaryIntense">@color/brandPrimaryLight30</item>
+        <item name="colorBackgroundAccentSecondary">@color/brandSecondaryLight30</item>
+        <item name="colorBackgroundAccentDisabled">@color/brandPrimaryLightA5</item>
+
+        <!-- Modifier Background Colors -->
+        <item name="colorBackgroundModifierCardElevated">@color/neutralGrayLightA5</item>
+        <item name="colorBackgroundModifierCardElevatedInverse">@color/neutralGrayLightA5</item>
+        <item name="colorBackgroundModifierCardSurface">@color/neutralGrayDarkA2</item>
+        <item name="colorBackgroundModifierOnHover">@color/neutralGrayDarkA2</item>
+        <item name="colorBackgroundModifierOnPress">@color/neutralGrayDarkA5</item>
+        <item name="colorBackgroundModifierOnPressIntense">@color/neutralGrayDarkA12</item>
+
+        <!-- Info Background Colors -->
+        <item name="colorBackgroundInfoSubtle">@color/blueLight10</item>
+        <item name="colorBackgroundInfoIntense">@color/blueLight50</item>
+
+        <!-- Success Background Colors -->
+        <item name="colorBackgroundSuccessSubtle">@color/greenLight10</item>
+        <item name="colorBackgroundSuccessIntense">@color/greenLight50</item>
+
+        <!-- Warning Background Colors -->
+        <item name="colorBackgroundWarningSubtle">@color/orangeLight10</item>
+        <item name="colorBackgroundWarningIntense">@color/orangeLight50</item>
+
+        <!-- Attention Background Colors -->
+        <item name="colorBackgroundAttentionSubtle">@color/redLight10</item>
+        <item name="colorBackgroundAttentionIntense">@color/redLight50</item>
+
+        <!-- Utility Background Colors -->
+        <!-- libur -->
+        <item name="colorBackgroundUtilityLiburSubtle">@color/redLight10</item>
+        <item name="colorBackgroundUtilityLiburIntense">@color/redLight30</item>
+
+        <!-- cuti -->
+        <item name="colorBackgroundUtilityCutiSubtle">@color/brandPrimaryLight10</item>
+        <item name="colorBackgroundUtilityCutiIntense">@color/brandPrimaryLight30</item>
+
+        <!-- kerja khusus -->
+        <item name="colorBackgroundUtilityKerjaKhususSubtle">@color/brandSecondaryLight10</item>
+        <item name="colorBackgroundUtilityKerjaKhususIntense">@color/brandSecondaryLight30</item>
+
+        <!-- ulang tahun -->
+        <item name="colorBackgroundUtilityUlangTahunSubtle">@color/greenLight10</item>
+        <item name="colorBackgroundUtilityUlangTahunIntense">@color/greenLight40</item>
+
+        <!-- Basic Foreground Colors -->
+        <item name="colorForegroundPrimary">@color/neutralBlack</item>
+        <item name="colorForegroundPrimaryInverse">@color/neutralWhite</item>
+        <item name="colorForegroundSecondary">@color/neutralGrayLight60</item>
+        <item name="colorForegroundTertiary">@color/neutralGrayLight50</item>
+        <item name="colorForegroundPlaceholder">@color/neutralGrayLight40</item>
+        <item name="colorForegroundDisabled">@color/neutralGrayLightA20</item>
+        <item name="colorForegroundOverlay">?attr/colorBackgroundOverlay</item>
+        <item name="colorForegroundWhite">@color/neutralWhite</item>
+        <item name="colorForegroundBlack">@color/neutralBlack</item>
+
+        <!-- Modifier Foreground Colors -->
+        <item name="colorForegroundModifierCardElevated">?attr/colorBackgroundModifierCardElevated</item>
+        <item name="colorForegroundModifierCardSurface">?attr/colorBackgroundModifierCardSurface</item>
+
+        <!-- Accent Foreground Colors -->
+        <item name="colorForegroundAccentPrimarySubtle">@color/brandPrimaryLight10</item>
+        <item name="colorForegroundAccentPrimaryIntense">@color/brandPrimaryLight30</item>
+
+        <!-- Info Foreground Colors -->
+        <item name="colorForegroundInfoSubtle">@color/blueLight10</item>
+        <item name="colorForegroundInfoIntense">@color/blueLight30</item>
+
+        <!-- Success Foreground Colors -->
+        <item name="colorForegroundSuccessSubtle">@color/greenLight10</item>
+        <item name="colorForegroundSuccessIntense">@color/greenLight30</item>
+
+        <!-- Warning Foreground Colors -->
+        <item name="colorForegroundWarningSubtle">@color/orangeLight10</item>
+        <item name="colorForegroundWarningIntense">@color/orangeLight30</item>
+
+        <!-- Attention Foreground Colors -->
+        <item name="colorForegroundAttentionSubtle">@color/redLight10</item>
+        <item name="colorForegroundAttentionIntense">@color/redLight40</item>
+
+        <!-- Utility Foreground Colors -->
+        <!-- libur -->
+        <item name="colorForegroundUtilityLiburSubtle">@color/redLight10</item>
+        <item name="colorForegroundUtilityLiburIntense">@color/redLight30</item>
+
+        <!-- cuti -->
+        <item name="colorForegroundUtilityCutiSubtle">@color/brandPrimaryLight10</item>
+        <item name="colorForegroundUtilityCutiIntense">@color/brandPrimaryLight30</item>
+
+        <!-- kerja-khusus -->
+        <item name="colorForegroundUtilityKerjaKhususSubtle">@color/brandSecondaryLight10</item>
+        <item name="colorForegroundUtilityKerjaKhususIntense">@color/brandSecondaryLight30</item>
+
+        <!-- ulang-tahun -->
+        <item name="colorForegroundUtilityUlangTahunSubtle">@color/greenLight10</item>
+        <item name="colorForegroundUtilityUlangTahunIntense">@color/greenLight40</item>
+
+        <!-- Basic Stroke Colors -->
+        <item name="colorStrokeSubtle">@color/neutralGrayLight30</item>
+        <item name="colorStrokeInteractive">@color/neutralGrayLightA20</item>
+        <item name="colorStrokeIntense">@color/neutralGrayLight40</item>
+        <item name="colorStrokeFocus">@color/neutralGrayLight50</item>
+        <item name="colorStrokeAccent">@color/brandPrimaryLight50</item>
+        <item name="colorStrokeDisabled">@color/brandPrimaryLight30</item>
+        <item name="colorStrokeCutout">?attr/colorBackgroundPrimary</item>
+
+        <!-- Semantic Stroke Colors -->
+        <!-- Info -->
+        <item name="colorStrokeInfoSubtle">@color/blueLight10</item>
+        <item name="colorStrokeInfoIntense">@color/blueLight30</item>
+
+        <!-- Success -->
+        <item name="colorStrokeSuccessSubtle">@color/greenLight10</item>
+        <item name="colorStrokeSuccessIntense">@color/greenLight30</item>
+
+        <!-- Warning -->
+        <item name="colorStrokeWarningSubtle">@color/orangeLight10</item>
+        <item name="colorStrokeWarningIntense">@color/orangeLight30</item>
+
+        <!-- Attention -->
+        <item name="colorStrokeAttentionSubtle">@color/redLight10</item>
+        <item name="colorStrokeAttentionIntense">@color/redLight50</item>
+
+        <!-- Utility Stroke Colors -->
+        <!-- libur -->
+        <item name="colorStrokeUtilityLiburSubtle">@color/redLight10</item>
+        <item name="colorStrokeUtilityLiburIntense">@color/redLight30</item>
+
+        <!-- cuti -->
+        <item name="colorStrokeUtilityCutiSubtle">@color/brandPrimaryLight10</item>
+        <item name="colorStrokeUtilityCutiIntense">@color/brandPrimaryLight30</item>
+
+        <!-- kerja khusus -->
+        <item name="colorStrokeUtilityKerjaKhususSubtle">@color/brandSecondaryLight10</item>
+        <item name="colorStrokeUtilityKerjaKhususIntense">@color/brandSecondaryLight30</item>
+
+        <!-- ulang tahun -->
+        <item name="colorStrokeUtilityUlangTahunSubtle">@color/greenLight10</item>
+        <item name="colorStrokeUtilityUlangTahunIntense">@color/greenLight40</item>
+
+        <!-- Shadow Colors -->
+        <!-- Neutral -->
+        <item name="colorShadowNeutralKey">@color/neutralGrayDarkA10</item>
+        <item name="colorShadowNeutralAmbient">@color/neutralGrayDarkA20</item>
+
+        <!-- Tinted -->
+        <item name="colorShadowTintedKey">@color/brandPrimaryLightA20</item>
+        <item name="colorShadowTintedAmbient">@color/brandPrimaryLightA10</item>
+
+        <!-- Illustration Colors -->
+        <item name="colorIllustrationBg">@color/neutralWhite</item>
+        <item name="colorIllustrationIcon">@color/neutralBlack</item>
+        <item name="colorIllustrationRippleIntense">@color/brandPrimaryLightA20</item>
+        <item name="colorIllustrationRippleSubtle">@color/brandPrimaryLightA2</item>
+
+    </style>
+
+    <style name="Theme.DesklabV3" parent="Base.Theme.DesklabV3" />
+</resources>
