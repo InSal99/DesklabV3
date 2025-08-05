@@ -169,6 +169,35 @@
         <item name="colorIllustrationRippleIntense">@color/brandPrimaryLightA20</item>
         <item name="colorIllustrationRippleSubtle">@color/brandPrimaryLightA2</item>
 
+        <!-- Display -->
+        <item name="d1SemiBold">@style/TextAppearance.Display.D1</item>
+        <item name="d2SemiBold">@style/TextAppearance.Display.D2</item>
+        <item name="d3SemiBold">@style/TextAppearance.Display.D3</item>
+
+        <!-- Headings -->
+        <item name="h1SemiBold">@style/TextAppearance.Heading.H1</item>
+        <item name="h2SemiBold">@style/TextAppearance.Heading.H2</item>
+        <item name="h3SemiBold">@style/TextAppearance.Heading.H3</item>
+        <item name="h4SemiBold">@style/TextAppearance.Heading.H4</item>
+
+        <!-- Paragraphs -->
+        <item name="p1Medium">@style/TextAppearance.Paragraph.P1.Medium</item>
+        <item name="p1Regular">@style/TextAppearance.Paragraph.P1.Regular</item>
+        <item name="p2Medium">@style/TextAppearance.Paragraph.P2.Medium</item>
+        <item name="p2Regular">@style/TextAppearance.Paragraph.P2.Regular</item>
+
+        <!-- Labels -->
+        <item name="l1Medium">@style/TextAppearance.Label.L1.Medium</item>
+        <item name="l1Regular">@style/TextAppearance.Label.L1.Regular</item>
+        <item name="l2Medium">@style/TextAppearance.Label.L2.Medium</item>
+        <item name="l2Regular">@style/TextAppearance.Label.L2.Regular</item>
+        <item name="l3Medium">@style/TextAppearance.Label.L3.Medium</item>
+        <item name="l3Regular">@style/TextAppearance.Label.L3.Regular</item>
+        <item name="l4Medium">@style/TextAppearance.Label.L4.Medium</item>
+        <item name="l4Regular">@style/TextAppearance.Label.L4.Regular</item>
+        <item name="l5Medium">@style/TextAppearance.Label.L5.Medium</item>
+        <item name="l5Regular">@style/TextAppearance.Label.L5.Regular</item>
+
     </style>
 
     <style name="Theme.DesklabV3" parent="Base.Theme.DesklabV3" />

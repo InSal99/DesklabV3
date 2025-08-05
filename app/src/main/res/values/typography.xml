@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Display Text Styles -->
+    <style name="TextAppearance.Display.D1" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">28sp</item>
+        <item name="lineHeight">30sp</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Display.D2" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">26sp</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Display.D3" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">20sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Heading Text Styles -->
+    <style name="TextAppearance.Heading.H1" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">18sp</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Heading.H2" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Heading.H3" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">14sp</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Heading.H4" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">10sp</item>
+        <item name="lineHeight">12sp</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Paragraph Text Styles -->
+    <style name="TextAppearance.Paragraph.P1.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Paragraph.P1.Regular" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Paragraph.P2.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Paragraph.P2.Regular" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Label Text Styles -->
+    <style name="TextAppearance.Label.L1.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">16sp</item> <!-- 100% -->
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Label.L1.Regular" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Label Text Styles -->
+    <style name="TextAppearance.Label.L2.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">14sp</item> <!-- 100% -->
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Label.L2.Regular" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">14sp</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Label Text Styles -->
+    <style name="TextAppearance.Label.L3.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">12sp</item> <!-- 100% -->
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Label.L3.Regular" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">12sp</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Label.L4.Regular" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">10sp</item>
+        <item name="lineHeight">10sp</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Label.L4.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">10sp</item>
+        <item name="lineHeight">10sp</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Label.L5.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">8sp</item>
+        <item name="lineHeight">8sp</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Label.L5.Regular" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">8sp</item>
+        <item name="lineHeight">8sp</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+</resources>
