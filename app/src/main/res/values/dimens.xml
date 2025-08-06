@@ -39,4 +39,18 @@
     <dimen name="fontXl">24sp</dimen>
     <dimen name="font2xl">28sp</dimen>
 
+    <!-- Numeric -->
+    <dimen name="dimen_30">30sp</dimen>
+    <dimen name="dimen_26">26sp</dimen>
+    <dimen name="dimen_24">24sp</dimen>
+    <dimen name="dimen_20">20sp</dimen>
+    <dimen name="dimen_18">18sp</dimen>
+    <dimen name="dimen_16">16sp</dimen>
+    <dimen name="dimen_14">14sp</dimen>
+    <dimen name="dimen_12">12sp</dimen>
+    <dimen name="dimen_10">10sp</dimen>
+
+    <!-- Generic 100% line height -->
+    <dimen name="dimen_100">100%</dimen>
+
 </resources>
