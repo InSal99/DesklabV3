@@ -1,197 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--background color attrs-->
-    <attr name="colorBackgroundPrimary" format="color"/>
-    <attr name="colorBackgroundPrimaryTinted" format="color"/>
-    <attr name="colorBackgroundPrimaryInverse" format="color"/>
-    <attr name="colorBackgroundSecondary" format="color"/>
-    <attr name="colorBackgroundSecondaryTinted" format="color"/>
-    <attr name="colorBackgroundTertiary" format="color"/>
-    <attr name="colorBackgroundOverlay" format="color"/>
-    <attr name="colorBackgroundDisabled" format="color"/>
+<!--    <attr name="colorBackgroundPrimary" format="color"/>-->
+<!--    <attr name="colorBackgroundPrimaryTinted" format="color"/>-->
+<!--    <attr name="colorBackgroundPrimaryInverse" format="color"/>-->
+<!--    <attr name="colorBackgroundSecondary" format="color"/>-->
+<!--    <attr name="colorBackgroundSecondaryTinted" format="color"/>-->
+<!--    <attr name="colorBackgroundTertiary" format="color"/>-->
+<!--    <attr name="colorBackgroundOverlay" format="color"/>-->
+<!--    <attr name="colorBackgroundDisabled" format="color"/>-->
 
-    <!-- accent background color attrs-->
-    <attr name="colorBackgroundAccentPrimarySubtle" format="color"/>
-    <attr name="colorBackgroundAccentPrimaryIntense" format="color"/>
-    <attr name="colorBackgroundAccentSecondary" format="color"/>
-    <attr name="colorBackgroundAccentDisabled" format="color"/>
+<!--    &lt;!&ndash; accent background color attrs&ndash;&gt;-->
+<!--    <attr name="colorBackgroundAccentPrimarySubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundAccentPrimaryIntense" format="color"/>-->
+<!--    <attr name="colorBackgroundAccentSecondary" format="color"/>-->
+<!--    <attr name="colorBackgroundAccentDisabled" format="color"/>-->
 
-    <!-- modifier background color attrs-->
-    <attr name="colorBackgroundModifierCardElevated" format="color"/>
-    <attr name="colorBackgroundModifierCardElevatedInverse" format="color"/>
-    <attr name="colorBackgroundModifierCardSurface" format="color"/>
-    <attr name="colorBackgroundModifierOnHover" format="color"/>
-    <attr name="colorBackgroundModifierOnPress" format="color"/>
-    <attr name="colorBackgroundModifierOnPressIntense" format="color"/>
+<!--    &lt;!&ndash; modifier background color attrs&ndash;&gt;-->
+<!--    <attr name="colorBackgroundModifierCardElevated" format="color"/>-->
+<!--    <attr name="colorBackgroundModifierCardElevatedInverse" format="color"/>-->
+<!--    <attr name="colorBackgroundModifierCardSurface" format="color"/>-->
+<!--    <attr name="colorBackgroundModifierOnHover" format="color"/>-->
+<!--    <attr name="colorBackgroundModifierOnPress" format="color"/>-->
+<!--    <attr name="colorBackgroundModifierOnPressIntense" format="color"/>-->
 
-    <!-- info background color attrs -->
-    <attr name="colorBackgroundInfoSubtle" format="color"/>
-    <attr name="colorBackgroundInfoIntense" format="color"/>
+<!--    &lt;!&ndash; info background color attrs &ndash;&gt;-->
+<!--    <attr name="colorBackgroundInfoSubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundInfoIntense" format="color"/>-->
 
-    <!-- success background color attrs -->
-    <attr name="colorBackgroundSuccessSubtle" format="color"/>
-    <attr name="colorBackgroundSuccessIntense" format="color"/>
+<!--    &lt;!&ndash; success background color attrs &ndash;&gt;-->
+<!--    <attr name="colorBackgroundSuccessSubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundSuccessIntense" format="color"/>-->
 
-    <!-- warning background color attrs -->
-    <attr name="colorBackgroundWarningSubtle" format="color"/>
-    <attr name="colorBackgroundWarningIntense" format="color"/>
+<!--    &lt;!&ndash; warning background color attrs &ndash;&gt;-->
+<!--    <attr name="colorBackgroundWarningSubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundWarningIntense" format="color"/>-->
 
-    <!-- attention background color attrs -->
-    <attr name="colorBackgroundAttentionSubtle" format="color"/>
-    <attr name="colorBackgroundAttentionIntense" format="color"/>
+<!--    &lt;!&ndash; attention background color attrs &ndash;&gt;-->
+<!--    <attr name="colorBackgroundAttentionSubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundAttentionIntense" format="color"/>-->
 
-    <!-- utility background color attrs -->
-    <!-- libur -->
-    <attr name="colorBackgroundUtilityLiburSubtle" format="color"/>
-    <attr name="colorBackgroundUtilityLiburIntense" format="color"/>
+<!--    &lt;!&ndash; utility background color attrs &ndash;&gt;-->
+<!--    &lt;!&ndash; libur &ndash;&gt;-->
+<!--    <attr name="colorBackgroundUtilityLiburSubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundUtilityLiburIntense" format="color"/>-->
 
-    <!-- cuti -->
-    <attr name="colorBackgroundUtilityCutiSubtle" format="color"/>
-    <attr name="colorBackgroundUtilityCutiIntense" format="color"/>
+<!--    &lt;!&ndash; cuti &ndash;&gt;-->
+<!--    <attr name="colorBackgroundUtilityCutiSubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundUtilityCutiIntense" format="color"/>-->
 
-    <!-- kerja khusus -->
-    <attr name="colorBackgroundUtilityKerjaKhususSubtle" format="color"/>
-    <attr name="colorBackgroundUtilityKerjaKhususIntense" format="color"/>
+<!--    &lt;!&ndash; kerja khusus &ndash;&gt;-->
+<!--    <attr name="colorBackgroundUtilityKerjaKhususSubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundUtilityKerjaKhususIntense" format="color"/>-->
 
-    <!-- ulang tahun -->
-    <attr name="colorBackgroundUtilityUlangTahunSubtle" format="color"/>
-    <attr name="colorBackgroundUtilityUlangTahunIntense" format="color"/>
+<!--    &lt;!&ndash; ulang tahun &ndash;&gt;-->
+<!--    <attr name="colorBackgroundUtilityUlangTahunSubtle" format="color"/>-->
+<!--    <attr name="colorBackgroundUtilityUlangTahunIntense" format="color"/>-->
 
-    <!-- foreground color attrs-->
-    <attr name="colorForegroundPrimary" format="color"/>
-    <attr name="colorForegroundPrimaryInverse" format="color"/>
-    <attr name="colorForegroundSecondary" format="color"/>
-    <attr name="colorForegroundTertiary" format="color"/>
-    <attr name="colorForegroundPlaceholder" format="color"/>
-    <attr name="colorForegroundDisabled" format="color"/>
-    <attr name="colorForegroundOverlay" format="color"/>
-    <attr name="colorForegroundWhite" format="color"/>
-    <attr name="colorForegroundBlack" format="color"/>
+<!--    &lt;!&ndash; foreground color attrs&ndash;&gt;-->
+<!--    <attr name="colorForegroundPrimary" format="color"/>-->
+<!--    <attr name="colorForegroundPrimaryInverse" format="color"/>-->
+<!--    <attr name="colorForegroundSecondary" format="color"/>-->
+<!--    <attr name="colorForegroundTertiary" format="color"/>-->
+<!--    <attr name="colorForegroundPlaceholder" format="color"/>-->
+<!--    <attr name="colorForegroundDisabled" format="color"/>-->
+<!--    <attr name="colorForegroundOverlay" format="color"/>-->
+<!--    <attr name="colorForegroundWhite" format="color"/>-->
+<!--    <attr name="colorForegroundBlack" format="color"/>-->
 
-    <!-- modifier foreground color attrs-->
-    <attr name="colorForegroundModifierCardElevated" format="color" />
-    <attr name="colorForegroundModifierCardSurface" format="color" />
+<!--    &lt;!&ndash; modifier foreground color attrs&ndash;&gt;-->
+<!--    <attr name="colorForegroundModifierCardElevated" format="color" />-->
+<!--    <attr name="colorForegroundModifierCardSurface" format="color" />-->
 
-    <!-- accent foreground color attrs-->
-    <attr name="colorForegroundAccentPrimarySubtle" format="color" />
-    <attr name="colorForegroundAccentPrimaryIntense" format="color" />
+<!--    &lt;!&ndash; accent foreground color attrs&ndash;&gt;-->
+<!--    <attr name="colorForegroundAccentPrimarySubtle" format="color" />-->
+<!--    <attr name="colorForegroundAccentPrimaryIntense" format="color" />-->
 
-    <!-- info foreground color attrs-->
-    <attr name="colorForegroundInfoSubtle" format="color" />
-    <attr name="colorForegroundInfoIntense" format="color" />
+<!--    &lt;!&ndash; info foreground color attrs&ndash;&gt;-->
+<!--    <attr name="colorForegroundInfoSubtle" format="color" />-->
+<!--    <attr name="colorForegroundInfoIntense" format="color" />-->
 
-    <!-- success foreground color attrs-->
-    <attr name="colorForegroundSuccessSubtle" format="color" />
-    <attr name="colorForegroundSuccessIntense" format="color" />
+<!--    &lt;!&ndash; success foreground color attrs&ndash;&gt;-->
+<!--    <attr name="colorForegroundSuccessSubtle" format="color" />-->
+<!--    <attr name="colorForegroundSuccessIntense" format="color" />-->
 
-    <!-- warning foreground color attrs--><!-- Warning Colors -->
-    <attr name="colorForegroundWarningSubtle" format="color" />
-    <attr name="colorForegroundWarningIntense" format="color" />
+<!--    &lt;!&ndash; warning foreground color attrs&ndash;&gt;&lt;!&ndash; Warning Colors &ndash;&gt;-->
+<!--    <attr name="colorForegroundWarningSubtle" format="color" />-->
+<!--    <attr name="colorForegroundWarningIntense" format="color" />-->
 
-    <!-- attention foreground color attrs-->
-    <attr name="colorForegroundAttentionSubtle" format="color" />
-    <attr name="colorForegroundAttentionIntense" format="color" />
+<!--    &lt;!&ndash; attention foreground color attrs&ndash;&gt;-->
+<!--    <attr name="colorForegroundAttentionSubtle" format="color" />-->
+<!--    <attr name="colorForegroundAttentionIntense" format="color" />-->
 
-    <!-- utility foreground color attrs -->
-    <!-- libur -->
-    <attr name="colorForegroundUtilityLiburSubtle" format="color" />
-    <attr name="colorForegroundUtilityLiburIntense" format="color" />
+<!--    &lt;!&ndash; utility foreground color attrs &ndash;&gt;-->
+<!--    &lt;!&ndash; libur &ndash;&gt;-->
+<!--    <attr name="colorForegroundUtilityLiburSubtle" format="color" />-->
+<!--    <attr name="colorForegroundUtilityLiburIntense" format="color" />-->
 
-    <!-- cuti -->
-    <attr name="colorForegroundUtilityCutiSubtle" format="color" />
-    <attr name="colorForegroundUtilityCutiIntense" format="color" />
+<!--    &lt;!&ndash; cuti &ndash;&gt;-->
+<!--    <attr name="colorForegroundUtilityCutiSubtle" format="color" />-->
+<!--    <attr name="colorForegroundUtilityCutiIntense" format="color" />-->
 
-    <!-- kerja khusus -->
-    <attr name="colorForegroundUtilityKerjaKhususSubtle" format="color" />
-    <attr name="colorForegroundUtilityKerjaKhususIntense" format="color" />
+<!--    &lt;!&ndash; kerja khusus &ndash;&gt;-->
+<!--    <attr name="colorForegroundUtilityKerjaKhususSubtle" format="color" />-->
+<!--    <attr name="colorForegroundUtilityKerjaKhususIntense" format="color" />-->
 
-    <!-- ulang tahun -->
-    <attr name="colorForegroundUtilityUlangTahunSubtle" format="color" />
-    <attr name="colorForegroundUtilityUlangTahunIntense" format="color" />
+<!--    &lt;!&ndash; ulang tahun &ndash;&gt;-->
+<!--    <attr name="colorForegroundUtilityUlangTahunSubtle" format="color" />-->
+<!--    <attr name="colorForegroundUtilityUlangTahunIntense" format="color" />-->
 
-    <!-- stroke color attrs -->
-    <attr name="colorStrokeSubtle" format="color" />
-    <attr name="colorStrokeInteractive" format="color" />
-    <attr name="colorStrokeIntense" format="color" />
-    <attr name="colorStrokeFocus" format="color" />
-    <attr name="colorStrokeAccent" format="color" />
-    <attr name="colorStrokeDisabled" format="color" />
-    <attr name="colorStrokeCutout" format="color" />
+<!--    &lt;!&ndash; stroke color attrs &ndash;&gt;-->
+<!--    <attr name="colorStrokeSubtle" format="color" />-->
+<!--    <attr name="colorStrokeInteractive" format="color" />-->
+<!--    <attr name="colorStrokeIntense" format="color" />-->
+<!--    <attr name="colorStrokeFocus" format="color" />-->
+<!--    <attr name="colorStrokeAccent" format="color" />-->
+<!--    <attr name="colorStrokeDisabled" format="color" />-->
+<!--    <attr name="colorStrokeCutout" format="color" />-->
 
-    <!-- info stroke color attrs -->
-    <attr name="colorStrokeInfoSubtle" format="color" />
-    <attr name="colorStrokeInfoIntense" format="color" />
+<!--    &lt;!&ndash; info stroke color attrs &ndash;&gt;-->
+<!--    <attr name="colorStrokeInfoSubtle" format="color" />-->
+<!--    <attr name="colorStrokeInfoIntense" format="color" />-->
 
-    <!-- success stroke color attrs -->
-    <attr name="colorStrokeSuccessSubtle" format="color" />
-    <attr name="colorStrokeSuccessIntense" format="color" />
+<!--    &lt;!&ndash; success stroke color attrs &ndash;&gt;-->
+<!--    <attr name="colorStrokeSuccessSubtle" format="color" />-->
+<!--    <attr name="colorStrokeSuccessIntense" format="color" />-->
 
-    <!-- warning stroke color attrs -->
-    <attr name="colorStrokeWarningSubtle" format="color" />
-    <attr name="colorStrokeWarningIntense" format="color" />
+<!--    &lt;!&ndash; warning stroke color attrs &ndash;&gt;-->
+<!--    <attr name="colorStrokeWarningSubtle" format="color" />-->
+<!--    <attr name="colorStrokeWarningIntense" format="color" />-->
 
-    <!-- attention stroke color attrs -->
-    <attr name="colorStrokeAttentionSubtle" format="color" />
-    <attr name="colorStrokeAttentionIntense" format="color" />
+<!--    &lt;!&ndash; attention stroke color attrs &ndash;&gt;-->
+<!--    <attr name="colorStrokeAttentionSubtle" format="color" />-->
+<!--    <attr name="colorStrokeAttentionIntense" format="color" />-->
 
-    <!-- utility stroke color attrs -->
-    <!-- libur -->
-    <attr name="colorStrokeUtilityLiburSubtle" format="color" />
-     <attr name="colorStrokeUtilityLiburIntense" format="color" />
+<!--    &lt;!&ndash; utility stroke color attrs &ndash;&gt;-->
+<!--    &lt;!&ndash; libur &ndash;&gt;-->
+<!--    <attr name="colorStrokeUtilityLiburSubtle" format="color" />-->
+<!--     <attr name="colorStrokeUtilityLiburIntense" format="color" />-->
 
-    <!-- cuti -->
-     <attr name="colorStrokeUtilityCutiSubtle" format="color" />
-    <attr name="colorStrokeUtilityCutiIntense" format="color" />
+<!--    &lt;!&ndash; cuti &ndash;&gt;-->
+<!--     <attr name="colorStrokeUtilityCutiSubtle" format="color" />-->
+<!--    <attr name="colorStrokeUtilityCutiIntense" format="color" />-->
 
-    <!-- kerja khusus -->
-     <attr name="colorStrokeUtilityKerjaKhususSubtle" format="color" />
-     <attr name="colorStrokeUtilityKerjaKhususIntense" format="color" />
+<!--    &lt;!&ndash; kerja khusus &ndash;&gt;-->
+<!--     <attr name="colorStrokeUtilityKerjaKhususSubtle" format="color" />-->
+<!--     <attr name="colorStrokeUtilityKerjaKhususIntense" format="color" />-->
 
-    <!-- ulang tahun -->
-    <attr name="colorStrokeUtilityUlangTahunSubtle" format="color" />
-    <attr name="colorStrokeUtilityUlangTahunIntense" format="color" />
+<!--    &lt;!&ndash; ulang tahun &ndash;&gt;-->
+<!--    <attr name="colorStrokeUtilityUlangTahunSubtle" format="color" />-->
+<!--    <attr name="colorStrokeUtilityUlangTahunIntense" format="color" />-->
 
-    <!-- shadow neutral color attrs -->
-    <attr name="colorShadowNeutralKey" format="color" />
-    <attr name="colorShadowNeutralAmbient" format="color" />
+<!--    &lt;!&ndash; shadow neutral color attrs &ndash;&gt;-->
+<!--    <attr name="colorShadowNeutralKey" format="color" />-->
+<!--    <attr name="colorShadowNeutralAmbient" format="color" />-->
 
-    <!-- shadow tinted color attrs -->
-    <attr name="colorShadowTintedKey" format="color" />
-    <attr name="colorShadowTintedAmbient" format="color" />
+<!--    &lt;!&ndash; shadow tinted color attrs &ndash;&gt;-->
+<!--    <attr name="colorShadowTintedKey" format="color" />-->
+<!--    <attr name="colorShadowTintedAmbient" format="color" />-->
 
-    <!-- illustration color attrs -->
-    <attr name="colorIllustrationBg" format="color" />
-    <attr name="colorIllustrationIcon" format="color" />
-    <attr name="colorIllustrationRippleIntense" format="color" />
-    <attr name="colorIllustrationRippleSubtle" format="color" />
+<!--    &lt;!&ndash; illustration color attrs &ndash;&gt;-->
+<!--    <attr name="colorIllustrationBg" format="color" />-->
+<!--    <attr name="colorIllustrationIcon" format="color" />-->
+<!--    <attr name="colorIllustrationRippleIntense" format="color" />-->
+<!--    <attr name="colorIllustrationRippleSubtle" format="color" />-->
 
-    <!-- Display Text Attributes -->
-    <attr name="d1SemiBold" format="reference"/>
-    <attr name="d2SemiBold" format="reference"/>
-    <attr name="d3SemiBold" format="reference"/>
+<!--    &lt;!&ndash; Display Text Attributes &ndash;&gt;-->
+<!--    <attr name="d1SemiBold" format="reference"/>-->
+<!--    <attr name="d2SemiBold" format="reference"/>-->
+<!--    <attr name="d3SemiBold" format="reference"/>-->
 
-    <!-- Heading Text Attributes -->
-    <attr name="h1SemiBold" format="reference"/>
-    <attr name="h2SemiBold" format="reference"/>
-    <attr name="h3SemiBold" format="reference"/>
-    <attr name="h4SemiBold" format="reference"/>
+<!--    &lt;!&ndash; Heading Text Attributes &ndash;&gt;-->
+<!--    <attr name="h1SemiBold" format="reference"/>-->
+<!--    <attr name="h2SemiBold" format="reference"/>-->
+<!--    <attr name="h3SemiBold" format="reference"/>-->
+<!--    <attr name="h4SemiBold" format="reference"/>-->
 
-    <!-- Paragraph Text Attributes -->
-    <attr name="p1Medium" format="reference"/>
-    <attr name="p1Regular" format="reference"/>
-    <attr name="p2Medium" format="reference"/>
-    <attr name="p2Regular" format="reference"/>
+<!--    &lt;!&ndash; Paragraph Text Attributes &ndash;&gt;-->
+<!--    <attr name="p1Medium" format="reference"/>-->
+<!--    <attr name="p1Regular" format="reference"/>-->
+<!--    <attr name="p2Medium" format="reference"/>-->
+<!--    <attr name="p2Regular" format="reference"/>-->
 
-    <!-- Label Text Attributes -->
-    <attr name="l1Medium" format="reference"/>
-    <attr name="l1Regular" format="reference"/>
-    <attr name="l2Medium" format="reference"/>
-    <attr name="l2Regular" format="reference"/>
-    <attr name="l3Medium" format="reference"/>
-    <attr name="l3Regular" format="reference"/>
-    <attr name="l4Medium" format="reference"/>
-    <attr name="l4Regular" format="reference"/>
-    <attr name="l5Medium" format="reference"/>
-    <attr name="l5Regular" format="reference"/>
+<!--    &lt;!&ndash; Label Text Attributes &ndash;&gt;-->
+<!--    <attr name="l1Medium" format="reference"/>-->
+<!--    <attr name="l1Regular" format="reference"/>-->
+<!--    <attr name="l2Medium" format="reference"/>-->
+<!--    <attr name="l2Regular" format="reference"/>-->
+<!--    <attr name="l3Medium" format="reference"/>-->
+<!--    <attr name="l3Regular" format="reference"/>-->
+<!--    <attr name="l4Medium" format="reference"/>-->
+<!--    <attr name="l4Regular" format="reference"/>-->
+<!--    <attr name="l5Medium" format="reference"/>-->
+<!--    <attr name="l5Regular" format="reference"/>-->
 
 </resources>
