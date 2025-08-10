@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "DesklabV3"
 include(":app")
-include(":components")
+include(":core")

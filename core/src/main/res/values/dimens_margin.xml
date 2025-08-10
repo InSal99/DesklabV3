@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_0dp">0dp</dimen>
+    <dimen name="margin_2dp">2dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_6dp">6dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="margin_12dp">12dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_18dp">18dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
+    <dimen name="margin_28dp">28dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
+    <dimen name="margin_36dp">36dp</dimen>
+    <dimen name="margin_42dp">42dp</dimen>
+    <dimen name="margin_48dp">48dp</dimen>
+    <dimen name="margin_72dp">72dp</dimen>
+
+
+    <dimen name="radius_0dp">0dp</dimen>
+    <dimen name="radius_4dp">4dp</dimen>
+    <dimen name="radius_5dp">5dp</dimen>
+    <dimen name="radius_6dp">6dp</dimen>
+    <dimen name="radius_8dp">8dp</dimen>
+    <dimen name="radius_10dp">10dp</dimen>
+    <dimen name="radius_12dp">12dp</dimen>
+    <dimen name="radius_15dp">15dp</dimen>
+    <dimen name="radius_16dp">16dp</dimen>
+    <dimen name="radius_20dp">20dp</dimen>
+    <dimen name="radius_999dp">999dp</dimen>
+
+
+    <dimen name="stroke_weight_0.5dp">0.5dp</dimen>
+    <dimen name="stroke_weight_1dp">1dp</dimen>
+    <dimen name="stroke_weight_2dp">2dp</dimen>
+    <dimen name="stroke_weight_4dp">4dp</dimen>
+</resources>
