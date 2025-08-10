@@ -1,56 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Spacing dimensions -->
-    <dimen name="spacingNone">0dp</dimen>
-    <dimen name="spacing3xs">2dp</dimen>
-    <dimen name="spacing2xs">4dp</dimen>
-    <dimen name="spacingXs">6dp</dimen>
-    <dimen name="spacingSm">8dp</dimen>
-    <dimen name="spacingMd">12dp</dimen>
-    <dimen name="spacingLg">16dp</dimen>
-    <dimen name="spacingXl">20dp</dimen>
-    <dimen name="spacing2xl">24dp</dimen>
-    <dimen name="spacing3xl">32dp</dimen>
-    <dimen name="spacing4xl">40dp</dimen>
-    <dimen name="spacing5xl">44dp</dimen>
-
-    <!-- Corner radius dimensions -->
-    <dimen name="radiusNone">0dp</dimen>
-    <dimen name="radiusXs">4dp</dimen>
-    <dimen name="radiusSm">6dp</dimen>
-    <dimen name="radiusMd">8dp</dimen>
-    <dimen name="radiusLg">12dp</dimen>
-    <dimen name="radiusXl">16dp</dimen>
-    <dimen name="radiusMax">999dp</dimen>
-
-    <!-- Stroke weights dimens -->
-    <dimen name="strokeWeightXthin">0.5dp</dimen>
-    <dimen name="strokeWeightThin">1dp</dimen>
-    <dimen name="strokeWeightThick">2dp</dimen>
-    <dimen name="strokeWeightXthick">4dp</dimen>
-
-    <!-- Font sizes -->
-    <dimen name="font3xs">8sp</dimen>
-    <dimen name="font2xs">10sp</dimen>
-    <dimen name="fontXs">12sp</dimen>
-    <dimen name="fontSm">14sp</dimen>
-    <dimen name="fontMd">16sp</dimen>
-    <dimen name="fontLg">20sp</dimen>
-    <dimen name="fontXl">24sp</dimen>
-    <dimen name="font2xl">28sp</dimen>
-
-    <!-- Numeric -->
-    <dimen name="dimen_30">30sp</dimen>
-    <dimen name="dimen_26">26sp</dimen>
-    <dimen name="dimen_24">24sp</dimen>
-    <dimen name="dimen_20">20sp</dimen>
-    <dimen name="dimen_18">18sp</dimen>
-    <dimen name="dimen_16">16sp</dimen>
-    <dimen name="dimen_14">14sp</dimen>
-    <dimen name="dimen_12">12sp</dimen>
-    <dimen name="dimen_10">10sp</dimen>
-
-    <!-- Generic 100% line height -->
-    <dimen name="dimen_100">100%</dimen>
-
+    <dimen name="dimen_112dp">112dp</dimen>
+    <dimen name="dimen_4dp">4dp</dimen>
+    <dimen name="dimen_1dp">1dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
 </resources>
