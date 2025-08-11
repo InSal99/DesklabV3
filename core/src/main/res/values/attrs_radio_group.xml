@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DynamicRadioGroup">
+        <attr name="normalTextAppearance" format="reference"/>
+        <attr name="selectedTextAppearance" format="reference"/>
+        <attr name="disabledTextAppearance" format="reference"/>
+        <attr name="buttonSpacing" format="dimension"/>
+    </declare-styleable>
+</resources>

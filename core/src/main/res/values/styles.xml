@@ -1,4 +1,13 @@
 <resources>
+<!--    <style name="Theme.Desklab">-->
+<!--        <item name="colorStrokeInteractive">@color/colorNeutral70Opacity20</item>-->
+<!--        <item name="colorStrokeSubtle">@color/colorNeutral30</item>-->
+<!--        <item name="colorForegroundDisabled">@color/color000Opacity20</item>-->
+<!--        <item name="colorBackgroundAccentPrimaryIntense">@color/colorPrimary30</item>-->
+<!--        <item name="colorForegroundWhite">@color/colorFFF</item>-->
+<!--        &lt;!&ndash; Assign ALL other attributes &ndash;&gt;-->
+<!--    </style>-->
+
     <!-- Text Base style -->
     <style name="TextRegular">
         <item name="fontFamily">@font/inter_regular</item>
@@ -376,10 +385,10 @@
         <item name="android:textSize">@dimen/text_size_10sp</item>
     </style>
 
-    <style name="NegativeButton.White">
-        <item name="android:background">@drawable/bg_button_white</item>
-        <item name="android:textColor">@color/colorBlack70</item>
-    </style>
+<!--    <style name="NegativeButton.White">-->
+<!--        <item name="android:background">@drawable/bg_button_white</item>-->
+<!--        <item name="android:textColor">@color/colorBlack70</item>-->
+<!--    </style>-->
 
     <!-- Text Display Style -->
     <style name="TextSemiBold.Display1">
@@ -579,5 +588,55 @@
     <style name="BadgeStyle" parent="ShapeAppearance.Material3.Corner.ExtraLarge">
         <item name="android:textSize">8sp</item>
         <item name="android:layout_margin">20dp</item>
+    </style>
+
+    <style name="CustomRadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/margin_8dp</item>
+        <item name="android:button">@drawable/ic_radio_button</item>
+        <item name="android:buttonTint">@null</item>
+        <item name="useMaterialThemeColors">false</item>
+        <item name="android:textAppearance">@style/RadioTextAppearance</item>
+    </style>
+
+<!--    <style name="CustomRadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">-->
+<!--        <item name="android:button">@drawable/ic_radio_button</item>-->
+<!--        <item name="android:buttonTint">@null</item>-->
+<!--        <item name="useMaterialThemeColors">false</item>-->
+<!--        &lt;!&ndash; Add these &ndash;&gt;-->
+<!--        <item name="materialThemeOverlay">@style/RadioButtonThemeOverlay</item>-->
+<!--        <item name="android:theme">@style/RadioButtonThemeOverlay</item>-->
+<!--    </style>-->
+
+<!--    <style name="RadioButtonThemeOverlay">-->
+<!--        <item name="colorControlNormal">?attr/colorStrokeInteractive</item>-->
+<!--        <item name="colorControlActivated">?attr/colorBackgroundAccentPrimaryIntense</item>-->
+<!--    </style>-->
+
+    <style name="CustomRadioButton.Normal" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Normal</item>
+    </style>
+
+    <style name="CustomRadioButton.Selected" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Selected</item>
+    </style>
+
+    <style name="CustomRadioButton.Disabled" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Disabled</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="Widget.App.DynamicRadioGroup" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="normalTextAppearance">@style/RadioTextAppearance.Normal</item>
+        <item name="selectedTextAppearance">@style/RadioTextAppearance.Selected</item>
+        <item name="disabledTextAppearance">@style/RadioTextAppearance.Disabled</item>
+        <item name="buttonSpacing">@dimen/margin_8dp</item>
+    </style>
+
+    <style name="RadioButtonTextAppearance" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/color000</item>
+        <item name="android:textSize">14sp</item>
+        <!-- Other text attributes -->
     </style>
 </resources>

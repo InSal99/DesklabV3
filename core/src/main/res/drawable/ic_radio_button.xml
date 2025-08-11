@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+<!--    &lt;!&ndash; PRIMARY VARIANT - Selected & Not Disabled &ndash;&gt;-->
+<!--    <item android:state_checked="true" android:state_enabled="true" android:state_selected="true">-->
+<!--        <layer-list>-->
+<!--            <item>-->
+<!--                <shape android:shape="oval">-->
+<!--                    <solid android:color="@color/radio_primary"/>-->
+<!--                    <size android:width="16dp" android:height="16dp"/>-->
+<!--                </shape>-->
+<!--            </item>-->
+<!--            <item android:top="5dp" android:bottom="5dp" android:left="5dp" android:right="5dp">-->
+<!--                <shape android:shape="oval">-->
+<!--                    <solid android:color="@color/radio_primary_center"/>-->
+<!--                </shape>-->
+<!--            </item>-->
+<!--        </layer-list>-->
+<!--    </item>-->
+
+<!--    &lt;!&ndash; NORMAL VARIANT - Selected & Not Disabled &ndash;&gt;-->
+<!--    <item android:state_checked="true" android:state_enabled="true">-->
+<!--        <layer-list>-->
+<!--            <item>-->
+<!--                <shape android:shape="oval">-->
+<!--                    <stroke android:width="1dp" android:color="@color/radio_center_selected"/>-->
+<!--                    <size android:width="16dp" android:height="16dp"/>-->
+<!--                    <solid android:color="@android:color/transparent"/>-->
+<!--                </shape>-->
+<!--            </item>-->
+<!--            <item android:top="5dp" android:bottom="5dp" android:left="5dp" android:right="5dp">-->
+<!--                <shape android:shape="oval">-->
+<!--                    <solid android:color="@color/radio_center_selected"/>-->
+<!--                </shape>-->
+<!--            </item>-->
+<!--        </layer-list>-->
+<!--    </item>-->
+
+<!--    &lt;!&ndash; Selected & Disabled &ndash;&gt;-->
+<!--    <item android:state_checked="true" android:state_enabled="false">-->
+<!--        <layer-list>-->
+<!--            <item>-->
+<!--                <shape android:shape="oval">-->
+<!--                    <stroke android:width="1dp" android:color="@color/radio_border_disabled"/>-->
+<!--                    <size android:width="16dp" android:height="16dp"/>-->
+<!--                    <solid android:color="@android:color/transparent"/>-->
+<!--                </shape>-->
+<!--            </item>-->
+<!--            <item android:top="5dp" android:bottom="5dp" android:left="5dp" android:right="5dp">-->
+<!--                <shape android:shape="oval">-->
+<!--                    <solid android:color="@color/radio_center_disabled"/>-->
+<!--                </shape>-->
+<!--            </item>-->
+<!--        </layer-list>-->
+<!--    </item>-->
+
+<!--    &lt;!&ndash; Unselected & Not Disabled &ndash;&gt;-->
+<!--    <item android:state_checked="false" android:state_enabled="true">-->
+<!--        <shape android:shape="oval">-->
+<!--            <stroke android:width="1dp" android:color="@color/radio_border_normal"/>-->
+<!--            <size android:width="16dp" android:height="16dp"/>-->
+<!--            <solid android:color="@android:color/transparent"/>-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--    &lt;!&ndash; Unselected & Disabled &ndash;&gt;-->
+<!--    <item android:state_checked="false" android:state_enabled="false">-->
+<!--        <shape android:shape="oval">-->
+<!--            <stroke android:width="1dp" android:color="@color/radio_border_disabled"/>-->
+<!--            <size android:width="16dp" android:height="16dp"/>-->
+<!--            <solid android:color="@android:color/transparent"/>-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--</selector>-->
+
+
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected & Not Disabled -->
+    <item android:state_checked="true" android:state_enabled="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <stroke android:width="1dp" android:color="@color/colorOpacityWhite20"/>
+                    <solid android:color="@color/colorPrimary30"/>
+                    <size android:width="16dp" android:height="16dp"/>
+                </shape>
+            </item>
+            <item android:top="5dp" android:bottom="5dp" android:left="5dp" android:right="5dp">
+                <shape android:shape="oval">
+                    <solid android:color="@color/colorFFF"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Selected & Disabled -->
+    <item android:state_checked="true" android:state_enabled="false">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <stroke android:width="1dp" android:color="@color/colorNeutral30"/>
+                    <size android:width="16dp" android:height="16dp"/>
+                    <solid android:color="@color/color000Opacity5"/>
+                </shape>
+            </item>
+            <item android:top="5dp" android:bottom="5dp" android:left="5dp" android:right="5dp">
+                <shape android:shape="oval">
+                    <solid android:color="@color/color000Opacity20"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Unselected & Not Disabled -->
+    <item android:state_checked="false" android:state_enabled="true">
+        <shape android:shape="oval">
+            <stroke android:width="1dp" android:color="@color/colorNeutral30"/>
+            <size android:width="16dp" android:height="16dp"/>
+            <solid android:color="@color/colorFFF"/>
+        </shape>
+    </item>
+
+    <!-- Unselected & Disabled -->
+    <item android:state_checked="false" android:state_enabled="false">
+        <shape android:shape="oval">
+            <stroke android:width="1dp" android:color="@color/colorNeutral30"/>
+            <size android:width="16dp" android:height="16dp"/>
+            <solid android:color="@color/color000Opacity5"/>
+        </shape>
+    </item>
+</selector>

@@ -16,4 +16,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.example.components.CustomRadioGroup
+        android:id="@+id/rbTest"
+        style="@style/Widget.App.DynamicRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+<!--    <RadioGroup-->
+<!--        android:id="@+id/rbTest"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--            style="@style/CustomRadioButton"-->
+<!--            android:text="Option 1" />-->
+
+<!--        <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--            style="@style/CustomRadioButton"-->
+<!--            android:text="Option 2" />-->
+
+<!--        <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--            style="@style/CustomRadioButton"-->
+<!--            android:text="Option 3"/>-->
+
+<!--    </RadioGroup>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

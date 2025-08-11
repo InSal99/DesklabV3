@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
 <!--    <style name="Base.Theme.DesklabV3" parent="Theme.MaterialComponents.Light.DarkActionBar">-->
-    <style name="Theme.Desklab" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.Desklab" parent="Theme.MaterialComponents.Light.NoActionBar">
 <!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
 <!--        <item name="colorPrimary">@color/colorPrimary30</item>-->
 <!--        <item name="colorPrimaryVariant">@color/colorPrimary50</item>-->
