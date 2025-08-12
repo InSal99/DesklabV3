@@ -1,6 +1,7 @@
 package com.example.desklabv3
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,22 +25,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRadioButtons() {
-        // Example with String data
-        val stringOptions = listOf("Option 1", "Option 2", "Option 3", "Option 4", "Option 5")
-        dynamicRadioGroup.setData(stringOptions) { it }
+        // Example data
+        val options = listOf("Option 11111111", "Option 2", "Option 33333333", "Option 4")
 
-        // Example with custom data objects
-        val customOptions = listOf(
-            UserOption(1, "John Doe"),
-            UserOption(2, "Jane Smith"),
-            UserOption(3, "Bob Johnson"),
-            UserOption(4, "Bob Johnson")
-        )
-        // dynamicRadioGroup.setData(customOptions) { "${it.name} (ID: ${it.id})" }
+        dynamicRadioGroup.setData(options) { it }
 
-        // Set selection listener
         dynamicRadioGroup.setOnItemSelectedListener { position, data ->
-            Toast.makeText(this, "Selected: $data at position $position", Toast.LENGTH_SHORT).show()
+            Log.d("RadioButton", "Selected: $data at position $position")
         }
 
         // Optional: Pre-select an item

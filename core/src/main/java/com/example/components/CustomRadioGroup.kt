@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RadioGroup
-import com.google.android.material.radiobutton.MaterialRadioButton
+import androidx.core.content.withStyledAttributes
 
 class CustomRadioGroup @JvmOverloads constructor(
     context: Context,
@@ -13,6 +13,44 @@ class CustomRadioGroup @JvmOverloads constructor(
 
     private var onItemSelectedListener: ((position: Int, data: Any?) -> Unit)? = null
     private val radioButtonDataMap = mutableMapOf<Int, Any?>()
+    private var normalTextAppearance = R.style.RadioTextAppearance_Normal
+    private var selectedTextAppearance = R.style.RadioTextAppearance_Selected
+    private var disabledTextAppearance = R.style.RadioTextAppearance_Disabled
+    private var disabledSelectedTextAppearance = R.style.RadioTextAppearance_DisabledSelected
+    private var buttonSpacing = 0
+    private var compoundDrawablePadding = 8
+
+    init {
+        attrs?.let {
+            context.withStyledAttributes(it, R.styleable.DynamicRadioGroup) {
+
+                normalTextAppearance = getResourceId(
+                    R.styleable.DynamicRadioGroup_normalTextAppearance,
+                    R.style.RadioTextAppearance_Normal
+                )
+                selectedTextAppearance = getResourceId(
+                    R.styleable.DynamicRadioGroup_selectedTextAppearance,
+                    R.style.RadioTextAppearance_Selected
+                )
+                disabledTextAppearance = getResourceId(
+                    R.styleable.DynamicRadioGroup_disabledTextAppearance,
+                    R.style.RadioTextAppearance_Disabled
+                )
+                disabledSelectedTextAppearance = getResourceId(
+                    R.styleable.DynamicRadioGroup_disabledSelectedTextAppearance,
+                    R.style.RadioTextAppearance_DisabledSelected
+                )
+                buttonSpacing = getDimensionPixelSize(
+                    R.styleable.DynamicRadioGroup_buttonSpacing,
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp)
+                )
+                compoundDrawablePadding = getDimensionPixelSize(
+                    R.styleable.DynamicRadioGroup_compoundDrawablePadding,
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp)
+                )
+            }
+        }
+    }
 
     fun <T> setData(dataList: List<T>, itemDisplayProvider: (T) -> String) {
         removeAllViews()
@@ -22,11 +60,19 @@ class CustomRadioGroup @JvmOverloads constructor(
             val radioButton = CustomRadioButton(context).apply {
                 id = View.generateViewId()
                 text = itemDisplayProvider(item)
+
+                setTextAppearances(
+                    normal = normalTextAppearance,
+                    selected = selectedTextAppearance,
+                    disabled = disabledTextAppearance,
+                    disabledSelected = disabledSelectedTextAppearance
+                )
+
                 layoutParams = RadioGroup.LayoutParams(
                     RadioGroup.LayoutParams.WRAP_CONTENT,
-                    RadioGroup.LayoutParams.WRAP_CONTENT
+                    resources.getDimensionPixelSize(R.dimen.line_height_24)
                 ).apply {
-                    setMargins(0, 0, 0, 16) // Add some margin between items
+                    setMargins(0, 0, 0, buttonSpacing)
                 }
             }
 
@@ -38,6 +84,17 @@ class CustomRadioGroup @JvmOverloads constructor(
             val position = getPositionById(checkedId)
             val data = radioButtonDataMap[checkedId]
             onItemSelectedListener?.invoke(position, data)
+
+            updateAllRadioButtonsTextAppearance()
+        }
+    }
+
+    private fun updateAllRadioButtonsTextAppearance() {
+        for (i in 0 until childCount) {
+            val radioButton = getChildAt(i) as? CustomRadioButton
+            radioButton?.let {
+                it.setTextAppearances(normalTextAppearance, selectedTextAppearance, disabledTextAppearance)
+            }
         }
     }
 
