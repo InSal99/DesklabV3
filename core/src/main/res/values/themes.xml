@@ -101,15 +101,15 @@
 
         <!-- Info Foreground Colors -->
         <item name="colorForegroundInfoSubtle">@color/colorBlue10</item>
-        <item name="colorForegroundInfoIntense">@color/colorBlue30</item>
+        <item name="colorForegroundInfoIntense">@color/colorBlue50</item>
 
         <!-- Success Foreground Colors -->
         <item name="colorForegroundSuccessSubtle">@color/colorGreen10</item>
-        <item name="colorForegroundSuccessIntense">@color/colorGreen30</item>
+        <item name="colorForegroundSuccessIntense">@color/colorGreen50</item>
 
         <!-- Warning Foreground Colors -->
         <item name="colorForegroundWarningSubtle">@color/colorOrange10</item>
-        <item name="colorForegroundWarningIntense">@color/colorOrange30</item>
+        <item name="colorForegroundWarningIntense">@color/colorOrange50</item>
 
         <!-- Attention Foreground Colors -->
         <item name="colorForegroundAttentionSubtle">@color/colorRed10</item>
@@ -136,23 +136,23 @@
         <item name="colorStrokeSubtle">@color/colorNeutral30</item>
         <item name="colorStrokeInteractive">@color/colorNeutral70Opacity20</item>
         <item name="colorStrokeIntense">@color/colorNeutral40</item>
-        <item name="colorStrokeFocus">@color/colorNeutral50</item>
-        <item name="colorStrokeAccent">@color/colorPrimary50</item>
-        <item name="colorStrokeDisabled">@color/colorPrimary30</item>
+        <item name="colorStrokeFocus">@color/colorPrimary50</item>
+        <item name="colorStrokeAccent">@color/colorPrimary30</item>
+        <item name="colorStrokeDisabled">@color/color000Opacity12</item>
         <item name="colorStrokeCutout">?attr/colorBackgroundPrimary</item>
 
         <!-- Semantic Stroke Colors -->
         <!-- Info -->
         <item name="colorStrokeInfoSubtle">@color/colorBlue10</item>
-        <item name="colorStrokeInfoIntense">@color/colorBlue30</item>
+        <item name="colorStrokeInfoIntense">@color/colorBlue50</item>
 
         <!-- Success -->
         <item name="colorStrokeSuccessSubtle">@color/colorGreen10</item>
-        <item name="colorStrokeSuccessIntense">@color/colorGreen30</item>
+        <item name="colorStrokeSuccessIntense">@color/colorGreen50</item>
 
         <!-- Warning -->
         <item name="colorStrokeWarningSubtle">@color/colorOrange10</item>
-        <item name="colorStrokeWarningIntense">@color/colorOrange30</item>
+        <item name="colorStrokeWarningIntense">@color/colorOrange50</item>
 
         <!-- Attention -->
         <item name="colorStrokeAttentionSubtle">@color/colorRed10</item>
