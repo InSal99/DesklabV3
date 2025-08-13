@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">components</string>
+    <string name="even_card_status">Reservasi Sekarang</string>
+    <string name="event_card_description_title">EDTS Town-Hall 2025: Power of Change</string>
+    <string name="event_card_description_date">23 Juli 2025</string>
+    <string name="event_card_banner_type">Hybrid Event</string>
+    <string name="event_card_banner_category">People Development</string>
+    <string name="event_card_divider">·</string>
+    <string name="event_card_badge_label">Diundang</string>
+    <string name="event_card_iv_content_description">Poster Image</string>
 </resources>

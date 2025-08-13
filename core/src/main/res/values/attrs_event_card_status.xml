@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EventCardStatus">
+        <attr name="statusType" format="enum">
+            <enum name="rsvp" value="0" />
+            <enum name="registered" value="1" />
+            <enum name="unregistered" value="2" />
+        </attr>
+        <attr name="statusText" format="string" />
+    </declare-styleable>
+</resources>

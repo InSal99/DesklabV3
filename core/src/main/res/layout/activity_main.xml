@@ -5,15 +5,45 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/margin_16dp"
+    android:paddingVertical="@dimen/margin_16dp"
+    android:clipToPadding="false"
+    android:clipChildren="false"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+
+    <com.example.components.event.card.EventCard
+        android:background="@drawable/event_card_shadow"
+        android:id="@+id/cvEventCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:badgeText="Berlangsung"
+        app:badgeType="live"
+        app:eventCategory="People Development"
+        app:eventDate="23 Juli 2025"
+        app:eventImageSrc="@drawable/poster3"
+        app:eventTitle="EDTS Town-Hall 2025: Power of Change"
+        app:eventType="Hybrid Event"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:statusText="Pendaftaran Ditutup"
+        app:statusType="unregistered" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:background="@drawable/bg_search"
+        android:theme="@style/SearchViewStyle"
+        app:iconifiedByDefault="false"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="@string/search_employee" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

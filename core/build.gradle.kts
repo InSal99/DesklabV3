@@ -45,6 +45,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation(libs.androidx.activity)
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation(libs.androidx.library)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
