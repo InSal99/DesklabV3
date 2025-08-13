@@ -177,8 +177,10 @@
     <attr name="h4SemiBold" format="reference"/>
 
     <!-- Paragraph Text Attributes -->
+    <attr name="p1Bold" format="reference"/>
     <attr name="p1Medium" format="reference"/>
     <attr name="p1Regular" format="reference"/>
+    <attr name="p2SemiBold" format="reference"/>
     <attr name="p2Medium" format="reference"/>
     <attr name="p2Regular" format="reference"/>
 
