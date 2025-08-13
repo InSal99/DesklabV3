@@ -1,19 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:flow_verticalGap="@dimen/margin_8dp"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Hello World!" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.example.components.CustomRadioGroup
+        android:id="@+id/rbTest"
+        style="@style/Widget.App.DynamicRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:minHeight="@dimen/margin_0dp"/>
+
+    <com.example.components.CustomRadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="true"
+        android:enabled="true"/>
+
+    <com.example.components.CustomRadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="true"
+        android:enabled="false"/>
+
+    <com.example.components.CustomRadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="false"
+        android:enabled="true"/>
+
+    <com.example.components.CustomRadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="false"
+        android:enabled="false"/>
+
+    <com.example.components.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="true"
+        android:enabled="true"/>
+
+    <com.example.components.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="true"
+        android:enabled="false"/>
+
+    <com.example.components.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="false"
+        android:enabled="true"/>
+
+    <com.example.components.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="false"
+        android:enabled="false"/>
+
+<!--    <RadioGroup-->
+<!--        android:id="@+id/rbTest"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--            style="@style/CustomRadioButton"-->
+<!--            android:text="Option 1" />-->
+
+<!--        <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--            style="@style/CustomRadioButton"-->
+<!--            android:text="Option 2" />-->
+
+<!--        <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--            style="@style/CustomRadioButton"-->
+<!--            android:text="Option 3"/>-->
+
+<!--    </RadioGroup>-->
+
+</LinearLayout>

@@ -384,39 +384,35 @@
     <!-- Text Display Style -->
     <style name="TextSemiBold.Display1">
         <item name="android:textSize">@dimen/text_size_28sp</item>
-<!--        <item name="fontWeight">600</item>-->
         <item name="lineHeight">@dimen/line_height_30</item>
     </style>
 
     <style name="TextSemiBold.Display2">
         <item name="android:textSize">@dimen/text_size_24sp</item>
-        <!--        <item name="fontWeight">600</item>-->
         <item name="lineHeight">@dimen/line_height_26</item>
     </style>
 
     <style name="TextSemiBold.Display3">
         <item name="android:textSize">@dimen/text_size_20sp</item>
-        <!--        <item name="fontWeight">600</item>-->
         <item name="lineHeight">@dimen/line_height_24</item>
     </style>
 
     <style name="TextBold.Display3">
         <item name="android:textSize">@dimen/text_size_20sp</item>
         <item name="fontWeight">600</item>
-        <item name="lineHeight">@dimen/text_size_24sp</item>
+        <item name="lineHeight">@dimen/line_height_24</item>
     </style>
 
     <!-- Text H1 Style -->
     <style name="TextSemiBold.Heading1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-<!--        <item name="fontWeight">600</item>-->
         <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextBold.Heading1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
         <item name="fontWeight">600</item>
-        <item name="lineHeight">@dimen/text_size_18sp</item>
+        <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextSemiBold.Heading2">
@@ -427,7 +423,7 @@
     <style name="TextBold.Heading2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">600</item>
-        <item name="lineHeight">@dimen/text_size_16sp</item>
+        <item name="lineHeight">@dimen/line_height_16</item>
     </style>
 
     <style name="TextSemiBold.Heading3">
@@ -443,56 +439,49 @@
     <!-- Text Label Style -->
     <style name="TextRegular.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="fontWeight">500</item> //?
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextMedium.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextBold.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
         <item name="fontWeight">500</item>
-        <item name="lineHeight">@dimen/text_size_18sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextMedium.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextSemiBold.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">500</item>
-        <item name="lineHeight">@dimen/text_size_14sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextMedium.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextSemiBold.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/text_size_14sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label4">
@@ -510,7 +499,7 @@
     <style name="TextSemiBold.Label4">
         <item name="android:textSize">@dimen/text_size_10sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/text_size_10sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label5">
@@ -528,52 +517,49 @@
     <style name="TextSemiBold.Label5">
         <item name="android:textSize">@dimen/text_size_8sp</item>
         <item name="fontWeight">500</item>
-        <item name="lineHeight">@dimen/text_size_10sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <!-- Text Paragraph Style -->
     <style name="TextRegular.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/line_height_20</item>
+        <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextMedium.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/line_height_20</item>
+        <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextSemiBold.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/text_size_20sp</item>
+        <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
 <!--New-->
     <style name="TextBold.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/line_height_20</item>
+        <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextRegular.Paragraph2">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextMedium.Paragraph2">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
 <!--new-->
     <style name="TextSemiBold.Paragraph2">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/line_height_16</item>
+        <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="DialogThemeResizeKeyboard" parent="NoActionBar">
@@ -593,5 +579,37 @@
     <style name="BadgeStyle" parent="ShapeAppearance.Material3.Corner.ExtraLarge">
         <item name="android:textSize">8sp</item>
         <item name="android:layout_margin">20dp</item>
+    </style>
+
+    <style name="CustomRadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/ic_radio_button</item>
+<!--        <item name="android:buttonTint">@null</item>-->
+<!--        <item name="useMaterialThemeColors">false</item>-->
+        <item name="android:textAppearance">@style/RadioTextAppearance</item>
+    </style>
+
+    <style name="CustomRadioButton.Normal" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Normal</item>
+    </style>
+
+    <style name="CustomRadioButton.Selected" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Selected</item>
+    </style>
+
+    <style name="CustomRadioButton.Disabled" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Disabled</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="Widget.App.DynamicRadioGroup" parent="">
+        <item name="checkboxNormalTextAppearance">@style/RadioTextAppearance.Normal</item>
+        <item name="radioSelectedTextAppearance">@style/RadioTextAppearance.Selected</item>
+        <item name="radioDisabledTextAppearance">@style/RadioTextAppearance.Disabled</item>
+        <item name="radioButtonSpacing">@dimen/margin_8dp</item>
+    </style>
+
+    <style name="RadioButtonTextAppearance" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/color000</item>
+        <item name="android:textSize">14sp</item>
     </style>
 </resources>
