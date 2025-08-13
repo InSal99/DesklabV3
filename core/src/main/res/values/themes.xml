@@ -202,8 +202,10 @@
         <item name="h4SemiBold">@style/TextSemiBold.Heading4</item>
 
         <!-- Paragraphs -->
+        <item name="p1Bold">@style/TextBold.Paragraph1</item>
         <item name="p1Medium">@style/TextMedium.Paragraph1</item>
         <item name="p1Regular">@style/TextRegular.Paragraph1</item>
+        <item name="p2SemiBold">@style/TextSemiBold.Paragraph2</item>
         <item name="p2Medium">@style/TextMedium.Paragraph2</item>
         <item name="p2Regular">@style/TextRegular.Paragraph2</item>
 
@@ -219,8 +221,6 @@
         <item name="l5Medium">@style/TextMedium.Label5</item>
         <item name="l5Regular">@style/TextRegular.Label5</item>
     </style>
-    <!--        <style name="Theme.DesklabV3" parent="Base.Theme.DesklabV3" />-->
-
 
     <style name="NoActionBar" parent="Theme.Desklab">
         <item name="windowActionBar">false</item>
