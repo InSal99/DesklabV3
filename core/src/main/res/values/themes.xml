@@ -29,9 +29,9 @@
         <item name="colorBackgroundPrimaryInverse">@color/color000</item>
         <item name="colorBackgroundSecondary">@color/colorNeutral10</item>
         <item name="colorBackgroundSecondaryTinted">@color/colorNeutralGrayBlue20</item>
-        <item name="colorBackgroundTertiary">@color/colorOpacityWhite20</item>
-        <item name="colorBackgroundOverlay">@color/colorOpacityWhite50</item>
-        <item name="colorBackgroundDisabled">@color/colorPrimaryOpacity5</item>
+        <item name="colorBackgroundTertiary">@color/colorNeutral20</item>
+        <item name="colorBackgroundOverlay">@color/color000Opacity50</item>
+        <item name="colorBackgroundDisabled">@color/color000Opacity5</item>
 
         <!-- Accent Background Colors -->
         <item name="colorBackgroundAccentPrimarySubtle">@color/colorPrimary10</item>
@@ -42,7 +42,7 @@
         <!-- Modifier Background Colors -->
         <item name="colorBackgroundModifierCardElevated">@color/colorOpacityWhite5</item>
         <item name="colorBackgroundModifierCardElevatedInverse">@color/colorOpacityWhite5</item>
-        <item name="colorBackgroundModifierCardSurface">@color/color000Opacity2</item>
+        <item name="colorBackgroundModifierCardSurface">@color/colorOpacityWhite2</item>
         <item name="colorBackgroundModifierOnHover">@color/color000Opacity2</item>
         <item name="colorBackgroundModifierOnPress">@color/color000Opacity5</item>
         <item name="colorBackgroundModifierOnPressIntense">@color/color000Opacity12</item>
@@ -86,7 +86,7 @@
         <item name="colorForegroundSecondary">@color/colorNeutral60</item>
         <item name="colorForegroundTertiary">@color/colorNeutral50</item>
         <item name="colorForegroundPlaceholder">@color/colorNeutral40</item>
-        <item name="colorForegroundDisabled">@color/colorNeutral70Opacity20</item>
+        <item name="colorForegroundDisabled">@color/color000Opacity20</item>
         <item name="colorForegroundOverlay">?attr/colorBackgroundOverlay</item>
         <item name="colorForegroundWhite">@color/colorFFF</item>
         <item name="colorForegroundBlack">@color/color000</item>
@@ -134,7 +134,7 @@
 
         <!-- Basic Stroke Colors -->
         <item name="colorStrokeSubtle">@color/colorNeutral30</item>
-        <item name="colorStrokeInteractive">@color/colorNeutral70Opacity20</item>
+        <item name="colorStrokeInteractive">@color/colorOpacityWhite20</item>
         <item name="colorStrokeIntense">@color/colorNeutral40</item>
         <item name="colorStrokeFocus">@color/colorPrimary50</item>
         <item name="colorStrokeAccent">@color/colorPrimary30</item>
@@ -185,8 +185,8 @@
         <item name="colorShadowTintedAmbient">@color/colorPrimaryOpacity10</item>
 
         <!-- Illustration Colors -->
-        <item name="colorIllustrationBg">@color/colorFFF</item>
-        <item name="colorIllustrationIcon">@color/color000</item>
+        <item name="colorIllustrationBg">@color/colorPrimaryOpacity5</item>
+        <item name="colorIllustrationIcon">@color/colorPrimary50</item>
         <item name="colorIllustrationRippleIntense">@color/colorPrimaryOpacity20</item>
         <item name="colorIllustrationRippleSubtle">@color/colorPrimaryOpacity2</item>
 
