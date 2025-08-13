@@ -61,7 +61,7 @@
 
         <!-- Attention Background Colors -->
         <item name="colorBackgroundAttentionSubtle">@color/colorRed10</item>
-        <item name="colorBackgroundAttentionIntense">@color/colorRed50</item>
+        <item name="colorBackgroundAttentionIntense">@color/colorRed30</item>
 
         <!-- Utility Background Colors -->
         <!-- libur -->
