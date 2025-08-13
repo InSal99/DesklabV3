@@ -78,4 +78,10 @@
         android:checked="false"
         android:enabled="false"/>
 
+    <com.example.components.CustomToast
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:toastType="success"
+        app:toastMessage="Test"/>
+
 </LinearLayout>
