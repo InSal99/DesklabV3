@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    &lt;!&ndash; Text appearance for different radio states &ndash;&gt;-->
-<!--    <style name="RadioTextAppearance" parent="TextAppearance.AppCompat">-->
-<!--        <item name="android:textSize">@dimen/text_size_14sp</item>-->
-<!--        <item name="lineHeight">@dimen/line_height_100</item>-->
-<!--    </style>-->
-
-<!--    <style name="RadioTextAppearance.Normal" parent="RadioTextAppearance">-->
-<!--        <item name="fontFamily">@font/inter_regular</item>-->
-<!--        <item name="android:textColor">@color/radio_text_default</item>-->
-<!--    </style>-->
-
-<!--    <style name="RadioTextAppearance.Selected" parent="RadioTextAppearance">-->
-<!--        <item name="fontFamily">@font/inter_medium</item>-->
-<!--        <item name="android:textColor">@color/radio_text_default</item>-->
-<!--    </style>-->
-
-<!--    <style name="RadioTextAppearance.Disabled" parent="RadioTextAppearance">-->
-<!--        <item name="fontFamily">@font/inter_regular</item>-->
-<!--        <item name="android:textColor">@color/radio_text_disabled</item>-->
-<!--    </style>-->
-
-
     <style name="RadioTextAppearance" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textColor">@color/color000</item>
         <item name="android:textSize">14sp</item>
