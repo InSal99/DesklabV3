@@ -169,15 +169,19 @@
     <attr name="d1SemiBold" format="reference"/>
     <attr name="d2SemiBold" format="reference"/>
     <attr name="d3SemiBold" format="reference"/>
+    <attr name="d3Bold" format="reference"/>
 
     <!-- Heading Text Attributes -->
     <attr name="h1SemiBold" format="reference"/>
+    <attr name="h1Bold" format="reference"/>
     <attr name="h2SemiBold" format="reference"/>
+    <attr name="h2Bold" format="reference"/>
     <attr name="h3SemiBold" format="reference"/>
     <attr name="h4SemiBold" format="reference"/>
 
     <!-- Paragraph Text Attributes -->
     <attr name="p1Bold" format="reference"/>
+    <attr name="p1SemiBold" format="reference"/>
     <attr name="p1Medium" format="reference"/>
     <attr name="p1Regular" format="reference"/>
     <attr name="p2SemiBold" format="reference"/>
@@ -185,14 +189,19 @@
     <attr name="p2Regular" format="reference"/>
 
     <!-- Label Text Attributes -->
+    <attr name="l1Bold" format="reference"/>
     <attr name="l1Medium" format="reference"/>
     <attr name="l1Regular" format="reference"/>
+    <attr name="l2SemiBold" format="reference"/>
     <attr name="l2Medium" format="reference"/>
     <attr name="l2Regular" format="reference"/>
+    <attr name="l3SemiBold" format="reference"/>
     <attr name="l3Medium" format="reference"/>
     <attr name="l3Regular" format="reference"/>
+    <attr name="l4SemiBold" format="reference"/>
     <attr name="l4Medium" format="reference"/>
     <attr name="l4Regular" format="reference"/>
+    <attr name="l5SemiBold" format="reference"/>
     <attr name="l5Medium" format="reference"/>
     <attr name="l5Regular" format="reference"/>
 

@@ -61,7 +61,7 @@
 
         <!-- Attention Background Colors -->
         <item name="colorBackgroundAttentionSubtle">@color/colorRed10</item>
-        <item name="colorBackgroundAttentionIntense">@color/colorRed50</item>
+        <item name="colorBackgroundAttentionIntense">@color/colorRed30</item>
 
         <!-- Utility Background Colors -->
         <!-- libur -->
@@ -193,16 +193,20 @@
         <!-- Display -->
         <item name="d1SemiBold">@style/TextSemiBold.Display1</item>
         <item name="d2SemiBold">@style/TextSemiBold.Display2</item>
-        <item name="d3SemiBold">@style/TextBold.Display3</item>
+        <item name="d3SemiBold">@style/TextSemiBold.Display3</item>
+        <item name="d3Bold">@style/TextBold.Display3</item>
 
         <!-- Headings -->
         <item name="h1SemiBold">@style/TextSemiBold.Heading1</item>
+        <item name="h1Bold">@style/TextBold.Heading1</item>
         <item name="h2SemiBold">@style/TextSemiBold.Heading2</item>
+        <item name="h2Bold">@style/TextBold.Heading2</item>
         <item name="h3SemiBold">@style/TextSemiBold.Heading3</item>
         <item name="h4SemiBold">@style/TextSemiBold.Heading4</item>
 
         <!-- Paragraphs -->
         <item name="p1Bold">@style/TextBold.Paragraph1</item>
+        <item name="p1SemiBold">@style/TextSemiBold.Paragraph1</item>
         <item name="p1Medium">@style/TextMedium.Paragraph1</item>
         <item name="p1Regular">@style/TextRegular.Paragraph1</item>
         <item name="p2SemiBold">@style/TextSemiBold.Paragraph2</item>
@@ -210,14 +214,19 @@
         <item name="p2Regular">@style/TextRegular.Paragraph2</item>
 
         <!-- Labels -->
+        <item name="l1Bold">@style/TextBold.Label1</item>
         <item name="l1Medium">@style/TextMedium.Label1</item>
         <item name="l1Regular">@style/TextRegular.Label1</item>
+        <item name="l2SemiBold">@style/TextSemiBold.Label2</item>
         <item name="l2Medium">@style/TextMedium.Label2</item>
         <item name="l2Regular">@style/TextRegular.Label2</item>
+        <item name="l3SemiBold">@style/TextSemiBold.Label3</item>
         <item name="l3Medium">@style/TextMedium.Label3</item>
         <item name="l3Regular">@style/TextRegular.Label3</item>
+        <item name="l4SemiBold">@style/TextSemiBold.Label4</item>
         <item name="l4Medium">@style/TextMedium.Label4</item>
         <item name="l4Regular">@style/TextRegular.Label4</item>
+        <item name="l5SemiBold">@style/TextSemiBold.Label5</item>
         <item name="l5Medium">@style/TextMedium.Label5</item>
         <item name="l5Regular">@style/TextRegular.Label5</item>
     </style>
