@@ -53,7 +53,6 @@
         app:eventTitle="EDTS Town-Hall 2025: Power of Change"
         app:eventDate="23 Juli 2025" />
 
-
     <com.example.components.event.card.EventCardStatus
         android:id="@+id/cvEventCardStatus"
         android:layout_width="wrap_content"
