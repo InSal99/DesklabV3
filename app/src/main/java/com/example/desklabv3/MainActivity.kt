@@ -1,11 +1,13 @@
 package com.example.desklabv3
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.components.radiobutton.CustomRadioGroup
-import com.example.components.radiobutton.CustomRadioGroupDelegate
-import com.example.components.toast.CustomToast
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.components.CustomRadioGroup
 import com.example.desklabv3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
