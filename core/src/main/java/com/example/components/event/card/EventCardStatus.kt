@@ -67,20 +67,24 @@ class EventCardStatus @JvmOverloads constructor(
     }
 
     private fun updateStatusColor() {
+        val typedValue = android.util.TypedValue()
         when (statusType) {
             StatusType.RSVP -> {
+                context.theme.resolveAttribute(R.attr.colorForegroundWarningIntense, typedValue, true)
                 binding.tvEvenCardStatus.setTextColor(
-                    ContextCompat.getColor(context, R.color.colorOrange50)
+                    ContextCompat.getColor(context, typedValue.resourceId)
                 )
             }
             StatusType.REGISTERED -> {
+                context.theme.resolveAttribute(R.attr.colorForegroundSuccessIntense, typedValue, true)
                 binding.tvEvenCardStatus.setTextColor(
-                    ContextCompat.getColor(context, R.color.colorGreen50)
+                    ContextCompat.getColor(context, typedValue.resourceId)
                 )
             }
             StatusType.UNREGISTERED -> {
+                context.theme.resolveAttribute(R.attr.colorForegroundAttentionIntense, typedValue, true)
                 binding.tvEvenCardStatus.setTextColor(
-                    ContextCompat.getColor(context, R.color.colorRed40)
+                    ContextCompat.getColor(context, typedValue.resourceId)
                 )
             }
         }

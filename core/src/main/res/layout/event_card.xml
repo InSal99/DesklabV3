@@ -30,6 +30,7 @@
             android:layout_marginTop="@dimen/margin_12dp"
             android:layout_marginEnd="@dimen/margin_8dp"
             app:badgeType="live"
+            app:badgeSize="Large"
             app:badgeText="Berlangsung"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
