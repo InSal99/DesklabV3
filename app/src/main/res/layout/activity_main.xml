@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
-    <com.example.components.CustomRadioGroup
+    <com.example.components.radiobutton.CustomRadioGroup
         android:id="@+id/rbTest"
         style="@style/Widget.App.DynamicRadioGroup"
         android:layout_width="match_parent"
