@@ -1,20 +1,47 @@
 package com.example.desklabv3
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.components.CustomRadioGroup
+import com.example.desklabv3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var dynamicRadioGroup: CustomRadioGroup
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        dynamicRadioGroup = findViewById(R.id.rbTest)
+        setupRadioButtons()
     }
+
+    private fun setupRadioButtons() {
+        // Example data
+        val options = listOf("Option 11111111", "Option 2", "Option 33333333", "Option 4")
+
+        dynamicRadioGroup.setData(options) { it }
+
+        dynamicRadioGroup.setOnItemSelectedListener { position, data ->
+            Log.d("RadioButton", "Selected: $data at position $position")
+        }
+
+        // Optional: Pre-select an item
+        dynamicRadioGroup.selectItem(0)
+    }
+}
+
+data class UserOption(val id: Int, val name: String)
+
+// Extension function for easier usage
+fun <T> CustomRadioGroup.setSimpleData(dataList: List<T>) {
+    setData(dataList) { it.toString() }
 }

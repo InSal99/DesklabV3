@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CheckBox Text Appearances -->
+    <style name="CheckBoxTextAppearance.Normal" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color000</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="CheckBoxTextAppearance.Selected" parent="CheckBoxTextAppearance.Normal">
+        <item name="android:textColor">@color/color000</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="CheckBoxTextAppearance.Disabled" parent="CheckBoxTextAppearance.Normal">
+        <item name="android:textColor">@color/colorNeutral30</item>
+        <item name="android:alpha">0.38</item>
+    </style>
+
+    <style name="CheckBoxTextAppearance.DisabledSelected" parent="CheckBoxTextAppearance.Selected">
+        <item name="android:textColor">@color/colorNeutral30</item>
+        <item name="android:alpha">0.38</item>
+    </style>
+
+    <!-- CustomCheckBox Style -->
+    <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@null</item>
+        <item name="android:background">@null</item>
+    </style>
+</resources>
