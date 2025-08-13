@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/EventCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:strokeWidth="@dimen/stroke_weight_1dp"
+    app:cardCornerRadius="@dimen/radius_8dp"
+    app:strokeColor="@color/colorNeutral30"
+    app:cardElevation="@dimen/margin_0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/ivEventCard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="2:1"
+            android:contentDescription="@string/event_card_iv_content_description"
+            android:src="@drawable/poster3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.components.event.card.EventCardBadge
+            android:id="@+id/cvEventCardBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            app:badgeType="live"
+            app:badgeText="Berlangsung"
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard"
+            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+            />
+
+        <com.example.components.event.card.EventCardBanner
+            android:id="@+id/cvEventCardBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:eventType="Hybrid Event"
+            app:eventCategory="People Development"
+            app:layout_constraintTop_toBottomOf="@+id/ivEventCard"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/margin_12dp"
+            android:paddingHorizontal="@dimen/margin_12dp"
+            app:layout_constraintTop_toBottomOf="@+id/cvEventCardBanner"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+            <com.example.components.event.card.EventCardDescription
+                android:id="@+id/cvEventCardDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:eventTitle="EDTS Town-Hall 2025: Power of Change"
+                app:eventDate="23 Juli 2025"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <com.example.components.event.card.EventCardStatus
+                android:id="@+id/cvEventCardStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4dp"
+                app:statusType="unregistered"
+                app:statusText="Pendaftaran Ditutup"
+                app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

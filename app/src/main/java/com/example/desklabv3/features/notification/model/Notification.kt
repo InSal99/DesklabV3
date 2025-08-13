@@ -37,13 +37,13 @@ data class Notification(
 
     val notificationIcon =
         when {
-            type.toString().contains("ACTIVITY") -> R.drawable.ic_notification_activities_circle
-            type.toString().contains("LEAVE") -> R.drawable.ic_notification_leave_circle
-            type.toString().contains("KERJA") -> R.drawable.ic_notification_special_work_circle
-            type.toString().contains("DELEGATE") -> R.drawable.ic_notification_delegate_circle
-            type.toString().contains("GENERAL") -> R.drawable.ic_notification_event_circle
-            type.toString().contains("PEOPLE") -> R.drawable.ic_notification_event_circle
-            type.toString().contains("EMPLOYEE") -> R.drawable.ic_notification_event_circle
+            type.toString().contains("ACTIVITY") -> com.example.components.R.drawable.ic_notification_activities_circle
+            type.toString().contains("LEAVE") -> com.example.components.R.drawable.ic_notification_leave_circle
+            type.toString().contains("KERJA") -> com.example.components.R.drawable.ic_notification_special_work_circle
+            type.toString().contains("DELEGATE") -> com.example.components.R.drawable.ic_notification_delegate_circle
+            type.toString().contains("GENERAL") -> com.example.components.R.drawable.ic_notification_event_circle
+            type.toString().contains("PEOPLE") -> com.example.components.R.drawable.ic_notification_event_circle
+            type.toString().contains("EMPLOYEE") -> com.example.components.R.drawable.ic_notification_event_circle
             else -> null
         }
 
