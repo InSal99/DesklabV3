@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/tvEvenCardSTitle"
-        style="@style/TextBold.Paragraph1"
+        style="?attr/p1Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/event_card_description_title"

@@ -6,13 +6,12 @@
     android:layout_height="wrap_content"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_8dp"
-    app:strokeColor="@color/colorNeutral30"
+    app:strokeColor="?attr/colorStrokeSubtle"
     app:cardElevation="@dimen/margin_0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivEventCard"

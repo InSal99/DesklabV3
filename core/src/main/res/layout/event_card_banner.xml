@@ -9,34 +9,34 @@
     android:paddingVertical="@dimen/margin_4dp">
 
     <TextView
-        style="@style/TextSemiBold.Paragraph2"
+        style="?attr/p2SemiBold"
         android:id="@+id/tvEvenCardType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/event_card_banner_type"
-        android:textColor="@color/colorNeutral50"
+        android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        style="@style/TextSemiBold.Paragraph2"
+        style="?attr/p2SemiBold"
         android:id="@+id/tvEvenCardDivider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_4dp"
         android:text="@string/event_card_divider"
-        android:textColor="@color/colorNeutral50"
+        android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintStart_toEndOf="@+id/tvEvenCardType"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        style="@style/TextSemiBold.Paragraph2"
+        style="?attr/p2SemiBold"
         android:id="@+id/tvEvenCardCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_4dp"
         android:text="@string/event_card_banner_category"
-        android:textColor="@color/colorNeutral50"
+        android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintStart_toEndOf="@+id/tvEvenCardDivider"
         app:layout_constraintTop_toTopOf="parent" />
 
