@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/tvEvenCardStatus"
-        style="@style/TextBold.Paragraph1"
+        style="?attr/p1Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/even_card_status"
@@ -16,5 +16,3 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--     style="?attr/p1Medium"-->
