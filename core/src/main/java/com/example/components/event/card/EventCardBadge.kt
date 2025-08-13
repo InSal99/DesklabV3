@@ -16,6 +16,17 @@ class EventCardBadge @JvmOverloads constructor(
 
     private val binding: EventCardBadgeBinding
 
+    enum class BadgeSize(val value: Int) {
+        SMALL(0),
+        LARGE(1);
+
+        companion object {
+            fun fromValue(value: Int): BadgeSize {
+                return values().find { it.value == value } ?: LARGE
+            }
+        }
+    }
+
     enum class BadgeType(val value: Int) {
         LIVE(0),
         INVITED(1),
@@ -32,6 +43,12 @@ class EventCardBadge @JvmOverloads constructor(
         set(value) {
             field = value
             updateBadgeColor()
+        }
+
+    var badgeSize: BadgeSize = BadgeSize.LARGE
+        set(value) {
+            field = value
+            updateBadgeSize()
         }
 
     var badgeText: String? = null
@@ -56,9 +73,12 @@ class EventCardBadge @JvmOverloads constructor(
             try {
                 val badgeTypeValue = getInt(R.styleable.EventCardBadge_badgeType, 0)
                 badgeType = BadgeType.fromValue(badgeTypeValue)
+                val badgeSizeValue = getInt(R.styleable.EventCardBadge_badgeSize, 1)
+                badgeSize = BadgeSize.fromValue(badgeSizeValue)
                 badgeText = getString(R.styleable.EventCardBadge_badgeText)
 
                 updateBadgeColor()
+                updateBadgeSize()
                 updateBadgeText()
             } finally {
                 recycle()
@@ -79,6 +99,33 @@ class EventCardBadge @JvmOverloads constructor(
             BadgeType.REGISTERED -> {
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, R.color.colorGreen50)
+            }
+        }
+    }
+
+    private fun updateBadgeSize() {
+        when (badgeSize) {
+            BadgeSize.SMALL -> {
+                val typedValue = android.util.TypedValue()
+//                context.theme.resolveAttribute(R.attr.l4SemiBold, typedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextAppearance(typedValue.resourceId)
+                binding.tvEvenCardBadgeLabel.setPadding(
+                    resources.getDimensionPixelSize(R.dimen.margin_6dp), // paddingStart
+                    resources.getDimensionPixelSize(R.dimen.margin_4dp), // paddingTop
+                    resources.getDimensionPixelSize(R.dimen.margin_6dp), // paddingEnd
+                    resources.getDimensionPixelSize(R.dimen.margin_4dp)  // paddingBottom
+                )
+            }
+            BadgeSize.LARGE -> {
+                val typedValue = android.util.TypedValue()
+                context.theme.resolveAttribute(R.attr.p2SemiBold, typedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextAppearance(typedValue.resourceId)
+                binding.tvEvenCardBadgeLabel.setPadding(
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp), // paddingStart
+                    resources.getDimensionPixelSize(R.dimen.margin_2dp), // paddingTop
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp), // paddingEnd
+                    resources.getDimensionPixelSize(R.dimen.margin_2dp)  // paddingBottom
+                )
             }
         }
     }
