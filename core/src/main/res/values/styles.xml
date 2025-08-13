@@ -591,12 +591,9 @@
     </style>
 
     <style name="CustomRadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingStart">@dimen/margin_8dp</item>
         <item name="android:button">@drawable/ic_radio_button</item>
-        <item name="android:buttonTint">@null</item>
-        <item name="useMaterialThemeColors">false</item>
+<!--        <item name="android:buttonTint">@null</item>-->
+<!--        <item name="useMaterialThemeColors">false</item>-->
         <item name="android:textAppearance">@style/RadioTextAppearance</item>
     </style>
 
@@ -614,10 +611,10 @@
     </style>
 
     <style name="Widget.App.DynamicRadioGroup" parent="">
-        <item name="normalTextAppearance">@style/RadioTextAppearance.Normal</item>
-        <item name="selectedTextAppearance">@style/RadioTextAppearance.Selected</item>
-        <item name="disabledTextAppearance">@style/RadioTextAppearance.Disabled</item>
-        <item name="buttonSpacing">@dimen/margin_8dp</item>
+        <item name="checkboxNormalTextAppearance">@style/RadioTextAppearance.Normal</item>
+        <item name="radioSelectedTextAppearance">@style/RadioTextAppearance.Selected</item>
+        <item name="radioDisabledTextAppearance">@style/RadioTextAppearance.Disabled</item>
+        <item name="radioButtonSpacing">@dimen/margin_8dp</item>
     </style>
 
     <style name="RadioButtonTextAppearance" parent="TextAppearance.AppCompat.Small">

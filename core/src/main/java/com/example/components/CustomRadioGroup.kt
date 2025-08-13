@@ -25,27 +25,27 @@ class CustomRadioGroup @JvmOverloads constructor(
             context.withStyledAttributes(it, R.styleable.DynamicRadioGroup) {
 
                 normalTextAppearance = getResourceId(
-                    R.styleable.DynamicRadioGroup_normalTextAppearance,
+                    R.styleable.DynamicRadioGroup_radioNormalTextAppearance,
                     R.style.RadioTextAppearance_Normal
                 )
                 selectedTextAppearance = getResourceId(
-                    R.styleable.DynamicRadioGroup_selectedTextAppearance,
+                    R.styleable.DynamicRadioGroup_radioSelectedTextAppearance,
                     R.style.RadioTextAppearance_Selected
                 )
                 disabledTextAppearance = getResourceId(
-                    R.styleable.DynamicRadioGroup_disabledTextAppearance,
+                    R.styleable.DynamicRadioGroup_radioSelectedTextAppearance,
                     R.style.RadioTextAppearance_Disabled
                 )
                 disabledSelectedTextAppearance = getResourceId(
-                    R.styleable.DynamicRadioGroup_disabledSelectedTextAppearance,
+                    R.styleable.DynamicRadioGroup_radioDisabledSelectedTextAppearance,
                     R.style.RadioTextAppearance_DisabledSelected
                 )
                 buttonSpacing = getDimensionPixelSize(
-                    R.styleable.DynamicRadioGroup_buttonSpacing,
+                    R.styleable.DynamicRadioGroup_radioButtonSpacing,
                     resources.getDimensionPixelSize(R.dimen.margin_8dp)
                 )
                 compoundDrawablePadding = getDimensionPixelSize(
-                    R.styleable.DynamicRadioGroup_compoundDrawablePadding,
+                    R.styleable.DynamicRadioGroup_radioCompoundDrawablePadding,
                     resources.getDimensionPixelSize(R.dimen.margin_8dp)
                 )
             }

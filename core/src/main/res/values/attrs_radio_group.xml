@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="DynamicRadioGroup">
-        <attr name="normalTextAppearance" format="reference"/>
-        <attr name="selectedTextAppearance" format="reference"/>
-        <attr name="disabledTextAppearance" format="reference"/>
-        <attr name="disabledSelectedTextAppearance" format="reference"/>
-        <attr name="buttonSpacing" format="dimension"/>
-        <attr name="compoundDrawablePadding" format="dimension"/>
+        <attr name="radioNormalTextAppearance" format="reference"/>
+        <attr name="radioSelectedTextAppearance" format="reference"/>
+        <attr name="radioDisabledTextAppearance" format="reference"/>
+        <attr name="radioDisabledSelectedTextAppearance" format="reference"/>
+        <attr name="radioButtonSpacing" format="dimension"/>
+        <attr name="radioCompoundDrawablePadding" format="dimension"/>
     </declare-styleable>
 </resources>

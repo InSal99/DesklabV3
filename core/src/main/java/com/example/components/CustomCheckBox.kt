@@ -18,26 +18,26 @@ class CustomCheckBox @JvmOverloads constructor(
     private var disabledSelectedTextAppearance = R.style.CheckBoxTextAppearance_DisabledSelected
 
     init {
+        setBackgroundResource(android.R.color.transparent)
         applyCustomStyle()
         post { updateTextAppearance() }
 
-        // Initialize from attributes if needed
         attrs?.let {
             context.obtainStyledAttributes(it, R.styleable.CustomCheckBox).apply {
                 normalTextAppearance = getResourceId(
-                    R.styleable.CustomCheckBox_normalTextAppearance,
+                    R.styleable.CustomCheckBox_checkboxNormalTextAppearance,
                     R.style.CheckBoxTextAppearance_Normal
                 )
                 selectedTextAppearance = getResourceId(
-                    R.styleable.CustomCheckBox_selectedTextAppearance,
+                    R.styleable.CustomCheckBox_checkboxSelectedTextAppearance,
                     R.style.CheckBoxTextAppearance_Selected
                 )
                 disabledTextAppearance = getResourceId(
-                    R.styleable.CustomCheckBox_disabledTextAppearance,
+                    R.styleable.CustomCheckBox_checkboxDisabledTextAppearance,
                     R.style.CheckBoxTextAppearance_Disabled
                 )
                 disabledSelectedTextAppearance = getResourceId(
-                    R.styleable.CustomCheckBox_disabledSelectedTextAppearance,
+                    R.styleable.CustomCheckBox_checkboxDisabledSelectedTextAppearance,
                     R.style.CheckBoxTextAppearance_DisabledSelected
                 )
                 recycle()

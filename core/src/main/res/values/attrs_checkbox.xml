@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CustomCheckBox">
-        <attr name="normalTextAppearance" format="reference"/>
-        <attr name="selectedTextAppearance" format="reference"/>
-        <attr name="disabledTextAppearance" format="reference"/>
-        <attr name="disabledSelectedTextAppearance" format="reference"/>
+        <attr name="checkboxNormalTextAppearance" format="reference"/>
+        <attr name="checkboxSelectedTextAppearance" format="reference"/>
+        <attr name="checkboxDisabledTextAppearance" format="reference"/>
+        <attr name="checkboxDisabledSelectedTextAppearance" format="reference"/>
     </declare-styleable>
 </resources>

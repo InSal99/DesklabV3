@@ -50,6 +50,34 @@
         android:checked="false"
         android:enabled="false"/>
 
+    <com.example.components.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="true"
+        android:enabled="true"/>
+
+    <com.example.components.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="true"
+        android:enabled="false"/>
+
+    <com.example.components.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="false"
+        android:enabled="true"/>
+
+    <com.example.components.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="false"
+        android:enabled="false"/>
+
 <!--    <RadioGroup-->
 <!--        android:id="@+id/rbTest"-->
 <!--        android:layout_width="match_parent"-->

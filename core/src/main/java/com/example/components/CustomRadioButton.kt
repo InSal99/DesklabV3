@@ -18,6 +18,7 @@ class CustomRadioButton @JvmOverloads constructor(
     private var disabledSelectedTextAppearance = R.style.RadioTextAppearance_DisabledSelected
 
     init {
+        setBackgroundResource(android.R.color.transparent)
         applyCustomStyle()
         post { updateTextAppearance() }
     }
