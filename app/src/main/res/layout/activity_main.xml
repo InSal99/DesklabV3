@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:minHeight="@dimen/margin_0dp"/>
+        android:minHeight="@dimen/margin_0dp" />
 
     <com.example.components.radiobutton.CustomRadioButton
         android:layout_width="wrap_content"
@@ -35,15 +35,6 @@
         android:text="Text"
         android:checked="true"
         android:enabled="false"/>
-
-    <com.example.components.radiobutton.CustomRadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:eventType="Hybrid Event"
-        app:eventCategory="People Development"
-        app:layout_constraintTop_toBottomOf="@+id/ivEventCard"
-        app:layout_constraintStart_toStartOf="parent"
-        />
 
     <com.example.components.event.card.EventCardBadge
         android:id="@+id/cvEventCardBadge"
