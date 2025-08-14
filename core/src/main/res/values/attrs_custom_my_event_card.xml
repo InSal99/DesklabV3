@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomMyEventCard">
+        <attr name="myEventType" format="string" />
+        <attr name="myEventTitle" format="string" />
+        <attr name="myEventTime" format="string" />
+
+        <attr name="month" />
+        <attr name="date" />
+        <attr name="day" />
+
+        <attr name="badgeType" />
+        <attr name="badgeText" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius_8dp"
+    tools:context=".CustomMyEventCard">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_12dp">
+
+        <!-- Calendar Card -->
+        <com.example.components.CustomCalendarCard
+            android:id="@+id/customCalendarCard"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            app:date="24"
+            app:day="Wed"
+            app:month="AUG"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Event Type (Online Event) -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvEventType"
+            style="@style/TextRegular.Label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:textColor="?attr/colorForegroundTertiary"
+            app:layout_constraintStart_toEndOf="@id/customCalendarCard"
+            app:layout_constraintTop_toTopOf="@id/customCalendarCard"
+            app:layout_constraintBottom_toBottomOf="@id/eventCardBadge"
+            tools:text="Online Event" />
+
+        <!-- Event Badge (Terdaftar) -->
+        <com.example.components.event.card.EventCardBadge
+            android:id="@+id/eventCardBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:badgeText="Terdaftar"
+            app:badgeType="registered"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvEventType"
+            app:layout_constraintBottom_toBottomOf="@id/tvEventType" />
+
+        <!-- Event Title -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvEventTitle"
+            style="@style/TextSemiBold.Paragraph1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:textColor="?attr/colorForegroundPrimary"
+            app:layout_constraintTop_toBottomOf="@id/tvEventType"
+            app:layout_constraintStart_toStartOf="@id/tvEventType"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Game Night with EDTS: Mobile Legend Online Tournament 2025" />
+
+        <!-- Event Time -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvEventTime"
+            style="@style/TextRegular.Label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/radius_4dp"
+            android:textColor="?attr/colorForegroundTertiary"
+            app:layout_constraintTop_toBottomOf="@id/tvEventTitle"
+            app:layout_constraintStart_toStartOf="@id/tvEventTitle"
+            app:layout_constraintBottom_toBottomOf="@id/customCalendarCard"
+            tools:text="18:00 - 20:00 WIB" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

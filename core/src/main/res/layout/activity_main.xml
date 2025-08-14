@@ -10,31 +10,7 @@
     tools:context=".MainActivity"
     android:clipToPadding="false">
 
-<!--    <com.example.components.event.card.EventCardBadge-->
-<!--        android:id="@+id/cvEventCardBadge"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="@dimen/margin_12dp"-->
-<!--        android:layout_marginEnd="@dimen/margin_8dp"-->
-<!--        app:badgeType="registered"-->
-<!--        app:badgeSize="Large"-->
-<!--        app:badgeText="Berlangsung"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        />-->
 
-<!--    <com.example.components.event.card.EventCardBadge-->
-
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="@dimen/margin_12dp"-->
-<!--        android:layout_marginEnd="@dimen/margin_8dp"-->
-<!--        app:badgeType="live"-->
-<!--        app:badgeSize="Small"-->
-<!--        app:badgeText="Berlangsung"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cvEventCardBadge"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        />-->
 
 <!--    <com.example.components.event.card.EventCard-->
 <!--        android:id="@+id/cvEventCard"-->
@@ -67,5 +43,20 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:queryHint="@string/search_employee" />-->
+
+    <com.example.components.CustomMyEventCard
+        android:id="@+id/my_event_card_registered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:myEventType="Online Event"
+        app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
+        app:myEventTime="13:00 - 15:00"
+        app:month="SEP"
+        app:date="05"
+        app:day="Fri"
+        app:badgeType="live"
+        app:badgeText="Berlangsung"
+        app:layout_constraintTop_toBottomOf="@id/cvEventCard"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
