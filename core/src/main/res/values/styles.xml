@@ -642,4 +642,9 @@
         <item name="android:textAppearance">@style/TextMedium.Label1</item>
     </style>
 
+    <style name="ShapeAppearance.App.CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_999dp</item>
+    </style>
+
 </resources>

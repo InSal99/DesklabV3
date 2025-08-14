@@ -4,11 +4,11 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/ivProfile"
         android:layout_width="0dp"
         android:layout_height="32dp"
-        app:shapeAppearance="@drawable/bg_radius_full"
+        android:background="@drawable/bg_radius_full"
         android:clipToOutline="true"
         android:scaleType="centerCrop"
         android:src="@drawable/avatar_placeholder"

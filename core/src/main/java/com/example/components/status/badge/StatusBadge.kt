@@ -32,12 +32,6 @@ class StatusBadge @JvmOverloads constructor(
             applyChipStyle()
         }
 
-//    var text: CharSequence?
-//        get() = super.getText()
-//        set(value) {
-//            super.setText(value)
-//        }
-
     init {
         setupChip()
         initAttrs(attrs)
