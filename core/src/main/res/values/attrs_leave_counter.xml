@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LeaveCounter">
+        <attr name="counterText" format="string" />
+        <attr name="counterType" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="critical" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
