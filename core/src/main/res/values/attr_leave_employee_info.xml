@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LeaveEmployeeInfo">
+        <attr name="employeeName" format="string" />
+        <attr name="employeeRole" format="string" />
+        <attr name="employeeImage" format="reference" />
+    </declare-styleable>
+</resources>

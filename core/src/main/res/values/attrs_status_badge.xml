@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StatusBadge">
+        <attr name="statusBadgeText" format="string" />
+        <attr name="statusBadgeType" format="enum">
+            <enum name="approved" value="0" />
+            <enum name="decline" value="1" />
+            <enum name="waiting" value="2" />
+            <enum name="cancel" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>

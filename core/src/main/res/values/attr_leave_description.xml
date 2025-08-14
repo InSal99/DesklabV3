@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LeaveDescription">
+        <attr name="counterText" />
+        <attr name="counterType" />
+    </declare-styleable>
+</resources>
+

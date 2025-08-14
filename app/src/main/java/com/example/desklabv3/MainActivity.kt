@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.components.CustomRadioGroup
-import com.example.components.CustomToast
 import com.example.desklabv3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,8 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         dynamicRadioGroup = findViewById(R.id.rbTest)
         setupRadioButtons()
-
-        CustomToast.success(this, "Success message")
     }
 
     private fun setupRadioButtons() {
