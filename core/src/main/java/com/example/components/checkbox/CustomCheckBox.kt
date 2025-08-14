@@ -1,10 +1,11 @@
-package com.example.components
+package com.example.components.checkbox
 
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat
+import com.example.components.R
 
 class CustomCheckBox @JvmOverloads constructor(
     context: Context,
