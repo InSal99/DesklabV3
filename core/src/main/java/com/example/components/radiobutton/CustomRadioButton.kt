@@ -1,4 +1,4 @@
-package com.example.components
+package com.example.components.radiobutton
 
 import android.content.Context
 import android.os.Build
@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
+import com.example.components.R
 
 class CustomRadioButton @JvmOverloads constructor(
     context: Context,

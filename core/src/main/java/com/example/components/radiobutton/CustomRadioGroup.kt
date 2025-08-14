@@ -1,10 +1,11 @@
-package com.example.components
+package com.example.components.radiobutton
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RadioGroup
 import androidx.core.content.withStyledAttributes
+import com.example.components.R
 
 class CustomRadioGroup @JvmOverloads constructor(
     context: Context,

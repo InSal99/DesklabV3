@@ -2,13 +2,10 @@ package com.example.desklabv3
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.components.CustomRadioGroup
-import com.example.components.CustomToast
+import com.example.components.radiobutton.CustomRadioGroup
+import com.example.components.toast.CustomToast
 import com.example.desklabv3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         dynamicRadioGroup = findViewById(R.id.rbTest)
         setupRadioButtons()
 
-        CustomToast.success(this, "Success message")
     }
 
     private fun setupRadioButtons() {
@@ -35,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         dynamicRadioGroup.setOnItemSelectedListener { position, data ->
             Log.d("RadioButton", "Selected: $data at position $position")
+
+            CustomToast.success(this, "Selected: $data at position $position")
         }
 
         // Optional: Pre-select an item
