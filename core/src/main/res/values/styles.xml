@@ -524,26 +524,26 @@
     <style name="TextRegular.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/line_height_18</item>
+        <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
     <style name="TextMedium.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/line_height_18</item>
+        <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
     <style name="TextSemiBold.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/line_height_18</item>
+        <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
 <!--New-->
     <style name="TextBold.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/line_height_18</item>
+        <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
     <style name="TextRegular.Paragraph2">
