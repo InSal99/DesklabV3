@@ -14,7 +14,11 @@ class EventCardStatus @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: EventCardStatusBinding
+    private val binding: EventCardStatusBinding = EventCardStatusBinding.inflate(
+        LayoutInflater.from(context),
+        this,
+        true
+    )
 
     enum class StatusType(val value: Int) {
         RSVP(0),
@@ -41,11 +45,6 @@ class EventCardStatus @JvmOverloads constructor(
         }
 
     init {
-        binding = EventCardStatusBinding.inflate(
-            LayoutInflater.from(context),
-            this,
-            true
-        )
 
         // Parse custom attributes
         context.theme.obtainStyledAttributes(
@@ -67,20 +66,24 @@ class EventCardStatus @JvmOverloads constructor(
     }
 
     private fun updateStatusColor() {
+        val typedValue = android.util.TypedValue()
         when (statusType) {
             StatusType.RSVP -> {
+                context.theme.resolveAttribute(R.attr.colorForegroundWarningIntense, typedValue, true)
                 binding.tvEvenCardStatus.setTextColor(
-                    ContextCompat.getColor(context, R.color.colorOrange50)
+                    ContextCompat.getColor(context, typedValue.resourceId)
                 )
             }
             StatusType.REGISTERED -> {
+                context.theme.resolveAttribute(R.attr.colorForegroundSuccessIntense, typedValue, true)
                 binding.tvEvenCardStatus.setTextColor(
-                    ContextCompat.getColor(context, R.color.colorGreen50)
+                    ContextCompat.getColor(context, typedValue.resourceId)
                 )
             }
             StatusType.UNREGISTERED -> {
+                context.theme.resolveAttribute(R.attr.colorForegroundAttentionIntense, typedValue, true)
                 binding.tvEvenCardStatus.setTextColor(
-                    ContextCompat.getColor(context, R.color.colorRed40)
+                    ContextCompat.getColor(context, typedValue.resourceId)
                 )
             }
         }

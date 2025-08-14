@@ -7,22 +7,44 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/margin_16dp"
     android:paddingVertical="@dimen/margin_16dp"
-    android:clipToPadding="false"
-    android:clipChildren="false"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:clipToPadding="false">
 
+<!--    <com.example.components.event.card.EventCardBadge-->
+<!--        android:id="@+id/cvEventCardBadge"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/margin_12dp"-->
+<!--        android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--        app:badgeType="registered"-->
+<!--        app:badgeSize="Large"-->
+<!--        app:badgeText="Berlangsung"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
 
+<!--    <com.example.components.event.card.EventCardBadge-->
+
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/margin_12dp"-->
+<!--        android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--        app:badgeType="live"-->
+<!--        app:badgeSize="Small"-->
+<!--        app:badgeText="Berlangsung"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cvEventCardBadge"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
 
     <com.example.components.event.card.EventCard
-        android:background="@drawable/event_card_shadow"
         android:id="@+id/cvEventCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:badgeText="Berlangsung"
-        app:badgeType="live"
+        app:badgeText="asd"
+        app:badgeType="registered"
         app:eventCategory="People Development"
         app:eventDate="23 Juli 2025"
-        app:eventImageSrc="@drawable/poster3"
+        app:eventImageSrc="@drawable/poster2"
         app:eventTitle="EDTS Town-Hall 2025: Power of Change"
         app:eventType="Hybrid Event"
         app:layout_constraintStart_toStartOf="parent"

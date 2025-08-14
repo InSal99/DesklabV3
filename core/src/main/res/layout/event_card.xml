@@ -6,13 +6,12 @@
     android:layout_height="wrap_content"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_8dp"
-    app:strokeColor="@color/colorNeutral30"
-    app:cardElevation="@dimen/margin_0dp">
+    app:strokeColor="?attr/colorStrokeSubtle"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivEventCard"
@@ -31,6 +30,7 @@
             android:layout_marginTop="@dimen/margin_12dp"
             android:layout_marginEnd="@dimen/margin_8dp"
             app:badgeType="live"
+            app:badgeSize="Large"
             app:badgeText="Berlangsung"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
@@ -63,7 +63,6 @@
                 app:eventDate="23 Juli 2025"
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
 
             <com.example.components.event.card.EventCardStatus
                 android:id="@+id/cvEventCardStatus"

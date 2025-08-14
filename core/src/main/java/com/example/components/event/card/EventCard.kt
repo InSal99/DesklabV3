@@ -1,9 +1,12 @@
 package com.example.components.event.card
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.LayoutInflater
-//import android.widget.FrameLayout
 import com.example.components.R
 import com.example.components.databinding.EventCardBinding
 import com.google.android.material.card.MaterialCardView
@@ -14,16 +17,23 @@ class EventCard @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val binding: EventCardBinding
+    private val binding: EventCardBinding = EventCardBinding.inflate(
+    LayoutInflater.from(context),
+    this,
+    true
+    )
+    private val shadowPaint1 = Paint()
+    private val shadowPaint2 = Paint()
+    private val cornerRadiusPx = 8.5.toFloat() * context.resources.displayMetrics.density
 
-    // Properties for event image
+    var eventCardDelegate: EventCardDelegate? = null
+
     var eventImageSrc: Int? = null
         set(value) {
             field = value
             updateEventImage()
         }
 
-    // Properties for badge - using EventCardBadge enums
     var badgeType: EventCardBadge.BadgeType = EventCardBadge.BadgeType.LIVE
         set(value) {
             field = value
@@ -36,7 +46,6 @@ class EventCard @JvmOverloads constructor(
             updateBadge()
         }
 
-    // Properties for banner
     var eventType: String? = null
         set(value) {
             field = value
@@ -49,7 +58,6 @@ class EventCard @JvmOverloads constructor(
             updateBanner()
         }
 
-    // Properties for description
     var eventTitle: String? = null
         set(value) {
             field = value
@@ -62,7 +70,6 @@ class EventCard @JvmOverloads constructor(
             updateDescription()
         }
 
-    // Properties for status - using EventCardStatus enums
     var statusType: EventCardStatus.StatusType = EventCardStatus.StatusType.UNREGISTERED
         set(value) {
             field = value
@@ -76,42 +83,32 @@ class EventCard @JvmOverloads constructor(
         }
 
     init {
-        binding = EventCardBinding.inflate(
-            LayoutInflater.from(context),
-            this,
-            true
-        )
+        setupShadowPaints()
+        radius = cornerRadiusPx
 
-        // Parse custom attributes
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.EventCard,
             0, 0
         ).apply {
             try {
-                // Parse event image
                 eventImageSrc = getResourceId(R.styleable.EventCard_eventImageSrc, -1)
                     .takeIf { it != -1 }
 
-                // Parse badge attributes
-                val badgeTypeValue = getInt(R.styleable.EventCardBadge_badgeType, 0)
+                val badgeTypeValue = getInt(R.styleable.EventCard_cardBadgeType, 0)
                 badgeType = EventCardBadge.BadgeType.fromValue(badgeTypeValue)
-                badgeText = getString(R.styleable.EventCardBadge_badgeText)
+                badgeText = getString(R.styleable.EventCard_cardBadgeText)
 
-                // Parse banner attributes
-                eventType = getString(R.styleable.EventCardBanner_eventType)
-                eventCategory = getString(R.styleable.EventCardBanner_eventCategory)
+                eventType = getString(R.styleable.EventCard_cardEventType)
+                eventCategory = getString(R.styleable.EventCard_cardEventCategory)
 
-                // Parse description attributes
-                eventTitle = getString(R.styleable.EventCardDescription_eventTitle)
-                eventDate = getString(R.styleable.EventCardDescription_eventDate)
+                eventTitle = getString(R.styleable.EventCard_cardEventTitle)
+                eventDate = getString(R.styleable.EventCard_cardEventDate)
 
-                // Parse status attributes
-                val statusTypeValue = getInt(R.styleable.EventCardStatus_statusType, 0)
+                val statusTypeValue = getInt(R.styleable.EventCard_cardStatusType, 0)
                 statusType = EventCardStatus.StatusType.fromValue(statusTypeValue)
-                statusText = getString(R.styleable.EventCardStatus_statusText)
+                statusText = getString(R.styleable.EventCard_cardStatusText)
 
-                // Update all components
                 updateEventImage()
                 updateBadge()
                 updateBanner()
@@ -124,6 +121,44 @@ class EventCard @JvmOverloads constructor(
         }
     }
 
+    private fun setupShadowPaints() {
+        setLayerType(LAYER_TYPE_SOFTWARE, null)
+
+        shadowPaint1.apply {
+            setShadowLayer(
+                2f,
+                0f,
+                0f,
+                Color.parseColor("#0D0F111A") // 5% alpha
+            )
+            color = Color.TRANSPARENT
+            isAntiAlias = true
+            style = Paint.Style.FILL
+        }
+
+        shadowPaint2.apply {
+            setShadowLayer(
+                2f,
+                0f,
+                0f,
+                Color.parseColor("#1A0F111A")
+            )
+            color = Color.TRANSPARENT
+            isAntiAlias = true
+            style = Paint.Style.FILL
+        }
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        canvas.let { c ->
+            val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
+
+            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint1)
+            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint2)
+        }
+        super.onDraw(canvas)
+    }
+
     private fun updateEventImage() {
         eventImageSrc?.let { imageRes ->
             binding.ivEventCard.setImageResource(imageRes)
@@ -131,7 +166,6 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun updateBadge() {
-        // Update badge using the existing EventCardBadge custom view
         binding.cvEventCardBadge?.let { badge ->
             badge.badgeType = badgeType
             badgeText?.let { text ->
@@ -141,7 +175,6 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun updateBanner() {
-        // Update banner using the existing EventCardBanner custom view
         binding.cvEventCardBanner?.let { banner ->
             eventType?.let { type ->
                 banner.eventType = type
@@ -153,7 +186,6 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun updateDescription() {
-        // Update description using the existing EventCardDescription custom view
         binding.cvEventCardDescription?.let { description ->
             eventTitle?.let { title ->
                 description.eventTitle = title
@@ -165,7 +197,6 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun updateStatus() {
-        // Update status using the existing EventCardStatus custom view
         binding.cvEventCardStatus?.let { status ->
             status.statusType = statusType
             statusText?.let { text ->

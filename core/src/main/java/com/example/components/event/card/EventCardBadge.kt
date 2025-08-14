@@ -14,7 +14,22 @@ class EventCardBadge @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: EventCardBadgeBinding
+    private val binding: EventCardBadgeBinding = EventCardBadgeBinding.inflate(
+        LayoutInflater.from(context),
+        this,
+        true
+    )
+
+    enum class BadgeSize(val value: Int) {
+        SMALL(0),
+        LARGE(1);
+
+        companion object {
+            fun fromValue(value: Int): BadgeSize {
+                return values().find { it.value == value } ?: LARGE
+            }
+        }
+    }
 
     enum class BadgeType(val value: Int) {
         LIVE(0),
@@ -34,6 +49,12 @@ class EventCardBadge @JvmOverloads constructor(
             updateBadgeColor()
         }
 
+    var badgeSize: BadgeSize = BadgeSize.LARGE
+        set(value) {
+            field = value
+            updateBadgeSize()
+        }
+
     var badgeText: String? = null
         set(value) {
             field = value
@@ -41,11 +62,6 @@ class EventCardBadge @JvmOverloads constructor(
         }
 
     init {
-        binding = EventCardBadgeBinding.inflate(
-            LayoutInflater.from(context),
-            this,
-            true
-        )
 
         // Parse custom attributes
         context.theme.obtainStyledAttributes(
@@ -56,9 +72,12 @@ class EventCardBadge @JvmOverloads constructor(
             try {
                 val badgeTypeValue = getInt(R.styleable.EventCardBadge_badgeType, 0)
                 badgeType = BadgeType.fromValue(badgeTypeValue)
+                val badgeSizeValue = getInt(R.styleable.EventCardBadge_badgeSize, 1)
+                badgeSize = BadgeSize.fromValue(badgeSizeValue)
                 badgeText = getString(R.styleable.EventCardBadge_badgeText)
 
                 updateBadgeColor()
+                updateBadgeSize()
                 updateBadgeText()
             } finally {
                 recycle()
@@ -67,18 +86,59 @@ class EventCardBadge @JvmOverloads constructor(
     }
 
     private fun updateBadgeColor() {
+        val typedValue = android.util.TypedValue()
         when (badgeType) {
             BadgeType.LIVE -> {
+                context.theme.resolveAttribute(R.attr.colorBackgroundAttentionIntense, typedValue, true)
                 binding.EventCardBadge.backgroundTintList =
-                    ContextCompat.getColorStateList(context, R.color.colorRed30)
+                    ContextCompat.getColorStateList(context, typedValue.resourceId)
             }
             BadgeType.INVITED -> {
+                context.theme.resolveAttribute(R.attr.colorBackgroundWarningIntense, typedValue, true)
                 binding.EventCardBadge.backgroundTintList =
-                    ContextCompat.getColorStateList(context, R.color.colorOrange50)
+                    ContextCompat.getColorStateList(context, typedValue.resourceId)
             }
             BadgeType.REGISTERED -> {
+                context.theme.resolveAttribute(R.attr.colorBackgroundSuccessIntense, typedValue, true)
                 binding.EventCardBadge.backgroundTintList =
-                    ContextCompat.getColorStateList(context, R.color.colorGreen50)
+                    ContextCompat.getColorStateList(context, typedValue.resourceId)
+            }
+        }
+    }
+
+    private fun updateBadgeSize() {
+        when (badgeSize) {
+            BadgeSize.SMALL -> {
+                val typedValue = android.util.TypedValue()
+                context.theme.resolveAttribute(R.attr.l4SemiBold, typedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextAppearance(typedValue.resourceId)
+
+                val textColorTypedValue = android.util.TypedValue()
+                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
+
+                binding.tvEvenCardBadgeLabel.setPadding(
+                    resources.getDimensionPixelSize(R.dimen.margin_6dp), // paddingStart
+                    resources.getDimensionPixelSize(R.dimen.margin_4dp), // paddingTop
+                    resources.getDimensionPixelSize(R.dimen.margin_6dp), // paddingEnd
+                    resources.getDimensionPixelSize(R.dimen.margin_4dp)  // paddingBottom
+                )
+            }
+            BadgeSize.LARGE -> {
+                val typedValue = android.util.TypedValue()
+                context.theme.resolveAttribute(R.attr.p2SemiBold, typedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextAppearance(typedValue.resourceId)
+
+                val textColorTypedValue = android.util.TypedValue()
+                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
+
+                binding.tvEvenCardBadgeLabel.setPadding(
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp), // paddingStart
+                    resources.getDimensionPixelSize(R.dimen.margin_2dp), // paddingTop
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp), // paddingEnd
+                    resources.getDimensionPixelSize(R.dimen.margin_2dp)  // paddingBottom
+                )
             }
         }
     }

@@ -20,62 +20,120 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:minHeight="@dimen/margin_0dp"/>
+        android:minHeight="@dimen/margin_0dp" />
 
-    <com.example.components.CustomRadioButton
+<!--    <com.example.components.CustomRadioButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="true"-->
+<!--        android:enabled="true"-->
+<!--        android:text="Text" />-->
+
+<!--    <com.example.components.CustomRadioButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="true"-->
+<!--        android:enabled="false"-->
+<!--        android:text="Text" />-->
+
+<!--    <com.example.components.CustomRadioButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="false"-->
+<!--        android:enabled="true"-->
+<!--        android:text="Text" />-->
+
+<!--    <com.example.components.CustomRadioButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="false"-->
+<!--        android:enabled="false"-->
+<!--        android:text="Text" />-->
+
+<!--    <com.example.components.CustomCheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="true"-->
+<!--        android:enabled="true"-->
+<!--        android:text="Text" />-->
+
+<!--    <com.example.components.CustomCheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="true"-->
+<!--        android:enabled="false"-->
+<!--        android:text="Text" />-->
+
+<!--    <com.example.components.CustomCheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="false"-->
+<!--        android:enabled="true"-->
+<!--        android:text="Text" />-->
+
+<!--    <com.example.components.CustomCheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="false"-->
+<!--        android:enabled="false"-->
+<!--        android:text="Text" />-->
+
+<!--    <com.example.components.event.card.EventCard-->
+<!--        android:id="@+id/cvEventCard"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:badgeText="Berlangsung"-->
+<!--        app:badgeType="invited"-->
+<!--        app:eventCategory="People Development"-->
+<!--        app:eventDate="23 Juli 2025"-->
+<!--        app:eventImageSrc="@drawable/poster2"-->
+<!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
+<!--        app:eventType="Hybrid Event"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:statusText="Pendaftaran Ditutup"-->
+<!--        app:statusType="registered" />-->
+
+    <com.example.components.event.card.EventCardBanner
+        android:id="@+id/cvEventCardBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:eventType="Hybrid Event"
+        app:eventCategory="People Development"
+        app:layout_constraintTop_toBottomOf="@+id/ivEventCard"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.example.components.event.card.EventCardBadge
+        android:id="@+id/cvEventCardBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="true"
-        android:enabled="true"/>
+        android:layout_marginTop="@dimen/margin_12dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        app:badgeType="invited"
+        app:badgeSize="Small"
+        app:badgeText="Diundang"
+        app:layout_constraintTop_toTopOf="@+id/ivEventCard"
+        app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+        />
 
-    <com.example.components.CustomRadioButton
+    <com.example.components.event.card.EventCardDescription
+        android:id="@+id/cvEventCardDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:eventTitle="EDTS Town-Hall 2025: Power of Change"
+        app:eventDate="23 Juli 2025"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.example.components.event.card.EventCardStatus
+        android:id="@+id/cvEventCardStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="true"
-        android:enabled="false"/>
-
-    <com.example.components.CustomRadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="false"
-        android:enabled="true"/>
-
-    <com.example.components.CustomRadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="false"
-        android:enabled="false"/>
-
-    <com.example.components.CustomCheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="true"
-        android:enabled="true"/>
-
-    <com.example.components.CustomCheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="true"
-        android:enabled="false"/>
-
-    <com.example.components.CustomCheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="false"
-        android:enabled="true"/>
-
-    <com.example.components.CustomCheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="false"
-        android:enabled="false"/>
-
+        android:layout_marginTop="@dimen/margin_4dp"
+        app:statusType="unregistered"
+        app:statusText="Pendaftaran Ditutup"
+        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
+        app:layout_constraintStart_toStartOf="parent"/>
 </LinearLayout>
