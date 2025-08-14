@@ -14,7 +14,11 @@ class EventCardBadge @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: EventCardBadgeBinding
+    private val binding: EventCardBadgeBinding = EventCardBadgeBinding.inflate(
+        LayoutInflater.from(context),
+        this,
+        true
+    )
 
     enum class BadgeSize(val value: Int) {
         SMALL(0),
@@ -58,11 +62,6 @@ class EventCardBadge @JvmOverloads constructor(
         }
 
     init {
-        binding = EventCardBadgeBinding.inflate(
-            LayoutInflater.from(context),
-            this,
-            true
-        )
 
         // Parse custom attributes
         context.theme.obtainStyledAttributes(

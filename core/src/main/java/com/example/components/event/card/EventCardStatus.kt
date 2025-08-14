@@ -14,7 +14,11 @@ class EventCardStatus @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: EventCardStatusBinding
+    private val binding: EventCardStatusBinding = EventCardStatusBinding.inflate(
+        LayoutInflater.from(context),
+        this,
+        true
+    )
 
     enum class StatusType(val value: Int) {
         RSVP(0),
@@ -41,11 +45,6 @@ class EventCardStatus @JvmOverloads constructor(
         }
 
     init {
-        binding = EventCardStatusBinding.inflate(
-            LayoutInflater.from(context),
-            this,
-            true
-        )
 
         // Parse custom attributes
         context.theme.obtainStyledAttributes(
