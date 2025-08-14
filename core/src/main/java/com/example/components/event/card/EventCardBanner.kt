@@ -13,7 +13,11 @@ class EventCardBanner @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: EventCardBannerBinding
+    private val binding: EventCardBannerBinding = EventCardBannerBinding.inflate(
+        LayoutInflater.from(context),
+        this,
+        true
+    )
 
     var eventType: String? = null
         set(value) {
@@ -28,11 +32,6 @@ class EventCardBanner @JvmOverloads constructor(
         }
 
     init {
-        binding = EventCardBannerBinding.inflate(
-            LayoutInflater.from(context),
-            this,
-            true
-        )
 
         // Parse custom attributes
         context.theme.obtainStyledAttributes(

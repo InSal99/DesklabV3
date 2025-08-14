@@ -496,7 +496,8 @@
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
-    <style name="TextSemiBold.Label4">
+<!-- add parent because error when changing event badge size in kotlin file-->
+    <style name="TextSemiBold.Label4" parent="@style/TextAppearance.MaterialComponents.Body2">
         <item name="android:textSize">@dimen/text_size_10sp</item>
         <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
