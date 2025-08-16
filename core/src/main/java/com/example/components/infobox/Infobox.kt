@@ -30,6 +30,7 @@ class InfoBox @JvmOverloads constructor(
         }
 
     init {
+        cardElevation = 0f
         setCustomCornerRadius()
         initAttrs(attrs)
     }

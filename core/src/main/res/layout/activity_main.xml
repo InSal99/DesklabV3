@@ -36,21 +36,21 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        />-->
 
-    <com.example.components.event.card.EventCard
-        android:id="@+id/cvEventCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:badgeText="asd"
-        app:badgeType="registered"
-        app:eventCategory="People Development"
-        app:eventDate="23 Juli 2025"
-        app:eventImageSrc="@drawable/poster2"
-        app:eventTitle="EDTS Town-Hall 2025: Power of Change"
-        app:eventType="Hybrid Event"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:statusText="Pendaftaran Ditutup"
-        app:statusType="unregistered" />
+<!--    <com.example.components.event.card.EventCard-->
+<!--        android:id="@+id/cvEventCard"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:badgeText="asd"-->
+<!--        app:badgeType="registered"-->
+<!--        app:eventCategory="People Development"-->
+<!--        app:eventDate="23 Juli 2025"-->
+<!--        app:eventImageSrc="@drawable/poster2"-->
+<!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
+<!--        app:eventType="Hybrid Event"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:statusText="Pendaftaran Ditutup"-->
+<!--        app:statusType="unregistered" />-->
 
 <!--    <androidx.appcompat.widget.SearchView-->
 <!--        android:id="@+id/searchView"-->
