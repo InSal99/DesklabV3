@@ -1,70 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:flow_verticalGap="@dimen/margin_8dp"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
-    <com.example.components.radiobutton.CustomRadioGroup
-        android:id="@+id/rbTest"
-        style="@style/Widget.App.DynamicRadioGroup"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:minHeight="@dimen/margin_0dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        app:flow_verticalGap="@dimen/margin_8dp"
+        tools:context=".MainActivity">
 
-    <com.example.components.radiobutton.CustomRadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="true"
-        android:enabled="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!" />
 
-    <com.example.components.radiobutton.CustomRadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="true"
-        android:enabled="false"/>
+        <com.example.components.detail.information.DetailInformationA
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:infoTitle="Title"
+            app:infoDescription="Description"
+            app:infoIcon="@drawable/placeholder"
+            android:layout_marginHorizontal="@dimen/margin_16dp"/>
 
-    <com.example.components.event.card.EventCardBadge
-        android:id="@+id/cvEventCardBadge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_12dp"
-        android:layout_marginEnd="@dimen/margin_8dp"
-        app:badgeType="invited"
-        app:badgeSize="Small"
-        app:badgeText="Diundang"
-        app:layout_constraintTop_toTopOf="@+id/ivEventCard"
-        app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-        />
+        <com.example.components.status.badge.StatusBadge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:statusBadgeText="Status Badge"
+            app:statusBadgeType="approved"/>
 
-    <com.example.components.event.card.EventCardDescription
-        android:id="@+id/cvEventCardDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:eventTitle="EDTS Town-Hall 2025: Power of Change"
-        app:eventDate="23 Juli 2025"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="REST"
+            app:customButtonSize="XS"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            app:iconLeft="@drawable/placeholder"
+            app:iconRight="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-    <com.example.components.event.card.EventCardStatus
-        android:id="@+id/cvEventCardStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_4dp"
-        app:statusType="unregistered"
-        app:statusText="Pendaftaran Ditutup"
-        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
-        app:layout_constraintStart_toStartOf="parent"/>
-</LinearLayout>
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_PRESS"
+            app:isButtonDestructive="true"
+            app:customButtonSize="XS"
+            app:label="Test"
+            app:iconRight="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
+
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_FOCUS"
+            app:customButtonSize="XS"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            app:iconLeft="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
+
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:label="Test Button"
+            app:customButtonSize="MD"
+            app:customButtonState="REST"/>
+
+        <com.example.components.button.CustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_FOCUS"
+            app:customButtonSize="LG"
+            app:iconRight="@drawable/placeholder"
+            app:iconLeft="@drawable/placeholder"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
+
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="REST"
+            app:customButtonSize="LG"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconGravity="textEnd"
+            android:text="Test"
+            app:icon="@drawable/placeholder"
+            android:layout_marginHorizontal="@dimen/margin_16dp"/>
+
+        <com.example.components.leave.card.LeaveCounter
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:counterText="100 Hari"
+            app:counterType="critical"/>
+
+        <com.example.components.leave.card.LeaveDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterType="critical"
+            app:counterText="100 Hari"/>
+
+        <com.example.components.leave.card.LeaveEmployeeInfo
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:employeeName="Employee Name"
+            app:employeeRole="Employee Role"
+            app:employeeImage="@drawable/avatar_placeholder"/>
+
+        <com.example.components.leave.card.LeaveCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            app:employeeName="Employee Name"
+            app:employeeRole="Employee Role"
+            app:employeeImage="@drawable/avatar_placeholder"
+            app:counterText="1000 Tahun Lamanya"
+            app:counterType="critical"/>
+
+        <com.example.components.toast.CustomToast
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            app:toastType="success"
+            app:toastMessage="Test"/>
+
+        <com.example.components.toast.CustomToast
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            app:toastType="error"
+            app:toastMessage="Test"/>
+
+        <com.example.components.toast.CustomToast
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            app:toastType="info"
+            app:toastMessage="Test"/>
+
+        <com.example.components.toast.CustomToast
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            app:toastType="general"
+            app:toastMessage="Test"/>
+
+        <com.example.components.option.card.OptionCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardText="Option"
+            app:cardIcon="@drawable/placeholder"
+            android:layout_marginHorizontal="@dimen/margin_16dp"/>
+
+        <com.example.components.infobox.InfoBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="Test"
+            app:variant="success"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginHorizontal="@dimen/margin_16dp"/>
+
+        <com.example.components.infobox.InfoBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="Test"
+            app:variant="error"
+            android:layout_marginHorizontal="@dimen/margin_16dp"/>
+
+        <com.example.components.infobox.InfoBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="Test"
+            app:variant="information"
+            android:layout_marginHorizontal="@dimen/margin_16dp"/>
+    </LinearLayout>
+</ScrollView>

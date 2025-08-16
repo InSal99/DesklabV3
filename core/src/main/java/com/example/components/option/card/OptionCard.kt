@@ -1,13 +1,19 @@
 package com.example.components.option.card
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.Color
-import android.graphics.Paint
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.AttributeSet
+import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.MotionEvent
+import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import com.example.components.R
 import com.example.components.databinding.OptionCardBinding
 import com.google.android.material.card.MaterialCardView
@@ -40,12 +46,61 @@ class OptionCard @JvmOverloads constructor(
             value?.let { binding.ivOptionAction.setImageResource(it) }
         }
 
-    private val shadowPaint1 = Paint()
-    private val shadowPaint2 = Paint()
-
     init {
         initAttrs(attrs)
-        setupShadowPaints()
+        setupCardAppearance(context)
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                animateScaleDown()
+                return true
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                animateScaleUp()
+                if (event.action == MotionEvent.ACTION_UP) {
+                    performClick()
+                }
+                return true
+            }
+        }
+        return super.onTouchEvent(event)
+    }
+
+    override fun performClick(): Boolean {
+        Log.d("OptionCard", "option card selected")
+        delegate?.onClick(this)
+        return super.performClick()
+    }
+
+    private fun animateScaleDown() {
+        val scaleDownX = ObjectAnimator.ofFloat(this, "scaleX", 1.0f, 0.95f)
+        val scaleDownY = ObjectAnimator.ofFloat(this, "scaleY", 1.0f, 0.95f)
+
+        val animatorSet = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+            duration = 150
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        animatorSet.start()
+    }
+
+    private fun animateScaleUp() {
+        val scaleUpX = ObjectAnimator.ofFloat(this, "scaleX", scaleX, 1.0f)
+        val scaleUpY = ObjectAnimator.ofFloat(this, "scaleY", scaleY, 1.0f)
+
+        val animatorSet = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+            duration = 150
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        animatorSet.start()
+    }
+
+    private fun setupClickAnimation() {
+        isClickable = true
+        isFocusable = true
     }
 
     private fun initAttrs(attrs: AttributeSet?) {
@@ -57,39 +112,38 @@ class OptionCard @JvmOverloads constructor(
         }
     }
 
-    private fun setupShadowPaints() {
-        setLayerType(LAYER_TYPE_SOFTWARE, null)
+    private fun setupCardAppearance(context: Context) {
+        strokeWidth = (1 * context.resources.displayMetrics.density).toInt()
+        radius = context.resources.getDimension(R.dimen.radius_12dp)
 
-        shadowPaint1.apply {
-            setShadowLayer(
-                4f,
-                0f,
-                2f,
-                context.theme.obtainStyledAttributes(intArrayOf(R.attr.colorShadowNeutralAmbient))
-                    .getColor(0, Color.TRANSPARENT)
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
-        }
+        val typedValue = TypedValue()
+        context.theme.resolveAttribute(R.attr.colorStrokeSubtle, typedValue, true)
+        setStrokeColor(ContextCompat.getColor(context, typedValue.resourceId))
 
-        shadowPaint2.apply {
-            setShadowLayer(
-                0f,
-                0f,
-                2f,
-                context.theme.obtainStyledAttributes(intArrayOf(R.attr.colorShadowNeutralKey))
-                    .getColor(0, Color.TRANSPARENT)
+        cardElevation = 2f * context.resources.displayMetrics.density
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            outlineAmbientShadowColor = resolveColorAttribute(
+                R.attr.colorShadowNeutralAmbient,
+                R.color.colorGreen50
             )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
+            outlineSpotShadowColor = resolveColorAttribute(
+                R.attr.colorShadowNeutralKey,
+                R.color.colorGreen50
+            )
         }
     }
 
-    private fun bindClickActions() {
-        binding.root.setOnClickListener {
-            delegate?.onCardClick(it)
+    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
+        val typedValue = TypedValue()
+        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
+            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
+                ContextCompat.getColor(context, typedValue.resourceId)
+            } else {
+                typedValue.data
+            }
+        } else {
+            ContextCompat.getColor(context, fallbackColor)
         }
     }
 }
