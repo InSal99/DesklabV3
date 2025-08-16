@@ -67,4 +67,20 @@
         app:statusText="Pendaftaran Ditutup"
         app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
         app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.example.components.radiobutton.CustomRadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"/>
+
+    <com.example.components.checkbox.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By manually setting the bounds, you can completely eliminate any extra vertical padding"/>
+
+    <com.example.components.checkbox.CustomCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"/>
+
 </LinearLayout>
