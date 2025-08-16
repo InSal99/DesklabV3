@@ -1,8 +1,11 @@
 package com.example.components.checkbox
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
+import android.util.Log
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat
 import com.example.components.R
@@ -17,6 +20,7 @@ class CustomCheckBox @JvmOverloads constructor(
     private var selectedTextAppearance = R.style.CheckBoxTextAppearance_Selected
     private var disabledTextAppearance = R.style.CheckBoxTextAppearance_Disabled
     private var disabledSelectedTextAppearance = R.style.CheckBoxTextAppearance_DisabledSelected
+    private var customCheckBoxDelegate: CustomCheckboxDelegate? = null
 
     init {
         setBackgroundResource(android.R.color.transparent)
@@ -82,6 +86,13 @@ class CustomCheckBox @JvmOverloads constructor(
                 setTextAppearance(context, textAppearanceRes)
             }
         }
+    }
+
+    override fun performClick(): Boolean {
+        Log.d("CustomCheckBox", "checkbox clicked")
+
+        customCheckBoxDelegate?.onCheckChanged(this, this.isChecked)
+        return super.performClick()
     }
 
     fun setTextAppearances(
