@@ -23,6 +23,9 @@
         <item name="android:windowFullscreen">false</item>
         <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
 
+<!--        <item name="android:outlineAmbientShadowColor" tools:targetApi="28">@color/colorRed50</item>-->
+<!--        <item name="android:outlineSpotShadowColor" tools:targetApi="28">@color/colorRed40</item>-->
+
         <!-- Background Colors -->
         <item name="colorBackgroundPrimary">@color/colorFFF</item>
         <item name="colorBackgroundPrimaryTinted">@color/colorNeutralGrayBlue10</item>
@@ -231,7 +234,7 @@
         <item name="l5Regular">@style/TextRegular.Label5</item>
     </style>
 
-    <style name="NoActionBar" parent="Theme.Desklab">
+    <style name="NoActionBar" parent="Theme.Desklab.Kit">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -242,7 +245,7 @@
         <item name="android:windowTranslucentStatus">false</item>
     </style>
 
-    <style name="WhiteBar" parent="Theme.Desklab">
+    <style name="WhiteBar" parent="Theme.Desklab.Kit">
         <item name="colorPrimary">@android:color/white</item>
         <item name="android:statusBarColor">@color/colorFFF</item>
     </style>
