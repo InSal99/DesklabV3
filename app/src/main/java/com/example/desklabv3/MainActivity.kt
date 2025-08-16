@@ -5,9 +5,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.components.CustomRadioGroup
+import com.example.components.radiobutton.CustomRadioGroup
+import com.example.components.toast.CustomToast
 import com.example.desklabv3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
