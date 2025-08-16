@@ -9,10 +9,15 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import com.example.components.R
 import com.example.components.databinding.LeaveCardBinding
 import com.example.components.event.card.EventCardDelegate
@@ -24,11 +29,7 @@ class LeaveCard @JvmOverloads constructor(
     defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val binding: LeaveCardBinding
-
-    private val shadowPaint1 = Paint()
-    private val shadowPaint2 = Paint()
-    private val cornerRadiusPx = 8.5.toFloat() * context.resources.displayMetrics.density
+    private val binding = LeaveCardBinding.inflate(LayoutInflater.from(context), this, true)
 
     var leaveCardDelegate: LeaveCardDelegate? = null
 
@@ -63,93 +64,63 @@ class LeaveCard @JvmOverloads constructor(
         }
 
     init {
-        setupShadowPaints()
-        binding = LeaveCardBinding.inflate(
-            LayoutInflater.from(context),
-            this,
-            true
-        )
-        setupCard()
+        setupCardAppearance(context)
         initAttrs(attrs)
 
         setOnClickListener {
             leaveCardDelegate?.onClick(this)
         }
 
-        setupTouchAnimation()
     }
 
-    private fun setupShadowPaints() {
-        setLayerType(LAYER_TYPE_SOFTWARE, null)
-
-        shadowPaint1.apply {
-            setShadowLayer(
-                4f,
-                0f,
-                0f,
-                R.attr.colorBackgroundAttentionSubtle
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                animateScaleDown()
+                return true
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                animateScaleUp()
+                if (event.action == MotionEvent.ACTION_UP) {
+                    performClick()
+                }
+                return true
+            }
         }
-
-        shadowPaint2.apply {
-            setShadowLayer(
-                4f,
-                0f,
-                0f,
-                R.attr.colorForegroundAttentionIntense
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
-        }
+        return super.onTouchEvent(event)
     }
 
-    override fun onDraw(canvas: Canvas) {
-        canvas.let { c ->
-            val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
+//    override fun performClick(): Boolean {
+//        return super.performClick()
+//    }
 
-            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint1)
-            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint2)
+    private fun animateScaleDown() {
+        val scaleDownX = ObjectAnimator.ofFloat(this, "scaleX", 1.0f, 0.95f)
+        val scaleDownY = ObjectAnimator.ofFloat(this, "scaleY", 1.0f, 0.95f)
+
+        val animatorSet = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+            duration = 150
+            interpolator = AccelerateDecelerateInterpolator()
         }
-        super.onDraw(canvas)
+        animatorSet.start()
     }
 
-    private fun setupCard() {
-        strokeColor = getColorFromAttr(R.attr.colorStrokeSubtle)
-        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        radius = resources.getDimension(R.dimen.radius_12dp)
-        setCardBackgroundColor(getColorFromAttr(R.attr.colorBackgroundPrimary))
+    private fun animateScaleUp() {
+        val scaleUpX = ObjectAnimator.ofFloat(this, "scaleX", scaleX, 1.0f)
+        val scaleUpY = ObjectAnimator.ofFloat(this, "scaleY", scaleY, 1.0f)
 
+        val animatorSet = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+            duration = 150
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        animatorSet.start()
+    }
+
+    private fun setupClickAnimation() {
         isClickable = true
         isFocusable = true
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    private fun setupTouchAnimation() {
-        setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    animateScale(0.98f)
-                }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    animateScale(1.0f)
-                }
-            }
-            false
-        }
-    }
-
-    private fun animateScale(scale: Float) {
-        val scaleX = ObjectAnimator.ofFloat(this, "scaleX", scale)
-        val scaleY = ObjectAnimator.ofFloat(this, "scaleY", scale)
-        AnimatorSet().apply {
-            duration = 150
-            playTogether(scaleX, scaleY)
-            start()
-        }
     }
 
     private fun initAttrs(attrs: AttributeSet?) {
@@ -169,12 +140,38 @@ class LeaveCard @JvmOverloads constructor(
         }
     }
 
-    private fun getColorFromAttr(attr: Int): Int {
+    private fun setupCardAppearance(context: Context) {
+        strokeColor = resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral30)
+        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
+        radius = resources.getDimension(R.dimen.radius_12dp)
+        setCardBackgroundColor(resolveColorAttribute(R.attr.colorBackgroundPrimary, R.color.colorFFF))
+
+        cardElevation = 2f * context.resources.displayMetrics.density
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            outlineAmbientShadowColor = resolveColorAttribute(
+                R.attr.colorShadowNeutralAmbient,
+                R.color.colorGreen50
+            )
+            outlineSpotShadowColor = resolveColorAttribute(
+                R.attr.colorShadowNeutralKey,
+                R.color.colorGreen50
+            )
+        }
+
+        setupClickAnimation()
+    }
+
+    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
         val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attr, typedValue, true)) {
-            typedValue.data
+        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
+            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
+                ContextCompat.getColor(context, typedValue.resourceId)
+            } else {
+                typedValue.data
+            }
         } else {
-            Color.GRAY
+            ContextCompat.getColor(context, fallbackColor)
         }
     }
 }
