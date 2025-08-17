@@ -1,44 +1,83 @@
 package com.example.components
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.RectF
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import com.example.components.databinding.CustomMyEventCardBinding
-import com.example.components.event.card.EventCardBadge
-import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.MaterialColors
 
-
+/**
+ * A composite custom view that displays event details in a styled card.
+ *
+ * This component follows the composite view pattern by extending `FrameLayout`. It inflates
+ * its own layout (`custom_my_event_card.xml`), which contains a `MaterialCardView`
+ * and other child views. This encapsulates the complex layout and provides a simple,
+ * reusable component with a clean API.
+ *
+ * ### XML Usage Example:
+ * Declare the `CustomMyEventCard` in your layout and configure its properties and the
+ * properties of its children through custom attributes.
+ *
+ * ```xml
+ * <com.example.components.CustomMyEventCard
+ * android:layout_width="match_parent"
+ * android:layout_height="wrap_content"
+ * app:myEventType="Online Event"
+ * app:myEventTitle="Game Night: Mobile Legend Tournament"
+ * app:myEventTime="18:00 - 20:00 WIB"
+ * app:month="JUL"
+ * app:date="24"
+ * app:day="Wed"
+ * app:badgeText="Registered"
+ * app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
+ * app:badgeTextColor="?attr/colorOnPrimary"
+ * app:badgeVisible="true" />
+ * ```
+ *
+ * ### Programmatic Usage Example:
+ *
+ * ```kotlin
+ * val myEventCard = CustomMyEventCard(context).apply {
+ * eventType = "Online Event"
+ * eventTitle = "Team Sync-Up"
+ * eventTime = "10:00 - 11:00 WIB"
+ * setCalendarData("AUG", "18", "Mon")
+ * setBadgeData(
+ * text = "Confirmed",
+ * backgroundColor = ContextCompat.getColor(context, R.color.green),
+ * textColor = Color.WHITE,
+ * isVisible = true
+ * )
+ * }
+ * parentLayout.addView(myEventCard)
+ * ```
+ */
 class CustomMyEventCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : MaterialCardView(context, attrs, defStyleAttr) {
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val binding: CustomMyEventCardBinding
-    private val ambientShadowPaint = Paint()
-    private val keyShadowPaint = Paint()
-    private val cornerRadiusPx = 8f * context.resources.displayMetrics.density
 
-    // Path for clipping the canvas to prevent children from drawing over the shadow
-    private val clipPath = Path()
-
+    /** The type or category of the event (e.g., "Online Event"). */
     var eventType: String? = null
         set(value) {
             field = value
             binding.tvEventType.text = value
         }
 
+    /** The main title of the event. */
     var eventTitle: String? = null
         set(value) {
             field = value
             binding.tvEventTitle.text = value
         }
 
+    /** The time of the event (e.g., "18:00 - 20:00 WIB"). */
     var eventTime: String? = null
         set(value) {
             field = value
@@ -46,30 +85,36 @@ class CustomMyEventCard @JvmOverloads constructor(
         }
 
     init {
-        radius = cornerRadiusPx
-
-        setupShadowPaints()
-
+        // Inflate the component's layout and attach it to this FrameLayout.
         binding = CustomMyEventCardBinding.inflate(LayoutInflater.from(context), this, true)
 
+        // Parse attributes from the XML layout.
         attrs?.let {
-            // Attributes are obtained using the parent's styleable
             val typedArray = context.obtainStyledAttributes(it, R.styleable.CustomMyEventCard, 0, 0)
             try {
-                // Set properties for CustomMyEventCard itself
+                // Set properties for CustomMyEventCard itself.
                 eventType = typedArray.getString(R.styleable.CustomMyEventCard_myEventType)
                 eventTitle = typedArray.getString(R.styleable.CustomMyEventCard_myEventTitle)
                 eventTime = typedArray.getString(R.styleable.CustomMyEventCard_myEventTime)
 
-                // Pass calendar attributes directly to the CustomCalendarCard instance
+                // Pass calendar attributes directly to the child CustomCalendarCard.
                 binding.customCalendarCard.month = typedArray.getString(R.styleable.CustomMyEventCard_month)
                 binding.customCalendarCard.date = typedArray.getString(R.styleable.CustomMyEventCard_date)
                 binding.customCalendarCard.day = typedArray.getString(R.styleable.CustomMyEventCard_day)
 
-                // Pass badge attributes directly to the EventCardBadge instance
-                val badgeTypeValue = typedArray.getInt(R.styleable.CustomMyEventCard_badgeType, 0)
-                binding.eventCardBadge.badgeType = EventCardBadge.BadgeType.fromValue(badgeTypeValue)
-                binding.eventCardBadge.badgeText = typedArray.getString(R.styleable.CustomMyEventCard_badgeText)
+                // Pass badge attributes to the child MaterialChip.
+                val badgeText = typedArray.getString(R.styleable.CustomMyEventCard_badgeText)
+                val badgeBgColor = typedArray.getColor(
+                    R.styleable.CustomMyEventCard_badgeBackgroundColor,
+                    -1 // Default to no color
+                )
+                val badgeTextColor = typedArray.getColor(
+                    R.styleable.CustomMyEventCard_badgeTextColor,
+                    MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnSurface)
+                )
+                val badgeVisible = typedArray.getBoolean(R.styleable.CustomMyEventCard_badgeVisible, true)
+
+                setBadgeData(badgeText, badgeBgColor, badgeTextColor, badgeVisible)
 
             } finally {
                 typedArray.recycle()
@@ -78,64 +123,29 @@ class CustomMyEventCard @JvmOverloads constructor(
     }
 
     /**
-     * Configures the Paint objects for the two shadow layers.
-     */
-    private fun setupShadowPaints() {
-        // Use software layer to enable shadow drawing
-        setLayerType(LAYER_TYPE_SOFTWARE, null)
-
-        ambientShadowPaint.apply {
-            setShadowLayer(4f, 0f, 0f, Color.parseColor("#1A2A93D6"))
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
-
-        }
-
-        keyShadowPaint.apply {
-            setShadowLayer(4f, 0f, 0f, Color.parseColor("#332A93D6"))
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
-        }
-    }
-
-    /**
-     * Overrides the default drawing behavior to add custom shadow layers.
-     * The shadows are drawn first. Then, the canvas is clipped to the card's rounded
-     * rectangle shape before drawing the children, ensuring they do not draw over the shadow.
-     */
-    override fun onDraw(canvas: Canvas) {
-        val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
-
-        // 1. Draw your custom shadows first. They are drawn outside the clipping area.
-        canvas.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, keyShadowPaint)
-        canvas.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, ambientShadowPaint)
-
-        // 2. Prepare the clipping path
-        clipPath.reset()
-        clipPath.addRoundRect(rect, cornerRadiusPx, cornerRadiusPx, Path.Direction.CW)
-
-        // 3. Save the canvas state, apply the clip, and then draw the parent and its children
-        canvas.save()
-        canvas.clipPath(clipPath)
-        super.onDraw(canvas) // This draws the card background and its children
-        canvas.restore() // Restore the canvas to its original state
-    }
-
-
-    /**
-     * Programmatically sets the calendar data.
+     * Programmatically sets the date on the child `CustomCalendarCard`.
+     * @param month The three-letter month (e.g., "AUG").
+     * @param date The numeric day (e.g., "18").
+     * @param day The three-letter day of the week (e.g., "Mon").
      */
     fun setCalendarData(month: String, date: String, day: String) {
         binding.customCalendarCard.setCalendarData(month, date, day)
     }
 
     /**
-     * Programmatically sets the badge data.
+     * Programmatically sets the properties of the status badge.
+     * @param text The text to display on the badge. Can be null to hide text.
+     * @param backgroundColor The resolved color for the badge's background. If -1, the default is used.
+     * @param textColor The resolved color for the badge's text.
+     * @param isVisible Whether the badge should be visible.
      */
-    fun setBadgeData(badgeType: EventCardBadge.BadgeType, badgeText: String?) {
-        binding.eventCardBadge.badgeType = badgeType
-        binding.eventCardBadge.badgeText = badgeText
+    fun setBadgeData(text: String?, backgroundColor: Int, textColor: Int, isVisible: Boolean) {
+        binding.eventCardBadge.text = text
+        binding.eventCardBadge.setTextColor(textColor)
+        if (backgroundColor != -1) {
+            // CORRECTED LINE: Use ColorStateList.valueOf() to create a ColorStateList from a single color.
+            binding.eventCardBadge.chipBackgroundColor = ColorStateList.valueOf(backgroundColor)
+        }
+        binding.eventCardBadge.isVisible = isVisible
     }
 }

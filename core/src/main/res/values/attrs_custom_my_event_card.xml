@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Attributes for the CustomMyEventCard composite component -->
     <declare-styleable name="CustomMyEventCard">
+        <!-- The type or category of the event (e.g., "Online Event") -->
         <attr name="myEventType" format="string" />
+        <!-- The main title of the event -->
         <attr name="myEventTitle" format="string" />
+        <!-- The time of the event (e.g., "18:00 - 20:00 WIB") -->
         <attr name="myEventTime" format="string" />
 
+        <!-- Attributes to be passed down to the child CustomCalendarCard -->
         <attr name="month" />
         <attr name="date" />
         <attr name="day" />
 
-        <attr name="badgeType" />
+        <!-- Attributes to be passed down to the child MaterialChip (badge) -->
         <attr name="badgeText" />
+        <attr name="badgeBackgroundColor" format="color" />
+        <attr name="badgeTextColor" format="color" />
+        <attr name="badgeVisible" format="boolean" />
     </declare-styleable>
 </resources>

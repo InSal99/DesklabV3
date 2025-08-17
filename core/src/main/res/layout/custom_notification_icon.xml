@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/radius_999dp"
     app:strokeColor="?attr/colorStrokeSubtle"
-    android:backgroundTint="?attr/colorBackgroundSecondary"
+    android:backgroundTint="?attr/colorBackgroundTertiary"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardElevation="@dimen/margin_0dp">
 

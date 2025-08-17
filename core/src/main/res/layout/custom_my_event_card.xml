@@ -2,11 +2,14 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:outlineAmbientShadowColor="?attr/colorForegroundPrimary"
+    android:outlineSpotShadowColor="?attr/colorForegroundPrimary"
     app:cardCornerRadius="@dimen/radius_8dp"
-    tools:context=".CustomMyEventCard">
+    app:cardElevation="@dimen/margin_2dp"
+    app:strokeColor="?attr/colorStrokeSubtle"
+    app:strokeWidth="@dimen/stroke_weight_1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,11 +22,25 @@
             android:layout_width="56dp"
             android:layout_height="wrap_content"
             app:date="24"
-            app:day="Wed"
-            app:month="AUG"
+            app:day="Rab"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:month="JUL" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/eventCardBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terdaftar"
+            android:textAppearance="@style/TextSemiBold.Label3"
+            android:textColor="?attr/colorForegroundPrimaryInverse"
+            app:chipBackgroundColor="?attr/colorBackgroundSuccessIntense"
+            app:chipMinHeight="@dimen/margin_20dp"
+            app:chipMinTouchTargetSize="@dimen/margin_20dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvEventType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvEventType" />
 
         <!-- Event Type (Online Event) -->
         <com.google.android.material.textview.MaterialTextView
@@ -31,23 +48,12 @@
             style="@style/TextRegular.Label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_12dp"
             android:textColor="?attr/colorForegroundTertiary"
+            app:layout_constraintBottom_toBottomOf="@id/eventCardBadge"
             app:layout_constraintStart_toEndOf="@id/customCalendarCard"
             app:layout_constraintTop_toTopOf="@id/customCalendarCard"
-            app:layout_constraintBottom_toBottomOf="@id/eventCardBadge"
             tools:text="Online Event" />
-
-        <!-- Event Badge (Terdaftar) -->
-        <com.example.components.event.card.EventCardBadge
-            android:id="@+id/eventCardBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:badgeText="Terdaftar"
-            app:badgeType="registered"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvEventType"
-            app:layout_constraintBottom_toBottomOf="@id/tvEventType" />
 
         <!-- Event Title -->
         <com.google.android.material.textview.MaterialTextView
@@ -57,9 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_4dp"
             android:textColor="?attr/colorForegroundPrimary"
-            app:layout_constraintTop_toBottomOf="@id/tvEventType"
-            app:layout_constraintStart_toStartOf="@id/tvEventType"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvEventType"
+            app:layout_constraintTop_toBottomOf="@id/tvEventType"
             tools:text="Game Night with EDTS: Mobile Legend Online Tournament 2025" />
 
         <!-- Event Time -->
@@ -70,9 +76,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/radius_4dp"
             android:textColor="?attr/colorForegroundTertiary"
-            app:layout_constraintTop_toBottomOf="@id/tvEventTitle"
-            app:layout_constraintStart_toStartOf="@id/tvEventTitle"
             app:layout_constraintBottom_toBottomOf="@id/customCalendarCard"
+            app:layout_constraintStart_toStartOf="@id/tvEventTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvEventTitle"
             tools:text="18:00 - 20:00 WIB" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
