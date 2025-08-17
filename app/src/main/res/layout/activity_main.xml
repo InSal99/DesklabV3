@@ -4,72 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:clipChildren="false"
+        android:orientation="vertical"
         app:flow_verticalGap="@dimen/margin_8dp"
         tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!" />
 
-    <com.example.components.radiobutton.CustomRadioGroup
-        android:id="@+id/rbTest"
-        style="@style/Widget.App.DynamicRadioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:minHeight="@dimen/margin_0dp"/>
+        <com.example.components.radiobutton.CustomRadioGroup
+            android:id="@+id/rbTest"
+            style="@style/Widget.App.DynamicRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:minHeight="@dimen/margin_0dp" />
 
-    <com.example.components.radiobutton.CustomRadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="true"
-        android:enabled="true"/>
+        <com.example.components.radiobutton.CustomRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:enabled="true"
+            android:text="Text" />
 
-    <com.example.components.radiobutton.CustomRadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:checked="true"
-        android:enabled="false"/>
+        <com.example.components.radiobutton.CustomRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:enabled="false"
+            android:text="Text" />
 
-    <com.example.components.event.card.EventCardBadge
-        android:id="@+id/cvEventCardBadge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_12dp"
-        android:layout_marginEnd="@dimen/margin_8dp"
-        app:badgeType="invited"
-        app:badgeSize="Small"
-        app:badgeText="Diundang"
-        app:layout_constraintTop_toTopOf="@+id/ivEventCard"
-        app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-        />
+        <com.example.components.event.card.EventCardBadge
+            android:id="@+id/cvEventCardBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            app:badgeSize="Small"
+            app:badgeText="Diundang"
+            app:badgeType="invited"
+            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
-    <com.example.components.event.card.EventCardDescription
-        android:id="@+id/cvEventCardDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:eventTitle="EDTS Town-Hall 2025: Power of Change"
-        app:eventDate="23 Juli 2025"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.example.components.event.card.EventCardDescription
+            android:id="@+id/cvEventCardDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:eventDate="23 Juli 2025"
+            app:eventTitle="EDTS Town-Hall 2025: Power of Change"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
 
-    <com.example.components.event.card.EventCardStatus
-        android:id="@+id/cvEventCardStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_4dp"
-        app:statusType="unregistered"
-        app:statusText="Pendaftaran Ditutup"
-        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <com.example.components.event.card.EventCardStatus
+            android:id="@+id/cvEventCardStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
+            app:statusText="Pendaftaran Ditutup"
+            app:statusType="unregistered" />
     </LinearLayout>
 </ScrollView>

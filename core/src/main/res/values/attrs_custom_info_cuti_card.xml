@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomInfoCutiCard">
+        <attr name="infoCutiTitle" format="string" />
+        <attr name="saldoCuti" format="integer" />
+        <attr name="expiredDate" format="string" />
+        <attr name="usedCuti" format="integer" />
+    </declare-styleable>
+</resources>

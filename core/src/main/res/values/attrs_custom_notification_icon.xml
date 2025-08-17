@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="CustomNotificationIcon">
+        <attr name="notificationIcon" format="reference" />
+    </declare-styleable>
+</resources>

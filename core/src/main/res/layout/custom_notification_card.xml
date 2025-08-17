@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/radius_12dp"
+    app:strokeColor="?attr/colorStrokeSubtle"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:clipToOutline="false"
+    app:strokeWidth="@dimen/stroke_weight_1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:clipToOutline="false"
+        android:padding="@dimen/margin_12dp">
+
+        <com.example.components.notification.CustomNotificationIcon
+            android:id="@+id/notificationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:notificationIcon="@drawable/ic_notification_event"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNotificationType"
+            style="@style/TextMedium.Label4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="General Event"
+            android:textAllCaps="true"
+            android:layout_marginStart="@dimen/margin_6dp"
+            android:textColor="?attr/colorForegroundTertiary"
+            app:layout_constraintStart_toEndOf="@+id/notificationIcon"
+            app:layout_constraintTop_toTopOf="@+id/notificationIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/notificationIcon"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNotificationTitle"
+            style="@style/TextMedium.Label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="EDTS Town-Hall 2025: Power of Change"
+            android:textColor="?attr/colorForegroundPrimary"
+            android:layout_marginTop="@dimen/margin_8dp"
+            app:layout_constraintStart_toStartOf="@+id/notificationIcon"
+            app:layout_constraintTop_toBottomOf="@+id/notificationIcon"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNotificationDescription"
+            style="@style/TextRegular.Paragraph2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
+            android:textColor="?attr/colorForegroundSecondary"
+            android:layout_marginTop="@dimen/margin_4dp"
+            app:layout_constraintStart_toStartOf="@+id/tvNotificationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvNotificationTitle"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNotification"
+            style="@style/TextSemiBold.Label3"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_36dp"
+            android:text="Terima Undangan"
+            android:textColor="?attr/colorForegroundWhite"
+            android:textAllCaps="false"
+            android:letterSpacing="0"
+            app:cornerRadius="@dimen/radius_999dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:insetTop="@dimen/margin_0dp"
+            android:insetBottom="@dimen/margin_0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNotificationDescription"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

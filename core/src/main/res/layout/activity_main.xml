@@ -8,25 +8,26 @@
     android:paddingHorizontal="@dimen/margin_16dp"
     android:paddingVertical="@dimen/margin_16dp"
     tools:context=".MainActivity"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:clipToOutline="false"
+    android:background="?attr/colorBackgroundPrimaryTinted"
+    android:clipChildren="false">
 
-
-
-<!--    <com.example.components.event.card.EventCard-->
-<!--        android:id="@+id/cvEventCard"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:badgeText="asd"-->
-<!--        app:badgeType="registered"-->
-<!--        app:eventCategory="People Development"-->
-<!--        app:eventDate="23 Juli 2025"-->
-<!--        app:eventImageSrc="@drawable/poster2"-->
-<!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
-<!--        app:eventType="Hybrid Event"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:statusText="Pendaftaran Ditutup"-->
-<!--        app:statusType="unregistered" />-->
+    <com.example.components.event.card.EventCard
+        android:id="@+id/cvEventCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:badgeText="asd"
+        app:badgeType="registered"
+        app:eventCategory="People Development"
+        app:eventDate="23 Juli 2025"
+        app:eventImageSrc="@drawable/poster2"
+        app:eventTitle="EDTS Town-Hall 2025: Power of Change"
+        app:eventType="Hybrid Event"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:statusText="Pendaftaran Ditutup"
+        app:statusType="unregistered" />
 
 <!--    <androidx.appcompat.widget.SearchView-->
 <!--        android:id="@+id/searchView"-->
@@ -45,7 +46,7 @@
 <!--        app:queryHint="@string/search_employee" />-->
 
     <com.example.components.CustomMyEventCard
-        android:id="@+id/my_event_card_registered"
+        android:id="@+id/cvMyEventCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -58,5 +59,20 @@
         app:badgeType="live"
         app:badgeText="Berlangsung"
         app:layout_constraintTop_toBottomOf="@id/cvEventCard"/>
+
+    <!-- Example of using the custom view with initial values from XML -->
+    <com.example.components.CustomInfoCutiCard
+        android:id="@+id/infoCard1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        app:infoCutiTitle="Cuti Tahun Sebelumnya"
+        app:saldoCuti="5"
+        app:expiredDate="15/10/2025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvMyEventCard" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

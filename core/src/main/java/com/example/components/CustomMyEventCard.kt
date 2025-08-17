@@ -1,20 +1,31 @@
 package com.example.components
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.FrameLayout
 import com.example.components.databinding.CustomMyEventCardBinding
 import com.example.components.event.card.EventCardBadge
+import com.google.android.material.card.MaterialCardView
 
 
 class CustomMyEventCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+) : MaterialCardView(context, attrs, defStyleAttr) {
 
     private val binding: CustomMyEventCardBinding
+    private val ambientShadowPaint = Paint()
+    private val keyShadowPaint = Paint()
+    private val cornerRadiusPx = 8f * context.resources.displayMetrics.density
+
+    // Path for clipping the canvas to prevent children from drawing over the shadow
+    private val clipPath = Path()
 
     var eventType: String? = null
         set(value) {
@@ -35,6 +46,10 @@ class CustomMyEventCard @JvmOverloads constructor(
         }
 
     init {
+        radius = cornerRadiusPx
+
+        setupShadowPaints()
+
         binding = CustomMyEventCardBinding.inflate(LayoutInflater.from(context), this, true)
 
         attrs?.let {
@@ -45,8 +60,6 @@ class CustomMyEventCard @JvmOverloads constructor(
                 eventType = typedArray.getString(R.styleable.CustomMyEventCard_myEventType)
                 eventTitle = typedArray.getString(R.styleable.CustomMyEventCard_myEventTitle)
                 eventTime = typedArray.getString(R.styleable.CustomMyEventCard_myEventTime)
-
-                // --- DELEGATE ATTRIBUTES TO CHILDREN ---
 
                 // Pass calendar attributes directly to the CustomCalendarCard instance
                 binding.customCalendarCard.month = typedArray.getString(R.styleable.CustomMyEventCard_month)
@@ -63,6 +76,53 @@ class CustomMyEventCard @JvmOverloads constructor(
             }
         }
     }
+
+    /**
+     * Configures the Paint objects for the two shadow layers.
+     */
+    private fun setupShadowPaints() {
+        // Use software layer to enable shadow drawing
+        setLayerType(LAYER_TYPE_SOFTWARE, null)
+
+        ambientShadowPaint.apply {
+            setShadowLayer(4f, 0f, 0f, Color.parseColor("#1A2A93D6"))
+            color = Color.TRANSPARENT
+            isAntiAlias = true
+            style = Paint.Style.FILL
+
+        }
+
+        keyShadowPaint.apply {
+            setShadowLayer(4f, 0f, 0f, Color.parseColor("#332A93D6"))
+            color = Color.TRANSPARENT
+            isAntiAlias = true
+            style = Paint.Style.FILL
+        }
+    }
+
+    /**
+     * Overrides the default drawing behavior to add custom shadow layers.
+     * The shadows are drawn first. Then, the canvas is clipped to the card's rounded
+     * rectangle shape before drawing the children, ensuring they do not draw over the shadow.
+     */
+    override fun onDraw(canvas: Canvas) {
+        val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
+
+        // 1. Draw your custom shadows first. They are drawn outside the clipping area.
+        canvas.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, keyShadowPaint)
+        canvas.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, ambientShadowPaint)
+
+        // 2. Prepare the clipping path
+        clipPath.reset()
+        clipPath.addRoundRect(rect, cornerRadiusPx, cornerRadiusPx, Path.Direction.CW)
+
+        // 3. Save the canvas state, apply the clip, and then draw the parent and its children
+        canvas.save()
+        canvas.clipPath(clipPath)
+        super.onDraw(canvas) // This draws the card background and its children
+        canvas.restore() // Restore the canvas to its original state
+    }
+
 
     /**
      * Programmatically sets the calendar data.
