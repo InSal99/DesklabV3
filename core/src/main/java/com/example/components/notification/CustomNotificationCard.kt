@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.example.components.R
 import com.example.components.databinding.CustomNotificationCardBinding
+import androidx.core.content.withStyledAttributes
 
 /**
  * A custom view that displays a notification with a type, title, description, and an optional button.
@@ -64,21 +65,24 @@ class CustomNotificationCard @JvmOverloads constructor(
 
     init {
         val inflater = LayoutInflater.from(context)
-        // Since this class IS the MaterialCardView, we inflate the content and attach it.
         binding = CustomNotificationCardBinding.inflate(inflater, this, true)
 
         attrs?.let {
-            val typedArray = context.obtainStyledAttributes(it, R.styleable.CustomNotificationCard, 0, 0)
+            context.withStyledAttributes(it, R.styleable.CustomNotificationCard, 0, 0) {
 
-            title = typedArray.getString(R.styleable.CustomNotificationCard_notificationTitle) ?: ""
-            description = typedArray.getString(R.styleable.CustomNotificationCard_notificationDescription) ?: ""
-            buttonText = typedArray.getString(R.styleable.CustomNotificationCard_notificationButtonText) ?: "Confirm"
-            isButtonVisible = typedArray.getBoolean(R.styleable.CustomNotificationCard_notificationButtonVisible, true)
+                title = getString(R.styleable.CustomNotificationCard_notificationTitle) ?: ""
+                description =
+                    getString(R.styleable.CustomNotificationCard_notificationDescription) ?: ""
+                buttonText = getString(R.styleable.CustomNotificationCard_notificationButtonText)
+                    ?: "Terima Undangan"
+                isButtonVisible =
+                    getBoolean(R.styleable.CustomNotificationCard_notificationButtonVisible, true)
 
-            val eventTypeString = typedArray.getString(R.styleable.CustomNotificationCard_notificationEventType)
-            eventType = EventType.fromString(eventTypeString)
+                val eventTypeString =
+                    getString(R.styleable.CustomNotificationCard_notificationEventType)
+                eventType = EventType.fromString(eventTypeString)
 
-            typedArray.recycle()
+            }
         }
     }
 
@@ -89,17 +93,14 @@ class CustomNotificationCard @JvmOverloads constructor(
     private fun updateEventTypeUI() {
         binding.tvNotificationType.text = eventType.displayName
 
-        // FIXED: The 'when' block now sets the correct icon for each event type.
         when (eventType) {
             EventType.GENERAL_EVENT -> {
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_event)
             }
             EventType.PEOPLE_DEVELOPMENT -> {
-                // Assuming you have an icon named 'ic_notification_people'
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_event)
             }
             EventType.EMPLOYEE_BENEFIT -> {
-                // Assuming you have an icon named 'ic_notification_benefit'
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_event)
             }
         }

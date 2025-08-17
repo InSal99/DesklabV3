@@ -43,6 +43,6 @@ class CustomNotificationIcon @JvmOverloads constructor(
      * @param drawableResId The resource ID of the new drawable for the icon.
      */
     fun setIcon(drawableResId: Int) {
-        binding.notificationIconImage.setImageResource(drawableResId)
+        binding.ivNotificationIcon.setImageResource(drawableResId)
     }
 }

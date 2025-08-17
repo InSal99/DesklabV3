@@ -10,9 +10,9 @@
     <string name="event_card_iv_content_description">Poster Image</string>
     <string name="option_card_title">Card Title</string>
 
-    <!-- Add these to your existing strings.xml -->
+    <!-- String collections for custom_info_cuti_card.xml -->
     <string name="leave_description_title">Saldo Cuti Tahunan</string>
     <string name="leave_balance_format">%d hari</string>
-    <string name="leave_expiry_format">Kadaluwarsa: %s</string>
+    <string name="leave_expiry_format">Kedaluwarsa: %s</string>
     <string name="leave_used_format">Cuti Terpakai: %d Hari</string>
 </resources>

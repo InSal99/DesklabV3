@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dimen_20dp"
-    android:clipChildren="false"
-    android:clipToOutline="false"
-    android:clipToPadding="false"
+    android:outlineAmbientShadowColor="?attr/colorForegroundPrimary"
+    android:outlineSpotShadowColor="?attr/colorForegroundPrimary"
     app:cardCornerRadius="@dimen/radius_16dp"
+    app:cardElevation="@dimen/margin_4dp"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp">
 
@@ -15,74 +16,66 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
-        android:clipToOutline="false"
         android:clipToPadding="false"
         android:padding="@dimen/margin_16dp">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvModalTitle"
+            android:id="@+id/tvModalityTitle"
             style="@style/TextBold.Heading1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Konfirmasi Undangan"
+            tools:text="Konfirmasi Undangan"
             android:textColor="?attr/colorForegroundPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvModalDescription"
+            android:id="@+id/tvModalityDescription"
             style="@style/TextRegular.Paragraph1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_8dp"
-            android:text="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
             android:textColor="?attr/colorForegroundSecondary"
-            app:layout_constraintStart_toStartOf="@+id/tvModalTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvModalTitle" />
+            app:layout_constraintStart_toStartOf="@+id/tvModalityTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvModalityTitle" />
 
         <LinearLayout
-            android:id="@+id/btnWrapper"
+            android:id="@+id/btnModalityContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvModalDescription">
+            app:layout_constraintTop_toBottomOf="@+id/tvModalityDescription">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnConfirmation"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <com.example.components.button.CustomButton
+                android:id="@+id/btnModalityClose"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_4dp"
                 android:layout_weight="1"
-                android:insetTop="@dimen/margin_0dp"
-                android:insetBottom="@dimen/margin_0dp"
-                android:letterSpacing="0"
-                android:text="Tutup"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextMedium.Label2"
-                android:textColor="?attr/colorPrimary"
-                app:cornerRadius="@dimen/radius_999dp"
-                app:strokeColor="?attr/colorPrimary"
-                app:strokeWidth="@dimen/stroke_weight_1dp" />
+                app:customButtonSize="MD"
+                app:customButtonType="SECONDARY"
+                app:isButtonDestructive="false"
+                app:isButtonDisabled="false"
+                app:label="Tutup" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCancel"
+            <com.example.components.button.CustomButton
+                android:id="@+id/btnModalityConfirm"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_4dp"
                 android:layout_weight="1"
-                android:insetTop="@dimen/margin_0dp"
-                android:insetBottom="@dimen/margin_0dp"
-                android:letterSpacing="0"
-                android:text="Ya, Lanjutkan"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextMedium.Label2"
-                android:textColor="?attr/colorForegroundWhite"
-                app:cornerRadius="@dimen/radius_999dp" />
+                app:customButtonSize="MD"
+                app:customButtonType="PRIMARY"
+                app:isButtonDestructive="false"
+                app:isButtonDisabled="false"
+                app:label="Ya, Lanjutkan" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

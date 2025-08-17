@@ -40,7 +40,11 @@ class CustomCalendarCard @JvmOverloads constructor(
 
         // Parse custom attributes from XML
         attrs?.let {
-            val typedArray = context.obtainStyledAttributes(it, R.styleable.CustomCalendarCard, 0, 0)
+            val typedArray = context.obtainStyledAttributes(
+                it,
+                R.styleable.CustomCalendarCard,
+                0,
+                0)
             try {
                 // Set properties using values from XML.
                 // The custom setters will automatically call updateTexts().

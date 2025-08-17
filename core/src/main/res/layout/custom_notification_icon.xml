@@ -5,11 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/radius_999dp"
     app:strokeColor="?attr/colorStrokeSubtle"
+    android:backgroundTint="?attr/colorBackgroundSecondary"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardElevation="@dimen/margin_0dp">
 
     <ImageView
-        android:id="@+id/notification_icon_image"
+        android:id="@+id/ivNotificationIcon"
         android:layout_width="@dimen/margin_12dp"
         android:layout_height="@dimen/margin_12dp"
         android:layout_margin="@dimen/margin_4dp"

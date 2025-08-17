@@ -29,22 +29,6 @@
         app:statusText="Pendaftaran Ditutup"
         app:statusType="unregistered" />
 
-<!--    <androidx.appcompat.widget.SearchView-->
-<!--        android:id="@+id/searchView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="@dimen/margin_16dp"-->
-<!--        android:layout_marginTop="@dimen/margin_16dp"-->
-<!--        android:layout_marginEnd="@dimen/margin_16dp"-->
-<!--        android:background="@drawable/bg_search"-->
-<!--        android:theme="@style/SearchViewStyle"-->
-<!--        app:iconifiedByDefault="false"-->
-<!--        android:imeOptions="actionDone"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:queryHint="@string/search_employee" />-->
-
     <com.example.components.CustomMyEventCard
         android:id="@+id/cvMyEventCard"
         android:layout_width="match_parent"
@@ -60,7 +44,6 @@
         app:badgeText="Berlangsung"
         app:layout_constraintTop_toBottomOf="@id/cvEventCard"/>
 
-    <!-- Example of using the custom view with initial values from XML -->
     <com.example.components.CustomInfoCutiCard
         android:id="@+id/infoCard1"
         android:layout_width="wrap_content"

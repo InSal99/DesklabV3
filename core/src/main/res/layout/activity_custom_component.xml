@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_16dp">
+
+        <com.example.components.notification.CustomNotificationCard
+            android:id="@+id/cvNotificationCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:notificationButtonText="Terima Undangan"
+            app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
+            app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
+
+        <com.example.components.notification.CustomNotificationCard
+            android:id="@+id/cvNotificationCard2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8dp"
+            app:notificationButtonText="Terima Undangan"
+            app:notificationButtonVisible="false"
+            app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."
+            app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
+
+        <HorizontalScrollView
+            android:id="@+id/cvInfoCutiCardContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <com.example.components.CustomInfoCutiCard
+                    android:id="@+id/cvInfoCutiCard1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:infoCutiTitle="Cuti Tahun Ini"
+                    app:saldoCuti="5"
+                    app:usedCuti="1" />
+
+                <com.example.components.CustomInfoCutiCard
+                    android:id="@+id/cvInfoCutiCard2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:infoCutiTitle="Cuti Tahun Sebelumnya"
+                    app:saldoCuti="8"
+                    app:usedCuti="2" />
+
+                <com.example.components.CustomInfoCutiCard
+                    android:id="@+id/cvInfoCutiCard3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:infoCutiTitle="Cuti Tahun Progresif"
+                    app:saldoCuti="8"
+                    app:usedCuti="2" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_8dp">
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                app:monthLabel="Jan"
+                app:pickerType="selected"/>
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                app:monthLabel="Feb"
+                app:pickerType="unselected"/>
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:monthLabel="Mar"
+                app:pickerType="disabled"/>
+        </LinearLayout>
+
+        <com.example.components.CustomDropdownFilter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8dp"
+            app:dropdownDescription="23 Juli - 29 Juli 2025"
+            app:dropdownTitle="Pekan 8" />
+
+        <com.example.components.CustomEventModalityConfirmation
+            android:id="@+id/cvEventModalityConfirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:modalCloseButtonLabel="Tutup"
+            app:modalConfirmButtonLabel="Ya, Lanjutkan"
+            app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
+            app:modalTitle="Konfirmasi Undangan" />
+    </LinearLayout>
+
+
+</ScrollView>

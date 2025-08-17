@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:outlineAmbientShadowColor="?attr/colorForegroundPrimary"
+    android:outlineSpotShadowColor="?attr/colorForegroundPrimary"
+    app:cardBackgroundColor="?attr/colorForegroundPrimaryInverse"
     app:cardCornerRadius="@dimen/radius_999dp"
+    app:cardElevation="1dp"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp">
 
@@ -18,23 +23,23 @@
             style="@style/TextMedium.Label3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pekan 5"
             android:textColor="?attr/colorForegroundPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Pekan 5" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDotSpacer"
-            style="@style/TextMedium.Label3"
+            style="@style/TextSemiBold.Label3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_4dp"
-            android:text="·"
-            android:textColor="?attr/colorForegroundSecondary"
+            android:textColor="?attr/colorForegroundTertiary"
             app:layout_constraintBottom_toBottomOf="@+id/tvTitleLabel"
             app:layout_constraintStart_toEndOf="@+id/tvTitleLabel"
-            app:layout_constraintTop_toTopOf="@+id/tvTitleLabel" />
+            app:layout_constraintTop_toTopOf="@+id/tvTitleLabel"
+            tools:text="·"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDescriptionLabel"
@@ -42,11 +47,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_4dp"
-            android:text="26 Jan - 1 Feb"
             android:textColor="?attr/colorForegroundPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/tvDotSpacer"
             app:layout_constraintStart_toEndOf="@+id/tvDotSpacer"
-            app:layout_constraintTop_toTopOf="@+id/tvDotSpacer" />
+            app:layout_constraintTop_toTopOf="@+id/tvDotSpacer"
+            tools:text="26 Jan - 1 Feb"/>
 
         <ImageView
             android:id="@+id/ivChevronDown"
