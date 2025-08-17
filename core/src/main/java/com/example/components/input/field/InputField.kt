@@ -254,10 +254,9 @@ defStyleAttr: Int = 0
             config.options?.forEach { option ->
                 val checkbox = CustomCheckBox(context).apply {
                     text = option
-                    // Set custom delegate for individual checkbox changes
                     setCustomCheckBoxDelegate(object : CustomCheckboxDelegate {
-                        override fun onCheckChanged(checkBox: CustomCheckBox, isChecked: Boolean) {
-                            notifyValueChange(getCheckboxGroupValue(this@apply))
+                        override fun onCheckChanged(view: View, isChecked: Boolean) {
+                            notifyValueChange(getCheckboxGroupValue(this@InputField))
                             notifyValidationChange()
                         }
                     })
@@ -371,6 +370,8 @@ defStyleAttr: Int = 0
                     // One approach is to change the title color or add an error TextView
                     titleTextView.setTextColor(ContextCompat.getColor(context, R.color.colorRed30))
                 }
+
+                null -> TODO()
             }
 
             // Add vibration animation if the extension functions exist

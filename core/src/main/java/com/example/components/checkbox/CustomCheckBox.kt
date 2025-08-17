@@ -95,6 +95,10 @@ class CustomCheckBox @JvmOverloads constructor(
         return super.performClick()
     }
 
+    fun setCustomCheckBoxDelegate(delegate: CustomCheckboxDelegate?) {
+        this.customCheckBoxDelegate = delegate
+    }
+
     fun setTextAppearances(
         normal: Int = R.style.CheckBoxTextAppearance_Normal,
         selected: Int = R.style.CheckBoxTextAppearance_Selected,

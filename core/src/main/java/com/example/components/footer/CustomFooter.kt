@@ -35,17 +35,43 @@ class CustomFooter @JvmOverloads constructor(
     private var secondaryButton: CustomButton? = null
     private var statusBadge: StatusBadge? = null
 
-    enum class FooterType {
-        CALL_TO_ACTION, CALL_TO_ACTION_DETAIL, DUAL_BUTTON, NO_ACTION
+    enum class FooterType(val value: Int) {
+        CALL_TO_ACTION(0), CALL_TO_ACTION_DETAIL(1), DUAL_BUTTON(2), NO_ACTION(3);
+        companion object {
+            fun fromInt(value: Int) = entries.firstOrNull { it.value == value } ?: CALL_TO_ACTION
+        }
     }
 
     init {
         orientation = VERTICAL
-//        parseAttributes(attrs)
+        parseAttributes(attrs)
         setupView()
     }
 
-    // Your existing parseAttributes method...
+    private fun parseAttributes(attrs: AttributeSet?) {
+        attrs ?: return
+
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomFooter, 0, 0)
+        try {
+            // Read footerType and convert it from int to enum
+            val typeOrdinal = typedArray.getInt(R.styleable.CustomFooter_footerType, FooterType.CALL_TO_ACTION.value)
+            footerType = FooterType.fromInt(typeOrdinal)
+
+            // Read button and text attributes
+            primaryButtonText = typedArray.getString(R.styleable.CustomFooter_primaryButtonText) ?: primaryButtonText
+            secondaryButtonText = typedArray.getString(R.styleable.CustomFooter_secondaryButtonText) ?: secondaryButtonText
+            footerTitle = typedArray.getString(R.styleable.CustomFooter_footerTitle) ?: ""
+            footerDescription = typedArray.getString(R.styleable.CustomFooter_footerDescription) ?: ""
+            statusText = typedArray.getString(R.styleable.CustomFooter_statusBadgeText) ?: ""
+
+            // Read the status badge type
+            val statusTypeOrdinal = typedArray.getInt(R.styleable.CustomFooter_statusBadgeType, StatusBadge.ChipType.APPROVED.ordinal)
+            statusType = StatusBadge.ChipType.entries.toTypedArray().getOrElse(statusTypeOrdinal) { StatusBadge.ChipType.APPROVED }
+
+        } finally {
+            typedArray.recycle() // Always recycle the TypedArray to free up resources
+        }
+    }
 
     private fun setupView() {
         removeAllViews()
@@ -94,35 +120,23 @@ class CustomFooter @JvmOverloads constructor(
                     text = statusText
                     chipType = statusType
                 }
-
-                // Make attendance container clickable if needed
-//                attendanceContainer = findViewById(R.id.attendanceContainer)
             }
         }
     }
 
     private fun setupClickListeners() {
-        // Primary button click
         primaryButton?.setOnClickListener {
             handlePrimaryButtonClick()
         }
 
-        // Secondary button click
         secondaryButton?.setOnClickListener {
             handleSecondaryButtonClick()
         }
-
-        // Attendance container click (if applicable)
-//        attendanceContainer?.setOnClickListener {
-//            delegate?.onAttendanceInfoClicked()
-//        }
     }
 
     private fun handlePrimaryButtonClick() {
-        // Call generic delegate method
         delegate?.onPrimaryButtonClicked(footerType)
 
-        // Call specific delegate methods based on type
         when (footerType) {
             FooterType.CALL_TO_ACTION,
             FooterType.CALL_TO_ACTION_DETAIL -> {
@@ -131,28 +145,21 @@ class CustomFooter @JvmOverloads constructor(
             FooterType.DUAL_BUTTON -> {
                 delegate?.onContinueClicked()
             }
-            FooterType.NO_ACTION -> {
-                // Handle if needed
-            }
+            FooterType.NO_ACTION -> {}
         }
     }
 
     private fun handleSecondaryButtonClick() {
-        // Call generic delegate method
         delegate?.onSecondaryButtonClicked(footerType)
 
-        // Call specific delegate methods based on type
         when (footerType) {
             FooterType.DUAL_BUTTON -> {
                 delegate?.onCancelClicked()
             }
-            else -> {
-                // Handle other cases if needed
-            }
+            else -> {}
         }
     }
 
-    // Public methods to enable/disable buttons
     fun setPrimaryButtonEnabled(enabled: Boolean) {
         primaryButton?.isEnabled = enabled
     }
@@ -161,15 +168,10 @@ class CustomFooter @JvmOverloads constructor(
         secondaryButton?.isEnabled = enabled
     }
 
-    // Loading state management
     fun setPrimaryButtonLoading(isLoading: Boolean) {
         primaryButton?.apply {
             isEnabled = !isLoading
-            text = if (isLoading) {
-                "Loading..."
-            } else {
-                primaryButtonText
-            }
+            text = if (isLoading) "Loading..." else primaryButtonText
         }
     }
 }
