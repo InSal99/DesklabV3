@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomFooter">
+        <!-- Footer Type -->
+        <attr name="footerType" format="enum">
+            <enum name="CALL_TO_ACTION" value="0" />
+            <enum name="CALL_TO_ACTION_DETAIL" value="1" />
+            <enum name="DUAL_BUTTON" value="2" />
+            <enum name="NO_ACTION" value="3" />
+        </attr>
+
+        <!-- Common attributes -->
+        <attr name="primaryButtonText" format="string" />
+        <attr name="secondaryButtonText" format="string" />
+
+        <!-- Title/Description specific -->
+        <attr name="footerTitle" format="string" />
+        <attr name="footerDescription" format="string" />
+
+        <!-- Attendance specific -->
+        <attr name="attendanceType" format="enum">
+            <enum name="ONLINE" value="0" />
+            <enum name="OFFLINE" value="1" />
+        </attr>
+        <attr name="statusBadgeText"/>
+        <attr name="statusBadgeType"/>
+    </declare-styleable>
+</resources>
