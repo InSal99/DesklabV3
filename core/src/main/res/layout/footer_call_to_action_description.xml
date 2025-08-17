@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minHeight="60dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_8dp">
@@ -13,6 +14,7 @@
         android:layout_weight= "1"
         android:text="Title"
         android:maxLines="1"
+        android:ellipsize="end"
         style="?attr/l2Medium"
         android:textColor="?attr/colorForegroundPrimary"
         android:layout_marginEnd="@dimen/margin_10dp"
@@ -27,6 +29,7 @@
         android:layout_weight= "1"
         android:text="Description"
         android:maxLines="1"
+        android:ellipsize="end"
         style="?attr/l3Regular"
         android:textColor="?attr/colorForegroundSecondary"
         android:layout_marginTop="@dimen/margin_8dp"
