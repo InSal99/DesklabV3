@@ -71,35 +71,5 @@
             app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
             app:statusText="Pendaftaran Ditutup"
             app:statusType="unregistered" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                app:monthLabel="Jan"
-                app:pickerType="selected"/>
-
-            <com.example.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                app:monthLabel="Feb"
-                app:pickerType="unselected"/>
-
-            <com.example.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:monthLabel="Mar"
-                app:pickerType="disabled"/>
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

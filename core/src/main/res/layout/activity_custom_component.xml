@@ -47,69 +47,69 @@
                 android:clipToPadding="false"
                 android:orientation="horizontal">
 
-                <com.example.components.CustomInfoCutiCard
+                <com.example.components.CustomLeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginEnd="@dimen/margin_8dp"
                     app:expiredDate="15/10/2025"
-                    app:infoCutiTitle="Cuti Tahun Ini"
-                    app:saldoCuti="5"
-                    app:usedCuti="1" />
+                    app:leaveQuota="5"
+                    app:leaveQuotaTitle="Cuti Tahun Ini"
+                    app:leaveUsed="1" />
 
-                <com.example.components.CustomInfoCutiCard
+                <com.example.components.CustomLeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginEnd="@dimen/margin_8dp"
                     app:expiredDate="15/10/2025"
-                    app:infoCutiTitle="Cuti Tahun Sebelumnya"
-                    app:saldoCuti="8"
-                    app:usedCuti="2" />
+                    app:leaveQuota="8"
+                    app:leaveQuotaTitle="Cuti Tahun Sebelumnya"
+                    app:leaveUsed="2" />
 
-                <com.example.components.CustomInfoCutiCard
+                <com.example.components.CustomLeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginEnd="@dimen/margin_8dp"
                     app:expiredDate="15/10/2025"
-                    app:infoCutiTitle="Cuti Tahun Progresif"
-                    app:saldoCuti="8"
-                    app:usedCuti="2" />
+                    app:leaveQuota="8"
+                    app:leaveQuotaTitle="Cuti Tahun Progresif"
+                    app:leaveUsed="2" />
             </LinearLayout>
         </HorizontalScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_8dp">
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:orientation="horizontal">
 
             <com.example.components.CustomMonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_weight="1"
                 app:monthLabel="Jan"
-                app:pickerType="selected"/>
+                app:pickerType="selected" />
 
             <com.example.components.CustomMonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_weight="1"
                 app:monthLabel="Feb"
-                app:pickerType="unselected"/>
+                app:pickerType="unselected" />
 
             <com.example.components.CustomMonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:monthLabel="Mar"
-                app:pickerType="disabled"/>
+                app:pickerType="disabled" />
         </LinearLayout>
 
         <com.example.components.CustomDropdownFilter
@@ -127,7 +127,10 @@
             app:modalConfirmButtonLabel="Ya, Lanjutkan"
             app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
             app:modalTitle="Konfirmasi Undangan" />
+
+        <com.example.components.CustomEventModalityLoading
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:modalLoadingTitle="Tunggu sebentar ..."/>
     </LinearLayout>
-
-
 </ScrollView>

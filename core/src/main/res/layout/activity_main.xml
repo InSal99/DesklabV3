@@ -29,33 +29,4 @@
         app:statusText="Pendaftaran Ditutup"
         app:statusType="unregistered" />
 
-    <com.example.components.CustomMyEventCard
-        android:id="@+id/cvMyEventCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:myEventType="Online Event"
-        app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
-        app:myEventTime="13:00 - 15:00"
-        app:month="SEP"
-        app:date="05"
-        app:day="Fri"
-        app:badgeType="live"
-        app:badgeText="Berlangsung"
-        app:layout_constraintTop_toBottomOf="@id/cvEventCard"/>
-
-    <com.example.components.CustomInfoCutiCard
-        android:id="@+id/infoCard1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        app:infoCutiTitle="Cuti Tahun Sebelumnya"
-        app:saldoCuti="5"
-        app:expiredDate="15/10/2025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cvMyEventCard" />
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
