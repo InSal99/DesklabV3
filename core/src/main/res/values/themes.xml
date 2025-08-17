@@ -231,7 +231,7 @@
         <item name="l5Regular">@style/TextRegular.Label5</item>
     </style>
 
-    <style name="NoActionBar" parent="Theme.Desklab">
+    <style name="NoActionBar" parent="Theme.Desklab.Kit">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -242,7 +242,7 @@
         <item name="android:windowTranslucentStatus">false</item>
     </style>
 
-    <style name="WhiteBar" parent="Theme.Desklab">
+    <style name="WhiteBar" parent="Theme.Desklab.Kit">
         <item name="colorPrimary">@android:color/white</item>
         <item name="android:statusBarColor">@color/colorFFF</item>
     </style>
