@@ -1,108 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:flow_verticalGap="@dimen/margin_8dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        app:flow_verticalGap="@dimen/margin_8dp"
+        tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
-    <com.example.components.CustomRadioGroup
+    <com.example.components.radiobutton.CustomRadioGroup
         android:id="@+id/rbTest"
         style="@style/Widget.App.DynamicRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:minHeight="@dimen/margin_0dp" />
+        android:minHeight="@dimen/margin_0dp"/>
 
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.event.card.EventCard-->
-<!--        android:id="@+id/cvEventCard"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:badgeText="Berlangsung"-->
-<!--        app:badgeType="invited"-->
-<!--        app:eventCategory="People Development"-->
-<!--        app:eventDate="23 Juli 2025"-->
-<!--        app:eventImageSrc="@drawable/poster2"-->
-<!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
-<!--        app:eventType="Hybrid Event"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:statusText="Pendaftaran Ditutup"-->
-<!--        app:statusType="registered" />-->
-
-    <com.example.components.event.card.EventCardBanner
-        android:id="@+id/cvEventCardBanner"
-        android:layout_width="match_parent"
+    <com.example.components.radiobutton.CustomRadioButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:eventType="Hybrid Event"
-        app:eventCategory="People Development"
-        app:layout_constraintTop_toBottomOf="@+id/ivEventCard"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        android:text="Text"
+        android:checked="true"
+        android:enabled="true"/>
+
+    <com.example.components.radiobutton.CustomRadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:checked="true"
+        android:enabled="false"/>
 
     <com.example.components.event.card.EventCardBadge
         android:id="@+id/cvEventCardBadge"
@@ -126,7 +62,6 @@
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <com.example.components.event.card.EventCardStatus
         android:id="@+id/cvEventCardStatus"
         android:layout_width="wrap_content"
@@ -136,4 +71,5 @@
         app:statusText="Pendaftaran Ditutup"
         app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
         app:layout_constraintStart_toStartOf="parent"/>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

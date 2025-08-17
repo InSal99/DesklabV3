@@ -1,11 +1,14 @@
-package com.example.components
+package com.example.components.radiobutton
 
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
+import android.widget.RadioGroup
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
+import com.example.components.R
 
 class CustomRadioButton @JvmOverloads constructor(
     context: Context,
@@ -16,11 +19,19 @@ class CustomRadioButton @JvmOverloads constructor(
     private var selectedTextAppearance = R.style.RadioTextAppearance_Selected
     private var disabledTextAppearance = R.style.RadioTextAppearance_Disabled
     private var disabledSelectedTextAppearance = R.style.RadioTextAppearance_DisabledSelected
+    private var radioChangedDelegate: CustomRadioButtonDelegate? = null
 
     init {
         setBackgroundResource(android.R.color.transparent)
         applyCustomStyle()
         post { updateTextAppearance() }
+    }
+
+    override fun performClick(): Boolean {
+        Log.d("CustomRadioButton", "radio button clicked")
+
+        radioChangedDelegate?.onCheckChanged(this, this.isChecked)
+        return super.performClick()
     }
 
     private fun applyCustomStyle() {

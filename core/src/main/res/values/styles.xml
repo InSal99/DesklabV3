@@ -613,4 +613,38 @@
         <item name="android:textColor">@color/color000</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="Toast.Style" parent="MaterialAlertDialog.Material3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="CustomButton.TextStyle" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textAppearance">@style/TextMedium.Label2</item>
+    </style>
+
+    <style name="CustomButton.TextStyle.ExtraSmall" parent="CustomButton.TextStyle">
+        <item name="android:textAppearance">@style/TextMedium.Label4</item>
+    </style>
+
+    <style name="CustomButton.TextStyle.Small" parent="CustomButton.TextStyle">
+        <item name="android:textAppearance">@style/TextMedium.Label3</item>
+    </style>
+
+    <style name="CustomButton.TextStyle.Medium" parent="CustomButton.TextStyle">
+        <item name="android:textAppearance">@style/TextMedium.Label2</item>
+    </style>
+
+    <style name="CustomButton.TextStyle.Large" parent="CustomButton.TextStyle">
+        <item name="android:textAppearance">@style/TextMedium.Label1</item>
+    </style>
+
+    <style name="ShapeAppearance.App.CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_999dp</item>
+    </style>
+
 </resources>

@@ -7,10 +7,10 @@
             <item>
                 <shape android:shape="rectangle">
                     <stroke
-                        android:width="1dp"
-                        android:color="@color/colorOpacityWhite20"/>
+                        android:width="@dimen/stroke_weight_1dp"
+                        android:color="?attr/colorStrokeInteractive"/>
                     <solid
-                        android:color="@color/colorPrimary30"/>
+                        android:color="?attr/colorBackgroundAccentPrimaryIntense"/>
                     <size
                         android:width="16dp"
                         android:height="16dp"/>
@@ -19,18 +19,13 @@
                 </shape>
             </item>
             <!-- Inner checkmark -->
-            <item android:top="3dp" android:bottom="3dp" android:left="3dp" android:right="3dp">
-                <rotate android:fromDegrees="45" android:pivotX="50%" android:pivotY="50%">
-                    <shape android:shape="line">
-                        <stroke
-                            android:width="2dp"
-                            android:color="@color/colorFFF"/>
-                        <size
-                            android:width="6dp"
-                            android:height="10dp"/>
-                    </shape>
-                </rotate>
-            </item>
+            <item android:drawable="@drawable/ic_check"
+            android:top="2dp"
+            android:bottom="2dp"
+            android:left="2dp"
+            android:right="2dp"
+            android:gravity="center"
+            android:tint="?attr/colorForegroundPrimary" />
         </layer-list>
     </item>
 
@@ -41,10 +36,10 @@
             <item>
                 <shape android:shape="rectangle">
                     <stroke
-                        android:width="1dp"
-                        android:color="@color/colorNeutral30"/>
+                        android:width="@dimen/stroke_weight_1dp"
+                        android:color="?attr/colorStrokeSubtle"/>
                     <solid
-                        android:color="@color/color000Opacity5"/>
+                        android:color="?attr/colorBackgroundDisabled"/>
                     <size
                         android:width="16dp"
                         android:height="16dp"/>
@@ -53,18 +48,13 @@
                 </shape>
             </item>
             <!-- Inner checkmark -->
-            <item android:top="3dp" android:bottom="3dp" android:left="3dp" android:right="3dp">
-                <rotate android:fromDegrees="45" android:pivotX="50%" android:pivotY="50%">
-                    <shape android:shape="line">
-                        <stroke
-                            android:width="2dp"
-                            android:color="@color/color000Opacity20"/>
-                        <size
-                            android:width="6dp"
-                            android:height="10dp"/>
-                    </shape>
-                </rotate>
-            </item>
+            <item android:drawable="@drawable/ic_check"
+                android:top="2dp"
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:gravity="center"
+                android:tint="?attr/colorForegroundDisabled" />
         </layer-list>
     </item>
 
@@ -72,10 +62,10 @@
     <item android:state_checked="false" android:state_enabled="true">
         <shape android:shape="rectangle">
             <stroke
-                android:width="1dp"
-                android:color="@color/colorNeutral30"/>
+                android:width="@dimen/stroke_weight_1dp"
+                android:color="?attr/colorStrokeSubtle"/>
             <solid
-                android:color="@color/colorFFF"/>
+                android:color="?attr/colorBackgroundPrimary"/>
             <size
                 android:width="16dp"
                 android:height="16dp"/>
@@ -88,10 +78,10 @@
     <item android:state_checked="false" android:state_enabled="false">
         <shape android:shape="rectangle">
             <stroke
-                android:width="1dp"
-                android:color="@color/colorNeutral30"/>
+                android:width="@dimen/stroke_weight_1dp"
+                android:color="?attr/colorStrokeSubtle"/>
             <solid
-                android:color="@color/color000Opacity5"/>
+                android:color="?attr/colorBackgroundDisabled"/>
             <size
                 android:width="16dp"
                 android:height="16dp"/>
