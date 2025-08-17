@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="@dimen/margin_12dp"
+    android:paddingVertical="@dimen/margin_8dp">
+
+    <TextView
+        android:id="@+id/tvFooterCTADescTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight= "1"
+        android:text="Title"
+        android:maxLines="1"
+        style="?attr/l2Medium"
+        android:textColor="?attr/colorForegroundPrimary"
+        android:layout_marginEnd="@dimen/margin_10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnFooterCTADescPrimary"/>
+
+    <TextView
+        android:id="@+id/tvFooterCTADescDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight= "1"
+        android:text="Description"
+        android:maxLines="1"
+        style="?attr/l3Regular"
+        android:textColor="?attr/colorForegroundSecondary"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_10dp"
+        app:layout_constraintTop_toBottomOf="@id/tvFooterCTADescTitle"
+        app:layout_constraintEnd_toStartOf="@id/btnFooterCTADescPrimary"
+        app:layout_constraintStart_toStartOf="@id/tvFooterCTADescTitle"/>
+
+    <com.example.components.button.CustomButton
+        android:id="@+id/btnFooterCTADescPrimary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:label="Button"
+        app:customButtonSize="MD"
+        app:layout_constraintTop_toTopOf="@id/tvFooterCTADescTitle"
+        app:layout_constraintStart_toEndOf="@id/tvFooterCTADescTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvFooterCTADescDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
