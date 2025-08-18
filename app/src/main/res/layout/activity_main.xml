@@ -84,240 +84,128 @@
 <!--        android:enabled="false"-->
 <!--        android:text="Text" />-->
 
-    <!-- Active chip with badge and icon -->
-    <com.example.components.chip.Chip
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:chipState="active"
-        app:chipText="Filter Active"
-        app:chipBadgeText="3"
-        app:chipShowIcon="true"
-        app:chipShowBadge="true"
-        app:chipIcon="@drawable/ic_star" />
 
-    <!-- Inactive chip with no badge -->
-    <com.example.components.chip.Chip
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:chipState="inactive"
-        app:chipText="Category"
-        app:chipShowIcon="false"
-        app:chipShowBadge="false" />
+        <com.example.components.detail.information.DetailInformationA
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:infoTitle="Title"
+            app:infoDescription="Description"
+            app:infoIcon="@drawable/placeholder"
+            android:layout_marginHorizontal="@dimen/margin_16dp"/>
 
-    <!-- Chip with only icon -->
-    <com.example.components.chip.Chip
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:chipState="inactive"
-        app:chipText="Sort"
-        app:chipShowIcon="true"
-        app:chipShowBadge="false"
-        app:chipIcon="@drawable/placeholder" />
+        <com.example.components.status.badge.StatusBadge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:statusBadgeText="Status Badge"
+            app:statusBadgeType="approved"/>
 
-    <!-- Complete dropdown filter with all options -->
-    <com.example.components.chip.DropdownFilter
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:dropdownFilterLabel="Category"
-        app:dropdownFilterDesc="Technology"
-        app:dropdownFilterBadgeText="12"
-        app:dropdownFilterIcon="@drawable/ic_star"
-        app:dropdownFilterShowBadge="true" />
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="REST"
+            app:customButtonSize="XS"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            app:iconLeft="@drawable/placeholder"
+            app:iconRight="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-    <!-- Simple dropdown filter without badge -->
-    <com.example.components.chip.DropdownFilter
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:dropdownFilterLabel="Status"
-        app:dropdownFilterDesc="Active"
-        app:dropdownFilterIcon="@drawable/ic_star"
-        app:dropdownFilterShowBadge="false" />
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_PRESS"
+            app:isButtonDestructive="true"
+            app:customButtonSize="XS"
+            app:label="Test"
+            app:iconRight="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-    <com.example.components.card.detail.CardDetailInfoB
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cdibLeftSlotType="image"
-        app:cdibLeftSlotSrc="@drawable/avatar_placeholder"
-        app:cdibTitleText="Event Title"
-        app:cdibDescText="Main description"/>
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_FOCUS"
+            app:customButtonSize="XS"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            app:iconLeft="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-    <com.example.components.card.detail.CardDetailInfoB
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cdibLeftSlotType="icon"
-        app:cdibShowIndicator="true"
-        app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-        app:cdibLeftSlotSrc="@drawable/ic_star"
-        app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-        app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-        app:cdibTitleText="User Profile"
-        app:cdibDescText="John Doe" />
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:label="Test Button"
+            app:customButtonSize="MD"
+            app:customButtonState="REST"/>
 
-    <com.example.components.card.detail.CardDetailInfoB
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cdibLeftSlotType="icon"
-        app:cdibShowIndicator="false"
-        app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-        app:cdibLeftSlotSrc="@drawable/ic_star"
-        app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-        app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-        app:cdibTitleText="User Profile"
-        app:cdibDescText="John Doe" />
+        <com.example.components.button.CustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_FOCUS"
+            app:customButtonSize="LG"
+            app:iconRight="@drawable/placeholder"
+            app:iconLeft="@drawable/placeholder"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-    <com.example.components.card.multi.detail.CardMultiDetail
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cmdLeftSlotType="image"
-        app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
-        app:cmdLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-        app:cmdTitle="Annual Leave"
-        app:cmdInfo1Text="Leave Type"
-        app:cmdInfo2Text="3 Days"
-        app:cmdRightSlotSrc="@drawable/placeholder"
-        app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense" />
+        <com.example.components.event.card.EventCard
+            android:id="@+id/cvEventCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBadgeText="asd"
+            app:cardBadgeType="live"
+            app:cardEventCategory="People Development"
+            app:cardEventDate="23 Juli 2025"
+            app:eventImageSrc="@drawable/poster2"
+            app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
+            app:cardEventType="Hybrid Event"
+            app:cardStatusText="Pendaftaran Ditutup"
+            app:cardStatusType="registered"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.example.components.card.multi.detail.CardMultiDetail
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"
-        app:cmdTitle="Meeting Schedule"
-        app:cmdInfo1Text="Today"
-        app:cmdInfo2Text="2:00 PM" />
+        <!--    <com.example.components.event.card.EventCardBanner-->
+        <!--        android:id="@+id/cvEventCardBanner"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:eventType="Hybrid Event"-->
+        <!--        app:eventCategory="People Development"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/ivEventCard"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"-->
+        <!--        />-->
 
-    <com.example.components.card.multi.detail.CardLeftSlot
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:slotType="image"
-        app:slotSrc="@drawable/avatar_placeholder"/>
+        <!--    <com.example.components.event.card.EventCardBadge-->
+        <!--        android:id="@+id/cvEventCardBadge"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginTop="@dimen/margin_12dp"-->
+        <!--        android:layout_marginEnd="@dimen/margin_8dp"-->
+        <!--        app:badgeType="invited"-->
+        <!--        app:badgeSize="Small"-->
+        <!--        app:badgeText="Diundang"-->
+        <!--        app:layout_constraintTop_toTopOf="@+id/ivEventCard"-->
+        <!--        app:layout_constraintEnd_toEndOf="@+id/ivEventCard"-->
+        <!--        />-->
 
-    <!-- Icon type slot -->
-    <com.example.components.card.multi.detail.CardLeftSlot
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:slotType="icon"
-        app:slotSrc="@drawable/ic_star"
-        app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"
-        app:slotTint="?attr/colorForegroundWarningIntense" />
-
-    <com.example.components.card.multi.detail.CardMultiDetailWrapperInfo
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:info1Text="10:00 AM"
-        app:info2Text="Event Hall A" />
-
-    <com.example.components.bottom.navigation.BottomNavigationItem
-        android:id="@+id/navHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:navState="active"
-        app:navIcon="@drawable/placeholder"
-        app:navText="Home" />
-
-    <com.example.components.bottom.navigation.BottomNavigationItem
-        android:id="@+id/navProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:navState="inactive"
-        app:navIcon="@drawable/placeholder"
-        app:navText="Profile"
-        app:navShowBadge="true"/>
-
-    <com.example.components.filter.button.FilterButton
-        android:id="@+id/filterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <com.example.components.tab.Tab
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:tabText="Home"
-        app:tabBadgeText="3"
-        app:tabShowBadge="false"
-        app:tabState="inactive" />
-
-    <com.example.components.tab.Tab
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:tabText="Home"
-        app:tabBadgeText="3"
-        app:tabShowBadge="true"
-        app:tabState="active" />
-
-    <com.example.components.badge.Badge
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:badgeBackgroundTint="?attr/colorBackgroundInfoSubtle"
-        app:badgeStrokeColor="@android:color/transparent"
-        app:badgeText="5"
-        app:showText="true" />
-
-    <com.example.components.badge.Badge
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:badgeText="5"
-        app:showText="true" />
-
-    <com.example.components.event.card.EventCard
-        android:id="@+id/cvEventCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBadgeText="asd"
-        app:cardBadgeType="live"
-        app:cardEventCategory="People Development"
-        app:cardEventDate="23 Juli 2025"
-        app:eventImageSrc="@drawable/poster2"
-        app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
-        app:cardEventType="Hybrid Event"
-        app:cardStatusText="Pendaftaran Ditutup"
-        app:cardStatusType="registered"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-<!--    <com.example.components.event.card.EventCardBanner-->
-<!--        android:id="@+id/cvEventCardBanner"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:eventType="Hybrid Event"-->
-<!--        app:eventCategory="People Development"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ivEventCard"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        />-->
-
-<!--    <com.example.components.event.card.EventCardBadge-->
-<!--        android:id="@+id/cvEventCardBadge"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="@dimen/margin_12dp"-->
-<!--        android:layout_marginEnd="@dimen/margin_8dp"-->
-<!--        app:badgeType="invited"-->
-<!--        app:badgeSize="Small"-->
-<!--        app:badgeText="Diundang"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/ivEventCard"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/ivEventCard"-->
-<!--        />-->
-
-<!--    <com.example.components.event.card.EventCardDescription-->
-<!--        android:id="@+id/cvEventCardDescription"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
-<!--        app:eventDate="23 Juli 2025"-->
-<!--        app:layout_constraintTop_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+        <!--    <com.example.components.event.card.EventCardDescription-->
+        <!--        android:id="@+id/cvEventCardDescription"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
+        <!--        app:eventDate="23 Juli 2025"-->
+        <!--        app:layout_constraintTop_toBottomOf="parent"-->
+        <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 
-<!--    <com.example.components.event.card.EventCardStatus-->
-<!--        android:id="@+id/cvEventCardStatus"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="@dimen/margin_4dp"-->
-<!--        app:statusType="unregistered"-->
-<!--        app:statusText="Pendaftaran Ditutup"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"-->
-<!--        app:layout_constraintStart_toStartOf="parent"/>-->
+        <!--    <com.example.components.event.card.EventCardStatus-->
+        <!--        android:id="@+id/cvEventCardStatus"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginTop="@dimen/margin_4dp"-->
+        <!--        app:statusType="unregistered"-->
+        <!--        app:statusText="Pendaftaran Ditutup"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"/>-->
         <com.example.components.event.card.EventCardDescription
             android:id="@+id/cvEventCardDescription"
             android:layout_width="match_parent"
@@ -338,4 +226,3 @@
             app:statusType="unregistered" />
     </LinearLayout>
 </ScrollView>
-
