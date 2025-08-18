@@ -8,6 +8,17 @@
     <string name="event_card_divider">·</string>
     <string name="event_card_badge_label">Diundang</string>
     <string name="event_card_iv_content_description">Poster Image</string>
+    <string name="filter_button_iv_content_description">Filter Button</string>
+    <string name="bottom_navigation_iv_content_description">Bottom Navigation Icon</string>
+    <string name="tab_text">Label</string>
+    <string name="bottom_navigation_text">Label</string>
+    <string name="badge_text">1</string>
+    <string name="card_multi_detail_wrapper_info_01">Info-01</string>
+    <string name="card_multi_detail_wrapper_info_02">Info-02</string>
+    <string name="card_multi_detail_wrapper_info_divider">Info Divider</string>
+    <string name="card_left_slot_image_content_description">Card Image</string>
+    <string name="card_right_slot_image_content_view">Card Action</string>
+    <string name="card_multi_detail_title">Card Title</string>
     <string name="leave_description_title">Saldo Cuti Tahunan</string>
     <string name="option_card_title">Card Title</string>
 

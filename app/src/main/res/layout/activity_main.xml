@@ -20,188 +20,304 @@
             android:layout_height="wrap_content"
             android:text="Hello World!" />
 
-        <com.example.components.radiobutton.CustomRadioGroup
-            android:id="@+id/rbTest"
-            style="@style/Widget.App.DynamicRadioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:minHeight="@dimen/margin_0dp" />
+<!--        <com.example.components.radiobutton.CustomRadioGroup-->
+<!--            android:id="@+id/rbTest"-->
+<!--            style="@style/Widget.App.DynamicRadioGroup"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:minHeight="@dimen/margin_0dp" />-->
 
-        <com.example.components.radiobutton.CustomRadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:enabled="true"
-            android:text="Text" />
+<!--    <com.example.components.CustomRadioButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="true"-->
+<!--        android:enabled="true"-->
+<!--        android:text="Text" />-->
 
-        <com.example.components.radiobutton.CustomRadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:enabled="false"
-            android:text="Text" />
+<!--    <com.example.components.CustomRadioButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="true"-->
+<!--        android:enabled="false"-->
+<!--        android:text="Text" />-->
 
-        <!-- Example 1: Simple Call to Action Footer -->
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerSimple"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:footerType="CALL_TO_ACTION"
-            app:primaryButtonText="Register Now" />
+<!--    <com.example.components.CustomRadioButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="false"-->
+<!--        android:enabled="true"-->
+<!--        android:text="Text" />-->
 
-        <!-- Example 2: Call to Action with Description -->
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerWithDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:footerType="CALL_TO_ACTION_DETAIL"
-            app:footerTitle="Join Our Community"
-            app:footerDescription="Get exclusive access to premium content"
-            app:primaryButtonText="Sign Up Free"
-            app:primaryButtonEnabled="true" />
+<!--    <com.example.components.CustomRadioButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="false"-->
+<!--        android:enabled="false"-->
+<!--        android:text="Text" />-->
 
-        <!-- Example 3: Dual Button Footer -->
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerDualButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:footerType="DUAL_BUTTON"
-            app:primaryButtonText="Continue"
-            app:secondaryButtonText="Cancel"
-            app:primaryButtonEnabled="true"
-            app:secondaryButtonEnabled="true" />
+<!--    <com.example.components.CustomCheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="true"-->
+<!--        android:enabled="true"-->
+<!--        android:text="Text" />-->
 
-        <!-- Example 4: No Action Footer with Status -->
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:footerType="NO_ACTION"
-            app:footerTitle="Application Status"
-            app:footerDescription="Your application has been submitted"
-            app:statusBadgeText="Approved"
-            app:statusBadgeType="approved" />
+<!--    <com.example.components.CustomCheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="true"-->
+<!--        android:enabled="false"-->
+<!--        android:text="Text" />-->
 
-        <!-- Example 5: Loading State Footer -->
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerLoading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:footerType="CALL_TO_ACTION"
-            app:primaryButtonText="Processing..."
-            app:primaryButtonEnabled="false"/>
+<!--    <com.example.components.CustomCheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="false"-->
+<!--        android:enabled="true"-->
+<!--        android:text="Text" />-->
 
-        <!-- Example 6: Custom Styled Footer -->
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerCustom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:footerType="DUAL_BUTTON"
-            app:primaryButtonText="Accept"
-            app:secondaryButtonText="Decline" />
+<!--    <com.example.components.CustomCheckBox-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:checked="false"-->
+<!--        android:enabled="false"-->
+<!--        android:text="Text" />-->
 
-        <!-- Example 7: Minimal Configuration (using defaults) -->
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerMinimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+    <!-- Active chip with badge and icon -->
+    <com.example.components.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipState="active"
+        app:chipText="Filter Active"
+        app:chipBadgeText="3"
+        app:chipShowIcon="true"
+        app:chipShowBadge="true"
+        app:chipIcon="@drawable/ic_star" />
 
-        <!-- Example 8: Status Footer with Different Badge Types -->
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerPending"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:footerTitle="Review Status"
-            app:footerDescription="Waiting for approval"
-            app:statusBadgeText="Pending"/>
+    <!-- Inactive chip with no badge -->
+    <com.example.components.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipState="inactive"
+        app:chipText="Category"
+        app:chipShowIcon="false"
+        app:chipShowBadge="false" />
 
-        <com.example.components.footer.CustomFooter
-            android:id="@+id/footerRejected"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:footerTitle="Application Result"
-            app:footerDescription="Please try again later"
-            app:statusBadgeText="Rejected" />
+    <!-- Chip with only icon -->
+    <com.example.components.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipState="inactive"
+        app:chipText="Sort"
+        app:chipShowIcon="true"
+        app:chipShowBadge="false"
+        app:chipIcon="@drawable/placeholder" />
 
-        <com.example.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:fieldHint="Enter your full name"
-            app:fieldRequired="true"
-            app:fieldDescription="This is description"
-            app:fieldTitle="Name"
-            app:fieldEnabled="false"
-            app:errorText="Some error"
-            app:inputType="textInput"
-            app:maxLength="50" />
+    <!-- Complete dropdown filter with all options -->
+    <com.example.components.chip.DropdownFilter
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dropdownFilterLabel="Category"
+        app:dropdownFilterDesc="Technology"
+        app:dropdownFilterBadgeText="12"
+        app:dropdownFilterIcon="@drawable/ic_star"
+        app:dropdownFilterShowBadge="true" />
 
-        <!-- Text Area Field -->
-        <com.example.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:fieldDescription="Provide a brief description"
-            app:fieldHint="Enter description here"
-            app:fieldTitle="Description"
-            app:fieldEnabled="false"
-            app:errorText="Some error"
-            app:inputType="textArea"
-            app:maxLength="200"
-            app:maxLines="5"
-            app:minLines="3" />
+    <!-- Simple dropdown filter without badge -->
+    <com.example.components.chip.DropdownFilter
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dropdownFilterLabel="Status"
+        app:dropdownFilterDesc="Active"
+        app:dropdownFilterIcon="@drawable/ic_star"
+        app:dropdownFilterShowBadge="false" />
 
-        <!-- Dropdown Field -->
-        <com.example.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:fieldHint="Select your country"
-            app:fieldDescription="Some description"
-            app:fieldRequired="true"
-            app:fieldEnabled="false"
-            app:errorText="Some error"
-            app:fieldTitle="Country"
-            app:inputType="dropdown"
-            app:options="@array/countries" />
+    <com.example.components.card.detail.CardDetailInfoB
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cdibLeftSlotType="image"
+        app:cdibLeftSlotSrc="@drawable/avatar_placeholder"
+        app:cdibTitleText="Event Title"
+        app:cdibDescText="Main description"/>
 
-        <!-- Radio Group Field -->
-        <com.example.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:fieldRequired="true"
-            app:errorText="Some Error"
-            app:fieldDescription="Some description"
-            app:showError="true"
-            app:fieldEnabled="false"
-            app:fieldTitle="Gender"
-            app:inputType="radioGroup"
-            app:options="@array/gender_options" />
+    <com.example.components.card.detail.CardDetailInfoB
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cdibLeftSlotType="icon"
+        app:cdibShowIndicator="true"
+        app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
+        app:cdibLeftSlotSrc="@drawable/ic_star"
+        app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
+        app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+        app:cdibTitleText="User Profile"
+        app:cdibDescText="John Doe" />
 
-        <!-- Checkbox Group Field -->
-        <com.example.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:fieldDescription="Select all that apply"
-            app:fieldTitle="Interests"
-            app:fieldEnabled="false"
-            app:inputType="checkboxGroup"
-            app:options="@array/interests" />
+    <com.example.components.card.detail.CardDetailInfoB
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cdibLeftSlotType="icon"
+        app:cdibShowIndicator="false"
+        app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
+        app:cdibLeftSlotSrc="@drawable/ic_star"
+        app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
+        app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+        app:cdibTitleText="User Profile"
+        app:cdibDescText="John Doe" />
 
-        <com.example.components.event.card.EventCardBadge
-            android:id="@+id/cvEventCardBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:layout_marginEnd="@dimen/margin_8dp"
-            app:badgeSize="Small"
-            app:badgeText="Diundang"
-            app:badgeType="invited"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+    <com.example.components.card.multi.detail.CardMultiDetail
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cmdLeftSlotType="image"
+        app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
+        app:cmdLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
+        app:cmdTitle="Annual Leave"
+        app:cmdInfo1Text="Leave Type"
+        app:cmdInfo2Text="3 Days"
+        app:cmdRightSlotSrc="@drawable/placeholder"
+        app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense" />
 
+    <com.example.components.card.multi.detail.CardMultiDetail
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"
+        app:cmdTitle="Meeting Schedule"
+        app:cmdInfo1Text="Today"
+        app:cmdInfo2Text="2:00 PM" />
+
+    <com.example.components.card.multi.detail.CardLeftSlot
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:slotType="image"
+        app:slotSrc="@drawable/avatar_placeholder"/>
+
+    <!-- Icon type slot -->
+    <com.example.components.card.multi.detail.CardLeftSlot
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:slotType="icon"
+        app:slotSrc="@drawable/ic_star"
+        app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"
+        app:slotTint="?attr/colorForegroundWarningIntense" />
+
+    <com.example.components.card.multi.detail.CardMultiDetailWrapperInfo
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:info1Text="10:00 AM"
+        app:info2Text="Event Hall A" />
+
+    <com.example.components.bottom.navigation.BottomNavigationItem
+        android:id="@+id/navHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:navState="active"
+        app:navIcon="@drawable/placeholder"
+        app:navText="Home" />
+
+    <com.example.components.bottom.navigation.BottomNavigationItem
+        android:id="@+id/navProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:navState="inactive"
+        app:navIcon="@drawable/placeholder"
+        app:navText="Profile"
+        app:navShowBadge="true"/>
+
+    <com.example.components.filter.button.FilterButton
+        android:id="@+id/filterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.example.components.tab.Tab
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tabText="Home"
+        app:tabBadgeText="3"
+        app:tabShowBadge="false"
+        app:tabState="inactive" />
+
+    <com.example.components.tab.Tab
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tabText="Home"
+        app:tabBadgeText="3"
+        app:tabShowBadge="true"
+        app:tabState="active" />
+
+    <com.example.components.badge.Badge
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:badgeBackgroundTint="?attr/colorBackgroundInfoSubtle"
+        app:badgeStrokeColor="@android:color/transparent"
+        app:badgeText="5"
+        app:showText="true" />
+
+    <com.example.components.badge.Badge
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:badgeText="5"
+        app:showText="true" />
+
+    <com.example.components.event.card.EventCard
+        android:id="@+id/cvEventCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBadgeText="asd"
+        app:cardBadgeType="live"
+        app:cardEventCategory="People Development"
+        app:cardEventDate="23 Juli 2025"
+        app:eventImageSrc="@drawable/poster2"
+        app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
+        app:cardEventType="Hybrid Event"
+        app:cardStatusText="Pendaftaran Ditutup"
+        app:cardStatusType="registered"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+<!--    <com.example.components.event.card.EventCardBanner-->
+<!--        android:id="@+id/cvEventCardBanner"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:eventType="Hybrid Event"-->
+<!--        app:eventCategory="People Development"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ivEventCard"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
+<!--    <com.example.components.event.card.EventCardBadge-->
+<!--        android:id="@+id/cvEventCardBadge"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/margin_12dp"-->
+<!--        android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--        app:badgeType="invited"-->
+<!--        app:badgeSize="Small"-->
+<!--        app:badgeText="Diundang"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/ivEventCard"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/ivEventCard"-->
+<!--        />-->
+
+<!--    <com.example.components.event.card.EventCardDescription-->
+<!--        android:id="@+id/cvEventCardDescription"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
+<!--        app:eventDate="23 Juli 2025"-->
+<!--        app:layout_constraintTop_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+
+<!--    <com.example.components.event.card.EventCardStatus-->
+<!--        android:id="@+id/cvEventCardStatus"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/margin_4dp"-->
+<!--        app:statusType="unregistered"-->
+<!--        app:statusText="Pendaftaran Ditutup"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"-->
+<!--        app:layout_constraintStart_toStartOf="parent"/>-->
         <com.example.components.event.card.EventCardDescription
             android:id="@+id/cvEventCardDescription"
             android:layout_width="match_parent"

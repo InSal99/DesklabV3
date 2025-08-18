@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Chip">
+        <attr name="chipState" format="enum">
+            <enum name="active" value="0" />
+            <enum name="inactive" value="1" />
+        </attr>
+        <attr name="chipText" format="string" />
+        <attr name="chipBadgeText" format="string" />
+        <attr name="chipShowIcon" format="boolean" />
+        <attr name="chipShowBadge" format="boolean" />
+        <attr name="chipIcon" format="reference" />
+    </declare-styleable>
+</resources>

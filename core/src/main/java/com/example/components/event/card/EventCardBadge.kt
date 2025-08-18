@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import com.example.components.R
 import com.example.components.databinding.EventCardBadgeBinding
+import com.google.android.material.card.MaterialCardView
 
 class EventCardBadge @JvmOverloads constructor(
     context: Context,
@@ -74,7 +75,7 @@ class EventCardBadge @JvmOverloads constructor(
                 badgeType = BadgeType.fromValue(badgeTypeValue)
                 val badgeSizeValue = getInt(R.styleable.EventCardBadge_badgeSize, 1)
                 badgeSize = BadgeSize.fromValue(badgeSizeValue)
-                badgeText = getString(R.styleable.EventCardBadge_badgeText)
+                badgeText = getString(R.styleable.EventCardBadge_eventCardBadgeText)
 
                 updateBadgeColor()
                 updateBadgeSize()

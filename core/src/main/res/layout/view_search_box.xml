@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize">
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    android:orientation="horizontal"-->
-<!--    android:gravity="center_vertical"-->
-<!--    android:padding="@dimen/dimen_8dp"-->
-<!--    tools:layout_height="wrap_content">-->
+    android:layout_height="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp"
+    tools:layout_height="wrap_content">
 
 <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--        android:layout_width="0dp"-->
@@ -25,7 +24,7 @@
 <!--            android:id="@+id/iv_search_icon"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:src=""-->
+<!--            android:src="@drawable/placeholder"-->
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintTop_toTopOf="parent"-->
 <!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
@@ -35,7 +34,7 @@
 <!--            android:layout_width="0dp"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_marginHorizontal="@dimen/margin_8dp"-->
-<!--            android:hint=""-->
+<!--            android:hint="Cari"-->
 <!--            android:background="@null"-->
 <!--            android:imeOptions="actionDone"-->
 <!--            android:inputType="text"-->
@@ -50,20 +49,12 @@
 <!--            android:id="@+id/iv_clear_search"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:src=""-->
+<!--            android:src="@drawable/placeholder"-->
 <!--            android:visibility="visible"-->
 <!--            app:layout_constraintEnd_toEndOf="parent"-->
 <!--            app:layout_constraintTop_toTopOf="parent"-->
 <!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
 <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/iv_cancel_search"-->
-<!--        style="@style/TextSemiBold.Label2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="@dimen/margin_8dp"-->
-<!--        android:text="Cancel" />-->
 
 </LinearLayout>
 

@@ -10,6 +10,6 @@
             <enum name="Small" value="0" />
             <enum name="Large" value="1" />
         </attr>
-        <attr name="badgeText" format="string" />
+        <attr name="eventCardBadgeText" format="string" />
     </declare-styleable>
 </resources>

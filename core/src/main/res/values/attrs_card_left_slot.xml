@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CardLeftSlot">
+        <attr name="slotType" format="enum">
+            <enum name="image" value="0" />
+            <enum name="icon" value="1" />
+        </attr>
+        <attr name="slotSrc" format="reference" />
+        <attr name="slotBackgroundColor" format="color|reference" />
+        <attr name="slotTint" format="color|reference" />
+    </declare-styleable>
+</resources>
