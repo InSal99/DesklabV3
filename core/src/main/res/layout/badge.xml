@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/badgeCircle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="16dp"
+    android:minHeight="16dp"
+    android:backgroundTint="?attr/colorBackgroundInfoIntense"
+    app:cardCornerRadius="@dimen/radius_999dp"
+    app:cardElevation="0dp"
+    app:strokeColor="?attr/colorStrokeInteractive"
+    app:strokeWidth="@dimen/stroke_weight_1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minWidth="16dp"
+        android:minHeight="16dp">
+
+        <TextView
+            android:id="@+id/tvBadge"
+            style="?attr/l4Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/margin_4dp"
+            android:text="@string/badge_text"
+            android:textColor="?attr/colorForegroundPrimaryInverse"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

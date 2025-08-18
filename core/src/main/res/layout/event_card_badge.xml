@@ -16,6 +16,8 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/margin_8dp"
         android:paddingVertical="@dimen/margin_2dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:text="@string/event_card_badge_label"
         android:textColor="?attr/colorForegroundPrimaryInverse"
         app:layout_constraintStart_toStartOf="parent"
