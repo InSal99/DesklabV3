@@ -1,13 +1,11 @@
 package com.example.desklabv3
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.components.CustomRadioGroup
+import com.example.components.radiobutton.CustomRadioGroup
+import com.example.components.radiobutton.CustomRadioGroupDelegate
+import com.example.components.toast.CustomToast
 import com.example.desklabv3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,23 +23,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRadioButtons() {
-        // Example data
-        val options = listOf("Option 11111111", "Option 2", "Option 33333333", "Option 4")
+        val options = listOf("Option 1", "Option 2", "Option 3", "Option 4")
 
-        dynamicRadioGroup.setData(options) { it }
-
-        dynamicRadioGroup.setOnItemSelectedListener { position, data ->
-            Log.d("RadioButton", "Selected: $data at position $position")
+        dynamicRadioGroup.setData(options) { item ->
+            item
         }
 
-        // Optional: Pre-select an item
-        dynamicRadioGroup.selectItem(0)
+        dynamicRadioGroup.setOnItemSelectedListener(object : CustomRadioGroupDelegate {
+            override fun onItemSelected(position: Int, data: Any?) {
+                CustomToast.success(this@MainActivity, "Selected: $data at position $position")
+            }
+        })
     }
-}
-
-data class UserOption(val id: Int, val name: String)
-
-// Extension function for easier usage
-fun <T> CustomRadioGroup.setSimpleData(dataList: List<T>) {
-    setData(dataList) { it.toString() }
 }

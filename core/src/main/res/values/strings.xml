@@ -19,4 +19,32 @@
     <string name="card_left_slot_image_content_description">Card Image</string>
     <string name="card_right_slot_image_content_view">Card Action</string>
     <string name="card_multi_detail_title">Card Title</string>
+    <string name="leave_description_title">Saldo Cuti Tahunan</string>
+    <string name="option_card_title">Card Title</string>
+
+
+    //Dummy Data
+    <string-array name="countries">
+        <item>Indonesia</item>
+        <item>United States</item>
+        <item>United Kingdom</item>
+        <item>Australia</item>
+        <item>Canada</item>
+    </string-array>
+
+    <string-array name="gender_options">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+        <item>Prefer not to say</item>
+    </string-array>
+
+    <string-array name="interests">
+        <item>Technology</item>
+        <item>Sports</item>
+        <item>Music</item>
+        <item>Travel</item>
+        <item>Reading</item>
+        <item>Photography</item>
+    </string-array>
 </resources>

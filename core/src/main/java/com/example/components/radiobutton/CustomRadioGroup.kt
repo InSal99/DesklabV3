@@ -1,17 +1,19 @@
-package com.example.components
+package com.example.components.radiobutton
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.RadioGroup
 import androidx.core.content.withStyledAttributes
+import com.example.components.R
 
 class CustomRadioGroup @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : RadioGroup(context, attrs) {
 
-    private var onItemSelectedListener: ((position: Int, data: Any?) -> Unit)? = null
+    private var customRadioGroupDelegate: CustomRadioGroupDelegate? = null
     private val radioButtonDataMap = mutableMapOf<Int, Any?>()
     private var normalTextAppearance = R.style.RadioTextAppearance_Normal
     private var selectedTextAppearance = R.style.RadioTextAppearance_Selected
@@ -83,8 +85,10 @@ class CustomRadioGroup @JvmOverloads constructor(
         setOnCheckedChangeListener { _, checkedId ->
             val position = getPositionById(checkedId)
             val data = radioButtonDataMap[checkedId]
-            onItemSelectedListener?.invoke(position, data)
 
+            Log.d("CustomRadioGroup", "Item selected at position: $position, with data: $data")
+
+            customRadioGroupDelegate?.onItemSelected(position, data)
             updateAllRadioButtonsTextAppearance()
         }
     }
@@ -98,8 +102,8 @@ class CustomRadioGroup @JvmOverloads constructor(
         }
     }
 
-    fun setOnItemSelectedListener(listener: (position: Int, data: Any?) -> Unit) {
-        this.onItemSelectedListener = listener
+    fun setOnItemSelectedListener(listener: CustomRadioGroupDelegate) {
+        this.customRadioGroupDelegate = listener
     }
 
     fun getSelectedData(): Any? {

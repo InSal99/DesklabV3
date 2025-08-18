@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+    
+    <TextView
+        android:id="@+id/tvDescriptionTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/leave_description_title"
+        style="?attr/l2Medium"
+        android:textColor="?attr/colorForegroundTertiary"/>
+
+    <com.example.components.leave.card.LeaveCounter
+        android:id="@+id/lcDescriptionCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:counterText="5 Hari"
+        app:counterType="critical"/>
+
+</merge>
