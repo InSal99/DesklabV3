@@ -136,44 +136,44 @@ class Chip @JvmOverloads constructor(
         val typedValue = TypedValue()
 
         val currentBackgroundColor = when (chipState) {
-            ChipState.ACTIVE -> {
+            ChipState.INACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundModifierCardElevated, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
-            ChipState.INACTIVE -> {
+            ChipState.ACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundPrimaryInverse, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
         }
 
         val currentTextColor = when (chipState) {
-            ChipState.ACTIVE -> {
+            ChipState.INACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorForegroundPrimary, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
-            ChipState.INACTIVE -> {
+            ChipState.ACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
         }
 
         val targetBackgroundColor = when (chipState) {
-            ChipState.ACTIVE -> {
+            ChipState.INACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundPrimaryInverse, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
-            ChipState.INACTIVE -> {
+            ChipState.ACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundModifierCardElevated, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
         }
 
         val targetTextColor = when (chipState) {
-            ChipState.ACTIVE -> {
+            ChipState.INACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
-            ChipState.INACTIVE -> {
+            ChipState.ACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorForegroundPrimary, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
@@ -290,11 +290,11 @@ class Chip @JvmOverloads constructor(
         val typedValue = TypedValue()
 
         val currentColor = when (chipState) {
-            ChipState.ACTIVE -> {
+            ChipState.INACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundPrimaryInverse, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }
-            ChipState.INACTIVE -> {
+            ChipState.ACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundModifierCardElevated, typedValue, true)
                 ContextCompat.getColor(context, typedValue.resourceId)
             }

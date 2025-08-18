@@ -58,6 +58,13 @@ class DropdownFilter @JvmOverloads constructor(
             updateBadgeVisibility()
         }
 
+    var dropdownFilterShowDesc: Boolean = true
+        set(value) {
+            field = value
+            updateDescriptionVisibility()
+        }
+
+
     init {
         initializeColors()
         setupClickAnimation()
@@ -78,12 +85,14 @@ class DropdownFilter @JvmOverloads constructor(
                 }
 
                 dropdownFilterShowBadge = getBoolean(R.styleable.DropdownFilter_dropdownFilterShowBadge, true)
+                dropdownFilterShowDesc = getBoolean(R.styleable.DropdownFilter_dropdownFilterShowDesc, true)
 
                 updateLabel()
                 updateDescription()
                 updateBadgeText()
                 updateIcon()
                 updateBadgeVisibility()
+                updateDescriptionVisibility()
             } finally {
                 recycle()
             }
@@ -168,6 +177,12 @@ class DropdownFilter @JvmOverloads constructor(
     private fun updateBadgeVisibility() {
         binding.cvBadgeDropdownFilter.visibility = if (dropdownFilterShowBadge) View.VISIBLE else View.GONE
     }
+
+    private fun updateDescriptionVisibility() {
+        binding.tvDropdownFilterDesc.visibility =
+            if (dropdownFilterShowDesc) View.VISIBLE else View.GONE
+    }
+
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()

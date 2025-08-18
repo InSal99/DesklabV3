@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/inputSearch"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius_12dp"
+    app:strokeWidth="@dimen/stroke_weight_1dp"
+    app:strokeColor="?attr/colorStrokeSubtle"
+    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
+    android:backgroundTint="?attr/colorBackgroundModifierCardElevated"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/margin_12dp"
+        android:paddingVertical="@dimen/margin_8dp">
+
+        <ImageView
+            android:id="@+id/ivLeftIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="Search Icon"
+            android:src="@drawable/placeholder"
+            app:layout_constraintDimensionRatio="1:1"
+            app:tint="?attr/colorForegroundTertiary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/etSearch"/>
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8dp"
+            android:hint="Search Placeholder"
+            android:background="@null"
+            android:imeOptions="actionDone"
+            android:textColorHint="?attr/colorForegroundPlaceholder"
+            android:inputType="text"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_accent"
+            android:textColor="?attr/colorForegroundPrimary"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivLeftIcon"
+            app:layout_constraintEnd_toStartOf="@+id/ivRightIcon"/>
+
+        <ImageView
+            android:id="@+id/ivRightIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="Close Button"
+            android:src="@drawable/placeholder"
+            app:layout_constraintDimensionRatio="1:1"
+            app:tint="?attr/colorForegroundTertiary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

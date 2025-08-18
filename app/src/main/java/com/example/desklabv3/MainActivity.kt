@@ -14,12 +14,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dynamicRadioGroup = findViewById(R.id.rbTest)
-        setupRadioButtons()
+//        dynamicRadioGroup = findViewById(R.id.rbTest)
+//        setupRadioButtons()
     }
 
     private fun setupRadioButtons() {
