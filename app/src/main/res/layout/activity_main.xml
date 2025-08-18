@@ -20,6 +20,40 @@
             android:layout_height="wrap_content"
             android:text="Hello World!" />
 
+        <com.example.components.radiobutton.CustomRadioGroup
+            android:id="@+id/rbTest"
+            style="@style/Widget.App.DynamicRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:minHeight="@dimen/margin_0dp" />
+
+        <com.example.components.radiobutton.CustomRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:enabled="true"
+            android:text="Text" />
+
+        <com.example.components.radiobutton.CustomRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:enabled="false"
+            android:text="Text" />
+
+        <com.example.components.event.card.EventCardBadge
+            android:id="@+id/cvEventCardBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            app:badgeSize="Small"
+            app:badgeText="Diundang"
+            app:badgeType="invited"
+            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+
 <!--        <com.example.components.radiobutton.CustomRadioGroup-->
 <!--            android:id="@+id/rbTest"-->
 <!--            style="@style/Widget.App.DynamicRadioGroup"-->
@@ -206,6 +240,7 @@
         <!--        app:statusText="Pendaftaran Ditutup"-->
         <!--        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"-->
         <!--        app:layout_constraintStart_toStartOf="parent"/>-->
+
         <com.example.components.event.card.EventCardDescription
             android:id="@+id/cvEventCardDescription"
             android:layout_width="match_parent"
