@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomNavigationItem">
+        <attr name="navState" format="enum">
+            <enum name="active" value="0" />
+            <enum name="inactive" value="1" />
+        </attr>
+        <attr name="navIcon" format="reference" />
+        <attr name="navText" format="string" />
+        <attr name="navShowBadge" format="boolean" />
+    </declare-styleable>
+</resources>

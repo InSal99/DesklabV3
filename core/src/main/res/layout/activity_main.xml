@@ -40,17 +40,17 @@
         android:id="@+id/cvEventCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:badgeText="asd"
-        app:badgeType="registered"
-        app:eventCategory="People Development"
-        app:eventDate="23 Juli 2025"
+        app:cardBadgeText="asd"
+        app:cardBadgeType="registered"
+        app:cardEventCategory="People Development"
+        app:cardEventDate="23 Juli 2025"
         app:eventImageSrc="@drawable/poster2"
-        app:eventTitle="EDTS Town-Hall 2025: Power of Change"
-        app:eventType="Hybrid Event"
+        app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
+        app:cardEventType="Hybrid Event"
+        app:cardStatusText="Pendaftaran Ditutup"
+        app:cardStatusType="unregistered"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:statusText="Pendaftaran Ditutup"
-        app:statusType="unregistered" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 <!--    <androidx.appcompat.widget.SearchView-->
 <!--        android:id="@+id/searchView"-->

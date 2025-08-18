@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DropdownFilter">
+        <attr name="dropdownFilterLabel" format="string" />
+        <attr name="dropdownFilterDesc" format="string" />
+        <attr name="dropdownFilterBadgeText" format="string" />
+        <attr name="dropdownFilterIcon" format="reference" />
+        <attr name="dropdownFilterShowBadge" format="boolean" />
+    </declare-styleable>
+</resources>
