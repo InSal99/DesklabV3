@@ -34,7 +34,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12dp"
             app:notificationButtonText="Terima Undangan"
+            app:notificationButtonVisible="true"
             app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
+            app:notificationEventType="General Event"
             app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
 
         <com.example.components.notification.CustomNotificationCard
@@ -45,6 +47,7 @@
             app:notificationButtonText="Terima Undangan"
             app:notificationButtonVisible="false"
             app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."
+            app:notificationEventType="People Development"
             app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
 
         <HorizontalScrollView

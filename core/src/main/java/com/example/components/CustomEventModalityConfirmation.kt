@@ -2,10 +2,11 @@ package com.example.components
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.example.components.databinding.CustomEventModalityConfirmationBinding
 import androidx.core.content.withStyledAttributes
+import com.example.components.databinding.CustomEventModalityConfirmationBinding
 
 class CustomEventModalityConfirmation @JvmOverloads constructor(
     context: Context,
@@ -14,6 +15,12 @@ class CustomEventModalityConfirmation @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val binding: CustomEventModalityConfirmationBinding
+
+    /**
+     * The delegate responsible for handling click events on this component.
+     * Assign an object that implements [CustomEventModalityConfirmationDelegate] to receive callbacks.
+     */
+    var delegate: CustomEventModalityConfirmationDelegate? = null
 
     var modalTitle: String? = null
         set(value) {
@@ -59,21 +66,16 @@ class CustomEventModalityConfirmation @JvmOverloads constructor(
                     getString(R.styleable.CustomEventModalityConfirmation_modalConfirmButtonLabel)
             }
         }
-    }
 
-    /**
-     * Sets the click listener for the confirm button.
-     * @param listener The lambda function to be executed on click.
-     */
-    fun setOnConfirmClickListener(listener: () -> Unit) {
-        binding.btnModalityConfirm.setOnClickListener { listener() }
-    }
+        // Set up click listeners to notify the delegate
+        binding.btnModalityConfirm.setOnClickListener {
+            Log.d("EventModalityConfirmation", "Confirm Button Clicked ✅")
+            delegate?.onConfirmClick(this)
+        }
 
-    /**
-     * Sets the click listener for the close button.
-     * @param listener The lambda function to be executed on click.
-     */
-    fun setOnCloseClickListener(listener: () -> Unit) {
-        binding.btnModalityClose.setOnClickListener { listener() }
+        binding.btnModalityClose.setOnClickListener {
+            Log.d("EventModalityConfirmation", "Close Button Clicked ✅")
+            delegate?.onCloseClick(this)
+        }
     }
 }

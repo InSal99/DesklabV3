@@ -3,6 +3,7 @@ package com.example.components
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
@@ -51,6 +52,12 @@ import com.google.android.material.color.MaterialColors
  * textColor = Color.WHITE,
  * isVisible = true
  * )
+ * // Set the delegate to handle clicks
+ * customMyEventCardDelegate = object : CustomMyEventCardDelegate {
+ * override fun onClick(eventCard: CustomMyEventCard) {
+ * // Handle card click event
+ * }
+ * }
  * }
  * parentLayout.addView(myEventCard)
  * ```
@@ -62,6 +69,12 @@ class CustomMyEventCard @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val binding: CustomMyEventCardBinding
+
+    /**
+     * The delegate responsible for handling click events on this card.
+     * Assign an object that implements [CustomMyEventCardDelegate] to receive callbacks.
+     */
+    var customMyEventCardDelegate: CustomMyEventCardDelegate? = null
 
     /** The type or category of the event (e.g., "Online Event"). */
     var eventType: String? = null
@@ -87,6 +100,10 @@ class CustomMyEventCard @JvmOverloads constructor(
     init {
         // Inflate the component's layout and attach it to this FrameLayout.
         binding = CustomMyEventCardBinding.inflate(LayoutInflater.from(context), this, true)
+
+        // Make the entire view clickable to trigger performClick()
+        isClickable = true
+        isFocusable = true
 
         // Parse attributes from the XML layout.
         attrs?.let {
@@ -123,6 +140,18 @@ class CustomMyEventCard @JvmOverloads constructor(
     }
 
     /**
+     * Performs the click action and notifies the delegate.
+     * This is called automatically when the view is clicked because `isClickable` is true.
+     */
+    override fun performClick(): Boolean {
+        super.performClick()
+        Log.d("CustomMyEventCard", "MyEventCard Clicked ✅")
+        customMyEventCardDelegate?.onClick(this)
+        return true
+    }
+
+
+    /**
      * Programmatically sets the date on the child `CustomCalendarCard`.
      * @param month The three-letter month (e.g., "AUG").
      * @param date The numeric day (e.g., "18").
@@ -143,7 +172,6 @@ class CustomMyEventCard @JvmOverloads constructor(
         binding.eventCardBadge.text = text
         binding.eventCardBadge.setTextColor(textColor)
         if (backgroundColor != -1) {
-            // CORRECTED LINE: Use ColorStateList.valueOf() to create a ColorStateList from a single color.
             binding.eventCardBadge.chipBackgroundColor = ColorStateList.valueOf(backgroundColor)
         }
         binding.eventCardBadge.isVisible = isVisible

@@ -2,6 +2,7 @@ package com.example.components.notification
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.example.components.R
@@ -15,9 +16,8 @@ import androidx.core.content.withStyledAttributes
 class CustomNotificationCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    // FIXED: Default style attribute now correctly points to materialCardViewStyle
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) { // FIXED: Class now extends MaterialCardView to match its XML root
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     enum class EventType(val displayName: String) {
         GENERAL_EVENT("GENERAL EVENT"),
@@ -32,6 +32,12 @@ class CustomNotificationCard @JvmOverloads constructor(
     }
 
     private val binding: CustomNotificationCardBinding
+
+    /**
+     * The delegate responsible for handling click events on this component.
+     * Assign an object that implements [CustomNotificationCardDelegate] to receive callbacks.
+     */
+    var delegate: CustomNotificationCardDelegate? = null
 
     var title: String
         get() = binding.tvNotificationTitle.text.toString()
@@ -67,9 +73,12 @@ class CustomNotificationCard @JvmOverloads constructor(
         val inflater = LayoutInflater.from(context)
         binding = CustomNotificationCardBinding.inflate(inflater, this, true)
 
+        // Make the entire card clickable to trigger performClick()
+        isClickable = true
+        isFocusable = true
+
         attrs?.let {
             context.withStyledAttributes(it, R.styleable.CustomNotificationCard, 0, 0) {
-
                 title = getString(R.styleable.CustomNotificationCard_notificationTitle) ?: ""
                 description =
                     getString(R.styleable.CustomNotificationCard_notificationDescription) ?: ""
@@ -77,30 +86,33 @@ class CustomNotificationCard @JvmOverloads constructor(
                     ?: "Terima Undangan"
                 isButtonVisible =
                     getBoolean(R.styleable.CustomNotificationCard_notificationButtonVisible, true)
-
                 val eventTypeString =
                     getString(R.styleable.CustomNotificationCard_notificationEventType)
                 eventType = EventType.fromString(eventTypeString)
-
             }
+        }
+
+        // Set up the button's click listener to notify the delegate
+        binding.btnNotification.setOnClickListener {
+            Log.d("EventNotificationCard", "Confirm Button Clicked ✅")
+            delegate?.onButtonClick(this)
         }
     }
 
-    fun setButtonClickListener(listener: () -> Unit) {
-        binding.btnNotification.setOnClickListener { listener() }
+    /**
+     * Performs the click action for the entire card and notifies the delegate.
+     */
+    override fun performClick(): Boolean {
+        Log.d("EventNotificationCard", "CardView Clicked ✅")
+        super.performClick()
+        delegate?.onCardClick(this)
+        return true
     }
 
     private fun updateEventTypeUI() {
         binding.tvNotificationType.text = eventType.displayName
-
         when (eventType) {
-            EventType.GENERAL_EVENT -> {
-                binding.notificationIcon.setIcon(R.drawable.ic_notification_event)
-            }
-            EventType.PEOPLE_DEVELOPMENT -> {
-                binding.notificationIcon.setIcon(R.drawable.ic_notification_event)
-            }
-            EventType.EMPLOYEE_BENEFIT -> {
+            EventType.GENERAL_EVENT, EventType.PEOPLE_DEVELOPMENT, EventType.EMPLOYEE_BENEFIT -> {
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_event)
             }
         }

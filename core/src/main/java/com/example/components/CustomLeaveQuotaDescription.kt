@@ -139,7 +139,7 @@ class CustomLeaveQuotaDescription @JvmOverloads constructor(
 
         // Set color to red if quota is 0 or less; otherwise, use the default color.
         val color = if (quotaValue != null && quotaValue <= 0) {
-            ContextCompat.getColor(context, R.color.colorRed40) // Make sure this color is defined.
+            ContextCompat.getColor(context, R.color.colorRed40)
         } else {
             defaultTextColor
         }
