@@ -104,6 +104,27 @@
             android:layout_marginTop="@dimen/margin_12dp"
             android:orientation="horizontal">
 
+            <com.example.components.CustomLeaveQuotaDescription
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:leaveQuotaDesc="5"
+                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
+
+            <com.example.components.CustomLeaveQuotaDescription
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:leaveQuotaDesc="-10"
+                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:orientation="horizontal">
+
             <com.example.components.CustomMonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

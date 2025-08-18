@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <!-- TextView to display the title of the leave quota. -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvLeaveQuotaTitle"
+        style="@style/TextRegular.Label3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorForegroundSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Saldo Cuti Tahunan" />
+
+    <!-- TextView to display the actual leave quota value. -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvLeaveQuota"
+        style="@style/TextSemiBold.Label2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="?attr/colorForegroundPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLeaveQuotaTitle"
+        tools:text="1 Hari" />
+
+</merge>
