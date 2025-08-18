@@ -13,6 +13,7 @@
         android:layout_weight= "1"
         android:text="Title"
         android:maxLines="1"
+        android:ellipsize="end"
         style="?attr/l3Regular"
         android:textColor="?attr/colorForegroundSecondary"
         android:layout_marginEnd="@dimen/margin_10dp"
@@ -27,6 +28,7 @@
         android:layout_weight= "1"
         android:text="Description"
         android:maxLines="1"
+        android:ellipsize="end"
         style="?attr/l2Medium"
         android:textColor="?attr/colorForegroundPrimary"
         android:layout_marginTop="@dimen/margin_8dp"
@@ -34,7 +36,8 @@
         app:layout_constraintTop_toBottomOf="@id/tvFooterNoActionTitle"
         app:layout_constraintBottom_toTopOf="@id/tvFooterNoActionDescription"
         app:layout_constraintEnd_toStartOf="@id/bFooterNoActionStatus"
-        app:layout_constraintStart_toStartOf="@id/tvFooterNoActionTitle"/>
+        app:layout_constraintStart_toStartOf="@id/tvFooterNoActionTitle"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.example.components.status.badge.StatusBadge
         android:id="@+id/bFooterNoActionStatus"

@@ -10,6 +10,8 @@
         style="?attr/p1Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:text="@string/even_card_status"
         android:textColor="?attr/colorForegroundWarningIntense"
         app:layout_constraintStart_toStartOf="parent"

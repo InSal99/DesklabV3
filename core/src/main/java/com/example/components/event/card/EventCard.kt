@@ -1,5 +1,7 @@
 package com.example.components.event.card
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -7,6 +9,9 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import com.example.components.R
 import com.example.components.databinding.EventCardBinding
 import com.google.android.material.card.MaterialCardView
@@ -18,13 +23,13 @@ class EventCard @JvmOverloads constructor(
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
     private val binding: EventCardBinding = EventCardBinding.inflate(
-    LayoutInflater.from(context),
-    this,
-    true
+        LayoutInflater.from(context),
+        this,
+        true
     )
     private val shadowPaint1 = Paint()
     private val shadowPaint2 = Paint()
-    private val cornerRadiusPx = 8.5.toFloat() * context.resources.displayMetrics.density
+    private val cornerRadiusPx = 8 * context.resources.displayMetrics.density
 
     var eventCardDelegate: EventCardDelegate? = null
 
@@ -84,6 +89,7 @@ class EventCard @JvmOverloads constructor(
 
     init {
         setupShadowPaints()
+        setupClickAnimation()
         radius = cornerRadiusPx
 
         context.theme.obtainStyledAttributes(
@@ -129,7 +135,7 @@ class EventCard @JvmOverloads constructor(
                 2f,
                 0f,
                 0f,
-                Color.parseColor("#0D0F111A") // 5% alpha
+                R.attr.colorShadowNeutralAmbient
             )
             color = Color.TRANSPARENT
             isAntiAlias = true
@@ -141,12 +147,62 @@ class EventCard @JvmOverloads constructor(
                 2f,
                 0f,
                 0f,
-                Color.parseColor("#1A0F111A")
+                R.attr.colorShadowNeutralKey
             )
             color = Color.TRANSPARENT
             isAntiAlias = true
             style = Paint.Style.FILL
         }
+    }
+
+    private fun setupClickAnimation() {
+        isClickable = true
+        isFocusable = true
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                animateScaleDown()
+                return true
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                animateScaleUp()
+                if (event.action == MotionEvent.ACTION_UP) {
+                    performClick()
+                }
+                return true
+            }
+        }
+        return super.onTouchEvent(event)
+    }
+
+    override fun performClick(): Boolean {
+        return super.performClick()
+    }
+
+    private fun animateScaleDown() {
+        val scaleDownX = ObjectAnimator.ofFloat(this, "scaleX", 1.0f, 0.95f)
+        val scaleDownY = ObjectAnimator.ofFloat(this, "scaleY", 1.0f, 0.95f)
+
+        val animatorSet = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+            duration = 150
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        animatorSet.start()
+    }
+
+    private fun animateScaleUp() {
+        val scaleUpX = ObjectAnimator.ofFloat(this, "scaleX", scaleX, 1.0f)
+        val scaleUpY = ObjectAnimator.ofFloat(this, "scaleY", scaleY, 1.0f)
+
+        val animatorSet = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+            duration = 150
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        animatorSet.start()
     }
 
     override fun onDraw(canvas: Canvas) {
