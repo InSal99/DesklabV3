@@ -126,7 +126,7 @@ class CustomMyEventCard @JvmOverloads constructor(
                     -1 // Default to no color
                 )
                 val badgeTextColor = typedArray.getColor(
-                    R.styleable.CustomMyEventCard_badgeTextColor,
+                    R.styleable.CustomMyEventCard_badgeCustomTextColor,
                     MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnSurface)
                 )
                 val badgeVisible = typedArray.getBoolean(R.styleable.CustomMyEventCard_badgeVisible, true)

@@ -20,8 +20,6 @@
     <string name="card_left_slot_image_content_description">Card Image</string>
     <string name="card_right_slot_image_content_view">Card Action</string>
     <string name="card_multi_detail_title">Card Title</string>
-    <string name="leave_description_title">Saldo Cuti Tahunan</string>
-    <string name="option_card_title">Card Title</string>
   
     <string name="leave_description_title">Saldo Cuti Tahunan</string>
     <string name="leave_balance_format">%d hari</string>
