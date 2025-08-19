@@ -11,952 +11,48 @@
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:orientation="vertical"
-        android:layout_margin="@dimen/margin_16dp"
+        app:flow_verticalGap="@dimen/margin_8dp"
         android:layout_marginHorizontal="@dimen/margin_16dp"
         tools:context=".MainActivity">
 
         <TextView
-            style="?attr/d1SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!" />
+
+        <com.example.components.radiobutton.CustomRadioGroup
+            android:id="@+id/rbTest"
+            style="@style/Widget.App.DynamicRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Home Page"
-            android:gravity="center"
-            android:textColor="?attr/colorForegroundPrimaryInverse"
-            android:background="?attr/colorBackgroundInfoIntense"/>
+            android:layout_marginTop="32dp"
+            android:minHeight="@dimen/margin_0dp" />
 
-        <TextView
-            style="?attr/h1SemiBold"
+        <com.example.components.radiobutton.CustomRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:enabled="true"
+            android:text="Text" />
+
+        <com.example.components.radiobutton.CustomRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:enabled="false"
+            android:text="Text" />
+
+        <com.example.components.event.card.EventCardBadge
+            android:id="@+id/cvEventCardBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Selection: Dropdown Filter" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.chip.DropdownFilter
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_6dp"
-                app:dropdownFilterLabel="Label"
-                app:dropdownFilterDesc="Description"
-                app:dropdownFilterBadgeText="1"
-                app:dropdownFilterIcon="@drawable/placeholder"
-                app:dropdownFilterShowBadge="true" />
-
-            <com.example.components.chip.DropdownFilter
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_6dp"
-                app:dropdownFilterLabel="Label"
-                app:dropdownFilterShowDesc="false"
-                app:dropdownFilterIcon="@drawable/placeholder"
-                app:dropdownFilterShowBadge="true"
-                app:dropdownFilterBadgeText="1"/>
-
-            <com.example.components.chip.DropdownFilter
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:dropdownFilterLabel="Label"
-                app:dropdownFilterShowDesc="false"
-                app:dropdownFilterIcon="@drawable/placeholder"
-                app:dropdownFilterShowBadge="false" />
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Selection: Chip" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_6dp"
-                app:chipState="inactive"
-                app:chipText="Chip Label"
-                app:chipBadgeText="3"
-                app:chipShowIcon="true"
-                app:chipShowBadge="true"
-                app:chipIcon="@drawable/placeholder" />
-
-            <com.example.components.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_6dp"
-                app:chipState="inactive"
-                app:chipText="Chip Label"
-                app:chipShowIcon="true"
-                app:chipShowBadge="false"
-                app:chipIcon="@drawable/placeholder" />
-
-            <com.example.components.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:chipState="inactive"
-                app:chipText="Chip Label"
-                app:chipShowIcon="false"
-                app:chipShowBadge="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_6dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:singleSelection="true"
-                app:selectionRequired="false"
-                app:singleLine="false"
-                app:chipSpacingHorizontal="8dp"
-                app:chipSpacingVertical="8dp">
-
-                <com.example.components.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:chipText="Option 1"
-                    app:chipState="inactive"
-                    app:chipShowIcon="false"
-                    app:chipShowBadge="false" />
-
-                <com.example.components.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:chipText="Option 2"
-                    app:chipState="inactive"
-                    app:chipShowIcon="true"
-                    app:chipIcon="@drawable/ic_star"
-                    app:chipShowBadge="false" />
-
-                <com.example.components.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:chipText="Option 3"
-                    app:chipState="active"
-                    app:chipShowIcon="true"
-                    app:chipIcon="@drawable/ic_star"
-                    app:chipShowBadge="true"
-                    app:chipBadgeText="5" />
-            </com.google.android.material.chip.ChipGroup>
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Card: Detail Information B" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.card.detail.CardDetailInfoB
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cdibLeftSlotType="image"
-                app:cdibLeftSlotSrc="@drawable/avatar_placeholder"
-                app:cdibTitleText="Card Title"
-                app:cdibDescText="Card Content Description"/>
-
-            <com.example.components.card.detail.CardDetailInfoB
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cdibLeftSlotType="icon"
-                app:cdibShowIndicator="true"
-                app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-                app:cdibLeftSlotSrc="@drawable/ic_star"
-                app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-                app:cdibLeftSlotTint="?attr/colorForegroundWarningIntense"
-                app:cdibTitleText="Card Title"
-                app:cdibDescText="Card Content Description" />
-
-            <com.example.components.card.detail.CardDetailInfoB
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cdibLeftSlotType="icon"
-                app:cdibShowIndicator="false"
-                app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-                app:cdibLeftSlotSrc="@drawable/ic_star"
-                app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-                app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-                app:cdibTitleText="Card Title"
-                app:cdibDescText="Card Content Description" />
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Bottom Navigation" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.bottom.navigation.BottomNavigationItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_6dp"
-                android:layout_weight="1"
-                app:navState="inactive"
-                app:navIcon="@drawable/placeholder"
-                app:navText="Label"
-                app:navShowBadge="true"/>
-
-            <com.example.components.bottom.navigation.BottomNavigationItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:navState="inactive"
-                app:navIcon="@drawable/placeholder"
-                app:navText="Label"
-                app:navShowBadge="false"/>
-        </LinearLayout>
-
-        <TextView
-            style="?attr/d1SemiBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            android:text="Daftar Event"
-            android:gravity="center"
-            android:textColor="?attr/colorForegroundPrimaryInverse"
-            android:background="?attr/colorBackgroundInfoIntense"/>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Tab Item" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.tab.Tab
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_6dp"
-                app:tabText="Label"
-                app:tabBadgeText="1"
-                app:tabShowBadge="true"
-                app:tabState="inactive" />
-
-            <com.example.components.tab.Tab
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tabText="Label"
-                app:tabShowBadge="false"
-                app:tabState="active" />
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Input: Search" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.input.search.InputSearch
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:inputSearchHint="Search Placeholder"
-                app:inputSearchState="rest" />
-
-            <com.example.components.input.search.InputSearch
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:inputSearchHint="Search Placeholder"
-                app:inputSearchState="error" />
-
-            <com.example.components.input.search.InputSearch
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:inputSearchHint="Search Placeholder"
-                app:inputSearchState="focus" />
-
-            <com.example.components.input.search.InputSearch
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:inputSearchHint="Search Placeholder"
-                app:inputSearchState="disable" />
-
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Filter" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.filter.button.FilterButton
-                android:id="@+id/filterButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Event Card" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.event.card.EventCard
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBadgeText="Berlangsung"
-                app:cardBadgeType="live"
-                app:cardEventCategory="People Development"
-                app:cardEventDate="23 Juli 2025"
-                app:eventImageSrc="@drawable/poster2"
-                app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
-                app:cardEventType="Hybrid Event"
-                app:cardStatusText="Terdaftar"
-                app:cardStatusType="registered"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Smaller Component" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.event.card.EventCardBanner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:eventType="Hybrid Event"
-                app:eventCategory="People Development"
-                app:layout_constraintTop_toBottomOf="@+id/ivEventCard"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <com.example.components.event.card.EventCardBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginTop="@dimen/margin_12dp"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                app:badgeType="invited"
-                app:badgeSize="Small"
-                app:badgeText="Diundang"
-                app:layout_constraintTop_toTopOf="@+id/ivEventCard"
-                app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-                />
-
-            <com.example.components.event.card.EventCardDescription
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:eventTitle="EDTS Town-Hall 2025: Power of Change"
-                app:eventDate="23 Juli 2025"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <com.example.components.event.card.EventCardStatus
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginTop="@dimen/margin_4dp"
-                app:statusType="unregistered"
-                app:statusText="Pendaftaran Ditutup"
-                app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <com.example.components.card.multi.detail.CardLeftSlot
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:slotType="image"
-                app:slotSrc="@drawable/avatar_placeholder"/>
-
-            <com.example.components.card.multi.detail.CardLeftSlot
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:slotType="icon"
-                app:slotSrc="@drawable/ic_star"
-                app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"
-                app:slotTint="?attr/colorForegroundWarningIntense" />
-
-            <com.example.components.card.multi.detail.CardMultiDetailWrapperInfo
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:info1Text="10:00 AM"
-                app:info2Text="Event Hall A" />
-
-            <com.example.components.badge.Badge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:badgeBackgroundTint="?attr/colorBackgroundInfoSubtle"
-                app:badgeStrokeColor="@android:color/transparent"
-                app:badgeTextColor="?attr/colorForegroundInfoIntense"
-                app:badgeText="5"
-                app:showText="true" />
-
-            <com.example.components.badge.Badge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:badgeText="5"
-                app:showText="true" />
-        </LinearLayout>
-
-        <TextView
-            style="?attr/d1SemiBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Detail Event"
-            android:gravity="center"
-            android:textColor="?attr/colorForegroundPrimaryInverse"
-            android:background="?attr/colorBackgroundInfoIntense"/>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Item List" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.detail.information.DetailInformationA
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:infoTitle="Title"
-                app:infoDescription="Description"
-                app:infoIcon="@drawable/placeholder"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Infobox" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.infobox.InfoBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:text="Label"
-                app:variant="success"
-                android:layout_marginTop="@dimen/margin_16dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
-
-            <com.example.components.infobox.InfoBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:text="Label"
-                app:variant="error"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
-
-            <com.example.components.infobox.InfoBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:text="Label"
-                app:variant="information"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
-
-            <com.example.components.infobox.InfoBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:text="Label"
-                app:variant="general"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Footer" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.footer.CustomFooter
-                android:id="@+id/footerSimple"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:footerType="CALL_TO_ACTION"
-                app:primaryButtonText="Daftar Sekarang" />
-
-            <com.example.components.footer.CustomFooter
-                android:id="@+id/footerWithDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:footerType="CALL_TO_ACTION_DETAIL"
-                app:footerTitle="Title"
-                app:footerDescription="Description Here"
-                app:primaryButtonText="Daftar Sekarang"/>
-
-            <com.example.components.footer.CustomFooter
-                android:id="@+id/footerDualButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:footerType="DUAL_BUTTON"
-                app:primaryButtonText="Button Label"
-                app:secondaryButtonText="Button Label"/>
-
-            <com.example.components.footer.CustomFooter
-                android:id="@+id/footerStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:footerType="NO_ACTION"
-                app:footerTitle="Tipe Presensi"
-                app:footerDescription="Presensi Offline"
-                app:statusBadgeText="Presensi Tercatat"
-                app:statusBadgeType="approved" />
-        </LinearLayout>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Toast" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.toast.CustomToast
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:toastType="success"
-                app:toastMessage="Label"/>
-
-            <com.example.components.toast.CustomToast
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:toastType="error"
-                app:toastMessage="Label"/>
-
-            <com.example.components.toast.CustomToast
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:toastType="info"
-                app:toastMessage="Label"/>
-
-            <com.example.components.toast.CustomToast
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:toastType="general"
-                app:toastMessage="Label"/>
-        </LinearLayout>
-
-        <TextView
-            style="?attr/d1SemiBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Form RSVP"
-            android:gravity="center"
-            android:textColor="?attr/colorForegroundPrimaryInverse"
-            android:background="?attr/colorBackgroundInfoIntense"/>
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Input" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.option.card.OptionCard
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cardText="Option"
-                app:cardIcon="@drawable/placeholder"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="true"
-                app:inputType="textInput"
-                app:maxLength="50" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:inputType="textInput"
-                app:maxLength="50" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="false"
-                app:inputType="textInput"
-                app:maxLength="50" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="true"
-                app:inputType="textArea"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:inputType="textArea"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="false"
-                app:inputType="textArea"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="true"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="false"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:fieldDescription="Some description"
-                app:showError="false"
-                app:fieldEnabled="true"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:errorText="Some Error"
-                app:fieldDescription="Some description"
-                app:showError="true"
-                app:fieldEnabled="true"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:fieldDescription="Some description"
-                app:fieldEnabled="false"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:fieldEnabled="true"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests" />
-
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:fieldEnabled="false"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests" />
-
-        </LinearLayout>
-
-<!--        <TextView-->
-<!--            style="?attr/d1SemiBold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Event Saya"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
-
-<!--        <TextView-->
-<!--            style="?attr/d1SemiBold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Undangan"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
-
-<!--        <TextView-->
-<!--            style="?attr/d1SemiBold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Notification"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
-
-        <TextView
-            style="?attr/d1SemiBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cuti"
-            android:gravity="center"
-            android:textColor="?attr/colorForegroundPrimaryInverse"
-            android:background="?attr/colorBackgroundInfoIntense"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.example.components.card.multi.detail.CardMultiDetail
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cmdLeftSlotType="image"
-                app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
-                app:cmdLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-                app:cmdTitle="Annual Leave"
-                app:cmdInfo1Text="Leave Type"
-                app:cmdInfo2Text="3 Days"
-                app:cmdRightSlotSrc="@drawable/placeholder"
-                app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense" />
-
-            <com.example.components.card.multi.detail.CardMultiDetail
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"
-                app:cmdTitle="Meeting Schedule"
-                app:cmdInfo1Text="Today"
-                app:cmdInfo2Text="2:00 PM" />
-
-            <com.example.components.leave.card.LeaveCounter
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:counterText="100 Hari"
-                app:counterType="critical"/>
-
-            <com.example.components.leave.card.LeaveDescription
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:counterType="critical"
-                app:counterText="100 Hari"/>
-
-            <com.example.components.leave.card.LeaveEmployeeInfo
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:employeeName="Employee Name"
-                app:employeeRole="Employee Role"
-                app:employeeImage="@drawable/avatar_placeholder"/>
-
-            <com.example.components.leave.card.LeaveCard
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:employeeName="Employee Name"
-                app:employeeRole="Employee Role"
-                app:employeeImage="@drawable/avatar_placeholder"
-                app:counterText="1000 Tahun Lamanya"
-                app:counterType="critical"/>
-        </LinearLayout>
-
+            android:layout_marginEnd="@dimen/margin_8dp"
+            app:badgeSize="Small"
+            app:badgeText="Diundang"
+            app:badgeType="invited"
+            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
 <!--        <com.example.components.radiobutton.CustomRadioGroup-->
 <!--            android:id="@+id/rbTest"-->
@@ -1022,143 +118,146 @@
 <!--        android:enabled="false"-->
 <!--        android:text="Text" />-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Smaller Component" />
 
-        <LinearLayout
+        <com.example.components.detail.information.DetailInformationA
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_12dp">
+            app:infoTitle="Title"
+            app:infoDescription="Description"
+            app:infoIcon="@drawable/placeholder"
+            android:layout_marginHorizontal="@dimen/margin_16dp"/>
 
-            <com.example.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="approved"/>
+        <com.example.components.status.badge.StatusBadge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:statusBadgeText="Status Badge"
+            app:statusBadgeType="approved"/>
 
-            <com.example.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="waiting"/>
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="REST"
+            app:customButtonSize="XS"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            app:iconLeft="@drawable/placeholder"
+            app:iconRight="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="cancel"/>
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_PRESS"
+            app:isButtonDestructive="true"
+            app:customButtonSize="XS"
+            app:label="Test"
+            app:iconRight="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="decline"/>
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_FOCUS"
+            app:customButtonSize="XS"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            app:iconLeft="@drawable/placeholder"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="REST"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconLeft="@drawable/placeholder"
-                app:iconRight="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+        <com.example.components.button.CustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:label="Test Button"
+            app:customButtonSize="MD"
+            app:customButtonState="REST"/>
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_PRESS"
-                app:isButtonDestructive="true"
-                app:customButtonSize="XS"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+        <com.example.components.button.CustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:customButtonState="ON_FOCUS"
+            app:customButtonSize="LG"
+            app:iconRight="@drawable/placeholder"
+            app:iconLeft="@drawable/placeholder"
+            app:isButtonDestructive="true"
+            app:label="Test"
+            android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+        <com.example.components.event.card.EventCard
+            android:id="@+id/cvEventCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBadgeText="asd"
+            app:cardBadgeType="live"
+            app:cardEventCategory="People Development"
+            app:cardEventDate="23 Juli 2025"
+            app:eventImageSrc="@drawable/poster2"
+            app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
+            app:cardEventType="Hybrid Event"
+            app:cardStatusText="Pendaftaran Ditutup"
+            app:cardStatusType="registered"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="REST"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:customButtonType="SECONDARY"
-                app:label="Test"
-                app:iconLeft="@drawable/placeholder"
-                app:iconRight="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+        <!--    <com.example.components.event.card.EventCardBanner-->
+        <!--        android:id="@+id/cvEventCardBanner"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:eventType="Hybrid Event"-->
+        <!--        app:eventCategory="People Development"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/ivEventCard"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"-->
+        <!--        />-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_PRESS"
-                app:isButtonDestructive="true"
-                app:customButtonSize="XS"
-                app:customButtonType="SECONDARY"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+        <!--    <com.example.components.event.card.EventCardBadge-->
+        <!--        android:id="@+id/cvEventCardBadge"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginTop="@dimen/margin_12dp"-->
+        <!--        android:layout_marginEnd="@dimen/margin_8dp"-->
+        <!--        app:badgeType="invited"-->
+        <!--        app:badgeSize="Small"-->
+        <!--        app:badgeText="Diundang"-->
+        <!--        app:layout_constraintTop_toTopOf="@+id/ivEventCard"-->
+        <!--        app:layout_constraintEnd_toEndOf="@+id/ivEventCard"-->
+        <!--        />-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="XS"
-                app:customButtonType="SECONDARY"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+        <!--    <com.example.components.event.card.EventCardDescription-->
+        <!--        android:id="@+id/cvEventCardDescription"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
+        <!--        app:eventDate="23 Juli 2025"-->
+        <!--        app:layout_constraintTop_toBottomOf="parent"-->
+        <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:label="Test Button"
-                app:customButtonSize="MD"
-                app:customButtonState="REST"/>
 
-            <com.example.components.button.CustomButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="LG"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+        <!--    <com.example.components.event.card.EventCardStatus-->
+        <!--        android:id="@+id/cvEventCardStatus"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginTop="@dimen/margin_4dp"-->
+        <!--        app:statusType="unregistered"-->
+        <!--        app:statusText="Pendaftaran Ditutup"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"/>-->
 
-        </LinearLayout>
+        <com.example.components.event.card.EventCardDescription
+            android:id="@+id/cvEventCardDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:eventDate="23 Juli 2025"
+            app:eventTitle="EDTS Town-Hall 2025: Power of Change"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <com.example.components.event.card.EventCardStatus
+            android:id="@+id/cvEventCardStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
+            app:statusText="Pendaftaran Ditutup"
+            app:statusType="unregistered" />
     </LinearLayout>
 </ScrollView>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="56dp"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius_6dp"
+    app:cardElevation="@dimen/radius_0dp"
+    app:strokeColor="?attr/colorStrokeSubtle"
+    app:strokeWidth="@dimen/stroke_weight_1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/margin_4dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMonth"
+            style="@style/TextRegular.Label3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="?attr/colorForegroundTertiary"
+            tools:text="JUL" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvDate"
+            style="@style/TextSemiBold.Display2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:textAlignment="center"
+            android:textColor="?attr/colorForegroundPrimary"
+            tools:text="23" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvDay"
+            style="@style/TextRegular.Label3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:background="?attr/colorBackgroundTertiary"
+            android:paddingVertical="@dimen/margin_4dp"
+            android:textAlignment="center"
+            android:textColor="?attr/colorForegroundTertiary"
+            tools:text="Rab" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
