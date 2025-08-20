@@ -55,9 +55,8 @@
 
             <com.example.components.button.CustomButton
                 android:id="@+id/btnModalityClose"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_4dp"
                 android:layout_weight="1"
                 app:customButtonSize="MD"
                 app:customButtonType="SECONDARY"
@@ -65,11 +64,14 @@
                 app:isButtonDisabled="false"
                 app:label="Tutup" />
 
+            <Space
+                android:layout_width="@dimen/margin_8dp"
+                android:layout_height="wrap_content"/>
+
             <com.example.components.button.CustomButton
                 android:id="@+id/btnModalityConfirm"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_4dp"
                 android:layout_weight="1"
                 app:customButtonSize="MD"
                 app:customButtonType="PRIMARY"

@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dynamicRadioGroup = findViewById(R.id.rbTest)
-        setupRadioButtons()
+//        dynamicRadioGroup = findViewById(R.id.rbTest)
+//        setupRadioButtons()
     }
 
     private fun setupRadioButtons() {
