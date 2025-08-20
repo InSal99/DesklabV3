@@ -39,7 +39,7 @@ class CustomFooter @JvmOverloads constructor(
         NO_ACTION(3);
 
         companion object {
-            fun fromInt(value: Int) = entries.firstOrNull { it.value == value } ?: CALL_TO_ACTION
+            fun fromInt(value: Int) = values().firstOrNull { it.value == value } ?: CALL_TO_ACTION
         }
     }
 
@@ -64,7 +64,7 @@ class CustomFooter @JvmOverloads constructor(
             statusText = typedArray.getString(R.styleable.CustomFooter_statusBadgeText) ?: ""
 
             val statusTypeOrdinal = typedArray.getInt(R.styleable.CustomFooter_statusBadgeType, StatusBadge.ChipType.APPROVED.ordinal)
-            statusType = StatusBadge.ChipType.entries.toTypedArray().getOrElse(statusTypeOrdinal) { StatusBadge.ChipType.APPROVED }
+            statusType = StatusBadge.ChipType.values().getOrElse(statusTypeOrdinal) { StatusBadge.ChipType.APPROVED }
 
             primaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_primaryButtonEnabled, true)
             secondaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_secondaryButtonEnabled, true)

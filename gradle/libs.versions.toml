@@ -1,14 +1,14 @@
 [versions]
-agp = "8.12.0"
-kotlin = "2.0.21"
-coreKtx = "1.16.0"
+agp = "7.3.0"
+kotlin = "1.7.10"
+coreKtx = "1.9.0"
 junit = "4.13.2"
-junitVersion = "1.3.0"
-espressoCore = "3.7.0"
-appcompat = "1.7.1"
-material = "1.12.0"
-activity = "1.10.1"
-constraintlayout = "2.2.1"
+junitVersion = "1.1.3"
+espressoCore = "3.4.0"
+appcompat = "1.6.0"
+material = "1.9.0"
+activity = "1.8.1"
+constraintlayout = "2.1.4"
 library = "3.2.0-alpha11"
 
 [libraries]
@@ -25,4 +25,5 @@ androidx-library = { group = "androidx.databinding", name = "library", version.r
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-library = {id = "com.android.library", version.ref = "agp"}
 
