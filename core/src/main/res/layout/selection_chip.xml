@@ -11,9 +11,6 @@
     app:rippleColor="@android:color/transparent"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardElevation="@dimen/margin_0dp">
-<!--    android:backgroundTint="?attr/colorBackgroundModifierOnPress"-->
-<!--    app:cardBackgroundColor="?attr/colorBackgroundPrimaryInverse"-->
-<!--    app:strokeColor="?attr/colorStrokeInteractiver"-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -42,7 +39,6 @@
             app:badgeBackgroundTint="?attr/colorBackgroundInfoSubtle"
             app:badgeTextColor="?attr/colorForegroundInfoIntense"
             app:showText="true"/>
-        <!--    app:strokeColor="?attr/colorStrokeInteractiver"-->
 
         <ImageView
             android:id="@+id/ivChip"

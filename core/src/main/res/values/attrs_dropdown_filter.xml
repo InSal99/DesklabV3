@@ -6,5 +6,6 @@
         <attr name="dropdownFilterBadgeText" format="string" />
         <attr name="dropdownFilterIcon" format="reference" />
         <attr name="dropdownFilterShowBadge" format="boolean" />
+        <attr name="dropdownFilterShowDesc" format="boolean" />
     </declare-styleable>
 </resources>
