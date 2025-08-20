@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Declare custom attributes for the CustomLeaveQuotaDescription view. -->
+    <declare-styleable name="CustomLeaveQuotaDescription">
+        <!-- Attribute to set the title text for the leave quota. -->
+        <attr name="leaveQuotaTitleDesc" format="string" />
+        <!-- Attribute to set the quota value text. -->
+        <attr name="leaveQuotaDesc" format="string" />
+    </declare-styleable>
+</resources>
