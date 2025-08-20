@@ -53,7 +53,7 @@ class StatusBadge @JvmOverloads constructor(
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.StatusBadge, 0, 0)
         try {
             val typeOrdinal = typedArray.getInt(R.styleable.StatusBadge_statusBadgeType, ChipType.APPROVED.ordinal)
-            chipType = ChipType.entries.toTypedArray().getOrElse(typeOrdinal) { ChipType.APPROVED }
+            chipType = ChipType.values().getOrElse(typeOrdinal) { ChipType.APPROVED }
 
             val chipText = typedArray.getString(R.styleable.StatusBadge_statusBadgeText)
 
