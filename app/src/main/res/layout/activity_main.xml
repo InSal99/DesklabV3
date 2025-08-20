@@ -1,263 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clipChildren="false"
+        android:clipToPadding="false"
         android:orientation="vertical"
-        app:flow_verticalGap="@dimen/margin_8dp"
-        android:layout_marginHorizontal="@dimen/margin_16dp"
-        tools:context=".MainActivity">
+        android:paddingHorizontal="@dimen/margin_16dp"
+        android:paddingTop="80dp"
+        android:paddingBottom="80dp">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextSemiBold.Display3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:text="Event Componets"/>
 
-        <com.example.components.radiobutton.CustomRadioGroup
-            android:id="@+id/rbTest"
-            style="@style/Widget.App.DynamicRadioGroup"
+        <com.example.components.CustomMyEventCard
+            android:id="@+id/cvMyEventCard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:minHeight="@dimen/margin_0dp" />
-
-        <com.example.components.radiobutton.CustomRadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:enabled="true"
-            android:text="Text" />
-
-        <com.example.components.radiobutton.CustomRadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:enabled="false"
-            android:text="Text" />
-
-        <com.example.components.event.card.EventCardBadge
-            android:id="@+id/cvEventCardBadge"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12dp"
-            android:layout_marginEnd="@dimen/margin_8dp"
-            app:badgeSize="Small"
-            app:badgeText="Diundang"
-            app:badgeType="invited"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+            app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
+            app:badgeText="Terdaftar"
+            app:badgeTextColor="?attr/colorOnPrimary"
+            app:badgeVisible="true"
+            app:date="12"
+            app:day="Wed"
+            app:month="JUL"
+            app:myEventTime="18:00 - 20:00 WIB"
+            app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
+            app:myEventType="Online Event" />
 
-<!--        <com.example.components.radiobutton.CustomRadioGroup-->
-<!--            android:id="@+id/rbTest"-->
-<!--            style="@style/Widget.App.DynamicRadioGroup"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            android:minHeight="@dimen/margin_0dp" />-->
-
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
-
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
-
-
-        <com.example.components.detail.information.DetailInformationA
+        <com.example.components.notification.CustomNotificationCard
+            android:id="@+id/cvNotificationCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:infoTitle="Title"
-            app:infoDescription="Description"
-            app:infoIcon="@drawable/placeholder"
-            android:layout_marginHorizontal="@dimen/margin_16dp"/>
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:notificationButtonText="Terima Undangan"
+            app:notificationButtonVisible="true"
+            app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
+            app:notificationEventType="General Event"
+            app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
 
-        <com.example.components.status.badge.StatusBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:statusBadgeText="Status Badge"
-            app:statusBadgeType="approved"/>
-
-        <com.example.components.button.CustomButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:customButtonState="REST"
-            app:customButtonSize="XS"
-            app:isButtonDestructive="true"
-            app:label="Test"
-            app:iconLeft="@drawable/placeholder"
-            app:iconRight="@drawable/placeholder"
-            android:layout_marginVertical="@dimen/margin_16dp"/>
-
-        <com.example.components.button.CustomButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:customButtonState="ON_PRESS"
-            app:isButtonDestructive="true"
-            app:customButtonSize="XS"
-            app:label="Test"
-            app:iconRight="@drawable/placeholder"
-            android:layout_marginVertical="@dimen/margin_16dp"/>
-
-        <com.example.components.button.CustomButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:customButtonState="ON_FOCUS"
-            app:customButtonSize="XS"
-            app:isButtonDestructive="true"
-            app:label="Test"
-            app:iconLeft="@drawable/placeholder"
-            android:layout_marginVertical="@dimen/margin_16dp"/>
-
-        <com.example.components.button.CustomButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:label="Test Button"
-            app:customButtonSize="MD"
-            app:customButtonState="REST"/>
-
-        <com.example.components.button.CustomButton
+        <com.example.components.notification.CustomNotificationCard
+            android:id="@+id/cvNotificationCard3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:customButtonState="ON_FOCUS"
-            app:customButtonSize="LG"
-            app:iconRight="@drawable/placeholder"
-            app:iconLeft="@drawable/placeholder"
-            app:isButtonDestructive="true"
-            app:label="Test"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:notificationButtonText="Terima Undangan"
+            app:notificationButtonVisible="false"
+            app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."
+            app:notificationEventType="People Development"
+            app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
+
+        <com.example.components.CustomEventModalityConfirmation
+            android:id="@+id/cvEventModalityConfirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:modalCloseButtonLabel="Tutup"
+            app:modalConfirmButtonLabel="Ya, Lanjutkan"
+            app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
+            app:modalTitle="Konfirmasi Undangan" />
+
+        <com.example.components.CustomEventModalityLoading
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:modalLoadingTitle="Tunggu sebentar ..." />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dividerThickness="@dimen/stroke_weight_1dp"
+            app:dividerColor="?attr/colorStrokeSubtle"
             android:layout_marginVertical="@dimen/margin_16dp"/>
 
-        <com.example.components.event.card.EventCard
-            android:id="@+id/cvEventCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBadgeText="asd"
-            app:cardBadgeType="live"
-            app:cardEventCategory="People Development"
-            app:cardEventDate="23 Juli 2025"
-            app:eventImageSrc="@drawable/poster2"
-            app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
-            app:cardEventType="Hybrid Event"
-            app:cardStatusText="Pendaftaran Ditutup"
-            app:cardStatusType="registered"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <!--    <com.example.components.event.card.EventCardBanner-->
-        <!--        android:id="@+id/cvEventCardBanner"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        app:eventType="Hybrid Event"-->
-        <!--        app:eventCategory="People Development"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/ivEventCard"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        />-->
-
-        <!--    <com.example.components.event.card.EventCardBadge-->
-        <!--        android:id="@+id/cvEventCardBadge"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="@dimen/margin_12dp"-->
-        <!--        android:layout_marginEnd="@dimen/margin_8dp"-->
-        <!--        app:badgeType="invited"-->
-        <!--        app:badgeSize="Small"-->
-        <!--        app:badgeText="Diundang"-->
-        <!--        app:layout_constraintTop_toTopOf="@+id/ivEventCard"-->
-        <!--        app:layout_constraintEnd_toEndOf="@+id/ivEventCard"-->
-        <!--        />-->
-
-        <!--    <com.example.components.event.card.EventCardDescription-->
-        <!--        android:id="@+id/cvEventCardDescription"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        app:eventTitle="EDTS Town-Hall 2025: Power of Change"-->
-        <!--        app:eventDate="23 Juli 2025"-->
-        <!--        app:layout_constraintTop_toBottomOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-
-        <!--    <com.example.components.event.card.EventCardStatus-->
-        <!--        android:id="@+id/cvEventCardStatus"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="@dimen/margin_4dp"-->
-        <!--        app:statusType="unregistered"-->
-        <!--        app:statusText="Pendaftaran Ditutup"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"/>-->
-
-        <com.example.components.event.card.EventCardDescription
-            android:id="@+id/cvEventCardDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:eventDate="23 Juli 2025"
-            app:eventTitle="EDTS Town-Hall 2025: Power of Change"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
-
-        <com.example.components.event.card.EventCardStatus
-            android:id="@+id/cvEventCardStatus"
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextSemiBold.Display3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
-            app:statusText="Pendaftaran Ditutup"
-            app:statusType="unregistered" />
+            android:text="Leave Components"/>
+
+        <HorizontalScrollView
+            android:id="@+id/cvInfoCutiCardContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <com.example.components.CustomLeaveQuotaCard
+                    android:id="@+id/cvInfoCutiCard1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:leaveQuota="5"
+                    app:leaveQuotaTitle="Cuti Tahun Ini"
+                    app:leaveUsed="1" />
+
+                <com.example.components.CustomLeaveQuotaCard
+                    android:id="@+id/cvInfoCutiCard2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:leaveQuota="8"
+                    app:leaveQuotaTitle="Cuti Tahun Sebelumnya"
+                    app:leaveUsed="2" />
+
+                <com.example.components.CustomLeaveQuotaCard
+                    android:id="@+id/cvInfoCutiCard3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:leaveQuota="8"
+                    app:leaveQuotaTitle="Cuti Tahun Progresif"
+                    app:leaveUsed="2" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:orientation="horizontal">
+
+            <com.example.components.CustomLeaveQuotaDescription
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:leaveQuotaDesc="12"
+                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
+
+            <com.example.components.CustomLeaveQuotaDescription
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:leaveQuotaDesc="-10"
+                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:orientation="horizontal">
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_weight="1"
+                app:monthLabel="Jan"
+                app:pickerType="selected" />
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_weight="1"
+                app:monthLabel="Feb"
+                app:pickerType="unselected" />
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:monthLabel="Mar"
+                app:pickerType="disabled" />
+        </LinearLayout>
+
+        <com.example.components.CustomDropdownFilter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:dropdownDescription="23 Juli - 29 Juli 2025"
+            app:dropdownTitle="Pekan 8" />
     </LinearLayout>
 </ScrollView>
