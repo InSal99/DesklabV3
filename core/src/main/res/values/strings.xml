@@ -8,6 +8,7 @@
     <string name="event_card_divider">·</string>
     <string name="event_card_badge_label">Diundang</string>
     <string name="event_card_iv_content_description">Poster Image</string>
+    <string name="option_card_title">Card Title</string>
     <string name="filter_button_iv_content_description">Filter Button</string>
     <string name="bottom_navigation_iv_content_description">Bottom Navigation Icon</string>
     <string name="tab_text">Label</string>
@@ -19,8 +20,11 @@
     <string name="card_left_slot_image_content_description">Card Image</string>
     <string name="card_right_slot_image_content_view">Card Action</string>
     <string name="card_multi_detail_title">Card Title</string>
+  
     <string name="leave_description_title">Saldo Cuti Tahunan</string>
-    <string name="option_card_title">Card Title</string>
+    <string name="leave_balance_format">%d hari</string>
+    <string name="leave_expiry_format">Kedaluwarsa: %s</string>
+    <string name="leave_used_format">Cuti Terpakai: %d Hari</string>
 
 
     //Dummy Data

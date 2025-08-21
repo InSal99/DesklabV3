@@ -859,32 +859,32 @@
 
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            style="?attr/d1SemiBold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Event Saya"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
+        <!--        <TextView-->
+        <!--            style="?attr/d1SemiBold"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Event Saya"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
+        <!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-<!--        <TextView-->
-<!--            style="?attr/d1SemiBold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Undangan"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
+        <!--        <TextView-->
+        <!--            style="?attr/d1SemiBold"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Undangan"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
+        <!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-<!--        <TextView-->
-<!--            style="?attr/d1SemiBold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Notification"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
+        <!--        <TextView-->
+        <!--            style="?attr/d1SemiBold"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Notification"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
+        <!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
 
         <TextView
             style="?attr/d1SemiBold"
@@ -958,69 +958,69 @@
         </LinearLayout>
 
 
-<!--        <com.example.components.radiobutton.CustomRadioGroup-->
-<!--            android:id="@+id/rbTest"-->
-<!--            style="@style/Widget.App.DynamicRadioGroup"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            android:minHeight="@dimen/margin_0dp" />-->
+        <!--        <com.example.components.radiobutton.CustomRadioGroup-->
+        <!--            android:id="@+id/rbTest"-->
+        <!--            style="@style/Widget.App.DynamicRadioGroup"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="32dp"-->
+        <!--            android:minHeight="@dimen/margin_0dp" />-->
 
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
+        <!--    <com.example.components.CustomRadioButton-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:checked="true"-->
+        <!--        android:enabled="true"-->
+        <!--        android:text="Text" />-->
 
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
+        <!--    <com.example.components.CustomRadioButton-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:checked="true"-->
+        <!--        android:enabled="false"-->
+        <!--        android:text="Text" />-->
 
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
+        <!--    <com.example.components.CustomRadioButton-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:checked="false"-->
+        <!--        android:enabled="true"-->
+        <!--        android:text="Text" />-->
 
-<!--    <com.example.components.CustomRadioButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
+        <!--    <com.example.components.CustomRadioButton-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:checked="false"-->
+        <!--        android:enabled="false"-->
+        <!--        android:text="Text" />-->
 
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
+        <!--    <com.example.components.CustomCheckBox-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:checked="true"-->
+        <!--        android:enabled="true"-->
+        <!--        android:text="Text" />-->
 
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
+        <!--    <com.example.components.CustomCheckBox-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:checked="true"-->
+        <!--        android:enabled="false"-->
+        <!--        android:text="Text" />-->
 
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="true"-->
-<!--        android:text="Text" />-->
+        <!--    <com.example.components.CustomCheckBox-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:checked="false"-->
+        <!--        android:enabled="true"-->
+        <!--        android:text="Text" />-->
 
-<!--    <com.example.components.CustomCheckBox-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="false"-->
-<!--        android:enabled="false"-->
-<!--        android:text="Text" />-->
+        <!--    <com.example.components.CustomCheckBox-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:checked="false"-->
+        <!--        android:enabled="false"-->
+        <!--        android:text="Text" />-->
 
         <TextView
             style="?attr/h1SemiBold"
@@ -1160,5 +1160,165 @@
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
         </LinearLayout>
+
+        <com.example.components.CustomMyEventCard
+            android:id="@+id/cvMyEventCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
+            app:badgeText="Terdaftar"
+            app:badgeTextColor="?attr/colorOnPrimary"
+            app:badgeVisible="true"
+            app:date="12"
+            app:day="Wed"
+            app:month="JUL"
+            app:myEventTime="18:00 - 20:00 WIB"
+            app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
+            app:myEventType="Online Event" />
+
+        <com.example.components.notification.CustomNotificationCard
+            android:id="@+id/cvNotificationCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:notificationButtonText="Terima Undangan"
+            app:notificationButtonVisible="true"
+            app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
+            app:notificationEventType="General Event"
+            app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
+
+        <com.example.components.notification.CustomNotificationCard
+            android:id="@+id/cvNotificationCard2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:notificationButtonText="Terima Undangan"
+            app:notificationButtonVisible="false"
+            app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."
+            app:notificationEventType="People Development"
+            app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
+
+        <HorizontalScrollView
+            android:id="@+id/cvInfoCutiCardContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <com.example.components.CustomLeaveQuotaCard
+                    android:id="@+id/cvInfoCutiCard1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:leaveQuota="5"
+                    app:leaveQuotaTitle="Cuti Tahun Ini"
+                    app:leaveUsed="1" />
+
+                <com.example.components.CustomLeaveQuotaCard
+                    android:id="@+id/cvInfoCutiCard2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:leaveQuota="8"
+                    app:leaveQuotaTitle="Cuti Tahun Sebelumnya"
+                    app:leaveUsed="2" />
+
+                <com.example.components.CustomLeaveQuotaCard
+                    android:id="@+id/cvInfoCutiCard3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    app:expiredDate="15/10/2025"
+                    app:leaveQuota="8"
+                    app:leaveQuotaTitle="Cuti Tahun Progresif"
+                    app:leaveUsed="2" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:orientation="horizontal">
+
+            <com.example.components.CustomLeaveQuotaDescription
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:leaveQuotaDesc="5"
+                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
+
+            <com.example.components.CustomLeaveQuotaDescription
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:leaveQuotaDesc="-10"
+                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:orientation="horizontal">
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_weight="1"
+                app:monthLabel="Jan"
+                app:pickerType="selected" />
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_weight="1"
+                app:monthLabel="Feb"
+                app:pickerType="unselected" />
+
+            <com.example.components.CustomMonthlyPicker
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:monthLabel="Mar"
+                app:pickerType="disabled" />
+        </LinearLayout>
+
+        <com.example.components.CustomDropdownFilter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:dropdownDescription="23 Juli - 29 Juli 2025"
+            app:dropdownTitle="Pekan 8" />
+
+        <com.example.components.CustomEventModalityConfirmation
+            android:id="@+id/cvEventModalityConfirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:modalCloseButtonLabel="Tutup"
+            app:modalConfirmButtonLabel="Ya, Lanjutkan"
+            app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
+            app:modalTitle="Konfirmasi Undangan" />
+
+        <com.example.components.CustomEventModalityLoading
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:modalLoadingTitle="Tunggu sebentar ..." />
     </LinearLayout>
 </ScrollView>
