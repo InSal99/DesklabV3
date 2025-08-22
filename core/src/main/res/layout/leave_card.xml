@@ -6,6 +6,7 @@
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_12dp"
+    app:rippleColor="@color/colorNeutral70Opacity20"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary">
 
     <LinearLayout
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             app:dividerColor="?attr/colorStrokeSubtle"
-            android:layout_marginVertical="@dimen/margin_12dp"/>
+            android:layout_marginVertical="@dimen/margin_8dp"/>
 
         <com.edts.components.leave.card.LeaveDescription
             android:id="@+id/lDescription"

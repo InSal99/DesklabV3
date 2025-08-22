@@ -3,6 +3,7 @@ package com.edts.components.leave.card
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
@@ -40,7 +41,7 @@ class LeaveCard @JvmOverloads constructor(
             binding.lEmployeeInfo.employeeRole = value
         }
 
-    var employeeImage: Drawable?
+    var employeeImage: Int?
         get() = binding.lEmployeeInfo.employeeImage
         set(value) {
             binding.lEmployeeInfo.employeeImage = value
@@ -63,56 +64,18 @@ class LeaveCard @JvmOverloads constructor(
         initAttrs(attrs)
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                animateScaleDown()
-                return true
-            }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                animateScaleUp()
-                if (event.action == MotionEvent.ACTION_UP) {
-                    performClick()
-                }
-                return true
-            }
-        }
-        return super.onTouchEvent(event)
-    }
-
     override fun performClick(): Boolean {
         Log.d("LeaveCard", "leave card selected")
         leaveCardDelegate?.onClick(this)
         return super.performClick()
     }
 
-    private fun animateScaleDown() {
-        val scaleDownX = ObjectAnimator.ofFloat(this, "scaleX", 1.0f, 0.95f)
-        val scaleDownY = ObjectAnimator.ofFloat(this, "scaleY", 1.0f, 0.95f)
-
-        val animatorSet = AnimatorSet().apply {
-            playTogether(scaleDownX, scaleDownY)
-            duration = 150
-            interpolator = AccelerateDecelerateInterpolator()
-        }
-        animatorSet.start()
-    }
-
-    private fun animateScaleUp() {
-        val scaleUpX = ObjectAnimator.ofFloat(this, "scaleX", scaleX, 1.0f)
-        val scaleUpY = ObjectAnimator.ofFloat(this, "scaleY", scaleY, 1.0f)
-
-        val animatorSet = AnimatorSet().apply {
-            playTogether(scaleUpX, scaleUpY)
-            duration = 150
-            interpolator = AccelerateDecelerateInterpolator()
-        }
-        animatorSet.start()
-    }
-
     private fun setupClickAnimation() {
         isClickable = true
         isFocusable = true
+
+        val activeColor = resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.color000Opacity5)
+        rippleColor = ColorStateList.valueOf(activeColor)
     }
 
     private fun initAttrs(attrs: AttributeSet?) {
@@ -121,7 +84,7 @@ class LeaveCard @JvmOverloads constructor(
         try {
             employeeName = typedArray.getString(R.styleable.LeaveCard_employeeName)
             employeeRole = typedArray.getString(R.styleable.LeaveCard_employeeRole)
-            employeeImage = typedArray.getDrawable(R.styleable.LeaveCard_employeeImage)
+            employeeImage = typedArray.getResourceId(R.styleable.LeaveCard_employeeImage, R.drawable.placeholder)
 
             counterText = typedArray.getString(R.styleable.LeaveCard_counterText)
 

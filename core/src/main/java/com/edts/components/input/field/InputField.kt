@@ -219,7 +219,7 @@ class InputField @JvmOverloads constructor(
 
             post {
                 setEnabled(isFieldEnabled)
-                if (showErrorFromXml && !currentErrorText.isNullOrEmpty()) {
+                if (!currentErrorText.isNullOrEmpty()) {
                     setError(currentErrorText)
                 }
             }
@@ -358,19 +358,21 @@ class InputField @JvmOverloads constructor(
                         inlineErrorText.visibility = View.VISIBLE
                         errorTextView.visibility = View.GONE
                         counterText?.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
-                    } else {
-                        errorTextView.text = errorText
-                        errorTextView.visibility = View.VISIBLE
-                        errorTextView.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
-                    }
 
-                    textInputContainer?.background = (getCachedDrawable("rounded_error") { createErrorBackground() }
-                        ?: run {
-                            // Fallback to old TextInputLayout structure
-                            val textInputLayout = currentInputComponent as? TextInputLayout
-                            textInputLayout?.error = errorText
-                            textInputLayout?.isErrorEnabled = true
-                        }) as Drawable?
+                        textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
+                    } else {
+                        val textInputLayout = currentInputComponent as? TextInputLayout
+                        if (textInputLayout != null) {
+                            textInputLayout.error = errorText
+                            textInputLayout.isErrorEnabled = true
+                        } else {
+                            errorTextView.text = errorText
+                            errorTextView.visibility = View.VISIBLE
+                            errorTextView.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+
+                            textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
+                        }
+                    }
                 }
                 is InputFieldType.Dropdown -> {
                     val textInputLayout = currentInputComponent as? TextInputLayout

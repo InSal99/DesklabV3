@@ -27,10 +27,10 @@ class LeaveEmployeeInfo @JvmOverloads constructor(
             binding.tvRole.text = value
         }
 
-    var employeeImage: Drawable?
-        get() = binding.ivProfile.drawable
+    var employeeImage: Int?
+        get() = binding.ivProfile.slotSrc
         set(value) {
-            binding.ivProfile.setImageDrawable(value)
+            binding.ivProfile.slotSrc = value
         }
 
     var actionIcon: Drawable?
@@ -50,7 +50,8 @@ class LeaveEmployeeInfo @JvmOverloads constructor(
         try {
             employeeName = typedArray.getString(R.styleable.LeaveEmployeeInfo_employeeName)
             employeeRole = typedArray.getString(R.styleable.LeaveEmployeeInfo_employeeRole)
-            employeeImage = typedArray.getDrawable(R.styleable.LeaveEmployeeInfo_employeeImage)
+//            employeeImage = typedArray.getDrawable(R.styleable.LeaveEmployeeInfo_employeeImage)
+            employeeImage = typedArray.getResourceId(R.styleable.LeaveCard_employeeImage, R.drawable.placeholder)
         } finally {
             typedArray.recycle()
         }

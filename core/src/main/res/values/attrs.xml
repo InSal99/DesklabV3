@@ -57,6 +57,10 @@
     <attr name="colorBackgroundUtilityUlangTahunSubtle" format="color|reference"/>
     <attr name="colorBackgroundUtilityUlangTahunIntense" format="color|reference"/>
 
+    <!-- event -->
+    <attr name="colorBackgroundUtilityEventSubtle" format="color|reference"/>
+    <attr name="colorBackgroundUtilityEventIntense" format="color|reference"/>
+
     <!-- foreground color attrs-->
     <attr name="colorForegroundPrimary" format="color|reference"/>
     <attr name="colorForegroundPrimaryInverse" format="color|reference"/>
@@ -150,6 +154,10 @@
     <!-- ulang tahun -->
     <attr name="colorStrokeUtilityUlangTahunSubtle" format="color|reference" />
     <attr name="colorStrokeUtilityUlangTahunIntense" format="color|reference" />
+
+    <!-- event -->
+    <attr name="colorStrokeUtilityEventSubtle" format="color|reference" />
+    <attr name="colorStrokeUtilityEventIntense" format="color|reference" />
 
     <!-- shadow neutral color attrs -->
     <attr name="colorShadowNeutralKey" format="color|reference" />
