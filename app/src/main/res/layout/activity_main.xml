@@ -38,7 +38,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.chip.DropdownFilter
+            <com.edts.components.chip.DropdownFilter
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_6dp"
@@ -48,7 +48,7 @@
                 app:dropdownFilterIcon="@drawable/placeholder"
                 app:dropdownFilterShowBadge="true" />
 
-            <com.example.components.chip.DropdownFilter
+            <com.edts.components.chip.DropdownFilter
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_6dp"
@@ -58,7 +58,7 @@
                 app:dropdownFilterShowBadge="true"
                 app:dropdownFilterBadgeText="1"/>
 
-            <com.example.components.chip.DropdownFilter
+            <com.edts.components.chip.DropdownFilter
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:dropdownFilterLabel="Label"
@@ -81,7 +81,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.chip.Chip
+            <com.edts.components.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_6dp"
@@ -92,7 +92,7 @@
                 app:chipShowBadge="true"
                 app:chipIcon="@drawable/placeholder" />
 
-            <com.example.components.chip.Chip
+            <com.edts.components.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_6dp"
@@ -102,7 +102,7 @@
                 app:chipShowBadge="false"
                 app:chipIcon="@drawable/placeholder" />
 
-            <com.example.components.chip.Chip
+            <com.edts.components.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:chipState="inactive"
@@ -127,7 +127,7 @@
                 app:chipSpacingHorizontal="8dp"
                 app:chipSpacingVertical="8dp">
 
-                <com.example.components.chip.Chip
+                <com.edts.components.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:chipText="Option 1"
@@ -135,7 +135,7 @@
                     app:chipShowIcon="false"
                     app:chipShowBadge="false" />
 
-                <com.example.components.chip.Chip
+                <com.edts.components.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:chipText="Option 2"
@@ -144,7 +144,7 @@
                     app:chipIcon="@drawable/ic_star"
                     app:chipShowBadge="false" />
 
-                <com.example.components.chip.Chip
+                <com.edts.components.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:chipText="Option 3"
@@ -170,7 +170,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.card.detail.CardDetailInfoB
+            <com.edts.components.card.detail.CardDetailInfoB
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -179,7 +179,7 @@
                 app:cdibTitleText="Card Title"
                 app:cdibDescText="Card Content Description"/>
 
-            <com.example.components.card.detail.CardDetailInfoB
+            <com.edts.components.card.detail.CardDetailInfoB
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -192,7 +192,7 @@
                 app:cdibTitleText="Card Title"
                 app:cdibDescText="Card Content Description" />
 
-            <com.example.components.card.detail.CardDetailInfoB
+            <com.edts.components.card.detail.CardDetailInfoB
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cdibLeftSlotType="icon"
@@ -219,7 +219,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.bottom.navigation.BottomNavigationItem
+            <com.edts.components.bottom.navigation.BottomNavigationItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_6dp"
@@ -229,7 +229,7 @@
                 app:navText="Label"
                 app:navShowBadge="true"/>
 
-            <com.example.components.bottom.navigation.BottomNavigationItem
+            <com.edts.components.bottom.navigation.BottomNavigationItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -263,7 +263,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.tab.Tab
+            <com.edts.components.tab.Tab
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_6dp"
@@ -272,7 +272,7 @@
                 app:tabShowBadge="true"
                 app:tabState="inactive" />
 
-            <com.example.components.tab.Tab
+            <com.edts.components.tab.Tab
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:tabText="Label"
@@ -294,28 +294,28 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.input.search.InputSearch
+            <com.edts.components.input.search.InputSearch
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:inputSearchHint="Search Placeholder"
                 app:inputSearchState="rest" />
 
-            <com.example.components.input.search.InputSearch
+            <com.edts.components.input.search.InputSearch
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:inputSearchHint="Search Placeholder"
                 app:inputSearchState="error" />
 
-            <com.example.components.input.search.InputSearch
+            <com.edts.components.input.search.InputSearch
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:inputSearchHint="Search Placeholder"
                 app:inputSearchState="focus" />
 
-            <com.example.components.input.search.InputSearch
+            <com.edts.components.input.search.InputSearch
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:inputSearchHint="Search Placeholder"
@@ -337,7 +337,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.filter.button.FilterButton
+            <com.edts.components.filter.button.FilterButton
                 android:id="@+id/filterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -358,7 +358,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.event.card.EventCard
+            <com.edts.components.event.card.EventCard
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBadgeText="Berlangsung"
@@ -388,7 +388,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.event.card.EventCardBanner
+            <com.edts.components.event.card.EventCardBanner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -398,7 +398,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 />
 
-            <com.example.components.event.card.EventCardBadge
+            <com.edts.components.event.card.EventCardBadge
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -411,7 +411,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
                 />
 
-            <com.example.components.event.card.EventCardDescription
+            <com.edts.components.event.card.EventCardDescription
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -420,7 +420,7 @@
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <com.example.components.event.card.EventCardStatus
+            <com.edts.components.event.card.EventCardStatus
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -430,14 +430,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-            <com.example.components.card.multi.detail.CardLeftSlot
+            <com.edts.components.card.multi.detail.CardLeftSlot
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:slotType="image"
                 app:slotSrc="@drawable/avatar_placeholder"/>
 
-            <com.example.components.card.multi.detail.CardLeftSlot
+            <com.edts.components.card.multi.detail.CardLeftSlot
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -446,14 +446,14 @@
                 app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"
                 app:slotTint="?attr/colorForegroundWarningIntense" />
 
-            <com.example.components.card.multi.detail.CardMultiDetailWrapperInfo
+            <com.edts.components.card.multi.detail.CardMultiDetailWrapperInfo
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:info1Text="10:00 AM"
                 app:info2Text="Event Hall A" />
 
-            <com.example.components.badge.Badge
+            <com.edts.components.badge.Badge
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -463,7 +463,7 @@
                 app:badgeText="5"
                 app:showText="true" />
 
-            <com.example.components.badge.Badge
+            <com.edts.components.badge.Badge
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -494,7 +494,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.detail.information.DetailInformationA
+            <com.edts.components.detail.information.DetailInformationA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:infoTitle="Title"
@@ -517,7 +517,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.infobox.InfoBox
+            <com.edts.components.infobox.InfoBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -526,7 +526,7 @@
                 android:layout_marginTop="@dimen/margin_16dp"
                 android:layout_marginHorizontal="@dimen/margin_16dp"/>
 
-            <com.example.components.infobox.InfoBox
+            <com.edts.components.infobox.InfoBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -534,14 +534,14 @@
                 app:variant="error"
                 android:layout_marginHorizontal="@dimen/margin_16dp"/>
 
-            <com.example.components.infobox.InfoBox
+            <com.edts.components.infobox.InfoBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="Label"
                 app:variant="information"
                 android:layout_marginHorizontal="@dimen/margin_16dp"/>
 
-            <com.example.components.infobox.InfoBox
+            <com.edts.components.infobox.InfoBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="Label"
@@ -563,7 +563,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.footer.CustomFooter
+            <com.edts.components.footer.CustomFooter
                 android:id="@+id/footerSimple"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -571,7 +571,7 @@
                 app:footerType="CALL_TO_ACTION"
                 app:primaryButtonText="Daftar Sekarang" />
 
-            <com.example.components.footer.CustomFooter
+            <com.edts.components.footer.CustomFooter
                 android:id="@+id/footerWithDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -581,7 +581,7 @@
                 app:footerDescription="Description Here"
                 app:primaryButtonText="Daftar Sekarang"/>
 
-            <com.example.components.footer.CustomFooter
+            <com.edts.components.footer.CustomFooter
                 android:id="@+id/footerDualButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -590,7 +590,7 @@
                 app:primaryButtonText="Button Label"
                 app:secondaryButtonText="Button Label"/>
 
-            <com.example.components.footer.CustomFooter
+            <com.edts.components.footer.CustomFooter
                 android:id="@+id/footerStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -616,7 +616,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.toast.CustomToast
+            <com.edts.components.toast.CustomToast
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -624,7 +624,7 @@
                 app:toastType="success"
                 app:toastMessage="Label"/>
 
-            <com.example.components.toast.CustomToast
+            <com.edts.components.toast.CustomToast
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -632,7 +632,7 @@
                 app:toastType="error"
                 app:toastMessage="Label"/>
 
-            <com.example.components.toast.CustomToast
+            <com.edts.components.toast.CustomToast
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -640,7 +640,7 @@
                 app:toastType="info"
                 app:toastMessage="Label"/>
 
-            <com.example.components.toast.CustomToast
+            <com.edts.components.toast.CustomToast
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_16dp"
@@ -671,7 +671,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.option.card.OptionCard
+            <com.edts.components.option.card.OptionCard
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -679,7 +679,7 @@
                 app:cardIcon="@drawable/placeholder"
                 android:layout_marginHorizontal="@dimen/margin_16dp"/>
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:fieldHint="Enter your full name"
@@ -690,7 +690,7 @@
                 app:inputType="textInput"
                 app:maxLength="50" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:fieldHint="Enter your full name"
@@ -702,7 +702,7 @@
                 app:inputType="textInput"
                 app:maxLength="50" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:fieldHint="Enter your full name"
@@ -713,7 +713,7 @@
                 app:inputType="textInput"
                 app:maxLength="50" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -726,7 +726,7 @@
                 app:maxLines="5"
                 app:minLines="3" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -740,7 +740,7 @@
                 app:maxLines="5"
                 app:minLines="3" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -753,7 +753,7 @@
                 app:maxLines="5"
                 app:minLines="3" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -765,7 +765,7 @@
                 app:inputType="dropdown"
                 app:options="@array/countries" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -778,7 +778,7 @@
                 app:inputType="dropdown"
                 app:options="@array/countries" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -790,7 +790,7 @@
                 app:inputType="dropdown"
                 app:options="@array/countries" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -802,7 +802,7 @@
                 app:inputType="radioGroup"
                 app:options="@array/gender_options" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -815,7 +815,7 @@
                 app:inputType="radioGroup"
                 app:options="@array/gender_options" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -826,7 +826,7 @@
                 app:inputType="radioGroup"
                 app:options="@array/gender_options" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -836,7 +836,7 @@
                 app:inputType="checkboxGroup"
                 app:options="@array/interests" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -847,7 +847,7 @@
                 app:inputType="checkboxGroup"
                 app:options="@array/interests" />
 
-            <com.example.components.input.field.InputField
+            <com.edts.components.input.field.InputField
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -902,7 +902,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_8dp">
 
-            <com.example.components.card.multi.detail.CardMultiDetail
+            <com.edts.components.card.multi.detail.CardMultiDetail
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -915,7 +915,7 @@
                 app:cmdRightSlotSrc="@drawable/placeholder"
                 app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense" />
 
-            <com.example.components.card.multi.detail.CardMultiDetail
+            <com.edts.components.card.multi.detail.CardMultiDetail
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -924,28 +924,28 @@
                 app:cmdInfo1Text="Today"
                 app:cmdInfo2Text="2:00 PM" />
 
-            <com.example.components.leave.card.LeaveCounter
+            <com.edts.components.leave.card.LeaveCounter
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:counterText="100 Hari"
                 app:counterType="critical"/>
 
-            <com.example.components.leave.card.LeaveDescription
+            <com.edts.components.leave.card.LeaveDescription
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:counterType="critical"
                 app:counterText="100 Hari"/>
 
-            <com.example.components.leave.card.LeaveEmployeeInfo
+            <com.edts.components.leave.card.LeaveEmployeeInfo
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:employeeName="Employee Name"
                 app:employeeRole="Employee Role"
                 app:employeeImage="@drawable/avatar_placeholder"/>
 
-            <com.example.components.leave.card.LeaveCard
+            <com.edts.components.leave.card.LeaveCard
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1036,35 +1036,35 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_12dp">
 
-            <com.example.components.status.badge.StatusBadge
+            <com.edts.components.status.badge.StatusBadge
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:statusBadgeText="Status Badge"
                 app:statusBadgeType="approved"/>
 
-            <com.example.components.status.badge.StatusBadge
+            <com.edts.components.status.badge.StatusBadge
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:statusBadgeText="Status Badge"
                 app:statusBadgeType="waiting"/>
 
-            <com.example.components.status.badge.StatusBadge
+            <com.edts.components.status.badge.StatusBadge
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:statusBadgeText="Status Badge"
                 app:statusBadgeType="cancel"/>
 
-            <com.example.components.status.badge.StatusBadge
+            <com.edts.components.status.badge.StatusBadge
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:statusBadgeText="Status Badge"
                 app:statusBadgeType="decline"/>
 
-            <com.example.components.button.CustomButton
+            <com.edts.components.button.CustomButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1076,7 +1076,7 @@
                 app:iconRight="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.button.CustomButton
+            <com.edts.components.button.CustomButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1088,7 +1088,7 @@
                 app:iconLeft="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.button.CustomButton
+            <com.edts.components.button.CustomButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1100,7 +1100,7 @@
                 app:iconLeft="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.button.CustomButton
+            <com.edts.components.button.CustomButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1113,7 +1113,7 @@
                 app:iconRight="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.button.CustomButton
+            <com.edts.components.button.CustomButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1126,7 +1126,7 @@
                 app:iconLeft="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.button.CustomButton
+            <com.edts.components.button.CustomButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1139,7 +1139,7 @@
                 app:iconLeft="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.example.components.button.CustomButton
+            <com.edts.components.button.CustomButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1147,7 +1147,7 @@
                 app:customButtonSize="MD"
                 app:customButtonState="REST"/>
 
-            <com.example.components.button.CustomButton
+            <com.edts.components.button.CustomButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1161,7 +1161,7 @@
 
         </LinearLayout>
 
-        <com.example.components.CustomMyEventCard
+        <com.edts.components.CustomMyEventCard
             android:id="@+id/cvMyEventCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1176,7 +1176,7 @@
             app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
             app:myEventType="Online Event" />
 
-        <com.example.components.notification.CustomNotificationCard
+        <com.edts.components.notification.CustomNotificationCard
             android:id="@+id/cvNotificationCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1187,7 +1187,7 @@
             app:notificationEventType="General Event"
             app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
 
-        <com.example.components.notification.CustomNotificationCard
+        <com.edts.components.notification.CustomNotificationCard
             android:id="@+id/cvNotificationCard2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1214,7 +1214,7 @@
                 android:clipToPadding="false"
                 android:orientation="horizontal">
 
-                <com.example.components.CustomLeaveQuotaCard
+                <com.edts.components.CustomLeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1225,7 +1225,7 @@
                     app:leaveQuotaTitle="Cuti Tahun Ini"
                     app:leaveUsed="1" />
 
-                <com.example.components.CustomLeaveQuotaCard
+                <com.edts.components.CustomLeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1236,7 +1236,7 @@
                     app:leaveQuotaTitle="Cuti Tahun Sebelumnya"
                     app:leaveUsed="2" />
 
-                <com.example.components.CustomLeaveQuotaCard
+                <com.edts.components.CustomLeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1255,14 +1255,14 @@
             android:layout_marginTop="@dimen/margin_12dp"
             android:orientation="horizontal">
 
-            <com.example.components.CustomLeaveQuotaDescription
+            <com.edts.components.CustomLeaveQuotaDescription
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:leaveQuotaDesc="5"
                 app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
 
-            <com.example.components.CustomLeaveQuotaDescription
+            <com.edts.components.CustomLeaveQuotaDescription
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -1276,7 +1276,7 @@
             android:layout_marginTop="@dimen/margin_12dp"
             android:orientation="horizontal">
 
-            <com.example.components.CustomMonthlyPicker
+            <com.edts.components.CustomMonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/margin_8dp"
@@ -1284,7 +1284,7 @@
                 app:monthLabel="Jan"
                 app:pickerType="selected" />
 
-            <com.example.components.CustomMonthlyPicker
+            <com.edts.components.CustomMonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_8dp"
@@ -1292,7 +1292,7 @@
                 app:monthLabel="Feb"
                 app:pickerType="unselected" />
 
-            <com.example.components.CustomMonthlyPicker
+            <com.edts.components.CustomMonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -1300,14 +1300,14 @@
                 app:pickerType="disabled" />
         </LinearLayout>
 
-        <com.example.components.CustomDropdownFilter
+        <com.edts.components.CustomDropdownFilter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12dp"
             app:dropdownDescription="23 Juli - 29 Juli 2025"
             app:dropdownTitle="Pekan 8" />
 
-        <com.example.components.CustomEventModalityConfirmation
+        <com.edts.components.CustomEventModalityConfirmation
             android:id="@+id/cvEventModalityConfirmation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1316,7 +1316,7 @@
             app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
             app:modalTitle="Konfirmasi Undangan" />
 
-        <com.example.components.CustomEventModalityLoading
+        <com.edts.components.CustomEventModalityLoading
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:modalLoadingTitle="Tunggu sebentar ..." />

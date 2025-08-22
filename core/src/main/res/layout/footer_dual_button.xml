@@ -6,7 +6,7 @@
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_8dp">
 
-    <com.example.components.button.CustomButton
+    <com.edts.components.button.CustomButton
         android:id="@+id/btnFooterDualButtonSecondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnFooterDualButtonPrimary"/>
 
-    <com.example.components.button.CustomButton
+    <com.edts.components.button.CustomButton
         android:id="@+id/btnFooterDualButtonPrimary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

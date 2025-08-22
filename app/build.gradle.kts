@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.desklabv3"
+    namespace = "com.edts.desklabv3"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.desklabv3"
+        applicationId = "com.edts.desklabv3"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

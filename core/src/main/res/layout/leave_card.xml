@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:layout_margin="@dimen/margin_12dp">
 
-        <com.example.components.leave.card.LeaveEmployeeInfo
+        <com.edts.components.leave.card.LeaveEmployeeInfo
             android:id="@+id/lEmployeeInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             app:dividerColor="?attr/colorStrokeSubtle"
             android:layout_marginVertical="@dimen/margin_12dp"/>
 
-        <com.example.components.leave.card.LeaveDescription
+        <com.edts.components.leave.card.LeaveDescription
             android:id="@+id/lDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

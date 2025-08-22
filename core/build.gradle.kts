@@ -6,16 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.components"
+    namespace = "com.edts.components"
     compileSdk = 34
 
     defaultConfig {
-//        applicationId = "com.example.components"
         minSdk = 24
-//        targetSdk = 35
-//        versionCode = 1
-//        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

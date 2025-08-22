@@ -6,7 +6,7 @@
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_8dp">
 
-    <com.example.components.button.CustomButton
+    <com.edts.components.button.CustomButton
         android:id="@+id/btnFooterCTAPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

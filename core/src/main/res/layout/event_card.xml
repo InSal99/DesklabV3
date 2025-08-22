@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.components.event.card.EventCardBadge
+        <com.edts.components.event.card.EventCardBadge
             android:id="@+id/cvEventCardBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
             />
 
-        <com.example.components.event.card.EventCardBanner
+        <com.edts.components.event.card.EventCardBanner
             android:id="@+id/cvEventCardBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cvEventCardBanner"
             app:layout_constraintStart_toStartOf="parent"
             >
-            <com.example.components.event.card.EventCardDescription
+            <com.edts.components.event.card.EventCardDescription
                 android:id="@+id/cvEventCardDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <com.example.components.event.card.EventCardStatus
+            <com.edts.components.event.card.EventCardStatus
                 android:id="@+id/cvEventCardStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

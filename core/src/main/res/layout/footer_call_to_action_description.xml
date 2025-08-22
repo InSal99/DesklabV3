@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toStartOf="@id/btnFooterCTADescPrimary"
         app:layout_constraintStart_toStartOf="@id/tvFooterCTADescTitle"/>
 
-    <com.example.components.button.CustomButton
+    <com.edts.components.button.CustomButton
         android:id="@+id/btnFooterCTADescPrimary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
