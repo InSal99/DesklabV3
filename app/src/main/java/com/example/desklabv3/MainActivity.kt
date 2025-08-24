@@ -2,12 +2,13 @@ package com.example.desklabv3
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.components.radiobutton.CustomRadioGroup
 import com.example.components.radiobutton.CustomRadioGroupDelegate
 import com.example.components.toast.CustomToast
 import com.example.desklabv3.databinding.ActivityMainBinding
+import com.example.desklabv3.features.event.ui.EventInvitationActivity
+import com.example.desklabv3.features.event.ui.MyEventsActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -15,12 +16,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        dynamicRadioGroup = findViewById(R.id.rbTest)
-//        setupRadioButtons()
+        binding.cvMyEventCard.setOnClickListener {
+            val intent = Intent(this, MyEventsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.cvNotificationCard.setOnClickListener {
+            val intent = Intent(this, EventInvitationActivity::class.java)
+            startActivity(intent)
+        }
+
+        // The following lines can be uncommented if you intend to use the radio buttons.
+        // dynamicRadioGroup = findViewById(R.id.rbTest)
+        // setupRadioButtons()
     }
 
     private fun setupRadioButtons() {

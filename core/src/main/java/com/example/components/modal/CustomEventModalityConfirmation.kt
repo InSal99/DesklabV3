@@ -1,18 +1,23 @@
-package com.example.components
+package com.example.components.modal
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.FrameLayout
 import androidx.core.content.withStyledAttributes
+import com.example.components.modal.CustomEventModalityConfirmationDelegate
+import com.example.components.R
 import com.example.components.databinding.CustomEventModalityConfirmationBinding
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.MaterialColors
 
 class CustomEventModalityConfirmation @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+) : MaterialCardView(context, attrs, defStyleAttr) {
 
     private val binding: CustomEventModalityConfirmationBinding
 
@@ -50,6 +55,26 @@ class CustomEventModalityConfirmation @JvmOverloads constructor(
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         binding = CustomEventModalityConfirmationBinding.inflate(inflater, this, true)
 
+        cardElevation = resources.getDimension(R.dimen.margin_2dp)
+        radius = resources.getDimension(R.dimen.radius_16dp)
+        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
+        strokeColor = MaterialColors.getColor(
+            context,
+            R.attr.colorStrokeSubtle,
+            Color.GRAY
+        )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val shadowColor = MaterialColors.getColor(
+                context,
+                R.attr.colorForegroundPrimary,
+                Color.BLACK
+            )
+            outlineAmbientShadowColor = shadowColor
+            outlineSpotShadowColor = shadowColor
+        }
+
+
         attrs?.let {
             context.withStyledAttributes(
                 it,
@@ -67,7 +92,6 @@ class CustomEventModalityConfirmation @JvmOverloads constructor(
             }
         }
 
-        // Set up click listeners to notify the delegate
         binding.btnModalityConfirm.setOnClickListener {
             Log.d("EventModalityConfirmation", "Confirm Button Clicked ✅")
             delegate?.onConfirmClick(this)

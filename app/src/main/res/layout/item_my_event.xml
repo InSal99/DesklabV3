@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.components.CustomMyEventCard xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myEventCardItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_8dp"
+    app:badgeBackgroundColor="?attr/colorBackgroundTertiary"
+    app:badgeCustomTextColor="?attr/colorForegroundTertiary"
+    app:badgeText="Tidak Hadir"
+    app:badgeVisible="true"
+    app:date="12"
+    app:day="Wed"
+    app:layout_constraintTop_toBottomOf="@id/ivMyEventHeader"
+    app:month="JUL"
+    app:myEventTime="18:00 - 20:00 WIB"
+    app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
+    app:myEventType="Online Event" />

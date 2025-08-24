@@ -5,19 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivProfile"
+        android:id="@+id/ivEmployeeProfile"
         android:layout_width="0dp"
         android:layout_height="32dp"
         app:shapeAppearance="@drawable/bg_radius_full"
         android:clipToOutline="true"
         android:scaleType="centerCrop"
         android:src="@drawable/avatar_placeholder"
-        app:layout_constraintTop_toTopOf="@id/tvName"
+        app:layout_constraintTop_toTopOf="@id/tvEmployeeName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/tvRole"/>
+        app:layout_constraintBottom_toBottomOf="@id/tvEmployeeRole"/>
     
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvEmployeeName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Name"
@@ -25,20 +25,20 @@
         android:textColor="?attr/colorForegroundPrimary"
         android:layout_marginStart="@dimen/margin_8dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivProfile"
+        app:layout_constraintStart_toEndOf="@id/ivEmployeeProfile"
         app:layout_constraintEnd_toStartOf="@id/iv_infoAction"
-        app:layout_constraintBottom_toTopOf="@id/tvRole"/>
+        app:layout_constraintBottom_toTopOf="@id/tvEmployeeRole"/>
 
     <TextView
-        android:id="@+id/tvRole"
+        android:id="@+id/tvEmployeeRole"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Name"
         style="?attr/l3Regular"
         android:textColor="?attr/colorForegroundSecondary"
         android:layout_marginTop="@dimen/margin_6dp"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
-        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvEmployeeName"
+        app:layout_constraintStart_toStartOf="@id/tvEmployeeName"
         app:layout_constraintEnd_toStartOf="@id/iv_infoAction"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -48,8 +48,8 @@
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="@dimen/margin_8dp"
-        app:layout_constraintTop_toTopOf="@id/tvName"
+        app:layout_constraintTop_toTopOf="@id/tvEmployeeName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/tvRole" />
+        app:layout_constraintBottom_toBottomOf="@id/tvEmployeeRole" />
 
 </merge>

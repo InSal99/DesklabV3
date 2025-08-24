@@ -1166,8 +1166,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
+            app:badgeCustomTextColor="?attr/colorForegroundPrimaryInverse"
             app:badgeText="Terdaftar"
-            app:badgeTextColor="?attr/colorOnPrimary"
             app:badgeVisible="true"
             app:date="12"
             app:day="Wed"
@@ -1307,18 +1307,21 @@
             app:dropdownDescription="23 Juli - 29 Juli 2025"
             app:dropdownTitle="Pekan 8" />
 
-        <com.example.components.CustomEventModalityConfirmation
+        <com.example.components.modal.CustomEventModalityConfirmation
             android:id="@+id/cvEventModalityConfirmation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:modalCloseButtonLabel="Tutup"
             app:modalConfirmButtonLabel="Ya, Lanjutkan"
             app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
             app:modalTitle="Konfirmasi Undangan" />
 
-        <com.example.components.CustomEventModalityLoading
+        <com.example.components.modal.CustomEventModalityLoading
+            android:id="@+id/cvEventModalityLoading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:modalLoadingTitle="Tunggu sebentar ..." />
     </LinearLayout>
 </ScrollView>

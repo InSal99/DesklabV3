@@ -1,9 +1,10 @@
-package com.example.components
+package com.example.components.modal
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import com.example.components.R
 import com.google.android.material.textview.MaterialTextView
 
 /**
@@ -15,7 +16,7 @@ import com.google.android.material.textview.MaterialTextView
  *
  * ### XML Usage Example:
  * ```xml
- * <com.example.components.CustomEventModalityLoading
+ * <com.example.components.modal.CustomEventModalityLoading
  * android:layout_width="match_parent"
  * android:layout_height="wrap_content"
  * app:modalTitle="Please wait..." />

@@ -1,23 +1,27 @@
 package com.example.components.notification
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.FrameLayout
+import androidx.core.content.withStyledAttributes
 import com.example.components.R
 import com.example.components.databinding.CustomNotificationCardBinding
-import androidx.core.content.withStyledAttributes
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.MaterialColors
+import androidx.core.view.isVisible
 
 /**
  * A custom view that displays a notification with a type, title, description, and an optional button.
- * The view's properties can be set via XML attributes or programmatically.
+ * This component extends MaterialCardView for a flatter view hierarchy and better performance.
  */
 class CustomNotificationCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+) : MaterialCardView(context, attrs, defStyleAttr) {
 
     enum class EventType(val displayName: String) {
         GENERAL_EVENT("GENERAL EVENT"),
@@ -31,11 +35,10 @@ class CustomNotificationCard @JvmOverloads constructor(
         }
     }
 
-    private val binding: CustomNotificationCardBinding
+    private val binding: CustomNotificationCardBinding = CustomNotificationCardBinding.inflate(LayoutInflater.from(context), this, true)
 
     /**
      * The delegate responsible for handling click events on this component.
-     * Assign an object that implements [CustomNotificationCardDelegate] to receive callbacks.
      */
     var delegate: CustomNotificationCardDelegate? = null
 
@@ -58,7 +61,7 @@ class CustomNotificationCard @JvmOverloads constructor(
         }
 
     var isButtonVisible: Boolean
-        get() = binding.btnNotification.visibility == VISIBLE
+        get() = binding.btnNotification.isVisible
         set(value) {
             binding.btnNotification.visibility = if (value) VISIBLE else GONE
         }
@@ -70,24 +73,20 @@ class CustomNotificationCard @JvmOverloads constructor(
         }
 
     init {
-        val inflater = LayoutInflater.from(context)
-        binding = CustomNotificationCardBinding.inflate(inflater, this, true)
+        // Apply the base card appearance attributes programmatically.
+        setupCardAppearance()
 
-        // Make the entire card clickable to trigger performClick()
         isClickable = true
         isFocusable = true
 
         attrs?.let {
             context.withStyledAttributes(it, R.styleable.CustomNotificationCard, 0, 0) {
+                val eventTypeString = getString(R.styleable.CustomNotificationCard_notificationEventType)
+
                 title = getString(R.styleable.CustomNotificationCard_notificationTitle) ?: ""
-                description =
-                    getString(R.styleable.CustomNotificationCard_notificationDescription) ?: ""
-                buttonText = getString(R.styleable.CustomNotificationCard_notificationButtonText)
-                    ?: "Terima Undangan"
-                isButtonVisible =
-                    getBoolean(R.styleable.CustomNotificationCard_notificationButtonVisible, true)
-                val eventTypeString =
-                    getString(R.styleable.CustomNotificationCard_notificationEventType)
+                description = getString(R.styleable.CustomNotificationCard_notificationDescription) ?: ""
+                buttonText = getString(R.styleable.CustomNotificationCard_notificationButtonText) ?: "Terima Undangan"
+                isButtonVisible = getBoolean(R.styleable.CustomNotificationCard_notificationButtonVisible, true)
                 eventType = EventType.fromString(eventTypeString)
             }
         }
@@ -100,17 +99,45 @@ class CustomNotificationCard @JvmOverloads constructor(
     }
 
     /**
+     * Configures the visual properties of the card.
+     */
+    private fun setupCardAppearance() {
+        val strokeSubtleColor = MaterialColors.getColor(this, R.attr.colorStrokeSubtle)
+        val cornerRadius = resources.getDimension(R.dimen.radius_12dp)
+        val elevation = resources.getDimension(R.dimen.dimen_1dp)
+        val strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
+
+        // Apply the attributes to this MaterialCardView
+        radius = cornerRadius
+        cardElevation = elevation
+        this.strokeColor = strokeSubtleColor
+        this.strokeWidth = strokeWidth
+
+        // Set shadow colors safely for API 28+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val shadowColor = MaterialColors.getColor(
+                context,
+                R.attr.colorForegroundPrimary,
+                Color.BLACK
+            )
+            outlineAmbientShadowColor = shadowColor
+            outlineSpotShadowColor = shadowColor
+        }
+    }
+
+    /**
      * Performs the click action for the entire card and notifies the delegate.
      */
     override fun performClick(): Boolean {
-        Log.d("EventNotificationCard", "CardView Clicked ✅")
         super.performClick()
+        Log.d("EventNotificationCard", "CardView Clicked ✅")
         delegate?.onCardClick(this)
         return true
     }
 
     private fun updateEventTypeUI() {
         binding.tvNotificationType.text = eventType.displayName
+        // The icon logic can be expanded here if needed
         when (eventType) {
             EventType.GENERAL_EVENT, EventType.PEOPLE_DEVELOPMENT, EventType.EMPLOYEE_BENEFIT -> {
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_event)

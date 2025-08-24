@@ -21,6 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".features.event.ui.MyEventsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.event.ui.EventInvitationActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

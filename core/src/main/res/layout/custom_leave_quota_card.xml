@@ -7,21 +7,18 @@
     android:outlineAmbientShadowColor="?attr/colorForegroundPrimary"
     android:outlineSpotShadowColor="?attr/colorForegroundPrimary"
     app:cardCornerRadius="@dimen/radius_8dp"
-    app:cardElevation="@dimen/margin_2dp"
+    app:cardElevation="@dimen/dimen_1dp"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipChildren="false"
-        android:clipToOutline="false"
-        android:clipToPadding="false"
         android:padding="@dimen/margin_12dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvLeaveQuotaTitle"
-            style="@style/TextMedium.Label4"
+            style="?attr/l4Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="?attr/colorForegroundPrimary"
@@ -32,7 +29,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvLeaveQuota"
-            style="@style/TextBold.Heading2"
+            style="?attr/h2Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_8dp"
@@ -43,7 +40,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvExpiredDate"
-            style="@style/TextRegular.Label4"
+            style="?attr/l4Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_2dp"
@@ -54,7 +51,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvLeaveUsed"
-            style="@style/TextRegular.Label4"
+            style="?attr/l4Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_2dp"
@@ -64,5 +61,4 @@
             tools:text="Cuti Terpakai: 1 Hari" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.google.android.material.card.MaterialCardView>

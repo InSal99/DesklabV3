@@ -1,4 +1,4 @@
-package com.example.components
+package com.example.components.modal
 
 /**
  * Delegate interface to handle click events from the CustomEventModalityConfirmation component.
