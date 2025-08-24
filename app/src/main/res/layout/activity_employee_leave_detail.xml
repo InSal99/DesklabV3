@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundPrimaryTinted"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <ImageView
+        android:id="@+id/ivEmployeeLeaveDetailHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="Invitation Header"
+        android:src="@drawable/image_employee_leave_detail"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvEmployeeProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_24dp"
+        android:outlineAmbientShadowColor="?attr/colorForegroundPrimary"
+        android:outlineSpotShadowColor="?attr/colorForegroundPrimary"
+        app:cardCornerRadius="@dimen/margin_12dp"
+        app:cardElevation="@dimen/dimen_1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivEmployeeLeaveDetailHeader"
+        app:strokeColor="?attr/colorStrokeSubtle"
+        app:strokeWidth="@dimen/dimen_1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_12dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivEmployeeProfile"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_avatar_placeholder"
+                app:layout_constraintBottom_toBottomOf="@id/tvEmployeeRole"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvEmployeeName"
+                app:shapeAppearanceOverlay="@style/circleImageView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvEmployeeName"
+                style="?attr/l2SemiBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12dp"
+                android:textColor="?attr/colorForegroundPrimary"
+                app:layout_constraintBottom_toTopOf="@id/tvEmployeeRole"
+                app:layout_constraintStart_toEndOf="@id/ivEmployeeProfile"
+                tools:text="Raka Aditya Pratama" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvEmployeeRole"
+                style="?attr/l3Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:text="Associate Product Manager"
+                android:textColor="?attr/colorForegroundSecondary"
+                app:layout_constraintStart_toStartOf="@id/tvEmployeeName"
+                app:layout_constraintTop_toBottomOf="@id/tvEmployeeName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <HorizontalScrollView
+        android:id="@+id/cvLeaveInfoCardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_12dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/cvEmployeeProfile">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="horizontal">
+
+            <com.example.components.CustomLeaveQuotaCard
+                android:id="@+id/cvInfoCutiCard1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:expiredDate="15/10/2025"
+                app:leaveQuota="5"
+                app:leaveQuotaTitle="Cuti Tahun Ini"
+                app:leaveUsed="1" />
+
+            <Space
+                android:layout_width="@dimen/margin_8dp"
+                android:layout_height="wrap_content" />
+
+            <com.example.components.CustomLeaveQuotaCard
+                android:id="@+id/cvInfoCutiCard2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:expiredDate="15/10/2025"
+                app:leaveQuota="8"
+                app:leaveQuotaTitle="Cuti Tahun Sebelumnya"
+                app:leaveUsed="2" />
+
+            <Space
+                android:layout_width="@dimen/margin_8dp"
+                android:layout_height="wrap_content" />
+
+            <com.example.components.CustomLeaveQuotaCard
+                android:id="@+id/cvInfoCutiCard3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:expiredDate="15/10/2025"
+                app:leaveQuota="8"
+                app:leaveQuotaTitle="Cuti Tahun Progresif"
+                app:leaveUsed="2" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvLeaveHistory"
+        style="?attr/l2Medium"
+        android:textColor="?attr/colorForegroundSecondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        app:layout_constraintTop_toBottomOf="@id/cvLeaveInfoCardContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Riwayat Cuti" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

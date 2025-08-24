@@ -19,8 +19,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        dynamicRadioGroup = findViewById(R.id.rbTest)
-//        setupRadioButtons()
+        binding.cvMyEventCard.setOnClickListener {
+            val intent = Intent(this, MyEventsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.cvNotificationCard.setOnClickListener {
+            val intent = Intent(this, EventInvitationActivity::class.java)
+            startActivity(intent)
+        }
+
+        // The following lines can be uncommented if you intend to use the radio buttons.
+        // dynamicRadioGroup = findViewById(R.id.rbTest)
+        // setupRadioButtons()
     }
 
     private fun setupRadioButtons() {
