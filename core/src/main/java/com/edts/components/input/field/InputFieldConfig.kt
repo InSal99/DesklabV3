@@ -10,5 +10,6 @@ data class InputFieldConfig(
     val maxLines: Int = 4,
     val minLines: Int = 3,
     val maxLength: Int = 0,
-    val minLength: Int = 0
+    val minLength: Int = 0,
+    val supportingText: String? = null
 )

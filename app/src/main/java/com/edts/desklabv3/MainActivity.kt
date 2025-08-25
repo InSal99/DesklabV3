@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        dynamicRadioGroup = findViewById(R.id.rbTest)
-//        setupRadioButtons()
+        dynamicRadioGroup = findViewById(R.id.rbTest)
+        setupRadioButtons()
     }
 
     private fun setupRadioButtons() {
@@ -28,10 +28,11 @@ class MainActivity : AppCompatActivity() {
             item
         }
 
-        dynamicRadioGroup.setOnItemSelectedListener(object : CustomRadioGroupDelegate {
+        dynamicRadioGroup.setOnItemSelectedListener(object : CustomRadioGroup.CustomRadioGroupDelegate {
             override fun onItemSelected(position: Int, data: Any?) {
                 CustomToast.success(this@MainActivity, "Selected: $data at position $position")
             }
         })
+
     }
 }
