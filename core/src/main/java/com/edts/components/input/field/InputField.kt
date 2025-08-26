@@ -478,6 +478,15 @@ class InputField @JvmOverloads constructor(
                     errorTextView.text = errorText
                     errorTextView.visibility = View.VISIBLE
                     errorTextView.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+
+                    (currentInputComponent as? ViewGroup)?.let { container ->
+                        for (i in 0 until container.childCount) {
+                            val child = container.getChildAt(i)
+                            if (child is CustomCheckBox) {
+                                child.setErrorState(true)
+                            }
+                        }
+                    }
                 }
                 else -> {
                 }
@@ -534,7 +543,16 @@ class InputField @JvmOverloads constructor(
                 (currentInputComponent as? CustomRadioGroup)?.setErrorStateOnAll(false)
             }
             is InputFieldType.CheckboxGroup -> {
-                titleTextView.setTextColor(getCachedColor(R.attr.colorForegroundSecondary, R.color.colorNeutral60))
+                errorTextView.visibility = View.GONE
+
+                (currentInputComponent as? ViewGroup)?.let { container ->
+                    for (i in 0 until container.childCount) {
+                        val child = container.getChildAt(i)
+                        if (child is CustomCheckBox) {
+                            child.setErrorState(false)
+                        }
+                    }
+                }
             }
             else -> {
             }
@@ -1074,7 +1092,7 @@ class InputField @JvmOverloads constructor(
                     }
                 }
 
-                setOnItemSelectedListener(object : CustomRadioGroup.CustomRadioGroupDelegate {
+                setOnItemSelectedListener(object : CustomRadioGroupDelegate {
                     override fun onItemSelected(position: Int, data: Any?) {
                         notifyValueChange(data?.toString())
                         notifyValidationChange()
@@ -1090,7 +1108,7 @@ class InputField @JvmOverloads constructor(
             checkboxContainer = this
             orientation = LinearLayout.VERTICAL
 
-            config.options?.forEach { option ->
+            config.options?.forEachIndexed { index, option ->
                 val checkbox = CustomCheckBox(context).apply {
                     text = option
                     setCustomCheckBoxDelegate(object : CustomCheckboxDelegate {
@@ -1100,7 +1118,16 @@ class InputField @JvmOverloads constructor(
                         }
                     })
                 }
-                addView(checkbox)
+                val layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    if (index > 0) {
+                        topMargin = resources.getDimensionPixelSize(R.dimen.margin_8dp)
+                    }
+                }
+
+                addView(checkbox, layoutParams)
             }
         }
     }

@@ -1,10 +1,12 @@
 package com.edts.components.radiobutton
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -26,7 +28,12 @@ class CustomRadioButton @JvmOverloads constructor(
     init {
         setBackgroundResource(android.R.color.transparent)
         applyCustomStyle()
-        post { updateTextAppearance() }
+        post {
+            updateTextAppearance()
+            layoutParams = layoutParams.apply {
+                height = resources.getDimensionPixelSize(R.dimen.margin_24dp)
+            }
+        }
 
         context.withStyledAttributes(attrs, R.styleable.CustomRadioButton) {
             isErrorState = getBoolean(R.styleable.CustomRadioButton_isRadioError, false)

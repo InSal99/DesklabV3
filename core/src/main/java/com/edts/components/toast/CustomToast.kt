@@ -1,36 +1,38 @@
 package com.edts.components.toast
 
-import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.edts.components.R
+import com.google.android.material.card.MaterialCardView
 
 class CustomToast @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+) : MaterialCardView(context, attrs, defStyleAttr) {
 
     private var toastType: Type = Type.GENERAL
     private var toastMessage: String = ""
-    private val shadowPaint1 = Paint()
-    private val shadowPaint2 = Paint()
+    private val iconView: AppCompatImageView by lazy { findViewById(R.id.iv_icon) }
+    private val messageView: AppCompatTextView by lazy { findViewById(R.id.tv_message) }
 
     enum class Type(@DrawableRes val iconRes: Int, @AttrRes val colorAttr: Int) {
         SUCCESS(R.drawable.placeholder, R.attr.colorBackgroundSuccessIntense),
@@ -41,6 +43,7 @@ class CustomToast @JvmOverloads constructor(
 
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_toast_view, this, true)
+        setupToast()
 
         if (attrs != null) {
             context.theme.obtainStyledAttributes(
@@ -63,53 +66,42 @@ class CustomToast @JvmOverloads constructor(
         }
 
         applyToastStyle()
-        setupShadowPaints()
+    }
+
+    private fun setupToast() {
+        radius = resources.getDimensionPixelSize(R.dimen.radius_12dp).toFloat()
+        cardElevation = 2f * context.resources.displayMetrics.density
+        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
+        strokeColor = resolveColorAttribute(R.attr.colorStrokeInteractive, R.color.colorOpacityWhite20)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            outlineAmbientShadowColor = resolveColorAttribute(
+                R.attr.colorShadowNeutralAmbient,
+                R.color.colorGreen50
+            )
+            outlineSpotShadowColor = resolveColorAttribute(
+                R.attr.colorShadowNeutralKey,
+                R.color.colorGreen50
+            )
+        }
     }
 
     private fun applyToastStyle() {
-        val drawable = ContextCompat.getDrawable(context, R.drawable.bg_toast)?.mutate() as? GradientDrawable
-        drawable?.apply {
-            setColor(resolveColorAttr(toastType.colorAttr))
-        }
-        background = drawable
-
-        findViewById<AppCompatImageView>(R.id.iv_icon).setImageResource(toastType.iconRes)
-        findViewById<AppCompatTextView>(R.id.tv_message).text = toastMessage
+        setCardBackgroundColor(resolveColorAttribute(toastType.colorAttr, R.color.colorFFF))
+        iconView.setImageResource(toastType.iconRes)
+        messageView.text = toastMessage
     }
 
-    private fun resolveColorAttr(@AttrRes attrRes: Int): Int {
+    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
         val typedValue = TypedValue()
-        if (!context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            throw Resources.NotFoundException("Attribute $attrRes not found in theme!")
-        }
-        return typedValue.data
-    }
-
-    private fun setupShadowPaints() {
-        setLayerType(LAYER_TYPE_SOFTWARE, null)
-
-        shadowPaint1.apply {
-            setShadowLayer(
-                4f,
-                0f,
-                2f,
-                R.attr.colorShadowNeutralAmbient
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
-        }
-
-        shadowPaint2.apply {
-            setShadowLayer(
-                4f,
-                0f,
-                0f,
-                R.attr.colorShadowNeutralKey
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
+        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
+            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
+                ContextCompat.getColor(context, typedValue.resourceId)
+            } else {
+                typedValue.data
+            }
+        } else {
+            ContextCompat.getColor(context, fallbackColor)
         }
     }
 
@@ -119,150 +111,75 @@ class CustomToast @JvmOverloads constructor(
         applyToastStyle()
     }
 
-//    fun showToast() {
-//        startAnimation()
-//
-//        android.widget.Toast(context).apply {
-//            setGravity(Gravity.BOTTOM or Gravity.FILL_HORIZONTAL, 0, 100)
-//            duration = android.widget.Toast.LENGTH_LONG
-//            view = this@CustomToast
-//            show()
-//        }
-//    }
-
-//    fun startAnimation() {
-//        val slideIn = TranslateAnimation(
-//            Animation.RELATIVE_TO_SELF, 0f,
-//            Animation.RELATIVE_TO_SELF, 0f,
-//            Animation.RELATIVE_TO_SELF, 20f,
-//            Animation.RELATIVE_TO_SELF, 0f
-//        ).apply {
-//            duration = 300
-//            interpolator = DecelerateInterpolator()
-//        }
-//
-//        startAnimation(slideIn)
-//    }
-
-//    fun showToast() {
-//        post {
-//            val slideIn = TranslateAnimation(0f, 100f, height.toFloat(), 0f).apply {
-//                duration = 300
-//                interpolator = DecelerateInterpolator()
-//            }
-//
-//            val slideOut = TranslateAnimation(100f, 0f, 0f, height.toFloat()).apply {
-//                duration = 300
-//                interpolator = AccelerateInterpolator()
-//                startOffset = 2000 // Start after 2 seconds
-//            }
-//
-//            val set = AnimationSet(true).apply {
-//                addAnimation(slideIn)
-//                addAnimation(slideOut)
-//            }
-//
-//            val toast = android.widget.Toast(context).apply {
-//                setGravity(Gravity.BOTTOM or Gravity.FILL_HORIZONTAL, 0, 100)
-//                duration = android.widget.Toast.LENGTH_LONG
-//                view = this@CustomToast
-//            }
-//
-//            set.setAnimationListener(object : Animation.AnimationListener {
-//                override fun onAnimationStart(animation: Animation?) = toast.show()
-//                override fun onAnimationRepeat(animation: Animation?) {}
-//                override fun onAnimationEnd(animation: Animation?) {}
-//            })
-//
-//            startAnimation(set)
-//        }
-//    }
-
-    fun showToast() {
-        try {
-            Log.d("CustomToast", "showToast called for type: $toastType, message: $toastMessage")
-
-            // Measure the view first
-            measure(
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-            )
-
-            val viewHeight = measuredHeight.toFloat()
-            Log.d("CustomToast", "Measured height: $viewHeight")
-
-            if (viewHeight <= 0) {
-                // Fallback if measurement fails
-                Log.w("CustomToast", "Height is 0, using simple toast")
-                android.widget.Toast.makeText(context, toastMessage, android.widget.Toast.LENGTH_LONG).show()
-                return
-            }
-
-            visibility = View.VISIBLE
-            translationY = viewHeight // Start below screen
-
-//            val slideIn = TranslateAnimation(0f, 100f, height.toFloat(), 0f).apply {
-//                duration = 300
-//                interpolator = DecelerateInterpolator()
-//            }
-//
-//            val slideOut = TranslateAnimation(100f, 0f, 0f, height.toFloat()).apply {
-//                duration = 300
-//                interpolator = AccelerateInterpolator()
-//                startOffset = 2000 // Start after 2 seconds
-//            }
-//
-//            val set = AnimationSet(true).apply {
-//                addAnimation(slideIn)
-//                addAnimation(slideOut)
-//            }
-
-            val animator = ValueAnimator.ofFloat(viewHeight, 0f).apply {
-                duration = 300
-                interpolator = DecelerateInterpolator()
-                addUpdateListener {
-                    translationY = it.animatedValue as Float
-                }
-            }
-
-            val toast = android.widget.Toast(context).apply {
-                setGravity(Gravity.BOTTOM or Gravity.FILL_HORIZONTAL, 0, 100)
-                duration = android.widget.Toast.LENGTH_LONG
-                view = this@CustomToast
-            }
-
-            animator.start()
-            toast.show()
-
-        } catch (e: Exception) {
-            Log.e("CustomToast", "Error showing toast", e)
-            android.widget.Toast.makeText(context, toastMessage, android.widget.Toast.LENGTH_LONG).show()
+    fun showIn(parent: ViewGroup) {
+        (parent.findViewWithTag<View>("custom_snackbar") as? CustomToast)?.let {
+            parent.removeView(it)
         }
+
+        tag = "custom_snackbar"
+        parent.addView(
+            this,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.BOTTOM
+                bottomMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+                leftMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+                rightMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+            }
+        )
+
+        measure(
+            View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.AT_MOST),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        val viewHeight = measuredHeight
+        translationY = viewHeight.toFloat()
+
+        animate()
+            .translationY(0f)
+            .setDuration(300)
+            .setInterpolator(DecelerateInterpolator())
+            .withEndAction {
+                postDelayed({
+                    animate()
+                        .translationY(viewHeight.toFloat())
+                        .setDuration(300)
+                        .setInterpolator(AccelerateInterpolator())
+                        .withEndAction { parent.removeView(this) }
+                }, 2500)
+            }
+            .start()
     }
+
 
     companion object {
         fun success(context: Context, message: String) {
-            val toast = CustomToast(context)
-            toast.setToast(Type.SUCCESS, message)
-            toast.showToast()
+            show(context, Type.SUCCESS, message)
         }
 
         fun error(context: Context, message: String) {
-            val toast = CustomToast(context)
-            toast.setToast(Type.ERROR, message)
-            toast.showToast()
+            show(context, Type.ERROR, message)
         }
 
         fun info(context: Context, message: String) {
-            val toast = CustomToast(context)
-            toast.setToast(Type.INFO, message)
-            toast.showToast()
+            show(context, Type.INFO, message)
         }
 
         fun general(context: Context, message: String) {
+            show(context, Type.GENERAL, message)
+        }
+
+        private fun show(context: Context, type: Type, message: String) {
             val toast = CustomToast(context)
-            toast.setToast(Type.GENERAL, message)
-            toast.showToast()
+            toast.setToast(type, message)
+
+            val parent = (context as? Activity)
+                ?.findViewById<ViewGroup>(android.R.id.content)
+                ?: return
+
+            toast.showIn(parent)
         }
     }
 }

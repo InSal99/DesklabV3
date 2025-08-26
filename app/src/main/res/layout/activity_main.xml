@@ -882,6 +882,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+            <com.edts.components.checkbox.CustomCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Some text"
+                android:checked="true"
+                app:isCheckboxError="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Checkbox Group Test"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/checkboxContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"/>
+
+            <Button
+                android:id="@+id/toggleCheckboxErrorButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show Error on All Checkboxes"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/errorOnSecondCheckboxButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show Error on Option 2 Only"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/clearCheckboxErrorsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear All Checkbox Errors"
+                android:layout_marginBottom="16dp"/>
+
         </LinearLayout>
 
         <!--        <TextView-->
