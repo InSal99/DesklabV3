@@ -29,6 +29,10 @@
         <activity
             android:name=".features.event.ui.EventInvitationActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".features.event.ui.EmployeeLeaveDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

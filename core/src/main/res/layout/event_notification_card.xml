@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/margin_12dp">
 
-    <com.example.components.notification.CustomNotificationIcon
+    <com.example.components.notification.EventNotificationIcon
         android:id="@+id/notificationIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

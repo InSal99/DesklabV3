@@ -32,7 +32,7 @@ class MyEventsActivity : AppCompatActivity() {
 
         // Setup the RecyclerView
         binding.rvMyEvent.apply {
-            layoutManager = LinearLayoutManager(this@MyEventsActivity)
+            layoutManager = LinearLayoutManager(this@MyEventsActivity, LinearLayoutManager.VERTICAL, false)
             adapter = eventAdapter
         }
     }

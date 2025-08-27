@@ -1161,7 +1161,7 @@
 
         </LinearLayout>
 
-        <com.example.components.CustomMyEventCard
+        <com.example.components.myevent.card.MyEventCard
             android:id="@+id/cvMyEventCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1176,7 +1176,7 @@
             app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
             app:myEventType="Online Event" />
 
-        <com.example.components.notification.CustomNotificationCard
+        <com.example.components.notification.EventNotificationCard
             android:id="@+id/cvNotificationCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1187,7 +1187,7 @@
             app:notificationEventType="General Event"
             app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
 
-        <com.example.components.notification.CustomNotificationCard
+        <com.example.components.notification.EventNotificationCard
             android:id="@+id/cvNotificationCard2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1214,7 +1214,7 @@
                 android:clipToPadding="false"
                 android:orientation="horizontal">
 
-                <com.example.components.CustomLeaveQuotaCard
+                <com.example.components.leave.card.LeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1225,7 +1225,7 @@
                     app:leaveQuotaTitle="Cuti Tahun Ini"
                     app:leaveUsed="1" />
 
-                <com.example.components.CustomLeaveQuotaCard
+                <com.example.components.leave.card.LeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1236,7 +1236,7 @@
                     app:leaveQuotaTitle="Cuti Tahun Sebelumnya"
                     app:leaveUsed="2" />
 
-                <com.example.components.CustomLeaveQuotaCard
+                <com.example.components.leave.card.LeaveQuotaCard
                     android:id="@+id/cvInfoCutiCard3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1255,14 +1255,14 @@
             android:layout_marginTop="@dimen/margin_12dp"
             android:orientation="horizontal">
 
-            <com.example.components.CustomLeaveQuotaDescription
+            <com.example.components.leave.card.LeaveQuotaDescription
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:leaveQuotaDesc="5"
                 app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
 
-            <com.example.components.CustomLeaveQuotaDescription
+            <com.example.components.leave.card.LeaveQuotaDescription
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -1300,14 +1300,14 @@
                 app:pickerType="disabled" />
         </LinearLayout>
 
-        <com.example.components.CustomDropdownFilter
+        <com.example.components.dropdown.filter.DropdownFilterHorizontal
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12dp"
             app:dropdownDescription="23 Juli - 29 Juli 2025"
             app:dropdownTitle="Pekan 8" />
 
-        <com.example.components.modal.CustomEventModalityConfirmation
+        <com.example.components.modal.EventModalityConfirmation
             android:id="@+id/cvEventModalityConfirmation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1317,7 +1317,7 @@
             app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
             app:modalTitle="Konfirmasi Undangan" />
 
-        <com.example.components.modal.CustomEventModalityLoading
+        <com.example.components.modal.EventModalityLoading
             android:id="@+id/cvEventModalityLoading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

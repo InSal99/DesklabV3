@@ -7,25 +7,24 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
-import com.example.components.modal.CustomEventModalityConfirmationDelegate
 import com.example.components.R
-import com.example.components.databinding.CustomEventModalityConfirmationBinding
+import com.example.components.databinding.EventModalityConfirmationBinding
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 
-class CustomEventModalityConfirmation @JvmOverloads constructor(
+class EventModalityConfirmation @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val binding: CustomEventModalityConfirmationBinding
+    private val binding: EventModalityConfirmationBinding
 
     /**
      * The delegate responsible for handling click events on this component.
-     * Assign an object that implements [CustomEventModalityConfirmationDelegate] to receive callbacks.
+     * Assign an object that implements [EventModalityConfirmationDelegate] to receive callbacks.
      */
-    var delegate: CustomEventModalityConfirmationDelegate? = null
+    var delegate: EventModalityConfirmationDelegate? = null
 
     var modalTitle: String? = null
         set(value) {
@@ -53,7 +52,7 @@ class CustomEventModalityConfirmation @JvmOverloads constructor(
 
     init {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        binding = CustomEventModalityConfirmationBinding.inflate(inflater, this, true)
+        binding = EventModalityConfirmationBinding.inflate(inflater, this, true)
 
         cardElevation = resources.getDimension(R.dimen.margin_2dp)
         radius = resources.getDimension(R.dimen.radius_16dp)
@@ -78,17 +77,17 @@ class CustomEventModalityConfirmation @JvmOverloads constructor(
         attrs?.let {
             context.withStyledAttributes(
                 it,
-                R.styleable.CustomEventModalityConfirmation,
+                R.styleable.EventModalityConfirmation,
                 0,
                 0
             ) {
-                modalTitle = getString(R.styleable.CustomEventModalityConfirmation_modalTitle)
+                modalTitle = getString(R.styleable.EventModalityConfirmation_modalTitle)
                 modalDescription =
-                    getString(R.styleable.CustomEventModalityConfirmation_modalDescription)
+                    getString(R.styleable.EventModalityConfirmation_modalDescription)
                 modalCloseButtonText =
-                    getString(R.styleable.CustomEventModalityConfirmation_modalCloseButtonLabel)
+                    getString(R.styleable.EventModalityConfirmation_modalCloseButtonLabel)
                 modalConfirmButtonText =
-                    getString(R.styleable.CustomEventModalityConfirmation_modalConfirmButtonLabel)
+                    getString(R.styleable.EventModalityConfirmation_modalConfirmButtonLabel)
             }
         }
 

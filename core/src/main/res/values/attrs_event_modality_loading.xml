@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CustomEventModalityLoading">
+    <declare-styleable name="EventModalityLoading">
         <attr name="modalLoadingTitle" format="string" />
     </declare-styleable>
 </resources>

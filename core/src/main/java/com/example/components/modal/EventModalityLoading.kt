@@ -26,7 +26,7 @@ import com.google.android.material.textview.MaterialTextView
  * @param attrs The attributes of the XML tag that is inflating the view.
  * @param defStyleAttr An attribute in the current theme that contains a reference to a style resource.
  */
-class CustomEventModalityLoading @JvmOverloads constructor(
+class EventModalityLoading @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -37,7 +37,7 @@ class CustomEventModalityLoading @JvmOverloads constructor(
     init {
         val inflater = LayoutInflater.from(context)
         // Inflate the layout and attach it to this FrameLayout's root.
-        val view = inflater.inflate(R.layout.custom_event_modality_loading, this, true)
+        val view = inflater.inflate(R.layout.event_modality_loading, this, true)
 
         // Assign the TextView from the inflated layout.
         tvModalTitle = view.findViewById(R.id.tvModalTitle)
@@ -46,12 +46,12 @@ class CustomEventModalityLoading @JvmOverloads constructor(
         attrs?.let {
             val typedArray = context.obtainStyledAttributes(
                 it,
-                R.styleable.CustomEventModalityLoading,
+                R.styleable.EventModalityLoading,
                 0,
                 0
             )
             try {
-                val title = typedArray.getString(R.styleable.CustomEventModalityLoading_modalLoadingTitle)
+                val title = typedArray.getString(R.styleable.EventModalityLoading_modalLoadingTitle)
                 // Set the title from the attribute, or use the default text from the layout if not provided.
                 title?.let { t -> setTitle(t) }
             } finally {

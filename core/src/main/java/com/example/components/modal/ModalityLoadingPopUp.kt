@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
-import com.example.components.databinding.CustomEventModalityLoadingBinding
+import com.example.components.databinding.EventModalityLoadingBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
@@ -43,7 +43,7 @@ object ModalityLoadingPopUp {
     ): AlertDialog? {
         return try {
 
-            val binding = CustomEventModalityLoadingBinding.inflate(LayoutInflater.from(context))
+            val binding = EventModalityLoadingBinding.inflate(LayoutInflater.from(context))
             binding.tvModalTitle.text = title
 
             val builder = MaterialAlertDialogBuilder(context)

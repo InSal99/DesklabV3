@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import com.example.components.R
-import com.example.components.databinding.CustomNotificationCardBinding
+import com.example.components.databinding.EventNotificationCardBinding
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 import androidx.core.view.isVisible
@@ -17,7 +17,7 @@ import androidx.core.view.isVisible
  * A custom view that displays a notification with a type, title, description, and an optional button.
  * This component extends MaterialCardView for a flatter view hierarchy and better performance.
  */
-class CustomNotificationCard @JvmOverloads constructor(
+class EventNotificationCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -35,12 +35,12 @@ class CustomNotificationCard @JvmOverloads constructor(
         }
     }
 
-    private val binding: CustomNotificationCardBinding = CustomNotificationCardBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding: EventNotificationCardBinding = EventNotificationCardBinding.inflate(LayoutInflater.from(context), this, true)
 
     /**
      * The delegate responsible for handling click events on this component.
      */
-    var delegate: CustomNotificationCardDelegate? = null
+    var delegate: EventNotificationCardDelegate? = null
 
     var title: String
         get() = binding.tvNotificationTitle.text.toString()
@@ -80,13 +80,13 @@ class CustomNotificationCard @JvmOverloads constructor(
         isFocusable = true
 
         attrs?.let {
-            context.withStyledAttributes(it, R.styleable.CustomNotificationCard, 0, 0) {
-                val eventTypeString = getString(R.styleable.CustomNotificationCard_notificationEventType)
+            context.withStyledAttributes(it, R.styleable.EventNotificationCard, 0, 0) {
+                val eventTypeString = getString(R.styleable.EventNotificationCard_notificationEventType)
 
-                title = getString(R.styleable.CustomNotificationCard_notificationTitle) ?: ""
-                description = getString(R.styleable.CustomNotificationCard_notificationDescription) ?: ""
-                buttonText = getString(R.styleable.CustomNotificationCard_notificationButtonText) ?: "Terima Undangan"
-                isButtonVisible = getBoolean(R.styleable.CustomNotificationCard_notificationButtonVisible, true)
+                title = getString(R.styleable.EventNotificationCard_notificationTitle) ?: ""
+                description = getString(R.styleable.EventNotificationCard_notificationDescription) ?: ""
+                buttonText = getString(R.styleable.EventNotificationCard_notificationButtonText) ?: "Terima Undangan"
+                isButtonVisible = getBoolean(R.styleable.EventNotificationCard_notificationButtonVisible, true)
                 eventType = EventType.fromString(eventTypeString)
             }
         }

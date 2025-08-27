@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.components.modal.ModalityLoadingPopUp
 import com.example.components.modal.ModalityConfirmationPopUp
-import com.example.components.notification.CustomNotificationCard
+import com.example.components.notification.EventNotificationCard
 import com.example.desklabv3.databinding.ActivityEventInvitationListBinding
 import com.example.desklabv3.features.event.model.EventInvitation
 
@@ -40,7 +40,7 @@ class EventInvitationActivity : AppCompatActivity() {
         )
 
         binding.rvEventInvitation.apply {
-            layoutManager = LinearLayoutManager(this@EventInvitationActivity)
+            layoutManager = LinearLayoutManager(this@EventInvitationActivity, LinearLayoutManager.VERTICAL, false)
             adapter = notificationAdapter
         }
     }
@@ -51,31 +51,31 @@ class EventInvitationActivity : AppCompatActivity() {
                 id = 1,
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = CustomNotificationCard.EventType.GENERAL_EVENT
+                eventType = EventNotificationCard.EventType.GENERAL_EVENT
             ),
             EventInvitation(
                 id = 2,
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = CustomNotificationCard.EventType.PEOPLE_DEVELOPMENT
+                eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
             ),
             EventInvitation(
                 id = 3,
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = CustomNotificationCard.EventType.PEOPLE_DEVELOPMENT
+                eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
             ),
             EventInvitation(
                 id = 4,
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = CustomNotificationCard.EventType.PEOPLE_DEVELOPMENT
+                eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
             ),
             EventInvitation(
                 id = 5,
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = CustomNotificationCard.EventType.EMPLOYEE_BENEFIT
+                eventType = EventNotificationCard.EventType.EMPLOYEE_BENEFIT
             )
         )
     }

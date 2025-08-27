@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CustomNotificationCard">
+    <declare-styleable name="EventNotificationCard">
         <attr name="notificationTitle" format="string" />
         <attr name="notificationDescription" format="string" />
         <attr name="notificationButtonVisible" format="boolean" />

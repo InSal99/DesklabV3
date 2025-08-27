@@ -5,36 +5,33 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.example.components.R
-import com.example.components.databinding.CustomNotificationIconBinding
+import com.example.components.databinding.EventNotificationIconBinding
+import androidx.core.content.withStyledAttributes
 
 /**
  * A custom view that displays a circular icon within a card.
  * This is used by the CustomNotificationCard.
  */
-class CustomNotificationIcon @JvmOverloads constructor(
+class EventNotificationIcon @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: CustomNotificationIconBinding
+    private val binding: EventNotificationIconBinding
 
     init {
-        // Inflate the layout for this component
         val inflater = LayoutInflater.from(context)
-        binding = CustomNotificationIconBinding.inflate(inflater, this, true)
+        binding = EventNotificationIconBinding.inflate(inflater, this, true)
 
-        // Apply custom attributes from XML, if any
         attrs?.let {
-            val typedArray = context.obtainStyledAttributes(it, R.styleable.CustomNotificationIcon, 0, 0)
+            context.withStyledAttributes(it, R.styleable.EventNotificationIcon, 0, 0) {
+                val iconResId = getResourceId(R.styleable.EventNotificationIcon_notificationIcon, 0)
+                if (iconResId != 0) {
+                    setIcon(iconResId)
+                }
 
-            // Get the icon resource from the custom attribute 'notificationIcon'
-            val iconResId = typedArray.getResourceId(R.styleable.CustomNotificationIcon_notificationIcon, 0)
-            if (iconResId != 0) {
-                setIcon(iconResId)
             }
-
-            typedArray.recycle()
         }
     }
 

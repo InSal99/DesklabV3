@@ -1,4 +1,4 @@
-package com.example.components
+package com.example.components.myevent.card
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -8,7 +8,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.view.isVisible
-import com.example.components.databinding.CustomMyEventCardBinding
+import com.example.components.R
+import com.example.components.databinding.MyEventCardBinding
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 
@@ -20,19 +21,19 @@ import com.google.android.material.color.MaterialColors
  * the child views and providing a clean API for interacting with the component.
  *
  */
-class CustomMyEventCard @JvmOverloads constructor(
+class MyEventCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val binding: CustomMyEventCardBinding = CustomMyEventCardBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding: MyEventCardBinding = MyEventCardBinding.inflate(LayoutInflater.from(context), this, true)
 
     /**
      * The delegate responsible for handling click events on this card.
-     * Assign an object that implements [CustomMyEventCardDelegate] to receive callbacks.
+     * Assign an object that implements [MyEventCardDelegate] to receive callbacks.
      */
-    var customMyEventCardDelegate: CustomMyEventCardDelegate? = null
+    var myEventCardDelegate: MyEventCardDelegate? = null
 
     /** The type or category of the event (e.g., "Online Event"). */
     var eventType: String? = null
@@ -64,29 +65,29 @@ class CustomMyEventCard @JvmOverloads constructor(
         isFocusable = true
 
         attrs?.let {
-            val typedArray = context.obtainStyledAttributes(it, R.styleable.CustomMyEventCard, 0, 0)
+            val typedArray = context.obtainStyledAttributes(it, R.styleable.MyEventCard, 0, 0)
             try {
                 // Set properties for CustomMyEventCard itself.
-                eventType = typedArray.getString(R.styleable.CustomMyEventCard_myEventType)
-                eventTitle = typedArray.getString(R.styleable.CustomMyEventCard_myEventTitle)
-                eventTime = typedArray.getString(R.styleable.CustomMyEventCard_myEventTime)
+                eventType = typedArray.getString(R.styleable.MyEventCard_myEventType)
+                eventTitle = typedArray.getString(R.styleable.MyEventCard_myEventTitle)
+                eventTime = typedArray.getString(R.styleable.MyEventCard_myEventTime)
 
                 // Pass calendar attributes directly to the child CustomCalendarCard.
-                binding.customCalendarCard.month = typedArray.getString(R.styleable.CustomMyEventCard_month)
-                binding.customCalendarCard.date = typedArray.getString(R.styleable.CustomMyEventCard_date)
-                binding.customCalendarCard.day = typedArray.getString(R.styleable.CustomMyEventCard_day)
+                binding.customCalendarCard.month = typedArray.getString(R.styleable.MyEventCard_month)
+                binding.customCalendarCard.date = typedArray.getString(R.styleable.MyEventCard_date)
+                binding.customCalendarCard.day = typedArray.getString(R.styleable.MyEventCard_day)
 
                 // Pass badge attributes to the child MaterialChip.
-                val badgeText = typedArray.getString(R.styleable.CustomMyEventCard_badgeText)
+                val badgeText = typedArray.getString(R.styleable.MyEventCard_badgeText)
                 val badgeBgColor = typedArray.getColor(
-                    R.styleable.CustomMyEventCard_badgeBackgroundColor,
+                    R.styleable.MyEventCard_badgeBackgroundColor,
                     -1
                 )
                 val badgeTextColor = typedArray.getColor(
-                    R.styleable.CustomMyEventCard_badgeCustomTextColor,
+                    R.styleable.MyEventCard_badgeCustomTextColor,
                     Color.WHITE
                 )
-                val badgeVisible = typedArray.getBoolean(R.styleable.CustomMyEventCard_badgeVisible, true)
+                val badgeVisible = typedArray.getBoolean(R.styleable.MyEventCard_badgeVisible, true)
 
                 setBadgeData(badgeText, badgeBgColor, badgeTextColor, badgeVisible)
 
@@ -129,7 +130,7 @@ class CustomMyEventCard @JvmOverloads constructor(
     override fun performClick(): Boolean {
         super.performClick()
         Log.d("CustomMyEventCard", "MyEventCard Clicked ✅")
-        customMyEventCardDelegate?.onClick(this)
+        myEventCardDelegate?.onClick(this)
         return true
     }
 

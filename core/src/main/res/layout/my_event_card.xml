@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  This is the CONTENT layout for CustomMyEventCard.
-  The root view of the custom component is a MaterialCardView, which inflates this layout.
-  All card-specific attributes (like cardCornerRadius, cardElevation, etc.) are now set
-  programmatically in the CustomMyEventCard.kt class.
--->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,7 +7,7 @@
     android:padding="@dimen/margin_12dp">
 
     <!-- Custom Calendar Card -->
-    <com.example.components.CustomCalendarCard
+    <com.example.components.myevent.card.EventCalendarCard
         android:id="@+id/customCalendarCard"
         android:layout_width="56dp"
         android:layout_height="wrap_content"

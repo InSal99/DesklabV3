@@ -3,8 +3,8 @@ package com.example.desklabv3.features.event.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.components.notification.CustomNotificationCard
-import com.example.components.notification.CustomNotificationCardDelegate
+import com.example.components.notification.EventNotificationCard
+import com.example.components.notification.EventNotificationCardDelegate
 import com.example.desklabv3.databinding.ItemEventInvitationBinding
 import com.example.desklabv3.features.event.model.EventInvitation
 
@@ -29,12 +29,12 @@ class EventInvitationAdapter(
                 isButtonVisible = item.isButtonVisible
                 eventType = item.eventType
 
-                delegate = object : CustomNotificationCardDelegate {
-                    override fun onCardClick(notificationCard: CustomNotificationCard) {
+                delegate = object : EventNotificationCardDelegate {
+                    override fun onCardClick(notificationCard: EventNotificationCard) {
                         onCardClick(item)
                     }
 
-                    override fun onButtonClick(notificationCard: CustomNotificationCard) {
+                    override fun onButtonClick(notificationCard: EventNotificationCard) {
                         onButtonClick(item)
                     }
                 }

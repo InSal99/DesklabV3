@@ -1,4 +1,4 @@
-package com.example.components
+package com.example.components.dropdown.filter
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -9,13 +9,13 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
-import com.example.components.databinding.CustomDropdownFilterSelectionBinding
+import com.example.components.R
+import com.example.components.databinding.DropdownFilterHorizontalBinding
 import com.google.android.material.card.MaterialCardView
 
 /**
@@ -25,22 +25,8 @@ import com.google.android.material.card.MaterialCardView
  * It is designed to be used as a trigger for a dropdown menu or a filtering dialog. The state
  * and content can be controlled both through XML attributes and programmatically.
  *
- * ### XML Usage Example:
- * ```xml
- * <com.example.components.CustomDropdownFilter
- * android:id="@+id/my_dropdown_filter"
- * android:layout_width="match_parent"
- * android:layout_height="wrap_content"
- * app:dropdownTitle="Category"
- * app:dropdownDescription="All" />
- * ```
- *
- * @param context The Context the view is running in.
- * @param attrs The attributes of the XML tag that is inflating the view.
- * @param defStyleAttr An attribute in the current theme that contains a reference to a style resource.
- * @see CustomDropdownFilterDelegate for handling click events.
  */
-class CustomDropdownFilter @JvmOverloads constructor(
+class DropdownFilterHorizontal @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -56,7 +42,7 @@ class CustomDropdownFilter @JvmOverloads constructor(
         ON_PRESS
     }
 
-    private val binding: CustomDropdownFilterSelectionBinding
+    private val binding: DropdownFilterHorizontalBinding
     private val cardView: MaterialCardView
     private var dropdownState: DropdownState = DropdownState.REST
     private var dropdownTitle: String = ""
@@ -67,18 +53,18 @@ class CustomDropdownFilter @JvmOverloads constructor(
 
     /**
      * The delegate responsible for handling click events on this dropdown.
-     * Assign an object that implements [CustomDropdownFilterDelegate] to receive callbacks.
+     * Assign an object that implements [DropdownFilterHorizontalDelegate] to receive callbacks.
      */
-    var customDropdownFilterDelegate: CustomDropdownFilterDelegate? = null
+    var dropdownFilterHorizontalDelegate: DropdownFilterHorizontalDelegate? = null
 
     init {
         strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
         cornerRadius = resources.getDimension(R.dimen.radius_999dp)
 
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.custom_dropdown_filter_selection, this, false)
+        val view = inflater.inflate(R.layout.dropdown_filter_horizontal, this, false)
 
-        binding = CustomDropdownFilterSelectionBinding.bind(view)
+        binding = DropdownFilterHorizontalBinding.bind(view)
         cardView = view as MaterialCardView
         cardView.background = null
 
@@ -105,9 +91,9 @@ class CustomDropdownFilter @JvmOverloads constructor(
     /** Parses custom attributes from XML. */
     private fun parseAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         attrs?.let { attributeSet ->
-            context.withStyledAttributes(attributeSet, R.styleable.CustomDropdownFilterSelection, defStyleAttr, 0) {
-                dropdownTitle = getString(R.styleable.CustomDropdownFilterSelection_dropdownTitle) ?: ""
-                dropdownDescription = getString(R.styleable.CustomDropdownFilterSelection_dropdownDescription) ?: ""
+            context.withStyledAttributes(attributeSet, R.styleable.DropdownFilterHorizontal, defStyleAttr, 0) {
+                dropdownTitle = getString(R.styleable.DropdownFilterHorizontal_dropdownTitle) ?: ""
+                dropdownDescription = getString(R.styleable.DropdownFilterHorizontal_dropdownDescription) ?: ""
             }
         }
     }
@@ -131,7 +117,7 @@ class CustomDropdownFilter @JvmOverloads constructor(
     /** Constructs the background drawable using base and modifier layers. */
     private fun createBackgroundDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
-            cornerRadius = this@CustomDropdownFilter.cornerRadius
+            cornerRadius = this@DropdownFilterHorizontal.cornerRadius
             setColor(getCachedColor(R.attr.colorForegroundPrimaryInverse))
             setStroke(strokeWidth, getCachedColor(R.attr.colorStrokeSubtle))
         }
@@ -140,7 +126,7 @@ class CustomDropdownFilter @JvmOverloads constructor(
             DropdownState.REST -> baseDrawable
             DropdownState.ON_PRESS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomDropdownFilter.cornerRadius
+                    cornerRadius = this@DropdownFilterHorizontal.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
@@ -171,7 +157,7 @@ class CustomDropdownFilter @JvmOverloads constructor(
     /** Performs the click action and notifies the delegate. */
     override fun performClick(): Boolean {
         Log.d("CustomDropdown", "Dropdown Clicked ✅")
-        customDropdownFilterDelegate?.onClick(this)
+        dropdownFilterHorizontalDelegate?.onClick(this)
         return super.performClick()
     }
 
@@ -203,7 +189,7 @@ class CustomDropdownFilter @JvmOverloads constructor(
     fun setDescription(description: String) {
         this.dropdownDescription = description
         binding.tvDescriptionLabel.text = description
-        binding.tvDotSpacer.visibility = if (description.isEmpty()) View.GONE else View.VISIBLE
+        binding.tvDotSpacer.visibility = if (description.isEmpty()) GONE else VISIBLE
     }
 
     /** Retrieves a color from the cache or resolves it from theme attributes. */

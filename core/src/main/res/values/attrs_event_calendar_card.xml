@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CustomCalendarCard">
+    <declare-styleable name="EventCalendarCard">
         <attr name="month" format="string" />
         <attr name="date" format="string" />
         <attr name="day" format="string" />

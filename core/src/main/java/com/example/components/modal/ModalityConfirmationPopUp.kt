@@ -3,7 +3,7 @@ package com.example.components.modal
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import com.example.components.databinding.CustomEventModalityConfirmationBinding
+import com.example.components.databinding.EventModalityConfirmationBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object ModalityConfirmationPopUp {
@@ -19,7 +19,7 @@ object ModalityConfirmationPopUp {
         onClose: () -> Unit
     ) {
         try {
-            val binding = CustomEventModalityConfirmationBinding.inflate(LayoutInflater.from(context))
+            val binding = EventModalityConfirmationBinding.inflate(LayoutInflater.from(context))
 
             // The builder no longer needs a theme passed to it.
             val builder = MaterialAlertDialogBuilder(context)

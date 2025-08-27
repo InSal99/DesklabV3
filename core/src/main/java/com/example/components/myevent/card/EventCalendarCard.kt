@@ -1,10 +1,11 @@
-package com.example.components
+package com.example.components.myevent.card
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.example.components.databinding.CustomCalendarCardBinding
+import com.example.components.R
+import com.example.components.databinding.EventCalendarCardBinding
 
 /**
  * A custom UI component that displays a calendar date in a card format.
@@ -13,22 +14,6 @@ import com.example.components.databinding.CustomCalendarCardBinding
  * MaterialCardView. It is designed to be easily integrated into layouts where a prominent
  * date display is needed, such as in event lists or appointment details.
  *
- * ### XML Usage Example:
- * You can declare the `CustomCalendarCard` in your layout file and set the date
- * properties using custom attributes.
- *
- * ```xml
- * <com.example.components.CustomCalendarCard
- * android:layout_width="wrap_content"
- * android:layout_height="wrap_content"
- * app:month="JUL"
- * app:date="23"
- * app:day="Wed"/>
- * ```
- *
- * ### Programmatic Usage Example:
- * You can also create and configure the card programmatically.
- *
  * ```kotlin
  * val calendarCard = CustomCalendarCard(context)
  * calendarCard.setCalendarData(month = "AUG", dayOfMonth = "17", day = "Sat")
@@ -36,18 +21,14 @@ import com.example.components.databinding.CustomCalendarCardBinding
  * parentLayout.addView(calendarCard)
  * ```
  *
- * @attr ref R.styleable.CustomCalendarCard_month The three-letter abbreviation for the month (e.g., "JUL").
- * @attr ref R.styleable.CustomCalendarCard_date The numeric day of the month (e.g., "23").
- * @attr ref R.styleable.CustomCalendarCard_day The three-letter abbreviation for the day of the week (e.g., "Wed").
- *
  */
-class CustomCalendarCard @JvmOverloads constructor(
+class EventCalendarCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: CustomCalendarCardBinding
+    private val binding: EventCalendarCardBinding
 
     /**
      * The three-letter abbreviation for the month (e.g., "JUL").
@@ -80,24 +61,19 @@ class CustomCalendarCard @JvmOverloads constructor(
         }
 
     init {
-        // Inflate the component's layout using View Binding and attach it to this view.
-        binding = CustomCalendarCardBinding.inflate(LayoutInflater.from(context), this, true)
+        binding = EventCalendarCardBinding.inflate(LayoutInflater.from(context), this, true)
 
-        // Parse custom attributes from XML, if provided.
         attrs?.let {
             val typedArray = context.obtainStyledAttributes(
                 it,
-                R.styleable.CustomCalendarCard,
+                R.styleable.EventCalendarCard,
                 0,
                 0)
             try {
-                // Set properties using values from XML.
-                // The custom setters will automatically call updateTexts().
-                month = typedArray.getString(R.styleable.CustomCalendarCard_month)
-                date = typedArray.getString(R.styleable.CustomCalendarCard_date)
-                day = typedArray.getString(R.styleable.CustomCalendarCard_day)
+                month = typedArray.getString(R.styleable.EventCalendarCard_month)
+                date = typedArray.getString(R.styleable.EventCalendarCard_date)
+                day = typedArray.getString(R.styleable.EventCalendarCard_day)
             } finally {
-                // Always recycle the TypedArray after use.
                 typedArray.recycle()
             }
         }
@@ -122,7 +98,6 @@ class CustomCalendarCard @JvmOverloads constructor(
      * @param day The three-letter abbreviation for the day of the week (e.g., "Wed").
      */
     fun setCalendarData(month: String, dayOfMonth: String, day: String) {
-        // Set the backing fields directly to avoid triggering multiple UI updates via setters.
         this.month = month
         this.date = dayOfMonth
         this.day = day
