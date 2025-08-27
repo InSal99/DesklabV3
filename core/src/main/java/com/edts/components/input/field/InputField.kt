@@ -1,28 +1,21 @@
 package com.edts.components.input.field
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.StateListDrawable
 import android.text.InputFilter
-import android.text.InputType
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.inputmethod.EditorInfo
-import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -33,21 +26,16 @@ import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.edts.components.R
-import com.edts.components.checkbox.CustomCheckBox
-import com.edts.components.checkbox.CustomCheckboxDelegate
-import com.edts.components.input.field.InputFieldType.*
+import com.edts.components.checkbox.CheckBox
+import com.edts.components.checkbox.CheckboxDelegate
 import com.edts.components.option.card.OptionCard
 import com.edts.components.option.card.OptionCardDelegate
-import com.edts.components.radiobutton.CustomRadioGroup
-import com.edts.components.radiobutton.CustomRadioGroupDelegate
+import com.edts.components.radiobutton.RadioGroup
+import com.edts.components.radiobutton.RadioGroupDelegate
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.checkbox.MaterialCheckBox
-import com.google.android.material.radiobutton.MaterialRadioButton
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class InputField @JvmOverloads constructor(
@@ -105,7 +93,7 @@ class InputField @JvmOverloads constructor(
     private var textInputEditText: EditText? = null
     private var dropdownContainer: LinearLayout? = null
     private var dropdownTextView: TextView? = null
-    private var radioGroupComponent: CustomRadioGroup? = null
+    private var radioGroupComponent: RadioGroup? = null
     private var checkboxContainer: LinearLayout? = null
 
     init {
@@ -388,7 +376,7 @@ class InputField @JvmOverloads constructor(
                 checkboxContainer?.let { container ->
                     container.isEnabled = enabled
                     for (i in 0 until container.childCount) {
-                        val checkbox = container.getChildAt(i) as? CustomCheckBox
+                        val checkbox = container.getChildAt(i) as? CheckBox
                         checkbox?.isEnabled = enabled
                     }
                 }
@@ -472,7 +460,7 @@ class InputField @JvmOverloads constructor(
                     errorTextView.text = errorText
                     errorTextView.visibility = View.VISIBLE
                     errorTextView.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
-                    (currentInputComponent as? CustomRadioGroup)?.setErrorStateOnAll(true)
+                    (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(true)
                 }
                 is InputFieldType.CheckboxGroup -> {
                     errorTextView.text = errorText
@@ -482,7 +470,7 @@ class InputField @JvmOverloads constructor(
                     (currentInputComponent as? ViewGroup)?.let { container ->
                         for (i in 0 until container.childCount) {
                             val child = container.getChildAt(i)
-                            if (child is CustomCheckBox) {
+                            if (child is CheckBox) {
                                 child.setErrorState(true)
                             }
                         }
@@ -540,7 +528,7 @@ class InputField @JvmOverloads constructor(
             }
             is InputFieldType.RadioGroup -> {
                 errorTextView.visibility = View.GONE
-                (currentInputComponent as? CustomRadioGroup)?.setErrorStateOnAll(false)
+                (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(false)
             }
             is InputFieldType.CheckboxGroup -> {
                 errorTextView.visibility = View.GONE
@@ -548,7 +536,7 @@ class InputField @JvmOverloads constructor(
                 (currentInputComponent as? ViewGroup)?.let { container ->
                     for (i in 0 until container.childCount) {
                         val child = container.getChildAt(i)
-                        if (child is CustomCheckBox) {
+                        if (child is CheckBox) {
                             child.setErrorState(false)
                         }
                     }
@@ -1073,7 +1061,7 @@ class InputField @JvmOverloads constructor(
     }
 
     private fun createRadioGroup(config: InputFieldConfig): View {
-        return CustomRadioGroup(context).apply {
+        return RadioGroup(context).apply {
             radioGroupComponent = this
             config.options?.let { options ->
                 setData(options) { option -> option }
@@ -1092,7 +1080,7 @@ class InputField @JvmOverloads constructor(
                     }
                 }
 
-                setOnItemSelectedListener(object : CustomRadioGroupDelegate {
+                setOnItemSelectedListener(object : RadioGroupDelegate {
                     override fun onItemSelected(position: Int, data: Any?) {
                         notifyValueChange(data?.toString())
                         notifyValidationChange()
@@ -1109,10 +1097,10 @@ class InputField @JvmOverloads constructor(
             orientation = LinearLayout.VERTICAL
 
             config.options?.forEachIndexed { index, option ->
-                val checkbox = CustomCheckBox(context).apply {
+                val checkbox = CheckBox(context).apply {
                     text = option
-                    setCustomCheckBoxDelegate(object : CustomCheckboxDelegate {
-                        override fun onCheckChanged(checkBox: CustomCheckBox, isChecked: Boolean) {
+                    setCustomCheckBoxDelegate(object : CheckboxDelegate {
+                        override fun onCheckChanged(checkBox: CheckBox, isChecked: Boolean) {
                             notifyValueChange(getCheckboxGroupValue(this@InputField))
                             notifyValidationChange()
                         }
@@ -1137,7 +1125,7 @@ class InputField @JvmOverloads constructor(
 
         val selectedValues = mutableListOf<String>()
         for (i in 0 until container.childCount) {
-            val checkbox = container.getChildAt(i) as? CustomCheckBox
+            val checkbox = container.getChildAt(i) as? CheckBox
             if (checkbox?.isChecked == true) {
                 selectedValues.add(checkbox.text.toString())
             }
@@ -1208,7 +1196,7 @@ class InputField @JvmOverloads constructor(
                 val selectedValues = value as? List<String> ?: emptyList()
                 checkboxContainer?.let { container ->
                     for (i in 0 until container.childCount) {
-                        val checkbox = container.getChildAt(i) as? CustomCheckBox
+                        val checkbox = container.getChildAt(i) as? CheckBox
                         checkbox?.isChecked = selectedValues.contains(checkbox?.text?.toString())
                     }
                 }

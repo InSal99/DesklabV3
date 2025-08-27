@@ -1,18 +1,16 @@
 package com.edts.components.radiobutton
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
-import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import androidx.core.content.withStyledAttributes
 
-class CustomRadioButton @JvmOverloads constructor(
+class RadioButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = androidx.appcompat.R.attr.radioButtonStyle
@@ -22,7 +20,7 @@ class CustomRadioButton @JvmOverloads constructor(
     private var disabledTextAppearance = R.style.RadioTextAppearance_Disabled
     private var disabledSelectedTextAppearance = R.style.RadioTextAppearance_DisabledSelected
     private var errorTextAppearance = R.style.RadioTextAppearance_Normal // Add error text appearance
-    private var radioChangedDelegate: CustomRadioButtonDelegate? = null
+    private var radioChangedDelegate: RadioButtonDelegate? = null
     private var isErrorState: Boolean = false
 
     init {

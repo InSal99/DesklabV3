@@ -2,8 +2,6 @@ package com.edts.components.toast
 
 import android.app.Activity
 import android.content.Context
-import android.content.res.Resources
-import android.graphics.Paint
 import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -23,7 +21,7 @@ import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.google.android.material.card.MaterialCardView
 
-class CustomToast @JvmOverloads constructor(
+class Toast @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -112,7 +110,7 @@ class CustomToast @JvmOverloads constructor(
     }
 
     fun showIn(parent: ViewGroup) {
-        (parent.findViewWithTag<View>("custom_snackbar") as? CustomToast)?.let {
+        (parent.findViewWithTag<View>("custom_snackbar") as? Toast)?.let {
             parent.removeView(it)
         }
 
@@ -172,7 +170,7 @@ class CustomToast @JvmOverloads constructor(
         }
 
         private fun show(context: Context, type: Type, message: String) {
-            val toast = CustomToast(context)
+            val toast = Toast(context)
             toast.setToast(type, message)
 
             val parent = (context as? Activity)

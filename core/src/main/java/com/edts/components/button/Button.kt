@@ -25,7 +25,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.core.content.withStyledAttributes
 
-class CustomButton @JvmOverloads constructor(
+class Button @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialButtonStyle
@@ -57,7 +57,7 @@ class CustomButton @JvmOverloads constructor(
     private val drawablePool = mutableMapOf<String, Drawable>()
     private val density: Float = context.resources.displayMetrics.density
 
-    var customButtonDelegate: CustomButtonDelegate? = null
+    var buttonDelegate: ButtonDelegate? = null
 
     init {
         strokeWidth = try {
@@ -212,7 +212,7 @@ class CustomButton @JvmOverloads constructor(
 
     private fun createDisabledDrawable(): GradientDrawable {
         return GradientDrawable().apply {
-            cornerRadius = this@CustomButton.cornerRadius
+            cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundDisabled))
             setStroke(strokeWidth, getCachedColor(R.attr.colorStrokeDisabled))
         }
@@ -227,10 +227,10 @@ class CustomButton @JvmOverloads constructor(
 
     private fun createDestructivePrimaryDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
-            cornerRadius = this@CustomButton.cornerRadius
+            cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundAttentionIntense))
             val strokeColor = getCachedColor(R.attr.colorStrokeInteractive)
-            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@CustomButton.strokeWidth
+            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
 
@@ -238,18 +238,18 @@ class CustomButton @JvmOverloads constructor(
             ButtonState.REST -> baseDrawable
             ButtonState.ON_PRESS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPressIntense))
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
             }
             ButtonState.ON_FOCUS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPressIntense))
                 }
                 val focusStrokeDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(Color.TRANSPARENT)
                     setStroke(2, getCachedColor(R.attr.colorStrokeAttentionIntense))
                 }
@@ -260,10 +260,10 @@ class CustomButton @JvmOverloads constructor(
 
     private fun createDestructiveSecondaryDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
-            cornerRadius = this@CustomButton.cornerRadius
+            cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundAttentionSubtle))
             val strokeColor = getCachedColor(R.attr.colorStrokeAttentionIntense)
-            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 4 else this@CustomButton.strokeWidth
+            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 4 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
 
@@ -271,18 +271,18 @@ class CustomButton @JvmOverloads constructor(
             ButtonState.REST -> baseDrawable
             ButtonState.ON_PRESS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
             }
             ButtonState.ON_FOCUS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
                 }
                 val focusStrokeDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(Color.TRANSPARENT)
                     setStroke(2, getCachedColor(R.attr.colorStrokeAttentionSubtle))
                 }
@@ -300,10 +300,10 @@ class CustomButton @JvmOverloads constructor(
 
     private fun createNormalPrimaryDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
-            cornerRadius = this@CustomButton.cornerRadius
+            cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundAccentPrimaryIntense))
             val strokeColor = getCachedColor(R.attr.colorStrokeInteractive)
-            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@CustomButton.strokeWidth
+            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
 
@@ -311,18 +311,18 @@ class CustomButton @JvmOverloads constructor(
             ButtonState.REST -> baseDrawable
             ButtonState.ON_PRESS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPressIntense))
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
             }
             ButtonState.ON_FOCUS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPressIntense))
                 }
                 val focusStrokeDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(Color.TRANSPARENT)
                     setStroke(2, getCachedColor(R.attr.colorStrokeFocus))
                 }
@@ -333,10 +333,10 @@ class CustomButton @JvmOverloads constructor(
 
     private fun createNormalSecondaryDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
-            cornerRadius = this@CustomButton.cornerRadius
+            cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundPrimary))
             val strokeColor = getCachedColor(R.attr.colorStrokeAccent)
-            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@CustomButton.strokeWidth
+            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
 
@@ -344,18 +344,18 @@ class CustomButton @JvmOverloads constructor(
             ButtonState.REST -> baseDrawable
             ButtonState.ON_PRESS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
             }
             ButtonState.ON_FOCUS -> {
                 val modifierDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
                 }
                 val focusStrokeDrawable = GradientDrawable().apply {
-                    cornerRadius = this@CustomButton.cornerRadius
+                    cornerRadius = this@Button.cornerRadius
                     setColor(Color.TRANSPARENT)
                     setStroke(2, getCachedColor(R.attr.colorStrokeFocus))
                 }
@@ -383,22 +383,22 @@ class CustomButton @JvmOverloads constructor(
         val horizontalPadding = buttonSize.paddingHorizontalDp.dpToPx()
 
         when {
-            leftIconDrawable != null && rightIconDrawable != null -> {
-                icon = null
-                iconPadding = 0
-
-                leftIconDrawable?.let {
-                    it.setBounds(0, 0, iconSize, iconSize)
-                    it.colorFilter = PorterDuffColorFilter(getIconColor(), PorterDuff.Mode.SRC_IN)
-                }
-                rightIconDrawable?.let {
-                    it.setBounds(0, 0, iconSize, iconSize)
-                    it.colorFilter = PorterDuffColorFilter(getIconColor(), PorterDuff.Mode.SRC_IN)
-                }
-
-                setCompoundDrawables(leftIconDrawable, null, rightIconDrawable, null)
-                compoundDrawablePadding = iconSpacing
-            }
+//            leftIconDrawable != null && rightIconDrawable != null -> {
+//                icon = null
+//                iconPadding = 0
+//
+//                leftIconDrawable?.let {
+//                    it.setBounds(0, 0, iconSize, iconSize)
+//                    it.colorFilter = PorterDuffColorFilter(getIconColor(), PorterDuff.Mode.SRC_IN)
+//                }
+//                rightIconDrawable?.let {
+//                    it.setBounds(0, 0, iconSize, iconSize)
+//                    it.colorFilter = PorterDuffColorFilter(getIconColor(), PorterDuff.Mode.SRC_IN)
+//                }
+//
+//                setCompoundDrawables(leftIconDrawable, null, rightIconDrawable, null)
+//                compoundDrawablePadding = iconSpacing
+//            }
 
             leftIconDrawable != null -> {
                 icon = leftIconDrawable
@@ -408,7 +408,6 @@ class CustomButton @JvmOverloads constructor(
                 iconTint = ColorStateList.valueOf(getIconColor())
             }
 
-            // Case 3: Only right icon is present
             rightIconDrawable != null -> {
                 icon = rightIconDrawable
                 this.iconSize = iconSize
@@ -483,11 +482,9 @@ class CustomButton @JvmOverloads constructor(
             MotionEvent.ACTION_DOWN -> {
                 setButtonState(ButtonState.ON_PRESS)
                 animateScaleDown()
-                // Return true to claim the touch event for subsequent UP/CANCEL events
                 return true
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                // Return to REST state unless the button has focus
                 if (!isFocused) {
                     setButtonState(ButtonState.REST)
                 } else {
@@ -529,7 +526,7 @@ class CustomButton @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         Log.d("CustomButton", "button clicked")
-        customButtonDelegate?.onClick(this)
+        buttonDelegate?.onClick(this)
         return super.performClick()
     }
 
@@ -571,7 +568,6 @@ class CustomButton @JvmOverloads constructor(
     fun setCornerRadius(radiusDp: Float) {
         val newRadius = radiusDp.dpToPx().toFloat()
         if (cornerRadius != newRadius) {
-            // Clear drawable cache as radius changed
             drawablePool.clear()
             applyButtonStyling()
         }

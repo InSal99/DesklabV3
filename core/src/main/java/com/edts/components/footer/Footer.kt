@@ -6,16 +6,16 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.edts.components.R
-import com.edts.components.button.CustomButton
+import com.edts.components.button.Button
 import com.edts.components.status.badge.StatusBadge
 
-class CustomFooter @JvmOverloads constructor(
+class Footer @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    var delegate: CustomFooterDelegate? = null
+    var delegate: FooterDelegate? = null
 
     private var footerType: FooterType = FooterType.CALL_TO_ACTION
     private var primaryButtonText: String = "Daftar Sekarang"
@@ -28,8 +28,8 @@ class CustomFooter @JvmOverloads constructor(
     private var primaryButtonEnabled: Boolean = true
     private var secondaryButtonEnabled: Boolean = true
 
-    private var primaryButton: CustomButton? = null
-    private var secondaryButton: CustomButton? = null
+    private var primaryButton: Button? = null
+    private var secondaryButton: Button? = null
     private var statusBadge: StatusBadge? = null
 
     enum class FooterType(val value: Int) {
@@ -93,7 +93,7 @@ class CustomFooter @JvmOverloads constructor(
     private fun bindDataToViews() {
         when (footerType) {
             FooterType.CALL_TO_ACTION -> {
-                primaryButton = findViewById<CustomButton>(R.id.btnFooterCTAPrimary)?.apply {
+                primaryButton = findViewById<Button>(R.id.btnFooterCTAPrimary)?.apply {
                     setLabel(primaryButtonText)
                     isEnabled = primaryButtonEnabled
                 }
@@ -102,18 +102,18 @@ class CustomFooter @JvmOverloads constructor(
             FooterType.CALL_TO_ACTION_DETAIL -> {
                 findViewById<TextView>(R.id.tvFooterCTADescTitle)?.text = footerTitle
                 findViewById<TextView>(R.id.tvFooterCTADescDescription)?.text = footerDescription
-                primaryButton = findViewById<CustomButton>(R.id.btnFooterCTADescPrimary)?.apply {
+                primaryButton = findViewById<Button>(R.id.btnFooterCTADescPrimary)?.apply {
                     setLabel(primaryButtonText)
                     isEnabled = primaryButtonEnabled
                 }
             }
 
             FooterType.DUAL_BUTTON -> {
-                secondaryButton = findViewById<CustomButton>(R.id.btnFooterDualButtonSecondary)?.apply {
+                secondaryButton = findViewById<Button>(R.id.btnFooterDualButtonSecondary)?.apply {
                     setLabel(secondaryButtonText)
                     isEnabled = secondaryButtonEnabled
                 }
-                primaryButton = findViewById<CustomButton>(R.id.btnFooterDualButtonPrimary)?.apply {
+                primaryButton = findViewById<Button>(R.id.btnFooterDualButtonPrimary)?.apply {
                     setLabel(primaryButtonText)
                     isEnabled = primaryButtonEnabled
                 }

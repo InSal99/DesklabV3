@@ -4,12 +4,11 @@ import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
-import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 
-class CustomCheckBox @JvmOverloads constructor(
+class CheckBox @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = androidx.appcompat.R.attr.checkboxStyle
@@ -20,7 +19,7 @@ class CustomCheckBox @JvmOverloads constructor(
     private var disabledTextAppearance = R.style.CheckBoxTextAppearance_Disabled
     private var disabledSelectedTextAppearance = R.style.CheckBoxTextAppearance_DisabledSelected
     private var errorTextAppearance = R.style.CheckBoxTextAppearance_Normal
-    private var customCheckBoxDelegate: CustomCheckboxDelegate? = null
+    private var checkBoxDelegate: CheckboxDelegate? = null
     private var isErrorState: Boolean = false
 
     init {
@@ -119,12 +118,12 @@ class CustomCheckBox @JvmOverloads constructor(
         val result = super.performClick()
         setErrorState(false)
 
-        customCheckBoxDelegate?.onCheckChanged(this, this.isChecked)
+        checkBoxDelegate?.onCheckChanged(this, this.isChecked)
         return result
     }
 
-    fun setCustomCheckBoxDelegate(delegate: CustomCheckboxDelegate?) {
-        this.customCheckBoxDelegate = delegate
+    fun setCustomCheckBoxDelegate(delegate: CheckboxDelegate?) {
+        this.checkBoxDelegate = delegate
     }
 
     fun setTextAppearances(

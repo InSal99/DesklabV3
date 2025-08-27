@@ -1,5 +1,5 @@
 package com.edts.components.radiobutton
 
-interface CustomRadioGroupDelegate {
+interface RadioGroupDelegate {
     fun onItemSelected(position: Int, data: Any?)
 }

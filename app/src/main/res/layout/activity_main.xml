@@ -566,7 +566,7 @@
 <!--            android:gravity="center"-->
 <!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-<!--            <com.edts.components.footer.CustomFooter-->
+<!--            <com.edts.components.footer.Footer-->
 <!--                android:id="@+id/footerSimple"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
@@ -574,7 +574,7 @@
 <!--                app:footerType="CALL_TO_ACTION"-->
 <!--                app:primaryButtonText="Daftar Sekarang" />-->
 
-<!--            <com.edts.components.footer.CustomFooter-->
+<!--            <com.edts.components.footer.Footer-->
 <!--                android:id="@+id/footerWithDescription"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
@@ -584,7 +584,7 @@
 <!--                app:footerDescription="Description Here"-->
 <!--                app:primaryButtonText="Daftar Sekarang"/>-->
 
-<!--            <com.edts.components.footer.CustomFooter-->
+<!--            <com.edts.components.footer.Footer-->
 <!--                android:id="@+id/footerDualButton"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
@@ -593,7 +593,7 @@
 <!--                app:primaryButtonText="Button Label"-->
 <!--                app:secondaryButtonText="Button Label"/>-->
 
-<!--            <com.edts.components.footer.CustomFooter-->
+<!--            <com.edts.components.footer.Footer-->
 <!--                android:id="@+id/footerStatus"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
@@ -619,7 +619,7 @@
 <!--            android:gravity="center"-->
 <!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-<!--            <com.edts.components.toast.CustomToast-->
+<!--            <com.edts.components.toast.Toast-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:layout_marginBottom="@dimen/margin_6dp"-->
@@ -627,7 +627,7 @@
 <!--                app:toastType="success"-->
 <!--                app:toastMessage="Label"/>-->
 
-<!--            <com.edts.components.toast.CustomToast-->
+<!--            <com.edts.components.toast.Toast-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:layout_marginBottom="@dimen/margin_6dp"-->
@@ -635,7 +635,7 @@
 <!--                app:toastType="error"-->
 <!--                app:toastMessage="Label"/>-->
 
-<!--            <com.edts.components.toast.CustomToast-->
+<!--            <com.edts.components.toast.Toast-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:layout_marginBottom="@dimen/margin_6dp"-->
@@ -643,7 +643,7 @@
 <!--                app:toastType="info"-->
 <!--                app:toastMessage="Label"/>-->
 
-<!--            <com.edts.components.toast.CustomToast-->
+<!--            <com.edts.components.toast.Toast-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:layout_marginHorizontal="@dimen/margin_16dp"-->
@@ -660,435 +660,316 @@
 <!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
 <!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Input" />
+<!--        <TextView-->
+<!--            style="?attr/h1SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:text="Input" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-            <com.edts.components.option.card.OptionCard
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cardText="Option"
-                app:cardIcon="@drawable/placeholder"/>
+<!--            <com.edts.components.option.card.OptionCard-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:cardText="Option"-->
+<!--                app:cardIcon="@drawable/placeholder"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="true"
-                app:supportingText="Some supporting text"
-                app:inputType="textInput"
-                app:maxLength="50" />
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:fieldHint="Enter your full name"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="This is description"-->
+<!--                app:fieldTitle="Name"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:supportingText="Some supporting text"-->
+<!--                app:inputType="textInput"-->
+<!--                app:maxLength="50" />-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:supportingText="Some supporting text"
-                app:inputType="textInput"
-                app:maxLength="50" />
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:fieldHint="Enter your full name"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="This is description"-->
+<!--                app:fieldTitle="Name"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:errorText="Some error"-->
+<!--                app:supportingText="Some supporting text"-->
+<!--                app:inputType="textInput"-->
+<!--                app:maxLength="50" />-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="false"
-                app:supportingText="Some supporting text"
-                app:inputType="textInput"
-                app:maxLength="50" />
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:fieldHint="Enter your full name"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="This is description"-->
+<!--                app:fieldTitle="Name"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:supportingText="Some supporting text"-->
+<!--                app:inputType="textInput"-->
+<!--                app:maxLength="50" />-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="true"
-                app:inputType="textArea"
-                app:supportingText="Some supporting text"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3" />
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Provide a brief description"-->
+<!--                app:fieldHint="Enter description here"-->
+<!--                app:fieldTitle="Description"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:inputType="textArea"-->
+<!--                app:supportingText="Some supporting text"-->
+<!--                app:maxLength="200"-->
+<!--                app:maxLines="5"-->
+<!--                app:minLines="3" />-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:inputType="textArea"
-                app:supportingText="Some supporting text"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3" />
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Provide a brief description"-->
+<!--                app:fieldHint="Enter description here"-->
+<!--                app:fieldTitle="Description"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:errorText="Some error"-->
+<!--                app:inputType="textArea"-->
+<!--                app:supportingText="Some supporting text"-->
+<!--                app:maxLength="200"-->
+<!--                app:maxLines="5"-->
+<!--                app:minLines="3" />-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="false"
-                app:inputType="textArea"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Provide a brief description"-->
+<!--                app:fieldHint="Enter description here"-->
+<!--                app:fieldTitle="Description"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:inputType="textArea"-->
+<!--                app:maxLength="200"-->
+<!--                app:maxLines="5"-->
+<!--                app:minLines="3"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="true"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldHint="Select your country"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:fieldTitle="Country"-->
+<!--                app:inputType="dropdown"-->
+<!--                app:options="@array/countries"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldHint="Select your country"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:errorText="Some error"-->
+<!--                app:fieldTitle="Country"-->
+<!--                app:inputType="dropdown"-->
+<!--                app:options="@array/countries"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="false"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldHint="Select your country"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:fieldTitle="Country"-->
+<!--                app:inputType="dropdown"-->
+<!--                app:options="@array/countries"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:fieldDescription="Some description"
-                app:fieldEnabled="true"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:fieldTitle="Gender"-->
+<!--                app:inputType="radioGroup"-->
+<!--                app:options="@array/gender_options"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:errorText="Some Error"
-                app:fieldDescription="Some description"
-                app:fieldEnabled="true"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:errorText="Some Error"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:fieldTitle="Gender"-->
+<!--                app:inputType="radioGroup"-->
+<!--                app:options="@array/gender_options"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:fieldDescription="Some description"
-                app:fieldEnabled="false"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:fieldTitle="Gender"-->
+<!--                app:inputType="radioGroup"-->
+<!--                app:options="@array/gender_options"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:fieldEnabled="true"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Select all that apply"-->
+<!--                app:fieldTitle="Interests"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:inputType="checkboxGroup"-->
+<!--                app:options="@array/interests"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:errorText="Some error"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Select all that apply"-->
+<!--                app:fieldTitle="Interests"-->
+<!--                app:errorText="Some error"-->
+<!--                app:inputType="checkboxGroup"-->
+<!--                app:options="@array/interests"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:fieldEnabled="false"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests"
-                app:supportingText="Some supporting text"/>
+<!--            <com.edts.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Select all that apply"-->
+<!--                app:fieldTitle="Interests"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:inputType="checkboxGroup"-->
+<!--                app:options="@array/interests"-->
+<!--                app:supportingText="Some supporting text"/>-->
 
-            <com.edts.components.radiobutton.CustomRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Some Text"
-                app:isRadioError="true"/>
+<!--        </LinearLayout>-->
 
-            <com.edts.components.radiobutton.CustomRadioGroup
-                android:id="@+id/rbTest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+<!--                <TextView-->
+<!--                    style="?attr/d1SemiBold"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Event Saya"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textColor="?attr/colorForegroundPrimaryInverse"-->
+<!--                    android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-            <com.edts.components.checkbox.CustomCheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Some text"
-                android:checked="true"
-                app:isCheckboxError="true"/>
+<!--                <TextView-->
+<!--                    style="?attr/d1SemiBold"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Undangan"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textColor="?attr/colorForegroundPrimaryInverse"-->
+<!--                    android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Checkbox Group Test"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp"/>
+<!--                <TextView-->
+<!--                    style="?attr/d1SemiBold"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Notification"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textColor="?attr/colorForegroundPrimaryInverse"-->
+<!--                    android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-            <LinearLayout
-                android:id="@+id/checkboxContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"/>
+<!--        <TextView-->
+<!--            style="?attr/d1SemiBold"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Cuti"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
+<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-            <Button
-                android:id="@+id/toggleCheckboxErrorButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Error on All Checkboxes"
-                android:layout_marginBottom="8dp"/>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-            <Button
-                android:id="@+id/errorOnSecondCheckboxButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Error on Option 2 Only"
-                android:layout_marginBottom="8dp"/>
+<!--            <com.edts.components.card.multi.detail.CardMultiDetail-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:cmdLeftSlotType="image"-->
+<!--                app:cmdLeftSlotSrc="@drawable/avatar_placeholder"-->
+<!--                app:cmdLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"-->
+<!--                app:cmdTitle="Annual Leave"-->
+<!--                app:cmdInfo1Text="Leave Type"-->
+<!--                app:cmdInfo2Text="3 Days"-->
+<!--                app:cmdRightSlotSrc="@drawable/placeholder"-->
+<!--                app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense" />-->
 
-            <Button
-                android:id="@+id/clearCheckboxErrorsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Clear All Checkbox Errors"
-                android:layout_marginBottom="16dp"/>
+<!--            <com.edts.components.card.multi.detail.CardMultiDetail-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"-->
+<!--                app:cmdTitle="Meeting Schedule"-->
+<!--                app:cmdInfo1Text="Today"-->
+<!--                app:cmdInfo2Text="2:00 PM" />-->
 
-        </LinearLayout>
+<!--            <com.edts.components.leave.card.LeaveCounter-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:counterText="100 Hari"-->
+<!--                app:counterType="critical"/>-->
 
-        <!--        <TextView-->
-        <!--            style="?attr/d1SemiBold"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="Event Saya"-->
-        <!--            android:gravity="center"-->
-        <!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-        <!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
+<!--            <com.edts.components.leave.card.LeaveDescription-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:counterType="critical"-->
+<!--                app:counterText="100 Hari"/>-->
 
-        <!--        <TextView-->
-        <!--            style="?attr/d1SemiBold"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="Undangan"-->
-        <!--            android:gravity="center"-->
-        <!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-        <!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
+<!--            <com.edts.components.leave.card.LeaveEmployeeInfo-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:employeeName="Employee Name"-->
+<!--                app:employeeRole="Employee Role"-->
+<!--                app:employeeImage="@drawable/avatar_placeholder"/>-->
 
-        <!--        <TextView-->
-        <!--            style="?attr/d1SemiBold"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="Notification"-->
-        <!--            android:gravity="center"-->
-        <!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
-        <!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
-
-        <TextView
-            style="?attr/d1SemiBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cuti"
-            android:gravity="center"
-            android:textColor="?attr/colorForegroundPrimaryInverse"
-            android:background="?attr/colorBackgroundInfoIntense"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
-
-            <com.edts.components.card.multi.detail.CardMultiDetail
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cmdLeftSlotType="image"
-                app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
-                app:cmdLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-                app:cmdTitle="Annual Leave"
-                app:cmdInfo1Text="Leave Type"
-                app:cmdInfo2Text="3 Days"
-                app:cmdRightSlotSrc="@drawable/placeholder"
-                app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense" />
-
-            <com.edts.components.card.multi.detail.CardMultiDetail
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"
-                app:cmdTitle="Meeting Schedule"
-                app:cmdInfo1Text="Today"
-                app:cmdInfo2Text="2:00 PM" />
-
-            <com.edts.components.leave.card.LeaveCounter
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:counterText="100 Hari"
-                app:counterType="critical"/>
-
-            <com.edts.components.leave.card.LeaveDescription
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:counterType="critical"
-                app:counterText="100 Hari"/>
-
-            <com.edts.components.leave.card.LeaveEmployeeInfo
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:employeeName="Employee Name"
-                app:employeeRole="Employee Role"
-                app:employeeImage="@drawable/avatar_placeholder"/>
-
-            <com.edts.components.leave.card.LeaveCard
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:employeeName="Employee Name"
-                app:employeeRole="Employee Role"
-                app:employeeImage="@drawable/avatar_placeholder"
-                app:counterText="1000 Tahun Lamanya"
-                app:counterType="critical"/>
-        </LinearLayout>
-
-
-        <!--        <com.example.components.radiobutton.CustomRadioGroup-->
-        <!--            android:id="@+id/rbTest"-->
-        <!--            style="@style/Widget.App.DynamicRadioGroup"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="32dp"-->
-        <!--            android:minHeight="@dimen/margin_0dp" />-->
-
-        <!--    <com.example.components.CustomRadioButton-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:checked="true"-->
-        <!--        android:enabled="true"-->
-        <!--        android:text="Text" />-->
-
-        <!--    <com.example.components.CustomRadioButton-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:checked="true"-->
-        <!--        android:enabled="false"-->
-        <!--        android:text="Text" />-->
-
-        <!--    <com.example.components.CustomRadioButton-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:checked="false"-->
-        <!--        android:enabled="true"-->
-        <!--        android:text="Text" />-->
-
-        <!--    <com.example.components.CustomRadioButton-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:checked="false"-->
-        <!--        android:enabled="false"-->
-        <!--        android:text="Text" />-->
-
-        <!--    <com.example.components.CustomCheckBox-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:checked="true"-->
-        <!--        android:enabled="true"-->
-        <!--        android:text="Text" />-->
-
-        <!--    <com.example.components.CustomCheckBox-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:checked="true"-->
-        <!--        android:enabled="false"-->
-        <!--        android:text="Text" />-->
-
-        <!--    <com.example.components.CustomCheckBox-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:checked="false"-->
-        <!--        android:enabled="true"-->
-        <!--        android:text="Text" />-->
-
-        <!--    <com.example.components.CustomCheckBox-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:checked="false"-->
-        <!--        android:enabled="false"-->
-        <!--        android:text="Text" />-->
+<!--            <com.edts.components.leave.card.LeaveCard-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"-->
+<!--                app:employeeName="Employee Name"-->
+<!--                app:employeeRole="Employee Role"-->
+<!--                app:employeeImage="@drawable/avatar_placeholder"-->
+<!--                app:counterText="1000 Tahun Lamanya"-->
+<!--                app:counterType="critical"/>-->
+<!--        </LinearLayout>-->
 
         <TextView
             style="?attr/h1SemiBold"
@@ -1104,35 +985,35 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_12dp">
 
-            <com.edts.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="approved"/>
+<!--            <com.edts.components.status.badge.StatusBadge-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:statusBadgeText="Status Badge"-->
+<!--                app:statusBadgeType="approved"/>-->
 
-            <com.edts.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="waiting"/>
+<!--            <com.edts.components.status.badge.StatusBadge-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:statusBadgeText="Status Badge"-->
+<!--                app:statusBadgeType="waiting"/>-->
 
-            <com.edts.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="cancel"/>
+<!--            <com.edts.components.status.badge.StatusBadge-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:statusBadgeText="Status Badge"-->
+<!--                app:statusBadgeType="cancel"/>-->
 
-            <com.edts.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="decline"/>
+<!--            <com.edts.components.status.badge.StatusBadge-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:statusBadgeText="Status Badge"-->
+<!--                app:statusBadgeType="decline"/>-->
 
-            <com.edts.components.button.CustomButton
+            <com.edts.components.button.Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1144,7 +1025,7 @@
                 app:iconRight="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.edts.components.button.CustomButton
+            <com.edts.components.button.Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1156,7 +1037,7 @@
                 app:iconLeft="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.edts.components.button.CustomButton
+            <com.edts.components.button.Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1168,7 +1049,7 @@
                 app:iconLeft="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.edts.components.button.CustomButton
+            <com.edts.components.button.Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1181,7 +1062,7 @@
                 app:iconRight="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.edts.components.button.CustomButton
+            <com.edts.components.button.Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1194,7 +1075,7 @@
                 app:iconLeft="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.edts.components.button.CustomButton
+            <com.edts.components.button.Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1207,7 +1088,7 @@
                 app:iconLeft="@drawable/placeholder"
                 android:layout_marginVertical="@dimen/margin_16dp"/>
 
-            <com.edts.components.button.CustomButton
+            <com.edts.components.button.Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
@@ -1215,7 +1096,53 @@
                 app:customButtonSize="MD"
                 app:customButtonState="REST"/>
 
-            <com.edts.components.button.CustomButton
+            <com.edts.components.button.Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_6dp"
+                app:customButtonState="ON_FOCUS"
+                app:customButtonSize="LG"
+                app:iconLeft="@drawable/placeholder"
+                app:isButtonDestructive="true"
+                app:label="Test"
+                android:layout_marginVertical="@dimen/margin_16dp"/>
+
+            <com.edts.components.button.Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_6dp"
+                app:customButtonState="ON_FOCUS"
+                app:customButtonSize="LG"
+                app:iconRight="@drawable/placeholder"
+                app:isButtonDestructive="true"
+                app:label="Test"
+                android:layout_marginVertical="@dimen/margin_16dp"/>
+
+            <com.edts.components.button.Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_6dp"
+                app:customButtonState="ON_FOCUS"
+                app:customButtonSize="LG"
+                app:iconRight="@drawable/placeholder"
+                app:iconLeft="@drawable/placeholder"
+                app:isButtonDestructive="true"
+                app:label="Test"
+                android:layout_marginVertical="@dimen/margin_16dp"/>
+
+            <com.edts.components.button.Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_6dp"
+                app:customButtonState="ON_FOCUS"
+                app:customButtonSize="LG"
+                app:iconRight="@drawable/placeholder"
+                app:iconLeft="@drawable/placeholder"
+                app:isButtonDestructive="true"
+                app:label="Test"
+                android:layout_marginVertical="@dimen/margin_16dp"/>
+
+            <com.edts.components.button.Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"

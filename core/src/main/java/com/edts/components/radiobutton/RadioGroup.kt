@@ -9,12 +9,12 @@ import android.widget.RadioGroup
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
 
-class CustomRadioGroup @JvmOverloads constructor(
+class RadioGroup @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : RadioGroup(context, attrs) {
 
-    private var customRadioGroupDelegate: CustomRadioGroupDelegate? = null
+    private var radioGroupDelegate: RadioGroupDelegate? = null
     private val radioButtonDataMap = mutableMapOf<Int, Any?>()
     private var normalTextAppearance = R.style.RadioTextAppearance_Normal
     private var selectedTextAppearance = R.style.RadioTextAppearance_Selected
@@ -65,7 +65,7 @@ class CustomRadioGroup @JvmOverloads constructor(
         radioButtonDataMap.clear()
 
         dataList.forEachIndexed { index, item ->
-            val radioButton = CustomRadioButton(context).apply {
+            val radioButton = RadioButton(context).apply {
                 id = View.generateViewId()
                 text = itemDisplayProvider(item)
 
@@ -95,14 +95,14 @@ class CustomRadioGroup @JvmOverloads constructor(
 
             Log.d("CustomRadioGroup", "Item selected at position: $position, with data: $data")
 
-            customRadioGroupDelegate?.onItemSelected(position, data)
+            radioGroupDelegate?.onItemSelected(position, data)
             updateAllRadioButtonsTextAppearance()
         }
     }
 
     private fun updateAllRadioButtonsTextAppearance() {
         for (i in 0 until childCount) {
-            val radioButton = getChildAt(i) as? CustomRadioButton
+            val radioButton = getChildAt(i) as? RadioButton
             radioButton?.let {
                 it.setTextAppearances(
                     normalTextAppearance,
@@ -117,14 +117,14 @@ class CustomRadioGroup @JvmOverloads constructor(
 
     fun setErrorStateOnAll(error: Boolean) {
         for (i in 0 until childCount) {
-            val radioButton = getChildAt(i) as? CustomRadioButton
+            val radioButton = getChildAt(i) as? RadioButton
             radioButton?.setErrorState(error)
         }
     }
 
     fun setErrorStateOnPosition(position: Int, error: Boolean) {
         if (position >= 0 && position < childCount) {
-            val radioButton = getChildAt(position) as? CustomRadioButton
+            val radioButton = getChildAt(position) as? RadioButton
             radioButton?.setErrorState(error)
         }
     }
@@ -132,7 +132,7 @@ class CustomRadioGroup @JvmOverloads constructor(
     fun setErrorStateOnData(data: Any, error: Boolean) {
         val entry = radioButtonDataMap.entries.find { it.value == data }
         entry?.let {
-            val radioButton = findViewById<CustomRadioButton>(it.key)
+            val radioButton = findViewById<RadioButton>(it.key)
             radioButton?.setErrorState(error)
         }
     }
@@ -141,8 +141,8 @@ class CustomRadioGroup @JvmOverloads constructor(
         setErrorStateOnAll(false)
     }
 
-    fun setOnItemSelectedListener(listener: CustomRadioGroupDelegate) {
-        this.customRadioGroupDelegate = listener
+    fun setOnItemSelectedListener(listener: RadioGroupDelegate) {
+        this.radioGroupDelegate = listener
     }
 
     fun getSelectedData(): Any? {
@@ -155,7 +155,7 @@ class CustomRadioGroup @JvmOverloads constructor(
 
     fun selectItem(position: Int) {
         if (position >= 0 && position < childCount) {
-            val radioButton = getChildAt(position) as? CustomRadioButton
+            val radioButton = getChildAt(position) as? RadioButton
             radioButton?.isChecked = true
         }
     }
