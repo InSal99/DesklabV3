@@ -1,11 +1,21 @@
 package com.edts.desklabv3
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import com.edts.components.button.Button
 import com.edts.components.checkbox.CheckBox
+import com.edts.components.checkbox.CheckboxDelegate
 import com.edts.components.radiobutton.RadioGroup
+import com.edts.components.radiobutton.RadioGroupDelegate
+import com.edts.components.toast.Toast
 import com.edts.desklabv3.databinding.ActivityMainBinding
+import com.edts.desklabv3.features.event.ui.EventDetailView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -15,9 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnGoToEventDetail.setOnClickListener {
+            navigateToEventDetail()
+            Log.d("Go To Event Detail", "Button clicked")
+        }
 
 //        dynamicRadioGroup = findViewById(R.id.rbTest)
 //        setupRadioButtons()
@@ -25,6 +40,16 @@ class MainActivity : AppCompatActivity() {
 //        checkboxContainer = findViewById(R.id.checkboxContainer)
 //        setupCheckboxes()
 //        setupCheckboxErrorTestButtons()
+//        setupToastTestButtons()
+    }
+
+    private fun navigateToEventDetail() {
+        val eventDetailView = EventDetailView()
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, eventDetailView)
+            .addToBackStack("event_detail") // Optional: Add to back stack
+            .commit()
     }
 
 //    private fun setupRadioButtons() {
@@ -34,9 +59,9 @@ class MainActivity : AppCompatActivity() {
 //            item
 //        }
 //
-//        dynamicRadioGroup.setOnItemSelectedListener(object : CustomRadioGroupDelegate {
+//        dynamicRadioGroup.setOnItemSelectedListener(object : RadioGroupDelegate {
 //            override fun onItemSelected(position: Int, data: Any?) {
-//                CustomToast.success(this@MainActivity, "Selected: $data at position $position")
+//                Toast.success(this@MainActivity, "Selected: $data at position $position")
 //            }
 //        })
 //
@@ -50,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 //        checkboxes.clear()
 //
 //        options.forEachIndexed { index, option ->
-//            val checkbox = CustomCheckBox(this).apply {
+//            val checkbox = CheckBox(this).apply {
 //                text = option
 //                id = View.generateViewId()
 //
@@ -66,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                // Set click listener for each checkbox
 //                setOnClickListener {
-//                    CustomToast.success(this@MainActivity, "${if (isChecked) "Checked" else "Unchecked"}: $option")
+//                    Toast.success(this@MainActivity, "${if (isChecked) "Checked" else "Unchecked"}: $option")
 //                    // Clear error when user interacts with any checkbox
 //                    if (isChecked) {
 //                        setErrorState(false)
@@ -74,8 +99,8 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //                // Set delegate for checkbox state changes
-//                setCustomCheckBoxDelegate(object : CustomCheckboxDelegate {
-//                    override fun onCheckChanged(checkBox: CustomCheckBox, isChecked: Boolean) {
+//                setCustomCheckBoxDelegate(object : CheckboxDelegate {
+//                    override fun onCheckChanged(checkBox: CheckBox, isChecked: Boolean) {
 //                        Log.d("CustomCheckBox", "Checkbox ${checkBox.text} changed to: $isChecked")
 //                        // Clear error when user checks any checkbox
 //                        if (isChecked) {
@@ -98,16 +123,16 @@ class MainActivity : AppCompatActivity() {
 //            val hasError = checkboxes.firstOrNull()?.isErrorState() ?: false
 //            if (hasError) {
 //                setErrorStateOnAllCheckboxes(false)
-//                Toast.makeText(this, "Errors cleared", Toast.LENGTH_SHORT).show()
+//                Toast.success(this, "Errors cleared")
 //            } else {
 //                setErrorStateOnAllCheckboxes(true)
-//                Toast.makeText(this, "Errors shown", Toast.LENGTH_SHORT).show()
+//                Toast.success(this, "Errors shown")
 //            }
 //        }
 //
 //        clearErrorButton.setOnClickListener {
 //            setErrorStateOnAllCheckboxes(false)
-//            Toast.makeText(this, "All errors cleared", Toast.LENGTH_SHORT).show()
+//            Toast.success(this, "All errors cleared")
 //        }
 //    }
 //
@@ -115,6 +140,20 @@ class MainActivity : AppCompatActivity() {
 //        checkboxes.forEach { checkbox ->
 //            checkbox.setErrorState(error)
 //            Log.d("MainActivity", "Set error $error on checkbox: ${checkbox.text}")
+//        }
+//    }
+//
+//    private fun setupToastTestButtons() {
+//        findViewById<Button>(R.id.btnSuccessToast).setOnClickListener {
+//            Toast.success(this, "This is a success message!")
+//        }
+//
+//        findViewById<Button>(R.id.btnErrorToast).setOnClickListener {
+//            Toast.error(this, "This is an error message!")
+//        }
+//
+//        findViewById<Button>(R.id.btnInfoToast).setOnClickListener {
+//            Toast.info(this, "This is an info message!")
 //        }
 //    }
 }

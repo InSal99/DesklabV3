@@ -873,6 +873,122 @@
 
 <!--        </LinearLayout>-->
 
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="16dp">-->
+
+<!--        &lt;!&ndash; Radio Group Section &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Radio Group Test"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <com.edts.components.radiobutton.RadioGroup-->
+<!--            android:id="@+id/rbTest"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="24dp"/>-->
+
+<!--        &lt;!&ndash; Checkboxes Section &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Checkboxes Test"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/checkboxContainer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_marginBottom="24dp"/>-->
+
+<!--        &lt;!&ndash; Error Test Buttons &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Error State Test"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginBottom="24dp">-->
+
+<!--            <com.edts.components.button.Button-->
+<!--                android:id="@+id/toggleCheckboxErrorButton"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Toggle Error"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                style="@style/Widget.Material3.Button.OutlinedButton"/>-->
+
+<!--            <com.edts.components.button.Button-->
+<!--                android:id="@+id/clearCheckboxErrorsButton"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Clear Errors"-->
+<!--                style="@style/Widget.Material3.Button.TextButton"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Toast Test"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center">-->
+
+<!--            <com.edts.components.button.Button-->
+<!--                android:id="@+id/btnSuccessToast"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Success"-->
+<!--                android:layout_marginEnd="4dp"-->
+<!--                style="@style/Widget.Material3.Button"/>-->
+
+<!--            <com.edts.components.button.Button-->
+<!--                android:id="@+id/btnErrorToast"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Error"-->
+<!--                android:layout_marginEnd="4dp"-->
+<!--                style="@style/Widget.Material3.Button.OutlinedButton"/>-->
+
+<!--            <com.edts.components.button.Button-->
+<!--                android:id="@+id/btnInfoToast"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Info"-->
+<!--                style="@style/Widget.Material3.Button.TextButton"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
 <!--                <TextView-->
 <!--                    style="?attr/d1SemiBold"-->
 <!--                    android:layout_width="match_parent"-->
@@ -971,19 +1087,19 @@
 <!--                app:counterType="critical"/>-->
 <!--        </LinearLayout>-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Smaller Component" />
+<!--        <TextView-->
+<!--            style="?attr/h1SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:text="Smaller Component" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_12dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp">-->
 
 <!--            <com.edts.components.status.badge.StatusBadge-->
 <!--                android:layout_width="wrap_content"-->
@@ -1013,307 +1129,387 @@
 <!--                app:statusBadgeText="Status Badge"-->
 <!--                app:statusBadgeType="decline"/>-->
 
-            <com.edts.components.button.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="REST"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconLeft="@drawable/placeholder"
-                app:iconRight="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="XS"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_PRESS"
-                app:isButtonDestructive="true"
-                app:customButtonSize="XS"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="SM"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="REST"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:customButtonType="SECONDARY"
-                app:label="Test"
-                app:iconLeft="@drawable/placeholder"
-                app:iconRight="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="LG"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_PRESS"
-                app:isButtonDestructive="true"
-                app:customButtonSize="XS"
-                app:customButtonType="SECONDARY"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="XS"
-                app:customButtonType="SECONDARY"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="LEFT" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:label="Test Button"
-                app:customButtonSize="MD"
-                app:customButtonState="REST"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="RIGHT" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="LG"
-                app:iconLeft="@drawable/placeholder"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="LG"
-                app:iconRight="@drawable/placeholder"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="LEFT" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="LG"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="RIGHT" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="LG"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:isButtonDisabled="true"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-            <com.edts.components.button.Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="LG"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:isButtonDisabled="true"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="LEFT" />-->
 
-        </LinearLayout>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="PRIMARY"-->
+<!--                app:size="MD"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:isButtonDisabled="true"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="RIGHT" />-->
 
-        <com.edts.components.CustomMyEventCard
-            android:id="@+id/cvMyEventCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
-            app:badgeText="Terdaftar"
-            app:badgeTextColor="?attr/colorOnPrimary"
-            app:badgeVisible="true"
-            app:date="12"
-            app:day="Wed"
-            app:month="JUL"
-            app:myEventTime="18:00 - 20:00 WIB"
-            app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
-            app:myEventType="Online Event" />
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-        <com.edts.components.notification.CustomNotificationCard
-            android:id="@+id/cvNotificationCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:notificationButtonText="Terima Undangan"
-            app:notificationButtonVisible="true"
-            app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
-            app:notificationEventType="General Event"
-            app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="LEFT" />-->
 
-        <com.edts.components.notification.CustomNotificationCard
-            android:id="@+id/cvNotificationCard2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:notificationButtonText="Terima Undangan"
-            app:notificationButtonVisible="false"
-            app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."
-            app:notificationEventType="People Development"
-            app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="RIGHT" />-->
 
-        <HorizontalScrollView
-            android:id="@+id/cvInfoCutiCardContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:scrollbars="none">
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:orientation="horizontal">
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="LEFT" />-->
 
-                <com.edts.components.CustomLeaveQuotaCard
-                    android:id="@+id/cvInfoCutiCard1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="@dimen/margin_8dp"
-                    app:expiredDate="15/10/2025"
-                    app:leaveQuota="5"
-                    app:leaveQuotaTitle="Cuti Tahun Ini"
-                    app:leaveUsed="1" />
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="RIGHT" />-->
 
-                <com.edts.components.CustomLeaveQuotaCard
-                    android:id="@+id/cvInfoCutiCard2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="@dimen/margin_8dp"
-                    app:expiredDate="15/10/2025"
-                    app:leaveQuota="8"
-                    app:leaveQuotaTitle="Cuti Tahun Sebelumnya"
-                    app:leaveUsed="2" />
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:isButtonDisabled="true"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder" />-->
 
-                <com.edts.components.CustomLeaveQuotaCard
-                    android:id="@+id/cvInfoCutiCard3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="@dimen/margin_8dp"
-                    app:expiredDate="15/10/2025"
-                    app:leaveQuota="8"
-                    app:leaveQuotaTitle="Cuti Tahun Progresif"
-                    app:leaveUsed="2" />
-            </LinearLayout>
-        </HorizontalScrollView>
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:isButtonDisabled="true"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="LEFT" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:orientation="horizontal">
+<!--            <com.edts.components.button.Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button Label"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:isButtonDisabled="true"-->
+<!--                app:type="SECONDARY"-->
+<!--                app:size="MD"-->
+<!--                app:icon="@drawable/placeholder"-->
+<!--                app:iconPlacement="RIGHT" />-->
 
-            <com.edts.components.CustomLeaveQuotaDescription
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:leaveQuotaDesc="5"
-                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
+<!--        </LinearLayout>-->
 
-            <com.edts.components.CustomLeaveQuotaDescription
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:leaveQuotaDesc="-10"
-                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
-        </LinearLayout>
+<!--        <com.edts.components.CustomMyEventCard-->
+<!--            android:id="@+id/cvMyEventCard"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"-->
+<!--            app:badgeText="Terdaftar"-->
+<!--            app:badgeTextColor="?attr/colorOnPrimary"-->
+<!--            app:badgeVisible="true"-->
+<!--            app:date="12"-->
+<!--            app:day="Wed"-->
+<!--            app:month="JUL"-->
+<!--            app:myEventTime="18:00 - 20:00 WIB"-->
+<!--            app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"-->
+<!--            app:myEventType="Online Event" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:orientation="horizontal">
+<!--        <com.edts.components.notification.CustomNotificationCard-->
+<!--            android:id="@+id/cvNotificationCard"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            app:notificationButtonText="Terima Undangan"-->
+<!--            app:notificationButtonVisible="true"-->
+<!--            app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."-->
+<!--            app:notificationEventType="General Event"-->
+<!--            app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />-->
 
-            <com.edts.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                android:layout_weight="1"
-                app:monthLabel="Jan"
-                app:pickerType="selected" />
+<!--        <com.edts.components.notification.CustomNotificationCard-->
+<!--            android:id="@+id/cvNotificationCard2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            app:notificationButtonText="Terima Undangan"-->
+<!--            app:notificationButtonVisible="false"-->
+<!--            app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."-->
+<!--            app:notificationEventType="People Development"-->
+<!--            app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />-->
 
-            <com.edts.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                android:layout_weight="1"
-                app:monthLabel="Feb"
-                app:pickerType="unselected" />
+<!--        <HorizontalScrollView-->
+<!--            android:id="@+id/cvInfoCutiCardContainer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:clipChildren="false"-->
+<!--            android:clipToPadding="false"-->
+<!--            android:scrollbars="none">-->
 
-            <com.edts.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:monthLabel="Mar"
-                app:pickerType="disabled" />
-        </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:clipChildren="false"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:orientation="horizontal">-->
 
-        <com.edts.components.CustomDropdownFilter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:dropdownDescription="23 Juli - 29 Juli 2025"
-            app:dropdownTitle="Pekan 8" />
+<!--                <com.edts.components.CustomLeaveQuotaCard-->
+<!--                    android:id="@+id/cvInfoCutiCard1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                    app:expiredDate="15/10/2025"-->
+<!--                    app:leaveQuota="5"-->
+<!--                    app:leaveQuotaTitle="Cuti Tahun Ini"-->
+<!--                    app:leaveUsed="1" />-->
 
-        <com.edts.components.CustomEventModalityConfirmation
-            android:id="@+id/cvEventModalityConfirmation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:modalCloseButtonLabel="Tutup"
-            app:modalConfirmButtonLabel="Ya, Lanjutkan"
-            app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
-            app:modalTitle="Konfirmasi Undangan" />
+<!--                <com.edts.components.CustomLeaveQuotaCard-->
+<!--                    android:id="@+id/cvInfoCutiCard2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                    app:expiredDate="15/10/2025"-->
+<!--                    app:leaveQuota="8"-->
+<!--                    app:leaveQuotaTitle="Cuti Tahun Sebelumnya"-->
+<!--                    app:leaveUsed="2" />-->
 
-        <com.edts.components.CustomEventModalityLoading
+<!--                <com.edts.components.CustomLeaveQuotaCard-->
+<!--                    android:id="@+id/cvInfoCutiCard3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                    app:expiredDate="15/10/2025"-->
+<!--                    app:leaveQuota="8"-->
+<!--                    app:leaveQuotaTitle="Cuti Tahun Progresif"-->
+<!--                    app:leaveUsed="2" />-->
+<!--            </LinearLayout>-->
+<!--        </HorizontalScrollView>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <com.edts.components.CustomLeaveQuotaDescription-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:leaveQuotaDesc="5"-->
+<!--                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />-->
+
+<!--            <com.edts.components.CustomLeaveQuotaDescription-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:leaveQuotaDesc="-10"-->
+<!--                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <com.edts.components.CustomMonthlyPicker-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                android:layout_weight="1"-->
+<!--                app:monthLabel="Jan"-->
+<!--                app:pickerType="selected" />-->
+
+<!--            <com.edts.components.CustomMonthlyPicker-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                android:layout_weight="1"-->
+<!--                app:monthLabel="Feb"-->
+<!--                app:pickerType="unselected" />-->
+
+<!--            <com.edts.components.CustomMonthlyPicker-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:monthLabel="Mar"-->
+<!--                app:pickerType="disabled" />-->
+<!--        </LinearLayout>-->
+
+<!--        <com.edts.components.CustomDropdownFilter-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            app:dropdownDescription="23 Juli - 29 Juli 2025"-->
+<!--            app:dropdownTitle="Pekan 8" />-->
+
+<!--        <com.edts.components.CustomEventModalityConfirmation-->
+<!--            android:id="@+id/cvEventModalityConfirmation"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:modalCloseButtonLabel="Tutup"-->
+<!--            app:modalConfirmButtonLabel="Ya, Lanjutkan"-->
+<!--            app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"-->
+<!--            app:modalTitle="Konfirmasi Undangan" />-->
+
+<!--        <com.edts.components.CustomEventModalityLoading-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:modalLoadingTitle="Tunggu sebentar ..." />-->
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:modalLoadingTitle="Tunggu sebentar ..." />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnGoToEventDetail" />
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnGoToEventDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go To Detail Event" />
     </LinearLayout>
 </ScrollView>

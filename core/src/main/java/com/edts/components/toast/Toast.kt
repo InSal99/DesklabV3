@@ -122,7 +122,7 @@ class Toast @JvmOverloads constructor(
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
                 gravity = Gravity.BOTTOM
-                bottomMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+                bottomMargin = 100
                 leftMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
                 rightMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
             }
@@ -133,7 +133,7 @@ class Toast @JvmOverloads constructor(
             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         )
         val viewHeight = measuredHeight
-        translationY = viewHeight.toFloat()
+        translationY = viewHeight.toFloat() + 100f
 
         animate()
             .translationY(0f)
@@ -142,7 +142,7 @@ class Toast @JvmOverloads constructor(
             .withEndAction {
                 postDelayed({
                     animate()
-                        .translationY(viewHeight.toFloat())
+                        .translationY(viewHeight.toFloat() + 100f)
                         .setDuration(300)
                         .setInterpolator(AccelerateInterpolator())
                         .withEndAction { parent.removeView(this) }

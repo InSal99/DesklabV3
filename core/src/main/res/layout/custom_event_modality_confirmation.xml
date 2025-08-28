@@ -59,11 +59,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_4dp"
                 android:layout_weight="1"
-                app:customButtonSize="MD"
-                app:customButtonType="SECONDARY"
+                app:size="MD"
+                app:type="SECONDARY"
                 app:isButtonDestructive="false"
                 app:isButtonDisabled="false"
-                app:label="Tutup" />
+                android:text="Tutup" />
 
             <com.edts.components.button.Button
                 android:id="@+id/btnModalityConfirm"
@@ -71,11 +71,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_4dp"
                 android:layout_weight="1"
-                app:customButtonSize="MD"
-                app:customButtonType="PRIMARY"
+                app:size="MD"
+                app:type="PRIMARY"
                 app:isButtonDestructive="false"
                 app:isButtonDisabled="false"
-                app:label="Ya, Lanjutkan" />
+                android:text="Ya, Lanjutkan" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

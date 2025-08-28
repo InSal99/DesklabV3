@@ -23,6 +23,7 @@ import com.google.android.material.button.MaterialButton
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
+import androidx.annotation.StyleRes
 import androidx.core.content.withStyledAttributes
 
 class Button @JvmOverloads constructor(
@@ -35,20 +36,20 @@ class Button @JvmOverloads constructor(
         XS(28, 12, 16, 4),
         SM(36, 12, 20, 4),
         MD(40, 16, 24, 6),
-        LG(48, 16, 24, 8)
+        LG(48, 24, 24, 8)
     }
 
     enum class ButtonState { REST, ON_PRESS, ON_FOCUS }
     enum class ButtonType { PRIMARY, SECONDARY }
+    enum class IconPlacement { LEFT, RIGHT }
 
     private var buttonType: ButtonType = ButtonType.PRIMARY
     private var buttonSize: ButtonSize = ButtonSize.MD
     private var buttonState: ButtonState = ButtonState.REST
     private var isButtonDisabled: Boolean = false
     private var isButtonDestructive: Boolean = false
-    private var buttonLabel: String = ""
-    private var leftIconDrawable: Drawable? = null
-    private var rightIconDrawable: Drawable? = null
+    private var buttonIcon: Drawable? = null
+    private var iconPlacement: IconPlacement = IconPlacement.LEFT
 
     private val strokeWidth: Int
     private val cornerRadius: Float
@@ -72,7 +73,7 @@ class Button @JvmOverloads constructor(
             99999f
         }
 
-        iconSpacing = 4.dpToPx()
+        iconSpacing = buttonSize.textPaddingDp.dpToPx()
 
         preloadColors()
         parseAttributes(attrs, defStyleAttr)
@@ -107,24 +108,30 @@ class Button @JvmOverloads constructor(
     private fun parseAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         attrs?.let { attributeSet ->
             try {
-                context.withStyledAttributes(attributeSet, R.styleable.CustomButton, defStyleAttr, 0) {
+                context.withStyledAttributes(attributeSet, R.styleable.Button, defStyleAttr, 0) {
                     buttonType = ButtonType.values().getOrElse(
-                        getInt(R.styleable.CustomButton_customButtonType, ButtonType.PRIMARY.ordinal)
+                        getInt(R.styleable.Button_type, ButtonType.PRIMARY.ordinal)
                     ) { ButtonType.PRIMARY }
 
                     buttonSize = ButtonSize.values().getOrElse(
-                        getInt(R.styleable.CustomButton_customButtonSize, ButtonSize.MD.ordinal)
+                        getInt(R.styleable.Button_size, ButtonSize.MD.ordinal)
                     ) { ButtonSize.MD }
 
                     buttonState = ButtonState.values().getOrElse(
-                        getInt(R.styleable.CustomButton_customButtonState, ButtonState.REST.ordinal)
+                        getInt(R.styleable.Button_state, ButtonState.REST.ordinal)
                     ) { ButtonState.REST }
 
-                    isButtonDisabled = getBoolean(R.styleable.CustomButton_isButtonDisabled, false)
-                    isButtonDestructive = getBoolean(R.styleable.CustomButton_isButtonDestructive, false)
-                    buttonLabel = getString(R.styleable.CustomButton_label) ?: ""
-                    leftIconDrawable = getDrawable(R.styleable.CustomButton_iconLeft)
-                    rightIconDrawable = getDrawable(R.styleable.CustomButton_iconRight)
+                    isButtonDisabled = getBoolean(R.styleable.Button_isButtonDisabled, false)
+                    isButtonDestructive = getBoolean(R.styleable.Button_isButtonDestructive, false)
+
+                    // Handle icon using native Material attributes if available, fallback to custom
+                    buttonIcon = getDrawable(R.styleable.Button_icon)
+                        ?: getDrawable(R.styleable.Button_android_icon)
+
+                    // Handle icon placement
+                    iconPlacement = IconPlacement.values().getOrElse(
+                        getInt(R.styleable.Button_iconPlacement, IconPlacement.LEFT.ordinal)
+                    ) { IconPlacement.LEFT }
                 }
             } catch (e: Exception) {
                 Log.w("CustomButton", "Attribute goes fallback")
@@ -150,7 +157,7 @@ class Button @JvmOverloads constructor(
 
     private fun updateButtonProperties() {
         isEnabled = !isButtonDisabled
-        text = if (buttonLabel.isNotEmpty()) buttonLabel else "Button"
+        // Text is already handled by native android:text attribute
 
         val textStyle = getTextStyleForButtonSize(buttonSize)
         if (textStyle != 0) {
@@ -186,7 +193,7 @@ class Button @JvmOverloads constructor(
         if (cachedDrawable != null) {
             background = cachedDrawable
             setTextColor(getTextColorForCurrentState())
-            updateIcons()
+            updateIcon()
             return
         }
 
@@ -195,7 +202,7 @@ class Button @JvmOverloads constructor(
         background = drawable
 
         setTextColor(getTextColorForCurrentState())
-        updateIcons()
+        updateIcon()
     }
 
     private fun generateStyleKey(): String {
@@ -378,53 +385,38 @@ class Button @JvmOverloads constructor(
         }
     }
 
-    private fun updateIcons() {
+    private fun updateIcon() {
         val iconSize = buttonSize.iconSizeDp.dpToPx()
         val horizontalPadding = buttonSize.paddingHorizontalDp.dpToPx()
+        val textPadding = buttonSize.textPaddingDp.dpToPx()
 
-        when {
-//            leftIconDrawable != null && rightIconDrawable != null -> {
-//                icon = null
-//                iconPadding = 0
-//
-//                leftIconDrawable?.let {
-//                    it.setBounds(0, 0, iconSize, iconSize)
-//                    it.colorFilter = PorterDuffColorFilter(getIconColor(), PorterDuff.Mode.SRC_IN)
-//                }
-//                rightIconDrawable?.let {
-//                    it.setBounds(0, 0, iconSize, iconSize)
-//                    it.colorFilter = PorterDuffColorFilter(getIconColor(), PorterDuff.Mode.SRC_IN)
-//                }
-//
-//                setCompoundDrawables(leftIconDrawable, null, rightIconDrawable, null)
-//                compoundDrawablePadding = iconSpacing
-//            }
+        if (buttonIcon != null) {
+            when (iconPlacement) {
+                IconPlacement.LEFT -> {
+                    icon = buttonIcon
+                    this.iconSize = iconSize
+                    iconPadding = iconSpacing
+                    iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
+                    iconTint = ColorStateList.valueOf(getIconColor())
+                    setPadding(horizontalPadding, 0, horizontalPadding + textPadding, 0)
+                }
 
-            leftIconDrawable != null -> {
-                icon = leftIconDrawable
-                this.iconSize = iconSize
-                iconPadding = iconSpacing
-                iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
-                iconTint = ColorStateList.valueOf(getIconColor())
+                IconPlacement.RIGHT -> {
+                    icon = buttonIcon
+                    this.iconSize = iconSize
+                    iconPadding = iconSpacing
+                    iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
+                    iconTint = ColorStateList.valueOf(getIconColor())
+                    setPadding(horizontalPadding + textPadding, 0, horizontalPadding, 0)
+                }
             }
-
-            rightIconDrawable != null -> {
-                icon = rightIconDrawable
-                this.iconSize = iconSize
-                iconPadding = iconSpacing
-                iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
-                iconTint = ColorStateList.valueOf(getIconColor())
-            }
-
-            else -> {
-                icon = null
-                iconPadding = 0
-                compoundDrawablePadding = 0
-            }
+        } else {
+            icon = null
+            iconPadding = 0
+            setPadding(horizontalPadding + textPadding, 0, horizontalPadding + textPadding, 0)
         }
 
         gravity = Gravity.CENTER
-        setPadding(horizontalPadding, 0, horizontalPadding, 0)
     }
 
     private fun getIconColor(): Int {
@@ -460,12 +452,14 @@ class Button @JvmOverloads constructor(
     }
 
     private fun getTextStyleForButtonSize(size: ButtonSize): Int {
-        return when (size) {
-            ButtonSize.XS -> R.style.CustomButton_TextStyle_ExtraSmall
-            ButtonSize.SM -> R.style.CustomButton_TextStyle_Small
-            ButtonSize.MD -> R.style.CustomButton_TextStyle_Medium
-            ButtonSize.LG -> R.style.CustomButton_TextStyle_Large
+        val attrRes = when (size) {
+            ButtonSize.XS -> R.attr.l4Medium
+            ButtonSize.SM -> R.attr.l3Medium
+            ButtonSize.MD -> R.attr.l2Medium
+            ButtonSize.LG -> R.attr.l1Medium
         }
+
+        return resolveStyleAttribute(attrRes, R.style.TextMedium_Label2)
     }
 
     override fun onFocusChanged(gainFocus: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
@@ -559,10 +553,7 @@ class Button @JvmOverloads constructor(
     }
 
     fun setLabel(label: String) {
-        if (buttonLabel != label) {
-            buttonLabel = label
-            text = label
-        }
+        text = label
     }
 
     fun setCornerRadius(radiusDp: Float) {
@@ -573,28 +564,40 @@ class Button @JvmOverloads constructor(
         }
     }
 
-    fun setLeftIcon(drawable: Drawable?) {
-        if (leftIconDrawable != drawable) {
-            leftIconDrawable = drawable
-            updateIcons()
+    fun setIcon(drawable: Drawable?, placement: IconPlacement = IconPlacement.LEFT) {
+        if (buttonIcon != drawable || iconPlacement != placement) {
+            buttonIcon = drawable
+            iconPlacement = placement
+            updateIcon()
         }
     }
 
-    fun setRightIcon(drawable: Drawable?) {
-        if (rightIconDrawable != drawable) {
-            rightIconDrawable = drawable
-            updateIcons()
+    fun setIcon(@DrawableRes drawableRes: Int?, placement: IconPlacement = IconPlacement.LEFT) {
+        val drawable = drawableRes?.let { ContextCompat.getDrawable(context, it) }
+        setIcon(drawable, placement)
+    }
+
+    fun setIconPlacement(placement: IconPlacement) {
+        if (iconPlacement != placement) {
+            iconPlacement = placement
+            updateIcon()
         }
     }
 
-    fun setLeftIcon(@DrawableRes drawableRes: Int?) {
-        val drawable = drawableRes?.let { ContextCompat.getDrawable(context, it) }
-        setLeftIcon(drawable)
+    fun clearIcon() {
+        if (buttonIcon != null) {
+            buttonIcon = null
+            updateIcon()
+        }
     }
 
-    fun setRightIcon(@DrawableRes drawableRes: Int?) {
-        val drawable = drawableRes?.let { ContextCompat.getDrawable(context, it) }
-        setRightIcon(drawable)
+    private fun resolveStyleAttribute(@AttrRes attrRes: Int, @StyleRes fallbackStyle: Int): Int {
+        val typedValue = TypedValue()
+        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
+            typedValue.resourceId
+        } else {
+            fallbackStyle
+        }
     }
 
     private fun Int.dpToPx(): Int = (this * density).toInt()

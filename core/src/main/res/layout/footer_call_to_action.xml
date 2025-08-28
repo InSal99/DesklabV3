@@ -10,8 +10,8 @@
         android:id="@+id/btnFooterCTAPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:label="Test"
-        app:customButtonSize="MD"
+        android:text="Test"
+        app:size="MD"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
