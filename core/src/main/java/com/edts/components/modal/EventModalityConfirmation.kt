@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
 import com.edts.components.databinding.EventModalityConfirmationBinding
-import com.edts.components.modal.EventModalityConfirmationDelegate
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 

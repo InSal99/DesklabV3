@@ -10,7 +10,6 @@ import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import com.edts.components.R
 import com.edts.components.databinding.MyEventCardBinding
-import com.edts.components.myevent.card.MyEventCardDelegate
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 
