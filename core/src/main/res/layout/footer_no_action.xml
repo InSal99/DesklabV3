@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="@id/tvFooterNoActionTitle"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <com.example.components.status.badge.StatusBadge
+    <com.edts.components.status.badge.StatusBadge
         android:id="@+id/bFooterNoActionStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -17,7 +17,7 @@
         <!-- Attributes to be passed down to the child MaterialChip (badge) -->
         <attr name="badgeText" />
         <attr name="badgeBackgroundColor" format="color" />
-        <attr name="badgeTextColor" format="color" />
+        <attr name="badgeCustomTextColor" format="color" />
         <attr name="badgeVisible" format="boolean" />
     </declare-styleable>
 </resources>

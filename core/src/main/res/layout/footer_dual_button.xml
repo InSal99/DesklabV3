@@ -6,18 +6,18 @@
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_8dp">
 
-    <com.example.components.button.CustomButton
+    <com.edts.components.button.Button
         android:id="@+id/btnFooterDualButtonSecondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:label="Button"
-        app:customButtonType="SECONDARY"
-        app:customButtonSize="MD"
+        android:text="Button"
+        app:type="SECONDARY"
+        app:size="MD"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnFooterDualButtonPrimary"/>
 
-    <com.example.components.button.CustomButton
+    <com.edts.components.button.Button
         android:id="@+id/btnFooterDualButtonPrimary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

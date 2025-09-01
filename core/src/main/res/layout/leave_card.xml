@@ -6,6 +6,7 @@
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_12dp"
+    app:rippleColor="@color/colorNeutral70Opacity20"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary">
 
     <LinearLayout
@@ -14,7 +15,7 @@
         android:orientation="vertical"
         android:layout_margin="@dimen/margin_12dp">
 
-        <com.example.components.leave.card.LeaveEmployeeInfo
+        <com.edts.components.leave.card.LeaveEmployeeInfo
             android:id="@+id/lEmployeeInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,9 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             app:dividerColor="?attr/colorStrokeSubtle"
-            android:layout_marginVertical="@dimen/margin_12dp"/>
+            android:layout_marginVertical="@dimen/margin_8dp"/>
 
-        <com.example.components.leave.card.LeaveDescription
+        <com.edts.components.leave.card.LeaveDescription
             android:id="@+id/lDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

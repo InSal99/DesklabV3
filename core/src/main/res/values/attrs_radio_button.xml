@@ -5,6 +5,9 @@
             <enum name="normal" value="0" />
             <enum name="primary" value="1" />
         </attr>
+        <attr name="isRadioError" format="boolean" />
         <attr name="android:textAppearance"/>
     </declare-styleable>
+
+    <attr name="radio_state_error" format="boolean" />
 </resources>

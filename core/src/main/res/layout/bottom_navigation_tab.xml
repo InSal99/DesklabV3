@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomNavigation"
-    android:layout_width="90dp"
+    android:layout_width="match_parent"
     android:layout_height="60dp">
 
     <ImageView
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ivBottomNavigation"
         android:layout_marginBottom="@dimen/margin_10dp" />
 
-    <com.example.components.badge.Badge
+    <com.edts.components.badge.Badge
         android:id="@+id/cvBadgeBottomNavigation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

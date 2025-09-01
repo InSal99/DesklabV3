@@ -17,6 +17,7 @@
             <enum name="radioGroup" value="3" />
             <enum name="checkboxGroup" value="4" />
         </attr>
+        <attr name="supportingText" format="string" />
         <attr name="maxLength" format="integer" />
         <attr name="minLength" format="integer" />
         <attr name="maxLines" format="integer" />
