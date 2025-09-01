@@ -17,7 +17,7 @@
         android:padding="@dimen/margin_12dp">
 
         <!-- Calendar Card -->
-        <com.example.components.CustomCalendarCard
+        <com.edts.components.CustomCalendarCard
             android:id="@+id/customCalendarCard"
             android:layout_width="56dp"
             android:layout_height="wrap_content"

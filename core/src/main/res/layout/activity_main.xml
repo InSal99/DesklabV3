@@ -13,7 +13,7 @@
     android:background="?attr/colorBackgroundPrimaryTinted"
     android:clipChildren="false">
 
-    <com.example.components.event.card.EventCard
+    <com.edts.components.event.card.EventCard
         android:id="@+id/cvEventCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_12dp">
 
-        <com.example.components.card.multi.detail.CardLeftSlot
+        <com.edts.components.card.multi.detail.CardLeftSlot
             android:id="@+id/cvCardLeftSlot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/cvCmdDescription"
                 />
 
-            <com.example.components.card.multi.detail.CardMultiDetailWrapperInfo
+            <com.edts.components.card.multi.detail.CardMultiDetailWrapperInfo
                 android:id="@+id/cvCmdDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

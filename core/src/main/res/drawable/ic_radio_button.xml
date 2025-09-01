@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- Error state -->
+    <item android:state_checked="false" android:state_enabled="true" app:radio_state_error="true">
+        <shape android:shape="oval">
+            <stroke android:width="@dimen/stroke_weight_1dp" android:color="@color/colorRed50"/>
+            <solid android:color="@color/colorFFF"/>
+            <size android:width="16dp" android:height="16dp"/>
+        </shape>
+    </item>
+
     <!-- Selected & Not Disabled -->
     <item android:state_checked="true" android:state_enabled="true">
         <layer-list>

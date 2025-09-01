@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Desklab.Kit" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.Desklab.Kit" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary30</item>
         <item name="colorPrimaryVariant">@color/colorPrimary50</item>
@@ -57,11 +57,11 @@
 
         <!-- Warning Background Colors -->
         <item name="colorBackgroundWarningSubtle">@color/colorOrange10</item>
-        <item name="colorBackgroundWarningIntense">@color/colorOrange50</item>
+        <item name="colorBackgroundWarningIntense">@color/colorOrange40</item>
 
         <!-- Attention Background Colors -->
         <item name="colorBackgroundAttentionSubtle">@color/colorRed10</item>
-        <item name="colorBackgroundAttentionIntense">@color/colorRed30</item>
+        <item name="colorBackgroundAttentionIntense">@color/colorRed40</item>
 
         <!-- Utility Background Colors -->
         <!-- libur -->
@@ -79,6 +79,10 @@
         <!-- ulang tahun -->
         <item name="colorBackgroundUtilityUlangTahunSubtle">@color/colorGreen10</item>
         <item name="colorBackgroundUtilityUlangTahunIntense">@color/colorGreen40</item>
+
+        <!-- event -->
+        <item name="colorBackgroundUtilityEventSubtle">@color/colorOrange10</item>
+        <item name="colorBackgroundUtilityEventIntense">@color/colorOrange40</item>
 
         <!-- Basic Foreground Colors -->
         <item name="colorForegroundPrimary">@color/color000</item>
@@ -174,6 +178,10 @@
         <!-- ulang tahun -->
         <item name="colorStrokeUtilityUlangTahunSubtle">@color/colorGreen10</item>
         <item name="colorStrokeUtilityUlangTahunIntense">@color/colorGreen40</item>
+
+        <!-- event -->
+        <item name="colorStrokeUtilityEventSubtle">@color/colorOrange10</item>
+        <item name="colorStrokeUtilityEventIntense">@color/colorOrange40</item>
 
         <!-- Shadow Colors -->
         <!-- Neutral -->

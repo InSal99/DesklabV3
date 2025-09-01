@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_12dp">
 
-        <com.example.components.card.multi.detail.CardLeftSlot
+        <com.edts.components.card.multi.detail.CardLeftSlot
             android:id="@+id/cvCardLeftSlotCdib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -5,6 +5,7 @@
         <attr name="radioSelectedTextAppearance" format="reference"/>
         <attr name="radioDisabledTextAppearance" format="reference"/>
         <attr name="radioDisabledSelectedTextAppearance" format="reference"/>
+        <attr name="radioErrorTextAppearance" format="reference"/>
         <attr name="radioButtonSpacing" format="dimension"/>
         <attr name="radioCompoundDrawablePadding" format="dimension"/>
     </declare-styleable>

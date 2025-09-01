@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InputSearchView">
+        <attr name="inputSearchHint" format="string" />
+        <attr name="inputSearchState" format="enum">
+            <enum name="rest" value="0" />
+            <enum name="focus" value="1" />
+            <enum name="disable" value="2" />
+            <enum name="error" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>
