@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundPrimaryTinted"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <ImageView
+        android:id="@+id/ivEmployeeLeaveDetailHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="Invitation Header"
+        android:src="@drawable/image_employee_leave_detail"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvEmployeeProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_24dp"
+        android:outlineAmbientShadowColor="?attr/colorForegroundPrimary"
+        android:outlineSpotShadowColor="?attr/colorForegroundPrimary"
+        app:cardCornerRadius="@dimen/margin_12dp"
+        app:cardElevation="@dimen/dimen_1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivEmployeeLeaveDetailHeader"
+        app:strokeColor="?attr/colorStrokeSubtle"
+        app:strokeWidth="@dimen/dimen_1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_12dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivEmployeeProfile"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_avatar_placeholder"
+                app:layout_constraintBottom_toBottomOf="@id/tvEmployeeRole"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvEmployeeName"
+                app:shapeAppearanceOverlay="@style/circleImageView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvEmployeeName"
+                style="?attr/l2SemiBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12dp"
+                android:text="Raka Aditya Pratama"
+                android:textColor="?attr/colorForegroundPrimary"
+                app:layout_constraintBottom_toTopOf="@id/tvEmployeeRole"
+                app:layout_constraintStart_toEndOf="@id/ivEmployeeProfile" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvEmployeeRole"
+                style="?attr/l3Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:text="Associate Product Manager"
+                android:textColor="?attr/colorForegroundSecondary"
+                app:layout_constraintStart_toStartOf="@id/tvEmployeeName"
+                app:layout_constraintTop_toBottomOf="@id/tvEmployeeName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLeaveInfoCards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_16dp"
+        android:paddingBottom="@dimen/margin_16dp"
+        android:paddingHorizontal="@dimen/margin_16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/cvEmployeeProfile"
+        tools:listitem="@layout/item_leave_quota" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvLeaveHistory"
+        style="?attr/l2Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/dimen_16dp"
+        android:text="Riwayat Cuti"
+        android:textColor="?attr/colorForegroundSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvLeaveInfoCards" />
+
+    <com.edts.components.card.multi.detail.CardMultiDetail
+        android:id="@+id/cvMultiDetail1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_12dp"
+        app:cmdInfo1Text="Cuti Tahunan"
+        app:cmdInfo2Text="3 Hari"
+        app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"
+        app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+        app:cmdRightSlotTint="?attr/colorForegroundTertiary"
+        app:cmdTitle="21 Jun - 23 Jun 2025"
+        app:layout_constraintTop_toBottomOf="@id/tvLeaveHistory" />
+
+    <com.edts.components.card.multi.detail.CardMultiDetail
+        android:id="@+id/cvMultiDetail2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        app:cmdInfo1Text="Cuti Tahunan"
+        app:cmdInfo2Text="3 Hari"
+        app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"
+        app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+        app:cmdRightSlotTint="?attr/colorForegroundTertiary"
+        app:cmdTitle="21 Jun - 23 Jun 2025"
+        app:layout_constraintTop_toBottomOf="@id/cvMultiDetail1" />
+
+    <com.edts.components.card.multi.detail.CardMultiDetail
+        android:id="@+id/cvMultiDetail3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        app:cmdInfo1Text="Cuti Tahunan"
+        app:cmdInfo2Text="3 Hari"
+        app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"
+        app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+        app:cmdRightSlotTint="?attr/colorForegroundTertiary"
+        app:cmdTitle="21 Jun - 23 Jun 2025"
+        app:layout_constraintTop_toBottomOf="@id/cvMultiDetail2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

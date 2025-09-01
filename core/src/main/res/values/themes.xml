@@ -15,13 +15,15 @@
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/inter_medium</item>
         <item name="fontFamily">@font/inter_medium</item>
+
         <!-- Calendar -->
         <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
-        <item name="materialCalendarFullscreenTheme">
-            @style/ThemeOverlay.MaterialComponents.MaterialCalendar
-        </item>
+        <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
         <item name="android:windowFullscreen">false</item>
         <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
+
+        <!-- Modality Dialog -->
+        <item name="materialAlertDialogTheme">@style/Theme.App.Dialog.Confirmation</item>
 
         <!-- Background Colors -->
         <item name="colorBackgroundPrimary">@color/colorFFF</item>
@@ -96,8 +98,10 @@
         <item name="colorForegroundBlack">@color/color000</item>
 
         <!-- Modifier Foreground Colors -->
-        <item name="colorForegroundModifierCardElevated">?attr/colorBackgroundModifierCardElevated</item>
-        <item name="colorForegroundModifierCardSurface">?attr/colorBackgroundModifierCardSurface</item>
+        <item name="colorForegroundModifierCardElevated">?attr/colorBackgroundModifierCardElevated
+        </item>
+        <item name="colorForegroundModifierCardSurface">?attr/colorBackgroundModifierCardSurface
+        </item>
 
         <!-- Accent Foreground Colors -->
         <item name="colorForegroundAccentPrimarySubtle">@color/colorPrimary10</item>
@@ -237,6 +241,7 @@
         <item name="l5SemiBold">@style/TextSemiBold.Label5</item>
         <item name="l5Medium">@style/TextMedium.Label5</item>
         <item name="l5Regular">@style/TextRegular.Label5</item>
+
     </style>
 
     <style name="NoActionBar" parent="Theme.Desklab.Kit">
@@ -313,5 +318,12 @@
         <item name="android:minHeight">24dp</item>
         <item name="android:maxHeight">30dp</item>
     </style>
+
+    <!-- Circular ImageView -->
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 
 </resources>

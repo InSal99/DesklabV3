@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DropdownFilterHorizontal">
+        <attr name="dropdownTitle" format="string" />
+        <attr name="dropdownDescription" format="string" />
+    </declare-styleable>
+</resources>

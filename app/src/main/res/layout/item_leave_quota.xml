@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.edts.components.leave.card.LeaveQuotaCard xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/leaveQuotaCardItem"
+    android:layout_width="156dp"
+    android:layout_height="wrap_content"
+    app:expiredDate="27/08/2025"
+    app:leaveQuota="5"
+    app:leaveQuotaTitle="Cuti Tahun Ini"
+    app:leaveUsed="1" />
