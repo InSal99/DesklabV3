@@ -6,30 +6,17 @@
             <enum name="icon" value="1" />
         </attr>
         <attr name="cdibLeftSlotSrc" format="reference" />
+        <attr name="cdibLeftSlotSize" format="dimension" />
         <attr name="cdibLeftSlotBackgroundColor" format="reference|color" />
         <attr name="cdibLeftSlotTint" format="reference|color" />
         <attr name="cdibTitleText" format="string" />
         <attr name="cdibDescText" format="string" />
+        <attr name="cdibShowDescription" format="boolean" />
+        <attr name="cdibShowLeftSlot" format="boolean" />
         <attr name="cdibRightSlotSrc" format="reference" />
         <attr name="cdibRightSlotTint" format="reference|color" />
+        <attr name="cdibShowRightSlot" format="boolean" />
         <attr name="cdibShowIndicator" format="boolean" />
         <attr name="cdibIndicatorColor" format="reference|color" />
     </declare-styleable>
 </resources>
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<resources>-->
-<!--    <declare-styleable name="CardDetailInfoB">-->
-<!--        <attr name="cdibLeftSlotType" format="enum">-->
-<!--            <enum name="image" value="0" />-->
-<!--            <enum name="icon" value="1" />-->
-<!--        </attr>-->
-<!--        <attr name="cdibLeftSlotSrc" format="reference" />-->
-<!--        <attr name="cdibLeftSlotBackgroundColor" format="reference|color" />-->
-<!--        <attr name="cdibLeftSlotTint" format="reference|color" />-->
-<!--        <attr name="cdibTitleText" format="string" />-->
-<!--        <attr name="cdibDescText" format="string" />-->
-<!--        <attr name="cdibRightSlotSrc" format="reference" />-->
-<!--        <attr name="cdibRightSlotTint" format="reference|color" />-->
-<!--    </declare-styleable>-->
-<!--</resources>-->

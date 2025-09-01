@@ -8,12 +8,15 @@
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
-    android:backgroundTint="?attr/colorBackgroundModifierCardElevated"
-    app:cardElevation="0dp">
+    app:cardElevation="2dp"
+    app:rippleColor="@android:color/transparent"
+    android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
+    android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:paddingHorizontal="@dimen/margin_12dp"
         android:paddingVertical="@dimen/margin_8dp">
 
@@ -23,6 +26,7 @@
             android:layout_height="20dp"
             android:contentDescription="Search Icon"
             android:src="@drawable/placeholder"
+            android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundTertiary"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +35,7 @@
             app:layout_constraintEnd_toStartOf="@+id/etSearch"/>
 
         <EditText
+            style="?attr/p1Regular"
             android:id="@+id/etSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -54,6 +59,7 @@
             android:layout_height="20dp"
             android:contentDescription="Close Button"
             android:src="@drawable/placeholder"
+            android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundTertiary"
             app:layout_constraintTop_toTopOf="parent"

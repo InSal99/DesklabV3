@@ -45,8 +45,6 @@ class EventCardStatus @JvmOverloads constructor(
         }
 
     init {
-
-        // Parse custom attributes
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.EventCardStatus,

@@ -5,6 +5,10 @@
             <enum name="active" value="0" />
             <enum name="inactive" value="1" />
         </attr>
+        <attr name="chipSize" format="enum">
+            <enum name="small" value="0" />
+            <enum name="medium" value="1" />
+        </attr>
         <attr name="chipText" format="string" />
         <attr name="chipBadgeText" format="string" />
         <attr name="chipShowIcon" format="boolean" />

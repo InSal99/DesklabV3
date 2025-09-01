@@ -5,6 +5,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -41,6 +42,10 @@ class BottomNavigationItem @JvmOverloads constructor(
             val previousState = field
             field = value
             updateNavState(animated = previousState != value)
+
+            if (previousState != value) {
+                delegate?.onBottomNavigationItemStateChanged(this, value, previousState)
+            }
         }
 
     var navIcon: Int? = null
@@ -61,8 +66,19 @@ class BottomNavigationItem @JvmOverloads constructor(
             updateBadgeVisibility()
         }
 
+    var delegate: BottomNavigationDelegate? = null
+
+    var itemPosition: Int = -1
+
+    var clickCount: Int = 0
+        private set(value) {
+            field = value
+            Log.d(TAG, "Item '${navText ?: "Unknown"}' click count updated: $value")
+        }
+
     private companion object {
         const val ANIMATION_DURATION = 150L
+        const val TAG = "BottomNavigationItem"
     }
 
     init {
@@ -92,9 +108,44 @@ class BottomNavigationItem @JvmOverloads constructor(
             }
         }
 
+        setupClickListener()
+    }
+
+    private fun setupClickListener() {
         setOnClickListener {
-            navState = if (navState == NavState.ACTIVE) NavState.INACTIVE else NavState.ACTIVE
+            handleItemClick()
         }
+    }
+
+    private fun handleItemClick() {
+        clickCount++
+
+        Log.d(TAG, "Bottom navigation item clicked:")
+        Log.d(TAG, "  - Text: ${navText ?: "Unknown"}")
+        Log.d(TAG, "  - Position: $itemPosition")
+        Log.d(TAG, "  - Current State: $navState")
+        Log.d(TAG, "  - Click Count: $clickCount")
+        Log.d(TAG, "  - Total System Clicks: $clickCount")
+
+        val newState = if (navState == NavState.ACTIVE) NavState.INACTIVE else NavState.ACTIVE
+        navState = newState
+        delegate?.onBottomNavigationItemClicked(this, itemPosition, clickCount)
+
+        Log.d(TAG, "  - New State: $navState")
+        Log.d(TAG, "--------------------")
+    }
+
+    fun performClick(fromUser: Boolean = false) {
+        if (fromUser) {
+            Log.d(TAG, "Programmatic click triggered for item: ${navText ?: "Unknown"}")
+        }
+        handleItemClick()
+    }
+
+    fun resetClickCount() {
+        val oldCount = clickCount
+        clickCount = 0
+        Log.d(TAG, "Click count reset for item '${navText ?: "Unknown"}': $oldCount -> 0")
     }
 
     private fun updateNavState(animated: Boolean = true) {
@@ -249,139 +300,3 @@ class BottomNavigationItem @JvmOverloads constructor(
         binding.cvBadgeBottomNavigation.visibility = if (showBadge) View.VISIBLE else View.GONE
     }
 }
-
-
-//package com.example.components.bottom.navigation
-//
-//import android.content.Context
-//import android.util.AttributeSet
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.widget.FrameLayout
-//import androidx.core.content.ContextCompat
-//import com.example.components.R
-//import com.example.components.databinding.BottomNavigationTabBinding
-//
-//class BottomNavigationItem @JvmOverloads constructor(
-//    context: Context,
-//    attrs: AttributeSet? = null,
-//    defStyleAttr: Int = 0
-//) : FrameLayout(context, attrs, defStyleAttr) {
-//
-//    private val binding: BottomNavigationTabBinding = BottomNavigationTabBinding.inflate(
-//        LayoutInflater.from(context),
-//        this,
-//        true
-//    )
-//
-//    enum class NavState(val value: Int) {
-//        ACTIVE(0),
-//        INACTIVE(1);
-//
-//        companion object {
-//            fun fromValue(value: Int): NavState {
-//                return values().find { it.value == value } ?: INACTIVE
-//            }
-//        }
-//    }
-//
-//    var navState: NavState = NavState.INACTIVE
-//        set(value) {
-//            field = value
-//            updateNavState()
-//        }
-//
-//    var navIcon: Int? = null
-//        set(value) {
-//            field = value
-//            updateNavIcon()
-//        }
-//
-//    var navText: String? = null
-//        set(value) {
-//            field = value
-//            updateNavText()
-//        }
-//
-//    var showBadge: Boolean = false
-//        set(value) {
-//            field = value
-//            updateBadgeVisibility()
-//        }
-//
-//    init {
-//        // Parse custom attributes
-//        context.theme.obtainStyledAttributes(
-//            attrs,
-//            R.styleable.BottomNavigationItem,
-//            0, 0
-//        ).apply {
-//            try {
-//                val navStateValue = getInt(R.styleable.BottomNavigationItem_navState, 1)
-//                navState = NavState.fromValue(navStateValue)
-//
-//                val iconResId = getResourceId(R.styleable.BottomNavigationItem_navIcon, -1)
-//                if (iconResId != -1) {
-//                    navIcon = iconResId
-//                }
-//
-//                navText = getString(R.styleable.BottomNavigationItem_navText)
-//                showBadge = getBoolean(R.styleable.BottomNavigationItem_navShowBadge, false)
-//
-//                updateNavState()
-//                updateNavIcon()
-//                updateNavText()
-//                updateBadgeVisibility()
-//            } finally {
-//                recycle()
-//            }
-//        }
-//    }
-//
-//    private fun updateNavState() {
-//        val typedValue = android.util.TypedValue()
-//
-//        when (navState) {
-//            NavState.ACTIVE -> {
-//                // Active state - accent primary intense colors
-//                context.theme.resolveAttribute(R.attr.colorForegroundAccentPrimaryIntense, typedValue, true)
-//                binding.tvBottomNavigation.setTextColor(ContextCompat.getColor(context, typedValue.resourceId))
-//                binding.ivBottomNavigation.imageTintList =
-//                    ContextCompat.getColorStateList(context, typedValue.resourceId)
-//
-//                context.theme.resolveAttribute(R.attr.colorStrokeAccent, typedValue, true)
-//                binding.bottomNavigationIndicator.setBackgroundColor(
-//                    ContextCompat.getColor(context, typedValue.resourceId)
-//                )
-//                binding.bottomNavigationIndicator.visibility = View.VISIBLE
-//            }
-//            NavState.INACTIVE -> {
-//                // Inactive state - tertiary colors
-//                context.theme.resolveAttribute(R.attr.colorForegroundTertiary, typedValue, true)
-//                binding.tvBottomNavigation.setTextColor(ContextCompat.getColor(context, typedValue.resourceId))
-//                binding.ivBottomNavigation.imageTintList =
-//                    ContextCompat.getColorStateList(context, typedValue.resourceId)
-//                binding.bottomNavigationIndicator.setBackgroundColor(
-//                    ContextCompat.getColor(context, typedValue.resourceId)
-//                )
-//                binding.bottomNavigationIndicator.visibility = View.GONE
-//            }
-//        }
-//    }
-//
-//    private fun updateNavIcon() {
-//        navIcon?.let {
-//            binding.ivBottomNavigation.setImageResource(it)
-//        }
-//    }
-//
-//    private fun updateNavText() {
-//        navText?.let {
-//            binding.tvBottomNavigation.text = it
-//        }
-//    }
-//
-//    private fun updateBadgeVisibility() {
-//        binding.cvBadgeBottomNavigation.visibility = if (showBadge) View.VISIBLE else View.GONE
-//    }
-//}

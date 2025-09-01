@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomNavigation"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:layout_marginTop="@dimen/margin_10dp"
@@ -11,6 +11,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:contentDescription="@string/bottom_navigation_iv_content_description"
+        android:scaleType="centerCrop"
         android:src="@drawable/placeholder"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +25,7 @@
         style="?attr/l3Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dimen_4dp"
+        android:layout_marginTop="@dimen/margin_2dp"
         android:maxLines="1"
         android:ellipsize="end"
         android:text="@string/bottom_navigation_text"
@@ -39,9 +40,8 @@
         android:id="@+id/cvBadgeBottomNavigation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="12dp"
-        app:badgeText="5"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="14dp"
         app:layout_constraintStart_toStartOf="@+id/ivBottomNavigation"
         app:layout_constraintBottom_toBottomOf="@+id/ivBottomNavigation"
         app:showText="false"
