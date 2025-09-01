@@ -3,17 +3,19 @@ package com.example.components.filter.button
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.annotation.AttrRes
+import androidx.core.content.ContextCompat
 import com.example.components.R
 import com.example.components.databinding.FilterBtnBinding
 import com.google.android.material.card.MaterialCardView
+import android.util.Log
+import com.example.components.event.card.EventCard.CardState
 
 class FilterButton @JvmOverloads constructor(
     context: Context,
@@ -27,69 +29,139 @@ class FilterButton @JvmOverloads constructor(
         true
     )
 
-    private val shadowPaint1 = Paint()
-    private val shadowPaint2 = Paint()
     private val cornerRadiusPx = 12.toFloat() * context.resources.displayMetrics.density
 
+    enum class CardState {
+        REST,
+        ON_PRESS
+    }
+
+    private var cardState: CardState = CardState.REST
+        set(value) {
+            field = value
+            updateCardBackground()
+        }
+
+    private val colorCache = mutableMapOf<Int, Int>()
+
+    var delegate: FilterButtonDelegate? = null
+
+    private var clickCount = 0
+    private var lastClickTime = 0L
+    private val clickDebounceDelay = 300L
+
+    private companion object {
+        const val TAG = "FilterButton"
+    }
 
     init {
-        setupShadowPaints()
-        setupClickAnimation()
+        setupCardPressState()
         radius = cornerRadiusPx
+        rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
     }
 
-    private fun setupShadowPaints() {
-        setLayerType(LAYER_TYPE_SOFTWARE, null)
-
-        shadowPaint1.apply {
-            setShadowLayer(
-                2f,
-                0f,
-                0f,
-                R.attr.colorShadowNeutralAmbient
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
-        }
-
-        shadowPaint2.apply {
-            setShadowLayer(
-                2f,
-                0f,
-                0f,
-                R.attr.colorShadowNeutralKey
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
+    private fun resolveColorAttribute(colorRes: Int): Int {
+        val typedValue = TypedValue()
+        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
+            if (typedValue.resourceId != 0) {
+                ContextCompat.getColor(context, typedValue.resourceId)
+            } else {
+                typedValue.data
+            }
+        } else {
+            try {
+                ContextCompat.getColor(context, colorRes)
+            } catch (e: Exception) {
+                colorRes
+            }
         }
     }
 
-    private fun setupClickAnimation() {
-        isClickable = true
-        isFocusable = true
+    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
+        return colorCache.getOrPut(colorAttr) {
+            resolveColorAttribute(colorAttr)
+        }
+    }
+
+    private fun updateCardBackground() {
+        when (cardState) {
+            CardState.REST -> {
+                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+                val elevatedModifierDrawable = GradientDrawable().apply {
+                    cornerRadius = 12f * resources.displayMetrics.density
+                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                }
+                foreground = elevatedModifierDrawable
+            }
+            CardState.ON_PRESS -> {
+                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+                val overlayDrawable = GradientDrawable().apply {
+                    cornerRadius = 12f * resources.displayMetrics.density
+                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                }
+                foreground = overlayDrawable
+            }
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state and scaling down")
                 animateScaleDown()
+                cardState = CardState.ON_PRESS
                 return true
             }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+            MotionEvent.ACTION_UP -> {
+                Log.d(TAG, "ACTION_UP - setting REST state and scaling up")
+                cardState = CardState.REST
                 animateScaleUp()
-                if (event.action == MotionEvent.ACTION_UP) {
-                    performClick()
-                }
+                handleClick()
+                return true
+            }
+            MotionEvent.ACTION_CANCEL -> {
+                Log.d(TAG, "ACTION_CANCEL - setting REST state and scaling up")
+                cardState = CardState.REST
+                animateScaleUp()
                 return true
             }
         }
         return super.onTouchEvent(event)
     }
 
+    private fun handleClick() {
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - lastClickTime > clickDebounceDelay) {
+            clickCount++
+            lastClickTime = currentTime
+
+            Log.d(TAG, "FilterButton clicked!")
+            Log.d(TAG, "  - Total clicks: $clickCount")
+            Log.d(TAG, "  - Click timestamp: $currentTime")
+            Log.d(TAG, "  - Current scale X: $scaleX")
+            Log.d(TAG, "  - Current scale Y: $scaleY")
+            Log.d(TAG, "  - Card state: $cardState")
+            Log.d(TAG, "  - Total system clicks: $clickCount")
+            Log.d(TAG, "--------------------")
+
+            super.performClick()
+            delegate?.onFilterButtonClick(this)
+        } else {
+            Log.d(TAG, "Click ignored due to debounce (too fast)")
+        }
+    }
+
+    private fun setupCardPressState() {
+        isClickable = true
+        isFocusable = true
+        updateCardBackground()
+    }
+
     override fun performClick(): Boolean {
-        return super.performClick()
+        Log.d(TAG, "Programmatic performClick() called")
+        handleClick()
+        return true
     }
 
     private fun animateScaleDown() {
@@ -116,14 +188,26 @@ class FilterButton @JvmOverloads constructor(
         animatorSet.start()
     }
 
-    override fun onDraw(canvas: Canvas) {
-        canvas.let { c ->
-            val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
+    fun resetClickCount() {
+        val previousCount = clickCount
+        clickCount = 0
+        Log.d(TAG, "Click count reset from $previousCount to 0")
+    }
 
-            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint1)
-            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint2)
-        }
-        super.onDraw(canvas)
+    fun getClickCount(): Int {
+        return clickCount
+    }
+
+    fun simulateClick() {
+        Log.d(TAG, "Simulated click triggered")
+        animateScaleDown()
+        cardState = CardState.ON_PRESS
+
+        postDelayed({
+            cardState = CardState.REST
+            animateScaleUp()
+            handleClick()
+        }, 100)
     }
 
 }

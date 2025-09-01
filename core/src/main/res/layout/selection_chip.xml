@@ -5,18 +5,21 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/radius_999dp"
-    android:backgroundTint="?attr/colorBackgroundModifierCardElevated"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:strokeColor="?attr/colorStrokeSubtle"
-    app:rippleColor="@android:color/transparent"
     app:strokeWidth="@dimen/stroke_weight_1dp"
-    app:cardElevation="@dimen/margin_0dp">
+    app:cardElevation="2dp"
+    app:rippleColor="@android:color/transparent"
+    android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
+    android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
+
 
     <LinearLayout
+        android:id="@+id/wrapperChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/margin_6dp"
-        android:paddingVertical="@dimen/margin_4dp"
+        android:paddingVertical="@dimen/margin_2dp"
         android:gravity="center">
 
         <TextView
@@ -44,8 +47,9 @@
             android:id="@+id/ivChip"
             android:layout_width="16dp"
             android:layout_height="16dp"
+            android:scaleType="centerCrop"
             android:layout_marginStart="@dimen/margin_2dp"
-            android:contentDescription="Chip Action"
+            android:contentDescription="@string/chip_image_view_content_description"
             android:src="@drawable/placeholder"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundSecondary"/>

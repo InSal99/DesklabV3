@@ -1,5 +1,5 @@
 package com.example.components.filter.button
 
 interface FilterButtonDelegate {
-    fun onClick()
+    fun onFilterButtonClick(filterButton: FilterButton)
 }

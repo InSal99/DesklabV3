@@ -8,8 +8,10 @@
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
-    android:backgroundTint="?attr/colorBackgroundModifierCardElevated"
-    app:cardElevation="0dp">
+    app:cardElevation="2dp"
+    app:rippleColor="@android:color/transparent"
+    android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
+    android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,8 +20,8 @@
 
         <com.example.components.card.multi.detail.CardLeftSlot
             android:id="@+id/cvCardLeftSlot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             app:slotType="icon"
             app:slotSrc="@drawable/ic_star"
             app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"
@@ -56,9 +58,10 @@
                 android:id="@+id/cvCmdDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_6dp"
+                android:layout_marginTop="@dimen/margin_2dp"
                 app:info1Text="Cuti Tahunan"
                 app:info2Text="3 Hari"
+                app:showInfo2="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvCmdTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -70,7 +73,7 @@
             android:contentDescription="@string/card_right_slot_image_content_view"
             android:src="@drawable/placeholder"
             app:layout_constraintDimensionRatio="1:1"
-            app:tint="?attr/colorForegroundAccentPrimaryIntense"
+            app:tint="?attr/colorForegroundTertiary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

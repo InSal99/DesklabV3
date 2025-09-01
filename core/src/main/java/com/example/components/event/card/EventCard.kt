@@ -1,17 +1,15 @@
 package com.example.components.event.card
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.DecelerateInterpolator
+import androidx.annotation.AttrRes
+import androidx.core.content.ContextCompat
 import com.example.components.R
 import com.example.components.databinding.EventCardBinding
 import com.google.android.material.card.MaterialCardView
@@ -30,8 +28,6 @@ class EventCard @JvmOverloads constructor(
     private val shadowPaint1 = Paint()
     private val shadowPaint2 = Paint()
     private val cornerRadiusPx = 8 * context.resources.displayMetrics.density
-
-    var eventCardDelegate: EventCardDelegate? = null
 
     var eventImageSrc: Int? = null
         set(value) {
@@ -87,9 +83,32 @@ class EventCard @JvmOverloads constructor(
             updateStatus()
         }
 
+    enum class CardState {
+        REST,
+        ON_PRESS
+    }
+
+    private var cardState: CardState = CardState.REST
+        set(value) {
+            field = value
+            updateCardBackground()
+        }
+
+    private val colorCache = mutableMapOf<Int, Int>()
+
+    var eventCardDelegate: EventCardDelegate? = null
+
+    private var clickCount = 0
+    private var lastClickTime = 0L
+    private val clickDebounceDelay = 300L
+
+    private companion object {
+        const val TAG = "EventCard"
+    }
+
     init {
-        setupShadowPaints()
-        setupClickAnimation()
+//        setupShadowPaints()
+//        setupClickAnimation()
         radius = cornerRadiusPx
 
         context.theme.obtainStyledAttributes(
@@ -98,6 +117,13 @@ class EventCard @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
+                val typedValue = TypedValue()
+//                if (context.theme.resolveAttribute(R.attr.colorBackgroundModifierOnPress, typedValue, true)) {
+//                    val colorStateList = AppCompatResources.getColorStateList(context, typedValue.resourceId)
+//                    rippleColor = colorStateList
+//                }
+                rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+
                 eventImageSrc = getResourceId(R.styleable.EventCard_eventImageSrc, -1)
                     .takeIf { it != -1 }
 
@@ -120,100 +146,146 @@ class EventCard @JvmOverloads constructor(
                 updateBanner()
                 updateDescription()
                 updateStatus()
-
+                setupCardPressState()
             } finally {
                 recycle()
             }
         }
     }
 
-    private fun setupShadowPaints() {
-        setLayerType(LAYER_TYPE_SOFTWARE, null)
-
-        shadowPaint1.apply {
-            setShadowLayer(
-                2f,
-                0f,
-                0f,
-                R.attr.colorShadowNeutralAmbient
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
-        }
-
-        shadowPaint2.apply {
-            setShadowLayer(
-                2f,
-                0f,
-                0f,
-                R.attr.colorShadowNeutralKey
-            )
-            color = Color.TRANSPARENT
-            isAntiAlias = true
-            style = Paint.Style.FILL
+    private fun resolveColorAttribute(colorRes: Int): Int {
+        val typedValue = TypedValue()
+        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
+            if (typedValue.resourceId != 0) {
+                ContextCompat.getColor(context, typedValue.resourceId)
+            } else {
+                typedValue.data
+            }
+        } else {
+            try {
+                ContextCompat.getColor(context, colorRes)
+            } catch (e: Exception) {
+                colorRes
+            }
         }
     }
 
-    private fun setupClickAnimation() {
-        isClickable = true
-        isFocusable = true
+    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
+        return colorCache.getOrPut(colorAttr) {
+            resolveColorAttribute(colorAttr)
+        }
+    }
+
+    private fun updateCardBackground() {
+        when (cardState) {
+            CardState.REST -> {
+                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+                val elevatedModifierDrawable = GradientDrawable().apply {
+                    cornerRadius = 12f * resources.displayMetrics.density
+                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                }
+                foreground = elevatedModifierDrawable
+            }
+            CardState.ON_PRESS -> {
+                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+                val overlayDrawable = GradientDrawable().apply {
+                    cornerRadius = 12f * resources.displayMetrics.density
+                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                }
+                foreground = overlayDrawable
+            }
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                animateScaleDown()
-                return true
+                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
+                cardState = CardState.ON_PRESS
             }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                animateScaleUp()
-                if (event.action == MotionEvent.ACTION_UP) {
-                    performClick()
-                }
-                return true
+            MotionEvent.ACTION_UP -> {
+                Log.d(TAG, "ACTION_UP - setting REST state")
+                cardState = CardState.REST
+                handleClick()
+            }
+            MotionEvent.ACTION_CANCEL -> {
+                Log.d(TAG, "ACTION_CANCEL - setting REST state")
+                cardState = CardState.REST
             }
         }
         return super.onTouchEvent(event)
     }
 
-    override fun performClick(): Boolean {
-        return super.performClick()
-    }
+    private fun handleClick() {
+        val currentTime = System.currentTimeMillis()
 
-    private fun animateScaleDown() {
-        val scaleDownX = ObjectAnimator.ofFloat(this, "scaleX", 1.0f, 0.95f)
-        val scaleDownY = ObjectAnimator.ofFloat(this, "scaleY", 1.0f, 0.95f)
+        if (currentTime - lastClickTime > clickDebounceDelay) {
+            clickCount++
+            lastClickTime = currentTime
 
-        val animatorSet = AnimatorSet().apply {
-            playTogether(scaleDownX, scaleDownY)
-            duration = 150
-            interpolator = AccelerateDecelerateInterpolator()
+            Log.d(TAG, "EventCard clicked!")
+            Log.d(TAG, "  - Event Title: ${eventTitle ?: "No title"}")
+            Log.d(TAG, "  - Event Type: ${eventType ?: "No type"}")
+            Log.d(TAG, "  - Event Category: ${eventCategory ?: "No category"}")
+            Log.d(TAG, "  - Event Date: ${eventDate ?: "No date"}")
+            Log.d(TAG, "  - Badge Type: $badgeType")
+            Log.d(TAG, "  - Badge Text: ${badgeText ?: "No badge text"}")
+            Log.d(TAG, "  - Status Type: $statusType")
+            Log.d(TAG, "  - Status Text: ${statusText ?: "No status text"}")
+            Log.d(TAG, "  - Total clicks: $clickCount")
+            Log.d(TAG, "  - Click timestamp: $currentTime")
+            Log.d(TAG, "  - Total system clicks: $clickCount")
+            Log.d(TAG, "--------------------")
+
+            eventCardDelegate?.onEventCardClick(this)
+        } else {
+            Log.d(TAG, "Click ignored due to debounce (too fast)")
         }
-        animatorSet.start()
     }
 
-    private fun animateScaleUp() {
-        val scaleUpX = ObjectAnimator.ofFloat(this, "scaleX", scaleX, 1.0f)
-        val scaleUpY = ObjectAnimator.ofFloat(this, "scaleY", scaleY, 1.0f)
-
-        val animatorSet = AnimatorSet().apply {
-            playTogether(scaleUpX, scaleUpY)
-            duration = 150
-            interpolator = AccelerateDecelerateInterpolator()
-        }
-        animatorSet.start()
+    private fun setupCardPressState() {
+        isClickable = true
+        isFocusable = true
+        updateCardBackground()
     }
 
-    override fun onDraw(canvas: Canvas) {
-        canvas.let { c ->
-            val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
-
-            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint1)
-            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint2)
-        }
-        super.onDraw(canvas)
-    }
+//    private fun setupShadowPaints() {
+//        setLayerType(LAYER_TYPE_SOFTWARE, null)
+//
+//        shadowPaint1.apply {
+//            setShadowLayer(
+//                2f,
+//                0f,
+//                0f,
+//                R.attr.colorShadowNeutralAmbient
+//            )
+//            color = Color.TRANSPARENT
+//            isAntiAlias = true
+//            style = Paint.Style.FILL
+//        }
+//
+//        shadowPaint2.apply {
+//            setShadowLayer(
+//                2f,
+//                0f,
+//                0f,
+//                R.attr.colorShadowNeutralKey
+//            )
+//            color = Color.TRANSPARENT
+//            isAntiAlias = true
+//            style = Paint.Style.FILL
+//        }
+//    }
+//
+//    override fun onDraw(canvas: Canvas) {
+//        canvas.let { c ->
+//            val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
+//
+//            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint1)
+//            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint2)
+//        }
+//        super.onDraw(canvas)
+//    }
 
     private fun updateEventImage() {
         eventImageSrc?.let { imageRes ->
@@ -259,5 +331,21 @@ class EventCard @JvmOverloads constructor(
                 status.statusText = text
             }
         }
+    }
+
+    fun resetClickCount() {
+        val previousCount = clickCount
+        clickCount = 0
+        Log.d(TAG, "Click count reset from $previousCount to 0")
+    }
+
+    fun getClickCount(): Int {
+        return clickCount
+    }
+
+    override fun performClick(): Boolean {
+        Log.d(TAG, "Programmatic click triggered")
+        handleClick()
+        return super.performClick()
     }
 }

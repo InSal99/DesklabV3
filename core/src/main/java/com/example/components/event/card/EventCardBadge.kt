@@ -7,7 +7,6 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import com.example.components.R
 import com.example.components.databinding.EventCardBadgeBinding
-import com.google.android.material.card.MaterialCardView
 
 class EventCardBadge @JvmOverloads constructor(
     context: Context,
@@ -63,8 +62,6 @@ class EventCardBadge @JvmOverloads constructor(
         }
 
     init {
-
-        // Parse custom attributes
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.EventCardBadge,
@@ -111,7 +108,7 @@ class EventCardBadge @JvmOverloads constructor(
         when (badgeSize) {
             BadgeSize.SMALL -> {
                 val typedValue = android.util.TypedValue()
-                context.theme.resolveAttribute(R.attr.l4SemiBold, typedValue, true)
+                context.theme.resolveAttribute(R.attr.l3SemiBold, typedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextAppearance(typedValue.resourceId)
 
                 val textColorTypedValue = android.util.TypedValue()
@@ -119,15 +116,15 @@ class EventCardBadge @JvmOverloads constructor(
                 binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
 
                 binding.tvEvenCardBadgeLabel.setPadding(
-                    resources.getDimensionPixelSize(R.dimen.margin_6dp), // paddingStart
-                    resources.getDimensionPixelSize(R.dimen.margin_4dp), // paddingTop
-                    resources.getDimensionPixelSize(R.dimen.margin_6dp), // paddingEnd
-                    resources.getDimensionPixelSize(R.dimen.margin_4dp)  // paddingBottom
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp),
+                    resources.getDimensionPixelSize(R.dimen.margin_0dp),
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp),
+                    resources.getDimensionPixelSize(R.dimen.margin_0dp)
                 )
             }
             BadgeSize.LARGE -> {
                 val typedValue = android.util.TypedValue()
-                context.theme.resolveAttribute(R.attr.p2SemiBold, typedValue, true)
+                context.theme.resolveAttribute(R.attr.l3SemiBold, typedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextAppearance(typedValue.resourceId)
 
                 val textColorTypedValue = android.util.TypedValue()
@@ -135,10 +132,10 @@ class EventCardBadge @JvmOverloads constructor(
                 binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
 
                 binding.tvEvenCardBadgeLabel.setPadding(
-                    resources.getDimensionPixelSize(R.dimen.margin_8dp), // paddingStart
-                    resources.getDimensionPixelSize(R.dimen.margin_2dp), // paddingTop
-                    resources.getDimensionPixelSize(R.dimen.margin_8dp), // paddingEnd
-                    resources.getDimensionPixelSize(R.dimen.margin_2dp)  // paddingBottom
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp),
+                    resources.getDimensionPixelSize(R.dimen.margin_2dp),
+                    resources.getDimensionPixelSize(R.dimen.margin_8dp),
+                    resources.getDimensionPixelSize(R.dimen.margin_2dp)
                 )
             }
         }

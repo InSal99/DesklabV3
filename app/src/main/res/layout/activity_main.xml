@@ -2,6 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:clipToOutline="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -87,6 +90,7 @@
                 android:layout_marginEnd="@dimen/margin_6dp"
                 app:chipState="inactive"
                 app:chipText="Chip Label"
+                app:chipSize="small"
                 app:chipBadgeText="3"
                 app:chipShowIcon="true"
                 app:chipShowBadge="true"
@@ -97,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_6dp"
                 app:chipState="inactive"
+                app:chipSize="medium"
                 app:chipText="Chip Label"
                 app:chipShowIcon="true"
                 app:chipShowBadge="false"
@@ -185,10 +190,27 @@
                 android:layout_marginBottom="@dimen/margin_6dp"
                 app:cdibLeftSlotType="icon"
                 app:cdibShowIndicator="true"
-                app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
+                app:cdibIndicatorColor="?attr/colorBackgroundAttentionIntense"
                 app:cdibLeftSlotSrc="@drawable/ic_star"
                 app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-                app:cdibLeftSlotTint="?attr/colorForegroundWarningIntense"
+                app:cdibLeftSlotTint="?attr/colorBackgroundAttentionIntense"
+                app:cdibTitleText="Card Title"
+                app:cdibDescText="Card Content Description" />
+
+            <com.example.components.card.detail.CardDetailInfoB
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_6dp"
+                app:cdibLeftSlotSize="44dp"
+                app:cdibLeftSlotType="image"
+                app:cdibShowIndicator="false"
+                app:cdibShowRightSlot="false"
+                app:cdibShowLeftSlot="true"
+                app:cdibShowDescription="false"
+                app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
+                app:cdibLeftSlotSrc="@drawable/ic_star"
+                app:cdibLeftSlotBackgroundColor="?attr/colorBackgroundWarningIntense"
+                app:cdibLeftSlotTint="?attr/colorForegroundUtilityUlangTahunIntense"
                 app:cdibTitleText="Card Title"
                 app:cdibDescText="Card Content Description" />
 
@@ -197,6 +219,9 @@
                 android:layout_height="wrap_content"
                 app:cdibLeftSlotType="icon"
                 app:cdibShowIndicator="false"
+                app:cdibShowRightSlot="false"
+                app:cdibShowLeftSlot="false"
+                app:cdibShowDescription="false"
                 app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
                 app:cdibLeftSlotSrc="@drawable/ic_star"
                 app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
@@ -471,393 +496,393 @@
                 app:showText="true" />
         </LinearLayout>
 
-        <TextView
-            style="?attr/d1SemiBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Detail Event"
-            android:gravity="center"
-            android:textColor="?attr/colorForegroundPrimaryInverse"
-            android:background="?attr/colorBackgroundInfoIntense"/>
+<!--        <TextView-->
+<!--            style="?attr/d1SemiBold"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Detail Event"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
+<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Item List" />
+<!--        <TextView-->
+<!--            style="?attr/h1SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:text="Item List" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-            <com.example.components.detail.information.DetailInformationA
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:infoTitle="Title"
-                app:infoDescription="Description"
-                app:infoIcon="@drawable/placeholder"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
-        </LinearLayout>
+<!--            <com.example.components.detail.information.DetailInformationA-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:infoTitle="Title"-->
+<!--                app:infoDescription="Description"-->
+<!--                app:infoIcon="@drawable/placeholder"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"/>-->
+<!--        </LinearLayout>-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Infobox" />
+<!--        <TextView-->
+<!--            style="?attr/h1SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:text="Infobox" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-            <com.example.components.infobox.InfoBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:text="Label"
-                app:variant="success"
-                android:layout_marginTop="@dimen/margin_16dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
+<!--            <com.example.components.infobox.InfoBox-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:text="Label"-->
+<!--                app:variant="success"-->
+<!--                android:layout_marginTop="@dimen/margin_16dp"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"/>-->
 
-            <com.example.components.infobox.InfoBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:text="Label"
-                app:variant="error"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
+<!--            <com.example.components.infobox.InfoBox-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:text="Label"-->
+<!--                app:variant="error"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"/>-->
 
-            <com.example.components.infobox.InfoBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:text="Label"
-                app:variant="information"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
+<!--            <com.example.components.infobox.InfoBox-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:text="Label"-->
+<!--                app:variant="information"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"/>-->
 
-            <com.example.components.infobox.InfoBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:text="Label"
-                app:variant="general"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
-        </LinearLayout>
+<!--            <com.example.components.infobox.InfoBox-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:text="Label"-->
+<!--                app:variant="general"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"/>-->
+<!--        </LinearLayout>-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Footer" />
+<!--        <TextView-->
+<!--            style="?attr/h1SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:text="Footer" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-            <com.example.components.footer.CustomFooter
-                android:id="@+id/footerSimple"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:footerType="CALL_TO_ACTION"
-                app:primaryButtonText="Daftar Sekarang" />
+<!--            <com.example.components.footer.CustomFooter-->
+<!--                android:id="@+id/footerSimple"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:footerType="CALL_TO_ACTION"-->
+<!--                app:primaryButtonText="Daftar Sekarang" />-->
 
-            <com.example.components.footer.CustomFooter
-                android:id="@+id/footerWithDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:footerType="CALL_TO_ACTION_DETAIL"
-                app:footerTitle="Title"
-                app:footerDescription="Description Here"
-                app:primaryButtonText="Daftar Sekarang"/>
+<!--            <com.example.components.footer.CustomFooter-->
+<!--                android:id="@+id/footerWithDescription"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:footerType="CALL_TO_ACTION_DETAIL"-->
+<!--                app:footerTitle="Title"-->
+<!--                app:footerDescription="Description Here"-->
+<!--                app:primaryButtonText="Daftar Sekarang"/>-->
 
-            <com.example.components.footer.CustomFooter
-                android:id="@+id/footerDualButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:footerType="DUAL_BUTTON"
-                app:primaryButtonText="Button Label"
-                app:secondaryButtonText="Button Label"/>
+<!--            <com.example.components.footer.CustomFooter-->
+<!--                android:id="@+id/footerDualButton"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:footerType="DUAL_BUTTON"-->
+<!--                app:primaryButtonText="Button Label"-->
+<!--                app:secondaryButtonText="Button Label"/>-->
 
-            <com.example.components.footer.CustomFooter
-                android:id="@+id/footerStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:footerType="NO_ACTION"
-                app:footerTitle="Tipe Presensi"
-                app:footerDescription="Presensi Offline"
-                app:statusBadgeText="Presensi Tercatat"
-                app:statusBadgeType="approved" />
-        </LinearLayout>
+<!--            <com.example.components.footer.CustomFooter-->
+<!--                android:id="@+id/footerStatus"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:footerType="NO_ACTION"-->
+<!--                app:footerTitle="Tipe Presensi"-->
+<!--                app:footerDescription="Presensi Offline"-->
+<!--                app:statusBadgeText="Presensi Tercatat"-->
+<!--                app:statusBadgeType="approved" />-->
+<!--        </LinearLayout>-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Toast" />
+<!--        <TextView-->
+<!--            style="?attr/h1SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:text="Toast" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-            <com.example.components.toast.CustomToast
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:toastType="success"
-                app:toastMessage="Label"/>
+<!--            <com.example.components.toast.CustomToast-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"-->
+<!--                app:toastType="success"-->
+<!--                app:toastMessage="Label"/>-->
 
-            <com.example.components.toast.CustomToast
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:toastType="error"
-                app:toastMessage="Label"/>
+<!--            <com.example.components.toast.CustomToast-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"-->
+<!--                app:toastType="error"-->
+<!--                app:toastMessage="Label"/>-->
 
-            <com.example.components.toast.CustomToast
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:toastType="info"
-                app:toastMessage="Label"/>
+<!--            <com.example.components.toast.CustomToast-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"-->
+<!--                app:toastType="info"-->
+<!--                app:toastMessage="Label"/>-->
 
-            <com.example.components.toast.CustomToast
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:toastType="general"
-                app:toastMessage="Label"/>
-        </LinearLayout>
+<!--            <com.example.components.toast.CustomToast-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"-->
+<!--                app:toastType="general"-->
+<!--                app:toastMessage="Label"/>-->
+<!--        </LinearLayout>-->
 
-        <TextView
-            style="?attr/d1SemiBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Form RSVP"
-            android:gravity="center"
-            android:textColor="?attr/colorForegroundPrimaryInverse"
-            android:background="?attr/colorBackgroundInfoIntense"/>
+<!--        <TextView-->
+<!--            style="?attr/d1SemiBold"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Form RSVP"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="?attr/colorForegroundPrimaryInverse"-->
+<!--            android:background="?attr/colorBackgroundInfoIntense"/>-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Input" />
+<!--        <TextView-->
+<!--            style="?attr/h1SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:text="Input" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_8dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_8dp">-->
 
-            <com.example.components.option.card.OptionCard
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:cardText="Option"
-                app:cardIcon="@drawable/placeholder"
-                android:layout_marginHorizontal="@dimen/margin_16dp"/>
+<!--            <com.example.components.option.card.OptionCard-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:cardText="Option"-->
+<!--                app:cardIcon="@drawable/placeholder"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"/>-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="true"
-                app:inputType="textInput"
-                app:maxLength="50" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:fieldHint="Enter your full name"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="This is description"-->
+<!--                app:fieldTitle="Name"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:inputType="textInput"-->
+<!--                app:maxLength="50" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:inputType="textInput"
-                app:maxLength="50" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:fieldHint="Enter your full name"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="This is description"-->
+<!--                app:fieldTitle="Name"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:errorText="Some error"-->
+<!--                app:inputType="textInput"-->
+<!--                app:maxLength="50" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:fieldHint="Enter your full name"
-                app:fieldRequired="true"
-                app:fieldDescription="This is description"
-                app:fieldTitle="Name"
-                app:fieldEnabled="false"
-                app:inputType="textInput"
-                app:maxLength="50" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:fieldHint="Enter your full name"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="This is description"-->
+<!--                app:fieldTitle="Name"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:inputType="textInput"-->
+<!--                app:maxLength="50" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="true"
-                app:inputType="textArea"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Provide a brief description"-->
+<!--                app:fieldHint="Enter description here"-->
+<!--                app:fieldTitle="Description"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:inputType="textArea"-->
+<!--                app:maxLength="200"-->
+<!--                app:maxLines="5"-->
+<!--                app:minLines="3" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:inputType="textArea"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Provide a brief description"-->
+<!--                app:fieldHint="Enter description here"-->
+<!--                app:fieldTitle="Description"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:errorText="Some error"-->
+<!--                app:inputType="textArea"-->
+<!--                app:maxLength="200"-->
+<!--                app:maxLines="5"-->
+<!--                app:minLines="3" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Provide a brief description"
-                app:fieldHint="Enter description here"
-                app:fieldTitle="Description"
-                app:fieldEnabled="false"
-                app:inputType="textArea"
-                app:maxLength="200"
-                app:maxLines="5"
-                app:minLines="3" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Provide a brief description"-->
+<!--                app:fieldHint="Enter description here"-->
+<!--                app:fieldTitle="Description"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:inputType="textArea"-->
+<!--                app:maxLength="200"-->
+<!--                app:maxLines="5"-->
+<!--                app:minLines="3" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="true"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldHint="Select your country"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:fieldTitle="Country"-->
+<!--                app:inputType="dropdown"-->
+<!--                app:options="@array/countries" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldHint="Select your country"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:errorText="Some error"-->
+<!--                app:fieldTitle="Country"-->
+<!--                app:inputType="dropdown"-->
+<!--                app:options="@array/countries" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldHint="Select your country"
-                app:fieldDescription="Some description"
-                app:fieldRequired="true"
-                app:fieldEnabled="false"
-                app:fieldTitle="Country"
-                app:inputType="dropdown"
-                app:options="@array/countries" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldHint="Select your country"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:fieldTitle="Country"-->
+<!--                app:inputType="dropdown"-->
+<!--                app:options="@array/countries" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:fieldDescription="Some description"
-                app:showError="false"
-                app:fieldEnabled="true"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:showError="false"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:fieldTitle="Gender"-->
+<!--                app:inputType="radioGroup"-->
+<!--                app:options="@array/gender_options" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:errorText="Some Error"
-                app:fieldDescription="Some description"
-                app:showError="true"
-                app:fieldEnabled="true"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:errorText="Some Error"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:showError="true"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:fieldTitle="Gender"-->
+<!--                app:inputType="radioGroup"-->
+<!--                app:options="@array/gender_options" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldRequired="true"
-                app:fieldDescription="Some description"
-                app:fieldEnabled="false"
-                app:fieldTitle="Gender"
-                app:inputType="radioGroup"
-                app:options="@array/gender_options" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldRequired="true"-->
+<!--                app:fieldDescription="Some description"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:fieldTitle="Gender"-->
+<!--                app:inputType="radioGroup"-->
+<!--                app:options="@array/gender_options" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:fieldEnabled="true"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Select all that apply"-->
+<!--                app:fieldTitle="Interests"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:inputType="checkboxGroup"-->
+<!--                app:options="@array/interests" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:fieldEnabled="true"
-                app:errorText="Some error"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Select all that apply"-->
+<!--                app:fieldTitle="Interests"-->
+<!--                app:fieldEnabled="true"-->
+<!--                app:errorText="Some error"-->
+<!--                app:inputType="checkboxGroup"-->
+<!--                app:options="@array/interests" />-->
 
-            <com.example.components.input.field.InputField
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:fieldDescription="Select all that apply"
-                app:fieldTitle="Interests"
-                app:fieldEnabled="false"
-                app:inputType="checkboxGroup"
-                app:options="@array/interests" />
+<!--            <com.example.components.input.field.InputField-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:fieldDescription="Select all that apply"-->
+<!--                app:fieldTitle="Interests"-->
+<!--                app:fieldEnabled="false"-->
+<!--                app:inputType="checkboxGroup"-->
+<!--                app:options="@array/interests" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <!--        <TextView-->
         <!--            style="?attr/d1SemiBold"-->
@@ -912,6 +937,7 @@
                 app:cmdTitle="Annual Leave"
                 app:cmdInfo1Text="Leave Type"
                 app:cmdInfo2Text="3 Days"
+                app:cmdShowInfo2="true"
                 app:cmdRightSlotSrc="@drawable/placeholder"
                 app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense" />
 
@@ -919,42 +945,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6dp"
-                app:cmdLeftSlotTint="?attr/colorForegroundWarningIntense"
+                app:cmdLeftSlotType="icon"
+                app:cmdLeftSlotTint="?attr/colorForegroundAttentionSubtle"
+                app:cmdLeftSlotBackgroundColor="?attr/colorBackgroundAttentionIntense"
                 app:cmdTitle="Meeting Schedule"
+                app:cmdShowInfo2="false"
                 app:cmdInfo1Text="Today"
                 app:cmdInfo2Text="2:00 PM" />
 
-            <com.example.components.leave.card.LeaveCounter
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:counterText="100 Hari"
-                app:counterType="critical"/>
+<!--            <com.example.components.leave.card.LeaveCounter-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:counterText="100 Hari"-->
+<!--                app:counterType="critical"/>-->
 
-            <com.example.components.leave.card.LeaveDescription
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:counterType="critical"
-                app:counterText="100 Hari"/>
+<!--            <com.example.components.leave.card.LeaveDescription-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:counterType="critical"-->
+<!--                app:counterText="100 Hari"/>-->
 
-            <com.example.components.leave.card.LeaveEmployeeInfo
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:employeeName="Employee Name"
-                app:employeeRole="Employee Role"
-                app:employeeImage="@drawable/avatar_placeholder"/>
+<!--            <com.example.components.leave.card.LeaveEmployeeInfo-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:employeeName="Employee Name"-->
+<!--                app:employeeRole="Employee Role"-->
+<!--                app:employeeImage="@drawable/avatar_placeholder"/>-->
 
-            <com.example.components.leave.card.LeaveCard
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                android:layout_marginHorizontal="@dimen/margin_16dp"
-                app:employeeName="Employee Name"
-                app:employeeRole="Employee Role"
-                app:employeeImage="@drawable/avatar_placeholder"
-                app:counterText="1000 Tahun Lamanya"
-                app:counterType="critical"/>
+<!--            <com.example.components.leave.card.LeaveCard-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                android:layout_marginHorizontal="@dimen/margin_16dp"-->
+<!--                app:employeeName="Employee Name"-->
+<!--                app:employeeRole="Employee Role"-->
+<!--                app:employeeImage="@drawable/avatar_placeholder"-->
+<!--                app:counterText="1000 Tahun Lamanya"-->
+<!--                app:counterType="critical"/>-->
         </LinearLayout>
 
 
@@ -1022,303 +1051,303 @@
         <!--        android:enabled="false"-->
         <!--        android:text="Text" />-->
 
-        <TextView
-            style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:text="Smaller Component" />
+<!--        <TextView-->
+<!--            style="?attr/h1SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:text="Smaller Component" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_12dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp">-->
 
-            <com.example.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="approved"/>
+<!--            <com.example.components.status.badge.StatusBadge-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:statusBadgeText="Status Badge"-->
+<!--                app:statusBadgeType="approved"/>-->
 
-            <com.example.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="waiting"/>
+<!--            <com.example.components.status.badge.StatusBadge-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:statusBadgeText="Status Badge"-->
+<!--                app:statusBadgeType="waiting"/>-->
 
-            <com.example.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="cancel"/>
+<!--            <com.example.components.status.badge.StatusBadge-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:statusBadgeText="Status Badge"-->
+<!--                app:statusBadgeType="cancel"/>-->
 
-            <com.example.components.status.badge.StatusBadge
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:statusBadgeText="Status Badge"
-                app:statusBadgeType="decline"/>
+<!--            <com.example.components.status.badge.StatusBadge-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:statusBadgeText="Status Badge"-->
+<!--                app:statusBadgeType="decline"/>-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="REST"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconLeft="@drawable/placeholder"
-                app:iconRight="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.example.components.button.CustomButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:customButtonState="REST"-->
+<!--                app:customButtonSize="XS"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:label="Test"-->
+<!--                app:iconLeft="@drawable/placeholder"-->
+<!--                app:iconRight="@drawable/placeholder"-->
+<!--                android:layout_marginVertical="@dimen/margin_16dp"/>-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_PRESS"
-                app:isButtonDestructive="true"
-                app:customButtonSize="XS"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.example.components.button.CustomButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:customButtonState="ON_PRESS"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:customButtonSize="XS"-->
+<!--                app:label="Test"-->
+<!--                app:iconRight="@drawable/placeholder"-->
+<!--                app:iconLeft="@drawable/placeholder"-->
+<!--                android:layout_marginVertical="@dimen/margin_16dp"/>-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.example.components.button.CustomButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:customButtonState="ON_FOCUS"-->
+<!--                app:customButtonSize="XS"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:label="Test"-->
+<!--                app:iconRight="@drawable/placeholder"-->
+<!--                app:iconLeft="@drawable/placeholder"-->
+<!--                android:layout_marginVertical="@dimen/margin_16dp"/>-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="REST"
-                app:customButtonSize="XS"
-                app:isButtonDestructive="true"
-                app:customButtonType="SECONDARY"
-                app:label="Test"
-                app:iconLeft="@drawable/placeholder"
-                app:iconRight="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.example.components.button.CustomButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:customButtonState="REST"-->
+<!--                app:customButtonSize="XS"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:customButtonType="SECONDARY"-->
+<!--                app:label="Test"-->
+<!--                app:iconLeft="@drawable/placeholder"-->
+<!--                app:iconRight="@drawable/placeholder"-->
+<!--                android:layout_marginVertical="@dimen/margin_16dp"/>-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_PRESS"
-                app:isButtonDestructive="true"
-                app:customButtonSize="XS"
-                app:customButtonType="SECONDARY"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.example.components.button.CustomButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:customButtonState="ON_PRESS"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:customButtonSize="XS"-->
+<!--                app:customButtonType="SECONDARY"-->
+<!--                app:label="Test"-->
+<!--                app:iconRight="@drawable/placeholder"-->
+<!--                app:iconLeft="@drawable/placeholder"-->
+<!--                android:layout_marginVertical="@dimen/margin_16dp"/>-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="XS"
-                app:customButtonType="SECONDARY"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.example.components.button.CustomButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:customButtonState="ON_FOCUS"-->
+<!--                app:customButtonSize="XS"-->
+<!--                app:customButtonType="SECONDARY"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:label="Test"-->
+<!--                app:iconRight="@drawable/placeholder"-->
+<!--                app:iconLeft="@drawable/placeholder"-->
+<!--                android:layout_marginVertical="@dimen/margin_16dp"/>-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:label="Test Button"
-                app:customButtonSize="MD"
-                app:customButtonState="REST"/>
+<!--            <com.example.components.button.CustomButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:label="Test Button"-->
+<!--                app:customButtonSize="MD"-->
+<!--                app:customButtonState="REST"/>-->
 
-            <com.example.components.button.CustomButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6dp"
-                app:customButtonState="ON_FOCUS"
-                app:customButtonSize="LG"
-                app:iconRight="@drawable/placeholder"
-                app:iconLeft="@drawable/placeholder"
-                app:isButtonDestructive="true"
-                app:label="Test"
-                android:layout_marginVertical="@dimen/margin_16dp"/>
+<!--            <com.example.components.button.CustomButton-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/margin_6dp"-->
+<!--                app:customButtonState="ON_FOCUS"-->
+<!--                app:customButtonSize="LG"-->
+<!--                app:iconRight="@drawable/placeholder"-->
+<!--                app:iconLeft="@drawable/placeholder"-->
+<!--                app:isButtonDestructive="true"-->
+<!--                app:label="Test"-->
+<!--                android:layout_marginVertical="@dimen/margin_16dp"/>-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
-        <com.example.components.CustomMyEventCard
-            android:id="@+id/cvMyEventCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
-            app:badgeText="Terdaftar"
-            app:badgeTextColor="?attr/colorOnPrimary"
-            app:badgeVisible="true"
-            app:date="12"
-            app:day="Wed"
-            app:month="JUL"
-            app:myEventTime="18:00 - 20:00 WIB"
-            app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
-            app:myEventType="Online Event" />
+<!--        <com.example.components.CustomMyEventCard-->
+<!--            android:id="@+id/cvMyEventCard"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"-->
+<!--            app:badgeText="Terdaftar"-->
+<!--            app:badgeTextColor="?attr/colorOnPrimary"-->
+<!--            app:badgeVisible="true"-->
+<!--            app:date="12"-->
+<!--            app:day="Wed"-->
+<!--            app:month="JUL"-->
+<!--            app:myEventTime="18:00 - 20:00 WIB"-->
+<!--            app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"-->
+<!--            app:myEventType="Online Event" />-->
 
-        <com.example.components.notification.CustomNotificationCard
-            android:id="@+id/cvNotificationCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:notificationButtonText="Terima Undangan"
-            app:notificationButtonVisible="true"
-            app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
-            app:notificationEventType="General Event"
-            app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
+<!--        <com.example.components.notification.CustomNotificationCard-->
+<!--            android:id="@+id/cvNotificationCard"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            app:notificationButtonText="Terima Undangan"-->
+<!--            app:notificationButtonVisible="true"-->
+<!--            app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."-->
+<!--            app:notificationEventType="General Event"-->
+<!--            app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />-->
 
-        <com.example.components.notification.CustomNotificationCard
-            android:id="@+id/cvNotificationCard2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:notificationButtonText="Terima Undangan"
-            app:notificationButtonVisible="false"
-            app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."
-            app:notificationEventType="People Development"
-            app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
+<!--        <com.example.components.notification.CustomNotificationCard-->
+<!--            android:id="@+id/cvNotificationCard2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            app:notificationButtonText="Terima Undangan"-->
+<!--            app:notificationButtonVisible="false"-->
+<!--            app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."-->
+<!--            app:notificationEventType="People Development"-->
+<!--            app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />-->
 
-        <HorizontalScrollView
-            android:id="@+id/cvInfoCutiCardContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:scrollbars="none">
+<!--        <HorizontalScrollView-->
+<!--            android:id="@+id/cvInfoCutiCardContainer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:clipChildren="false"-->
+<!--            android:clipToPadding="false"-->
+<!--            android:scrollbars="none">-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:clipChildren="false"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:orientation="horizontal">-->
 
-                <com.example.components.CustomLeaveQuotaCard
-                    android:id="@+id/cvInfoCutiCard1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="@dimen/margin_8dp"
-                    app:expiredDate="15/10/2025"
-                    app:leaveQuota="5"
-                    app:leaveQuotaTitle="Cuti Tahun Ini"
-                    app:leaveUsed="1" />
+<!--                <com.example.components.CustomLeaveQuotaCard-->
+<!--                    android:id="@+id/cvInfoCutiCard1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                    app:expiredDate="15/10/2025"-->
+<!--                    app:leaveQuota="5"-->
+<!--                    app:leaveQuotaTitle="Cuti Tahun Ini"-->
+<!--                    app:leaveUsed="1" />-->
 
-                <com.example.components.CustomLeaveQuotaCard
-                    android:id="@+id/cvInfoCutiCard2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="@dimen/margin_8dp"
-                    app:expiredDate="15/10/2025"
-                    app:leaveQuota="8"
-                    app:leaveQuotaTitle="Cuti Tahun Sebelumnya"
-                    app:leaveUsed="2" />
+<!--                <com.example.components.CustomLeaveQuotaCard-->
+<!--                    android:id="@+id/cvInfoCutiCard2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                    app:expiredDate="15/10/2025"-->
+<!--                    app:leaveQuota="8"-->
+<!--                    app:leaveQuotaTitle="Cuti Tahun Sebelumnya"-->
+<!--                    app:leaveUsed="2" />-->
 
-                <com.example.components.CustomLeaveQuotaCard
-                    android:id="@+id/cvInfoCutiCard3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="@dimen/margin_8dp"
-                    app:expiredDate="15/10/2025"
-                    app:leaveQuota="8"
-                    app:leaveQuotaTitle="Cuti Tahun Progresif"
-                    app:leaveUsed="2" />
-            </LinearLayout>
-        </HorizontalScrollView>
+<!--                <com.example.components.CustomLeaveQuotaCard-->
+<!--                    android:id="@+id/cvInfoCutiCard3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                    app:expiredDate="15/10/2025"-->
+<!--                    app:leaveQuota="8"-->
+<!--                    app:leaveQuotaTitle="Cuti Tahun Progresif"-->
+<!--                    app:leaveUsed="2" />-->
+<!--            </LinearLayout>-->
+<!--        </HorizontalScrollView>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:orientation="horizontal">-->
 
-            <com.example.components.CustomLeaveQuotaDescription
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:leaveQuotaDesc="5"
-                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
+<!--            <com.example.components.CustomLeaveQuotaDescription-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:leaveQuotaDesc="5"-->
+<!--                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />-->
 
-            <com.example.components.CustomLeaveQuotaDescription
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:leaveQuotaDesc="-10"
-                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />
-        </LinearLayout>
+<!--            <com.example.components.CustomLeaveQuotaDescription-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:leaveQuotaDesc="-10"-->
+<!--                app:leaveQuotaTitleDesc="Sisa Saldo Cuti" />-->
+<!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            android:orientation="horizontal">-->
 
-            <com.example.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                android:layout_weight="1"
-                app:monthLabel="Jan"
-                app:pickerType="selected" />
+<!--            <com.example.components.CustomMonthlyPicker-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                android:layout_weight="1"-->
+<!--                app:monthLabel="Jan"-->
+<!--                app:pickerType="selected" />-->
 
-            <com.example.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                android:layout_weight="1"
-                app:monthLabel="Feb"
-                app:pickerType="unselected" />
+<!--            <com.example.components.CustomMonthlyPicker-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="@dimen/margin_8dp"-->
+<!--                android:layout_weight="1"-->
+<!--                app:monthLabel="Feb"-->
+<!--                app:pickerType="unselected" />-->
 
-            <com.example.components.CustomMonthlyPicker
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:monthLabel="Mar"
-                app:pickerType="disabled" />
-        </LinearLayout>
+<!--            <com.example.components.CustomMonthlyPicker-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:monthLabel="Mar"-->
+<!--                app:pickerType="disabled" />-->
+<!--        </LinearLayout>-->
 
-        <com.example.components.CustomDropdownFilter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:dropdownDescription="23 Juli - 29 Juli 2025"
-            app:dropdownTitle="Pekan 8" />
+<!--        <com.example.components.CustomDropdownFilter-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_12dp"-->
+<!--            app:dropdownDescription="23 Juli - 29 Juli 2025"-->
+<!--            app:dropdownTitle="Pekan 8" />-->
 
-        <com.example.components.CustomEventModalityConfirmation
-            android:id="@+id/cvEventModalityConfirmation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:modalCloseButtonLabel="Tutup"
-            app:modalConfirmButtonLabel="Ya, Lanjutkan"
-            app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"
-            app:modalTitle="Konfirmasi Undangan" />
+<!--        <com.example.components.CustomEventModalityConfirmation-->
+<!--            android:id="@+id/cvEventModalityConfirmation"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:modalCloseButtonLabel="Tutup"-->
+<!--            app:modalConfirmButtonLabel="Ya, Lanjutkan"-->
+<!--            app:modalDescription="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"-->
+<!--            app:modalTitle="Konfirmasi Undangan" />-->
 
-        <com.example.components.CustomEventModalityLoading
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:modalLoadingTitle="Tunggu sebentar ..." />
+<!--        <com.example.components.CustomEventModalityLoading-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:modalLoadingTitle="Tunggu sebentar ..." />-->
     </LinearLayout>
 </ScrollView>

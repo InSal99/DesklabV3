@@ -5,18 +5,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/radius_999dp"
-    android:backgroundTint="?attr/colorBackgroundModifierCardElevated"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
-    app:cardElevation="@dimen/margin_0dp">
-<!--    android:backgroundTint="?attr/colorBackgroundModifierOnPress"-->
+    app:cardElevation="2dp"
+    app:rippleColor="@android:color/transparent"
+    android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
+    android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/margin_12dp"
-        android:paddingVertical="@dimen/margin_6dp">
+        android:paddingVertical="@dimen/margin_4dp">
 
         <LinearLayout
             android:id="@+id/wrapper"
@@ -44,7 +45,7 @@
                 android:id="@+id/tvDropdownFilterDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_4dp"
+
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:text="Description"
@@ -73,6 +74,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="@dimen/margin_6dp"
+            android:scaleType="centerCrop"
             android:contentDescription="Chip Action"
             android:src="@drawable/placeholder"
             app:layout_constraintDimensionRatio="1:1"

@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/radius_12dp"
+    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:strokeColor="?attr/colorStrokeSubtle"
-    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
-    android:backgroundTint="?attr/colorBackgroundModifierCardElevated"
-    app:cardElevation="0dp">
+    app:cardElevation="2dp"
+    app:rippleColor="@android:color/transparent"
+    android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
+    android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,11 +20,11 @@
 
         <com.example.components.card.multi.detail.CardLeftSlot
             android:id="@+id/cvCardLeftSlotCdib"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:slotType="icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:slotType="image"
             app:slotSrc="@drawable/ic_star"
-            app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"
+            app:slotBackgroundColor="?attr/colorBackgroundAttentionIntense"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +38,7 @@
             android:layout_marginStart="@dimen/margin_4dp"
             android:paddingHorizontal="@dimen/margin_4dp"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlotCdib">
 
             <TextView
@@ -49,7 +52,6 @@
                 android:textColor="?attr/colorForegroundPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/tvCdibDescription"
                 />
 
             <TextView
@@ -57,7 +59,7 @@
                 android:id="@+id/tvCdibDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_6dp"
+                android:layout_marginTop="@dimen/margin_0dp"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:text="@string/card_multi_detail_title"
@@ -73,8 +75,9 @@
             android:layout_height="20dp"
             android:contentDescription="@string/card_right_slot_image_content_view"
             android:src="@drawable/placeholder"
+            android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
-            app:tint="?attr/colorForegroundAccentPrimaryIntense"
+            app:tint="?attr/colorForegroundTertiary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

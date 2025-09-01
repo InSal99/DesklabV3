@@ -11,6 +11,7 @@
         <attr name="cmdTitle" format="string" />
         <attr name="cmdInfo1Text" format="string" />
         <attr name="cmdInfo2Text" format="string" />
+        <attr name="cmdShowInfo2" format="boolean" />
         <attr name="cmdRightSlotSrc" format="reference" />
         <attr name="cmdRightSlotTint" format="reference|color" />
     </declare-styleable>
