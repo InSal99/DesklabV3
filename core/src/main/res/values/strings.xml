@@ -25,6 +25,7 @@
     <string name="leave_balance_format">%d hari</string>
     <string name="leave_expiry_format">Kedaluwarsa: %s</string>
     <string name="leave_used_format">Cuti Terpakai: %d Hari</string>
+    <string name="chip_image_view_content_description">Chip Close Action</string>
 
 
     //Dummy Data

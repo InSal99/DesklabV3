@@ -1,5 +1,5 @@
 package com.edts.components.filter.button
 
 interface FilterButtonDelegate {
-    fun onClick()
+    fun onFilterButtonClick(filterButton: FilterButton)
 }

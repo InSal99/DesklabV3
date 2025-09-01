@@ -32,8 +32,6 @@ class EventCardBanner @JvmOverloads constructor(
         }
 
     init {
-
-        // Parse custom attributes
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.EventCardBanner,

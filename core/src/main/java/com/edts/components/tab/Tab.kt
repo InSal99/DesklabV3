@@ -5,6 +5,8 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -64,7 +66,14 @@ class Tab @JvmOverloads constructor(
     private companion object {
         const val ANIMATION_DURATION = 150L
         const val INDICATOR_ANIMATION_DURATION = 200L
+        const val TAG = "Tab"
     }
+
+    var delegate: TabDelegate? = null
+
+    private var clickCount = 0
+    private var lastClickTime = 0L
+    private val clickDebounceDelay = 200L
 
     init {
         context.theme.obtainStyledAttributes(
@@ -87,9 +96,36 @@ class Tab @JvmOverloads constructor(
                 recycle()
             }
         }
-
         setOnClickListener {
-            tabState = if (tabState == TabState.ACTIVE) TabState.INACTIVE else TabState.ACTIVE
+            handleTabClick()
+        }
+    }
+
+    private fun handleTabClick() {
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - lastClickTime > clickDebounceDelay) {
+            clickCount++
+            lastClickTime = currentTime
+
+            val previousState = tabState
+            val newState = if (tabState == TabState.ACTIVE) TabState.INACTIVE else TabState.ACTIVE
+
+            Log.d(TAG, "Tab clicked!")
+            Log.d(TAG, "  - Tab Text: ${tabText ?: "No text"}")
+            Log.d(TAG, "  - Badge Text: ${badgeText ?: "No badge text"}")
+            Log.d(TAG, "  - Show Badge: $showBadge")
+            Log.d(TAG, "  - Previous State: $previousState")
+            Log.d(TAG, "  - New State: $newState")
+            Log.d(TAG, "  - Total clicks: $clickCount")
+            Log.d(TAG, "  - Click timestamp: $currentTime")
+            Log.d(TAG, "  - Total system clicks: $clickCount")
+            Log.d(TAG, "--------------------")
+
+            tabState = newState
+            delegate?.onTabClick(this, newState, previousState)
+        } else {
+            Log.d(TAG, "Click ignored due to debounce (too fast)")
         }
     }
 
@@ -120,13 +156,13 @@ class Tab @JvmOverloads constructor(
     private fun applyTabStateImmediately() {
         when (tabState) {
             TabState.ACTIVE -> {
-                val activeColor = getColorFromAttribute(R.attr.colorForegroundAccentPrimaryIntense)
+                val activeColor = resolveColorAttribute(R.attr.colorForegroundAccentPrimaryIntense)
                 binding.tvTab.setTextColor(activeColor)
                 binding.tabIndicator.visibility = View.VISIBLE
                 binding.tabIndicator.scaleX = 1f
             }
             TabState.INACTIVE -> {
-                val inactiveColor = getColorFromAttribute(R.attr.colorForegroundTertiary)
+                val inactiveColor = resolveColorAttribute(R.attr.colorForegroundTertiary)
                 binding.tvTab.setTextColor(inactiveColor)
                 binding.tabIndicator.visibility = View.GONE
                 binding.tabIndicator.scaleX = 0f
@@ -142,7 +178,7 @@ class Tab @JvmOverloads constructor(
     }
 
     private fun animateToActive() {
-        val activeColor = getColorFromAttribute(R.attr.colorForegroundAccentPrimaryIntense)
+        val activeColor = resolveColorAttribute(R.attr.colorForegroundAccentPrimaryIntense)
         val currentTextColor = binding.tvTab.currentTextColor
 
         val textColorAnimator = ValueAnimator.ofArgb(currentTextColor, activeColor).apply {
@@ -173,7 +209,7 @@ class Tab @JvmOverloads constructor(
     }
 
     private fun animateToInactive() {
-        val inactiveColor = getColorFromAttribute(R.attr.colorForegroundTertiary)
+        val inactiveColor = resolveColorAttribute(R.attr.colorForegroundTertiary)
         val currentTextColor = binding.tvTab.currentTextColor
 
         val textColorAnimator = ValueAnimator.ofArgb(currentTextColor, inactiveColor).apply {
@@ -201,10 +237,51 @@ class Tab @JvmOverloads constructor(
         }
     }
 
-    private fun getColorFromAttribute(attr: Int): Int {
-        val typedValue = android.util.TypedValue()
-        context.theme.resolveAttribute(attr, typedValue, true)
-        return ContextCompat.getColor(context, typedValue.resourceId)
+    private fun resolveColorAttribute(colorRes: Int): Int {
+        val typedValue = TypedValue()
+        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
+            if (typedValue.resourceId != 0) {
+                ContextCompat.getColor(context, typedValue.resourceId)
+            } else {
+                typedValue.data
+            }
+        } else {
+            try {
+                ContextCompat.getColor(context, colorRes)
+            } catch (e: Exception) {
+                colorRes
+            }
+        }
+    }
+
+    fun resetClickCount() {
+        val previousCount = clickCount
+        clickCount = 0
+        Log.d(TAG, "Click count reset from $previousCount to 0")
+    }
+
+    fun getClickCount(): Int {
+        return clickCount
+    }
+
+    override fun performClick(): Boolean {
+        Log.d(TAG, "Programmatic click triggered")
+        handleTabClick()
+        return super.performClick()
+    }
+
+    fun setTabState(state: TabState, triggerDelegate: Boolean = false) {
+        val previousState = tabState
+        tabState = state
+
+        if (triggerDelegate && previousState != state) {
+            Log.d(TAG, "Tab state changed programmatically:")
+            Log.d(TAG, "  - Tab Text: ${tabText ?: "No text"}")
+            Log.d(TAG, "  - Previous State: $previousState")
+            Log.d(TAG, "  - New State: $state")
+
+            delegate?.onTabClick(this, state, previousState)
+        }
     }
 
 }

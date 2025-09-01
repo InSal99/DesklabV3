@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:paddingHorizontal="@dimen/margin_8dp"
-        android:paddingVertical="@dimen/margin_12dp"
+        android:paddingVertical="@dimen/margin_8dp"
         android:gravity="center">
 
         <TextView

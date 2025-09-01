@@ -10,7 +10,7 @@
     app:cardElevation="@dimen/margin_0dp">
 
     <TextView
-        style="?attr/p2SemiBold"
+        style="?attr/l3SemiBold"
         android:id="@+id/tvEvenCardBadgeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

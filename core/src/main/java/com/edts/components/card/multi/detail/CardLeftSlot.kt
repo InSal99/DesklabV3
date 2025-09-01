@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -106,9 +107,8 @@ class CardLeftSlot @JvmOverloads constructor(
         val layoutParams = binding.ivCardLeftSlot.layoutParams
         when (slotType) {
             SlotType.IMAGE -> {
-                val sizePx = dpToPx(32f)
-                layoutParams.width = sizePx
-                layoutParams.height = sizePx
+                layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+                layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
             }
             SlotType.ICON -> {
                 val sizePx = dpToPx(20f)

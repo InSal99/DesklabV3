@@ -1,5 +1,5 @@
 package com.edts.components.event.card
 
 interface EventCardDelegate {
-    fun onClick()
+    fun onEventCardClick(card: EventCard)
 }

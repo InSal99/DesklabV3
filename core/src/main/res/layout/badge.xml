@@ -4,9 +4,9 @@
     android:id="@+id/badgeCircle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:minWidth="16dp"
-    android:minHeight="16dp"
-    android:backgroundTint="?attr/colorBackgroundInfoIntense"
+    android:minWidth="14dp"
+    android:minHeight="14dp"
+    android:backgroundTint="?attr/colorBackgroundAttentionIntense"
     app:cardCornerRadius="@dimen/radius_999dp"
     app:cardElevation="0dp"
     app:strokeColor="?attr/colorStrokeInteractive"
@@ -15,24 +15,23 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:minWidth="16dp"
-        android:minHeight="16dp">
+        android:minWidth="14dp"
+        android:minHeight="14dp">
 
         <TextView
             android:id="@+id/tvBadge"
             style="?attr/l4Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:ellipsize="end"
-            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/margin_2dp"
             android:maxLines="1"
-            android:paddingHorizontal="@dimen/margin_4dp"
             android:text="@string/badge_text"
             android:textColor="?attr/colorForegroundPrimaryInverse"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

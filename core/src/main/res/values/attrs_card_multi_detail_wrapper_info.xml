@@ -3,5 +3,6 @@
     <declare-styleable name="CardMultiDetailWrapperInfo">
         <attr name="info1Text" format="string" />
         <attr name="info2Text" format="string" />
+        <attr name="showInfo2" format="boolean" />
     </declare-styleable>
 </resources>

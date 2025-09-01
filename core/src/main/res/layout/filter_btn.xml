@@ -4,24 +4,26 @@
     android:id="@+id/FilterBTN"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:backgroundTint="?attr/colorBackgroundModifierCardElevated"
+    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:cardCornerRadius="@dimen/radius_12dp"
-    app:cardElevation="0dp"
+    app:cardElevation="2dp"
+    android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
+    android:outlineSpotShadowColor="?attr/colorShadowNeutralKey"
+    app:rippleColor="@android:color/transparent"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/colorBackgroundPrimary"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/ivFilterBTN"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:contentDescription="@string/filter_button_iv_content_description"
-            android:padding="@dimen/margin_8dp"
+            android:layout_margin="@dimen/margin_8dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
