@@ -1,4 +1,4 @@
-package com.example.components.chip
+package com.edts.components.chip
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
@@ -14,8 +14,8 @@ import android.view.View
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
-import com.example.components.R
-import com.example.components.databinding.SelectionChipBinding
+import com.edts.components.R
+import com.edts.components.databinding.SelectionChipBinding
 import com.google.android.material.card.MaterialCardView
 
 class Chip @JvmOverloads constructor(

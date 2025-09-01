@@ -1,4 +1,4 @@
-package com.example.components.chip
+package com.edts.components.chip
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
@@ -10,8 +10,8 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
-import com.example.components.R
-import com.example.components.databinding.SelectionDropdownFilterBinding
+import com.edts.components.R
+import com.edts.components.databinding.SelectionDropdownFilterBinding
 import com.google.android.material.card.MaterialCardView
 
 class DropdownFilter @JvmOverloads constructor(

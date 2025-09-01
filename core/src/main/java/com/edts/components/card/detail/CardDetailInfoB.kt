@@ -1,4 +1,4 @@
-package com.example.components.card.detail
+package com.edts.components.card.detail
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -14,9 +14,9 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
-import com.example.components.R
-import com.example.components.card.multi.detail.CardLeftSlot
-import com.example.components.databinding.CardDetailInfoBBinding
+import com.edts.components.R
+import com.edts.components.card.multi.detail.CardLeftSlot
+import com.edts.components.databinding.CardDetailInfoBBinding
 import com.google.android.material.card.MaterialCardView
 import android.view.MotionEvent
 

@@ -1,4 +1,4 @@
-package com.example.components.filter.button
+package com.edts.components.filter.button
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -11,11 +11,11 @@ import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
-import com.example.components.R
-import com.example.components.databinding.FilterBtnBinding
+import com.edts.components.R
+import com.edts.components.databinding.FilterBtnBinding
 import com.google.android.material.card.MaterialCardView
 import android.util.Log
-import com.example.components.event.card.EventCard.CardState
+import com.edts.components.event.card.EventCard.CardState
 
 class FilterButton @JvmOverloads constructor(
     context: Context,

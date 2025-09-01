@@ -1,4 +1,4 @@
-package com.example.components.event.card
+package com.edts.components.event.card
 
 import android.content.Context
 import android.graphics.Paint
@@ -10,8 +10,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
-import com.example.components.R
-import com.example.components.databinding.EventCardBinding
+import com.edts.components.R
+import com.edts.components.databinding.EventCardBinding
 import com.google.android.material.card.MaterialCardView
 
 class EventCard @JvmOverloads constructor(

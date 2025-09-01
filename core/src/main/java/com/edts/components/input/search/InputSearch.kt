@@ -1,4 +1,4 @@
-package com.example.components.input.search
+package com.edts.components.input.search
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -10,14 +10,13 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
-import com.example.components.R
-import com.example.components.databinding.InputSearchBinding
+import com.edts.components.databinding.InputSearchBinding
 import com.google.android.material.card.MaterialCardView
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.inputmethod.EditorInfo
 import android.util.Log
-import android.view.View
+import com.edts.components.R
+import com.edts.components.input.search.InputSearchDelegate
 
 class InputSearch @JvmOverloads constructor(
     context: Context,
@@ -169,7 +168,7 @@ class InputSearch @JvmOverloads constructor(
 
                 delegate?.onSearchTextChange(this@InputSearch, text, searchTextChangeCount)
 
-                binding.ivRightIcon.visibility = if (text.isNotEmpty()) View.VISIBLE else View.GONE
+                binding.ivRightIcon.visibility = if (text.isNotEmpty()) VISIBLE else GONE
             }
         })
     }

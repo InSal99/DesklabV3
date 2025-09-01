@@ -1,4 +1,6 @@
-package com.example.components.input.search
+package com.edts.components.input.search
+
+import com.edts.components.input.search.InputSearch
 
 interface InputSearchDelegate {
     fun onCloseIconClick(inputSearch: InputSearch, clickCount: Int)

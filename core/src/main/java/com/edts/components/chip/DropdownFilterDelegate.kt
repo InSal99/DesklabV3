@@ -1,4 +1,4 @@
-package com.example.components.chip
+package com.edts.components.chip
 
 interface DropdownFilterDelegate {
     fun onDropdownFilterClick(dropdownFilter: DropdownFilter)

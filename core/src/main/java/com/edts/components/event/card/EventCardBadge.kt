@@ -1,12 +1,12 @@
-package com.example.components.event.card
+package com.edts.components.event.card
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
-import com.example.components.R
-import com.example.components.databinding.EventCardBadgeBinding
+import com.edts.components.R
+import com.edts.components.databinding.EventCardBadgeBinding
 
 class EventCardBadge @JvmOverloads constructor(
     context: Context,

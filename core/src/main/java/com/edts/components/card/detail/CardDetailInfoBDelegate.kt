@@ -1,4 +1,4 @@
-package com.example.components.card.detail
+package com.edts.components.card.detail
 
 interface CardDetailInfoBDelegate {
     fun onCardClick(card: CardDetailInfoB)

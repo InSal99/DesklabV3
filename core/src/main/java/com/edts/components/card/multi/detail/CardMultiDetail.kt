@@ -1,4 +1,4 @@
-package com.example.components.card.multi.detail
+package com.edts.components.card.multi.detail
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -12,8 +12,9 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
-import com.example.components.R
-import com.example.components.databinding.CardMultiDetailBinding
+import com.edts.components.R
+import com.edts.components.databinding.CardMultiDetailBinding
+import com.edts.components.card.multi.detail.CardMultiDetailDelegate
 import com.google.android.material.card.MaterialCardView
 
 class CardMultiDetail @JvmOverloads constructor(
