@@ -1,8 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-//    alias(libs.plugins.android.application)
-//    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -50,10 +48,6 @@ dependencies {
 
     implementation(project(":core"))
 
-//    implementation("androidx.core:core-ktx:1.7.0")
-//    implementation("androidx.appcompat:appcompat:1.4.1")
-//    implementation("com.google.android.material:material:1.9.0")
-//    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
