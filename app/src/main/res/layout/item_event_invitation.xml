@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.edts.components.notification.EventNotificationCard
+<com.edts.components.notification.EventNotificationCard xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cvNotificationCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/margin_8dp"
     app:notificationButtonText="Terima Undangan"
     app:notificationButtonVisible="true"
     app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
     app:notificationEventType="General Event"
-    app:notificationTitle="EDTS Town-Hall 2025: Power of Change"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
