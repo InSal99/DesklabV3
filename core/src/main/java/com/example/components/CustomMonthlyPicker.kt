@@ -45,7 +45,7 @@ import com.google.android.material.textview.MaterialTextView
 class CustomMonthlyPicker @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
+    defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
     /**

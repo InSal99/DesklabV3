@@ -7,9 +7,6 @@ import com.example.components.radiobutton.CustomRadioGroup
 import com.example.components.radiobutton.CustomRadioGroupDelegate
 import com.example.components.toast.CustomToast
 import com.example.desklabv3.databinding.ActivityMainBinding
-import com.example.desklabv3.features.event.ui.EmployeeLeaveDetailActivity
-import com.example.desklabv3.features.event.ui.EventInvitationActivity
-import com.example.desklabv3.features.event.ui.MyEventsActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,18 +17,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        /**
+         * ClickListener for the My Events card.
+         * Redirect to FauzanLayoutActivity when clicked.
+         */
         binding.cvMyEventCard.setOnClickListener {
-            val intent = Intent(this, MyEventsActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.cvNotificationCard.setOnClickListener {
-            val intent = Intent(this, EventInvitationActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.cvNotificationCard2.setOnClickListener {
-            val intent = Intent(this, EmployeeLeaveDetailActivity::class.java)
+            val intent = Intent(this, FauzanLayoutActivity::class.java)
             startActivity(intent)
         }
 

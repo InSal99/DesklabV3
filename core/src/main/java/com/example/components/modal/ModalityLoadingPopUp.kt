@@ -4,50 +4,24 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
+import com.example.components.R
 import com.example.components.databinding.EventModalityLoadingBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-/**
- * A stateless utility object to create and display a loading dialog.
- *
- * This utility provides a simple way to show a consistent loading modal across the application.
- * It follows the same pattern as `ModalityConfirmationPopUp`, where the `show` method
- * creates and returns a dialog instance for the caller to manage.
- *
- * ### Usage Example:
- * ```kotlin
- * // Create and show the dialog
- * val loadingDialog = ModalityLoadingDialog.show(context, "Loading your data...")
- *
- * // ... after your operation is complete ...
- *
- * // Hide the dialog
- * loadingDialog?.dismiss()
- * ```
- */
 object ModalityLoadingPopUp {
 
-    /**
-     * Creates and shows the loading dialog.
-     *
-     * @param context The context to use for the dialog.
-     * @param title The text to display in the loading dialog.
-     * @param isCancelable Whether the dialog can be dismissed by tapping outside or
-     * pressing the back button. Defaults to `false`.
-     * @return The created `AlertDialog` instance, or `null` if an error occurred.
-     */
     fun show(
         context: Context,
         title: String,
         isCancelable: Boolean = false
     ): AlertDialog? {
         return try {
-
             val binding = EventModalityLoadingBinding.inflate(LayoutInflater.from(context))
+            val builder = MaterialAlertDialogBuilder(context, R.style.Theme_App_Dialog_Confirmation)
+
+            builder.setView(binding.root)
             binding.tvModalTitle.text = title
 
-            val builder = MaterialAlertDialogBuilder(context)
-            builder.setView(binding.root)
 
             val dialog = builder.create().apply {
                 setCancelable(isCancelable)

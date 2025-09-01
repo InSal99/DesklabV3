@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FauzanLayoutActivity">
+
+    <ScrollView
+        android:id="@+id/svMainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="?attr/colorBackgroundInfoIntense"
+                app:cardCornerRadius="@dimen/margin_8dp">
+
+                <TextView
+                    style="?attr/d3Bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/margin_4dp"
+                    android:text="Home Page"
+                    android:textColor="?attr/colorForegroundPrimaryInverse" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.example.components.myevent.card.MyEventCard
+                android:id="@+id/cvMyEventCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_24dp"
+                app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
+                app:badgeCustomTextColor="?attr/colorForegroundPrimaryInverse"
+                app:badgeText="Terdaftar"
+                app:badgeVisible="true"
+                app:date="12"
+                app:day="Wed"
+                app:month="JUL"
+                app:myEventTime="18:00 - 20:00 WIB"
+                app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
+                app:myEventType="Online Event" />
+
+            <com.example.components.notification.EventNotificationCard
+                android:id="@+id/cvNotificationCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12dp"
+                app:notificationButtonText="Terima Undangan"
+                app:notificationButtonVisible="true"
+                app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
+                app:notificationEventType="General Event"
+                app:notificationTitle="EDTS Town-Hall 2025: Power of Change" />
+
+            <com.example.components.notification.EventNotificationCard
+                android:id="@+id/cvNotificationCard2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12dp"
+                app:notificationButtonText="Terima Undangan"
+                app:notificationButtonVisible="false"
+                app:notificationDescription="Hari-H telah tiba. Jangan lupa hadir tepat waktu, sampai jumpa di acara! Segera konfirmasi kehadiran Anda."
+                app:notificationEventType="People Development"
+                app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>
