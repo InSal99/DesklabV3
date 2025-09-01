@@ -1,4 +1,4 @@
-package com.example.desklabv3.features.event.model
+package com.edts.desklabv3.features.event.model
 
 import androidx.annotation.AttrRes
 

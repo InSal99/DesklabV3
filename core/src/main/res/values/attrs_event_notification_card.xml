@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EventNotificationCard">
+        <attr name="notificationTitle" format="string" />
+        <attr name="notificationDescription" format="string" />
+        <attr name="notificationButtonVisible" format="boolean" />
+        <attr name="notificationButtonText" format="string" />
+        <attr name="notificationEventType" format="string" />
+    </declare-styleable>
+</resources>

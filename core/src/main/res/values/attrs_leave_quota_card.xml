@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LeaveQuotaCard">
+        <attr name="leaveQuotaTitle" format="string" />
+        <attr name="leaveQuota" format="integer" />
+        <attr name="expiredDate" format="string" />
+        <attr name="leaveUsed" format="integer" />
+    </declare-styleable>
+</resources>

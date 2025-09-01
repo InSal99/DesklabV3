@@ -1,5 +1,6 @@
 package com.edts.desklabv3
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -32,6 +33,16 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, EventDetailView())
                 .commit();
         }
+
+//        binding.cvMyEventCard.setOnClickListener {
+//            val intent = Intent(this, MyEventsActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        binding.cvNotificationCard.setOnClickListener {
+//            val intent = Intent(this, EventInvitationActivity::class.java)
+//            startActivity(intent)
+//        }
 
 //        binding.btnGoToEventDetail.setOnClickListener {
 //            navigateToEventDetail()
