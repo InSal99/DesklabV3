@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:clipToOutline="false"
-    android:clipChildren="false">
+    tools:context=".MainActivity"
+    tools:ignore="MergeRootFrame" />
 
-    <LinearLayout
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/margin_16dp"
-        android:layout_marginHorizontal="@dimen/margin_16dp"
-        tools:context=".MainActivity">
+
+
+
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:clipToPadding="false"-->
+<!--    android:clipToOutline="false"-->
+<!--    android:clipChildren="false">-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/main"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:clipChildren="false"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_margin="@dimen/margin_16dp"-->
+<!--        android:layout_marginHorizontal="@dimen/margin_16dp"-->
+<!--        tools:context=".MainActivity">-->
 
 <!--        <TextView-->
 <!--            style="?attr/d1SemiBold"-->
@@ -1497,19 +1508,19 @@
 <!--            android:layout_height="match_parent"-->
 <!--            app:modalLoadingTitle="Tunggu sebentar ..." />-->
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnGoToEventDetail" />
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fragment_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/btnGoToEventDetail" />-->
 
-        <com.edts.components.button.Button
-            android:id="@+id/btnGoToEventDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Go To Detail Event" />
-    </LinearLayout>
-</ScrollView>
+<!--        <com.edts.components.button.Button-->
+<!--            android:id="@+id/btnGoToEventDetail"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Go To Detail Event" />-->
+<!--    </LinearLayout>-->
+<!--</ScrollView>-->

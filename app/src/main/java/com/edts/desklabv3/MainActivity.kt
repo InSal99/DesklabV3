@@ -29,10 +29,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnGoToEventDetail.setOnClickListener {
-            navigateToEventDetail()
-            Log.d("Go To Event Detail", "Button clicked")
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, EventDetailView())
+                .commit();
         }
+
+//        binding.btnGoToEventDetail.setOnClickListener {
+//            navigateToEventDetail()
+//            Log.d("Go To Event Detail", "Button clicked")
+//        }
 
 //        dynamicRadioGroup = findViewById(R.id.rbTest)
 //        setupRadioButtons()
