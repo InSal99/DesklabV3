@@ -15,6 +15,7 @@ import com.edts.components.checkbox.CheckboxDelegate
 import com.edts.components.radiobutton.RadioGroup
 import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.EventDetailView
+import com.edts.desklabv3.features.event.ui.RSVPFormView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, EventDetailView())
+                .replace(R.id.fragment_container, RSVPFormView())
                 .commit();
         }
 
@@ -58,14 +59,14 @@ class MainActivity : AppCompatActivity() {
 //        setupToastTestButtons()
     }
 
-    private fun navigateToEventDetail() {
-        val eventDetailView = EventDetailView()
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, eventDetailView)
-            .addToBackStack("event_detail") // Optional: Add to back stack
-            .commit()
-    }
+//    private fun navigateToEventDetail() {
+//        val eventDetailView = EventDetailView()
+//
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container, eventDetailView)
+//            .addToBackStack("event_detail") // Optional: Add to back stack
+//            .commit()
+//    }
 
 //    private fun setupRadioButtons() {
 //        val options = listOf("Option 1", "Option 2", "Option 3", "Option 4")
