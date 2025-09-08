@@ -1,21 +1,13 @@
 package com.edts.desklabv3
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import com.edts.components.button.Button
 import com.edts.components.checkbox.CheckBox
-import com.edts.components.checkbox.CheckboxDelegate
 import com.edts.components.radiobutton.RadioGroup
+import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.databinding.ActivityMainBinding
-import com.edts.desklabv3.features.event.ui.EventDetailView
-import com.edts.desklabv3.features.event.ui.RSVPFormView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -31,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, RSVPFormView())
+                .replace(R.id.fragment_container, EntryPointsView())
                 .commit();
         }
 

@@ -3,6 +3,7 @@ package com.edts.components.footer
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.edts.components.R
@@ -25,12 +26,24 @@ class Footer @JvmOverloads constructor(
     private var statusText: String = ""
     private var statusType: StatusBadge.ChipType = StatusBadge.ChipType.APPROVED
 
+    // New properties for dual button description
+    private var showDescription: Boolean = false
+    private var dualButtonTitle: String = ""
+    private var dualButtonSupportText1: String = ""
+    private var dualButtonSupportText2: String = ""
+
     private var primaryButtonEnabled: Boolean = true
     private var secondaryButtonEnabled: Boolean = true
 
     private var primaryButton: Button? = null
     private var secondaryButton: Button? = null
     private var statusBadge: StatusBadge? = null
+
+    // References to the new text views
+    private var tvDualButtonTitle: TextView? = null
+    private var tvDualButtonSupportText1: TextView? = null
+    private var tvDualButtonTextDivider: TextView? = null
+    private var tvDualButtonSupportText2: TextView? = null
 
     enum class FooterType(val value: Int) {
         CALL_TO_ACTION(0),
@@ -68,6 +81,12 @@ class Footer @JvmOverloads constructor(
 
             primaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_primaryButtonEnabled, true)
             secondaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_secondaryButtonEnabled, true)
+
+            // New attributes for dual button description
+//            showDescription = typedArray.getBoolean(R.styleable.CustomFooter_showDescription, false)
+//            dualButtonTitle = typedArray.getString(R.styleable.CustomFooter_dualButtonTitle) ?: ""
+//            dualButtonSupportText1 = typedArray.getString(R.styleable.CustomFooter_dualButtonSupportText1) ?: ""
+//            dualButtonSupportText2 = typedArray.getString(R.styleable.CustomFooter_dualButtonSupportText2) ?: ""
 
         } finally {
             typedArray.recycle()
@@ -109,6 +128,20 @@ class Footer @JvmOverloads constructor(
             }
 
             FooterType.DUAL_BUTTON -> {
+                // Initialize text view references
+                tvDualButtonTitle = findViewById(R.id.tvFooterDualButtonTitle)
+                tvDualButtonSupportText1 = findViewById(R.id.tvFooterDualButtonSupportText1)
+                tvDualButtonTextDivider = findViewById(R.id.tvFooterDualButtonTextDivider)
+                tvDualButtonSupportText2 = findViewById(R.id.tvFooterDualButtonSupportText2)
+
+                // Set text values
+                tvDualButtonTitle?.text = dualButtonTitle
+                tvDualButtonSupportText1?.text = dualButtonSupportText1
+                tvDualButtonSupportText2?.text = dualButtonSupportText2
+
+                // Set visibility based on showDescription
+                setDescriptionVisibility(showDescription)
+
                 secondaryButton = findViewById<Button>(R.id.btnFooterDualButtonSecondary)?.apply {
                     setLabel(secondaryButtonText)
                     isEnabled = secondaryButtonEnabled
@@ -210,19 +243,50 @@ class Footer @JvmOverloads constructor(
         secondaryButtonEnabled = enabled
         secondaryButton?.isEnabled = enabled
     }
+
+    // New function to control description visibility
+    fun setDescriptionVisibility(showDescription: Boolean) {
+        this.showDescription = showDescription
+
+        val visibility = if (showDescription) View.VISIBLE else View.GONE
+
+        tvDualButtonTitle?.visibility = visibility
+        tvDualButtonSupportText1?.visibility = visibility
+        tvDualButtonTextDivider?.visibility = visibility
+        tvDualButtonSupportText2?.visibility = visibility
+    }
+
+    // New function to set dual button description data
+    fun setDualButtonDescription(title: String, supportText1: String, supportText2: String) {
+        dualButtonTitle = title
+        dualButtonSupportText1 = supportText1
+        dualButtonSupportText2 = supportText2
+
+        tvDualButtonTitle?.text = title
+        tvDualButtonSupportText1?.text = supportText1
+        tvDualButtonSupportText2?.text = supportText2
+    }
+
+    // Getter functions for the new properties
+    fun isDescriptionVisible(): Boolean = showDescription
+
+    fun getDualButtonTitle(): String = dualButtonTitle
+
+    fun getDualButtonSupportText1(): String = dualButtonSupportText1
+
+    fun getDualButtonSupportText2(): String = dualButtonSupportText2
 }
 
 
-//class CustomFooter @JvmOverloads constructor(
+
+//class Footer @JvmOverloads constructor(
 //    context: Context,
 //    attrs: AttributeSet? = null,
 //    defStyleAttr: Int = 0
 //) : LinearLayout(context, attrs, defStyleAttr) {
 //
-//    // Delegate property
-//    var delegate: CustomFooterDelegate? = null
+//    var delegate: FooterDelegate? = null
 //
-//    // Footer configuration properties
 //    private var footerType: FooterType = FooterType.CALL_TO_ACTION
 //    private var primaryButtonText: String = "Daftar Sekarang"
 //    private var secondaryButtonText: String = "Button Label"
@@ -231,24 +295,11 @@ class Footer @JvmOverloads constructor(
 //    private var statusText: String = ""
 //    private var statusType: StatusBadge.ChipType = StatusBadge.ChipType.APPROVED
 //
-//    // Button state properties
 //    private var primaryButtonEnabled: Boolean = true
 //    private var secondaryButtonEnabled: Boolean = true
-//    private var primaryButtonLoading: Boolean = false
 //
-//    // Button configuration properties
-//    private var primaryButtonSize: String = "MD"
-//    private var secondaryButtonSize: String = "MD"
-//    private var primaryButtonType: String = "PRIMARY"
-//    private var secondaryButtonType: String = "SECONDARY"
-//
-//    // Styling properties
-//    private var footerPaddingHorizontal: Int = 0
-//    private var footerPaddingVertical: Int = 0
-//
-//    // View references for click handling
-//    private var primaryButton: CustomButton? = null
-//    private var secondaryButton: CustomButton? = null
+//    private var primaryButton: Button? = null
+//    private var secondaryButton: Button? = null
 //    private var statusBadge: StatusBadge? = null
 //
 //    enum class FooterType(val value: Int) {
@@ -258,7 +309,7 @@ class Footer @JvmOverloads constructor(
 //        NO_ACTION(3);
 //
 //        companion object {
-//            fun fromInt(value: Int) = entries.firstOrNull { it.value == value } ?: CALL_TO_ACTION
+//            fun fromInt(value: Int) = values().firstOrNull { it.value == value } ?: CALL_TO_ACTION
 //        }
 //    }
 //
@@ -273,70 +324,23 @@ class Footer @JvmOverloads constructor(
 //
 //        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomFooter, 0, 0)
 //        try {
-//            // Parse footer type
 //            val typeOrdinal = typedArray.getInt(R.styleable.CustomFooter_footerType, FooterType.CALL_TO_ACTION.value)
 //            footerType = FooterType.fromInt(typeOrdinal)
 //
-//            // Parse text attributes
 //            primaryButtonText = typedArray.getString(R.styleable.CustomFooter_primaryButtonText) ?: primaryButtonText
 //            secondaryButtonText = typedArray.getString(R.styleable.CustomFooter_secondaryButtonText) ?: secondaryButtonText
 //            footerTitle = typedArray.getString(R.styleable.CustomFooter_footerTitle) ?: ""
 //            footerDescription = typedArray.getString(R.styleable.CustomFooter_footerDescription) ?: ""
 //            statusText = typedArray.getString(R.styleable.CustomFooter_statusBadgeText) ?: ""
 //
-//            // Parse status badge type
 //            val statusTypeOrdinal = typedArray.getInt(R.styleable.CustomFooter_statusBadgeType, StatusBadge.ChipType.APPROVED.ordinal)
-//            statusType = StatusBadge.ChipType.entries.toTypedArray().getOrElse(statusTypeOrdinal) { StatusBadge.ChipType.APPROVED }
+//            statusType = StatusBadge.ChipType.values().getOrElse(statusTypeOrdinal) { StatusBadge.ChipType.APPROVED }
 //
-//            // Parse button states
 //            primaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_primaryButtonEnabled, true)
 //            secondaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_secondaryButtonEnabled, true)
-////            primaryButtonLoading = typedArray.getBoolean(R.styleable.CustomFooter_primaryButtonLoading, false)
-//
-//            // Parse button sizes
-////            primaryButtonSize = getButtonSize(typedArray.getInt(R.styleable.CustomFooter_primaryButtonSize, 1))
-////            secondaryButtonSize = getButtonSize(typedArray.getInt(R.styleable.CustomFooter_secondaryButtonSize, 1))
-//
-//            // Parse button types
-////            primaryButtonType = getButtonType(typedArray.getInt(R.styleable.CustomFooter_primaryButtonType, 0))
-////            secondaryButtonType = getButtonType(typedArray.getInt(R.styleable.CustomFooter_secondaryButtonType, 1))
-//
-//            // Parse styling attributes
-////            val backgroundRes = typedArray.getResourceId(R.styleable.CustomFooter_footerBackground, -1)
-////            if (backgroundRes != -1) {
-////                setBackgroundResource(backgroundRes)
-////            } else {
-////                val backgroundColor = typedArray.getColor(R.styleable.CustomFooter_footerBackground, Color.TRANSPARENT)
-////                if (backgroundColor != Color.TRANSPARENT) {
-////                    setBackgroundColor(backgroundColor)
-////                }
-////            }
-//
-//            // Parse padding attributes
-//            footerPaddingHorizontal = resources.getDimensionPixelSize(R.dimen.margin_12dp)
-//            footerPaddingVertical = resources.getDimensionPixelSize(R.dimen.margin_8dp)
 //
 //        } finally {
 //            typedArray.recycle()
-//        }
-//    }
-//
-//    private fun getButtonSize(value: Int): String {
-//        return when (value) {
-//            0 -> "SM"
-//            1 -> "MD"
-//            2 -> "LG"
-//            else -> "MD"
-//        }
-//    }
-//
-//    private fun getButtonType(value: Int): String {
-//        return when (value) {
-//            0 -> "PRIMARY"
-//            1 -> "SECONDARY"
-//            2 -> "TERTIARY"
-//            3 -> "GHOST"
-//            else -> "PRIMARY"
 //        }
 //    }
 //
@@ -350,10 +354,7 @@ class Footer @JvmOverloads constructor(
 //            FooterType.NO_ACTION -> R.layout.footer_no_action
 //        }
 //
-//        val inflatedView = LayoutInflater.from(context).inflate(layoutRes, this, true)
-//
-//        // Apply padding
-//        setPadding(footerPaddingHorizontal, footerPaddingVertical, footerPaddingHorizontal, footerPaddingVertical)
+//        LayoutInflater.from(context).inflate(layoutRes, this, true)
 //
 //        bindDataToViews()
 //        setupClickListeners()
@@ -362,40 +363,29 @@ class Footer @JvmOverloads constructor(
 //    private fun bindDataToViews() {
 //        when (footerType) {
 //            FooterType.CALL_TO_ACTION -> {
-//                primaryButton = findViewById<CustomButton>(R.id.btnFooterCTAPrimary)?.apply {
+//                primaryButton = findViewById<Button>(R.id.btnFooterCTAPrimary)?.apply {
 //                    setLabel(primaryButtonText)
-////                    setCustomButtonSize(primaryButtonSize)
-////                    setCustomButtonType(primaryButtonType)
 //                    isEnabled = primaryButtonEnabled
-////                    setLoading(primaryButtonLoading)
 //                }
 //            }
 //
 //            FooterType.CALL_TO_ACTION_DETAIL -> {
 //                findViewById<TextView>(R.id.tvFooterCTADescTitle)?.text = footerTitle
 //                findViewById<TextView>(R.id.tvFooterCTADescDescription)?.text = footerDescription
-//                primaryButton = findViewById<CustomButton>(R.id.btnFooterCTADescPrimary)?.apply {
+//                primaryButton = findViewById<Button>(R.id.btnFooterCTADescPrimary)?.apply {
 //                    setLabel(primaryButtonText)
-////                    setCustomButtonSize(primaryButtonSize)
-////                    setCustomButtonType(primaryButtonType)
 //                    isEnabled = primaryButtonEnabled
-////                    setLoading(primaryButtonLoading)
 //                }
 //            }
 //
 //            FooterType.DUAL_BUTTON -> {
-//                secondaryButton = findViewById<CustomButton>(R.id.btnFooterDualButtonSecondary)?.apply {
+//                secondaryButton = findViewById<Button>(R.id.btnFooterDualButtonSecondary)?.apply {
 //                    setLabel(secondaryButtonText)
-////                    setCustomButtonSize(secondaryButtonSize)
-////                    setCustomButtonType(secondaryButtonType)
 //                    isEnabled = secondaryButtonEnabled
 //                }
-//                primaryButton = findViewById<CustomButton>(R.id.btnFooterDualButtonPrimary)?.apply {
+//                primaryButton = findViewById<Button>(R.id.btnFooterDualButtonPrimary)?.apply {
 //                    setLabel(primaryButtonText)
-////                    setCustomButtonSize(primaryButtonSize)
-////                    setCustomButtonType(primaryButtonType)
 //                    isEnabled = primaryButtonEnabled
-////                    setLoading(primaryButtonLoading)
 //                }
 //            }
 //
@@ -446,7 +436,6 @@ class Footer @JvmOverloads constructor(
 //        }
 //    }
 //
-//    // Public methods for programmatic configuration
 //    fun setFooterType(type: FooterType) {
 //        if (footerType != type) {
 //            footerType = type
@@ -491,33 +480,4 @@ class Footer @JvmOverloads constructor(
 //        secondaryButtonEnabled = enabled
 //        secondaryButton?.isEnabled = enabled
 //    }
-//
-////    fun setPrimaryButtonLoading(isLoading: Boolean) {
-////        primaryButtonLoading = isLoading
-////        primaryButton?.setLoading(isLoading)
-////    }
-//
-////    fun updateButtonConfiguration(
-////        primarySize: String? = null,
-////        secondarySize: String? = null,
-////        primaryType: String? = null,
-////        secondaryType: String? = null
-////    ) {
-////        primarySize?.let {
-////            primaryButtonSize = it
-////            primaryButton?.setCustomButtonSize(it)
-////        }
-////        secondarySize?.let {
-////            secondaryButtonSize = it
-////            secondaryButton?.setCustomButtonSize(it)
-////        }
-////        primaryType?.let {
-////            primaryButtonType = it
-////            primaryButton?.setCustomButtonType(it)
-////        }
-////        secondaryType?.let {
-////            secondaryButtonType = it
-////            secondaryButton?.setCustomButtonType(it)
-////        }
-////    }
 //}

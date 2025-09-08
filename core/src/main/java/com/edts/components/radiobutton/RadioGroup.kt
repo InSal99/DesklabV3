@@ -21,8 +21,14 @@ class RadioGroup @JvmOverloads constructor(
     private var disabledTextAppearance = R.style.RadioTextAppearance_Disabled
     private var disabledSelectedTextAppearance = R.style.RadioTextAppearance_DisabledSelected
     private var errorTextAppearance = R.style.RadioTextAppearance_Normal
-    private var buttonSpacing = 0
+//    private var buttonSpacing = 0
     private var compoundDrawablePadding = 8
+
+    var buttonSpacing: Int = 0
+        set(value) {
+            field = value
+            updateButtonMargins() // Update margins when spacing changes
+        }
 
     init {
         attrs?.let {
@@ -48,10 +54,16 @@ class RadioGroup @JvmOverloads constructor(
                     R.styleable.DynamicRadioGroup_radioErrorTextAppearance,
                     R.style.RadioTextAppearance_Normal
                 )
+//                buttonSpacing = getDimensionPixelSize(
+//                    R.styleable.DynamicRadioGroup_radioButtonSpacing,
+//                    resources.getDimensionPixelSize(R.dimen.margin_8dp)
+//                )
+
                 buttonSpacing = getDimensionPixelSize(
                     R.styleable.DynamicRadioGroup_radioButtonSpacing,
                     resources.getDimensionPixelSize(R.dimen.margin_8dp)
                 )
+
                 compoundDrawablePadding = getDimensionPixelSize(
                     R.styleable.DynamicRadioGroup_radioCompoundDrawablePadding,
                     resources.getDimensionPixelSize(R.dimen.margin_8dp)
@@ -59,6 +71,46 @@ class RadioGroup @JvmOverloads constructor(
             }
         }
     }
+
+//    fun <T> setData(dataList: List<T>, itemDisplayProvider: (T) -> String) {
+//        removeAllViews()
+//        radioButtonDataMap.clear()
+//
+//        dataList.forEachIndexed { index, item ->
+//            val radioButton = RadioButton(context).apply {
+//                id = View.generateViewId()
+//                text = itemDisplayProvider(item)
+//
+//                setTextAppearances(
+//                    normal = normalTextAppearance,
+//                    selected = selectedTextAppearance,
+//                    disabled = disabledTextAppearance,
+//                    disabledSelected = disabledSelectedTextAppearance,
+//                    error = errorTextAppearance
+//                )
+//
+//                layoutParams = RadioGroup.LayoutParams(
+//                    RadioGroup.LayoutParams.WRAP_CONTENT,
+//                    ViewGroup.LayoutParams.WRAP_CONTENT
+//                ).apply {
+//                    setMargins(0, 0, 0, buttonSpacing)
+//                }
+//            }
+//
+//            radioButtonDataMap[radioButton.id] = item
+//            addView(radioButton)
+//        }
+//
+//        setOnCheckedChangeListener { _, checkedId ->
+//            val position = getPositionById(checkedId)
+//            val data = radioButtonDataMap[checkedId]
+//
+//            Log.d("CustomRadioGroup", "Item selected at position: $position, with data: $data")
+//
+//            radioGroupDelegate?.onItemSelected(position, data)
+//            updateAllRadioButtonsTextAppearance()
+//        }
+//    }
 
     fun <T> setData(dataList: List<T>, itemDisplayProvider: (T) -> String) {
         removeAllViews()
@@ -77,11 +129,11 @@ class RadioGroup @JvmOverloads constructor(
                     error = errorTextAppearance
                 )
 
-                layoutParams = RadioGroup.LayoutParams(
-                    RadioGroup.LayoutParams.WRAP_CONTENT,
+                layoutParams = LayoutParams(
+                    LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 ).apply {
-                    setMargins(0, 0, 0, buttonSpacing)
+                    setMargins(0, 0, 0, buttonSpacing) // Use the buttonSpacing property
                 }
             }
 
@@ -111,6 +163,17 @@ class RadioGroup @JvmOverloads constructor(
                     disabledSelectedTextAppearance,
                     errorTextAppearance
                 )
+            }
+        }
+    }
+
+    private fun updateButtonMargins() {
+        for (i in 0 until childCount) {
+            val child = getChildAt(i)
+            if (child.layoutParams is LayoutParams) {
+                val params = child.layoutParams as LayoutParams
+                params.setMargins(0, 0, 0, buttonSpacing)
+                child.layoutParams = params
             }
         }
     }

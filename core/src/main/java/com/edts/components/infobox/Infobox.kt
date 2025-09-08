@@ -76,7 +76,7 @@ class InfoBox @JvmOverloads constructor(
             InfoBoxVariant.GENERAL -> {
                 setCardBackgroundColor(context.getThemeColor(R.attr.colorBackgroundSecondary))
                 binding.tvInfoText.setTextColor(context.getThemeColor(R.attr.colorForegroundPrimary))
-                binding.ivInfoIcon.setImageResource(R.drawable.ic_star)
+                binding.ivInfoIcon.setImageResource(R.drawable.placeholder)
                 binding.ivInfoIcon.setColorFilter(context.getThemeColor(R.attr.colorForegroundTertiary))
             }
         }
