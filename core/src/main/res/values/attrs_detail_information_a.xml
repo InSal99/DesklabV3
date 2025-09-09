@@ -4,5 +4,6 @@
         <attr name="infoIcon" format="reference" />
         <attr name="infoTitle" format="string" />
         <attr name="infoDescription" format="string" />
+        <attr name="hasAction" format="boolean" />
     </declare-styleable>
 </resources>

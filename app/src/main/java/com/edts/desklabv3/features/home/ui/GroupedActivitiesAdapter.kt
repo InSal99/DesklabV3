@@ -10,7 +10,7 @@ import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.ItemDateGroupBinding
 import com.edts.desklabv3.features.home.model.ActivityItem
 import com.edts.desklabv3.features.home.model.DateGroupItem
-import com.example.desklabv3.features.SpaceItemDecoration
+import com.edts.desklabv3.features.SpaceItemDecoration
 import java.text.SimpleDateFormat
 import java.util.*
 

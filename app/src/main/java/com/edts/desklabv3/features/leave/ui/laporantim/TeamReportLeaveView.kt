@@ -58,10 +58,10 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             layoutManager = LinearLayoutManager(requireContext())
 
             addItemDecoration(
-                com.example.desklabv3.features.SpaceItemDecoration(
+                com.edts.desklabv3.features.SpaceItemDecoration(
                     requireContext(),
                     com.edts.desklabv3.R.dimen.leave_card_item_spacing,
-                    com.example.desklabv3.features.SpaceItemDecoration.VERTICAL
+                    com.edts.desklabv3.features.SpaceItemDecoration.VERTICAL
                 )
             )
         }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/margin_12dp">
 
     <com.edts.components.notification.EventNotificationIcon
@@ -15,7 +16,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvNotificationType"
-        style="@style/TextMedium.Label4"
+        style="?attr/l4Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_6dp"
@@ -54,15 +55,13 @@
         android:id="@+id/btnNotification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_4dp"
         android:layout_marginTop="@dimen/margin_8dp"
         android:layout_weight="1"
         app:size="MD"
         app:type="PRIMARY"
-        app:isButtonDestructive="false"
-        app:isButtonDisabled="false"
-        android:text="Terima Undangan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNotificationDescription" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNotificationDescription"
+        tools:text="Terima Undangan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

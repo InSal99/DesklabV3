@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import androidx.core.content.withStyledAttributes
 import com.edts.components.R
 import com.edts.components.databinding.LeaveQuotaCardBinding
 import com.google.android.material.card.MaterialCardView
@@ -17,26 +18,16 @@ import com.google.android.material.color.MaterialColors
  * key leave-related data. The data can be set via XML attributes or programmatically
  * by setting the component's properties.
  *
- * ### XML Usage Example:
- * ```xml
- * <com.example.components.CustomLeaveQuotaCard
- * android:layout_width="152dp"
- * android:layout_height="wrap_content"
- * app:leaveQuotaTitle="Cuti Tahunan"
- * app:leaveQuota="5"
- * app:expiredDate="31 Des 2025"
- * app:leaveUsed="2" />
- * ```
  */
 class LeaveQuotaCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val binding: LeaveQuotaCardBinding = LeaveQuotaCardBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding: LeaveQuotaCardBinding =
+        LeaveQuotaCardBinding.inflate(LayoutInflater.from(context), this, true)
 
-    // Public properties with custom setters provide a cleaner, more idiomatic API.
     var title: String? = null
         set(value) {
             field = value
@@ -63,23 +54,19 @@ class LeaveQuotaCard @JvmOverloads constructor(
 
     init {
         setupCardAppearance()
+        parseAttributes(attrs)
+    }
 
+    /**
+     * Parses custom attributes from the XML layout and applies them to the view.
+     */
+    private fun parseAttributes(attrs: AttributeSet?) {
         attrs?.let {
-            val typedArray = context.obtainStyledAttributes(
-                it,
-                R.styleable.LeaveQuotaCard,
-                0,
-                0
-            )
-            try {
-                // Read from XML attributes and set the properties.
-                // This will trigger the custom setters above.
-                title = typedArray.getString(R.styleable.LeaveQuotaCard_leaveQuotaTitle)
-                leaveQuota = typedArray.getInt(R.styleable.LeaveQuotaCard_leaveQuota, 0)
-                expiredDate = typedArray.getString(R.styleable.LeaveQuotaCard_expiredDate)
-                leaveUsed = typedArray.getInt(R.styleable.LeaveQuotaCard_leaveUsed, 0)
-            } finally {
-                typedArray.recycle()
+            context.withStyledAttributes(it, R.styleable.LeaveQuotaCard, 0, 0) {
+                title = getString(R.styleable.LeaveQuotaCard_leaveQuotaTitle)
+                leaveQuota = getInt(R.styleable.LeaveQuotaCard_leaveQuota, 0)
+                expiredDate = getString(R.styleable.LeaveQuotaCard_expiredDate)
+                leaveUsed = getInt(R.styleable.LeaveQuotaCard_leaveUsed, 0)
             }
         }
     }
@@ -88,15 +75,10 @@ class LeaveQuotaCard @JvmOverloads constructor(
      * Configures the visual properties of the card, such as elevation, stroke, and corners.
      */
     private fun setupCardAppearance() {
-        val strokeSubtleColor = MaterialColors.getColor(this, R.attr.colorStrokeSubtle)
-        val cornerRadius = resources.getDimension(R.dimen.radius_8dp)
-        val strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        val elevation = resources.getDimension(R.dimen.dimen_1dp)
-
-        this.radius = cornerRadius
-        this.cardElevation = elevation
-        this.strokeColor = strokeSubtleColor
-        this.strokeWidth = strokeWidth
+        strokeColor = MaterialColors.getColor(this, R.attr.colorStrokeSubtle)
+        radius = resources.getDimension(R.dimen.radius_8dp)
+        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
+        cardElevation = resources.getDimension(R.dimen.dimen_1dp)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val shadowColor = MaterialColors.getColor(

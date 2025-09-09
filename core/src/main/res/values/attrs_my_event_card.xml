@@ -10,8 +10,8 @@
         <attr name="day" />
 
         <attr name="badgeText" />
-        <attr name="badgeBackgroundColor" format="color" />
-        <attr name="badgeCustomTextColor" format="color" />
-        <attr name="badgeVisible" format="boolean" />
+        <attr name="badgeType" />
+        <attr name="badgeSize" />
+        <attr name="myEventBadgeVisible" format="boolean" />
     </declare-styleable>
 </resources>
