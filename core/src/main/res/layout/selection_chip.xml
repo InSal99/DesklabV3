@@ -50,7 +50,7 @@
             android:scaleType="centerCrop"
             android:layout_marginStart="@dimen/margin_2dp"
             android:contentDescription="@string/chip_image_view_content_description"
-            android:src="@drawable/placeholder"
+            android:src="@drawable/ic_close"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundSecondary"/>
     </LinearLayout>

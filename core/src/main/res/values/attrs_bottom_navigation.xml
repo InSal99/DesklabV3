@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomNavigation">
+        <attr name="itemCount" format="enum">
+            <enum name="one" value="1" />
+            <enum name="two" value="2" />
+            <enum name="three" value="3" />
+            <enum name="four" value="4" />
+            <enum name="five" value="5" />
+        </attr>
+
+        <attr name="item1State" format="enum">
+            <enum name="active" value="0" />
+            <enum name="inactive" value="1" />
+        </attr>
+        <attr name="item1Icon" format="reference" />
+        <attr name="item1Text" format="string" />
+        <attr name="item1ShowBadge" format="boolean" />
+
+        <attr name="item2State" format="enum">
+            <enum name="active" value="0" />
+            <enum name="inactive" value="1" />
+        </attr>
+        <attr name="item2Icon" format="reference" />
+        <attr name="item2Text" format="string" />
+        <attr name="item2ShowBadge" format="boolean" />
+
+        <attr name="item3State" format="enum">
+            <enum name="active" value="0" />
+            <enum name="inactive" value="1" />
+        </attr>
+        <attr name="item3Icon" format="reference" />
+        <attr name="item3Text" format="string" />
+        <attr name="item3ShowBadge" format="boolean" />
+
+        <attr name="item4State" format="enum">
+            <enum name="active" value="0" />
+            <enum name="inactive" value="1" />
+        </attr>
+        <attr name="item4Icon" format="reference" />
+        <attr name="item4Text" format="string" />
+        <attr name="item4ShowBadge" format="boolean" />
+
+        <attr name="item5State" format="enum">
+            <enum name="active" value="0" />
+            <enum name="inactive" value="1" />
+        </attr>
+        <attr name="item5Icon" format="reference" />
+        <attr name="item5Text" format="string" />
+        <attr name="item5ShowBadge" format="boolean" />
+    </declare-styleable>
+</resources>

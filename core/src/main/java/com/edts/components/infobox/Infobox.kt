@@ -3,7 +3,11 @@ package com.edts.components.infobox
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import com.edts.components.databinding.InfoboxBinding
 import com.google.android.material.card.MaterialCardView
 import com.edts.components.R
@@ -76,7 +80,7 @@ class InfoBox @JvmOverloads constructor(
             InfoBoxVariant.GENERAL -> {
                 setCardBackgroundColor(context.getThemeColor(R.attr.colorBackgroundSecondary))
                 binding.tvInfoText.setTextColor(context.getThemeColor(R.attr.colorForegroundPrimary))
-                binding.ivInfoIcon.setImageResource(R.drawable.ic_star)
+                binding.ivInfoIcon.setImageResource(R.drawable.placeholder)
                 binding.ivInfoIcon.setColorFilter(context.getThemeColor(R.attr.colorForegroundTertiary))
             }
         }
@@ -99,6 +103,19 @@ class InfoBox @JvmOverloads constructor(
             fun fromValue(value: Int): InfoBoxVariant {
                 return values().find { it.value == value } ?: INFORMATION
             }
+        }
+    }
+
+    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
+        val typedValue = TypedValue()
+        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
+            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
+                ContextCompat.getColor(context, typedValue.resourceId)
+            } else {
+                typedValue.data
+            }
+        } else {
+            ContextCompat.getColor(context, fallbackColor)
         }
     }
 

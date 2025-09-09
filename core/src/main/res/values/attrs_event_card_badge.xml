@@ -5,6 +5,8 @@
             <enum name="live" value="0" />
             <enum name="invited" value="1" />
             <enum name="registered" value="2" />
+            <enum name="attended" value="3" />
+            <enum name="notattended" value="4" />
         </attr>
         <attr name="badgeSize" format="enum">
             <enum name="Small" value="0" />

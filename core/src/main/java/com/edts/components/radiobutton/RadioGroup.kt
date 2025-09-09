@@ -21,8 +21,14 @@ class RadioGroup @JvmOverloads constructor(
     private var disabledTextAppearance = R.style.RadioTextAppearance_Disabled
     private var disabledSelectedTextAppearance = R.style.RadioTextAppearance_DisabledSelected
     private var errorTextAppearance = R.style.RadioTextAppearance_Normal
-    private var buttonSpacing = 0
+//    private var buttonSpacing = 0
     private var compoundDrawablePadding = 8
+
+    var buttonSpacing: Int = 0
+        set(value) {
+            field = value
+            updateButtonMargins() // Update margins when spacing changes
+        }
 
     init {
         attrs?.let {
@@ -48,10 +54,12 @@ class RadioGroup @JvmOverloads constructor(
                     R.styleable.DynamicRadioGroup_radioErrorTextAppearance,
                     R.style.RadioTextAppearance_Normal
                 )
+
                 buttonSpacing = getDimensionPixelSize(
                     R.styleable.DynamicRadioGroup_radioButtonSpacing,
                     resources.getDimensionPixelSize(R.dimen.margin_8dp)
                 )
+
                 compoundDrawablePadding = getDimensionPixelSize(
                     R.styleable.DynamicRadioGroup_radioCompoundDrawablePadding,
                     resources.getDimensionPixelSize(R.dimen.margin_8dp)
@@ -77,11 +85,11 @@ class RadioGroup @JvmOverloads constructor(
                     error = errorTextAppearance
                 )
 
-                layoutParams = RadioGroup.LayoutParams(
-                    RadioGroup.LayoutParams.WRAP_CONTENT,
+                layoutParams = LayoutParams(
+                    LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 ).apply {
-                    setMargins(0, 0, 0, buttonSpacing)
+                    setMargins(0, 0, 0, buttonSpacing) // Use the buttonSpacing property
                 }
             }
 
@@ -111,6 +119,17 @@ class RadioGroup @JvmOverloads constructor(
                     disabledSelectedTextAppearance,
                     errorTextAppearance
                 )
+            }
+        }
+    }
+
+    private fun updateButtonMargins() {
+        for (i in 0 until childCount) {
+            val child = getChildAt(i)
+            if (child.layoutParams is LayoutParams) {
+                val params = child.layoutParams as LayoutParams
+                params.setMargins(0, 0, 0, buttonSpacing)
+                child.layoutParams = params
             }
         }
     }

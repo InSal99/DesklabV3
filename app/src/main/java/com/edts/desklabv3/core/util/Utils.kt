@@ -1,5 +1,11 @@
 package com.edts.desklabv3.core.util
 
+import android.content.Context
+import android.view.MotionEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.recyclerview.widget.RecyclerView
+import com.edts.components.input.search.InputSearch
 import com.edts.desklabv3.core.DatePattern
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -69,6 +75,65 @@ object Utils {
         } catch (e: Exception) {
             e.printStackTrace()
             "-"
+        }
+    }
+
+    fun closeSearchInput(context: Context, inputSearch: InputSearch, rootView: View) {
+        inputSearch.state = InputSearch.State.REST
+
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(rootView.windowToken, 0)
+
+        inputSearch.clearFocus()
+    }
+
+
+    fun isTouchInsideView(event: MotionEvent, view: View): Boolean {
+        val location = IntArray(2)
+        view.getLocationOnScreen(location)
+        val x = location[0]
+        val y = location[1]
+        val width = view.width
+        val height = view.height
+
+        return (event.rawX >= x &&
+                event.rawX <= x + width &&
+                event.rawY >= y &&
+                event.rawY <= y + height)
+    }
+
+    fun setupSearchInputOutsideClickListeners(
+        context: Context,
+        inputSearch: InputSearch,
+        rootView: View,
+        recyclerView: RecyclerView? = null,
+        otherClickableViews: List<View>? = null
+    ) {
+        recyclerView?.addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                if (e.action == MotionEvent.ACTION_DOWN) {
+                    closeSearchInput(context, inputSearch, rootView)
+                }
+                return false
+            }
+
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {}
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
+        })
+
+        otherClickableViews?.forEach { view ->
+            view.setOnClickListener {
+                closeSearchInput(context, inputSearch, rootView)
+            }
+        }
+
+        rootView.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                if (!isTouchInsideView(event, inputSearch)) {
+                    closeSearchInput(context, inputSearch, rootView)
+                }
+            }
+            false
         }
     }
 }

@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.inputmethod.EditorInfo
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.databinding.InputSearchBinding
@@ -15,6 +16,7 @@ import com.google.android.material.card.MaterialCardView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import com.edts.components.R
 import com.edts.components.input.search.InputSearchDelegate
 
@@ -43,7 +45,7 @@ class InputSearch @JvmOverloads constructor(
     }
 
     private var _state: State = State.REST
-    private var previousState: State = State.REST // Store previous state for focus management
+    private var previousState: State = State.REST
 
     var state: State
         get() = _state
@@ -108,16 +110,29 @@ class InputSearch @JvmOverloads constructor(
 
                 val stateValue = getInt(R.styleable.InputSearchView_inputSearchState, 0)
                 state = State.fromValue(stateValue)
+
+                updateRightIconVisibility()
+
                 updateState()
                 setupCardPressState()
                 setupFocusListeners()
                 setupTextWatcher()
                 setupCloseIconListener()
-//                setupSearchActionListener()
+                setupSearchActionListener() // Uncommented this line
             } finally {
                 recycle()
             }
         }
+    }
+
+    private fun updateRightIconVisibility() {
+        val text = binding.etSearch.text?.toString() ?: ""
+        binding.ivRightIcon.visibility = if (text.isNotEmpty()) VISIBLE else GONE
+
+        Log.d(TAG, "Right icon visibility updated:")
+        Log.d(TAG, "  - Text: '$text'")
+        Log.d(TAG, "  - Text length: ${text.length}")
+        Log.d(TAG, "  - Icon visibility: ${if (text.isNotEmpty()) "VISIBLE" else "GONE"}")
     }
 
     private fun setupFocusListeners() {
@@ -168,7 +183,7 @@ class InputSearch @JvmOverloads constructor(
 
                 delegate?.onSearchTextChange(this@InputSearch, text, searchTextChangeCount)
 
-                binding.ivRightIcon.visibility = if (text.isNotEmpty()) VISIBLE else GONE
+                updateRightIconVisibility()
             }
         })
     }
@@ -190,9 +205,14 @@ class InputSearch @JvmOverloads constructor(
                 Log.d(TAG, "  - Click timestamp: $currentTime")
 
                 binding.etSearch.text?.clear()
+                // Clear focus and hide keyboard when close icon is clicked
+                binding.etSearch.clearFocus()
+                hideKeyboard()
+
                 delegate?.onCloseIconClick(this, closeIconClickCount)
 
                 Log.d(TAG, "  - Text cleared successfully")
+                Log.d(TAG, "  - Focus cleared and keyboard hidden")
                 Log.d(TAG, "--------------------")
             } else {
                 Log.d(TAG, "Close icon click ignored due to debounce (too fast)")
@@ -200,30 +220,41 @@ class InputSearch @JvmOverloads constructor(
         }
     }
 
-//    private fun setupSearchActionListener() {
-//        binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
-//            if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE) {
-//                val query = binding.etSearch.text?.toString() ?: ""
-//                searchSubmitCount++
-//
-//                Log.d(TAG, "Search submitted:")
-//                Log.d(TAG, "  - Query: '$query'")
-//                Log.d(TAG, "  - Query length: ${query.length}")
-//                Log.d(TAG, "  - Search submit count: $searchSubmitCount")
-//                Log.d(TAG, "  - Total searches: $searchSubmitCount")
-//                Log.d(TAG, "  - Action ID: $actionId")
-//
-//                delegate?.onSearchSubmit(this, query, searchSubmitCount)
-//
-//                binding.etSearch.clearFocus()
-//
-//                Log.d(TAG, "--------------------")
-//                true
-//            } else {
-//                false
-//            }
-//        }
-//    }
+    private fun setupSearchActionListener() {
+        binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                actionId == EditorInfo.IME_ACTION_DONE ||
+                actionId == EditorInfo.IME_ACTION_GO) {
+
+                val query = binding.etSearch.text?.toString() ?: ""
+                searchSubmitCount++
+
+                Log.d(TAG, "Search submitted:")
+                Log.d(TAG, "  - Query: '$query'")
+                Log.d(TAG, "  - Query length: ${query.length}")
+                Log.d(TAG, "  - Search submit count: $searchSubmitCount")
+                Log.d(TAG, "  - Total searches: $searchSubmitCount")
+                Log.d(TAG, "  - Action ID: $actionId")
+
+                // Clear focus and hide keyboard when search is submitted
+                binding.etSearch.clearFocus()
+                hideKeyboard()
+
+                delegate?.onSearchSubmit(this, query, searchSubmitCount)
+
+                Log.d(TAG, "  - Focus cleared and keyboard hidden")
+                Log.d(TAG, "--------------------")
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    private fun hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.etSearch.windowToken, 0)
+    }
 
     private fun getCachedColor(@AttrRes colorAttr: Int): Int {
         return colorCache.getOrPut(colorAttr) {
@@ -316,8 +347,6 @@ class InputSearch @JvmOverloads constructor(
             }
             State.DISABLE -> {
                 updateCardBackground()
-//                binding.inputSearch.setCardBackgroundColor(resolveAttrColor(R.attr.colorStrokeUtilityUlangTahunIntense))
-//                card.backgroundTintList = ColorStateList.valueOf(resolveAttrColor(R.attr.colorBackgroundDisabled))
                 card.strokeColor = resolveColorAttribute(R.attr.colorStrokeSubtle)
                 binding.etSearch.isEnabled = false
                 binding.etSearch.setTextColor(resolveColorAttribute(R.attr.colorForegroundDisabled))
@@ -332,13 +361,6 @@ class InputSearch @JvmOverloads constructor(
             }
         }
     }
-
-//    private fun resolveAttrColor(attr: Int): Int {
-//        val typedArray = context.obtainStyledAttributes(intArrayOf(attr))
-//        val color = typedArray.getColor(0, 0)
-//        typedArray.recycle()
-//        return color
-//    }
 
     private fun resolveColorAttribute(colorRes: Int): Int {
         val typedValue = TypedValue()
@@ -357,10 +379,29 @@ class InputSearch @JvmOverloads constructor(
         }
     }
 
+    fun setText(text: String) {
+        binding.etSearch.setText(text)
+    }
+
+    fun getText(): String {
+        return binding.etSearch.text?.toString() ?: ""
+    }
+
+    fun clearText() {
+        binding.etSearch.text?.clear()
+    }
+
+    // Add method to manually clear focus (useful for external clicks)
+    override fun clearFocus() {
+        binding.etSearch.clearFocus()
+        hideKeyboard()
+    }
+
     fun getCloseIconClickCount(): Int = closeIconClickCount
     fun getSearchFieldClickCount(): Int = searchFieldClickCount
     fun getSearchTextChangeCount(): Int = searchTextChangeCount
     fun getSearchSubmitCount(): Int = searchSubmitCount
+
     fun resetCloseIconClickCount() {
         val oldCount = closeIconClickCount
         closeIconClickCount = 0
@@ -379,11 +420,11 @@ class InputSearch @JvmOverloads constructor(
         Log.d(TAG, "Search text change count reset: $oldCount -> 0")
     }
 
-//    fun resetSearchSubmitCount() {
-//        val oldCount = searchSubmitCount
-//        searchSubmitCount = 0
-//        Log.d(TAG, "Search submit count reset: $oldCount -> 0")
-//    }
+    fun resetSearchSubmitCount() {
+        val oldCount = searchSubmitCount
+        searchSubmitCount = 0
+        Log.d(TAG, "Search submit count reset: $oldCount -> 0")
+    }
 
     fun resetAllCounts() {
         Log.d(TAG, "Resetting all counters:")

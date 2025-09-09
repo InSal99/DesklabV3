@@ -1,0 +1,101 @@
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+tools:context=".features.event.ui.RSVPFormView"
+android:background="?attr/colorBackgroundPrimaryTinted">
+
+<ImageView
+    android:id="@+id/ivRsvpBack"
+    android:layout_width="24dp"
+    android:layout_height="0dp"
+    app:layout_constraintDimensionRatio="1:1"
+    android:scaleType="center"
+    android:src="@drawable/placeholder"
+    app:tint="?attr/colorForegroundSecondary"
+    android:layout_marginStart="@dimen/margin_16dp"
+    android:layout_marginTop="62dp"
+    android:layout_marginEnd="@dimen/radius_8dp"
+    android:layout_marginBottom="@dimen/margin_18dp"
+    app:layout_constraintEnd_toStartOf="@id/tvRsvpTitle"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+<TextView
+    android:id="@+id/tvRsvpTitle"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="@string/rsvp_form_page_title"
+    style="?attr/d3SemiBold"
+    android:textColor="?attr/colorForegroundPrimary"
+    android:layout_marginEnd="@dimen/margin_16dp"
+    app:layout_constraintTop_toTopOf="@id/ivRsvpBack"
+    app:layout_constraintStart_toEndOf="@id/ivRsvpBack"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="@id/ivRsvpBack"/>
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@drawable/bg_bottom_sheet"
+    android:clipToPadding="true"
+    android:layout_marginTop="@dimen/margin_18dp"
+    app:layout_constraintTop_toBottomOf="@id/tvRsvpTitle"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/eventRsvpFooter">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvRsvpEventTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Game Night with EDTS: Mobile Legend Online Tournament 2025"
+            style="?attr/h1SemiBold"
+            android:textColor="?attr/colorForegroundPrimary"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dRsvp1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:dividerColor="?attr/colorStrokeSubtle"
+            android:layout_marginTop="@dimen/margin_20dp"
+            app:layout_constraintStart_toStartOf="@id/tvRsvpEventTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvRsvpEventTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvRsvpEventTitle"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRsvpFormList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20dp"
+            android:layout_marginBottom="@dimen/margin_24dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/dRsvp1"
+            app:layout_constraintStart_toStartOf="@id/dRsvp1"
+            app:layout_constraintEnd_toEndOf="@id/dRsvp1"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+<com.edts.components.footer.Footer
+    android:id="@+id/eventRsvpFooter"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_24dp"
+    android:background="@color/colorFFF"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
