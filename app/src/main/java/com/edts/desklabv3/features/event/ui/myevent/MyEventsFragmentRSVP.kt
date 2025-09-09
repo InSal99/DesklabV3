@@ -20,7 +20,7 @@ import com.edts.desklabv3.features.event.model.MyEventStatus
 import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModel
 import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModelFactory
 
-class MyEventsFragment : Fragment() {
+class MyEventsFragmentRSVP : Fragment() {
 
     private var _binding: FragmentMyEventsBinding? = null
     private val binding get() = _binding!!

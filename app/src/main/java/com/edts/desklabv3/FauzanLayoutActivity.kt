@@ -6,7 +6,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.edts.desklabv3.core.EventInvitationComponentFragment
+import com.edts.desklabv3.core.EventModalityConfirmationComponentFragment
 import com.edts.desklabv3.core.EventModalityLoadingComponentFragment
+import com.edts.desklabv3.core.MyEventsComponentFragment
 import com.edts.desklabv3.databinding.ActivityFauzanLayoutBinding
 import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailFragment
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
@@ -25,20 +28,13 @@ class FauzanLayoutActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // First, check if there are fragments on the back stack
                 if (supportFragmentManager.backStackEntryCount > 0) {
-                    // If yes, let the FragmentManager handle the pop.
-                    // This will automatically trigger the exit animations.
                     supportFragmentManager.popBackStack()
                 } else {
-                    // If the back stack is empty, and the container is visible,
-                    // it means the last fragment was just popped. Hide the container.
                     if (binding.fragmentContainer.isVisible) {
                         binding.fragmentContainer.visibility = View.GONE
                         binding.svMainContent.visibility = View.VISIBLE
                     } else {
-                        // If back stack is empty and container is not visible,
-                        // perform the default back action (finish activity).
                         if (isEnabled) {
                             isEnabled = false
                             onBackPressedDispatcher.onBackPressed()
@@ -48,7 +44,6 @@ class FauzanLayoutActivity : AppCompatActivity() {
             }
         })
 
-        // This listener ensures the main view is hidden when a fragment is popped and another is shown
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount == 0) {
                 binding.svMainContent.visibility = View.VISIBLE
@@ -70,7 +65,19 @@ class FauzanLayoutActivity : AppCompatActivity() {
             showFragment(EmployeeLeaveDetailFragment())
         }
 
-        binding.cvModalityLoading.setOnClickListener {
+        binding.btnMyEventComponent.setOnClickListener {
+            showFragment(MyEventsComponentFragment())
+        }
+
+        binding.btnEventInvitationComponent.setOnClickListener {
+            showFragment(EventInvitationComponentFragment())
+        }
+
+        binding.btnEventModalityConfirmation.setOnClickListener {
+            showFragment(EventModalityConfirmationComponentFragment())
+        }
+
+        binding.btnEventModalityLoading.setOnClickListener {
             showFragment(EventModalityLoadingComponentFragment())
         }
     }

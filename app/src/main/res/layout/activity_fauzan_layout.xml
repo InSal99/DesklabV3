@@ -34,26 +34,25 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingVertical="@dimen/margin_4dp"
-                    android:text="Home Page"
+                    android:text="Page Layout"
                     android:textColor="?attr/colorForegroundPrimaryInverse" />
 
             </com.google.android.material.card.MaterialCardView>
-
 
             <com.edts.components.myevent.card.MyEventCard
                 android:id="@+id/cvMyEventCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_12dp"
+                app:badgeSize="Small"
+                app:badgeText="Terdaftar"
+                app:badgeType="registered"
                 app:date="12"
                 app:day="Wed"
                 app:month="JUL"
                 app:myEventTime="18:00 - 20:00 WIB"
                 app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
-                app:myEventType="Online Event"
-                app:badgeSize="Small"
-                app:badgeText="Terdaftar"
-                app:badgeType="registered"/>
+                app:myEventType="Online Event" />
 
             <com.edts.components.notification.EventNotificationCard
                 android:id="@+id/cvNotificationCard"
@@ -83,6 +82,59 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_12dp"
                 app:modalLoadingTitle="Please wait..." />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_12dp"
+                app:cardBackgroundColor="?attr/colorBackgroundInfoIntense"
+                app:cardCornerRadius="@dimen/margin_8dp">
+
+                <TextView
+                    style="?attr/d3Bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/margin_4dp"
+                    android:text="Component List"
+                    android:textColor="?attr/colorForegroundPrimaryInverse" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.edts.components.button.Button
+                android:id="@+id/btnMyEventComponent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12dp"
+                android:text="My Event Component"
+                app:size="MD"
+                app:type="SECONDARY" />
+
+            <com.edts.components.button.Button
+                android:id="@+id/btnEventInvitationComponent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12dp"
+                android:text="Event Invitation Component"
+                app:size="MD"
+                app:type="SECONDARY" />
+
+            <com.edts.components.button.Button
+                android:id="@+id/btnEventModalityConfirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12dp"
+                android:text="Event Modality Confirmation"
+                app:size="MD"
+                app:type="SECONDARY" />
+
+            <com.edts.components.button.Button
+                android:id="@+id/btnEventModalityLoading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12dp"
+                android:text="Event Modality Loading"
+                app:size="MD"
+                app:type="SECONDARY" />
         </LinearLayout>
     </ScrollView>
 

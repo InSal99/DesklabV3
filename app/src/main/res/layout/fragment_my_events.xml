@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackgroundPrimaryTinted"
-    tools:context=".features.event.ui.myevent.MyEventsFragment">
+    tools:context=".features.event.ui.myevent.MyEventsFragmentRSVP">
 
     <ImageView
         android:id="@+id/ivMyEventHeader"
