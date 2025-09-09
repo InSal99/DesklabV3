@@ -289,13 +289,13 @@ class Chip @JvmOverloads constructor(
 
         when (chipSize) {
             ChipSize.SMALL -> {
-                horizontalPadding = resources.getDimensionPixelSize(R.dimen.margin_6dp)
-                verticalPadding = resources.getDimensionPixelSize(R.dimen.margin_2dp)
+                horizontalPadding = resources.getDimensionPixelSize(R.dimen.margin_8dp)
+                verticalPadding = resources.getDimensionPixelSize(R.dimen.margin_4dp)
             }
 
             ChipSize.MEDIUM -> {
-                horizontalPadding = resources.getDimensionPixelSize(R.dimen.margin_8dp)
-                verticalPadding = resources.getDimensionPixelSize(R.dimen.margin_4dp)
+                horizontalPadding = resources.getDimensionPixelSize(R.dimen.margin_10dp)
+                verticalPadding = resources.getDimensionPixelSize(R.dimen.margin_6dp)
             }
         }
 

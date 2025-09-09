@@ -32,17 +32,15 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fragment_container, HomeDaftarRSVPView())
+                .replace(R.id.fragment_container, HomeDaftarRSVPView())
 //                .replace(R.id.fragment_container, ScanQRAttendanceView())
 //                .replace(R.id.fragment_container, SuccessAttendanceOfflineView())
 //                .replace(R.id.fragment_container, SuccessAttendanceOnlineView())
 //                .replace(R.id.fragment_container, SuccessRegistrationView())
 //                .replace(R.id.fragment_container, SuccessDenyInvitationView())
-                .replace(R.id.fragment_container, TeamReportLeaveView())
+//                .replace(R.id.fragment_container, TeamReportLeaveView())
 //                .replace(R.id.fragment_container, TeamReportActivityView())
-
 //                .replace(R.id.fragment_container, EventListDaftarRSVPView())
-
                 .commit();
         }
 
