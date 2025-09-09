@@ -6,6 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.edts.components.checkbox.CheckBox
 import com.edts.components.radiobutton.RadioGroup
+import com.edts.desklabv3.core.EntryPointsView
+import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.EventDetailView
 import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
@@ -17,6 +19,7 @@ import com.edts.desklabv3.features.event.ui.success.SuccessRegistrationView
 import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
 import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportActivityView
 import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -32,7 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, HomeDaftarRSVPView())
+                .replace(R.id.fragment_container, EntryPointsView())
+//                 .replace(R.id.fragment_container, HomeDaftarRSVPView())
 //                .replace(R.id.fragment_container, ScanQRAttendanceView())
 //                .replace(R.id.fragment_container, SuccessAttendanceOfflineView())
 //                .replace(R.id.fragment_container, SuccessAttendanceOnlineView())
@@ -41,8 +45,8 @@ class MainActivity : AppCompatActivity() {
 //                .replace(R.id.fragment_container, TeamReportLeaveView())
 //                .replace(R.id.fragment_container, TeamReportActivityView())
 //                .replace(R.id.fragment_container, EventListDaftarRSVPView())
-                .commit();
-        }
+//                 .commit();
+//         }
 
 //        binding.cvMyEventCard.setOnClickListener {
 //            val intent = Intent(this, MyEventsActivity::class.java)
@@ -68,14 +72,14 @@ class MainActivity : AppCompatActivity() {
 //        setupToastTestButtons()
     }
 
-    private fun navigateToEventDetail() {
-        val eventDetailView = EventDetailView()
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, eventDetailView)
-            .addToBackStack("event_detail") // Optional: Add to back stack
-            .commit()
-    }
+//    private fun navigateToEventDetail() {
+//        val eventDetailView = EventDetailView()
+//
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container, eventDetailView)
+//            .addToBackStack("event_detail") // Optional: Add to back stack
+//            .commit()
+//    }
 
 //    private fun setupRadioButtons() {
 //        val options = listOf("Option 1", "Option 2", "Option 3", "Option 4")

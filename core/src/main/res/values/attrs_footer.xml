@@ -8,6 +8,8 @@
             <enum name="NO_ACTION" value="3" />
         </attr>
 
+        <attr name="showShadow" format="boolean" />
+
         <attr name="primaryButtonText" format="string" />
         <attr name="secondaryButtonText" format="string" />
 

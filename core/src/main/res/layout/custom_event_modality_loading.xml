@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_16dp"
+    android:outlineAmbientShadowColor="?attr/colorForegroundPrimary"
+    android:outlineSpotShadowColor="?attr/colorForegroundPrimary"
+    app:cardCornerRadius="@dimen/radius_16dp"
+    app:cardElevation="@dimen/margin_4dp"
+    app:strokeColor="?attr/colorStrokeSubtle"
+    app:strokeWidth="@dimen/stroke_weight_1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_16dp">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/cpiLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:indicatorColor="?attr/colorForegroundAccentPrimaryIntense"
+            app:layout_constraintBottom_toTopOf="@+id/tvModalTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:trackColor="?attr/colorBackgroundTertiary" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvModalTitle"
+            style="@style/TextBold.Heading1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Tunggu sebentar ..."
+            android:textAlignment="center"
+            android:textColor="?attr/colorForegroundPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cpiLoading" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

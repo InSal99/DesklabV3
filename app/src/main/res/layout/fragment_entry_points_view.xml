@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".core.EntryPointsView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp" >
+
+        <TextView
+            android:id="@+id/tvLibraryTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Component Library"
+            style="?attr/d3SemiBold"
+            android:textColor="?attr/colorForegroundPrimary"
+            android:layout_marginTop="@dimen/margin_32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Button"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLibraryTitle"
+            app:layout_constraintEnd_toStartOf="@id/btnLibInfobox"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibInfobox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Infobox"
+            android:layout_marginStart="@dimen/margin_12dp"
+            app:layout_constraintStart_toEndOf="@id/btnLibButton"
+            app:layout_constraintTop_toTopOf="@id/btnLibButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibFooter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Footer"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLibButton"
+            app:layout_constraintEnd_toStartOf="@id/btnLibToast"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibToast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Toast"
+            android:layout_marginStart="@dimen/margin_12dp"
+            app:layout_constraintStart_toEndOf="@id/btnLibFooter"
+            app:layout_constraintTop_toTopOf="@id/btnLibFooter"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibCheckbox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Checkbox"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLibFooter"
+            app:layout_constraintEnd_toStartOf="@id/btnLibRadioButton"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Radio Button"
+            android:layout_marginStart="@dimen/margin_12dp"
+            app:layout_constraintStart_toEndOf="@id/btnLibCheckbox"
+            app:layout_constraintTop_toTopOf="@id/btnLibCheckbox"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibInputField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Input Field"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLibCheckbox"
+            app:layout_constraintEnd_toStartOf="@id/btnLibOptionCard"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibOptionCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Option Card"
+            android:layout_marginStart="@dimen/margin_12dp"
+            app:layout_constraintStart_toEndOf="@id/btnLibInputField"
+            app:layout_constraintTop_toTopOf="@id/btnLibInputField"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibStatusBadge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Status Badge"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLibInputField"
+            app:layout_constraintEnd_toStartOf="@id/btnLibDetailInformationA"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibDetailInformationA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Detail Info A"
+            android:layout_marginStart="@dimen/margin_12dp"
+            app:layout_constraintStart_toEndOf="@id/btnLibStatusBadge"
+            app:layout_constraintTop_toTopOf="@id/btnLibStatusBadge"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibDetailInformationSpeaker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Detail Info Speaker"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLibStatusBadge"
+            app:layout_constraintEnd_toEndOf="@id/btnLibStatusBadge"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibBottomTray"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Bottom Tray"
+            android:layout_marginStart="@dimen/margin_12dp"
+            app:layout_constraintStart_toEndOf="@id/btnLibDetailInformationSpeaker"
+            app:layout_constraintTop_toTopOf="@id/btnLibDetailInformationSpeaker"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvFlowTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Flow Prototype"
+            style="?attr/d3SemiBold"
+            android:textColor="?attr/colorForegroundPrimary"
+            android:layout_marginTop="@dimen/margin_32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLibDetailInformationSpeaker" />
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Detail Page Attendance Offline"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFlowTitle"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Detail Page Tolak Undangan"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFlow1"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="RSVP Form Page"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFlow2"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
