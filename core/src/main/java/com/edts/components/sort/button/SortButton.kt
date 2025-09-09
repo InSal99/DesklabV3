@@ -1,4 +1,4 @@
-package com.edts.components.filter.button
+package com.edts.components.sort.button
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -12,18 +12,17 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
-import com.edts.components.databinding.FilterBtnBinding
 import com.google.android.material.card.MaterialCardView
 import android.util.Log
-import com.edts.components.event.card.EventCard.CardState
+import com.edts.components.databinding.SortBtnBinding
 
-class FilterButton @JvmOverloads constructor(
+class SortButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val binding: FilterBtnBinding = FilterBtnBinding.inflate(
+    private val binding: SortBtnBinding = SortBtnBinding.inflate(
         LayoutInflater.from(context),
         this,
         true
@@ -44,7 +43,7 @@ class FilterButton @JvmOverloads constructor(
 
     private val colorCache = mutableMapOf<Int, Int>()
 
-    var delegate: FilterButtonDelegate? = null
+    var delegate: SortButtonDelegate? = null
 
     private var clickCount = 0
     private var lastClickTime = 0L
@@ -146,7 +145,7 @@ class FilterButton @JvmOverloads constructor(
             Log.d(TAG, "--------------------")
 
             super.performClick()
-            delegate?.onFilterButtonClick(this)
+            delegate?.onSortButtonClick(this)
         } else {
             Log.d(TAG, "Click ignored due to debounce (too fast)")
         }

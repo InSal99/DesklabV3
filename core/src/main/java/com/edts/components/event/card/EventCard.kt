@@ -8,6 +8,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -33,6 +34,12 @@ class EventCard @JvmOverloads constructor(
         set(value) {
             field = value
             updateEventImage()
+        }
+
+    var showBadge: Boolean = false
+        set(value) {
+            field = value
+            updateBadgeVisibility()
         }
 
     var badgeType: EventCardBadge.BadgeType = EventCardBadge.BadgeType.LIVE
@@ -127,6 +134,8 @@ class EventCard @JvmOverloads constructor(
                 eventImageSrc = getResourceId(R.styleable.EventCard_eventImageSrc, -1)
                     .takeIf { it != -1 }
 
+                showBadge = getBoolean(R.styleable.EventCard_showCardBadge, true)
+
                 val badgeTypeValue = getInt(R.styleable.EventCard_cardBadgeType, 0)
                 badgeType = EventCardBadge.BadgeType.fromValue(badgeTypeValue)
                 badgeText = getString(R.styleable.EventCard_cardBadgeText)
@@ -142,6 +151,7 @@ class EventCard @JvmOverloads constructor(
                 statusText = getString(R.styleable.EventCard_cardStatusText)
 
                 updateEventImage()
+                updateBadgeVisibility()
                 updateBadge()
                 updateBanner()
                 updateDescription()
@@ -291,6 +301,10 @@ class EventCard @JvmOverloads constructor(
         eventImageSrc?.let { imageRes ->
             binding.ivEventCard.setImageResource(imageRes)
         }
+    }
+
+    private fun updateBadgeVisibility() {
+        binding.cvEventCardBadge?.visibility = if (showBadge) View.VISIBLE else View.GONE
     }
 
     private fun updateBadge() {

@@ -3,6 +3,7 @@
     <declare-styleable name="EventCard">
         <attr name="eventImageSrc" format="reference" />
 
+        <attr name="showCardBadge" format="boolean" />
         <attr name="cardBadgeType" format="enum">
             <enum name="live" value="0" />
             <enum name="invited" value="1" />
