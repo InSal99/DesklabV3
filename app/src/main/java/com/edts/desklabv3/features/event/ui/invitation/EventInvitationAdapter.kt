@@ -1,12 +1,9 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.event.ui.invitation
 
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.notification.EventNotificationCard
 import com.edts.components.notification.EventNotificationCardDelegate
-import com.edts.desklabv3.databinding.ItemEventInvitationBinding
 import com.edts.desklabv3.features.event.model.EventInvitation
 
 class EventInvitationAdapter(
@@ -15,21 +12,26 @@ class EventInvitationAdapter(
     private val onButtonClick: (EventInvitation) -> Unit
 ) : RecyclerView.Adapter<EventInvitationAdapter.NotificationViewHolder>() {
 
-    class NotificationViewHolder(val binding: ItemEventInvitationBinding) :
-        RecyclerView.ViewHolder(binding.root as View) {
+    /**
+     * The ViewHolder now holds a direct reference to your custom component,
+     * not a binding object.
+     */
+    class NotificationViewHolder(val card: EventNotificationCard) : RecyclerView.ViewHolder(card) {
 
         fun bind(
             item: EventInvitation,
             onCardClick: (EventInvitation) -> Unit,
             onButtonClick: (EventInvitation) -> Unit
         ) {
-            binding.cvNotificationCard.apply {
+            // Bind data directly to the custom view's properties
+            card.apply {
                 title = item.title
                 description = item.description
                 buttonText = item.buttonText
                 isButtonVisible = item.isButtonVisible
                 eventType = item.eventType
 
+                // Set the delegate for click events
                 delegate = object : EventNotificationCardDelegate {
                     override fun onCardClick(notificationCard: EventNotificationCard) {
                         onCardClick(item)
@@ -44,12 +46,14 @@ class EventInvitationAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
-        val binding = ItemEventInvitationBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+        val card = EventNotificationCard(parent.context)
+
+        card.layoutParams = RecyclerView.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        return NotificationViewHolder(binding)
+
+        return NotificationViewHolder(card)
     }
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="@dimen/margin_16dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvComponentTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/colorBackgroundInfoIntense"
+        app:cardCornerRadius="@dimen/margin_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="?attr/d3SemiBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="@dimen/margin_4dp"
+            android:text="Event Modality Confirmation"
+            android:textColor="?attr/colorForegroundPrimaryInverse" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.edts.components.button.Button
+        android:id="@+id/btnEventModalityConfirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Click to Show Pop-Up Dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:size="MD"
+        app:type="SECONDARY" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

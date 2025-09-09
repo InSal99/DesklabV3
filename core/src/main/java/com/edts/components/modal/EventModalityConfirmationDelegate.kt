@@ -1,7 +1,5 @@
 package com.edts.components.modal
 
-import com.edts.components.modal.EventModalityConfirmation
-
 /**
  * Delegate interface to handle click events from the CustomEventModalityConfirmation component.
  */

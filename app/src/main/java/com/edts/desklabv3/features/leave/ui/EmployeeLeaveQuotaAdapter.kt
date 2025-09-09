@@ -1,25 +1,23 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.leave.ui
 
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.edts.desklabv3.databinding.ItemLeaveQuotaBinding
+import com.edts.components.leave.card.LeaveQuotaCard
 import com.edts.desklabv3.features.event.model.LeaveQuota
 
-class LeaveQuotaAdapter(private val items: List<LeaveQuota>) :
-    RecyclerView.Adapter<LeaveQuotaAdapter.LeaveQuotaViewHolder>() {
+class EmployeeLeaveQuotaAdapter(private val items: List<LeaveQuota>) :
+    RecyclerView.Adapter<EmployeeLeaveQuotaAdapter.LeaveQuotaViewHolder>() {
 
     /**
      * ViewHolder holds the view for a single item using ViewBinding.
      */
-    class LeaveQuotaViewHolder(private val binding: ItemLeaveQuotaBinding) :
-        RecyclerView.ViewHolder(binding.root as View) {
+    class LeaveQuotaViewHolder(val card: LeaveQuotaCard) :
+        RecyclerView.ViewHolder(card) {
 
         fun bind(item: LeaveQuota) {
             // Use the updated property-based API of the custom card.
             // This is cleaner than calling setter methods.
-            binding.leaveQuotaCardItem.apply {
+            card.apply {
                 title = item.title
                 leaveQuota = item.quota
                 expiredDate = item.expiredDate
@@ -32,12 +30,14 @@ class LeaveQuotaAdapter(private val items: List<LeaveQuota>) :
      * Creates a new ViewHolder by inflating the item layout using ViewBinding.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeaveQuotaViewHolder {
-        val binding = ItemLeaveQuotaBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+        val card = LeaveQuotaCard(parent.context)
+
+        card.layoutParams = RecyclerView.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        return LeaveQuotaViewHolder(binding)
+
+        return LeaveQuotaViewHolder(card)
     }
 
     /**

@@ -4,8 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.edts.components.databinding.EventCalendarCardBinding
+import androidx.core.content.withStyledAttributes
 import com.edts.components.R
+import com.edts.components.databinding.EventCalendarCardBinding
 
 /**
  * A custom UI component that displays a calendar date in a card format.
@@ -14,13 +15,6 @@ import com.edts.components.R
  * MaterialCardView. It is designed to be easily integrated into layouts where a prominent
  * date display is needed, such as in event lists or appointment details.
  *
- * ```kotlin
- * val calendarCard = CustomCalendarCard(context)
- * calendarCard.setCalendarData(month = "AUG", dayOfMonth = "17", day = "Sat")
- * // Add the view to your layout
- * parentLayout.addView(calendarCard)
- * ```
- *
  */
 class EventCalendarCard @JvmOverloads constructor(
     context: Context,
@@ -28,7 +22,7 @@ class EventCalendarCard @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: EventCalendarCardBinding
+    private val binding: EventCalendarCardBinding = EventCalendarCardBinding.inflate(LayoutInflater.from(context), this, true)
 
     /**
      * The three-letter abbreviation for the month (e.g., "JUL").
@@ -61,20 +55,19 @@ class EventCalendarCard @JvmOverloads constructor(
         }
 
     init {
-        binding = EventCalendarCardBinding.inflate(LayoutInflater.from(context), this, true)
+        parseAttributes(attrs)
+    }
 
+    /**
+     * Parses custom attributes from the XML layout.
+     * @param attrs The set of attributes from the XML tag that is inflating the view.
+     */
+    private fun parseAttributes(attrs: AttributeSet?) {
         attrs?.let {
-            val typedArray = context.obtainStyledAttributes(
-                it,
-                R.styleable.EventCalendarCard,
-                0,
-                0)
-            try {
-                month = typedArray.getString(R.styleable.EventCalendarCard_month)
-                date = typedArray.getString(R.styleable.EventCalendarCard_date)
-                day = typedArray.getString(R.styleable.EventCalendarCard_day)
-            } finally {
-                typedArray.recycle()
+            context.withStyledAttributes(it, R.styleable.EventCalendarCard, 0, 0) {
+                month = getString(R.styleable.EventCalendarCard_month)
+                date = getString(R.styleable.EventCalendarCard_date)
+                day = getString(R.styleable.EventCalendarCard_day)
             }
         }
     }

@@ -13,6 +13,19 @@
         android:orientation="vertical"
         android:padding="@dimen/margin_16dp">
 
+        <com.edts.components.myevent.card.MyEventCard
+            android:id="@+id/cvMyEventCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:date="12"
+            app:day="Wed"
+            app:month="JUL"
+            app:myEventTime="18:00 - 20:00 WIB"
+            app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
+            app:myEventType="Online Event"
+            app:badgeSize="Small"
+            app:badgeText="Terdaftar"
+            app:badgeType="registered"/>
 <!--        <com.edts.components.myevent.card.MyEventCard-->
 <!--            android:id="@+id/cvMyEventCard"-->
 <!--            android:layout_width="match_parent"-->

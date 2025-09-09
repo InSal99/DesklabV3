@@ -15,7 +15,7 @@ import com.google.android.material.color.MaterialColors
 class EventModalityConfirmation @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
     private val binding: EventModalityConfirmationBinding

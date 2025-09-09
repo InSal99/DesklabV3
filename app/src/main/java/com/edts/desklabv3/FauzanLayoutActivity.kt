@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.edts.desklabv3.core.EventInvitationComponentFragment
+import com.edts.desklabv3.core.EventModalityConfirmationComponentFragment
+import com.edts.desklabv3.core.EventModalityLoadingComponentFragment
+import com.edts.desklabv3.core.MyEventsComponentFragment
 import com.edts.desklabv3.databinding.ActivityFauzanLayoutBinding
-import com.edts.desklabv3.features.event.ui.EmployeeLeaveDetailFragment
-import com.edts.desklabv3.features.event.ui.EventInvitationFragment
-import com.edts.desklabv3.features.event.ui.MyEventsFragment
+import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailFragment
+import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
+import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentAttendance
 
 class FauzanLayoutActivity : AppCompatActivity() {
 
@@ -19,49 +24,78 @@ class FauzanLayoutActivity : AppCompatActivity() {
         binding = ActivityFauzanLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // This card now navigates to the MyEventsFragment
-        binding.cvMyEventCard.setOnClickListener {
-            showFragment(MyEventsFragment())
-        }
+        setupClickListeners()
 
-        // This card now navigates to the EventInvitationFragment
-        binding.cvNotificationCard.setOnClickListener {
-            showFragment(EventInvitationFragment())
-        }
-
-        // This card navigates to the EmployeeLeaveDetailFragment
-        binding.cvNotificationCard2.setOnClickListener {
-            showFragment(EmployeeLeaveDetailFragment())
-        }
-
-        // Add the back press callback directly to the activity's dispatcher
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (binding.fragmentContainer.visibility == View.VISIBLE) {
-                    binding.fragmentContainer.visibility = View.GONE
-                    binding.svMainContent.visibility = View.VISIBLE
-
+                if (supportFragmentManager.backStackEntryCount > 0) {
                     supportFragmentManager.popBackStack()
                 } else {
-                    if (isEnabled) {
-                        isEnabled = false
-                        onBackPressedDispatcher.onBackPressed()
+                    if (binding.fragmentContainer.isVisible) {
+                        binding.fragmentContainer.visibility = View.GONE
+                        binding.svMainContent.visibility = View.VISIBLE
+                    } else {
+                        if (isEnabled) {
+                            isEnabled = false
+                            onBackPressedDispatcher.onBackPressed()
+                        }
                     }
                 }
             }
         })
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount == 0) {
+                binding.svMainContent.visibility = View.VISIBLE
+                binding.fragmentContainer.visibility = View.GONE
+            }
+        }
     }
 
-    /**
-     * Helper function to replace the content of the FragmentContainerView with a new fragment.
-     */
+    private fun setupClickListeners() {
+        binding.cvMyEventCard.setOnClickListener {
+            showFragment(MyEventsFragmentAttendance())
+        }
+
+        binding.cvNotificationCard.setOnClickListener {
+            showFragment(EventInvitationFragmentTolakUndangan())
+        }
+
+        binding.cvNotificationCard2.setOnClickListener {
+            showFragment(EmployeeLeaveDetailFragment())
+        }
+
+        binding.btnMyEventComponent.setOnClickListener {
+            showFragment(MyEventsComponentFragment())
+        }
+
+        binding.btnEventInvitationComponent.setOnClickListener {
+            showFragment(EventInvitationComponentFragment())
+        }
+
+        binding.btnEventModalityConfirmation.setOnClickListener {
+            showFragment(EventModalityConfirmationComponentFragment())
+        }
+
+        binding.btnEventModalityLoading.setOnClickListener {
+            showFragment(EventModalityLoadingComponentFragment())
+        }
+    }
+
     private fun showFragment(fragment: Fragment) {
         binding.svMainContent.visibility = View.GONE
         binding.fragmentContainer.visibility = View.VISIBLE
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
-            .commit()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimations(
+            R.anim.slide_in_right,
+            R.anim.slide_out_left,
+            R.anim.slide_in_left,
+            R.anim.slide_out_right
+        )
+
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }
