@@ -103,6 +103,7 @@ class EventDetailViewAttendanceOffline : Fragment() {
         val isEventPast = false
 
         binding.eventDetailFooter.apply {
+            setShadowVisibility(true)
             when {
                 isEventPast -> {
                     setFooterType(Footer.FooterType.NO_ACTION)

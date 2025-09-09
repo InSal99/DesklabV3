@@ -74,6 +74,20 @@
             app:statusBadgeText="Presensi Tercatat"
             app:statusBadgeType="approved" />
 
+        <com.edts.components.infoboxfooter.InfoBoxFooter
+            android:id="@+id/infoboxFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="This is an information message"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:variant="information"
+            app:showInfoBox="true"
+            app:footerType="CALL_TO_ACTION_DETAIL"
+            app:primaryButtonText="Register Now"
+            app:primaryButtonEnabled="true"
+            app:footerTitle="Welcome"
+            app:footerDescription="Please complete your registration" />
+
     </LinearLayout>
 
 </ScrollView>

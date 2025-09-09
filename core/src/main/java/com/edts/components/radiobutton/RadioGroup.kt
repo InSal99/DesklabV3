@@ -54,10 +54,6 @@ class RadioGroup @JvmOverloads constructor(
                     R.styleable.DynamicRadioGroup_radioErrorTextAppearance,
                     R.style.RadioTextAppearance_Normal
                 )
-//                buttonSpacing = getDimensionPixelSize(
-//                    R.styleable.DynamicRadioGroup_radioButtonSpacing,
-//                    resources.getDimensionPixelSize(R.dimen.margin_8dp)
-//                )
 
                 buttonSpacing = getDimensionPixelSize(
                     R.styleable.DynamicRadioGroup_radioButtonSpacing,
@@ -71,46 +67,6 @@ class RadioGroup @JvmOverloads constructor(
             }
         }
     }
-
-//    fun <T> setData(dataList: List<T>, itemDisplayProvider: (T) -> String) {
-//        removeAllViews()
-//        radioButtonDataMap.clear()
-//
-//        dataList.forEachIndexed { index, item ->
-//            val radioButton = RadioButton(context).apply {
-//                id = View.generateViewId()
-//                text = itemDisplayProvider(item)
-//
-//                setTextAppearances(
-//                    normal = normalTextAppearance,
-//                    selected = selectedTextAppearance,
-//                    disabled = disabledTextAppearance,
-//                    disabledSelected = disabledSelectedTextAppearance,
-//                    error = errorTextAppearance
-//                )
-//
-//                layoutParams = RadioGroup.LayoutParams(
-//                    RadioGroup.LayoutParams.WRAP_CONTENT,
-//                    ViewGroup.LayoutParams.WRAP_CONTENT
-//                ).apply {
-//                    setMargins(0, 0, 0, buttonSpacing)
-//                }
-//            }
-//
-//            radioButtonDataMap[radioButton.id] = item
-//            addView(radioButton)
-//        }
-//
-//        setOnCheckedChangeListener { _, checkedId ->
-//            val position = getPositionById(checkedId)
-//            val data = radioButtonDataMap[checkedId]
-//
-//            Log.d("CustomRadioGroup", "Item selected at position: $position, with data: $data")
-//
-//            radioGroupDelegate?.onItemSelected(position, data)
-//            updateAllRadioButtonsTextAppearance()
-//        }
-//    }
 
     fun <T> setData(dataList: List<T>, itemDisplayProvider: (T) -> String) {
         removeAllViews()
