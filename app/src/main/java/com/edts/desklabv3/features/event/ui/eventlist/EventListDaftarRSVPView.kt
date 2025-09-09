@@ -246,6 +246,8 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
         tabAdapter = TabEventListDaftarRSVPAdapter(
             selectedPosition = 0 // Default to "Daftar Event"
         ) { position, tabText ->
+            // Close search input when tab is clicked
+            Utils.closeSearchInput(requireContext(), binding.cvSearchEvent, binding.root)
             handleTabSelection(position, tabText)
         }
 
@@ -261,6 +263,8 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
             chipTexts = chipTexts,
             selectedPosition = 0,
             onChipClick = { position, chipText ->
+                // Close search input when chip is clicked
+                Utils.closeSearchInput(requireContext(), binding.cvSearchEvent, binding.root)
                 handleChipClick(position, chipText)
             }
         )
@@ -284,6 +288,8 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
         eventListAdapter = EventListAdapter(
             events = filteredEvents,
             onEventClick = { event ->
+                // Close search input when event item is clicked
+                Utils.closeSearchInput(requireContext(), binding.cvSearchEvent, binding.root)
                 handleEventClick(event)
             }
         )
@@ -313,7 +319,11 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
             inputSearch = binding.cvSearchEvent,
             rootView = binding.root,
             recyclerView = binding.rvEvents,
-            otherClickableViews = listOf(binding.rvTabEventListDaftarRSVP, binding.rvEventChips)
+            otherClickableViews = listOf(
+                binding.rvTabEventListDaftarRSVP,
+                binding.rvEventChips,
+                binding.tvSectionTitleEventListDaftarRSVP
+            )
         )
     }
 
@@ -330,7 +340,7 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
             }
         }
 
-        currentSearchQuery = ""
+        // Keep current search query and reset chip filter only
         currentChipFilter = "Semua"
         applyFilters()
 
@@ -340,6 +350,7 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleChipClick(position: Int, chipText: String) {
+        // Keep current search query and update chip filter
         currentChipFilter = chipText
         applyFilters()
     }
@@ -347,6 +358,7 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
     private fun applyFilters() {
         var events = originalEvents
 
+        // Apply search filter first
         if (currentSearchQuery.isNotEmpty()) {
             events = events.filter { event ->
                 event.eventTitle.contains(currentSearchQuery, ignoreCase = true) ||
@@ -355,6 +367,7 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
             }
         }
 
+        // Apply chip filter on already searched events
         filteredEvents = when (currentChipFilter) {
             "Semua" -> events
             "Employee Benefit" -> events.filter { it.eventCategory == EventCategory.EMPLOYEE_BENEFIT }
@@ -364,6 +377,17 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
         }
 
         eventListAdapter.updateEvents(filteredEvents)
+        updateEmptyState()
+    }
+
+    private fun updateEmptyState() {
+        if (filteredEvents.isEmpty()) {
+            binding.ivEmptyStateEventList.visibility = View.VISIBLE
+            binding.rvEvents.visibility = View.INVISIBLE
+        } else {
+            binding.ivEmptyStateEventList.visibility = View.GONE
+            binding.rvEvents.visibility = View.VISIBLE
+        }
     }
 
     private fun handleEventClick(event: EventSample) {
@@ -380,6 +404,7 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
     override fun onSearchSubmit(inputSearch: com.edts.components.input.search.InputSearch, query: String, submitCount: Int) {
         currentSearchQuery = query
         applyFilters()
+        Utils.closeSearchInput(requireContext(), binding.cvSearchEvent, binding.root)
     }
 
     override fun onCloseIconClick(inputSearch: com.edts.components.input.search.InputSearch, clickCount: Int) {

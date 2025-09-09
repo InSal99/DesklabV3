@@ -71,6 +71,21 @@
         app:layout_constraintStart_toStartOf="@+id/cvSearchEvent"
         app:layout_constraintEnd_toEndOf="@+id/cvSearchEvent"/>
 
+    <ImageView
+        android:id="@+id/ivEmptyStateEventList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        android:contentDescription="Empty State"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_state_event_list"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/rvEventChips"
+        app:layout_constraintEnd_toEndOf="@id/rvEventChips"
+        app:layout_constraintTop_toBottomOf="@+id/rvEventChips"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEvents"
         android:layout_width="0dp"

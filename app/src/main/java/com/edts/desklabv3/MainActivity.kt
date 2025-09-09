@@ -38,10 +38,10 @@ class MainActivity : AppCompatActivity() {
 //                .replace(R.id.fragment_container, SuccessAttendanceOnlineView())
 //                .replace(R.id.fragment_container, SuccessRegistrationView())
 //                .replace(R.id.fragment_container, SuccessDenyInvitationView())
-//                .replace(R.id.fragment_container, TeamReportLeaveView())
+                .replace(R.id.fragment_container, TeamReportLeaveView())
 //                .replace(R.id.fragment_container, TeamReportActivityView())
 
-                .replace(R.id.fragment_container, EventListDaftarRSVPView())
+//                .replace(R.id.fragment_container, EventListDaftarRSVPView())
 
                 .commit();
         }

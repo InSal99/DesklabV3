@@ -31,6 +31,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
+    <ImageView
+        android:id="@+id/ivEmptyStateLeaveList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:paddingBottom="@dimen/margin_24dp"
+        android:clipToPadding="false"
+        android:contentDescription="Empty State"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_state_leave"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/cvSearchKaryawan"
+        app:layout_constraintStart_toStartOf="@id/cvSearchKaryawan"
+        app:layout_constraintEnd_toEndOf="@id/cvSortBtn"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLeaveCards"
         android:layout_width="match_parent"

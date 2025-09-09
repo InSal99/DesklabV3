@@ -22,6 +22,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     private lateinit var leaveCardAdapter: LeaveCardAdapter
     private lateinit var originalEmployees: List<Employee>
     private var filteredEmployees: List<Employee> = emptyList()
+    private var currentSearchQuery = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +38,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         setupRecyclerView()
         setupSearchFunctionality()
         setupOutsideClickListener()
+        setupSortButton()
     }
 
     private fun setupRecyclerView() {
@@ -63,22 +65,64 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
                 )
             )
         }
+
+        // Initial empty state check
+        updateEmptyState()
     }
 
     private fun setupSearchFunctionality() {
         binding.cvSearchKaryawan.delegate = this
     }
 
+    private fun setupSortButton() {
+        binding.cvSortBtn.setOnClickListener {
+            // Close search input when sort button is clicked
+            Utils.closeSearchInput(requireContext(), binding.cvSearchKaryawan, binding.root)
+            handleSortClick()
+        }
+    }
+
+    private fun handleSortClick() {
+        // Placeholder for sort functionality - to be implemented later
+    }
+
     private fun filterEmployees(query: String) {
-        filteredEmployees = if (query.isEmpty()) {
-            originalEmployees
-        } else {
-            originalEmployees.filter { employee ->
-                employee.employeeName.contains(query, ignoreCase = true) ||
-                        employee.employeeRole.contains(query, ignoreCase = true)
+        currentSearchQuery = query
+        applyFilters()
+    }
+
+    private fun applyFilters() {
+        var employees = originalEmployees
+
+        // Apply search filter
+        if (currentSearchQuery.isNotEmpty()) {
+            employees = employees.filter { employee ->
+                employee.employeeName.contains(currentSearchQuery, ignoreCase = true) ||
+                        employee.employeeRole.contains(currentSearchQuery, ignoreCase = true)
             }
         }
+
+        // Apply other filters here (empty for now - to be implemented later)
+        filteredEmployees = applyOtherFilters(employees)
+
         leaveCardAdapter.updateEmployees(filteredEmployees)
+        updateEmptyState()
+    }
+
+    private fun applyOtherFilters(employees: List<Employee>): List<Employee> {
+        // Empty function for additional filtering logic
+        // This will be implemented later
+        return employees
+    }
+
+    private fun updateEmptyState() {
+        if (filteredEmployees.isEmpty()) {
+            binding.ivEmptyStateLeaveList.visibility = View.VISIBLE
+            binding.rvLeaveCards.visibility = View.INVISIBLE
+        } else {
+            binding.ivEmptyStateLeaveList.visibility = View.GONE
+            binding.rvLeaveCards.visibility = View.VISIBLE
+        }
     }
 
     private fun setupOutsideClickListener() {
@@ -98,6 +142,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
     override fun onSearchSubmit(inputSearch: com.edts.components.input.search.InputSearch, query: String, submitCount: Int) {
         filterEmployees(query)
+        Utils.closeSearchInput(requireContext(), binding.cvSearchKaryawan, binding.root)
     }
 
     override fun onCloseIconClick(inputSearch: com.edts.components.input.search.InputSearch, clickCount: Int) {
