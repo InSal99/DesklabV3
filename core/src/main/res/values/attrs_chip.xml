@@ -14,5 +14,6 @@
         <attr name="chipShowIcon" format="boolean" />
         <attr name="chipShowBadge" format="boolean" />
         <attr name="chipIcon" format="reference" />
+        <attr name="chipActiveBackgroundColor" format="color|reference" />
     </declare-styleable>
 </resources>

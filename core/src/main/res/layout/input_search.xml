@@ -18,14 +18,14 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:paddingHorizontal="@dimen/margin_12dp"
-        android:paddingVertical="@dimen/margin_8dp">
+        android:paddingVertical="@dimen/margin_10dp">
 
         <ImageView
             android:id="@+id/ivLeftIcon"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="Search Icon"
-            android:src="@drawable/placeholder"
+            android:src="@drawable/ic_input_search"
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundTertiary"
@@ -58,7 +58,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="Close Button"
-            android:src="@drawable/placeholder"
+            android:src="@drawable/ic_close"
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundTertiary"

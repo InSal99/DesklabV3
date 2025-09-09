@@ -83,6 +83,8 @@ class Chip @JvmOverloads constructor(
 
     private val colorCache = mutableMapOf<Int, Int>()
 
+    private var customActiveBackgroundColor: Int? = null
+
     var chipText: String? = null
         set(value) {
             field = value
@@ -155,6 +157,10 @@ class Chip @JvmOverloads constructor(
                     chipIcon = iconResId
                 }
 
+                if (hasValue(R.styleable.Chip_chipActiveBackgroundColor)) {
+                    customActiveBackgroundColor = getColor(R.styleable.Chip_chipActiveBackgroundColor, 0)
+                }
+
                 updateChipStateImmediate()
                 updateChipSize()
                 updateChipText()
@@ -173,6 +179,10 @@ class Chip @JvmOverloads constructor(
         return colorCache.getOrPut(colorAttr) {
             resolveColorAttribute(colorAttr)
         }
+    }
+
+    private fun getActiveBackgroundColor(): Int {
+        return customActiveBackgroundColor ?: getCachedColor(R.attr.colorBackgroundPrimaryInverse)
     }
 
     private fun setupPressState() {
@@ -313,7 +323,7 @@ class Chip @JvmOverloads constructor(
             }
 
             ChipState.ACTIVE -> {
-                binding.chip.setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimaryInverse))
+                binding.chip.setCardBackgroundColor(getActiveBackgroundColor())
                 binding.chip.strokeColor = if (pressState == PressState.ON_PRESS) {
                     getCachedColor(R.attr.colorStrokeSubtle)
                 } else {
@@ -337,7 +347,7 @@ class Chip @JvmOverloads constructor(
         when (newState) {
             ChipState.INACTIVE -> {
                 animateBackgroundColor(
-                    getCachedColor(R.attr.colorBackgroundPrimaryInverse),
+                    getActiveBackgroundColor(),
                     getCachedColor(R.attr.colorBackgroundPrimary),
                     animationDuration
                 )
@@ -370,7 +380,7 @@ class Chip @JvmOverloads constructor(
             ChipState.ACTIVE -> {
                 animateBackgroundColor(
                     getCachedColor(R.attr.colorBackgroundPrimary),
-                    getCachedColor(R.attr.colorBackgroundPrimaryInverse),
+                    getActiveBackgroundColor(),
                     animationDuration
                 )
                 animateStrokeColor(
@@ -538,6 +548,14 @@ class Chip @JvmOverloads constructor(
 
                 delegate?.onChipClick(this, newState)
             }
+        }
+    }
+
+    fun setActiveBackgroundColor(color: Int) {
+        customActiveBackgroundColor = color
+        // If currently in active state, update immediately
+        if (chipState == ChipState.ACTIVE) {
+            updateChipStateImmediate()
         }
     }
 }

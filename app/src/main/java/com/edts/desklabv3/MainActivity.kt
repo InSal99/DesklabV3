@@ -1,20 +1,22 @@
 package com.edts.desklabv3
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import com.edts.components.button.Button
 import com.edts.components.checkbox.CheckBox
-import com.edts.components.checkbox.CheckboxDelegate
 import com.edts.components.radiobutton.RadioGroup
-import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.EventDetailView
+import com.edts.desklabv3.databinding.ActivityMainBinding
+import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
+import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
+import com.edts.desklabv3.features.event.ui.success.SuccessAttendanceOfflineView
+import com.edts.desklabv3.features.event.ui.success.SuccessAttendanceOnlineView
+import com.edts.desklabv3.features.event.ui.success.SuccessDenyInvitationView
+import com.edts.desklabv3.features.event.ui.success.SuccessRegistrationView
+import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
+import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportActivityView
+import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,7 +32,17 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, EventDetailView())
+//                .replace(R.id.fragment_container, HomeDaftarRSVPView())
+//                .replace(R.id.fragment_container, ScanQRAttendanceView())
+//                .replace(R.id.fragment_container, SuccessAttendanceOfflineView())
+//                .replace(R.id.fragment_container, SuccessAttendanceOnlineView())
+//                .replace(R.id.fragment_container, SuccessRegistrationView())
+//                .replace(R.id.fragment_container, SuccessDenyInvitationView())
+//                .replace(R.id.fragment_container, TeamReportLeaveView())
+//                .replace(R.id.fragment_container, TeamReportActivityView())
+
+                .replace(R.id.fragment_container, EventListDaftarRSVPView())
+
                 .commit();
         }
 

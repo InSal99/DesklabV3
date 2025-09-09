@@ -6,6 +6,7 @@ enum class EventStatus {
     TERDAFTAR,
     HADIR,
     TIDAK_HADIR,
-    SELESAI,
-    DIBATALKAN
+    DIBATALKAN,
+    DITOLAK,
+    RSVP
 }

@@ -34,7 +34,9 @@ class EventCardBadge @JvmOverloads constructor(
     enum class BadgeType(val value: Int) {
         LIVE(0),
         INVITED(1),
-        REGISTERED(2);
+        REGISTERED(2),
+        ATTENDED(3),
+        NOTATTENDED(4);
 
         companion object {
             fun fromValue(value: Int): BadgeType {
@@ -53,6 +55,8 @@ class EventCardBadge @JvmOverloads constructor(
         set(value) {
             field = value
             updateBadgeSize()
+            // Reapply color after size change since setTextAppearance() might override text color
+            updateBadgeColor()
         }
 
     var badgeText: String? = null
@@ -74,8 +78,9 @@ class EventCardBadge @JvmOverloads constructor(
                 badgeSize = BadgeSize.fromValue(badgeSizeValue)
                 badgeText = getString(R.styleable.EventCardBadge_eventCardBadgeText)
 
-                updateBadgeColor()
+                // Apply size first, then color to ensure color isn't overridden
                 updateBadgeSize()
+                updateBadgeColor()
                 updateBadgeText()
             } finally {
                 recycle()
@@ -85,21 +90,50 @@ class EventCardBadge @JvmOverloads constructor(
 
     private fun updateBadgeColor() {
         val typedValue = android.util.TypedValue()
+        val textColorTypedValue = android.util.TypedValue()
+
         when (badgeType) {
             BadgeType.LIVE -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundAttentionIntense, typedValue, true)
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, typedValue.resourceId)
+
+                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
             }
             BadgeType.INVITED -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundWarningIntense, typedValue, true)
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, typedValue.resourceId)
+
+                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
             }
             BadgeType.REGISTERED -> {
                 context.theme.resolveAttribute(R.attr.colorBackgroundSuccessIntense, typedValue, true)
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, typedValue.resourceId)
+
+                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
+            }
+
+            BadgeType.ATTENDED -> {
+                context.theme.resolveAttribute(R.attr.colorBackgroundTertiary, typedValue, true)
+                binding.EventCardBadge.backgroundTintList =
+                    ContextCompat.getColorStateList(context, typedValue.resourceId)
+
+                context.theme.resolveAttribute(R.attr.colorForegroundTertiary, textColorTypedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
+
+            }
+            BadgeType.NOTATTENDED -> {
+                context.theme.resolveAttribute(R.attr.colorBackgroundTertiary, typedValue, true)
+                binding.EventCardBadge.backgroundTintList =
+                    ContextCompat.getColorStateList(context, typedValue.resourceId)
+
+                context.theme.resolveAttribute(R.attr.colorForegroundTertiary, textColorTypedValue, true)
+                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
             }
         }
     }
@@ -110,10 +144,6 @@ class EventCardBadge @JvmOverloads constructor(
                 val typedValue = android.util.TypedValue()
                 context.theme.resolveAttribute(R.attr.l3SemiBold, typedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextAppearance(typedValue.resourceId)
-
-                val textColorTypedValue = android.util.TypedValue()
-                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
-                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
 
                 binding.tvEvenCardBadgeLabel.setPadding(
                     resources.getDimensionPixelSize(R.dimen.margin_8dp),
@@ -126,10 +156,6 @@ class EventCardBadge @JvmOverloads constructor(
                 val typedValue = android.util.TypedValue()
                 context.theme.resolveAttribute(R.attr.l3SemiBold, typedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextAppearance(typedValue.resourceId)
-
-                val textColorTypedValue = android.util.TypedValue()
-                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
-                binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
 
                 binding.tvEvenCardBadgeLabel.setPadding(
                     resources.getDimensionPixelSize(R.dimen.margin_8dp),
