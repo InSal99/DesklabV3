@@ -6,8 +6,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.edts.components.checkbox.CheckBox
 import com.edts.components.radiobutton.RadioGroup
-import com.edts.desklabv3.features.event.ui.EventDetailView
-import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
