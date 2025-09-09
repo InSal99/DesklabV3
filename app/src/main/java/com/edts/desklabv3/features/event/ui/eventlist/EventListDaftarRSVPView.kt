@@ -296,7 +296,7 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
             addItemDecoration(
                 SpaceItemDecoration(
                     requireContext(),
-                    R.dimen.activity_item_spacing,
+                    R.dimen.leave_card_item_spacing,
                     SpaceItemDecoration.VERTICAL
                 )
             )
