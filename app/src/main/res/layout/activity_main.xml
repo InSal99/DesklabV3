@@ -1,50 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    tools:ignore="MergeRootFrame">
+    tools:ignore="MergeRootFrame" />
 
-<!--    <com.edts.components.bottom.navigation.BottomNavigationItem-->
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:id="@+id/fragment_container"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".MainActivity"-->
+<!--    tools:ignore="MergeRootFrame">-->
+
+<!--&lt;!&ndash;    <com.edts.components.bottom.navigation.BottomNavigationItem&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:navState="inactive"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:navIcon="@drawable/placeholder"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:navText="Label"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:navShowBadge="true"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"/>&ndash;&gt;-->
+
+<!--    <com.edts.components.bottom.navigation.BottomNavigation-->
+<!--        android:id="@+id/bottomNavigation"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:layout_weight="1"-->
-<!--        app:navState="inactive"-->
-<!--        app:navIcon="@drawable/placeholder"-->
-<!--        app:navText="Label"-->
-<!--        app:navShowBadge="true"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:itemCount="four"-->
+<!--        app:item1State="active"-->
+<!--        app:item1Icon="@drawable/ic_sort"-->
+<!--        app:item1Text="Home"-->
+<!--        app:item1ShowBadge="true"-->
+<!--        app:item2State="inactive"-->
+<!--        app:item2Icon="@drawable/ic_star"-->
+<!--        app:item2Text="Search"-->
+<!--        app:item2ShowBadge="false"-->
+<!--        app:item3State="inactive"-->
+<!--        app:item3Icon="@drawable/ic_chevron_down"-->
+<!--        app:item3Text="Profile"-->
+<!--        app:item3ShowBadge="false"-->
+<!--        app:item4State="inactive"-->
+<!--        app:item4Icon="@drawable/ic_notification_bell"-->
+<!--        app:item4Text="Settings"-->
+<!--        app:item4ShowBadge="true"-->
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"/>-->
-
-    <com.edts.components.bottom.navigation.BottomNavigation
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemCount="four"
-        app:item1State="active"
-        app:item1Icon="@drawable/ic_sort"
-        app:item1Text="Home"
-        app:item1ShowBadge="true"
-        app:item2State="inactive"
-        app:item2Icon="@drawable/ic_star"
-        app:item2Text="Search"
-        app:item2ShowBadge="false"
-        app:item3State="inactive"
-        app:item3Icon="@drawable/ic_chevron_down"
-        app:item3Text="Profile"
-        app:item3ShowBadge="false"
-        app:item4State="inactive"
-        app:item4Icon="@drawable/ic_notification_bell"
-        app:item4Text="Settings"
-        app:item4ShowBadge="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
 
 <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->

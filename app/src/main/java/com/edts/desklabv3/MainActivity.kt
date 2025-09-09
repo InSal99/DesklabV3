@@ -8,8 +8,6 @@ import com.edts.components.checkbox.CheckBox
 import com.edts.components.radiobutton.RadioGroup
 import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.databinding.ActivityMainBinding
-import com.edts.desklabv3.features.event.ui.EventDetailView
-import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
 import com.edts.desklabv3.features.event.ui.success.SuccessAttendanceOfflineView
@@ -45,8 +43,8 @@ class MainActivity : AppCompatActivity() {
 //                .replace(R.id.fragment_container, TeamReportLeaveView())
 //                .replace(R.id.fragment_container, TeamReportActivityView())
 //                .replace(R.id.fragment_container, EventListDaftarRSVPView())
-//                 .commit();
-//         }
+                 .commit();
+         }
 
 //        binding.cvMyEventCard.setOnClickListener {
 //            val intent = Intent(this, MyEventsActivity::class.java)
@@ -70,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 //        setupCheckboxes()
 //        setupCheckboxErrorTestButtons()
 //        setupToastTestButtons()
-    }
+        }
 
 //    private fun navigateToEventDetail() {
 //        val eventDetailView = EventDetailView()
@@ -185,4 +183,4 @@ class MainActivity : AppCompatActivity() {
 //            Toast.info(this, "This is an info message!")
 //        }
 //    }
-}
+    }
