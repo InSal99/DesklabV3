@@ -45,6 +45,15 @@
             app:infoIcon="@drawable/placeholder"
             android:layout_marginTop="@dimen/margin_16dp"/>
 
+        <com.edts.components.detail.information.DetailInformationA
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:infoTitle="Title"
+            app:infoDescription="Description"
+            app:infoIcon="@drawable/placeholder"
+            app:hasAction="true"
+            android:layout_marginTop="@dimen/margin_12dp"/>
+
     </LinearLayout>
 
 </ScrollView>
