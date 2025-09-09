@@ -11,26 +11,21 @@
         android:id="@+id/customCalendarCard"
         android:layout_width="56dp"
         android:layout_height="wrap_content"
+        app:month="JUL"
         app:date="24"
         app:day="Rab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:month="JUL" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Badge Status -->
-    <com.google.android.material.chip.Chip
+    <com.edts.components.event.card.EventCardBadge
         android:id="@+id/eventCardBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Terdaftar"
-        android:textAppearance="?attr/l3SemiBold"
-        android:textColor="?attr/colorForegroundPrimaryInverse"
-        app:chipBackgroundColor="?attr/colorBackgroundSuccessIntense"
-        app:chipEndPadding="@dimen/margin_4dp"
-        app:chipMinHeight="@dimen/margin_18dp"
-        app:chipMinTouchTargetSize="@dimen/margin_18dp"
-        app:chipStartPadding="@dimen/margin_2dp"
+        app:badgeType="registered"
+        app:badgeSize="Small"
+        app:eventCardBadgeText="Terdaftar"
         app:layout_constraintBottom_toBottomOf="@id/tvEventType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvEventType" />

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InfoBoxFooter">
+        <attr name="text" />
+        <attr name="variant" />
+        <attr name="showInfoBox" format="boolean" />
+
+        <attr name="footerType" />
+        <attr name="primaryButtonText" />
+        <attr name="secondaryButtonText" />
+        <attr name="primaryButtonEnabled" />
+        <attr name="secondaryButtonEnabled" />
+        <attr name="footerTitle" />
+        <attr name="footerDescription" />
+        <attr name="statusBadgeText" />
+        <attr name="statusBadgeType" />
+
+    </declare-styleable>
+</resources>

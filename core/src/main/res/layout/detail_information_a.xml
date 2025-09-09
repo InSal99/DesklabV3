@@ -3,18 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clDetailInformationRoot"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingVertical="@dimen/margin_12dp" >
+    android:layout_height="wrap_content" >
 
     <ImageView
         android:id="@+id/ivInfoIcon"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/placeholder"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvInfoTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvDetailDescription"
         app:tint="?attr/colorForegroundTertiary" />
 
     <TextView
@@ -27,6 +27,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         style="?attr/l3Regular"
+        android:layout_marginTop="@dimen/margin_12dp"
         app:layout_constraintStart_toEndOf="@id/ivInfoIcon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tvDetailDescription"
@@ -43,8 +44,35 @@
         android:ellipsize="end"
         style="?attr/l2Medium"
         android:textColor="?attr/colorForegroundPrimary"
+        android:layout_marginBottom="@dimen/margin_12dp"
         app:layout_constraintStart_toStartOf="@id/tvInfoTitle"
         app:layout_constraintTop_toBottomOf="@id/tvInfoTitle"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnDetailAction2"/>
+
+    <com.edts.components.button.Button
+        android:id="@+id/btnDetailAction2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:size="SM"
+        app:type="SECONDARY"
+        android:layout_marginVertical="@dimen/margin_4dp"
+        app:layout_constraintStart_toStartOf="@id/ivInfoIcon"
+        app:layout_constraintTop_toBottomOf="@id/tvDetailDescription"
+        app:layout_constraintEnd_toStartOf="@id/btnDetailAction1"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.edts.components.button.Button
+        android:id="@+id/btnDetailAction1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:size="SM"
+        android:layout_marginStart="@dimen/margin_8dp"
+        app:layout_constraintStart_toEndOf="@id/btnDetailAction2"
+        app:layout_constraintTop_toTopOf="@id/btnDetailAction2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/btnDetailAction2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

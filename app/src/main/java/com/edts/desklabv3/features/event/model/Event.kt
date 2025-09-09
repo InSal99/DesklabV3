@@ -10,11 +10,10 @@ data class Event(
     val category: EventCategory,
     val type: EventType,
     val date: Date,
-    val status: EventStatus,
+    val status: EventStatus?,
     val description: String,
     val needRsvp: Boolean,
     val rsvp: EventRSVP?,
     val quota: Int,
     val attendanceType: String?
 )
-

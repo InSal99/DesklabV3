@@ -40,7 +40,7 @@ class LeaveEmployeeInfo @JvmOverloads constructor(
         }
 
     init {
-        binding.ivInfoAction.setImageResource(R.drawable.placeholder)
+        binding.ivInfoAction.setImageResource(R.drawable.ic_chevron_right)
         initAttrs(attrs)
     }
 

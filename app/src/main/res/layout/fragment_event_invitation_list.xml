@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackgroundPrimaryTinted"
-    tools:context=".features.event.ui.EventInvitationFragment">
+    tools:context=".features.event.ui.invitation.EventInvitationFragmentNoRSVP">
 
     <ImageView
         android:id="@+id/ivEventInvitationHeader"
@@ -20,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivEventInvitationHeader">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -32,9 +32,7 @@
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             android:padding="@dimen/margin_16dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_event_invitation" />
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

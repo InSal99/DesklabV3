@@ -33,18 +33,20 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cdibContent"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_4dp"
+            android:layout_marginEnd="@dimen/margin_4dp"
             android:paddingHorizontal="@dimen/margin_4dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlotCdib">
+            app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlotCdib"
+            app:layout_constraintEnd_toStartOf="@+id/ivCdibRightSlot">
 
             <TextView
                 style="?attr/l2Medium"
                 android:id="@+id/tvCdibTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -66,6 +68,7 @@
                 android:textColor="?attr/colorForegroundSecondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvCdibTitle"
+
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

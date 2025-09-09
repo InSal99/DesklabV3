@@ -70,6 +70,7 @@ class CardDetailInfoB @JvmOverloads constructor(
         set(value) {
             field = value
             updateRightSlotVisibility()
+            updateCardInteractivity()
         }
 
     var showLeftSlot: Boolean = true
@@ -80,7 +81,8 @@ class CardDetailInfoB @JvmOverloads constructor(
 
     enum class CardState {
         REST,
-        ON_PRESS
+        ON_PRESS,
+        DISABLED
     }
 
     private var cardState: CardState = CardState.REST
@@ -162,6 +164,8 @@ class CardDetailInfoB @JvmOverloads constructor(
     private var lastClickTime = 0L
     private val clickDebounceDelay = 300L
 
+    private val isCardInteractive: Boolean
+        get() = showRightSlot
 
     init {
         setWillNotDraw(false)
@@ -173,10 +177,6 @@ class CardDetailInfoB @JvmOverloads constructor(
         ).apply {
             try {
                 val typedValue = TypedValue()
-//                if (context.theme.resolveAttribute(R.attr.colorBackgroundModifierOnPress, typedValue, true)) {
-//                    val colorStateList = AppCompatResources.getColorStateList(context, typedValue.resourceId)
-//                    rippleColor = colorStateList
-//                }
                 rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
 
                 if (context.theme.resolveAttribute(R.attr.colorStrokeUtilityUlangTahunIntense, typedValue, true)) {
@@ -263,8 +263,8 @@ class CardDetailInfoB @JvmOverloads constructor(
                 updateRightSlotTint()
                 updateRightSlotVisibility()
                 updateIndicatorColor()
-//                setupCardAppearance()
                 setupCardPressState()
+                updateCardInteractivity()
             } finally {
                 recycle()
             }
@@ -305,11 +305,6 @@ class CardDetailInfoB @JvmOverloads constructor(
             180f, -90f, false
         )
 
-//        path.lineTo(
-//            cornerRadiusPx + 2f * resources.displayMetrics.density,
-//            height - halfStroke
-//        )
-
         path.arcTo(
             RectF(
                 halfStroke + strokeWidth *3,
@@ -329,18 +324,8 @@ class CardDetailInfoB @JvmOverloads constructor(
             ),
             180f, 90f, false
         )
-//        path.close()
         canvas.drawPath(path, indicatorPaint)
     }
-
-//    private fun setupCardAppearance() {
-//        binding.cardDetailInfoB.cardElevation = 2f * context.resources.displayMetrics.density
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//            outlineAmbientShadowColor = resolveColorAttribute(R.attr.colorShadowNeutralAmbient)
-//            outlineSpotShadowColor = resolveColorAttribute(R.attr.colorShadowNeutralKey)
-//        }
-//    }
 
     private fun updateIndicatorColor() {
         indicatorColor?.let { color ->
@@ -422,6 +407,18 @@ class CardDetailInfoB @JvmOverloads constructor(
         binding.cdibContent.layoutParams = contentLayoutParams
     }
 
+    private fun updateCardInteractivity() {
+        if (isCardInteractive) {
+            isClickable = true
+            isFocusable = true
+            cardState = CardState.REST
+        } else {
+            isClickable = false
+            isFocusable = false
+            cardState = CardState.DISABLED
+        }
+    }
+
     private fun getCachedColor(@AttrRes colorAttr: Int): Int {
         return colorCache.getOrPut(colorAttr) {
             resolveColorAttribute(colorAttr)
@@ -446,10 +443,23 @@ class CardDetailInfoB @JvmOverloads constructor(
                 }
                 foreground = overlayDrawable
             }
+            CardState.DISABLED -> {
+                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+                val disabledDrawable = GradientDrawable().apply {
+                    cornerRadius = 12f * resources.displayMetrics.density
+                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                }
+                foreground = disabledDrawable
+                alpha = 1.0f
+            }
         }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (!isCardInteractive) {
+            return false
+        }
+
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 Log.d("CardTouch", "ACTION_DOWN - setting ON_PRESS state")
@@ -469,6 +479,11 @@ class CardDetailInfoB @JvmOverloads constructor(
     }
 
     private fun handleClick() {
+        if (!isCardInteractive) {
+            Log.d("CardClick", "Click ignored - card is not interactive")
+            return
+        }
+
         val currentTime = System.currentTimeMillis()
 
         if (currentTime - lastClickTime > clickDebounceDelay) {
@@ -495,8 +510,7 @@ class CardDetailInfoB @JvmOverloads constructor(
     }
 
     private fun setupCardPressState() {
-        isClickable = true
-        isFocusable = true
+        updateCardInteractivity()
         updateCardBackground()
     }
 

@@ -36,7 +36,7 @@ class Toast @JvmOverloads constructor(
         SUCCESS(R.drawable.placeholder, R.attr.colorBackgroundSuccessIntense),
         ERROR(R.drawable.placeholder, R.attr.colorBackgroundAttentionIntense),
         INFO(R.drawable.placeholder, R.attr.colorBackgroundInfoIntense),
-        GENERAL(R.drawable.placeholder, R.attr.colorBackgroundPrimary)
+        GENERAL(R.drawable.placeholder, R.attr.colorBackgroundPrimaryInverse)
     }
 
     init {
@@ -115,6 +115,9 @@ class Toast @JvmOverloads constructor(
         }
 
         tag = "custom_snackbar"
+
+        val bottomMarginDp = (100 * context.resources.displayMetrics.density).toInt()
+
         parent.addView(
             this,
             FrameLayout.LayoutParams(
@@ -122,7 +125,7 @@ class Toast @JvmOverloads constructor(
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
                 gravity = Gravity.BOTTOM
-                bottomMargin = 100
+                bottomMargin = bottomMarginDp
                 leftMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
                 rightMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
             }
@@ -133,7 +136,7 @@ class Toast @JvmOverloads constructor(
             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         )
         val viewHeight = measuredHeight
-        translationY = viewHeight.toFloat() + 100f
+        translationY = viewHeight.toFloat() + bottomMarginDp.toFloat()
 
         animate()
             .translationY(0f)
@@ -142,7 +145,7 @@ class Toast @JvmOverloads constructor(
             .withEndAction {
                 postDelayed({
                     animate()
-                        .translationY(viewHeight.toFloat() + 100f)
+                        .translationY(viewHeight.toFloat() + bottomMarginDp.toFloat())
                         .setDuration(300)
                         .setInterpolator(AccelerateInterpolator())
                         .withEndAction { parent.removeView(this) }
@@ -150,7 +153,6 @@ class Toast @JvmOverloads constructor(
             }
             .start()
     }
-
 
     companion object {
         fun success(context: Context, message: String) {

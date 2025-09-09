@@ -1,22 +1,25 @@
 package com.edts.desklabv3.features.event.model
 
-import androidx.annotation.AttrRes
+import com.edts.components.event.card.EventCardBadge
+import java.util.UUID
 
 /**
- * Data class to hold all the information for a single MyEventCard.
- *
- * @param badgeBackgroundColor The theme attribute for the badge's background color (e.g., R.attr.colorBackgroundSuccessIntense).
- * @param badgeTextColor The theme attribute for the badge's text color (e.g., R.attr.colorForegroundPrimaryInverse).
+ * Data class for an event, now holding presentation-specific data
+ * that the adapter will use.
  */
+
 data class MyEvent(
-    val badgeText: String,
-    @AttrRes val badgeBackgroundColor: Int,
-    @AttrRes val badgeTextColor: Int,
+    val id: String = UUID.randomUUID().toString(),
+    val status: MyEventStatus,
     val date: String,
     val day: String,
     val month: String,
     val time: String,
     val title: String,
     val eventType: String,
-    val isBadgeVisible: Boolean = true
+    val badgeText: String,
+    val badgeType: EventCardBadge.BadgeType,
+    val isBadgeVisible: Boolean = true,
+    val badgeSize: EventCardBadge.BadgeSize = EventCardBadge.BadgeSize.SMALL
 )
+

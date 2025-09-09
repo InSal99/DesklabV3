@@ -1,4 +1,4 @@
-package com.example.desklabv3.features
+package com.edts.desklabv3.features
 
 import android.content.Context
 import android.graphics.Rect
@@ -6,13 +6,6 @@ import android.view.View
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 
-/**
- * A SpaceItemDecoration for adding space to items in a list.
- *
- * @param context The context to access resources.
- * @param spaceResId The dimension resource ID for the desired spacing.
- * @param orientation The orientation of the list (VERTICAL or HORIZONTAL).
- */
 class SpaceItemDecoration(
     context: Context,
     @DimenRes spaceResId: Int,
@@ -33,16 +26,16 @@ class SpaceItemDecoration(
         state: RecyclerView.State
     ) {
         val position = parent.getChildAdapterPosition(view)
-        val itemCount = state.itemCount
 
-        if (position == itemCount - 1) {
+        // Do not add space BEFORE the first item
+        if (position == 0) {
             return
         }
 
         // Apply space based on the orientation
         when (orientation) {
-            HORIZONTAL -> outRect.right = space
-            VERTICAL -> outRect.bottom = space
+            HORIZONTAL -> outRect.left = space
+            VERTICAL -> outRect.top = space
         }
     }
 }

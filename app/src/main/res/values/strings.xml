@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="event_detail_speaker_title">Pembicara</string>
     <string name="event_detail_description_title">Deskripsi Event</string>
+    <string name="event_detail_page_title">Detail Event</string>
+    <string name="rsvp_form_page_title">Form Reservasi</string>
 </resources>
