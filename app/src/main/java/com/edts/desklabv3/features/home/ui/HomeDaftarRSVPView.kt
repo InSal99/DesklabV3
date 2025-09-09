@@ -11,7 +11,7 @@ import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentHomeDaftarRsvpViewBinding
 import com.edts.desklabv3.features.home.model.ActivityItem
 import com.edts.desklabv3.features.home.model.ActivityType
-import com.example.desklabv3.features.SpaceItemDecoration
+import com.edts.desklabv3.features.SpaceItemDecoration
 
 class HomeDaftarRSVPView : Fragment() {
     private var _binding: FragmentHomeDaftarRsvpViewBinding? = null

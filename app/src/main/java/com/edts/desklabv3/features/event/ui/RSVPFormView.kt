@@ -16,7 +16,7 @@ import com.edts.components.status.badge.StatusBadge
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentRsvpFormViewBinding
-import com.example.desklabv3.features.SpaceItemDecoration
+import com.edts.desklabv3.features.SpaceItemDecoration
 
 class RSVPFormView : Fragment(), FooterDelegate {
 

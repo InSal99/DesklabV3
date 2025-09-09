@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentTeamReportActivityViewBinding
-import com.example.desklabv3.features.SpaceItemDecoration
+import com.edts.desklabv3.features.SpaceItemDecoration
 
 class TeamReportActivityView : Fragment() {
     private var _binding: FragmentTeamReportActivityViewBinding? = null

@@ -8,6 +8,7 @@ import com.edts.components.checkbox.CheckBox
 import com.edts.components.radiobutton.RadioGroup
 import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.databinding.ActivityMainBinding
+<<<<<<< Updated upstream
 import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
 import com.edts.desklabv3.features.event.ui.success.SuccessAttendanceOfflineView
@@ -18,6 +19,8 @@ import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
 import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportActivityView
 import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
 
+=======
+>>>>>>> Stashed changes
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

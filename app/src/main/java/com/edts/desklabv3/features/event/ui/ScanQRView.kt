@@ -60,7 +60,7 @@ class ScanQRView : Fragment() {
 
         try {
             val loadingModal = EventModalityLoading(requireContext()).apply {
-                setTitle("Tunggu sebentar ...")
+//                setTitle("Tunggu sebentar ...")
             }
 
             val container = FrameLayout(requireContext()).apply {
