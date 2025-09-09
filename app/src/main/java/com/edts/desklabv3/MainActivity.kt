@@ -13,8 +13,8 @@ import com.edts.components.button.Button
 import com.edts.components.checkbox.CheckBox
 import com.edts.components.checkbox.CheckboxDelegate
 import com.edts.components.radiobutton.RadioGroup
-import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.EventDetailView
+import com.edts.desklabv3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

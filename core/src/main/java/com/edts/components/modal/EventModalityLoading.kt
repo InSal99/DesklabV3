@@ -1,72 +1,82 @@
 package com.edts.components.modal
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.FrameLayout
+import androidx.core.content.withStyledAttributes
 import com.edts.components.R
-import com.google.android.material.textview.MaterialTextView
+import com.edts.components.databinding.EventModalityLoadingBinding
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.MaterialColors
 
 /**
- * A custom view that displays a loading indicator and a text message.
+ * A custom view that displays a loading indicator and a text message within a MaterialCardView.
  *
  * This component is designed to be used as a modality overlay to indicate a background
- * process is running. The text can be customized via the `app:modalTitle` attribute in XML
- * or programmatically.
+ * process is running. The text can be customized via the `app:modalLoadingTitle` attribute in XML
+ * or programmatically by setting the `title` property.
  *
- * ### XML Usage Example:
- * ```xml
- * <com.example.components.modal.CustomEventModalityLoading
- * android:layout_width="match_parent"
- * android:layout_height="wrap_content"
- * app:modalTitle="Please wait..." />
- * ```
- *
- * @param context The Context the view is running in.
- * @param attrs The attributes of the XML tag that is inflating the view.
- * @param defStyleAttr An attribute in the current theme that contains a reference to a style resource.
  */
 class EventModalityLoading @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+    defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
+) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val tvModalTitle: MaterialTextView
+    private val binding: EventModalityLoadingBinding = EventModalityLoadingBinding.inflate(LayoutInflater.from(context), this, true)
+
+    /**
+     * The title text for the loading modal. Setting this property will update the
+     * displayed text.
+     */
+    var title: String? = null
+        set(value) {
+            field = value
+            binding.tvModalTitle.text = value
+        }
 
     init {
-        val inflater = LayoutInflater.from(context)
-        // Inflate the layout and attach it to this FrameLayout's root.
-        val view = inflater.inflate(R.layout.event_modality_loading, this, true)
 
-        // Assign the TextView from the inflated layout.
-        tvModalTitle = view.findViewById(R.id.tvModalTitle)
+        setupCardAppearance()
+        parseAttributes(attrs)
+    }
 
-        // --- Parse Custom XML Attributes ---
-        attrs?.let {
-            val typedArray = context.obtainStyledAttributes(
-                it,
-                R.styleable.EventModalityLoading,
-                0,
-                0
+    /**
+     * Configures the visual appearance of the MaterialCardView.
+     */
+    private fun setupCardAppearance() {
+        cardElevation = resources.getDimension(R.dimen.margin_2dp)
+        radius = resources.getDimension(R.dimen.radius_16dp)
+        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
+        strokeColor = MaterialColors.getColor(this, R.attr.colorStrokeSubtle)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val shadowColor = MaterialColors.getColor(
+                context,
+                R.attr.colorForegroundPrimary,
+                Color.BLACK
             )
-            try {
-                val title = typedArray.getString(R.styleable.EventModalityLoading_modalLoadingTitle)
-                // Set the title from the attribute, or use the default text from the layout if not provided.
-                title?.let { t -> setTitle(t) }
-            } finally {
-                typedArray.recycle()
-            }
+            outlineAmbientShadowColor = shadowColor
+            outlineSpotShadowColor = shadowColor
         }
     }
 
     /**
-     * Sets the title text for the loading modal.
-     *
-     * @param title The string to be displayed as the loading message
-     * (e.g., "Loading data...").
+     * Parses custom attributes from the XML layout.
+     * @param attrs The set of attributes from the XML tag that is inflating the view.
      */
-    fun setTitle(title: String) {
-        tvModalTitle.text = title
+    private fun parseAttributes(attrs: AttributeSet?) {
+        attrs?.let {
+            context.withStyledAttributes(
+                it,
+                R.styleable.EventModalityLoading,
+                0,
+                0
+            ) {
+                title = getString(R.styleable.EventModalityLoading_modalLoadingTitle)
+            }
+        }
     }
 }

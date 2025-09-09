@@ -17,16 +17,15 @@
             android:id="@+id/cvMyEventCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
-            app:badgeText="Terdaftar"
-            app:badgeTextColor="?attr/colorOnPrimary"
-            app:badgeVisible="true"
             app:date="12"
             app:day="Wed"
             app:month="JUL"
             app:myEventTime="18:00 - 20:00 WIB"
             app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
-            app:myEventType="Online Event" />
+            app:myEventType="Online Event"
+            app:badgeSize="Small"
+            app:badgeText="Terdaftar"
+            app:badgeType="registered"/>
 
         <com.edts.components.notification.EventNotificationCard
             android:id="@+id/cvNotificationCard"
@@ -128,7 +127,7 @@
             android:layout_marginTop="@dimen/margin_12dp"
             android:orientation="horizontal">
 
-            <com.edts.components.CustomMonthlyPicker
+            <com.edts.components.dropdown.filter.MonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/margin_8dp"
@@ -136,7 +135,7 @@
                 app:monthLabel="Jan"
                 app:pickerType="selected" />
 
-            <com.edts.components.CustomMonthlyPicker
+            <com.edts.components.dropdown.filter.MonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_8dp"
@@ -144,7 +143,7 @@
                 app:monthLabel="Feb"
                 app:pickerType="unselected" />
 
-            <com.edts.components.CustomMonthlyPicker
+            <com.edts.components.dropdown.filter.MonthlyPicker
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

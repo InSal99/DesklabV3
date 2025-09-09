@@ -1,4 +1,4 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.leave.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,21 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.edts.components.R
 import com.edts.desklabv3.databinding.FragmentEmployeeLeaveDetailBinding
+import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.LeaveQuota
-import com.example.desklabv3.features.SpaceItemDecoration
 import com.google.android.material.transition.MaterialSharedAxis
 
 class EmployeeLeaveDetailFragment : Fragment() {
     private var _binding: FragmentEmployeeLeaveDetailBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +42,10 @@ class EmployeeLeaveDetailFragment : Fragment() {
             LeaveQuota("Cuti Tahun Progresif", 3, "15/10/2025", 0)
         )
 
-        val adapter = LeaveQuotaAdapter(leaveQuotaData)
+        val adapter = EmployeeLeaveQuotaAdapter(leaveQuotaData)
         val itemDecoration = SpaceItemDecoration(
             requireContext(),
-            com.edts.components.R.dimen.margin_8dp,
+            R.dimen.margin_8dp,
             SpaceItemDecoration.HORIZONTAL
         )
 

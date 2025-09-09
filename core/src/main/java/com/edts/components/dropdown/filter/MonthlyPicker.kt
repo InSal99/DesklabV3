@@ -1,4 +1,4 @@
-package com.edts.components
+package com.edts.components.dropdown.filter
 
 import android.content.Context
 import android.graphics.Color
@@ -15,6 +15,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
+import com.edts.components.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
@@ -25,24 +26,8 @@ import com.google.android.material.textview.MaterialTextView
  * and its persistent type. It separates its logic into a persistent `PickerType` (e.g., selected, unselected)
  * and a temporary `InteractionState` (e.g., pressed, focused) for robust state management.
  *
- * A click on the picker will toggle its type between `UNSELECTED` and `SELECTED`.
- *
- * ### XML Usage Example:
- * ```xml
- * <com.example.components.CustomMonthlyPicker
- * android:id="@+id/january_picker"
- * android:layout_width="wrap_content"
- * android:layout_height="wrap_content"
- * app:monthLabel="Jan"
- * app:pickerType="unselected" />
- * ```
- *
- * @param context The Context the view is running in.
- * @param attrs The attributes of the XML tag that is inflating the view.
- * @param defStyleAttr An attribute in the current theme that contains a reference to a style resource.
- * @see CustomMonthlyPickerDelegate for handling click events.
  */
-class CustomMonthlyPicker @JvmOverloads constructor(
+class MonthlyPicker @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -85,9 +70,9 @@ class CustomMonthlyPicker @JvmOverloads constructor(
 
     /**
      * The delegate responsible for handling click events on this picker.
-     * Assign an object that implements [CustomMonthlyPickerDelegate] to receive callbacks.
+     * Assign an object that implements [MonthlyPickerDelegate] to receive callbacks.
      */
-    var delegate: CustomMonthlyPickerDelegate? = null
+    var delegate: MonthlyPickerDelegate? = null
 
     /**
      * The persistent type of the picker, which determines its primary appearance and state.
@@ -129,9 +114,9 @@ class CustomMonthlyPicker @JvmOverloads constructor(
      */
     private fun parseAttributes(attrs: AttributeSet?) {
         attrs?.let {
-            context.withStyledAttributes(it, R.styleable.CustomMonthlyPicker, 0, 0) {
-                monthLabel = getString(R.styleable.CustomMonthlyPicker_monthLabel) ?: ""
-                val typeInt = getInt(R.styleable.CustomMonthlyPicker_pickerType, 0)
+            context.withStyledAttributes(it, R.styleable.MonthlyPicker, 0, 0) {
+                monthLabel = getString(R.styleable.MonthlyPicker_monthLabel) ?: ""
+                val typeInt = getInt(R.styleable.MonthlyPicker_pickerType, 0)
                 type = when (typeInt) {
                     1 -> PickerType.SELECTED
                     2 -> PickerType.DISABLED
@@ -170,21 +155,22 @@ class CustomMonthlyPicker @JvmOverloads constructor(
     private fun createBackgroundDrawable(): Drawable {
         val (backgroundColor, strokeColor) = when (type) {
             PickerType.UNSELECTED -> Pair(Color.TRANSPARENT, getCachedColor(R.attr.colorStrokeSubtle))
-            PickerType.SELECTED -> Pair(getCachedColor(R.attr.colorBackgroundAccentPrimaryIntense), getCachedColor(R.attr.colorStrokeInteractive))
+            PickerType.SELECTED -> Pair(getCachedColor(R.attr.colorBackgroundAccentPrimaryIntense), getCachedColor(
+                R.attr.colorStrokeInteractive))
             PickerType.DISABLED -> Pair(Color.TRANSPARENT, getCachedColor(R.attr.colorStrokeDisabled))
         }
 
         val currentStrokeWidth = if (interactionState == InteractionState.ON_FOCUS) focusStrokeWidth else strokeWidth
 
         val baseDrawable = GradientDrawable().apply {
-            cornerRadius = this@CustomMonthlyPicker.radius
+            cornerRadius = this@MonthlyPicker.radius
             setColor(backgroundColor)
             setStroke(currentStrokeWidth, strokeColor)
         }
 
         if (interactionState == InteractionState.ON_PRESS && type != PickerType.DISABLED) {
             val modifierDrawable = GradientDrawable().apply {
-                cornerRadius = this@CustomMonthlyPicker.radius
+                cornerRadius = this@MonthlyPicker.radius
                 setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
             }
             return LayerDrawable(arrayOf(baseDrawable, modifierDrawable))

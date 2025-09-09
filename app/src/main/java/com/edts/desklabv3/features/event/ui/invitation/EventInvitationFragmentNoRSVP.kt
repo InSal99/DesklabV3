@@ -1,4 +1,4 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.event.ui.invitation
 
 import android.os.Bundle
 import android.os.Handler
@@ -16,21 +16,13 @@ import com.edts.components.modal.ModalityLoadingPopUp
 import com.edts.components.notification.EventNotificationCard
 import com.edts.desklabv3.databinding.FragmentEventInvitationListBinding
 import com.edts.desklabv3.features.event.model.EventInvitation
-import com.example.desklabv3.features.SpaceItemDecoration
-import com.google.android.material.transition.MaterialSharedAxis
+import com.edts.desklabv3.features.SpaceItemDecoration
 
-class EventInvitationFragment : Fragment() {
+class EventInvitationFragmentNoRSVP : Fragment() {
 
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!
     private var loadingDialog: AlertDialog? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,12 +66,10 @@ class EventInvitationFragment : Fragment() {
     private fun createSampleData(): List<EventInvitation> {
         return listOf(
             EventInvitation(
-                id = 1,
-                title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
+                title = "EDTS Town-Hall 2025: The Power of Change",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
                 eventType = EventNotificationCard.EventType.GENERAL_EVENT
-            ),
-            // ... other invitation data remains the same
+            )
         )
     }
 

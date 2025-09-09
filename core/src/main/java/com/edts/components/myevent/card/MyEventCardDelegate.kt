@@ -1,7 +1,5 @@
 package com.edts.components.myevent.card
 
-import com.edts.components.myevent.card.MyEventCard
-
 /**
  * Delegate interface to handle click events from the CustomMyEventCard component.
  */

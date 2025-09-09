@@ -44,17 +44,16 @@
                 android:id="@+id/cvMyEventCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_24dp"
-                app:badgeBackgroundColor="?attr/colorBackgroundSuccessIntense"
-                app:badgeCustomTextColor="?attr/colorForegroundPrimaryInverse"
-                app:badgeText="Terdaftar"
-                app:badgeVisible="true"
+                android:layout_marginTop="@dimen/margin_12dp"
                 app:date="12"
                 app:day="Wed"
                 app:month="JUL"
                 app:myEventTime="18:00 - 20:00 WIB"
                 app:myEventTitle="Game Night with EDTS: Mobile Legend Online Tournament 2025"
-                app:myEventType="Online Event" />
+                app:myEventType="Online Event"
+                app:badgeSize="Small"
+                app:badgeText="Terdaftar"
+                app:badgeType="registered"/>
 
             <com.edts.components.notification.EventNotificationCard
                 android:id="@+id/cvNotificationCard"
@@ -78,6 +77,12 @@
                 app:notificationEventType="People Development"
                 app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
 
+            <com.edts.components.modal.EventModalityLoading
+                android:id="@+id/cvModalityLoading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12dp"
+                app:modalLoadingTitle="Please wait..." />
         </LinearLayout>
     </ScrollView>
 

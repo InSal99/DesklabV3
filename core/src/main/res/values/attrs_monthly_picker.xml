@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CustomMonthlyPicker">
+    <declare-styleable name="MonthlyPicker">
         <attr name="monthLabel" format="string" />
         <attr name="pickerType" format="enum">
             <enum name="unselected" value="0" />
