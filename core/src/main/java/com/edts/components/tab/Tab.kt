@@ -56,11 +56,19 @@ class Tab @JvmOverloads constructor(
             updateBadgeVisibility()
         }
 
+    private var isFirstLaunch = true
+
     var tabState: TabState = TabState.ACTIVE
         set(value) {
             val previousState = field
             field = value
-            updateTabState(animated = previousState != value)
+
+            if (isFirstLaunch) {
+                applyTabStateImmediately()
+                isFirstLaunch = false
+            } else {
+                updateTabState(animated = previousState != value)
+            }
         }
 
     private companion object {

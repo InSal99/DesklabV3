@@ -5,8 +5,6 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
@@ -16,15 +14,15 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.MotionEvent
-import androidx.annotation.DrawableRes
-import androidx.core.content.ContextCompat
-import com.edts.components.R
-import com.google.android.material.button.MaterialButton
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StyleRes
+import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
+import com.edts.components.R
+import com.google.android.material.button.MaterialButton
 
 class Button @JvmOverloads constructor(
     context: Context,
@@ -50,10 +48,8 @@ class Button @JvmOverloads constructor(
     private var isButtonDestructive: Boolean = false
     private var buttonIcon: Drawable? = null
     private var iconPlacement: IconPlacement = IconPlacement.LEFT
-
     private val strokeWidth: Int
     private val cornerRadius: Float
-    private val iconSpacing: Int
     private val colorCache = mutableMapOf<Int, Int>()
     private val drawablePool = mutableMapOf<String, Drawable>()
     private val density: Float = context.resources.displayMetrics.density
@@ -72,8 +68,6 @@ class Button @JvmOverloads constructor(
         } catch (e: Exception) {
             99999f
         }
-
-        iconSpacing = buttonSize.textPaddingDp.dpToPx()
 
         preloadColors()
         parseAttributes(attrs, defStyleAttr)
@@ -124,11 +118,9 @@ class Button @JvmOverloads constructor(
                     isButtonDisabled = getBoolean(R.styleable.Button_isButtonDisabled, false)
                     isButtonDestructive = getBoolean(R.styleable.Button_isButtonDestructive, false)
 
-                    // Handle icon using native Material attributes if available, fallback to custom
                     buttonIcon = getDrawable(R.styleable.Button_icon)
                         ?: getDrawable(R.styleable.Button_android_icon)
 
-                    // Handle icon placement
                     iconPlacement = IconPlacement.values().getOrElse(
                         getInt(R.styleable.Button_iconPlacement, IconPlacement.LEFT.ordinal)
                     ) { IconPlacement.LEFT }
@@ -157,7 +149,6 @@ class Button @JvmOverloads constructor(
 
     private fun updateButtonProperties() {
         isEnabled = !isButtonDisabled
-        // Text is already handled by native android:text attribute
 
         val textStyle = getTextStyleForButtonSize(buttonSize)
         if (textStyle != 0) {
@@ -176,10 +167,7 @@ class Button @JvmOverloads constructor(
 
     private fun updateLayout() {
         val heightPx = buttonSize.heightDp.dpToPx()
-        val horizontalPadding = buttonSize.paddingHorizontalDp.dpToPx()
-
         layoutParams?.height = heightPx
-        setPadding(horizontalPadding, 0, horizontalPadding, 0)
 
         if (isAttachedToWindow) {
             requestLayout()
@@ -387,7 +375,7 @@ class Button @JvmOverloads constructor(
 
     private fun updateIcon() {
         val iconSize = buttonSize.iconSizeDp.dpToPx()
-        val horizontalPadding = buttonSize.paddingHorizontalDp.dpToPx()
+        val basePadding = buttonSize.paddingHorizontalDp.dpToPx()
         val textPadding = buttonSize.textPaddingDp.dpToPx()
 
         if (buttonIcon != null) {
@@ -395,25 +383,25 @@ class Button @JvmOverloads constructor(
                 IconPlacement.LEFT -> {
                     icon = buttonIcon
                     this.iconSize = iconSize
-                    iconPadding = iconSpacing
+                    iconPadding = textPadding
                     iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
                     iconTint = ColorStateList.valueOf(getIconColor())
-                    setPadding(horizontalPadding, 0, horizontalPadding + textPadding, 0)
+                    setPadding(basePadding + textPadding, 0, basePadding + textPadding, 0)
                 }
 
                 IconPlacement.RIGHT -> {
                     icon = buttonIcon
                     this.iconSize = iconSize
-                    iconPadding = iconSpacing
+                    iconPadding = textPadding
                     iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
                     iconTint = ColorStateList.valueOf(getIconColor())
-                    setPadding(horizontalPadding + textPadding, 0, horizontalPadding, 0)
+                    setPadding(basePadding + textPadding, 0, basePadding + textPadding, 0)
                 }
             }
         } else {
             icon = null
             iconPadding = 0
-            setPadding(horizontalPadding + textPadding, 0, horizontalPadding + textPadding, 0)
+            setPadding(basePadding + textPadding, 0, basePadding + textPadding, 0)
         }
 
         gravity = Gravity.CENTER

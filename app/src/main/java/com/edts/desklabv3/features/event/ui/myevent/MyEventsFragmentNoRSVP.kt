@@ -78,6 +78,11 @@ class MyEventsFragmentNoRSVP : Fragment() {
             override fun onCloseIconClick(inputSearch: InputSearch, clickCount: Int) {}
             override fun onFocusChange(inputSearch: InputSearch, hasFocus: Boolean, newState: InputSearch.State, previousState: InputSearch.State) {}
             override fun onSearchFieldClick(inputSearch: InputSearch, clickCount: Int) {}
+
+            override fun onSearchSubmit(inputSearch: InputSearch, query: String, searchCount: Int) {
+                TODO("Not yet implemented")
+            }
+
             override fun onStateChange(inputSearch: InputSearch, newState: InputSearch.State, oldState: InputSearch.State) {}
         }
     }

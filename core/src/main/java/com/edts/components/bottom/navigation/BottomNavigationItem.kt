@@ -1,6 +1,7 @@
 package com.edts.components.bottom.navigation
 
 import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
@@ -9,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.OvershootInterpolator
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -78,6 +80,9 @@ class BottomNavigationItem @JvmOverloads constructor(
 
     private companion object {
         const val ANIMATION_DURATION = 150L
+        const val BOUNCE_ANIMATION_DURATION = 600L
+        const val BOUNCE_SCALE_FACTOR = 1.15f
+        const val BOUNCE_OVERSHOOT_TENSION = 1.2f
         const val TAG = "BottomNavigationItem"
     }
 
@@ -127,6 +132,9 @@ class BottomNavigationItem @JvmOverloads constructor(
         Log.d(TAG, "  - Click Count: $clickCount")
         Log.d(TAG, "  - Total System Clicks: $clickCount")
 
+        // Trigger bounce animation on icon
+        animateIconBounce()
+
         val newState = if (navState == NavState.ACTIVE) NavState.INACTIVE else NavState.ACTIVE
         navState = newState
         delegate?.onBottomNavigationItemClicked(this, itemPosition, clickCount)
@@ -146,6 +154,62 @@ class BottomNavigationItem @JvmOverloads constructor(
         val oldCount = clickCount
         clickCount = 0
         Log.d(TAG, "Click count reset for item '${navText ?: "Unknown"}': $oldCount -> 0")
+    }
+
+    private fun animateIconBounce() {
+        Log.d(TAG, "Starting bounce animation for icon in item: ${navText ?: "Unknown"}")
+
+        val currentScaleX = binding.ivBottomNavigation.scaleX
+        val currentScaleY = binding.ivBottomNavigation.scaleY
+
+        val scaleUpX = ObjectAnimator.ofFloat(
+            binding.ivBottomNavigation,
+            "scaleX",
+            currentScaleX,
+            BOUNCE_SCALE_FACTOR
+        )
+        val scaleUpY = ObjectAnimator.ofFloat(
+            binding.ivBottomNavigation,
+            "scaleY",
+            currentScaleY,
+            BOUNCE_SCALE_FACTOR
+        )
+
+        val scaleDownX = ObjectAnimator.ofFloat(
+            binding.ivBottomNavigation,
+            "scaleX",
+            BOUNCE_SCALE_FACTOR,
+            1.0f
+        )
+        val scaleDownY = ObjectAnimator.ofFloat(
+            binding.ivBottomNavigation,
+            "scaleY",
+            BOUNCE_SCALE_FACTOR,
+            1.0f
+        )
+
+        val scaleUpAnimator = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+            duration = BOUNCE_ANIMATION_DURATION / 3
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+
+        val scaleDownAnimator = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+            duration = (BOUNCE_ANIMATION_DURATION * 2) / 3
+            interpolator = OvershootInterpolator(BOUNCE_OVERSHOOT_TENSION)
+        }
+
+        val bounceAnimator = AnimatorSet().apply {
+            play(scaleDownAnimator).after(scaleUpAnimator)
+        }
+
+        bounceAnimator.start()
+
+        Log.d(TAG, "Bounce animation started with:")
+        Log.d(TAG, "  - Scale factor: $BOUNCE_SCALE_FACTOR")
+        Log.d(TAG, "  - Duration: ${BOUNCE_ANIMATION_DURATION}ms")
+        Log.d(TAG, "  - Overshoot tension: $BOUNCE_OVERSHOOT_TENSION")
     }
 
     private fun updateNavState(animated: Boolean = true) {

@@ -1,6 +1,8 @@
 package com.edts.components.input.field
 
 import android.content.Context
+import android.content.ContextWrapper
+import android.content.DialogInterface
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
@@ -34,7 +36,9 @@ import com.edts.components.option.card.OptionCard
 import com.edts.components.option.card.OptionCardDelegate
 import com.edts.components.radiobutton.RadioGroup
 import com.edts.components.radiobutton.RadioGroupDelegate
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.edts.components.tray.BottomTray
+import com.edts.components.tray.BottomTrayDelegate
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputLayout
 
@@ -306,21 +310,26 @@ class InputField @JvmOverloads constructor(
     }
 
     private fun setTitle(title: String) {
-        if (!isInEditMode) {
-            titleTextView.text = if (isFieldRequired) {
-                val spannableTitle = SpannableString("$title *")
-                spannableTitle.setSpan(
-                    ForegroundColorSpan(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50)),
-                    title.length + 1,
-                    spannableTitle.length,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                spannableTitle
-            } else {
-                title
-            }
+        if (title.isEmpty()) {
+            titleTextView.visibility = View.GONE
         } else {
-            titleTextView.text = title
+            titleTextView.visibility = View.VISIBLE
+            if (!isInEditMode) {
+                titleTextView.text = if (isFieldRequired) {
+                    val spannableTitle = SpannableString("$title *")
+                    spannableTitle.setSpan(
+                        ForegroundColorSpan(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50)),
+                        title.length + 1,
+                        spannableTitle.length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    spannableTitle
+                } else {
+                    title
+                }
+            } else {
+                titleTextView.text = title
+            }
         }
     }
 
@@ -343,7 +352,6 @@ class InputField @JvmOverloads constructor(
                         updateInputBackground(container, editText, editText.hasFocus() && enabled)
                     }
                 } ?: run {
-                    // Fallback to old TextInputLayout structure
                     val textInputLayout = currentInputComponent as? TextInputLayout
                     textInputLayout?.isEnabled = enabled
                     textInputLayout?.editText?.isEnabled = enabled
@@ -426,7 +434,7 @@ class InputField @JvmOverloads constructor(
                         supportingTextView?.visibility = View.GONE
 
                         if (errorText.contains("Minimum") || errorText.contains("Maximum")) {
-                            counterText?.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                            counterText?.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
                         }
 
                         textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
@@ -438,7 +446,7 @@ class InputField @JvmOverloads constructor(
                         } else {
                             errorTextView.text = errorText
                             errorTextView.visibility = View.VISIBLE
-                            errorTextView.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                            errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
 
                             textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
                         }
@@ -452,20 +460,20 @@ class InputField @JvmOverloads constructor(
                     } else {
                         errorTextView.text = errorText
                         errorTextView.visibility = View.VISIBLE
-                        errorTextView.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                        errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
                         dropdownContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
                     }
                 }
                 is InputFieldType.RadioGroup -> {
                     errorTextView.text = errorText
                     errorTextView.visibility = View.VISIBLE
-                    errorTextView.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
                     (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(true)
                 }
                 is InputFieldType.CheckboxGroup -> {
                     errorTextView.text = errorText
                     errorTextView.visibility = View.VISIBLE
-                    errorTextView.setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
 
                     (currentInputComponent as? ViewGroup)?.let { container ->
                         for (i in 0 until container.childCount) {
@@ -493,7 +501,7 @@ class InputField @JvmOverloads constructor(
         val supportingTextView = tagMap?.get("supportingText")
 
         inlineErrorText?.visibility = View.GONE
-        counterText?.setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutral50))
+        counterText?.setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral50))
         updateSupportingTextDisplay()
 
         when (currentConfig?.type) {
@@ -566,6 +574,7 @@ class InputField @JvmOverloads constructor(
             is InputFieldType.Dropdown -> createCustomDropdownView(config)
             is InputFieldType.RadioGroup -> createRadioGroup(config)
             is InputFieldType.CheckboxGroup -> createCheckboxGroup(config)
+            else -> { TODO() }
         }
 
         currentInputComponent?.let { component ->
@@ -663,7 +672,7 @@ class InputField @JvmOverloads constructor(
 
             val supportingTextView = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutral50))
+                setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral50))
                 textSize = 12f
                 text = supportingText
                 visibility = if (supportingText.isNullOrEmpty()) View.GONE else View.VISIBLE
@@ -675,7 +684,7 @@ class InputField @JvmOverloads constructor(
             val counterText = if (maxLength > 0) {
                 TextView(context).apply {
                     setTextAppearance(R.style.TextRegular_Label4)
-                    setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutral50))
+                    setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral50))
                     textSize = 12f
                     gravity = Gravity.END
 
@@ -989,9 +998,8 @@ class InputField @JvmOverloads constructor(
 
     private fun showOptionDrawer(options: List<String>?, onSelection: ((String) -> Unit)? = null) {
         if (options.isNullOrEmpty()) return
-
-        val bottomSheetDialog = BottomSheetDialog(context)
-        val bottomSheetBinding = createOptionDrawerLayout(options) { selectedOption ->
+        var bottomTrayRef: BottomTray? = null
+        val bottomTray = createOptionDrawerLayout(options) { selectedOption ->
             if (onSelection != null) {
                 onSelection(selectedOption)
             } else {
@@ -999,49 +1007,51 @@ class InputField @JvmOverloads constructor(
                 val autoCompleteTextView = textInputLayout?.editText as? MaterialAutoCompleteTextView
                 autoCompleteTextView?.setText(selectedOption, false)
             }
-
             notifyValueChange(selectedOption)
             notifyValidationChange()
-
-            bottomSheetDialog.dismiss()
+            bottomTrayRef?.dismiss()
         }
+        bottomTrayRef = bottomTray
+        val fragmentManager = getFragmentManager()
+        bottomTray.show(fragmentManager, "OptionDrawer")
+    }
 
-        bottomSheetDialog.setContentView(bottomSheetBinding)
-        bottomSheetDialog.show()
+    private fun getFragmentManager(): androidx.fragment.app.FragmentManager {
+        return when {
+            context is androidx.fragment.app.FragmentActivity -> {
+                (context as androidx.fragment.app.FragmentActivity).supportFragmentManager
+            }
+            else -> {
+                var ctx = context
+                while (ctx is ContextWrapper) {
+                    if (ctx is androidx.fragment.app.FragmentActivity) {
+                        return ctx.supportFragmentManager
+                    }
+                    ctx = ctx.baseContext
+                }
+                throw IllegalStateException("Cannot find FragmentManager. Make sure InputField is used in a FragmentActivity context.")
+            }
+        }
     }
 
     private fun createOptionDrawerLayout(
         options: List<String>,
         onOptionSelected: (String) -> Unit
-    ): View {
-        val mainContainer = LinearLayout(context).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(padding16dp, padding24dp, padding16dp, padding16dp)
-        }
-
-        val titleTextView = TextView(context).apply {
-            text = currentConfig?.hint
-            setTextAppearance(R.style.TextSemiBold_Heading1)
-            setPadding(padding16dp, padding8dp, padding16dp, padding24dp)
-        }
-        mainContainer.addView(titleTextView)
-
+    ): BottomTray {
         val scrollView = ScrollView(context)
-        val optionsContainer = LinearLayout(context).apply {
+        val contentContainer = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
+            setPadding(padding16dp, 0, padding16dp, 0)
         }
-
         options.forEach { option ->
             val optionCard = OptionCard(context).apply {
                 titleText = option
-
                 delegate = object : OptionCardDelegate {
                     override fun onClick(card: OptionCard) {
                         Log.d("OptionCard", "${card.titleText} selected")
                         onOptionSelected(option)
                     }
                 }
-
                 val layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -1050,14 +1060,44 @@ class InputField @JvmOverloads constructor(
                 }
                 this.layoutParams = layoutParams
             }
-
-            optionsContainer.addView(optionCard)
+            contentContainer.addView(optionCard)
         }
+        scrollView.addView(contentContainer)
+        val bottomTray = BottomTray.newInstance(
+            title = currentConfig?.hint ?: "Select Option",
+            showDragHandle = true,
+            showFooter = false,
+            hasShadow = true,
+            hasStroke = true
+        ).apply {
+            setContentView(scrollView)
+            delegate = object : BottomTrayDelegate {
+                override fun onShow(dialogInterface: DialogInterface) {
+                    Log.d("BottomTray", "Option drawer shown")
+                }
 
-        scrollView.addView(optionsContainer)
-        mainContainer.addView(scrollView)
+                override fun onDismiss(dialogInterface: DialogInterface) {
+                    Log.d("BottomTray", "Option drawer dismissed")
+                }
 
-        return mainContainer
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    when (newState) {
+                        BottomSheetBehavior.STATE_EXPANDED -> {
+                            Log.d("BottomTray", "Fully expanded")
+                        }
+                        BottomSheetBehavior.STATE_COLLAPSED -> {
+                            Log.d("BottomTray", "Collapsed")
+                        }
+                        BottomSheetBehavior.STATE_HIDDEN -> {
+                            Log.d("BottomTray", "Hidden")
+                        }
+                    }
+                }
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                }
+            }
+        }
+        return bottomTray
     }
 
     private fun createRadioGroup(config: InputFieldConfig): View {
@@ -1065,7 +1105,6 @@ class InputField @JvmOverloads constructor(
             radioGroupComponent = this
             config.options?.let { options ->
                 setData(options) { option -> option }
-
                 for (i in 0 until childCount) {
                     val child = getChildAt(i)
                     val layoutParams = child.layoutParams as? MarginLayoutParams
@@ -1079,14 +1118,12 @@ class InputField @JvmOverloads constructor(
                         child.layoutParams = params
                     }
                 }
-
                 setOnItemSelectedListener(object : RadioGroupDelegate {
                     override fun onItemSelected(position: Int, data: Any?) {
                         notifyValueChange(data?.toString())
                         notifyValidationChange()
                     }
                 })
-
             }
         }
     }
@@ -1095,7 +1132,6 @@ class InputField @JvmOverloads constructor(
         return LinearLayout(context).apply {
             checkboxContainer = this
             orientation = LinearLayout.VERTICAL
-
             config.options?.forEachIndexed { index, option ->
                 val checkbox = CheckBox(context).apply {
                     text = option
@@ -1114,7 +1150,6 @@ class InputField @JvmOverloads constructor(
                         topMargin = resources.getDimensionPixelSize(R.dimen.margin_8dp)
                     }
                 }
-
                 addView(checkbox, layoutParams)
             }
         }
@@ -1122,7 +1157,6 @@ class InputField @JvmOverloads constructor(
 
     private fun getCheckboxGroupValue(container: LinearLayout?): List<String> {
         if (container == null) return emptyList()
-
         val selectedValues = mutableListOf<String>()
         for (i in 0 until container.childCount) {
             val checkbox = container.getChildAt(i) as? CheckBox
@@ -1208,7 +1242,6 @@ class InputField @JvmOverloads constructor(
 
     fun isValid(): Boolean {
         if (!isFieldRequired) return true
-
         val value = getValue()
         val isRequiredValid = when (currentConfig?.type) {
             is InputFieldType.TextInput,
@@ -1218,16 +1251,12 @@ class InputField @JvmOverloads constructor(
             is InputFieldType.CheckboxGroup -> (value as? List<*>)?.isNotEmpty() == true
             else -> false
         }
-
-        // Additional validation for length constraints
         if (isRequiredValid && (minLength > 0 || maxLength > 0)) {
             val text = value?.toString() ?: ""
             val length = text.length
-
             if (minLength > 0 && length < minLength) return false
             if (maxLength > 0 && length > maxLength) return false
         }
-
         return isRequiredValid
     }
 

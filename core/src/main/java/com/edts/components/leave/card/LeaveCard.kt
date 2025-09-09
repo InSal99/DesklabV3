@@ -1,17 +1,12 @@
 package com.edts.components.leave.card
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat

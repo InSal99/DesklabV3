@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundPrimaryTinted"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.event.ui.eventlist.EventListDaftarRSVPView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerEventListDaftarRSVP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="62dp"
+        android:paddingHorizontal="@dimen/margin_16dp"
+        android:background="@drawable/bg_rectangle_shadow_tinted"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            style="?attr/d3SemiBold"
+            android:id="@+id/tvSectionTitleEventListDaftarRSVP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Event"
+            android:textColor="?attr/colorForegroundPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTabEventListDaftarRSVP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_tab"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitleEventListDaftarRSVP"
+            app:layout_constraintStart_toStartOf="@+id/tvSectionTitleEventListDaftarRSVP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.edts.components.input.search.InputSearch
+        android:id="@+id/cvSearchEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        app:inputSearchHint="Cari Event"
+        app:inputSearchState="rest"
+        app:layout_constraintTop_toBottomOf="@+id/headerEventListDaftarRSVP"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEventChips"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/margin_16dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_chip"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/cvSearchEvent"
+        app:layout_constraintStart_toStartOf="@+id/cvSearchEvent"
+        app:layout_constraintEnd_toEndOf="@+id/cvSearchEvent"/>
+
+    <ImageView
+        android:id="@+id/ivEmptyStateEventList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        android:contentDescription="Empty State"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_state_event_list"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/rvEventChips"
+        app:layout_constraintEnd_toEndOf="@id/rvEventChips"
+        app:layout_constraintTop_toBottomOf="@+id/rvEventChips"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEvents"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_event"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="@+id/rvEventChips"
+        app:layout_constraintEnd_toEndOf="@+id/rvEventChips"
+        app:layout_constraintTop_toBottomOf="@+id/rvEventChips"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
