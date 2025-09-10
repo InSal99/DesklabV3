@@ -19,10 +19,10 @@ import java.util.Stack
  */
 class ListTagHandler(
     private val textView: TextView,
-    private val bulletIndentDp: Int = 12,
+    private val bulletIndentDp: Int = 14,
     private val numberIndentDp: Int = 2,
-    private val bulletGapDp: Int = 22,
-    private val numberGapDp: Int = 8,
+    private val bulletGapDp: Int = 12,
+    private val numberGapDp: Int = 4,
 ) : Html.TagHandler {
     private val listStack = Stack<String>()
     private val olCounters = Stack<Int>()

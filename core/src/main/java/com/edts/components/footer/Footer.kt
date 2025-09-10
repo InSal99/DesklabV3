@@ -1,6 +1,10 @@
 package com.edts.components.footer
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -38,8 +42,6 @@ class Footer @JvmOverloads constructor(
     private var dualButtonTitle: String = ""
     private var dualButtonSupportText1: String = ""
     private var dualButtonSupportText2: String = ""
-    private var shadowView: View? = null
-    private var isShadowVisible: Boolean = true
 
     private var primaryButtonEnabled: Boolean = true
     private var secondaryButtonEnabled: Boolean = true
@@ -65,6 +67,7 @@ class Footer @JvmOverloads constructor(
 
     init {
         orientation = VERTICAL
+        setBackgroundColor(ContextCompat.getColor(context, R.color.colorFFF))
         parseAttributes(attrs)
         setupView()
     }
@@ -88,8 +91,6 @@ class Footer @JvmOverloads constructor(
 
             primaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_primaryButtonEnabled, true)
             secondaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_secondaryButtonEnabled, true)
-
-            isShadowVisible = typedArray.getBoolean(R.styleable.CustomFooter_showShadow, true)
 
         } finally {
             typedArray.recycle()
@@ -337,9 +338,4 @@ class Footer @JvmOverloads constructor(
     fun getDualButtonSupportText1(): String = dualButtonSupportText1
 
     fun getDualButtonSupportText2(): String = dualButtonSupportText2
-
-    fun setShadowVisibility(visible: Boolean) {
-        isShadowVisible = visible
-        shadowView?.visibility = if (visible) View.VISIBLE else View.GONE
-    }
 }
