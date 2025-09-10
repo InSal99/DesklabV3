@@ -6,28 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.edts.desklabv3.R
+import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SuccessAttendanceOfflineView.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SuccessAttendanceOfflineView : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private var _binding: FragmentSuccessAttendanceOfflineViewBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_success_attendance_offline_view, container, false)
+    ): View {
+        _binding = FragmentSuccessAttendanceOfflineViewBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.ivIllustAttendanceOffline.setImageResource(R.drawable.il_check)
+        binding.tvTitleAttendanceOffline.text = "Kehadiran Tercatat!"
+        binding.tvDescAttendanceOffline.text = "Terima kasih telah konfirmasi kehadiranmu"
+        binding.cvPrimaryBtnAttendanceOffline.text = "Lihat Detail Event"
+        binding.cvSecondaryBtnAttendanceOffline.text = "Lihat Event Lain"
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

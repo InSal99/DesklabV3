@@ -7,59 +7,6 @@
     tools:context=".features.leave.ui.laporantim.TeamReportActivityView"
     android:background="?attr/colorBackgroundPrimaryTinted">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/headerTeamReportActivity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="62dp"
-            android:paddingHorizontal="@dimen/margin_16dp"
-            android:background="@drawable/bg_rectangle_shadow_tinted"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <ImageView
-                android:id="@+id/ivBackBtnTeamReportActivity"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="Notification Button"
-                android:src="@drawable/ic_chevron_left"
-                android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="1:1"
-                app:tint="?attr/colorForegroundSecondary"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                style="?attr/h1SemiBold"
-                android:id="@+id/tvSectionTitleTeamReportActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_8dp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:text="Laporan Tim"
-                android:textColor="?attr/colorForegroundPrimary"
-                app:layout_constraintStart_toEndOf="@+id/ivBackBtnTeamReportActivity"
-                app:layout_constraintTop_toTopOf="@+id/ivBackBtnTeamReportActivity"
-                app:layout_constraintBottom_toBottomOf="@+id/ivBackBtnTeamReportActivity"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTabTeamReportActivity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:clipToPadding="false"
-                tools:listitem="@layout/item_tab"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/ivBackBtnTeamReportActivity"
-                app:layout_constraintStart_toStartOf="@+id/ivBackBtnTeamReportActivity"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChipTeamReport"
         android:layout_width="match_parent"
@@ -71,7 +18,7 @@
         tools:listitem="@layout/item_chip"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/headerTeamReportActivity"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

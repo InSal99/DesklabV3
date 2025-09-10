@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.edts.desklabv3.R
+import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
 import com.edts.desklabv3.features.event.ui.EventDetailViewAttendanceOffline
 import com.edts.desklabv3.features.event.ui.EventDetailViewTolakUndangan
 import com.edts.desklabv3.features.event.ui.RSVPFormView
+import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
 
 class EntryPointsView : Fragment() {
 
@@ -76,6 +78,10 @@ class EntryPointsView : Fragment() {
             navigateToFragment(DetailInformationSpeakerComponentView())
         }
 
+        binding.btnLibSelectionDropdownFilter.setOnClickListener {
+            navigateToFragment(SelectionDropdownFilterComponentView())
+        }
+
         binding.btnLibBottomTray.setOnClickListener {
             navigateToFragment(BottomTrayComponentView())
         }
@@ -90,6 +96,8 @@ class EntryPointsView : Fragment() {
 
         binding.btnFlow3.setOnClickListener {
             navigateToFragment(RSVPFormView())
+//            navigateToFragment(HomeDaftarRSVPView())
+
         }
     }
 
