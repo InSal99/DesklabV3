@@ -12,10 +12,11 @@
         <attr name="fieldRequired" format="boolean" />
         <attr name="inputType" format="enum">
             <enum name="textInput" value="0" />
-            <enum name="textArea" value="1" />
-            <enum name="dropdown" value="2" />
-            <enum name="radioGroup" value="3" />
-            <enum name="checkboxGroup" value="4" />
+            <enum name="numberInput" value="1" />
+            <enum name="textArea" value="2" />
+            <enum name="dropdown" value="3" />
+            <enum name="radioGroup" value="4" />
+            <enum name="checkboxGroup" value="5" />
         </attr>
         <attr name="supportingText" format="string" />
         <attr name="maxLength" format="integer" />
