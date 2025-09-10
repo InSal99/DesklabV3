@@ -82,7 +82,6 @@ class BottomNavigation @JvmOverloads constructor(
 
                 updateItemVisibility()
 
-                // Ensure we have an active item
                 ensureActiveItemExists()
             } finally {
                 recycle()
@@ -232,7 +231,6 @@ class BottomNavigation @JvmOverloads constructor(
             if (state == BottomNavigationItem.NavState.ACTIVE) {
                 setActiveItem(position)
             } else {
-                // Don't allow deactivating the active item directly
                 if (position == activeItemPosition) {
                     Log.w(TAG, "Cannot set active item to inactive. Use setActiveItem() to change active item.")
                     return

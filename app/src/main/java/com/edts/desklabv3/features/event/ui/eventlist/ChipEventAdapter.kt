@@ -48,22 +48,6 @@ class EventChipAdapter(
         notifyItemChanged(newPosition)
     }
 
-    fun updateChipTexts(newChipTexts: Array<String>) {
-        chipTexts = newChipTexts
-        selectedPosition = if (newChipTexts.isNotEmpty()) 0 else -1
-        notifyDataSetChanged()
-    }
-
-    fun getSelectedPosition(): Int = selectedPosition
-
-    fun getSelectedChipText(): String? {
-        return if (selectedPosition in chipTexts.indices) {
-            chipTexts[selectedPosition]
-        } else {
-            null
-        }
-    }
-
     private fun getChipBackgroundColor(chipText: String, context: android.content.Context): Int {
         return when (chipText) {
             "Semua" -> resolveColorAttribute(R.attr.colorBackgroundPrimaryInverse, context)

@@ -30,16 +30,6 @@ class ActivityAdapter(
 
     override fun getItemCount(): Int = activities.size
 
-    fun updateActivities(newActivities: List<ActivityItem>) {
-        activities = newActivities
-        notifyDataSetChanged()
-    }
-
-    fun filterByType(type: ActivityType?) {
-        // This will be handled in the Fragment/Activity
-        // by calling updateActivities with filtered data
-    }
-
     inner class ActivityViewHolder(private val binding: ItemActivityBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(activity: ActivityItem) {

@@ -64,7 +64,7 @@ class InfoBoxFooter @JvmOverloads constructor(
             ).apply {
                 setMargins(0, 0, 0, 0)
             }
-            setShadowVisibility(false)
+//            setShadowVisibility(false)
         }
 
         addView(infoBox)

@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentHomeDaftarRsvpViewBinding
+import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.home.model.ActivityItem
 import com.edts.desklabv3.features.home.model.ActivityType
-import com.edts.desklabv3.features.SpaceItemDecoration
 
-class HomeDaftarRSVPView : Fragment() {
+class HomeInvitationNoRSVPView : Fragment() {
     private var _binding: FragmentHomeDaftarRsvpViewBinding? = null
     private val binding get() = _binding!!
 
@@ -21,7 +21,6 @@ class HomeDaftarRSVPView : Fragment() {
     private lateinit var groupedActivitiesAdapter: GroupedActivitiesAdapter
 
     private var chipDecoration: RecyclerView.ItemDecoration? = null
-//    private var activitiesDecoration: RecyclerView.ItemDecoration? = null
 
     private val allActivities = listOf(
         ActivityItem("EDTS Town-Hall 2025: Power of Change", "15:00 - 17:00 WIB", true, ActivityType.Event, "2025-07-23"),
@@ -104,16 +103,6 @@ class HomeDaftarRSVPView : Fragment() {
             adapter = groupedActivitiesAdapter
             layoutManager = LinearLayoutManager(requireContext())
             isNestedScrollingEnabled = false
-
-//            // Only add decoration once during setup
-//            if (activitiesDecoration == null) {
-//                activitiesDecoration = SpaceItemDecoration(
-//                    context = requireContext(),
-//                    spaceResId = R.dimen.activity_group_item_spacing,
-//                    orientation = SpaceItemDecoration.VERTICAL
-//                )
-//                addItemDecoration(activitiesDecoration!!)
-//            }
         }
     }
 
@@ -147,12 +136,6 @@ class HomeDaftarRSVPView : Fragment() {
     private fun handleActivityClick(activity: ActivityItem) {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
     }
-
-//    fun updateChipTexts(newTexts: Array<String>) {
-//        if (::chipAdapter.isInitialized) {
-//            chipAdapter.updateChipTexts(newTexts)
-//        }
-//    }
 
     companion object {
         @JvmStatic

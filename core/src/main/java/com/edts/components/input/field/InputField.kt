@@ -204,10 +204,11 @@ class InputField @JvmOverloads constructor(
 
             val inputFieldType = when (inputTypeValue) {
                 0 -> InputFieldType.TextInput
-                1 -> InputFieldType.TextArea
-                2 -> InputFieldType.Dropdown
-                3 -> InputFieldType.RadioGroup
-                4 -> InputFieldType.CheckboxGroup
+                1 -> InputFieldType.NumberInput
+                2 -> InputFieldType.TextArea
+                3 -> InputFieldType.Dropdown
+                4 -> InputFieldType.RadioGroup
+                5 -> InputFieldType.CheckboxGroup
                 else -> InputFieldType.TextInput
             }
 
@@ -344,6 +345,7 @@ class InputField @JvmOverloads constructor(
 
         when (currentConfig?.type) {
             is InputFieldType.TextInput,
+            is InputFieldType.NumberInput,
             is InputFieldType.TextArea -> {
                 textInputEditText?.let { editText ->
                     textInputContainer?.let { container ->
@@ -421,6 +423,7 @@ class InputField @JvmOverloads constructor(
         if (!errorText.isNullOrEmpty()) {
             when (currentConfig?.type) {
                 is InputFieldType.TextInput,
+                is InputFieldType.NumberInput,
                 is InputFieldType.TextArea -> {
                     val tagMap = textInputEditText?.tag as? MutableMap<String, TextView>
                     val inlineErrorText = tagMap?.get("errorText")
@@ -506,6 +509,7 @@ class InputField @JvmOverloads constructor(
 
         when (currentConfig?.type) {
             is InputFieldType.TextInput,
+            is InputFieldType.NumberInput,
             is InputFieldType.TextArea -> {
                 textInputEditText?.let { editText ->
                     textInputContainer?.let { container ->
@@ -570,6 +574,7 @@ class InputField @JvmOverloads constructor(
 
         currentInputComponent = when (config.type) {
             is InputFieldType.TextInput -> createTextInput(config)
+            is InputFieldType.NumberInput -> createNumberInput(config) // Add this case
             is InputFieldType.TextArea -> createTextArea(config)
             is InputFieldType.Dropdown -> createCustomDropdownView(config)
             is InputFieldType.RadioGroup -> createRadioGroup(config)
@@ -623,6 +628,155 @@ class InputField @JvmOverloads constructor(
                         "Minimum $minLength characters required"
                     maxLength > 0 && currentLength > maxLength ->
                         "Maximum $maxLength characters allowed"
+                    else -> null
+                }
+
+                if (lengthError != null) {
+                    setError(lengthError)
+                } else if (currentErrorText?.contains("Minimum") == true ||
+                    currentErrorText?.contains("Maximum") == true) {
+                    clearError()
+                }
+
+                notifyValidationChange()
+            }
+
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        }
+        textInputEditText = editText
+
+        if (maxLength > 0 || !supportingText.isNullOrEmpty()) {
+            val outerContainer = LinearLayout(context).apply {
+                orientation = LinearLayout.VERTICAL
+            }
+
+            val bottomRowContainer = LinearLayout(context).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER_VERTICAL
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topMargin = padding4dp
+                }
+            }
+
+            val leftContainer = LinearLayout(context).apply {
+                orientation = LinearLayout.VERTICAL
+                layoutParams = LinearLayout.LayoutParams(
+                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f
+                )
+            }
+
+            val errorTextForCounter = TextView(context).apply {
+                setTextAppearance(R.style.TextRegular_Label4)
+                setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                textSize = 12f
+                visibility = View.GONE
+            }
+
+            val supportingTextView = TextView(context).apply {
+                setTextAppearance(R.style.TextRegular_Label4)
+                setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral50))
+                textSize = 12f
+                text = supportingText
+                visibility = if (supportingText.isNullOrEmpty()) View.GONE else View.VISIBLE
+            }
+
+            leftContainer.addView(errorTextForCounter)
+            leftContainer.addView(supportingTextView)
+
+            val counterText = if (maxLength > 0) {
+                TextView(context).apply {
+                    setTextAppearance(R.style.TextRegular_Label4)
+                    setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral50))
+                    textSize = 12f
+                    gravity = Gravity.END
+
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                }
+            } else null
+
+            var lastLength = 0
+            val updateCounter = {
+                val currentLength = editText.text?.length ?: 0
+                if (currentLength != lastLength && counterText != null) {
+                    counterText.text = "($currentLength/$maxLength)"
+                    lastLength = currentLength
+                }
+            }
+
+            if (counterText != null) {
+                updateCounter()
+                editText.doAfterTextChanged { updateCounter() }
+            }
+
+            val tagMap = mutableMapOf<String, TextView>().apply {
+                put("errorText", errorTextForCounter)
+                put("supportingText", supportingTextView)
+                counterText?.let { put("counterText", it) }
+            }
+            editText.tag = tagMap
+
+            bottomRowContainer.addView(leftContainer)
+            counterText?.let { bottomRowContainer.addView(it) }
+
+            outerContainer.addView(container)
+            outerContainer.addView(bottomRowContainer)
+            container.addView(editText)
+            return outerContainer
+        }
+
+        container.addView(editText)
+        return container
+    }
+
+    private fun createNumberInput(config: InputFieldConfig): View {
+        val container = LinearLayout(context).apply {
+            background = getCachedDrawable("rounded_normal") { createRoundedBackground() }
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(padding12dp, (2 * density).toInt(), padding12dp, (2 * density).toInt())
+            minimumHeight = minHeight48dp
+            isFocusable = false
+            isClickable = false
+        }
+        textInputContainer = container
+
+        val editText = EditText(context).apply {
+            hint = config.hint
+            setTextAppearance(R.style.TextRegular_Paragraph1)
+            setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.color000))
+            setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral40))
+            background = null
+            textSize = 16f
+
+            // Set input type for numbers
+            inputType = android.text.InputType.TYPE_CLASS_NUMBER or
+                    android.text.InputType.TYPE_NUMBER_VARIATION_NORMAL
+            imeOptions = EditorInfo.IME_ACTION_NEXT
+
+            if (maxLength > 0) {
+                filters = arrayOf(InputFilter.LengthFilter(maxLength))
+            }
+
+            setOnFocusChangeListener { _, hasFocus ->
+                updateInputBackground(container, this, hasFocus)
+            }
+
+            doAfterTextChanged { editable ->
+                val text = editable?.toString() ?: ""
+                notifyValueChange(text)
+
+                val currentLength = text.length
+                val lengthError = when {
+                    minLength > 0 && currentLength > 0 && currentLength < minLength ->
+                        "Minimum $minLength digits required"
+                    maxLength > 0 && currentLength > maxLength ->
+                        "Maximum $maxLength digits allowed"
                     else -> null
                 }
 
@@ -1170,6 +1324,7 @@ class InputField @JvmOverloads constructor(
     fun getValue(): Any? {
         return when (currentConfig?.type) {
             is InputFieldType.TextInput,
+            is InputFieldType.NumberInput,
             is InputFieldType.TextArea -> {
                 textInputEditText?.text?.toString() ?: run {
                     val textInputLayout = currentInputComponent as? TextInputLayout
@@ -1200,6 +1355,7 @@ class InputField @JvmOverloads constructor(
     fun setValue(value: Any?) {
         when (currentConfig?.type) {
             is InputFieldType.TextInput,
+            is InputFieldType.NumberInput,
             is InputFieldType.TextArea -> {
                 textInputEditText?.setText(value?.toString()) ?: run {
                     val textInputLayout = currentInputComponent as? TextInputLayout
@@ -1245,6 +1401,7 @@ class InputField @JvmOverloads constructor(
         val value = getValue()
         val isRequiredValid = when (currentConfig?.type) {
             is InputFieldType.TextInput,
+            is InputFieldType.NumberInput,
             is InputFieldType.TextArea -> !value.toString().isNullOrBlank()
             is InputFieldType.Dropdown,
             is InputFieldType.RadioGroup -> value != null
@@ -1258,6 +1415,26 @@ class InputField @JvmOverloads constructor(
             if (maxLength > 0 && length > maxLength) return false
         }
         return isRequiredValid
+    }
+
+    fun getNumericValue(): Double? {
+        return when (currentConfig?.type) {
+            is InputFieldType.NumberInput -> {
+                val text = getValue()?.toString()
+                text?.toDoubleOrNull()
+            }
+            else -> null
+        }
+    }
+
+    fun getIntValue(): Int? {
+        return when (currentConfig?.type) {
+            is InputFieldType.NumberInput -> {
+                val text = getValue()?.toString()
+                text?.toIntOrNull()
+            }
+            else -> null
+        }
     }
 
     private fun notifyValueChange(value: Any?) {

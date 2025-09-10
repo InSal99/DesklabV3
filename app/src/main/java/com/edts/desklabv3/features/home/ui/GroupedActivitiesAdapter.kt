@@ -1,8 +1,6 @@
 package com.edts.desklabv3.features.home.ui
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,11 +42,9 @@ class GroupedActivitiesAdapter(
         private var activityDecoration: RecyclerView.ItemDecoration? = null
 
         fun bind(dateGroup: DateGroupItem) {
-            // Set date and month
             binding.tvDate.text = dateGroup.dayOfMonth
             binding.tvMonth.text = dateGroup.monthName
 
-            // Setup activities RecyclerView for this date group
             val activityAdapter = ActivityAdapter(dateGroup.activities, onActivityClick)
 
             binding.rvActivities.apply {
@@ -56,13 +52,11 @@ class GroupedActivitiesAdapter(
                 layoutManager = LinearLayoutManager(context)
                 isNestedScrollingEnabled = false
 
-                // Remove existing decoration if present
                 activityDecoration?.let { removeItemDecoration(it) }
 
-                // Add SpaceItemDecoration for vertical spacing
                 activityDecoration = SpaceItemDecoration(
                     context = context,
-                    spaceResId = R.dimen.activity_item_spacing, // You'll need to define this (8dp)
+                    spaceResId = R.dimen.activity_item_spacing,
                     orientation = SpaceItemDecoration.VERTICAL
                 )
                 addItemDecoration(activityDecoration!!)
@@ -91,7 +85,6 @@ class GroupedActivitiesAdapter(
                             activities = activitiesForDate
                         )
                     } catch (e: Exception) {
-                        // Fallback parsing if date format is different
                         DateGroupItem(
                             date = dateString,
                             dayOfMonth = dateString.substring(8, 10), // Assuming yyyy-MM-dd format
