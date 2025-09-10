@@ -44,6 +44,20 @@ class EventDetailViewAttendanceOffline : Fragment() {
               <li>Networking opportunities with peers</li>
               <li>Q&A sessions with speakers</li>
             </ul>
+            <ol>
+              <li>Numbered item one</li>
+              <li>Numbered item two</li>
+              <li>Numbered item three that is a bit longer so we can see wrapping across lines.</li>
+              <li>Bullet item four that is a bit longer so we can see wrapping across lines.</li>
+              <li>Numbered item five</li>
+              <li>Numbered item six</li>
+              <li>Numbered item seven that is a bit longer so we can see wrapping across lines.</li>
+              <li>Bullet item eight that is a bit longer so we can see wrapping across lines.</li>
+              <li>Numbered item nine</li>
+              <li>Numbered item ten</li>
+              <li>Numbered item eleven</li>
+              <li>Numbered item twelve</li>
+            </ol>
             <p>Join us for an exciting learning experience! 🚀</p>
             <p>For more information, visit our <a href="https://example.com">website</a>.</p>
         """
@@ -103,7 +117,7 @@ class EventDetailViewAttendanceOffline : Fragment() {
         val isEventPast = false
 
         binding.eventDetailFooter.apply {
-            setShadowVisibility(true)
+//            setShadowVisibility(true)
             when {
                 isEventPast -> {
                     setFooterType(Footer.FooterType.NO_ACTION)

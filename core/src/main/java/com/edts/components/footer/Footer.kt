@@ -5,16 +5,11 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
-import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewOutlineProvider
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
@@ -47,8 +42,6 @@ class Footer @JvmOverloads constructor(
     private var dualButtonTitle: String = ""
     private var dualButtonSupportText1: String = ""
     private var dualButtonSupportText2: String = ""
-    private var shadowView: View? = null
-    private var isShadowVisible: Boolean = true
 
     private var primaryButtonEnabled: Boolean = true
     private var secondaryButtonEnabled: Boolean = true
@@ -74,8 +67,8 @@ class Footer @JvmOverloads constructor(
 
     init {
         orientation = VERTICAL
+        setBackgroundColor(ContextCompat.getColor(context, R.color.colorFFF))
         parseAttributes(attrs)
-        applyShadow()
         setupView()
     }
 
@@ -98,8 +91,6 @@ class Footer @JvmOverloads constructor(
 
             primaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_primaryButtonEnabled, true)
             secondaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_secondaryButtonEnabled, true)
-
-            isShadowVisible = typedArray.getBoolean(R.styleable.CustomFooter_showShadow, true)
 
         } finally {
             typedArray.recycle()
@@ -135,57 +126,6 @@ class Footer @JvmOverloads constructor(
 
         bindDataToViews()
         setupClickListeners()
-    }
-
-    private fun applyShadow() {
-        shadowView?.let { removeView(it) }
-        shadowView = null
-
-        if (isShadowVisible) {
-            setBackgroundColor(Color.TRANSPARENT)
-            shadowView = createShadowView()
-            addView(shadowView, 0)
-//            setBackgroundColor(ContextCompat.getColor(context, R.color.colorFFF))
-        } else {
-            setBackgroundColor(ContextCompat.getColor(context, R.color.colorFFF))
-        }
-    }
-
-    private fun createShadowView(): View {
-        return View(context).apply {
-            layoutParams = FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                resources.getDimensionPixelSize(R.dimen.margin_8dp)
-            )
-
-            setBackgroundColor(Color.TRANSPARENT)
-            val layers = arrayOfNulls<Drawable>(2)
-
-            val ambientDrawable = GradientDrawable().apply {
-                orientation = GradientDrawable.Orientation.TOP_BOTTOM
-                colors = intArrayOf(
-                    ContextCompat.getColor(context, android.R.color.transparent),
-                    resolveColorAttribute(R.attr.colorShadowTintedAmbient, R.color.colorPrimaryOpacity10)
-                )
-            }
-
-            val spotDrawable = GradientDrawable().apply {
-                orientation = GradientDrawable.Orientation.TOP_BOTTOM
-                colors = intArrayOf(
-                    ContextCompat.getColor(context, android.R.color.transparent),
-                    ContextCompat.getColor(context, android.R.color.transparent),
-                    ContextCompat.getColor(context, android.R.color.transparent),
-                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorPrimaryOpacity20)
-                )
-            }
-
-            layers[0] = ambientDrawable
-            layers[1] = spotDrawable
-
-            val layerDrawable = LayerDrawable(layers)
-
-            background = layerDrawable
-        }
     }
 
     private fun bindDataToViews() {
@@ -398,9 +338,4 @@ class Footer @JvmOverloads constructor(
     fun getDualButtonSupportText1(): String = dualButtonSupportText1
 
     fun getDualButtonSupportText2(): String = dualButtonSupportText2
-
-    fun setShadowVisibility(visible: Boolean) {
-        isShadowVisible = visible
-        applyShadow()
-    }
 }

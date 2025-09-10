@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Single gradient with multiple control points -->
-    <item android:bottom="8dp">
+    <!-- Top shadow -->
+    <item>
         <shape android:shape="rectangle">
             <gradient
-                android:startColor="@color/colorGreen20"
-                android:endColor="@android:color/transparent"
                 android:angle="270"
-                android:centerY="0.8" />
+                android:startColor="#40000000"
+                android:endColor="#00000000"
+                android:type="linear" />
+            <size android:height="4dp" />
+            <corners
+                android:topLeftRadius="12dp"
+                android:topRightRadius="12dp" />
         </shape>
     </item>
 
-    <!-- Main Footer Background -->
-    <item android:top="8dp">
+    <!-- Content area (offset below shadow) -->
+    <item android:top="4dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/colorFFF" />
+            <corners
+                android:topLeftRadius="12dp"
+                android:topRightRadius="12dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
         </shape>
     </item>
 </layer-list>
