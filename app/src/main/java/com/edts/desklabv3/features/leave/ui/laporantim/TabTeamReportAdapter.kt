@@ -45,16 +45,6 @@ class TabTeamReportAdapter(
         notifyItemChanged(newPosition)
     }
 
-    fun getSelectedPosition(): Int = selectedPosition
-
-    fun getSelectedTabText(): String? {
-        return if (selectedPosition in tabTexts.indices) {
-            tabTexts[selectedPosition]
-        } else {
-            null
-        }
-    }
-
     inner class TabViewHolder(private val binding: ItemTabBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tabText: String, isSelected: Boolean, position: Int) {

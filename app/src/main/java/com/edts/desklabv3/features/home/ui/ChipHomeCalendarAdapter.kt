@@ -54,16 +54,6 @@ class ChipHomeCalendarAdapter(
         notifyDataSetChanged()
     }
 
-    fun getSelectedPosition(): Int = selectedPosition
-
-    fun getSelectedChipText(): String? {
-        return if (selectedPosition in chipTexts.indices) {
-            chipTexts[selectedPosition]
-        } else {
-            null
-        }
-    }
-
     private fun getChipBackgroundColor(chipText: String, context: android.content.Context): Int {
         return when (chipText) {
             "Semua" -> resolveColorAttribute(R.attr.colorBackgroundPrimaryInverse, context)

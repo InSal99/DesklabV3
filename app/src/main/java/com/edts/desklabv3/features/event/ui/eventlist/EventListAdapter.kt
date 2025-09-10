@@ -3,14 +3,10 @@ package com.edts.desklabv3.features.event.ui.eventlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.edts.components.event.card.EventCardBadge
-import com.edts.components.event.card.EventCardStatus
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.ItemEventBinding
-import com.edts.desklabv3.features.event.model.Event
 import com.edts.desklabv3.features.event.model.EventSample
 import com.edts.desklabv3.features.event.model.EventCategory
-import com.edts.desklabv3.features.event.model.EventStatus
 import com.edts.desklabv3.features.event.model.EventType
 import java.text.SimpleDateFormat
 import java.util.*
@@ -72,14 +68,12 @@ class EventListAdapter(
 
         fun bind(event: EventSample) {
             binding.eventCard.apply {
-                // Set basic event info
                 eventTitle = event.eventTitle
                 eventDate = dateFormatter.format(event.eventDate)
                 eventCategory = getCategoryDisplayName(event.eventCategory)
                 eventType = getEventTypeDisplayName(event.eventType)
                 eventImageSrc = getImageResourceName(event.eventImage)
 
-                // Handle badge display
                 event.badgeType?.let { badgeType ->
                     showBadge = true
                     this.badgeType = badgeType
@@ -88,13 +82,11 @@ class EventListAdapter(
                     showBadge = false
                 }
 
-                // Handle status display
                 event.statusType?.let { statusType ->
                     this.statusType = statusType
                     statusText = event.statusText ?: ""
                 }
 
-                // Set click listener
                 setOnClickListener {
                     onEventClick(event)
                 }

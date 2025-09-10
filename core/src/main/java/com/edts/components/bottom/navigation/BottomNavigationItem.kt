@@ -132,7 +132,6 @@ class BottomNavigationItem @JvmOverloads constructor(
         Log.d(TAG, "  - Click Count: $clickCount")
         Log.d(TAG, "  - Total System Clicks: $clickCount")
 
-        // Trigger bounce animation on icon
         animateIconBounce()
 
         val newState = if (navState == NavState.ACTIVE) NavState.INACTIVE else NavState.ACTIVE
