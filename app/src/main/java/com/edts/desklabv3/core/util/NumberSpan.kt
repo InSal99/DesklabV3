@@ -14,7 +14,7 @@ import androidx.annotation.Px
 
 class NumberSpan(
     private val number: Int,
-    @Px private val gapWidth: Int = 8,
+    @Px private val gapWidth: Int = 2,
     @ColorInt private val color: Int = 0,
     private val wantColor: Boolean = color != 0,
     private val maxNumberInList: Int = 99
@@ -48,7 +48,8 @@ class NumberSpan(
             typeface = Typeface.DEFAULT
         }
 
-        val maxNumberText = "$maxNumberInList. "
+        val maxNumberText = "$maxNumberInList."
+
         return paint.measureText(maxNumberText).toInt() + gapWidth
     }
 
@@ -62,7 +63,7 @@ class NumberSpan(
 
             val numberText = "$number. "
             val numberWidth = paint.measureText(numberText)
-            val maxNumberText = "$maxNumberInList. "
+            val maxNumberText = "$maxNumberInList."
             val maxWidth = paint.measureText(maxNumberText)
 
             val xPosition = if (dir > 0) {
