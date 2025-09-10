@@ -30,7 +30,6 @@ class TeamReportActivityView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupTabRecyclerView()
         setupChipRecyclerView()
         setupActivityRecyclerView()
     }
@@ -61,22 +60,6 @@ class TeamReportActivityView : Fragment() {
             adapter = employeeActivityAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-    }
-
-    private fun setupTabRecyclerView() {
-        tabTeamReportAdapter = TabTeamReportAdapter { position, tabText ->
-            onTabSelected(position, tabText)
-        }
-
-        binding.rvTabTeamReportActivity.apply {
-            adapter = tabTeamReportAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        }
-    }
-
-    private fun onTabSelected(position: Int, tabText: String) {
-        // Handle tab selection logic here
-        // You might want to show different content based on "Aktivitas" or "Cuti"
     }
 
     private fun onChipSelected(position: Int, chipText: String) {

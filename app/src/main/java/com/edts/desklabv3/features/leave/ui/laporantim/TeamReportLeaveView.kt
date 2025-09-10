@@ -1,15 +1,11 @@
 package com.edts.desklabv3.features.leave.ui.laporantim
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.input.search.InputSearchDelegate
 import com.edts.desklabv3.core.util.Utils
 import com.edts.desklabv3.databinding.FragmentTeamReportLeaveViewBinding
@@ -66,7 +62,6 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             )
         }
 
-        // Initial empty state check
         updateEmptyState()
     }
 
@@ -76,14 +71,13 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
     private fun setupSortButton() {
         binding.cvSortBtn.setOnClickListener {
-            // Close search input when sort button is clicked
             Utils.closeSearchInput(requireContext(), binding.cvSearchKaryawan, binding.root)
             handleSortClick()
         }
     }
 
     private fun handleSortClick() {
-        // Placeholder for sort functionality - to be implemented later
+        // TODO
     }
 
     private fun filterEmployees(query: String) {
@@ -94,7 +88,6 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     private fun applyFilters() {
         var employees = originalEmployees
 
-        // Apply search filter
         if (currentSearchQuery.isNotEmpty()) {
             employees = employees.filter { employee ->
                 employee.employeeName.contains(currentSearchQuery, ignoreCase = true) ||
@@ -102,17 +95,9 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             }
         }
 
-        // Apply other filters here (empty for now - to be implemented later)
-        filteredEmployees = applyOtherFilters(employees)
-
-        leaveCardAdapter.updateEmployees(filteredEmployees)
+        filteredEmployees = employees
+        leaveCardAdapter.updateEmployees(employees)
         updateEmptyState()
-    }
-
-    private fun applyOtherFilters(employees: List<Employee>): List<Employee> {
-        // Empty function for additional filtering logic
-        // This will be implemented later
-        return employees
     }
 
     private fun updateEmptyState() {
@@ -135,7 +120,6 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         )
     }
 
-    // InputSearchDelegate implementations
     override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String, changeCount: Int) {
         filterEmployees(text)
     }
@@ -150,15 +134,15 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     override fun onSearchFieldClick(inputSearch: com.edts.components.input.search.InputSearch, clickCount: Int) {
-        // Handle search field click if needed
+        // Handle search field click
     }
 
     override fun onStateChange(inputSearch: com.edts.components.input.search.InputSearch, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
-        // Handle state changes if needed
+        // Handle state changes
     }
 
     override fun onFocusChange(inputSearch: com.edts.components.input.search.InputSearch, hasFocus: Boolean, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
-        // Handle focus changes if needed
+        // Handle focus changes
     }
 
     override fun onDestroyView() {

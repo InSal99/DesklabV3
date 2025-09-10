@@ -45,8 +45,6 @@ class TabEventListDaftarRSVPAdapter(
         notifyItemChanged(newPosition)
     }
 
-    fun getSelectedPosition(): Int = selectedPosition
-
     fun getSelectedTabText(): String? {
         return if (selectedPosition in tabTexts.indices) {
             tabTexts[selectedPosition]
