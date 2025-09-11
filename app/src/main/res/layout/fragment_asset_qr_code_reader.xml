@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/flBottom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clScanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.edts.desklabv3.features.AssetQRCodeReaderView
+                android:id="@+id/qrCodeReaderView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:id="@+id/vUp"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:background="#80000000"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/vBottom"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:background="#80000000"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <View
+                android:id="@+id/vLeft"
+                android:layout_width="66dp"
+                android:layout_height="0dp"
+                android:background="#80000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vUp"
+                app:layout_constraintBottom_toTopOf="@id/vBottom" />
+
+            <View
+                android:id="@+id/vRight"
+                android:layout_width="66dp"
+                android:layout_height="0dp"
+                android:background="#80000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vUp"
+                app:layout_constraintBottom_toTopOf="@id/vBottom" />
+
+            <!-- Scanner corners -->
+            <!-- kiri atas horizontal -->
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:background="@color/colorPrimary30"
+                app:layout_constraintStart_toEndOf="@id/vLeft"
+                app:layout_constraintTop_toBottomOf="@id/vUp" />
+
+            <!-- kiri atas vertical -->
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:background="@color/colorPrimary30"
+                app:layout_constraintStart_toEndOf="@id/vLeft"
+                app:layout_constraintTop_toBottomOf="@id/vUp" />
+
+            <!-- kiri bawah vertical -->
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:background="@color/colorPrimary30"
+                app:layout_constraintStart_toEndOf="@id/vLeft"
+                app:layout_constraintBottom_toTopOf="@id/vBottom" />
+
+            <!-- kiri bawah horizontal -->
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:background="@color/colorPrimary30"
+                app:layout_constraintStart_toEndOf="@id/vLeft"
+                app:layout_constraintBottom_toTopOf="@id/vBottom" />
+
+            <!-- kanan atas horizontal -->
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:background="@color/colorPrimary30"
+                app:layout_constraintEnd_toStartOf="@id/vRight"
+                app:layout_constraintTop_toBottomOf="@id/vUp" />
+
+            <!-- kanan atas vertical -->
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:background="@color/colorPrimary30"
+                app:layout_constraintEnd_toStartOf="@id/vRight"
+                app:layout_constraintTop_toBottomOf="@id/vUp" />
+
+            <!-- kanan bawah vertical -->
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:background="@color/colorPrimary30"
+                app:layout_constraintEnd_toStartOf="@id/vRight"
+                app:layout_constraintBottom_toTopOf="@id/vBottom" />
+
+            <!-- kanan bawah horizontal -->
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:background="@color/colorPrimary30"
+                app:layout_constraintEnd_toStartOf="@id/vRight"
+                app:layout_constraintBottom_toTopOf="@id/vBottom" />
+
+            <!-- scanner frame with animated line -->
+            <FrameLayout
+                android:id="@+id/flScan"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                app:layout_constraintStart_toEndOf="@id/vLeft"
+                app:layout_constraintEnd_toStartOf="@id/vRight"
+                app:layout_constraintTop_toBottomOf="@id/vUp"
+                app:layout_constraintBottom_toTopOf="@id/vBottom">
+
+                <View
+                    android:id="@+id/vScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/colorPrimary30" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Arahkan kamera hingga memuat seluruh kode QR pada aset"
+                android:textColor="@color/white"
+                style="?attr/p1Medium"
+                app:layout_constraintTop_toTopOf="@id/vBottom"
+                app:layout_constraintStart_toEndOf="@id/vLeft"
+                app:layout_constraintEnd_toStartOf="@id/vRight" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Back button -->
+        <FrameLayout
+            android:id="@+id/flBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_2dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_2dp"
+            android:padding="@dimen/margin_8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_left" />
+        </FrameLayout>
+
+        <!-- Flash button -->
+        <FrameLayout
+            android:id="@+id/flFlash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_2dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_2dp"
+            android:padding="@dimen/margin_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFlash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_flash" />
+        </FrameLayout>
+
+        <!-- Title -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kehadiran Offline"
+            android:textColor="@color/white"
+            style="?attr/d3SemiBold"
+            app:layout_constraintStart_toEndOf="@id/flBack"
+            app:layout_constraintTop_toTopOf="@id/flBack"
+            app:layout_constraintBottom_toBottomOf="@id/flBack" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/flBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

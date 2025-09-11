@@ -1,7 +1,6 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.event.ui.rsvp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,10 +18,8 @@ import com.edts.components.modal.ModalityConfirmationPopUp
 import com.edts.components.modal.ModalityLoadingPopUp
 import com.edts.components.status.badge.StatusBadge
 import com.edts.components.toast.Toast
-import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentRsvpFormViewBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
-import com.edts.desklabv3.features.event.ui.success.SuccessRegistrationView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
