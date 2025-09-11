@@ -7,7 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import com.edts.desklabv3.R
+import com.edts.desklabv3.core.component.BadgeComponentView
+import com.edts.desklabv3.core.component.BottomNavigationComponentView
+import com.edts.desklabv3.core.component.BottomNavigationItemComponentView
+import com.edts.desklabv3.core.component.CardDetailInformationBComponentView
+import com.edts.desklabv3.core.component.CardLeftSlotComponentView
+import com.edts.desklabv3.core.component.CardMultiDetailCardComponentView
+import com.edts.desklabv3.core.component.EventCardBadgeComponentView
+import com.edts.desklabv3.core.component.EventCardComponentView
+import com.edts.desklabv3.core.component.EventCardStatusComponentView
+import com.edts.desklabv3.core.component.InputSearchComponentView
+import com.edts.desklabv3.core.component.SelectionChipComponentView
 import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
+import com.edts.desklabv3.core.component.SortButtonComponentView
+import com.edts.desklabv3.core.component.TabItemComponentView
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
 
 class EntryPointsView : Fragment() {
@@ -75,12 +88,88 @@ class EntryPointsView : Fragment() {
             navigateToFragment(DetailInformationSpeakerComponentView())
         }
 
+
+        binding.btnLibBottomTray.setOnClickListener {
+            navigateToFragment(BottomTrayComponentView())
+        }
+
         binding.btnLibSelectionDropdownFilter.setOnClickListener {
             navigateToFragment(SelectionDropdownFilterComponentView())
         }
 
-        binding.btnLibBottomTray.setOnClickListener {
-            navigateToFragment(BottomTrayComponentView())
+        binding.btnLibSelectionChip.setOnClickListener {
+            navigateToFragment(SelectionChipComponentView())
+        }
+
+        binding.btnLibCardMultiDetailCard.setOnClickListener {
+            navigateToFragment(CardMultiDetailCardComponentView())
+        }
+
+        binding.btnLibCardDetailInformationB.setOnClickListener {
+            navigateToFragment(CardDetailInformationBComponentView())
+        }
+
+        binding.btnLibCardLeftSlot.setOnClickListener {
+            navigateToFragment(CardLeftSlotComponentView())
+        }
+
+        binding.btnLibBottomNavigation.setOnClickListener {
+            navigateToFragment(BottomNavigationComponentView())
+        }
+
+        binding.btnLibBottomNavigationItem.setOnClickListener {
+            navigateToFragment(BottomNavigationItemComponentView())
+        }
+
+        binding.btnLibTabItem.setOnClickListener {
+            navigateToFragment(TabItemComponentView())
+        }
+
+        binding.btnLibInputSearch.setOnClickListener {
+            navigateToFragment(InputSearchComponentView())
+        }
+
+        binding.btnLibSortButton.setOnClickListener {
+            navigateToFragment(SortButtonComponentView())
+        }
+
+        binding.btnLibEventCard.setOnClickListener {
+            navigateToFragment(EventCardComponentView())
+        }
+
+        binding.btnLibEventCardBadge.setOnClickListener {
+            navigateToFragment(EventCardBadgeComponentView())
+        }
+
+        binding.btnLibEventCardStatus.setOnClickListener {
+            navigateToFragment(EventCardStatusComponentView())
+        }
+
+        binding.btnLibBadge.setOnClickListener {
+            navigateToFragment(BadgeComponentView())
+        }
+
+
+//TODO
+        binding.btnLibTab.setOnClickListener {
+//            navigateToFragment(TabComponentView())
+        }
+        binding.btnLibHeader.setOnClickListener {
+//            navigateToFragment(HeaderComponentView())
+        }
+//TODO
+
+        binding.btnLibEventInvitationCard.setOnClickListener {
+            navigateToFragment(EventInvitationComponentFragment())
+        }
+        binding.btnLibEventModalityConfirmation.setOnClickListener {
+            navigateToFragment(EventModalityConfirmationComponentFragment())
+        }
+        binding.btnLibEventModalityLoading.setOnClickListener {
+            navigateToFragment(EventModalityLoadingComponentFragment())
+        }
+        binding.btnLibMyEventCard.setOnClickListener {
+            navigateToFragment(MyEventsComponentFragment())
         }
 
         binding.btnFlow1.setOnClickListener {
@@ -97,6 +186,7 @@ class EntryPointsView : Fragment() {
             val result = bundleOf("fragment_class" to "HomeAttendanceView")
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
+            navigateToFragment(RSVPFormView())
 
         binding.btnFlow4.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeInvitationTolakView")

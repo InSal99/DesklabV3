@@ -7,25 +7,35 @@
     android:clipToPadding="false"
     android:padding="@dimen/margin_16dp">
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:id="@+id/cvComponentTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?attr/colorBackgroundInfoIntense"
-        app:cardCornerRadius="@dimen/margin_8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_32dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/btnLibEventModalityLoadingBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_chevron_left"
+            app:tint="?attr/colorForegroundSecondary" />
 
         <TextView
+            android:id="@+id/tvLibraryTitle"
             style="?attr/d3SemiBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingVertical="@dimen/margin_4dp"
+            android:layout_marginStart="@dimen/margin_12dp"
             android:text="Event Modality Loading"
-            android:textColor="?attr/colorForegroundPrimaryInverse" />
-    </com.google.android.material.card.MaterialCardView>
+            android:textColor="?attr/colorForegroundPrimary" />
+
+    </LinearLayout>
 
     <com.edts.components.button.Button
         android:id="@+id/btnEventModalityLoading"

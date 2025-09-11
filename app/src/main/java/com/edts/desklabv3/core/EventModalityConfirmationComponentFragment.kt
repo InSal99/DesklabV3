@@ -29,6 +29,10 @@ class EventModalityConfirmationComponentFragment : Fragment() {
         binding.btnEventModalityConfirmation.setOnClickListener {
             showEventModalityConfirmation()
         }
+
+        binding.btnLibEventModalityConfirmationBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun showEventModalityConfirmation() {
