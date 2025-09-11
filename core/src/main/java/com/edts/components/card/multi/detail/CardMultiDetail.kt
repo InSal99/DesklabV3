@@ -2,14 +2,13 @@ package com.edts.components.card.multi.detail
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -64,6 +63,12 @@ class CardMultiDetail @JvmOverloads constructor(
             updateLeftSlotTint()
         }
 
+    var cmdShowLeftSlot: Boolean = true
+        set(value) {
+            field = value
+            updateCmdShowLeftSlot()
+        }
+
     var cmdTitle: String? = null
         set(value) {
             field = value
@@ -100,6 +105,13 @@ class CardMultiDetail @JvmOverloads constructor(
             updateRightSlotTint()
         }
 
+    var cmdShowRightSlot: Boolean = true
+        set(value) {
+            field = value
+            updateCmdShowRightSlot()
+            updateClickability()
+        }
+
     enum class CardState {
         REST,
         ON_PRESS
@@ -117,7 +129,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
     private var clickCount = 0
     private var lastClickTime = 0L
-    private val clickDebounceDelay = 300L // 300ms debounce to prevent accidental double clicks
+    private val clickDebounceDelay = 300L
 
     private companion object {
         const val TAG = "CardMultiDetail"
@@ -133,10 +145,6 @@ class CardMultiDetail @JvmOverloads constructor(
         ).apply {
             try {
                 val typedValue = TypedValue()
-//                if (context.theme.resolveAttribute(R.attr.colorBackgroundModifierOnPress, typedValue, true)) {
-//                    val colorStateList = AppCompatResources.getColorStateList(context, typedValue.resourceId)
-//                    rippleColor = colorStateList
-//                }
                 rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
 
                 val leftSlotTypeValue = getInt(R.styleable.CardMultiDetail_cmdLeftSlotType, 1)
@@ -149,7 +157,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
                 val leftSlotBgColorResId = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
                 if (leftSlotBgColorResId != -1) {
-                    leftSlotBackgroundColor = leftSlotBgColorResId
+                    leftSlotBackgroundColor = resolveColorAttribute(leftSlotBgColorResId)
                 } else {
                     val leftSlotBgColor = getColor(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
                     if (leftSlotBgColor != -1) {
@@ -159,7 +167,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
                 val leftSlotTintResId = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
                 if (leftSlotTintResId != -1) {
-                    leftSlotTint = leftSlotTintResId
+                    leftSlotTint = resolveColorAttribute(leftSlotTintResId)
                 } else {
                     val leftSlotTintColor = getColor(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
                     if (leftSlotTintColor != -1) {
@@ -167,11 +175,12 @@ class CardMultiDetail @JvmOverloads constructor(
                     }
                 }
 
+                cmdShowLeftSlot = getBoolean(R.styleable.CardMultiDetail_cmdShowLeftSlot, true)
+
                 cmdTitle = getString(R.styleable.CardMultiDetail_cmdTitle)
                 cmdInfo1Text = getString(R.styleable.CardMultiDetail_cmdInfo1Text)
                 cmdInfo2Text = getString(R.styleable.CardMultiDetail_cmdInfo2Text)
 
-                // Handle cmdShowInfo2 attribute
                 cmdShowInfo2 = getBoolean(R.styleable.CardMultiDetail_cmdShowInfo2, true)
 
                 val rightSlotSrcResId = getResourceId(R.styleable.CardMultiDetail_cmdRightSlotSrc, -1)
@@ -181,7 +190,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
                 val rightSlotTintResId = getResourceId(R.styleable.CardMultiDetail_cmdRightSlotTint, -1)
                 if (rightSlotTintResId != -1) {
-                    rightSlotTint = rightSlotTintResId
+                    rightSlotTint = ContextCompat.getColor(context, rightSlotTintResId)
                 } else {
                     val rightSlotTintColor = getColor(R.styleable.CardMultiDetail_cmdRightSlotTint, -1)
                     if (rightSlotTintColor != -1) {
@@ -189,15 +198,20 @@ class CardMultiDetail @JvmOverloads constructor(
                     }
                 }
 
+                cmdShowRightSlot = getBoolean(R.styleable.CardMultiDetail_cmdShowRightSlot, true)
+
                 updateLeftSlot()
                 updateLeftSlotSrc()
                 updateLeftSlotBackgroundColor()
                 updateLeftSlotTint()
+                updateCmdShowLeftSlot()
                 updateCmdTitle()
                 updateCmdInfo()
                 updateCmdShowInfo2()
                 updateRightSlotSrc()
                 updateRightSlotTint()
+                updateCmdShowRightSlot()
+                updateClickability()
                 setupCardPressState()
             } finally {
                 recycle()
@@ -211,31 +225,9 @@ class CardMultiDetail @JvmOverloads constructor(
         }
     }
 
-//    private fun createCardBackgroundDrawable(): Drawable {
-//        val baseDrawable = GradientDrawable().apply {
-//            cornerRadius = 12f * resources.displayMetrics.density
-//            setColor(getCachedColor(R.attr.colorBackgroundPrimary))
-//        }
-//
-//        return when (cardState) {
-//            CardState.REST -> {
-//                val elevatedModifierDrawable = GradientDrawable().apply {
-//                    cornerRadius = 12f * resources.displayMetrics.density
-//                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
-//                }
-//                LayerDrawable(arrayOf(baseDrawable, elevatedModifierDrawable))
-//            }
-//            CardState.ON_PRESS -> {
-//                val pressModifierDrawable = GradientDrawable().apply {
-//                    cornerRadius = 12f * resources.displayMetrics.density
-//                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
-//                }
-//                LayerDrawable(arrayOf(baseDrawable, pressModifierDrawable))
-//            }
-//        }
-//    }
-
     private fun updateCardBackground() {
+        if (!isClickable) return
+
         when (cardState) {
             CardState.REST -> {
                 setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
@@ -257,6 +249,10 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (!isClickable) {
+            return false
+        }
+
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
@@ -287,9 +283,11 @@ class CardMultiDetail @JvmOverloads constructor(
             Log.d(TAG, "  - Info1: ${cmdInfo1Text ?: "No info1"}")
             Log.d(TAG, "  - Info2: ${cmdInfo2Text ?: "No info2"}")
             Log.d(TAG, "  - Show Info2: $cmdShowInfo2")
+            Log.d(TAG, "  - Show Left Slot: $cmdShowLeftSlot")
+            Log.d(TAG, "  - Show Right Slot: $cmdShowRightSlot")
+            Log.d(TAG, "  - Is Clickable: $isClickable")
             Log.d(TAG, "  - Total clicks: $clickCount")
             Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Total system clicks: $clickCount")
             Log.d(TAG, "--------------------")
 
             delegate?.onCardClick(this)
@@ -299,9 +297,20 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     private fun setupCardPressState() {
-        isClickable = true
-        isFocusable = true
+        updateClickability()
         updateCardBackground()
+    }
+
+    private fun updateClickability() {
+        val shouldBeClickable = cmdShowRightSlot
+        isClickable = shouldBeClickable
+        isFocusable = shouldBeClickable
+
+        Log.d(TAG, "Clickability updated: $shouldBeClickable (based on cmdShowRightSlot: $cmdShowRightSlot)")
+
+        if (!shouldBeClickable && cardState == CardState.ON_PRESS) {
+            cardState = CardState.REST
+        }
     }
 
     private fun updateLeftSlot() {
@@ -319,24 +328,18 @@ class CardMultiDetail @JvmOverloads constructor(
 
     private fun updateLeftSlotBackgroundColor() {
         leftSlotBackgroundColor?.let { color ->
-            if (color > 0) {
-                val resolvedColor = resolveColorAttribute(color)
-                binding.cvCardLeftSlot.slotBackgroundColor = resolvedColor
-            } else {
-                binding.cvCardLeftSlot.slotBackgroundColor = color
-            }
+            binding.cvCardLeftSlot.slotBackgroundColor = color
         }
     }
 
     private fun updateLeftSlotTint() {
         leftSlotTint?.let { color ->
-            if (color > 0) {
-                val resolvedColor = resolveColorAttribute(color)
-                binding.cvCardLeftSlot.slotTint = resolvedColor
-            } else {
-                binding.cvCardLeftSlot.slotTint = color
-            }
+            binding.cvCardLeftSlot.slotTint = color
         }
+    }
+
+    private fun updateCmdShowLeftSlot() {
+        binding.cvCardLeftSlot.visibility = if (cmdShowLeftSlot) View.VISIBLE else View.GONE
     }
 
     private fun updateCmdTitle() {
@@ -366,13 +369,12 @@ class CardMultiDetail @JvmOverloads constructor(
 
     private fun updateRightSlotTint() {
         rightSlotTint?.let { color ->
-            val resolvedColor = if (color > 0) {
-                resolveColorAttribute(color)
-            } else {
-                color
-            }
-            binding.ivCmdRightSlot.imageTintList = ColorStateList.valueOf(resolvedColor)
+            binding.ivCmdRightSlot.imageTintList = ColorStateList.valueOf(color)
         }
+    }
+
+    private fun updateCmdShowRightSlot() {
+        binding.ivCmdRightSlot.visibility = if (cmdShowRightSlot) View.VISIBLE else View.GONE
     }
 
     private fun resolveColorAttribute(colorRes: Int): Int {
@@ -403,6 +405,11 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
+        if (!isClickable) {
+            Log.d(TAG, "Programmatic click ignored - component is not clickable")
+            return false
+        }
+
         Log.d(TAG, "Programmatic click triggered")
         handleClick()
         return super.performClick()

@@ -5,10 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edts.desklabv3.databinding.FragmentSelectionDropdownFilterComponentViewBinding
+import com.edts.desklabv3.databinding.FragmentInputSearchComponentViewBinding
 
-class SelectionDropdownFilterComponentView : Fragment() {
-    private var _binding: FragmentSelectionDropdownFilterComponentViewBinding? = null
+
+class InputSearchComponentView : Fragment() {
+    private var _binding: FragmentInputSearchComponentViewBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -16,14 +17,14 @@ class SelectionDropdownFilterComponentView : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSelectionDropdownFilterComponentViewBinding.inflate(inflater, container, false)
+        _binding = FragmentInputSearchComponentViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLibSelectionDropdownFilterBack.setOnClickListener {
+        binding.btnLibInputSearchBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
     }
