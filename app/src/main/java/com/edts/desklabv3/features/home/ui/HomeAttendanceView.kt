@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.desklabv3.R
@@ -91,7 +92,7 @@ class HomeAttendanceView : Fragment() {
         val groupedData = GroupedActivitiesAdapter.groupActivitiesByDate(filteredActivities)
 
         groupedActivitiesAdapter = GroupedActivitiesAdapter(groupedData) { activity ->
-            handleActivityClick(activity)
+            handleActivityClick()
         }
 
         binding.rvActivitiesGroup.apply {
@@ -128,8 +129,15 @@ class HomeAttendanceView : Fragment() {
         }
     }
 
-    private fun handleActivityClick(activity: ActivityItem) {
-        android.util.Log.d("HomeAttendanceView", "Clicked: ${activity.title} - ${activity.type}")
+    private fun handleActivityClick() {
+        navigateToEventDetailAttendance()
+    }
+
+    private fun navigateToEventDetailAttendance() {
+        val result = bundleOf(
+            "fragment_class" to "EventDetailViewAttendance"
+        )
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     companion object {

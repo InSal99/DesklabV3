@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".features.event.ui.EventDetailViewAttendanceOffline"
+    tools:context=".features.event.ui.EventDetailViewAttendance"
     android:background="?attr/colorBackgroundPrimaryTinted">
 
     <ImageView
@@ -190,13 +190,21 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.edts.components.footer.Footer
+    <com.edts.components.infoboxfooter.InfoBoxFooter
         android:id="@+id/eventDetailFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:text="This is an information message"
+        android:layout_marginTop="@dimen/margin_12dp"
+        app:variant="information"
+        app:showInfoBox="true"
+        app:footerType="CALL_TO_ACTION_DETAIL"
+        app:primaryButtonText="Register Now"
+        app:primaryButtonEnabled="true"
+        app:footerTitle="Welcome"
+        app:footerDescription="Please complete your registration"
         android:paddingBottom="@dimen/margin_24dp"
-        android:background="@color/colorFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent" />/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

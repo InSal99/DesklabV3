@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
@@ -11,6 +12,8 @@ import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBindin
 class SuccessAttendanceOfflineView : Fragment() {
     private var _binding: FragmentSuccessAttendanceOfflineViewBinding? = null
     private val binding get() = _binding!!
+
+    private val meetingLink = "https://teams.microsoft.com/l/meetup-join/your-meeting-id"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +31,33 @@ class SuccessAttendanceOfflineView : Fragment() {
         binding.tvDescAttendanceOffline.text = "Terima kasih telah konfirmasi kehadiranmu"
         binding.cvPrimaryBtnAttendanceOffline.text = "Lihat Detail Event"
         binding.cvSecondaryBtnAttendanceOffline.text = "Lihat Event Lain"
+
+        setupButtonClickListeners()
+    }
+
+    private fun setupButtonClickListeners() {
+        binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
+            navigateToEventDetail()
+        }
+
+        binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
+            navigateToEventList()
+        }
+    }
+
+    private fun navigateToEventDetail() {
+        val result = bundleOf(
+            "fragment_class" to "EventDetailViewAttendance",
+            "from_success" to true, // ← Add this identifier
+            "attendance_type" to "offline",
+            "meeting_link" to meetingLink // ← Pass the meeting link
+        )
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+    }
+
+    private fun navigateToEventList() {
+        val result = bundleOf("fragment_class" to "EventListAttendanceView")
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     override fun onDestroyView() {
