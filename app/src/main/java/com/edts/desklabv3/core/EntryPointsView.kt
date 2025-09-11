@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.edts.desklabv3.R
 import com.edts.desklabv3.core.component.BadgeComponentView
 import com.edts.desklabv3.core.component.BottomNavigationComponentView
@@ -21,10 +22,6 @@ import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
 import com.edts.desklabv3.core.component.SortButtonComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
-import com.edts.desklabv3.features.event.ui.EventDetailViewAttendanceOffline
-import com.edts.desklabv3.features.event.ui.EventDetailViewTolakUndangan
-import com.edts.desklabv3.features.event.ui.RSVPFormView
-import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
 
 class EntryPointsView : Fragment() {
 
@@ -176,16 +173,24 @@ class EntryPointsView : Fragment() {
         }
 
         binding.btnFlow1.setOnClickListener {
-            navigateToFragment(EventDetailViewAttendanceOffline())
+            val result = bundleOf("fragment_class" to "HomeDaftarRSVPView")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
         binding.btnFlow2.setOnClickListener {
-            navigateToFragment(EventDetailViewTolakUndangan())
+            val result = bundleOf("fragment_class" to "HomeInvitationNoRSVPView")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
         binding.btnFlow3.setOnClickListener {
+            val result = bundleOf("fragment_class" to "HomeAttendanceView")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        }
             navigateToFragment(RSVPFormView())
 
+        binding.btnFlow4.setOnClickListener {
+            val result = bundleOf("fragment_class" to "HomeInvitationTolakView")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
     }
 

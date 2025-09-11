@@ -1,6 +1,7 @@
 package com.edts.desklabv3.features.event.ui
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,7 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
 import com.edts.components.footer.Footer
-import com.edts.components.status.badge.StatusBadge
+import com.edts.components.footer.FooterDelegate
+import com.edts.components.infobox.InfoBox
 import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.core.util.ListTagHandler
@@ -27,7 +29,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class EventDetailViewAttendanceOffline : Fragment() {
+class EventDetailRSVPView : Fragment() {
 
     private var _binding: FragmentEventDetailBinding? = null
     private val binding get() = _binding!!
@@ -80,6 +82,7 @@ class EventDetailViewAttendanceOffline : Fragment() {
         setupTimeLocationRecyclerView()
         setupHtmlDescription()
         setupFooterButton()
+
     }
 
     private fun setupBackButton() {
@@ -89,66 +92,43 @@ class EventDetailViewAttendanceOffline : Fragment() {
     }
 
     private fun setupFooterButton() {
-        binding.eventDetailFooter.delegate = object : com.edts.components.footer.FooterDelegate {
+        binding.eventDetailFooter.footerDelegate = object : FooterDelegate {
             override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {
-                showBottomTray()
+                navigateToRSVPForm()
             }
 
             override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {
-                showEventInfo()
+//                showEventInfo()
             }
 
-            override fun onRegisterClicked() {
-            }
-
-            override fun onContinueClicked() {
-            }
-
-            override fun onCancelClicked() {
-            }
+            override fun onRegisterClicked() {}
+            override fun onContinueClicked() {}
+            override fun onCancelClicked() {}
         }
 
-        configureFooterForEventState()
+        configureFooter()
     }
 
-    private fun configureFooterForEventState() {
-        val isEventFull = false
-        val isUserRegistered = false
-        val isEventPast = false
+    private fun navigateToRSVPForm() {
+        val rsvpFormView = RSVPFormView()
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(android.R.id.content, rsvpFormView)
+            .addToBackStack("RSVPFormView")
+            .commit()
+    }
 
+    private fun configureFooter() {
         binding.eventDetailFooter.apply {
-//            setShadowVisibility(true)
-            when {
-                isEventPast -> {
-                    setFooterType(Footer.FooterType.NO_ACTION)
-                    setTitleAndDescription(
-                        "Event Completed",
-                        "This event has already ended"
-                    )
-                    setStatusBadge("Completed", StatusBadge.ChipType.APPROVED)
-                }
-                isUserRegistered -> {
-                    setFooterType(Footer.FooterType.DUAL_BUTTON)
-                    setPrimaryButtonText("View Details")
-                    setSecondaryButtonText("Cancel Registration")
-                    setPrimaryButtonEnabled(true)
-                    setSecondaryButtonEnabled(true)
-                }
-                isEventFull -> {
-                    setFooterType(Footer.FooterType.CALL_TO_ACTION_DETAIL)
-                    setTitleAndDescription(
-                        "Event Full",
-                        "This event has reached maximum capacity"
-                    )
-                    setPrimaryButtonText("Join Waitlist")
-                    setPrimaryButtonEnabled(true)
-                }
-                else -> {
-                    setFooterType(Footer.FooterType.CALL_TO_ACTION)
-                    setPrimaryButtonText("Catat Kehadiran")
-                    setPrimaryButtonEnabled(true)
-                }
-            }
+            setFooterType(Footer.FooterType.CALL_TO_ACTION)
+            setPrimaryButtonText("Daftar Sekarang")
+            setPrimaryButtonEnabled(true)
+            setDescriptionVisibility(true)
+            setDualButtonDescription("Peserta Terdaftar", "5", "200")
+
+            setInfoBoxText("5 peserta sudah reservasi. Amankan spotmu!")
+            setInfoBoxVariant(InfoBox.InfoBoxVariant.INFORMATION)
+            showInfoBox(true)
+            setBackgroundColor(Color.TRANSPARENT)
         }
     }
 
@@ -269,10 +249,10 @@ class EventDetailViewAttendanceOffline : Fragment() {
         val endDateTime = "2023-12-27 22:00:00"
 
         val timeLocationList = listOf(
-            Triple(R.drawable.placeholder, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(R.drawable.placeholder, "Link Meeting", "123 Main Street, City Center")
+            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
+//            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
+            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", "123 Main Street, City Center")
         )
 
         timeLocationAdapter.submitList(timeLocationList)
