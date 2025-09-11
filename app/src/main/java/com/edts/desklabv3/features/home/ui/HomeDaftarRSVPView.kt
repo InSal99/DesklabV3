@@ -1,10 +1,12 @@
 package com.edts.desklabv3.features.home.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.desklabv3.R
@@ -146,6 +148,19 @@ class HomeDaftarRSVPView : Fragment() {
 
     private fun handleActivityClick(activity: ActivityItem) {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
+
+        if (activity.type == ActivityType.Event) {
+            navigateToEventList(activity)
+        } else {
+            // Handle other activity types if needed
+            Log.d("HomeView", "Non-event activity clicked: ${activity.title}")
+        }
+    }
+
+    private fun navigateToEventList(activity: ActivityItem) {
+//        val result = bundleOf("fragment_class" to "EventListDaftarRSVPView")
+        val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
 //    fun updateChipTexts(newTexts: Array<String>) {

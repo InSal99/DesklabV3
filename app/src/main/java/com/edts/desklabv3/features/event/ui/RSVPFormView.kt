@@ -6,17 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.footer.Footer
 import com.edts.components.footer.FooterDelegate
 import com.edts.components.input.field.InputField
 import com.edts.components.input.field.InputFieldConfig
 import com.edts.components.input.field.InputFieldType
+import com.edts.components.modal.ModalityConfirmationPopUp
+import com.edts.components.modal.ModalityLoadingPopUp
 import com.edts.components.status.badge.StatusBadge
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentRsvpFormViewBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
+import com.edts.desklabv3.features.event.ui.success.SuccessRegistrationView
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class RSVPFormView : Fragment(), FooterDelegate {
 
@@ -37,9 +45,16 @@ class RSVPFormView : Fragment(), FooterDelegate {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupBackButton()
         setupRecyclerView()
         setupFormFields()
         setupFooter()
+    }
+
+    private fun setupBackButton() {
+        binding.ivRsvpBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -69,27 +84,43 @@ class RSVPFormView : Fragment(), FooterDelegate {
         val formConfigs = listOf(
             InputFieldConfig(
                 type = InputFieldType.TextInput,
-                title = "Full Name",
-                hint = "Enter your full name",
+                title = "Username Mobile Legend",
+                hint = "Masukan username kamu",
                 isRequired = true
             ),
             InputFieldConfig(
-                type = InputFieldType.TextInput,
-                title = "Email Address",
-                hint = "your.email@example.com",
+                type = InputFieldType.NumberInput,
+                title = "Jumlah Anggota Tim",
+                hint = "Masukan jumlah anggota tim kamu",
                 isRequired = true
             ),
             InputFieldConfig(
                 type = InputFieldType.Dropdown,
-                title = "Attendance Status",
-                hint = "Select your attendance",
+                title = "Minuman",
+                hint = "Pilih Minuman",
                 isRequired = true,
-                options = listOf("Attending", "Not Attending", "Maybe")
+                options = listOf("Teh", "Kopi", "Matcha", "Air Mineral"),
+                description = "Peserta yang hadir akan mendapatkan minuman"
+            ),
+            InputFieldConfig(
+                    type = InputFieldType.RadioGroup,
+                    title = "Apakah kamu akan hadir langsung?",
+                    options = listOf("Ya", "Tidak"),
+                    isRequired = true
+            ),
+            InputFieldConfig(
+                type = InputFieldType.CheckboxGroup,
+                title = "Dari mana kamu mengetahui event ini?",
+                options = listOf("Social Media", "Teman/Saudara", "Website EDTS", "Lainnya"),
+                isRequired = true
             ),
             InputFieldConfig(
                 type = InputFieldType.TextArea,
-                title = "Additional Notes",
-                hint = "Any special requirements or notes...",
+                title = "Alasan kamu mengikuti cara",
+                hint = "Masukan alasan kamu di sini",
+                minLines = 3,
+                maxLines = 5,
+                maxLength = 500,
                 isRequired = false
             )
         )
@@ -149,55 +180,109 @@ class RSVPFormView : Fragment(), FooterDelegate {
         // Not used for CALL_TO_ACTION type
     }
 
+//    private fun onSubmitClicked() {
+//        val allValid = adapter.validateAllFieldsAndShowErrors()
+//
+////        if (allValid) {
+////            val responses = adapter.getResponses()
+////            submitForm(responses)
+////        }
+//
+//        if (allValid) {
+//            val responses = adapter.getResponses()
+//
+//            ModalityConfirmationPopUp.show(
+//                context = requireContext(),
+//                title = "Lanjutkan Pendaftaran?",
+//                description = "Dengan melanjutkan, Anda akan terdaftar sebagai peserta. Lanjutkan pendaftaran?",
+//                confirmButtonLabel = "Ya, Lanjutkan",
+//                closeButtonLabel = "Tidak",
+//                isDismissible = true,
+//                onConfirm = {
+//                    submitForm(responses)
+//                },
+//                onClose = { }
+//            )
+//        }
+//
+//    }
+
+    private var isSubmitting = false
+
     private fun onSubmitClicked() {
-        val responses = adapter.getResponses()
+        if (isSubmitting) return  // ✅ ignore repeated calls
+        isSubmitting = true
 
-        if (validateForm(responses)) {
-            submitForm(responses)
-        } else {
-            showValidationErrors()
-        }
-    }
-
-    private fun showValidationErrors() {
-        // Highlight required fields that are empty
-        for ((index, config) in formConfigs.withIndex()) {
-            if (config.isRequired) {
-                val fieldId = "field_$index"
-                val value = adapter.getResponses()[fieldId]
-                if (value == null || value.toString().isBlank()) {
-                    // You might want to show error on the specific field
-                    showFieldError(index, "This field is required")
+        val allValid = adapter.validateAllFieldsAndShowErrors()
+        if (allValid) {
+            val responses = adapter.getResponses()
+            ModalityConfirmationPopUp.show(
+                context = requireContext(),
+                title = "Lanjutkan Pendaftaran?",
+                description = "Dengan melanjutkan, Anda akan terdaftar sebagai peserta. Lanjutkan pendaftaran?",
+                confirmButtonLabel = "Ya, Lanjutkan",
+                closeButtonLabel = "Tidak",
+                isDismissible = true,
+                onConfirm = {
+                    submitForm(responses)
+                },
+                onClose = {
+                    isSubmitting = false   // reset if closed
                 }
-            }
+            )
+        } else {
+            isSubmitting = false
         }
-        Toast.error(requireContext(), "Please fill all required fields")
     }
+
 
     private fun showFieldError(position: Int, message: String) {
-        // This is tricky with RecyclerView since views might be recycled
-        // You might need to modify your adapter to handle error states
         val holder = binding.rvRsvpFormList.findViewHolderForAdapterPosition(position)
         if (holder is RSVPFormAdapter.ViewHolder) {
             holder.inputField.setError(message)
         }
     }
 
-    private fun submitForm(responses: Map<String, Any?>) {
-        // Show loading state
-        binding.eventRsvpFooter.setPrimaryButtonEnabled(false)
-        binding.eventRsvpFooter.setPrimaryButtonText("Submitting...")
+//    private fun submitForm(responses: Map<String, Any?>) {
+//        // Show loading state
+//        binding.eventRsvpFooter.setPrimaryButtonEnabled(false)
+//        binding.eventRsvpFooter.setPrimaryButtonText("Submitting...")
+//
+//        Log.d("RSVP", "Submitting form responses: $responses")
+//        handleSubmissionResult(true, "RSVP submitted successfully!")
+//    }
 
-        Log.d("RSVP", "Submitting form responses: $responses")
-        handleSubmissionResult(true, "RSVP submitted successfully!")
+    private fun submitForm(responses: Map<String, Any?>) {
+        // Show loading modal
+        val loadingDialog = ModalityLoadingPopUp.show(
+            context = requireContext(),
+            title = "Tunggu sebentar ..."
+        )
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(3000) // 3s delay
+
+            loadingDialog?.dismiss()
+
+            requireActivity().supportFragmentManager.popBackStack(
+                null,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+            )
+
+            val result = bundleOf(
+                "fragment_class" to "SuccessRegistrationView",
+                "flow_type" to "RegisRSVP"
+            )
+            requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
+        }
     }
+
 
     private fun handleSubmissionResult(success: Boolean, message: String) {
         if (success) {
             showSuccess(message)
         } else {
             showError(message)
-            // Reset footer to allow retry
             resetFooter()
         }
     }
@@ -214,7 +299,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
 
         Toast.success(requireContext(), message)
 
-        // Optional: Disable form fields after successful submission
         disableFormFields()
     }
 

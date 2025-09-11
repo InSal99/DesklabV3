@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:minWidth="14dp"
     android:minHeight="14dp"
-    android:backgroundTint="?attr/colorBackgroundAttentionIntense"
+    android:backgroundTint="?attr/colorBackgroundInfoIntense"
     app:cardCornerRadius="@dimen/radius_999dp"
     app:cardElevation="0dp"
     app:strokeColor="?attr/colorStrokeInteractive"

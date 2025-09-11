@@ -1,6 +1,10 @@
 package com.edts.desklabv3.features.event.ui
 
+import android.content.ClipData
+import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,13 +14,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.text.HtmlCompat
 import androidx.core.text.parseAsHtml
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
+import com.edts.components.detail.information.DetailInformationA
 import com.edts.components.footer.Footer
+import com.edts.components.footer.FooterDelegate
+import com.edts.components.modal.ModalityLoadingPopUp
 import com.edts.components.status.badge.StatusBadge
 import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
@@ -27,12 +36,15 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class EventDetailViewAttendanceOffline : Fragment() {
+class EventDetailViewAttendance : Fragment() {
 
     private var _binding: FragmentEventDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var timeLocationAdapter: EventTimeLocationAdapter
     private var bottomTray: BottomTray? = null
+    private var fromSuccess: Boolean = false
+    private var attendanceType: String = ""
+    private var meetingLink: String = ""
 
     companion object {
         const val EVENT_DESCRIPTION_HTML = """
@@ -75,11 +87,19 @@ class EventDetailViewAttendanceOffline : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fromSuccess = arguments?.getBoolean("from_success", false) ?: false
+        attendanceType = arguments?.getString("attendance_type", "online") ?: "online"
+        meetingLink = arguments?.getString("meeting_link", "") ?: ""
+
         setupBackButton()
         setupSpeakerRecyclerView()
         setupTimeLocationRecyclerView()
         setupHtmlDescription()
         setupFooterButton()
+
+        if (fromSuccess) {
+            applySuccessViewChanges(attendanceType)
+        }
     }
 
     private fun setupBackButton() {
@@ -89,71 +109,24 @@ class EventDetailViewAttendanceOffline : Fragment() {
     }
 
     private fun setupFooterButton() {
-        binding.eventDetailFooter.delegate = object : com.edts.components.footer.FooterDelegate {
+        binding.eventDetailFooter.footerDelegate = object : FooterDelegate {
             override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {
                 showBottomTray()
             }
-
-            override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {
-                showEventInfo()
-            }
-
-            override fun onRegisterClicked() {
-            }
-
-            override fun onContinueClicked() {
-            }
-
-            override fun onCancelClicked() {
-            }
+            override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {}
+            override fun onRegisterClicked() {}
+            override fun onContinueClicked() {}
+            override fun onCancelClicked() {}
         }
 
-        configureFooterForEventState()
+        configureFooter()
     }
 
-    private fun configureFooterForEventState() {
-        val isEventFull = false
-        val isUserRegistered = false
-        val isEventPast = false
-
-        binding.eventDetailFooter.apply {
-//            setShadowVisibility(true)
-            when {
-                isEventPast -> {
-                    setFooterType(Footer.FooterType.NO_ACTION)
-                    setTitleAndDescription(
-                        "Event Completed",
-                        "This event has already ended"
-                    )
-                    setStatusBadge("Completed", StatusBadge.ChipType.APPROVED)
-                }
-                isUserRegistered -> {
-                    setFooterType(Footer.FooterType.DUAL_BUTTON)
-                    setPrimaryButtonText("View Details")
-                    setSecondaryButtonText("Cancel Registration")
-                    setPrimaryButtonEnabled(true)
-                    setSecondaryButtonEnabled(true)
-                }
-                isEventFull -> {
-                    setFooterType(Footer.FooterType.CALL_TO_ACTION_DETAIL)
-                    setTitleAndDescription(
-                        "Event Full",
-                        "This event has reached maximum capacity"
-                    )
-                    setPrimaryButtonText("Join Waitlist")
-                    setPrimaryButtonEnabled(true)
-                }
-                else -> {
-                    setFooterType(Footer.FooterType.CALL_TO_ACTION)
-                    setPrimaryButtonText("Catat Kehadiran")
-                    setPrimaryButtonEnabled(true)
-                }
-            }
-        }
-    }
-
-    private fun showEventInfo() {
-        Toast.info(requireContext(), "Show event info")
+    private fun configureFooter() {
+        binding.eventDetailFooter.setFooterType(Footer.FooterType.CALL_TO_ACTION)
+        binding.eventDetailFooter.setPrimaryButtonText("Catat Kehadiran")
+        binding.eventDetailFooter.setPrimaryButtonEnabled(true)
+        binding.eventDetailFooter.showInfoBox(false)
     }
 
     private fun showBottomTray() {
@@ -192,12 +165,12 @@ class EventDetailViewAttendanceOffline : Fragment() {
         val contentView = layoutInflater.inflate(com.edts.desklabv3.R.layout.bottom_tray_event_options, null)
 
         val recyclerView = contentView.findViewById<RecyclerView>(com.edts.desklabv3.R.id.rvEventOptions)
-        val optionAdapter = EventOptionAdapter { eventType ->
-            Log.d("Present", "User present $eventType")
+        val optionAdapter = EventOptionAdapter { position ->
+            Log.d("Present", "User present option $position")
             bottomTray?.dismiss()
 
             Handler(Looper.getMainLooper()).postDelayed({
-                handleOptionSelected(eventType.toString())
+                handleOptionSelected(position)
             }, 300)
         }
 
@@ -207,8 +180,8 @@ class EventDetailViewAttendanceOffline : Fragment() {
         }
 
         val options = listOf(
-            "online" to R.drawable.placeholder,
-            "offline" to R.drawable.placeholder
+            "online" to R.drawable.ic_chevron_right,
+            "offline" to R.drawable.ic_chevron_right
         )
 
         optionAdapter.submitList(options)
@@ -216,31 +189,100 @@ class EventDetailViewAttendanceOffline : Fragment() {
         return contentView
     }
 
-    private fun handleOptionSelected(eventType: String) {
-        when (eventType) {
-            "0" -> {
-                handleJoinOnline()
-            }
-            "1" -> {
-                handleJoinOffline()
+    private fun applySuccessViewChanges(attendanceType: String) {
+        configureFooterForSuccess(attendanceType)
+        updateTimeLocationListWithAction()
+        setupPosterClick()
+    }
+
+    private fun setupPosterClick() {
+        binding.ivDetailEventPoster.setOnClickListener {
+            parentFragmentManager.popBackStack(
+                null,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+            )
+        }
+    }
+
+    private fun configureFooterForSuccess(attendanceType: String) {
+        binding.eventDetailFooter.setFooterType(Footer.FooterType.NO_ACTION)
+        binding.eventDetailFooter.setPrimaryButtonEnabled(false)
+        binding.eventDetailFooter.showInfoBox(false)
+        binding.eventDetailFooter.setStatusBadge("Kehadiran Tercatat", StatusBadge.ChipType.APPROVED)
+
+        val typeText = if (attendanceType == "offline") "Kehadiran Offline" else "Kehadiran Online"
+        binding.eventDetailFooter.setTitleAndDescription("Tipe Kehadiran", typeText)
+    }
+
+
+    private fun updateTimeLocationListWithAction() {
+        val startDateTime = "2023-12-25 19:00:00"
+        val endDateTime = "2023-12-27 22:00:00"
+
+        val timeLocationList = listOf(
+            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
+            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", meetingLink)
+        )
+
+        timeLocationAdapter.submitList(timeLocationList)
+
+        // Enable actions for link meeting
+        timeLocationAdapter.setLinkMeetingAction(true, meetingLink) { actionType ->
+            when (actionType) {
+                "copy" -> copyMeetingLinkToClipboard()
+                "open" -> openMeetingLink()
             }
         }
     }
 
+    private fun copyMeetingLinkToClipboard() {
+        val clipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+        val clip = ClipData.newPlainText("Meeting Link", meetingLink)
+        clipboardManager.setPrimaryClip(clip)
+        Toast.success(requireContext(), "Link meeting disalin")
+    }
+
+    private fun openMeetingLink() {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(meetingLink))
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.error(requireContext(), "Tidak dapat membuka link")
+        }
+    }
+
+    private fun handleOptionSelected(position: Int) {
+        when (position) {
+            0 -> handleJoinOnline()
+            1 -> handleJoinOffline()
+        }
+    }
+
+
     private fun handleJoinOnline() {
-        Toast.info(requireContext(), "Joining online event...")
-        Log.d("Present Online", "Retrieving Data...")
+        // Show loading modal
+        val loadingDialog = ModalityLoadingPopUp.show(
+            context = requireContext(),
+            title = "Tunggu sebentar ...",
+            isCancelable = false
+        )
+
+        binding.root.postDelayed({
+            loadingDialog?.dismiss()
+            navigateToSuccessAttendanceOnline()
+        }, 3000)
+    }
+
+    private fun navigateToSuccessAttendanceOnline() {
+        val result = bundleOf("fragment_class" to "SuccessAttendanceOnlineView")
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     private fun handleJoinOffline() {
-        val scanQRFragment = ScanQRView()
-        Log.d("Present Offline", "Go To Scanner")
-
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(android.R.id.content, scanQRFragment)
-            .addToBackStack("ScanQRView")
-            .commit()
-            .apply { Log.d("Present Offline", "Go To Scanner") }
+        val result = bundleOf("fragment_class" to "ScanQRAttendanceView")
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     private fun setupSpeakerRecyclerView() {
@@ -269,10 +311,10 @@ class EventDetailViewAttendanceOffline : Fragment() {
         val endDateTime = "2023-12-27 22:00:00"
 
         val timeLocationList = listOf(
-            Triple(R.drawable.placeholder, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(R.drawable.placeholder, "Link Meeting", "123 Main Street, City Center")
+            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
+            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", "123 Main Street, City Center")
         )
 
         timeLocationAdapter.submitList(timeLocationList)

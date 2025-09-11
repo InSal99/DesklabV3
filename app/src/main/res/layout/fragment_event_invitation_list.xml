@@ -1,38 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="?attr/colorBackgroundPrimaryTinted"
     tools:context=".features.event.ui.invitation.EventInvitationFragmentNoRSVP">
 
-    <ImageView
-        android:id="@+id/ivEventInvitationHeader"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEventInvitation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:contentDescription="Invitation Header"
-        android:src="@drawable/image_event_invitation_header"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:nestedScrollingEnabled="false"
+        android:padding="@dimen/margin_16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+</androidx.core.widget.NestedScrollView>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivEventInvitationHeader">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvEventInvitation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"
-            android:padding="@dimen/margin_16dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="?attr/colorBackgroundPrimaryTinted"-->
+<!--    tools:context=".features.event.ui.invitation.EventInvitationFragmentNoRSVP">-->
+
+<!--&lt;!&ndash;    <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/ivEventInvitationHeader"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:adjustViewBounds="true"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:contentDescription="Invitation Header"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:src="@drawable/image_event_invitation_header"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="parent" />&ndash;&gt;-->
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rvEventInvitation"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:clipChildren="false"-->
+<!--            android:clipToPadding="false"-->
+<!--            android:nestedScrollingEnabled="false"-->
+<!--            android:padding="@dimen/margin_16dp"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.event.card.EventCardStatus
 import com.edts.components.input.search.InputSearchDelegate
@@ -15,6 +16,7 @@ import com.edts.desklabv3.features.event.model.EventCategory
 import com.edts.desklabv3.features.event.model.EventSample
 import com.edts.desklabv3.features.event.model.EventType
 import com.edts.desklabv3.features.SpaceItemDecoration
+import com.edts.desklabv3.features.event.ui.EventDetailRSVPView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -198,8 +200,9 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        // Handle event item click
-        // Navigate to event detail or perform other actions
+        // Navigate to event detail using Fragment Result API
+        val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String, changeCount: Int) {

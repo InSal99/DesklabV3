@@ -11,6 +11,7 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
 
     private val formConfigs = mutableListOf<InputFieldConfig>()
     private val responses = mutableMapOf<String, Any?>()
+    private var recyclerView: RecyclerView? = null
 
     var onResponseChange: ((Map<String, Any?>) -> Unit)? = null
     var onValidationChange: ((Boolean) -> Unit)? = null
@@ -50,6 +51,21 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
         return true
     }
 
+    fun validateAllFieldsAndShowErrors(): Boolean {
+        var allValid = true
+        for ((index, config) in formConfigs.withIndex()) {
+            val holder = recyclerView?.findViewHolderForAdapterPosition(index) as? ViewHolder
+            val field = holder?.inputField
+            val isValid = field?.isValid() ?: false
+
+            if (!isValid && config.isRequired) {
+                field?.setError("Mohon lengkapi field ini terlebih dahulu")
+                allValid = false
+            }
+        }
+        return allValid
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inputField = InputField(parent.context).apply {
             layoutParams = ViewGroup.LayoutParams(
@@ -75,6 +91,16 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
 
     fun getResponses(): Map<String, Any?> {
         return responses.toMap()
+    }
+
+    override fun onAttachedToRecyclerView(rv: RecyclerView) {
+        super.onAttachedToRecyclerView(rv)
+        recyclerView = rv
+    }
+
+    override fun onDetachedFromRecyclerView(rv: RecyclerView) {
+        super.onDetachedFromRecyclerView(rv)
+        recyclerView = null
     }
 }
 

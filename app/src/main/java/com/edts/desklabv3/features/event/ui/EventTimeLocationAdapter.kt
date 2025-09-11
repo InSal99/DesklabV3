@@ -9,16 +9,37 @@ import com.edts.components.detail.information.DetailInformationA
 class EventTimeLocationAdapter : RecyclerView.Adapter<EventTimeLocationAdapter.TimeLocationViewHolder>() {
 
     private val items = mutableListOf<Triple<Int, String, String>>()
+    private var showActionForLinkMeeting: Boolean = false
+    private var meetingLink: String = ""
+    private var onActionClickListener: ((actionType: String) -> Unit)? = null
 
     inner class TimeLocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val detailInfoView = itemView as DetailInformationA
 
-        fun bind(item: Triple<Int, String, String>) {
+        fun bind(item: Triple<Int, String, String>, position: Int) {
             detailInfoView.apply {
                 icon = ContextCompat.getDrawable(context, item.first)
                 title = item.second
                 description = item.third
-                hasAction = false
+
+                // Show actions only for "Link Meeting" item (4th position) if enabled
+                hasAction = showActionForLinkMeeting && position == 3
+
+                if (hasAction) {
+                    // SWITCHED: Primary button is now "Bergabung Online"
+                    actionButton1.text = "Bergabung Online"
+                    // SWITCHED: Secondary button is now "Copy Link"
+                    actionButton2.text = "Copy Link"
+
+                    // SWITCHED: Primary button opens the link
+                    actionButton1.setOnClickListener {
+                        onActionClickListener?.invoke("open")
+                    }
+                    // SWITCHED: Secondary button copies to clipboard
+                    actionButton2.setOnClickListener {
+                        onActionClickListener?.invoke("copy")
+                    }
+                }
             }
         }
     }
@@ -33,7 +54,7 @@ class EventTimeLocationAdapter : RecyclerView.Adapter<EventTimeLocationAdapter.T
     }
 
     override fun onBindViewHolder(holder: TimeLocationViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], position)
     }
 
     override fun getItemCount(): Int = items.size
@@ -42,5 +63,12 @@ class EventTimeLocationAdapter : RecyclerView.Adapter<EventTimeLocationAdapter.T
         items.clear()
         items.addAll(newItems)
         notifyDataSetChanged()
+    }
+
+    fun setLinkMeetingAction(show: Boolean, link: String, listener: (String) -> Unit) {
+        showActionForLinkMeeting = show
+        meetingLink = link
+        onActionClickListener = listener
+        notifyItemChanged(3) // Notify the 4th item (Link Meeting) to update
     }
 }

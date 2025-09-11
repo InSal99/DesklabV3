@@ -131,7 +131,19 @@ class Footer @JvmOverloads constructor(
     private fun bindDataToViews() {
         when (footerType) {
             FooterType.CALL_TO_ACTION -> {
+//                ctaBinding?.let { binding ->
+//                    primaryButton = binding.btnFooterCTAPrimary.apply {
+//                        setLabel(primaryButtonText)
+//                        isEnabled = primaryButtonEnabled
+//                    }
+//                }
                 ctaBinding?.let { binding ->
+                    binding.tvFooterCTATitle.text = dualButtonTitle
+                    binding.tvFooterCTASupportText1.text = dualButtonSupportText1
+                    binding.tvFooterCTASupportText2.text = dualButtonSupportText2
+
+                    setDescriptionVisibility(showDescription)
+
                     primaryButton = binding.btnFooterCTAPrimary.apply {
                         setLabel(primaryButtonText)
                         isEnabled = primaryButtonEnabled
@@ -317,6 +329,13 @@ class Footer @JvmOverloads constructor(
             binding.tvFooterDualButtonTextDivider.visibility = visibility
             binding.tvFooterDualButtonSupportText2.visibility = visibility
         }
+
+        ctaBinding?.let { binding ->
+            binding.tvFooterCTATitle.visibility = visibility
+            binding.tvFooterCTASupportText1.visibility = visibility
+            binding.tvFooterCTATextDivider.visibility = visibility
+            binding.tvFooterCTASupportText2.visibility = visibility
+        }
     }
 
     fun setDualButtonDescription(title: String, supportText1: String, supportText2: String) {
@@ -328,6 +347,12 @@ class Footer @JvmOverloads constructor(
             binding.tvFooterDualButtonTitle.text = title
             binding.tvFooterDualButtonSupportText1.text = supportText1
             binding.tvFooterDualButtonSupportText2.text = supportText2
+        }
+
+        ctaBinding?.let { binding ->
+            binding.tvFooterCTATitle.text = title
+            binding.tvFooterCTASupportText1.text = supportText1
+            binding.tvFooterCTASupportText2.text = supportText2
         }
     }
 
