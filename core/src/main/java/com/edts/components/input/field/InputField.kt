@@ -1104,7 +1104,7 @@ class InputField @JvmOverloads constructor(
         dropdownTextView = textView
 
         val iconView = ImageView(context).apply {
-            setImageResource(R.drawable.placeholder)
+            setImageResource(R.drawable.ic_chevron_down)
             setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutral50))
             scaleType = ImageView.ScaleType.CENTER
 

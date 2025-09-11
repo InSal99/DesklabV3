@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edts.desklabv3.R
-import com.edts.desklabv3.databinding.FragmentInputFieldComponentViewBinding
 import com.edts.desklabv3.databinding.FragmentSelectionDropdownFilterComponentViewBinding
 
 class SelectionDropdownFilterComponentView : Fragment() {

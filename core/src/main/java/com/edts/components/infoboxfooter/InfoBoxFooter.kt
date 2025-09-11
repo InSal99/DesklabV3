@@ -53,7 +53,7 @@ class InfoBoxFooter @JvmOverloads constructor(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                setMargins(0, 0, 0, 0)
+                setMargins(0, 8.dp.toInt(), 0, 0)
             }
         }
 
@@ -161,4 +161,7 @@ class InfoBoxFooter @JvmOverloads constructor(
 
     fun getInfoBox(): InfoBox = infoBox
     fun getFooter(): Footer = footer
+
+    private val Int.dp: Float
+        get() = this * resources.displayMetrics.density
 }

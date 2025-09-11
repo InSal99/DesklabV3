@@ -2,6 +2,7 @@ package com.edts.desklabv3.features.event.ui
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.os.Looper
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.os.bundleOf
 import androidx.core.text.HtmlCompat
 import androidx.core.text.parseAsHtml
 import androidx.fragment.app.Fragment
@@ -16,10 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.R
 import com.edts.components.footer.Footer
 import com.edts.components.footer.FooterDelegate
+import com.edts.components.infobox.InfoBox
 import com.edts.components.input.field.InputField
 import com.edts.components.input.field.InputFieldConfig
 import com.edts.components.input.field.InputFieldDelegate
 import com.edts.components.input.field.InputFieldType
+import com.edts.components.modal.ModalityConfirmationPopUp
+import com.edts.components.modal.ModalityLoadingPopUp
 import com.edts.components.radiobutton.RadioGroup
 import com.edts.components.radiobutton.RadioGroupDelegate
 import com.edts.components.status.badge.StatusBadge
@@ -99,72 +104,31 @@ class EventDetailViewTolakUndangan : Fragment() {
     }
 
     private fun setupFooterButton() {
-        binding.eventDetailFooter.delegate = object : com.edts.components.footer.FooterDelegate {
-            override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {
-            }
-
+        binding.eventDetailFooter.footerDelegate = object : FooterDelegate {
+            override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {}
             override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {
                 showBottomTray()
             }
-
-            override fun onRegisterClicked() {
-            }
-
-            override fun onContinueClicked() {
-            }
-
-            override fun onCancelClicked() {
-            }
+            override fun onRegisterClicked() {}
+            override fun onContinueClicked() {}
+            override fun onCancelClicked() {}
         }
 
-        configureFooterForEventState()
+        configureFooter()
     }
 
-    private fun configureFooterForEventState() {
-        val isEventFull = false
-        val isUserRegistered = true
-        val isEventPast = false
-
+    private fun configureFooter() {
         binding.eventDetailFooter.apply {
-//            setShadowVisibility(true)
-            when {
-                isEventPast -> {
-                    setFooterType(Footer.FooterType.NO_ACTION)
-                    setTitleAndDescription(
-                        "Event Completed",
-                        "This event has already ended"
-                    )
-                    setStatusBadge("Completed", StatusBadge.ChipType.APPROVED)
-                }
-                isUserRegistered -> {
-                    setFooterType(Footer.FooterType.DUAL_BUTTON)
-                    setPrimaryButtonText("Terima Undangan")
-                    setSecondaryButtonText("Tolak Undangan")
-                    setPrimaryButtonEnabled(true)
-                    setSecondaryButtonEnabled(true)
-
-                    setDualButtonDescription(
-                        title = "Peserta Terdaftar",
-                        supportText1 = "1",
-                        supportText2 = "10"
-                    )
-                    setDescriptionVisibility(true)
-                }
-                isEventFull -> {
-                    setFooterType(Footer.FooterType.CALL_TO_ACTION_DETAIL)
-                    setTitleAndDescription(
-                        "Event Full",
-                        "This event has reached maximum capacity"
-                    )
-                    setPrimaryButtonText("Join Waitlist")
-                    setPrimaryButtonEnabled(true)
-                }
-                else -> {
-                    setFooterType(Footer.FooterType.CALL_TO_ACTION)
-                    setPrimaryButtonText("Catat Kehadiran")
-                    setPrimaryButtonEnabled(true)
-                }
-            }
+            setFooterType(Footer.FooterType.DUAL_BUTTON)
+            setPrimaryButtonText("Terima Undangan")
+            setSecondaryButtonText("Tolak Undangan")
+            setPrimaryButtonEnabled(true)
+            setSecondaryButtonEnabled(true)
+            setDescriptionVisibility(true)
+            setDualButtonDescription("Peserta Terdaftar", "15", "200")
+            showInfoBox(true)
+            setInfoBoxText("15 peserta sudah reservasi. Amankan spotmu!")
+            setInfoBoxVariant(InfoBox.InfoBoxVariant.INFORMATION)
         }
     }
 
@@ -347,18 +311,57 @@ class EventDetailViewTolakUndangan : Fragment() {
                 Toast.error(requireContext(), "Harap isi alasan lainnya")
             }
             selectedOption == "Lainnya" && otherReason != null -> {
-                handleOptionThreeWithReason(otherReason)
-                bottomTray?.dismiss()
+                showConfirmationDialog()
             }
             selectedOption != null -> {
-                handleOptionSelected(selectedOption)
-                bottomTray?.dismiss()
+                showConfirmationDialog()
             }
             else -> {
                 Toast.error(requireContext(), "Harap pilih alasan")
             }
         }
     }
+
+    private fun showConfirmationDialog() {
+        val reason = if (currentSelectedOption == "Lainnya") {
+            inputField?.getValue()?.toString()?.trim() ?: ""
+        } else {
+            currentSelectedOption ?: ""
+        }
+
+        ModalityConfirmationPopUp.show(
+            context = requireContext(),
+            title = "Lanjutkan Penolakan?",
+            description = "Dengan melanjutkan, penolakan Anda akan tercatat dan hanya bisa dibatalkan melalui HR. Lanjutkan penolakan?",
+            confirmButtonLabel = "Ya, Lanjutkan",
+            closeButtonLabel = "Tidak",
+            onConfirm = {
+                bottomTray?.dismiss()
+                showLoadingAndNavigate()
+            },
+            onClose = { }
+        )
+    }
+
+    private fun showLoadingAndNavigate() {
+        val loadingDialog = ModalityLoadingPopUp.show(
+            context = requireContext(),
+            title = "Tunggu sebentar ..."
+        )
+
+        binding.root.postDelayed({
+            loadingDialog?.dismiss()
+            navigateToSuccessScreen()
+        }, 3000)
+    }
+
+    private fun navigateToSuccessScreen() {
+        val result = bundleOf(
+            "fragment_class" to "SuccessDenyInvitationView"
+        )
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+    }
+
 
     private fun handleOptionThreeWithReason(reason: String) {
         Toast.info(requireContext(), "Alasan: $reason")
@@ -406,10 +409,10 @@ class EventDetailViewTolakUndangan : Fragment() {
         val endDateTime = "2023-12-27 22:00:00"
 
         val timeLocationList = listOf(
-            Triple(R.drawable.placeholder, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(R.drawable.placeholder, "Link Meeting", "123 Main Street, City Center")
+            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
+            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", "123 Main Street, City Center")
         )
 
         timeLocationAdapter.submitList(timeLocationList)
