@@ -88,6 +88,9 @@ class EntryPointsView : Fragment() {
             navigateToFragment(DetailInformationSpeakerComponentView())
         }
 
+        binding.btnLibSelectionDropdownFilter.setOnClickListener {
+            navigateToFragment(SelectionDropdownFilterComponentView())
+        }
 
         binding.btnLibBottomTray.setOnClickListener {
             navigateToFragment(BottomTrayComponentView())
@@ -186,7 +189,6 @@ class EntryPointsView : Fragment() {
             val result = bundleOf("fragment_class" to "HomeAttendanceView")
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
-            navigateToFragment(RSVPFormView())
 
         binding.btnFlow4.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeInvitationTolakView")

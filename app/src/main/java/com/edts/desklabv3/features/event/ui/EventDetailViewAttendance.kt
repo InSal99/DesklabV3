@@ -180,8 +180,8 @@ class EventDetailViewAttendance : Fragment() {
         }
 
         val options = listOf(
-            "online" to R.drawable.placeholder,
-            "offline" to R.drawable.placeholder
+            "online" to R.drawable.ic_chevron_right,
+            "offline" to R.drawable.ic_chevron_right
         )
 
         optionAdapter.submitList(options)
@@ -220,10 +220,10 @@ class EventDetailViewAttendance : Fragment() {
         val endDateTime = "2023-12-27 22:00:00"
 
         val timeLocationList = listOf(
-            Triple(R.drawable.placeholder, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(R.drawable.placeholder, "Link Meeting", meetingLink)
+            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
+            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", meetingLink)
         )
 
         timeLocationAdapter.submitList(timeLocationList)
@@ -311,10 +311,10 @@ class EventDetailViewAttendance : Fragment() {
         val endDateTime = "2023-12-27 22:00:00"
 
         val timeLocationList = listOf(
-            Triple(R.drawable.placeholder, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-            Triple(R.drawable.placeholder, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(R.drawable.placeholder, "Link Meeting", "123 Main Street, City Center")
+            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
+            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
+            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", "123 Main Street, City Center")
         )
 
         timeLocationAdapter.submitList(timeLocationList)
