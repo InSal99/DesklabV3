@@ -32,6 +32,10 @@ class EventModalityLoadingComponentFragment : Fragment() {
         binding.btnEventModalityLoading.setOnClickListener {
             showEventModalityLoading()
         }
+
+        binding.btnLibEventModalityLoadingBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun showEventModalityLoading() {

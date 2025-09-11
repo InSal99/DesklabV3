@@ -37,6 +37,10 @@ class MyEventsComponentFragment : Fragment() {
         setupMyEventRecyclerView()
 
         eventAdapter.submitList(allEvents)
+
+        binding.btnLibMyEventCardBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun setupMyEventRecyclerView() {
