@@ -187,8 +187,8 @@ class EventDetailRSVPView : Fragment() {
         }
 
         val options = listOf(
-            "online" to R.drawable.placeholder,
-            "offline" to R.drawable.placeholder
+            "online" to R.drawable.ic_chevron_right,
+            "offline" to R.drawable.ic_chevron_right
         )
 
         optionAdapter.submitList(options)

@@ -70,19 +70,19 @@ class InfoBox @JvmOverloads constructor(
             InfoBoxVariant.INFORMATION -> {
                 setCardBackgroundColor(context.getThemeColor(R.attr.colorBackgroundInfoSubtle))
                 binding.tvInfoText.setTextColor(context.getThemeColor(R.attr.colorForegroundInfoIntense))
-                binding.ivInfoIcon.setImageResource(R.drawable.placeholder)
+                binding.ivInfoIcon.setImageResource(R.drawable.ic_information)
                 binding.ivInfoIcon.setColorFilter(context.getThemeColor(R.attr.colorForegroundInfoIntense))
             }
             InfoBoxVariant.SUCCESS -> {
                 setCardBackgroundColor(context.getThemeColor(R.attr.colorBackgroundSuccessSubtle))
                 binding.tvInfoText.setTextColor(context.getThemeColor(R.attr.colorForegroundSuccessIntense))
-                binding.ivInfoIcon.setImageResource(R.drawable.placeholder)
+                binding.ivInfoIcon.setImageResource(R.drawable.ic_success)
                 binding.ivInfoIcon.setColorFilter(context.getThemeColor(R.attr.colorForegroundSuccessIntense))
             }
             InfoBoxVariant.ERROR -> {
                 setCardBackgroundColor(context.getThemeColor(R.attr.colorBackgroundAttentionSubtle))
                 binding.tvInfoText.setTextColor(context.getThemeColor(R.attr.colorForegroundAttentionIntense))
-                binding.ivInfoIcon.setImageResource(R.drawable.placeholder)
+                binding.ivInfoIcon.setImageResource(R.drawable.ic_error)
                 binding.ivInfoIcon.setColorFilter(context.getThemeColor(R.attr.colorForegroundAttentionIntense))
             }
             InfoBoxVariant.GENERAL -> {
