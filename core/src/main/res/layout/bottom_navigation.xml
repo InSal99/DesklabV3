@@ -57,5 +57,4 @@
         app:navIcon="@drawable/placeholder"
         app:navText="Label"
         app:navShowBadge="false"/>
-
 </LinearLayout>

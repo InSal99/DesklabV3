@@ -21,7 +21,6 @@ class SortButton @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: SortBtnBinding = SortBtnBinding.inflate(
         LayoutInflater.from(context),
         this,
@@ -49,11 +48,26 @@ class SortButton @JvmOverloads constructor(
     private var lastClickTime = 0L
     private val clickDebounceDelay = 300L
 
+    var sortIcon: Int = R.drawable.ic_sort
+        set(value) {
+            field = value
+            binding.ivFilterBTN.setImageResource(value)
+        }
+
     private companion object {
         const val TAG = "FilterButton"
     }
 
     init {
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.SortButton)
+
+        try {
+            val iconResId = typedArray.getResourceId(R.styleable.SortButton_sortIcon, R.drawable.ic_sort)
+            sortIcon = iconResId
+        } finally {
+            typedArray.recycle()
+        }
+
         setupCardPressState()
         radius = cornerRadiusPx
         rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
@@ -141,6 +155,7 @@ class SortButton @JvmOverloads constructor(
             Log.d(TAG, "  - Current scale X: $scaleX")
             Log.d(TAG, "  - Current scale Y: $scaleY")
             Log.d(TAG, "  - Card state: $cardState")
+            Log.d(TAG, "  - Current sort icon: $sortIcon")
             Log.d(TAG, "  - Total system clicks: $clickCount")
             Log.d(TAG, "--------------------")
 
@@ -208,5 +223,4 @@ class SortButton @JvmOverloads constructor(
             handleClick()
         }, 100)
     }
-
 }

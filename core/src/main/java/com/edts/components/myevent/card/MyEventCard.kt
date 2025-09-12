@@ -19,7 +19,6 @@ class MyEventCard @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: MyEventCardBinding =
         MyEventCardBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -94,10 +93,6 @@ class MyEventCard @JvmOverloads constructor(
         binding.customCalendarCard.setCalendarData(month, date, day)
     }
 
-    /**
-     * Programmatically sets the properties of the status badge.
-     * This makes the card a "dumb" component that just displays what it's given.
-     */
     fun setBadgeData(
         text: String?,
         type: EventCardBadge.BadgeType,

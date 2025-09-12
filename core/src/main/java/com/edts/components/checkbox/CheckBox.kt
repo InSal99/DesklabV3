@@ -13,7 +13,6 @@ class CheckBox @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = androidx.appcompat.R.attr.checkboxStyle
 ) : AppCompatCheckBox(context, attrs, defStyleAttr) {
-
     private var normalTextAppearance = R.style.CheckBoxTextAppearance_Normal
     private var selectedTextAppearance = R.style.CheckBoxTextAppearance_Selected
     private var disabledTextAppearance = R.style.CheckBoxTextAppearance_Disabled

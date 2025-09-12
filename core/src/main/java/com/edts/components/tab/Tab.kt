@@ -20,7 +20,6 @@ class Tab @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
-
     private val binding: TabBinding = TabBinding.inflate(
         LayoutInflater.from(context),
         this,
@@ -291,5 +290,4 @@ class Tab @JvmOverloads constructor(
             delegate?.onTabClick(this, state, previousState)
         }
     }
-
 }

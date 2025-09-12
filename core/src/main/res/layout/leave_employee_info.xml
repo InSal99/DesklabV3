@@ -14,8 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvName"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/tvName"/>
     
     <TextView
         android:id="@+id/tvName"
@@ -54,5 +53,4 @@
         app:layout_constraintTop_toTopOf="@id/tvName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tvRole" />
-
 </merge>

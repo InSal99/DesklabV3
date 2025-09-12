@@ -25,7 +25,6 @@ class CardDetailInfoB @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: CardDetailInfoBBinding = CardDetailInfoBBinding.inflate(
         LayoutInflater.from(context),
         this,

@@ -53,6 +53,8 @@ class HomeInvitationTolakView : Fragment() {
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
+
+        binding.cvNotificationBadge.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

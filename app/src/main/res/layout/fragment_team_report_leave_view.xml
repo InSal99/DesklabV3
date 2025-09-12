@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="@+id/cvSearchKaryawan"
         app:layout_constraintBottom_toBottomOf="@+id/cvSearchKaryawan"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:sortIcon="@drawable/ic_sort"/>
 
     <ImageView
         android:id="@+id/ivEmptyStateLeaveList"
@@ -43,8 +43,8 @@
         android:src="@drawable/empty_state_leave"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/cvSearchKaryawan"
-        app:layout_constraintStart_toStartOf="@id/cvSearchKaryawan"
-        app:layout_constraintEnd_toEndOf="@id/cvSortBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

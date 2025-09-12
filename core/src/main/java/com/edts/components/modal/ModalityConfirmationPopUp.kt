@@ -8,7 +8,6 @@ import com.edts.components.databinding.EventModalityConfirmationBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object ModalityConfirmationPopUp {
-
     fun show(
         context: Context,
         title: String,
