@@ -16,7 +16,7 @@ import com.edts.components.input.search.InputSearchDelegate
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.core.util.Utils
 import com.edts.desklabv3.databinding.FragmentTeamReportLeaveViewBinding
-import com.edts.desklabv3.features.event.ui.EventOptionAdapter
+import com.edts.desklabv3.features.event.ui.eventdetail.EventOptionAdapter
 
 class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
