@@ -16,7 +16,6 @@ import com.edts.desklabv3.features.event.model.EventCategory
 import com.edts.desklabv3.features.event.model.EventSample
 import com.edts.desklabv3.features.event.model.EventType
 import com.edts.desklabv3.features.SpaceItemDecoration
-import com.edts.desklabv3.features.event.ui.EventDetailRSVPView
 import java.text.SimpleDateFormat
 import java.util.*
 

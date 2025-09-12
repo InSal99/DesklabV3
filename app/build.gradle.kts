@@ -54,4 +54,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.2") {
+        isTransitive = true
+    }
 }
