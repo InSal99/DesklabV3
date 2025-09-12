@@ -22,6 +22,7 @@ import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
 import com.edts.desklabv3.core.component.SortButtonComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
+import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
 
 class EntryPointsView : Fragment() {
 
@@ -193,6 +194,10 @@ class EntryPointsView : Fragment() {
         binding.btnFlow4.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeInvitationTolakView")
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        }
+
+        binding.btnFlow5.setOnClickListener{
+            navigateToFragment(TeamReportLeaveView())
         }
     }
 

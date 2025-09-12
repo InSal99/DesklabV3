@@ -20,5 +20,4 @@
         android:layout_height="wrap_content"
         app:counterText="5 Hari"
         app:counterType="critical"/>
-
 </merge>

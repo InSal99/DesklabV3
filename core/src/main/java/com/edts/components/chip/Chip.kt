@@ -23,7 +23,6 @@ class Chip @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: SelectionChipBinding = SelectionChipBinding.inflate(
         LayoutInflater.from(context),
         this,
@@ -553,7 +552,6 @@ class Chip @JvmOverloads constructor(
 
     fun setActiveBackgroundColor(color: Int) {
         customActiveBackgroundColor = color
-        // If currently in active state, update immediately
         if (chipState == ChipState.ACTIVE) {
             updateChipStateImmediate()
         }

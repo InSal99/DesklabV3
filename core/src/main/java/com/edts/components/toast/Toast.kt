@@ -26,7 +26,6 @@ class Toast @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private var toastType: Type = Type.GENERAL
     private var toastMessage: String = ""
     private val iconView: AppCompatImageView by lazy { findViewById(R.id.iv_icon) }

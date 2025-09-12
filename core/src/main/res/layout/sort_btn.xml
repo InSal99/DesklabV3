@@ -32,6 +32,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="?attr/colorForegroundTertiary" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.google.android.material.card.MaterialCardView>
 

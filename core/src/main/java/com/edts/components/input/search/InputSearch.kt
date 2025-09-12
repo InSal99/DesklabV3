@@ -18,14 +18,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import com.edts.components.R
-import com.edts.components.input.search.InputSearchDelegate
 
 class InputSearch @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: InputSearchBinding = InputSearchBinding.inflate(
         LayoutInflater.from(context),
         this,

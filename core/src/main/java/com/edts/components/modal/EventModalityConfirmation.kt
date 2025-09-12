@@ -17,13 +17,8 @@ class EventModalityConfirmation @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: EventModalityConfirmationBinding
 
-    /**
-     * The delegate responsible for handling click events on this component.
-     * Assign an object that implements [EventModalityConfirmationDelegate] to receive callbacks.
-     */
     var delegate: EventModalityConfirmationDelegate? = null
 
     var modalTitle: String? = null

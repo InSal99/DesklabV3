@@ -8,16 +8,11 @@ import com.edts.components.R
 import com.edts.components.databinding.EventNotificationIconBinding
 import androidx.core.content.withStyledAttributes
 
-/**
- * A custom view that displays a circular icon within a card.
- * This is used by the CustomNotificationCard.
- */
 class EventNotificationIcon @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
     private val binding: EventNotificationIconBinding
 
     init {
@@ -35,10 +30,6 @@ class EventNotificationIcon @JvmOverloads constructor(
         }
     }
 
-    /**
-     * Public method to change the icon displayed.
-     * @param drawableResId The resource ID of the new drawable for the icon.
-     */
     fun setIcon(drawableResId: Int) {
         binding.ivNotificationIcon.setImageResource(drawableResId)
     }
