@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -20,6 +19,7 @@ import com.edts.components.toast.Toast
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentAssetQrCodeReaderBinding
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import com.edts.components.modal.ModalityLoadingPopUp
 
@@ -28,11 +28,15 @@ class AssetQRCodeFragment : Fragment() {
     private var _binding: FragmentAssetQrCodeReaderBinding? = null
     private val binding get() = _binding!!
 
-    companion object {
-        private const val CAMERA_PERMISSION_REQUEST_CODE = 100
-    }
+    private val requestCameraPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                restartCameraAfterPermission()
+            } else {
+                Toast.error(requireContext(), "Camera permission is required")
+            }
+        }
 
-    // Callback to send result back to parent
     var qrCodeResultListener: ((String) -> Unit)? = null
 
     override fun onCreateView(
@@ -49,15 +53,19 @@ class AssetQRCodeFragment : Fragment() {
         setup()
     }
 
-    override fun onStart() {
-        super.onStart()
-        // Check camera permission before starting camera
+    override fun onResume() {
+        super.onResume()
         checkCameraPermission()
     }
 
     override fun onStop() {
         binding.qrCodeReaderView.stopCamera()
         super.onStop()
+    }
+
+    override fun onPause() {
+        binding.qrCodeReaderView.stopCamera()
+        super.onPause()
     }
 
     override fun onDestroyView() {
@@ -67,32 +75,28 @@ class AssetQRCodeFragment : Fragment() {
 
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_REQUEST_CODE
-            )
-        } else {
-            // Permission already granted, start camera
+            == PackageManager.PERMISSION_GRANTED
+        ) {
             startCameraWithDelay()
+        } else {
+            requestCameraPermission.launch(Manifest.permission.CAMERA)
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            CAMERA_PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    startCameraWithDelay()
-                } else {
-                    // Handle permission denied
-                    Toast.error(requireContext(), "Camera permission is required")
-                }
+    private fun restartCameraAfterPermission() {
+        binding.qrCodeReaderView.post {
+            try {
+                binding.qrCodeReaderView.stopCamera()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    binding.qrCodeReaderView.startCamera()
+                    Log.d("QRFragment", "Camera restarted after permission grant")
+                }, 200)
+            } catch (e: Exception) {
+                Log.e("QRFragment", "Failed to restart camera: ${e.message}")
             }
         }
     }
 
-    // Helper function to start camera with delay and error handling
     private fun startCameraWithDelay() {
         binding.qrCodeReaderView.post {
             try {
@@ -100,7 +104,6 @@ class AssetQRCodeFragment : Fragment() {
                 Log.d("QRFragment", "Camera started successfully")
             } catch (e: Exception) {
                 Log.e("QRFragment", "Failed to start camera: ${e.message}")
-                // Try to restart camera after a delay
                 Handler(Looper.getMainLooper()).postDelayed({
                     try {
                         binding.qrCodeReaderView.startCamera()
@@ -113,23 +116,22 @@ class AssetQRCodeFragment : Fragment() {
     }
 
     private fun setup() {
-        // back button → pop fragment
-        binding.flBack.setOnClickListener {
+        binding.ivScanQRBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
-        // flash toggle
-        binding.flFlash.setOnClickListener {
+        binding.ivScanQRFlash.setOnClickListener {
             val flashIcon = binding.qrCodeReaderView.switchFlash()
-            binding.ivFlash.setImageResource(flashIcon)
+            binding.ivScanQRFlash.setImageResource(flashIcon)
         }
 
         setQrCodeReaderListener()
 
-        // scanner overlay & animation
         binding.qrCodeReaderView.post {
             setupScannerOverlay()
         }
+
+        binding.qrCodeReaderView.setBackCamera()
     }
 
     private fun setupScannerOverlay() {
@@ -151,7 +153,7 @@ class AssetQRCodeFragment : Fragment() {
             binding.vRight.layoutParams.width = marginLeft.toInt()
             binding.vRight.requestLayout()
 
-            binding.flFlash.post {
+            binding.ivScanQRFlash.post {
                 setupScannerAnimation()
             }
         } catch (e: Exception) {
@@ -174,43 +176,6 @@ class AssetQRCodeFragment : Fragment() {
         animator.duration = 2000
         animator.start()
     }
-
-//    private fun setQrCodeReaderListener() {
-//        binding.qrCodeReaderView.setOnQRCodeReadListener { text, points ->
-//            try {
-//                val rectF = RectF(
-//                    binding.flScan.x,
-//                    binding.flScan.y,
-//                    binding.flScan.x + binding.flScan.width,
-//                    binding.flScan.y + binding.flScan.height
-//                )
-//
-//                var found = true
-//                for (pointF in points) {
-//                    if (!rectF.contains(pointF.x, pointF.y)) {
-//                        found = false
-//                        break
-//                    }
-//                }
-//
-//                if (found) {
-//                    Log.d("QRFragment", "QR Code detected: $text")
-//                    hideScanner()
-//                    if (text.startsWith("desklab://")) {
-//                        qrCodeResultListener?.invoke(text) // send to parent
-//                    } else {
-//                        Log.d("QRFragment", "QR Code doesn't match expected format")
-//                        // Show scanner again after delay if QR doesn't match
-//                        Handler(Looper.getMainLooper()).postDelayed({
-//                            showScanner()
-//                        }, 2000)
-//                    }
-//                }
-//            } catch (e: Exception) {
-//                Log.e("QRFragment", "Error processing QR code: ${e.message}")
-//            }
-//        }
-//    }
 
     private fun setQrCodeReaderListener() {
         binding.qrCodeReaderView.setOnQRCodeReadListener { text, points ->
@@ -236,32 +201,14 @@ class AssetQRCodeFragment : Fragment() {
 
                     Handler(Looper.getMainLooper()).postDelayed({
                         dialog?.dismiss()
-
-                        // ✅ Navigate to SuccessAttendanceOfflineView
                         val result = bundleOf("fragment_class" to "SuccessAttendanceOfflineView")
                         parentFragmentManager.setFragmentResult("navigate_fragment", result)
-
-                        // If you still want to send result back to parent:
                         qrCodeResultListener?.invoke(text)
-
-                    }, 3000) // 3 seconds
+                    }, 3000)
                     hideScanner()
 
                     if (text.startsWith("desklab://")) {
-                        // ✅ Show loading popup
-//                        val dialog = ModalityLoadingPopUp.show(requireContext(), "Tunggu Sebentar...")
-//
-//                        Handler(Looper.getMainLooper()).postDelayed({
-//                            dialog?.dismiss()
-//
-//                            // ✅ Navigate to SuccessAttendanceOfflineView
-//                            val result = bundleOf("fragment_class" to "SuccessAttendanceOfflineView")
-//                            parentFragmentManager.setFragmentResult("navigate_fragment", result)
-//
-//                            // If you still want to send result back to parent:
-//                            qrCodeResultListener?.invoke(text)
-//
-//                        }, 3000) // 3 seconds
+                        Log.d("QRFragment", "QR Code link match expected format")
                     } else {
                         Log.d("QRFragment", "QR Code doesn't match expected format")
                         Handler(Looper.getMainLooper()).postDelayed({
@@ -274,7 +221,6 @@ class AssetQRCodeFragment : Fragment() {
             }
         }
     }
-
 
     private fun showScanner() {
         binding.clScanner.isVisible = true
@@ -298,16 +244,27 @@ class AssetQRCodeFragment : Fragment() {
 
 
 
+
+
+
+
+
+
+
 //class AssetQRCodeFragment : Fragment() {
 //
 //    private var _binding: FragmentAssetQrCodeReaderBinding? = null
 //    private val binding get() = _binding!!
 //
-//    companion object {
-//        private const val CAMERA_PERMISSION_REQUEST_CODE = 100
-//    }
+//    private val requestCameraPermission =
+//        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+//            if (isGranted) {
+//                binding.qrCodeReaderView.startCamera()
+//            } else {
+//                Toast.error(requireContext(), "Camera permission is required")
+//            }
+//        }
 //
-//    // Callback to send result back to parent
 //    var qrCodeResultListener: ((String) -> Unit)? = null
 //
 //    override fun onCreateView(
@@ -326,13 +283,21 @@ class AssetQRCodeFragment : Fragment() {
 //
 //    override fun onStart() {
 //        super.onStart()
-//        // Check camera permission before starting camera
 //        checkCameraPermission()
 //    }
 //
 //    override fun onStop() {
 //        binding.qrCodeReaderView.stopCamera()
 //        super.onStop()
+//    }
+//
+//    override fun onResume() {
+//        super.onResume()
+//        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+//            == PackageManager.PERMISSION_GRANTED
+//        ) {
+//            binding.qrCodeReaderView.startCamera()
+//        }
 //    }
 //
 //    override fun onDestroyView() {
@@ -342,32 +307,14 @@ class AssetQRCodeFragment : Fragment() {
 //
 //    private fun checkCameraPermission() {
 //        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-//            != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(
-//                requireActivity(),
-//                arrayOf(Manifest.permission.CAMERA),
-//                CAMERA_PERMISSION_REQUEST_CODE
-//            )
-//        } else {
-//            // Permission already granted, start camera
+//            == PackageManager.PERMISSION_GRANTED
+//        ) {
 //            startCameraWithDelay()
+//        } else {
+//            requestCameraPermission.launch(Manifest.permission.CAMERA)
 //        }
 //    }
 //
-//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-//        when (requestCode) {
-//            CAMERA_PERMISSION_REQUEST_CODE -> {
-//                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    startCameraWithDelay()
-//                } else {
-//                    // Handle permission denied
-//                    Toast.error(requireContext(), "Camera permission is required")
-//                }
-//            }
-//        }
-//    }
-//
-//    // Helper function to start camera with delay and error handling
 //    private fun startCameraWithDelay() {
 //        binding.qrCodeReaderView.post {
 //            try {
@@ -375,7 +322,6 @@ class AssetQRCodeFragment : Fragment() {
 //                Log.d("QRFragment", "Camera started successfully")
 //            } catch (e: Exception) {
 //                Log.e("QRFragment", "Failed to start camera: ${e.message}")
-//                // Try to restart camera after a delay
 //                Handler(Looper.getMainLooper()).postDelayed({
 //                    try {
 //                        binding.qrCodeReaderView.startCamera()
@@ -388,20 +334,17 @@ class AssetQRCodeFragment : Fragment() {
 //    }
 //
 //    private fun setup() {
-//        // back button → pop fragment
-//        binding.flBack.setOnClickListener {
+//        binding.ivScanQRBack.setOnClickListener {
 //            parentFragmentManager.popBackStack()
 //        }
 //
-//        // flash toggle
-//        binding.flFlash.setOnClickListener {
+//        binding.ivScanQRFlash.setOnClickListener {
 //            val flashIcon = binding.qrCodeReaderView.switchFlash()
-//            binding.ivFlash.setImageResource(flashIcon)
+//            binding.ivScanQRFlash.setImageResource(flashIcon)
 //        }
 //
 //        setQrCodeReaderListener()
 //
-//        // scanner overlay & animation
 //        binding.qrCodeReaderView.post {
 //            setupScannerOverlay()
 //        }
@@ -426,7 +369,7 @@ class AssetQRCodeFragment : Fragment() {
 //            binding.vRight.layoutParams.width = marginLeft.toInt()
 //            binding.vRight.requestLayout()
 //
-//            binding.flFlash.post {
+//            binding.ivScanQRFlash.post {
 //                setupScannerAnimation()
 //            }
 //        } catch (e: Exception) {
@@ -470,12 +413,20 @@ class AssetQRCodeFragment : Fragment() {
 //
 //                if (found) {
 //                    Log.d("QRFragment", "QR Code detected: $text")
+//                    val dialog = ModalityLoadingPopUp.show(requireContext(), "Tunggu Sebentar...")
+//
+//                    Handler(Looper.getMainLooper()).postDelayed({
+//                        dialog?.dismiss()
+//                        val result = bundleOf("fragment_class" to "SuccessAttendanceOfflineView")
+//                        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+//                        qrCodeResultListener?.invoke(text)
+//                    }, 3000)
 //                    hideScanner()
+//
 //                    if (text.startsWith("desklab://")) {
-//                        qrCodeResultListener?.invoke(text) // send to parent
+//                        Log.d("QRFragment", "QR Code link match expected format")
 //                    } else {
 //                        Log.d("QRFragment", "QR Code doesn't match expected format")
-//                        // Show scanner again after delay if QR doesn't match
 //                        Handler(Looper.getMainLooper()).postDelayed({
 //                            showScanner()
 //                        }, 2000)

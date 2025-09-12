@@ -34,16 +34,45 @@ class AssetQRCodeReaderView: QRCodeReaderView {
             }
         }
 
+//    init {
+//        try {
+//            setQRDecodingEnabled(true)
+//            setAutofocusInterval(5000L)
+//            setTorchEnabled(flash)
+//            setBackCamera()
+//            Log.d("QRReaderView", "QRCodeReaderView initialized successfully")
+//        } catch (e: Exception) {
+//            Log.e("QRReaderView", "Error initializing QRCodeReaderView: ${e.message}")
+//        }
+//    }
+
     init {
-        try {
-            setQRDecodingEnabled(true)
-            setAutofocusInterval(5000L)
-            setTorchEnabled(flash)
-            setBackCamera()
-            Log.d("QRReaderView", "QRCodeReaderView initialized successfully")
-        } catch (e: Exception) {
-            Log.e("QRReaderView", "Error initializing QRCodeReaderView: ${e.message}")
-        }
+        holder.addCallback(object : SurfaceHolder.Callback {
+            override fun surfaceCreated(holder: SurfaceHolder) {
+                try {
+                    startCamera()
+                    Log.d("AssetQRCodeReaderView", "Camera started automatically in surfaceCreated")
+                } catch (e: Exception) {
+                    Log.e("AssetQRCodeReaderView", "Error starting camera: ${e.message}")
+                }
+            }
+
+            override fun surfaceChanged(
+                holder: SurfaceHolder,
+                format: Int,
+                width: Int,
+                height: Int
+            ) { }
+
+            override fun surfaceDestroyed(holder: SurfaceHolder) {
+                try {
+                    stopCamera()
+                    Log.d("AssetQRCodeReaderView", "Camera stopped in surfaceDestroyed")
+                } catch (e: Exception) {
+                    Log.e("AssetQRCodeReaderView", "Error stopping camera: ${e.message}")
+                }
+            }
+        })
     }
 
     fun switchFlash(): Int {
@@ -51,7 +80,7 @@ class AssetQRCodeReaderView: QRCodeReaderView {
         return if (!flash) {
             R.drawable.ic_flash
         } else {
-            R.drawable.ic_flash // You might want different icons for on/off state
+            R.drawable.ic_flash_off
         }
     }
 
@@ -61,11 +90,10 @@ class AssetQRCodeReaderView: QRCodeReaderView {
             Log.d("QRReaderView", "Surface changed successfully: ${width}x${height}")
         } catch (e: RuntimeException) {
             Log.e("QRReaderView", "Surface change error: ${e.message}")
-            // Try to reinitialize camera after a delay
             post {
                 try {
                     stopCamera()
-                    Thread.sleep(500) // Brief pause
+                    Thread.sleep(500)
                     startCamera()
                     Log.d("QRReaderView", "Camera restarted after surface change error")
                 } catch (e2: Exception) {
