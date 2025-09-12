@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipChildren="false"
-    tools:context=".core.component.TabItemComponentView">
+    tools:context=".core.component.TabComponentView">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/btnLibTabItemBack"
+                android:id="@+id/btnLibTabBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
@@ -35,30 +35,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
-                android:text="Tab Item"
+                android:text="Tab"
                 android:textColor="?attr/colorForegroundPrimary" />
 
         </LinearLayout>
 
-        <com.edts.components.tab.TabItem
-            android:layout_width="wrap_content"
+        <com.edts.components.tab.Tab
+            android:id="@+id/tabTeamReport"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"
-            app:tabItemText="Label"
-            app:tabItemShowBadge="false"
-            app:tabItemState="active" />
+            android:clipToPadding="false"
+            app:tabTexts="@array/team_report_tabs"
+            app:initialSelectedPosition="0"
+            app:layout_constraintTop_toBottomOf="@+id/ivBackBtnTeamReportActivity"
+            app:layout_constraintStart_toStartOf="@+id/ivBackBtnTeamReportActivity"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <com.edts.components.tab.TabItem
-            android:layout_width="wrap_content"
+        <com.edts.components.tab.Tab
+            android:id="@+id/tabEventList"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
-            app:tabItemText="Label"
-            app:tabItemBadgeText="1"
-            app:tabItemShowBadge="true"
-            app:tabItemState="inactive" />
-
-
+            android:clipToPadding="false"
+            app:tabTexts="@array/event_list_tabs"
+            app:initialSelectedPosition="0"
+            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitleEventListDaftarRSVP"
+            app:layout_constraintStart_toStartOf="@+id/tvSectionTitleEventListDaftarRSVP"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </LinearLayout>
-
 </FrameLayout>

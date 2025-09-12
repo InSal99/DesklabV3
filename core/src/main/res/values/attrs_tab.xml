@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Tab">
-        <attr name="tabText" format="string" />
-        <attr name="tabBadgeText" format="string" />
-        <attr name="tabShowBadge" format="boolean" />
-        <attr name="tabState" format="enum">
-            <enum name="active" value="0" />
-            <enum name="inactive" value="1" />
-        </attr>
+        <attr name="tabTexts" format="reference" />
+        <attr name="initialSelectedPosition" format="integer" />
     </declare-styleable>
 </resources>

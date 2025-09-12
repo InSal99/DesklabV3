@@ -1,16 +1,15 @@
-package com.edts.desklabv3.features.leave.ui.laporantim
+package com.edts.components.tab
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.edts.components.tab.TabItem
-import com.edts.desklabv3.databinding.ItemTabBinding
+import com.edts.components.databinding.ItemTabBinding
 
-class TabTeamReportAdapter(
-    private var tabTexts: Array<String> = arrayOf("Aktivitas", "Cuti"),
-    private var selectedPosition: Int = 0,
+class TabAdapter(
+    private var tabTexts: Array<String>,
+    private var selectedPosition: Int,
     private val onTabClick: (position: Int, tabText: String) -> Unit
-) : RecyclerView.Adapter<TabTeamReportAdapter.TabViewHolder>() {
+) : RecyclerView.Adapter<TabAdapter.TabViewHolder>() {
 
     init {
         if (selectedPosition < 0 || selectedPosition >= tabTexts.size) {
@@ -43,6 +42,24 @@ class TabTeamReportAdapter(
 
         notifyItemChanged(previousPosition)
         notifyItemChanged(newPosition)
+    }
+
+    fun updateTabs(newTabTexts: Array<String>, newSelectedPosition: Int) {
+        tabTexts = newTabTexts
+        selectedPosition = if (newSelectedPosition >= 0 && newSelectedPosition < newTabTexts.size) {
+            newSelectedPosition
+        } else {
+            0
+        }
+        notifyDataSetChanged()
+    }
+
+    fun getSelectedTabText(): String? {
+        return if (selectedPosition in tabTexts.indices) {
+            tabTexts[selectedPosition]
+        } else {
+            null
+        }
     }
 
     inner class TabViewHolder(private val binding: ItemTabBinding) : RecyclerView.ViewHolder(binding.root) {

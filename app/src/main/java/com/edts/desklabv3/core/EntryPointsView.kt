@@ -20,6 +20,7 @@ import com.edts.desklabv3.core.component.InputSearchComponentView
 import com.edts.desklabv3.core.component.SelectionChipComponentView
 import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
 import com.edts.desklabv3.core.component.SortButtonComponentView
+import com.edts.desklabv3.core.component.TabComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
 import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
@@ -156,7 +157,7 @@ class EntryPointsView : Fragment() {
 
 //TODO
         binding.btnLibTab.setOnClickListener {
-//            navigateToFragment(TabComponentView())
+            navigateToFragment(TabComponentView())
         }
         binding.btnLibHeader.setOnClickListener {
 //            navigateToFragment(HeaderComponentView())
