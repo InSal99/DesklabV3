@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackgroundPrimaryTinted"
+    android:clipToPadding="false"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.event.ui.eventlist.EventListDaftarRSVPView">
-
-
 
     <com.edts.components.input.search.InputSearch
         android:id="@+id/cvSearchEvent"
@@ -44,8 +43,8 @@
         android:scaleType="centerCrop"
         android:src="@drawable/empty_state_event_list"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/rvEventChips"
-        app:layout_constraintEnd_toEndOf="@id/rvEventChips"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rvEventChips"
         app:layout_constraintBottom_toBottomOf="parent" />
 

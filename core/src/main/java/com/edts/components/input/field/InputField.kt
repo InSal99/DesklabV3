@@ -47,7 +47,6 @@ class InputField @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
     var fieldId: String = ""
     var delegate: InputFieldDelegate? = null
     var isFieldRequired = false

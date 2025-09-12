@@ -2,20 +2,8 @@ package com.edts.components.infobox
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Outline
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.InsetDrawable
-import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewOutlineProvider
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
 import com.edts.components.databinding.InfoboxBinding
 import com.google.android.material.card.MaterialCardView
 import com.edts.components.R
@@ -26,7 +14,6 @@ class InfoBox @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding = InfoboxBinding.inflate(LayoutInflater.from(context), this, true)
 
     var text: CharSequence? = null

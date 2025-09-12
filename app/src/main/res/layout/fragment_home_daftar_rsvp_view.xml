@@ -14,6 +14,7 @@
         android:layout_marginTop="44dp"
         android:paddingHorizontal="@dimen/margin_16dp"
         android:paddingVertical="@dimen/margin_2dp"
+        android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -69,6 +70,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.edts.components.badge.Badge
+            android:id="@+id/cvNotificationBadge"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:layout_marginStart="13dp"
+            app:badgeBackgroundTint="?attr/colorBackgroundAttentionIntense"
+            app:badgeStrokeColor="?attr/colorStrokeSubtle"
+            app:showText="false"
+            app:layout_constraintBottom_toBottomOf="@+id/ivNotification"
+            app:layout_constraintStart_toStartOf="@+id/ivNotification"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView

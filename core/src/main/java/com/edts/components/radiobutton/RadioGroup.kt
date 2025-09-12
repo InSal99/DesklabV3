@@ -13,7 +13,6 @@ class RadioGroup @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : RadioGroup(context, attrs) {
-
     private var radioGroupDelegate: RadioGroupDelegate? = null
     private val radioButtonDataMap = mutableMapOf<Int, Any?>()
     private var normalTextAppearance = R.style.RadioTextAppearance_Normal
@@ -21,13 +20,12 @@ class RadioGroup @JvmOverloads constructor(
     private var disabledTextAppearance = R.style.RadioTextAppearance_Disabled
     private var disabledSelectedTextAppearance = R.style.RadioTextAppearance_DisabledSelected
     private var errorTextAppearance = R.style.RadioTextAppearance_Normal
-//    private var buttonSpacing = 0
     private var compoundDrawablePadding = 8
 
     var buttonSpacing: Int = 0
         set(value) {
             field = value
-            updateButtonMargins() // Update margins when spacing changes
+            updateButtonMargins()
         }
 
     init {
@@ -89,7 +87,7 @@ class RadioGroup @JvmOverloads constructor(
                     LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 ).apply {
-                    setMargins(0, 0, 0, buttonSpacing) // Use the buttonSpacing property
+                    setMargins(0, 0, 0, buttonSpacing)
                 }
             }
 

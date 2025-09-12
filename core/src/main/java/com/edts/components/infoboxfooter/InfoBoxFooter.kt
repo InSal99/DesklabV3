@@ -15,7 +15,6 @@ class InfoBoxFooter @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
     private val infoBox: InfoBox
     private val footer: Footer
 
@@ -64,7 +63,6 @@ class InfoBoxFooter @JvmOverloads constructor(
             ).apply {
                 setMargins(0, 0, 0, 0)
             }
-//            setShadowVisibility(false)
         }
 
         addView(infoBox)

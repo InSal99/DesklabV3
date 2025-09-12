@@ -48,7 +48,6 @@ class CardMultiDetailWrapperInfo @JvmOverloads constructor(
                 info1Text = getString(R.styleable.CardMultiDetailWrapperInfo_info1Text)
                 info2Text = getString(R.styleable.CardMultiDetailWrapperInfo_info2Text)
 
-                // Handle showInfo2 attribute
                 showInfo2 = getBoolean(R.styleable.CardMultiDetailWrapperInfo_showInfo2, true)
 
                 updateInfo1Text()
@@ -83,11 +82,9 @@ class CardMultiDetailWrapperInfo @JvmOverloads constructor(
         val info1LayoutParams = binding.tvInfo1.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
 
         if (showInfo2) {
-            // When info2 is visible, constrain info1 end to divider start
             info1LayoutParams.endToStart = binding.ivDivider.id
             info1LayoutParams.endToEnd = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.UNSET
         } else {
-            // When info2 is hidden, constrain info1 end to parent end
             info1LayoutParams.endToStart = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.UNSET
             info1LayoutParams.endToEnd = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.PARENT_ID
         }

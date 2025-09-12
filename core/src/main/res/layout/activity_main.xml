@@ -5,28 +5,5 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/margin_16dp"
-    android:paddingVertical="@dimen/margin_16dp"
-    tools:context=".MainActivity"
-    android:clipToPadding="false"
-    android:clipToOutline="false"
-    android:background="?attr/colorBackgroundPrimaryTinted"
-    android:clipChildren="false">
-
-    <com.edts.components.event.card.EventCard
-        android:id="@+id/cvEventCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:badgeText="asd"
-        app:badgeType="registered"
-        app:eventCategory="People Development"
-        app:eventDate="23 Juli 2025"
-        app:eventImageSrc="@drawable/poster2"
-        app:eventTitle="EDTS Town-Hall 2025: Power of Change"
-        app:eventType="Hybrid Event"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:statusText="Pendaftaran Ditutup"
-        app:statusType="unregistered" />
-
+    tools:context=".MainActivity">
 </androidx.constraintlayout.widget.ConstraintLayout>

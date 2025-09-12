@@ -5,6 +5,5 @@
     <color name="info_color">@color/colorPrimary30</color>
     <color name="general_color">@color/color000</color>
 
-    <!-- Uniform stroke color for all toasts -->
     <color name="toast_stroke_color">@color/color000Opacity20</color>
 </resources>

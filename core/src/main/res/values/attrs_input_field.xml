@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Material Design Text Input Style -->
     <attr name="textInputStyle" />
 
-    <!-- InputField Custom Attributes -->
     <declare-styleable name="InputField">
-        <!-- Existing attributes -->
         <attr name="fieldTitle" format="string" />
         <attr name="fieldDescription" format="string" />
         <attr name="fieldHint" format="string" />
@@ -25,16 +22,13 @@
         <attr name="minLines" format="integer" />
         <attr name="options" format="reference" />
 
-        <!-- New error and disabled state attributes -->
         <attr name="fieldEnabled" format="boolean" />
         <attr name="errorText" format="string" />
         <attr name="showError" format="boolean" />
 
-        <!-- Color attributes for styling -->
         <attr name="requiredColor" format="color|reference" />
         <attr name="errorColor" format="color|reference" />
 
-        <!-- Text appearance attributes -->
         <attr name="titleTextAppearance" format="reference" />
         <attr name="descriptionTextAppearance" format="reference" />
     </declare-styleable>

@@ -1,10 +1,6 @@
 package com.edts.components.footer
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -27,7 +23,6 @@ class Footer @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
     var delegate: FooterDelegate? = null
 
     private var footerType: FooterType = FooterType.CALL_TO_ACTION
@@ -131,12 +126,6 @@ class Footer @JvmOverloads constructor(
     private fun bindDataToViews() {
         when (footerType) {
             FooterType.CALL_TO_ACTION -> {
-//                ctaBinding?.let { binding ->
-//                    primaryButton = binding.btnFooterCTAPrimary.apply {
-//                        setLabel(primaryButtonText)
-//                        isEnabled = primaryButtonEnabled
-//                    }
-//                }
                 ctaBinding?.let { binding ->
                     binding.tvFooterCTATitle.text = dualButtonTitle
                     binding.tvFooterCTASupportText1.text = dualButtonSupportText1

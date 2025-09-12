@@ -50,7 +50,6 @@ class LeaveEmployeeInfo @JvmOverloads constructor(
         try {
             employeeName = typedArray.getString(R.styleable.LeaveEmployeeInfo_employeeName)
             employeeRole = typedArray.getString(R.styleable.LeaveEmployeeInfo_employeeRole)
-//            employeeImage = typedArray.getDrawable(R.styleable.LeaveEmployeeInfo_employeeImage)
             employeeImage = typedArray.getResourceId(R.styleable.LeaveCard_employeeImage, R.drawable.placeholder)
         } finally {
             typedArray.recycle()

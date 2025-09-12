@@ -64,5 +64,4 @@
             app:size="MD"
             app:type="PRIMARY" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

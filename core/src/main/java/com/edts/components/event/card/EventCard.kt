@@ -114,8 +114,6 @@ class EventCard @JvmOverloads constructor(
     }
 
     init {
-//        setupShadowPaints()
-//        setupClickAnimation()
         radius = cornerRadiusPx
 
         context.theme.obtainStyledAttributes(
@@ -124,11 +122,6 @@ class EventCard @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                val typedValue = TypedValue()
-//                if (context.theme.resolveAttribute(R.attr.colorBackgroundModifierOnPress, typedValue, true)) {
-//                    val colorStateList = AppCompatResources.getColorStateList(context, typedValue.resourceId)
-//                    rippleColor = colorStateList
-//                }
                 rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
 
                 eventImageSrc = getResourceId(R.styleable.EventCard_eventImageSrc, -1)
@@ -258,44 +251,6 @@ class EventCard @JvmOverloads constructor(
         isFocusable = true
         updateCardBackground()
     }
-
-//    private fun setupShadowPaints() {
-//        setLayerType(LAYER_TYPE_SOFTWARE, null)
-//
-//        shadowPaint1.apply {
-//            setShadowLayer(
-//                2f,
-//                0f,
-//                0f,
-//                R.attr.colorShadowNeutralAmbient
-//            )
-//            color = Color.TRANSPARENT
-//            isAntiAlias = true
-//            style = Paint.Style.FILL
-//        }
-//
-//        shadowPaint2.apply {
-//            setShadowLayer(
-//                2f,
-//                0f,
-//                0f,
-//                R.attr.colorShadowNeutralKey
-//            )
-//            color = Color.TRANSPARENT
-//            isAntiAlias = true
-//            style = Paint.Style.FILL
-//        }
-//    }
-//
-//    override fun onDraw(canvas: Canvas) {
-//        canvas.let { c ->
-//            val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
-//
-//            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint1)
-//            c.drawRoundRect(rect, cornerRadiusPx, cornerRadiusPx, shadowPaint2)
-//        }
-//        super.onDraw(canvas)
-//    }
 
     private fun updateEventImage() {
         eventImageSrc?.let { imageRes ->
