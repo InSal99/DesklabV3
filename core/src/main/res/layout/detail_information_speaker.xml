@@ -24,5 +24,4 @@
         style="?attr/l2Medium"
         android:textColor="?attr/colorForegroundPrimary"
         android:layout_marginStart="@dimen/margin_8dp" />
-
 </LinearLayout>

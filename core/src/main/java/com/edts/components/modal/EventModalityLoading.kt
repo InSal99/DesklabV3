@@ -11,14 +11,6 @@ import com.edts.components.databinding.EventModalityLoadingBinding
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 
-/**
- * A custom view that displays a loading indicator and a text message within a MaterialCardView.
- *
- * This component is designed to be used as a modality overlay to indicate a background
- * process is running. The text can be customized via the `app:modalLoadingTitle` attribute in XML
- * or programmatically by setting the `title` property.
- *
- */
 class EventModalityLoading @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -27,10 +19,6 @@ class EventModalityLoading @JvmOverloads constructor(
 
     private val binding: EventModalityLoadingBinding = EventModalityLoadingBinding.inflate(LayoutInflater.from(context), this, true)
 
-    /**
-     * The title text for the loading modal. Setting this property will update the
-     * displayed text.
-     */
     var title: String? = null
         set(value) {
             field = value
@@ -43,9 +31,6 @@ class EventModalityLoading @JvmOverloads constructor(
         parseAttributes(attrs)
     }
 
-    /**
-     * Configures the visual appearance of the MaterialCardView.
-     */
     private fun setupCardAppearance() {
         cardElevation = resources.getDimension(R.dimen.margin_2dp)
         radius = resources.getDimension(R.dimen.radius_16dp)
@@ -63,10 +48,6 @@ class EventModalityLoading @JvmOverloads constructor(
         }
     }
 
-    /**
-     * Parses custom attributes from the XML layout.
-     * @param attrs The set of attributes from the XML tag that is inflating the view.
-     */
     private fun parseAttributes(attrs: AttributeSet?) {
         attrs?.let {
             context.withStyledAttributes(

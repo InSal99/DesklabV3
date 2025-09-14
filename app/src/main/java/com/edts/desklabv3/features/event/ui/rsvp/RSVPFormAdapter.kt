@@ -1,11 +1,10 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.event.ui.rsvp
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.input.field.InputField
 import com.edts.components.input.field.InputFieldConfig
 import com.edts.components.input.field.InputFieldDelegate
-import java.util.UUID
 
 class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
 

@@ -13,7 +13,6 @@
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
-
     <LinearLayout
         android:id="@+id/wrapperChip"
         android:layout_width="wrap_content"
@@ -54,5 +53,4 @@
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundSecondary"/>
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

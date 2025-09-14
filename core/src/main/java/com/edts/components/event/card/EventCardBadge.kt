@@ -55,7 +55,6 @@ class EventCardBadge @JvmOverloads constructor(
         set(value) {
             field = value
             updateBadgeSize()
-            // Reapply color after size change since setTextAppearance() might override text color
             updateBadgeColor()
         }
 
@@ -78,7 +77,6 @@ class EventCardBadge @JvmOverloads constructor(
                 badgeSize = BadgeSize.fromValue(badgeSizeValue)
                 badgeText = getString(R.styleable.EventCardBadge_eventCardBadgeText)
 
-                // Apply size first, then color to ensure color isn't overridden
                 updateBadgeSize()
                 updateBadgeColor()
                 updateBadgeText()

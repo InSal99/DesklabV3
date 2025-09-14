@@ -35,7 +35,6 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 
 class BottomTray : BottomSheetDialogFragment() {
-
     private var _binding: BottomTrayBinding? = null
     private val binding get() = _binding!!
 

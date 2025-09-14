@@ -43,5 +43,4 @@
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintStart_toEndOf="@+id/tvEvenCardDivider"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

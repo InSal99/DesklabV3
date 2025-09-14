@@ -97,12 +97,6 @@ class DropdownFilter @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                val typedValue = TypedValue()
-//                if (context.theme.resolveAttribute(R.attr.colorBackgroundModifierOnPress, typedValue, true)) {
-//                    val colorStateList = AppCompatResources.getColorStateList(context, typedValue.resourceId)
-//                    rippleColor = colorStateList
-//                }
-
                 rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
 
                 dropdownFilterLabel = getString(R.styleable.DropdownFilter_dropdownFilterLabel)

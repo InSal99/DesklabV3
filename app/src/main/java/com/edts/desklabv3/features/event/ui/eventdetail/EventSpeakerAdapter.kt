@@ -1,4 +1,4 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.event.ui.eventdetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

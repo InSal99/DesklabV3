@@ -56,5 +56,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="@id/bottomNavigation"
         app:layout_constraintStart_toStartOf="@id/bottomNavigation" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
