@@ -41,28 +41,34 @@
         </LinearLayout>
 
         <com.edts.components.tab.Tab
-            android:id="@+id/tabTeamReport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"
-            android:clipToPadding="false"
-            app:tabTexts="@array/team_report_tabs"
-            app:initialSelectedPosition="0"
-            app:layout_constraintTop_toBottomOf="@+id/ivBackBtnTeamReportActivity"
-            app:layout_constraintStart_toStartOf="@+id/ivBackBtnTeamReportActivity"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:initialSelectedPosition="1">
 
-        <com.edts.components.tab.Tab
-            android:id="@+id/tabEventList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            android:clipToPadding="false"
-            app:tabTexts="@array/event_list_tabs"
-            app:initialSelectedPosition="0"
-            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitleEventListDaftarRSVP"
-            app:layout_constraintStart_toStartOf="@+id/tvSectionTitleEventListDaftarRSVP"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemText="Home"
+                app:tabItemBadgeText="3"
+                app:tabItemShowBadge="true"
+                app:tabItemState="active" />
+
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemText="Profile"
+                app:tabItemBadgeText="!"
+                app:tabItemShowBadge="true"
+                app:tabItemState="inactive" />
+
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemText="Settings"
+                app:tabItemShowBadge="false"
+                app:tabItemState="inactive" />
+        </com.edts.components.tab.Tab>
 
     </LinearLayout>
 </FrameLayout>

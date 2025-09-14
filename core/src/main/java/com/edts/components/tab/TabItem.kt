@@ -91,7 +91,7 @@ class TabItem @JvmOverloads constructor(
             try {
                 tabText = getString(R.styleable.TabItem_tabItemText) ?: "Label"
                 showBadge = getBoolean(R.styleable.TabItem_tabItemShowBadge, true)
-
+                badgeText = getString(R.styleable.TabItem_tabItemBadgeText)
                 val stateValue = getInt(R.styleable.TabItem_tabItemState, 0)
                 tabState = TabState.fromValue(stateValue)
 
@@ -116,21 +116,25 @@ class TabItem @JvmOverloads constructor(
             lastClickTime = currentTime
 
             val previousState = tabState
-            val newState = if (tabState == TabState.ACTIVE) TabState.INACTIVE else TabState.ACTIVE
 
             Log.d(TAG, "Tab clicked!")
             Log.d(TAG, "  - Tab Text: ${tabText ?: "No text"}")
             Log.d(TAG, "  - Badge Text: ${badgeText ?: "No badge text"}")
             Log.d(TAG, "  - Show Badge: $showBadge")
-            Log.d(TAG, "  - Previous State: $previousState")
-            Log.d(TAG, "  - New State: $newState")
+            Log.d(TAG, "  - Current State: $previousState")
             Log.d(TAG, "  - Total clicks: $clickCount")
             Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Total system clicks: $clickCount")
-            Log.d(TAG, "--------------------")
 
-            tabState = newState
-            delegate?.onTabClick(this, newState, previousState)
+            if (delegate != null) {
+                Log.d(TAG, "  - Has delegate, notifying parent component")
+                delegate?.onTabClick(this, previousState, previousState)
+            } else {
+                val newState = if (tabState == TabState.ACTIVE) TabState.INACTIVE else TabState.ACTIVE
+                Log.d(TAG, "  - Standalone TabItem, changing state to: $newState")
+                tabState = newState
+            }
+
+            Log.d(TAG, "--------------------")
         } else {
             Log.d(TAG, "Click ignored due to debounce (too fast)")
         }

@@ -16,6 +16,7 @@ import com.edts.desklabv3.core.component.CardMultiDetailCardComponentView
 import com.edts.desklabv3.core.component.EventCardBadgeComponentView
 import com.edts.desklabv3.core.component.EventCardComponentView
 import com.edts.desklabv3.core.component.EventCardStatusComponentView
+import com.edts.desklabv3.core.component.HeaderComponentView
 import com.edts.desklabv3.core.component.InputSearchComponentView
 import com.edts.desklabv3.core.component.SelectionChipComponentView
 import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
@@ -154,15 +155,13 @@ class EntryPointsView : Fragment() {
             navigateToFragment(BadgeComponentView())
         }
 
-
-//TODO
         binding.btnLibTab.setOnClickListener {
             navigateToFragment(TabComponentView())
         }
+
         binding.btnLibHeader.setOnClickListener {
-//            navigateToFragment(HeaderComponentView())
+            navigateToFragment(HeaderComponentView())
         }
-//TODO
 
         binding.btnLibEventInvitationCard.setOnClickListener {
             navigateToFragment(EventInvitationComponentFragment())

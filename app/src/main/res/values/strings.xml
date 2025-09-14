@@ -5,15 +5,4 @@
     <string name="event_detail_description_title">Deskripsi Event</string>
     <string name="event_detail_page_title">Detail Event</string>
     <string name="rsvp_form_page_title">Form Reservasi</string>
-
-    <string-array name="team_report_tabs">
-        <item>Aktivitas</item>
-        <item>Cuti</item>
-    </string-array>
-
-    <string-array name="event_list_tabs">
-        <item>Daftar Event</item>
-        <item>Event Saya</item>
-        <item>Undangan</item>
-    </string-array>
 </resources>

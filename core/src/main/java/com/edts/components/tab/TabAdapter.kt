@@ -1,82 +1,73 @@
 package com.edts.components.tab
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.edts.components.databinding.ItemTabBinding
 
 class TabAdapter(
-    private var tabTexts: Array<String>,
+    private var tabDataList: List<TabData>,
     private var selectedPosition: Int,
-    private val onTabClick: (position: Int, tabText: String) -> Unit
+    private val onClick: (Int, String) -> Unit
 ) : RecyclerView.Adapter<TabAdapter.TabViewHolder>() {
 
-    init {
-        if (selectedPosition < 0 || selectedPosition >= tabTexts.size) {
-            selectedPosition = 0
-        }
+    private var recyclerView: RecyclerView? = null
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
     }
 
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        this.recyclerView = null
+    }
+
+    inner class TabViewHolder(val tabItem: TabItem) : RecyclerView.ViewHolder(tabItem)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TabViewHolder {
-        val binding = ItemTabBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return TabViewHolder(binding)
+        val item = TabItem(parent.context)
+        return TabViewHolder(item)
     }
 
     override fun onBindViewHolder(holder: TabViewHolder, position: Int) {
-        holder.bind(tabTexts[position], position == selectedPosition, position)
+        val data = tabDataList[position]
+        val isActive = position == selectedPosition
+
+        holder.tabItem.apply {
+            tabText = data.text
+            badgeText = data.badgeText
+            showBadge = data.showBadge
+            tabState = if (isActive) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
+
+            delegate = object : TabDelegate {
+                override fun onTabClick(tabItem: TabItem, newState: TabItem.TabState, previousState: TabItem.TabState) {
+                    val currentPosition = holder.adapterPosition
+                    if (currentPosition != RecyclerView.NO_POSITION && currentPosition != selectedPosition) {
+                        val currentData = tabDataList[currentPosition]
+                        onClick(currentPosition, currentData.text)
+                    }
+                }
+            }
+        }
     }
 
-    override fun getItemCount(): Int = tabTexts.size
+    override fun getItemCount(): Int = tabDataList.size
 
-    fun updateSelectedPosition(newPosition: Int) {
-        if (newPosition < 0 || newPosition >= tabTexts.size || newPosition == selectedPosition) {
-            return
-        }
-
-        val previousPosition = selectedPosition
-        selectedPosition = newPosition
-
-        notifyItemChanged(previousPosition)
-        notifyItemChanged(newPosition)
-    }
-
-    fun updateTabs(newTabTexts: Array<String>, newSelectedPosition: Int) {
-        tabTexts = newTabTexts
-        selectedPosition = if (newSelectedPosition >= 0 && newSelectedPosition < newTabTexts.size) {
-            newSelectedPosition
-        } else {
-            0
-        }
+    fun updateTabs(newData: List<TabData>, selectedPosition: Int) {
+        this.tabDataList = newData
+        this.selectedPosition = selectedPosition
         notifyDataSetChanged()
     }
 
-    fun getSelectedTabText(): String? {
-        return if (selectedPosition in tabTexts.indices) {
-            tabTexts[selectedPosition]
-        } else {
-            null
-        }
-    }
+    fun updateSelectedPosition(position: Int) {
+        val oldPos = selectedPosition
+        selectedPosition = position
 
-    inner class TabViewHolder(private val binding: ItemTabBinding) : RecyclerView.ViewHolder(binding.root) {
+        recyclerView?.let { rv ->
+            val oldViewHolder = rv.findViewHolderForAdapterPosition(oldPos) as? TabViewHolder
+            oldViewHolder?.tabItem?.tabState = TabItem.TabState.INACTIVE
 
-        fun bind(tabText: String, isSelected: Boolean, position: Int) {
-            binding.cvTab.apply {
-                this.tabText = tabText
-                tabState = if (isSelected) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
-
-                setOnClickListener {
-                    if (!isSelected && position != selectedPosition) {
-                        updateSelectedPosition(position)
-                        onTabClick(position, tabText)
-                    }
-                }
-                isClickable = !isSelected
-            }
+            val newViewHolder = rv.findViewHolderForAdapterPosition(position) as? TabViewHolder
+            newViewHolder?.tabItem?.tabState = TabItem.TabState.ACTIVE
         }
     }
 }

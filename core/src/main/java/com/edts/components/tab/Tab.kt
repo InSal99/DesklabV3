@@ -17,34 +17,23 @@ class Tab @JvmOverloads constructor(
     }
 
     private var tabAdapter: TabAdapter
-    private var tabTexts: Array<String> = arrayOf("Tab 1")
+    private var tabDataList: MutableList<TabData> = mutableListOf()
     private var selectedPosition: Int = 0
     private var onTabClickListener: OnTabClickListener? = null
 
     init {
-        tabAdapter = TabAdapter(
-            tabTexts = tabTexts,
-            selectedPosition = selectedPosition
-        ) { position, tabText ->
+        layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        tabAdapter = TabAdapter(tabDataList, selectedPosition) { position, tabText ->
+            setSelectedPosition(position)
             onTabClickListener?.onTabClick(position, tabText)
         }
 
-        layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         adapter = tabAdapter
         clipToPadding = false
 
-        context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.Tab,
-            0, 0
-        ).apply {
+        context.theme.obtainStyledAttributes(attrs, R.styleable.Tab, 0, 0).apply {
             try {
-                val tabTextArray = getTextArray(R.styleable.Tab_tabTexts)
-                if (tabTextArray != null && tabTextArray.isNotEmpty()) {
-                    val textArray = Array(tabTextArray.size) { i -> tabTextArray[i].toString() }
-                    setTabTexts(textArray)
-                }
-
                 val initialSelectedPosition = getInt(R.styleable.Tab_initialSelectedPosition, 0)
                 setSelectedPosition(initialSelectedPosition, false)
             } finally {
@@ -53,88 +42,41 @@ class Tab @JvmOverloads constructor(
         }
     }
 
-    fun setTabTexts(texts: Array<String>) {
-        if (texts.isEmpty()) return
+    override fun onFinishInflate() {
+        super.onFinishInflate()
 
-        tabTexts = texts
-
-        if (selectedPosition >= texts.size) {
-            selectedPosition = 0
+        val xmlTabs = mutableListOf<TabData>()
+        for (i in 0 until childCount) {
+            val child = getChildAt(i)
+            if (child is TabItem) {
+                xmlTabs.add(
+                    TabData(
+                        text = child.tabText ?: "Label",
+                        badgeText = child.badgeText,
+                        showBadge = child.showBadge,
+                        state = child.tabState
+                    )
+                )
+            }
         }
 
-        tabAdapter.updateTabs(texts, selectedPosition)
-    }
+        removeAllViews()
 
-    fun setTabTexts(texts: List<String>) {
-        setTabTexts(texts.toTypedArray())
-    }
+        if (xmlTabs.isNotEmpty()) {
+            tabDataList = xmlTabs.toMutableList()
 
-    fun getTabTexts(): Array<String> {
-        return tabTexts.copyOf()
-    }
+            val firstActiveIndex = tabDataList.indexOfFirst { it.state == TabItem.TabState.ACTIVE }
+            selectedPosition = if (firstActiveIndex != -1) {
+                firstActiveIndex
+            } else {
+                0
+            }
 
-    fun setBadgeText(position: Int, badgeText: String?) {
-        if (position < 0 || position >= tabDataList.size) return
+            tabDataList = tabDataList.mapIndexed { index, tab ->
+                tab.copy(state = if (index == selectedPosition) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE)
+            }.toMutableList()
 
-        tabDataList[position] = tabDataList[position].copy(badgeText = badgeText)
-        tabAdapter.notifyItemChanged(position)
-    }
-
-    fun setBadgeVisibility(position: Int, showBadge: Boolean) {
-        if (position < 0 || position >= tabDataList.size) return
-
-        tabDataList[position] = tabDataList[position].copy(showBadge = showBadge)
-        tabAdapter.notifyItemChanged(position)
-    }
-
-    fun setBadge(position: Int, badgeText: String?, showBadge: Boolean = true) {
-        if (position < 0 || position >= tabDataList.size) return
-
-        tabDataList[position] = tabDataList[position].copy(
-            badgeText = badgeText,
-            showBadge = showBadge
-        )
-        tabAdapter.notifyItemChanged(position)
-    }
-
-    fun getBadgeText(position: Int): String? {
-        return if (position in tabDataList.indices) {
-            tabDataList[position].badgeText
-        } else {
-            null
-        }
-    }
-
-    fun isBadgeVisible(position: Int): Boolean {
-        return if (position in tabDataList.indices) {
-            tabDataList[position].showBadge
-        } else {
-            false
-        }
-    }
-
-    fun setSelectedPosition(position: Int, notifyListener: Boolean = true) {
-        if (position < 0 || position >= tabTexts.size || position == selectedPosition) {
-            return
-        }
-
-        selectedPosition = position
-        tabAdapter.updateSelectedPosition(position)
-
-        if (notifyListener) {
-            onTabClickListener?.onTabClick(position, tabTexts[position])
-        }
-    }
-
-    fun getSelectedPosition(): Int {
-        return selectedPosition
-    }
-
-    fun getSelectedTabText(): String? {
-        return if (selectedPosition in tabTexts.indices) {
-            tabTexts[selectedPosition]
-        } else {
-            null
+            tabAdapter.updateTabs(tabDataList, selectedPosition)
         }
     }
 
@@ -142,52 +84,31 @@ class Tab @JvmOverloads constructor(
         this.onTabClickListener = listener
     }
 
-    fun addTab(tabText: String) {
-        val newTexts = tabTexts + tabText
-        setTabTexts(newTexts)
+    fun setTabs(tabs: List<TabData>, selected: Int = 0) {
+        tabDataList = tabs.toMutableList()
+        selectedPosition = selected
+        tabAdapter.updateTabs(tabDataList, selectedPosition)
     }
 
-    fun insertTab(position: Int, tabText: String) {
-        if (position < 0 || position > tabTexts.size) return
+    fun setSelectedPosition(position: Int, notifyListener: Boolean = true) {
+        if (position !in tabDataList.indices || position == selectedPosition) return
 
-        val newTexts = tabTexts.toMutableList()
-        newTexts.add(position, tabText)
+        val oldPos = selectedPosition
+        selectedPosition = position
 
-        if (position <= selectedPosition) {
-            selectedPosition++
+        tabAdapter.updateSelectedPosition(position)
+
+        tabDataList = tabDataList.mapIndexed { index, tab ->
+            tab.copy(state = if (index == position) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE)
+        }.toMutableList()
+
+        if (notifyListener) {
+            onTabClickListener?.onTabClick(position, tabDataList[position].text)
         }
-
-        setTabTexts(newTexts.toTypedArray())
     }
 
-    fun removeTab(position: Int) {
-        if (position < 0 || position >= tabTexts.size || tabTexts.size <= 1) return
-
-        val newTexts = tabTexts.toMutableList()
-        newTexts.removeAt(position)
-
-        when {
-            position < selectedPosition -> selectedPosition--
-            position == selectedPosition -> {
-                selectedPosition = if (selectedPosition > 0) selectedPosition - 1 else 0
-            }
-        }
-
-        setTabTexts(newTexts.toTypedArray())
-    }
-
-    fun updateTabText(position: Int, newText: String) {
-        if (position < 0 || position >= tabTexts.size) return
-
-        tabTexts[position] = newText
-        tabAdapter.notifyItemChanged(position)
-    }
-
-    fun getTabCount(): Int {
-        return tabTexts.size
-    }
-
-    fun isPositionSelected(position: Int): Boolean {
-        return position == selectedPosition
-    }
+    fun getSelectedPosition(): Int = selectedPosition
+    fun getSelectedTabText(): String? = tabDataList.getOrNull(selectedPosition)?.text
+    fun getTabCount(): Int = tabDataList.size
+    fun isPositionSelected(position: Int): Boolean = position == selectedPosition
 }
