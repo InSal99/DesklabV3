@@ -24,7 +24,7 @@ import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.core.util.ListTagHandler
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
-import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
+import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.ui.rsvp.RSVPFormView
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -37,35 +37,6 @@ class EventDetailRSVPView : Fragment() {
     private val binding get() = _binding!!
     private lateinit var timeLocationAdapter: EventTimeLocationAdapter
     private var bottomTray: BottomTray? = null
-
-    companion object {
-        const val EVENT_DESCRIPTION_HTML = """
-            <p>Spark Talks is our new sharing session series to <b>ignite ideas</b> and spread knowledge across EDTS. This session is designed to create a space where trainees share fresh insights with Edtizens sparking curiosity, collaboration, and growth!</p>
-            <p>This session features:</p>
-            <ul>
-              <li>Interactive discussions with industry experts</li>
-              <li>Hands-on workshops and activities</li>
-              <li>Networking opportunities with peers</li>
-              <li>Q&A sessions with speakers</li>
-            </ul>
-            <ol>
-              <li>Numbered item one</li>
-              <li>Numbered item two</li>
-              <li>Numbered item three that is a bit longer so we can see wrapping across lines.</li>
-              <li>Bullet item four that is a bit longer so we can see wrapping across lines.</li>
-              <li>Numbered item five</li>
-              <li>Numbered item six</li>
-              <li>Numbered item seven that is a bit longer so we can see wrapping across lines.</li>
-              <li>Bullet item eight that is a bit longer so we can see wrapping across lines.</li>
-              <li>Numbered item nine</li>
-              <li>Numbered item ten</li>
-              <li>Numbered item eleven</li>
-              <li>Numbered item twelve</li>
-            </ol>
-            <p>Join us for an exciting learning experience! 🚀</p>
-            <p>For more information, visit our <a href="https://example.com">website</a>.</p>
-        """
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -84,7 +55,13 @@ class EventDetailRSVPView : Fragment() {
         setupTimeLocationRecyclerView()
         setupHtmlDescription()
         setupFooterButton()
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        bottomTray?.dismiss()
+        bottomTray = null
+        _binding = null
     }
 
     private fun setupBackButton() {
@@ -99,10 +76,7 @@ class EventDetailRSVPView : Fragment() {
                 navigateToRSVPForm()
             }
 
-            override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {
-//                showEventInfo()
-            }
-
+            override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {}
             override fun onRegisterClicked() {}
             override fun onContinueClicked() {}
             override fun onCancelClicked() {}
@@ -130,99 +104,7 @@ class EventDetailRSVPView : Fragment() {
             setInfoBoxText("5 peserta sudah reservasi. Amankan spotmu!")
             setInfoBoxVariant(InfoBox.InfoBoxVariant.INFORMATION)
             showInfoBox(true)
-            setBackgroundColor(Color.TRANSPARENT)
         }
-    }
-
-    private fun showEventInfo() {
-        Toast.info(requireContext(), "Show event info")
-    }
-
-    private fun showBottomTray() {
-        if (bottomTray?.isVisible == true) return
-
-        bottomTray = BottomTray.newInstance(
-            title = "Pilih Tipe Kehadiran",
-            showDragHandle = true,
-            showFooter = false,
-            hasShadow = true,
-            hasStroke = true
-        )
-
-        val contentView = createBottomTrayContent()
-        bottomTray?.setContentView(contentView)
-
-        bottomTray?.delegate = object : com.edts.components.tray.BottomTrayDelegate {
-            override fun onShow(dialog: DialogInterface) {
-            }
-
-            override fun onDismiss(dialog: DialogInterface) {
-                bottomTray = null
-            }
-
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            }
-        }
-
-        bottomTray?.show(childFragmentManager, "event_actions_bottom_tray")
-    }
-
-    private fun createBottomTrayContent(): View {
-        val contentView = layoutInflater.inflate(com.edts.desklabv3.R.layout.bottom_tray_event_options, null)
-
-        val recyclerView = contentView.findViewById<RecyclerView>(com.edts.desklabv3.R.id.rvEventOptions)
-        val optionAdapter = EventOptionAdapter { eventType ->
-            Log.d("Present", "User present $eventType")
-            bottomTray?.dismiss()
-
-            Handler(Looper.getMainLooper()).postDelayed({
-                handleOptionSelected(eventType.toString())
-            }, 300)
-        }
-
-        recyclerView.apply {
-            adapter = optionAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        val options = listOf(
-            "online" to R.drawable.ic_chevron_right,
-            "offline" to R.drawable.ic_chevron_right
-        )
-
-        optionAdapter.submitList(options)
-
-        return contentView
-    }
-
-    private fun handleOptionSelected(eventType: String) {
-        when (eventType) {
-            "0" -> {
-                handleJoinOnline()
-            }
-            "1" -> {
-                handleJoinOffline()
-            }
-        }
-    }
-
-    private fun handleJoinOnline() {
-        Toast.info(requireContext(), "Joining online event...")
-        Log.d("Present Online", "Retrieving Data...")
-    }
-
-    private fun handleJoinOffline() {
-        val scanQRFragment = ScanQRAttendanceView()
-        Log.d("Present Offline", "Go To Scanner")
-
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(android.R.id.content, scanQRFragment)
-            .addToBackStack("ScanQRView")
-            .commit()
-            .apply { Log.d("Present Offline", "Go To Scanner") }
     }
 
     private fun setupSpeakerRecyclerView() {
@@ -230,6 +112,13 @@ class EventDetailRSVPView : Fragment() {
         binding.rvDetailEventSpeakersInfo.apply {
             adapter = speakerAdapter
             layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(
+                SpaceItemDecoration(
+                    context = requireContext(),
+                    spaceResId = R.dimen.margin_8dp,
+                    orientation = SpaceItemDecoration.VERTICAL
+                )
+            )
         }
 
         val speakerList = listOf(
@@ -334,10 +223,32 @@ class EventDetailRSVPView : Fragment() {
         binding.tvEventDetailDescription.movementMethod = LinkMovementMethod.getInstance()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        bottomTray?.dismiss()
-        bottomTray = null
-        _binding = null
+    companion object {
+        const val EVENT_DESCRIPTION_HTML = """
+            <p>Spark Talks is our new sharing session series to <b>ignite ideas</b> and spread knowledge across EDTS. This session is designed to create a space where trainees share fresh insights with Edtizens sparking curiosity, collaboration, and growth!</p>
+            <p>This session features:</p>
+            <ul>
+              <li>Interactive discussions with industry experts</li>
+              <li>Hands-on workshops and activities</li>
+              <li>Networking opportunities with peers</li>
+              <li>Q&A sessions with speakers</li>
+            </ul>
+            <ol>
+              <li>Numbered item one</li>
+              <li>Numbered item two</li>
+              <li>Numbered item three that is a bit longer so we can see wrapping across lines.</li>
+              <li>Bullet item four that is a bit longer so we can see wrapping across lines.</li>
+              <li>Numbered item five</li>
+              <li>Numbered item six</li>
+              <li>Numbered item seven that is a bit longer so we can see wrapping across lines.</li>
+              <li>Bullet item eight that is a bit longer so we can see wrapping across lines.</li>
+              <li>Numbered item nine</li>
+              <li>Numbered item ten</li>
+              <li>Numbered item eleven</li>
+              <li>Numbered item twelve</li>
+            </ol>
+            <p>Join us for an exciting learning experience! 🚀</p>
+            <p>For more information, visit our <a href="https://example.com">website</a>.</p>
+        """
     }
 }

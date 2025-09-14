@@ -18,6 +18,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -47,6 +48,7 @@ class InputField @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
+
     var fieldId: String = ""
     var delegate: InputFieldDelegate? = null
     var isFieldRequired = false
@@ -239,39 +241,6 @@ class InputField @JvmOverloads constructor(
         }
     }
 
-    fun configure(config: InputFieldConfig, id: String = "") {
-        this.fieldId = id
-        this.currentConfig = config
-        this.isFieldRequired = config.isRequired
-        this.minLength = config.minLength
-        this.maxLength = config.maxLength
-
-        setTitle(config.title)
-        config.description?.let { setDescription(it) }
-
-        setupInputComponent(config)
-    }
-
-    fun setSupportingText(text: String?) {
-        supportingText = text
-        updateSupportingTextDisplay()
-    }
-
-    fun setMinLength(min: Int) {
-        minLength = min
-        validateCurrentInput()
-    }
-
-    fun setMaxLength(max: Int) {
-        maxLength = max
-        textInputEditText?.filters = if (max > 0) {
-            arrayOf(InputFilter.LengthFilter(max))
-        } else {
-            arrayOf()
-        }
-        validateCurrentInput()
-    }
-
     private fun updateSupportingTextDisplay() {
         when (currentConfig?.type) {
             is InputFieldType.TextInput,
@@ -338,63 +307,6 @@ class InputField @JvmOverloads constructor(
         descriptionTextView.visibility = if (description.isNotEmpty()) View.VISIBLE else View.GONE
     }
 
-    override fun setEnabled(enabled: Boolean) {
-        super.setEnabled(enabled)
-        isFieldEnabled = enabled
-
-        when (currentConfig?.type) {
-            is InputFieldType.TextInput,
-            is InputFieldType.NumberInput,
-            is InputFieldType.TextArea -> {
-                textInputEditText?.let { editText ->
-                    textInputContainer?.let { container ->
-                        editText.isEnabled = enabled
-                        updateTextInputColors(editText, enabled)
-                        updateInputBackground(container, editText, editText.hasFocus() && enabled)
-                    }
-                } ?: run {
-                    val textInputLayout = currentInputComponent as? TextInputLayout
-                    textInputLayout?.isEnabled = enabled
-                    textInputLayout?.editText?.isEnabled = enabled
-                }
-            }
-            is InputFieldType.Dropdown -> {
-                val textInputLayout = currentInputComponent as? TextInputLayout
-                if (textInputLayout != null) {
-                    textInputLayout.isEnabled = enabled
-                    textInputLayout.editText?.isEnabled = enabled
-                } else {
-                    dropdownContainer?.let { container ->
-                        dropdownTextView?.let { textView ->
-                            container.isEnabled = enabled
-                            container.isClickable = enabled
-                            updateDropdownColors(container, textView, enabled)
-                        }
-                    }
-                }
-            }
-            is InputFieldType.RadioGroup -> {
-                radioGroupComponent?.let { radioGroup ->
-                    radioGroup.isEnabled = enabled
-                    for (i in 0 until radioGroup.childCount) {
-                        radioGroup.getChildAt(i)?.isEnabled = enabled
-                    }
-                }
-            }
-            is InputFieldType.CheckboxGroup -> {
-                checkboxContainer?.let { container ->
-                    container.isEnabled = enabled
-                    for (i in 0 until container.childCount) {
-                        val checkbox = container.getChildAt(i) as? CheckBox
-                        checkbox?.isEnabled = enabled
-                    }
-                }
-            }
-            else -> {
-            }
-        }
-    }
-
     private fun updateTextInputColors(editText: EditText, enabled: Boolean) {
         if (enabled) {
             editText.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.color000))
@@ -416,151 +328,6 @@ class InputField @JvmOverloads constructor(
         }
     }
 
-    fun setError(errorText: String?) {
-        currentErrorText = errorText
-
-        if (!errorText.isNullOrEmpty()) {
-            when (currentConfig?.type) {
-                is InputFieldType.TextInput,
-                is InputFieldType.NumberInput,
-                is InputFieldType.TextArea -> {
-                    val tagMap = textInputEditText?.tag as? MutableMap<String, TextView>
-                    val inlineErrorText = tagMap?.get("errorText")
-                    val counterText = tagMap?.get("counterText")
-                    val supportingTextView = tagMap?.get("supportingText")
-
-                    if (inlineErrorText != null) {
-                        inlineErrorText.text = errorText
-                        inlineErrorText.visibility = View.VISIBLE
-                        errorTextView.visibility = View.GONE
-                        supportingTextView?.visibility = View.GONE
-
-                        if (errorText.contains("Minimum") || errorText.contains("Maximum")) {
-                            counterText?.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
-                        }
-
-                        textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
-                    } else {
-                        val textInputLayout = currentInputComponent as? TextInputLayout
-                        if (textInputLayout != null) {
-                            textInputLayout.error = errorText
-                            textInputLayout.isErrorEnabled = true
-                        } else {
-                            errorTextView.text = errorText
-                            errorTextView.visibility = View.VISIBLE
-                            errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
-
-                            textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
-                        }
-                    }
-                }
-                is InputFieldType.Dropdown -> {
-                    val textInputLayout = currentInputComponent as? TextInputLayout
-                    if (textInputLayout != null) {
-                        textInputLayout.error = errorText
-                        textInputLayout.isErrorEnabled = true
-                    } else {
-                        errorTextView.text = errorText
-                        errorTextView.visibility = View.VISIBLE
-                        errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
-                        dropdownContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
-                    }
-                }
-                is InputFieldType.RadioGroup -> {
-                    errorTextView.text = errorText
-                    errorTextView.visibility = View.VISIBLE
-                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
-                    (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(true)
-                }
-                is InputFieldType.CheckboxGroup -> {
-                    errorTextView.text = errorText
-                    errorTextView.visibility = View.VISIBLE
-                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
-
-                    (currentInputComponent as? ViewGroup)?.let { container ->
-                        for (i in 0 until container.childCount) {
-                            val child = container.getChildAt(i)
-                            if (child is CheckBox) {
-                                child.setErrorState(true)
-                            }
-                        }
-                    }
-                }
-                else -> {
-                }
-            }
-        } else {
-            clearError()
-        }
-    }
-
-    fun clearError() {
-        currentErrorText = null
-        errorTextView.visibility = View.GONE
-        val tagMap = textInputEditText?.tag as? MutableMap<String, TextView>
-        val inlineErrorText = tagMap?.get("errorText")
-        val counterText = tagMap?.get("counterText")
-        val supportingTextView = tagMap?.get("supportingText")
-
-        inlineErrorText?.visibility = View.GONE
-        counterText?.setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral50))
-        updateSupportingTextDisplay()
-
-        when (currentConfig?.type) {
-            is InputFieldType.TextInput,
-            is InputFieldType.NumberInput,
-            is InputFieldType.TextArea -> {
-                textInputEditText?.let { editText ->
-                    textInputContainer?.let { container ->
-                        updateInputBackground(container, editText, editText.hasFocus())
-                    }
-                } ?: run {
-                    val textInputLayout = currentInputComponent as? TextInputLayout
-                    textInputLayout?.error = null
-                    textInputLayout?.isErrorEnabled = false
-                }
-            }
-            is InputFieldType.Dropdown -> {
-                val textInputLayout = currentInputComponent as? TextInputLayout
-                if (textInputLayout != null) {
-                    textInputLayout.error = null
-                    textInputLayout.isErrorEnabled = false
-                } else {
-                    dropdownContainer?.let { container ->
-                        dropdownTextView?.let { textView ->
-                            container.background = if (isFieldEnabled) {
-                                getCachedDrawable("rounded_normal") { createRoundedBackground() }
-                            } else {
-                                getCachedDrawable("rounded_disabled") { createDisabledBackground() }
-                            }
-                        }
-                    }
-                }
-            }
-            is InputFieldType.RadioGroup -> {
-                errorTextView.visibility = View.GONE
-                (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(false)
-            }
-            is InputFieldType.CheckboxGroup -> {
-                errorTextView.visibility = View.GONE
-
-                (currentInputComponent as? ViewGroup)?.let { container ->
-                    for (i in 0 until container.childCount) {
-                        val child = container.getChildAt(i)
-                        if (child is CheckBox) {
-                            child.setErrorState(false)
-                        }
-                    }
-                }
-            }
-            else -> {
-            }
-        }
-    }
-
-    fun getErrorText(): String? = currentErrorText
-    fun isFieldEnabled(): Boolean = isFieldEnabled
-
     private fun setupInputComponent(config: InputFieldConfig) {
         inputContainer.removeAllViews()
         currentInputComponent = null
@@ -573,7 +340,7 @@ class InputField @JvmOverloads constructor(
 
         currentInputComponent = when (config.type) {
             is InputFieldType.TextInput -> createTextInput(config)
-            is InputFieldType.NumberInput -> createNumberInput(config) // Add this case
+            is InputFieldType.NumberInput -> createNumberInput(config)
             is InputFieldType.TextArea -> createTextArea(config)
             is InputFieldType.Dropdown -> createCustomDropdownView(config)
             is InputFieldType.RadioGroup -> createRadioGroup(config)
@@ -634,6 +401,10 @@ class InputField @JvmOverloads constructor(
                     setError(lengthError)
                 } else if (currentErrorText?.contains("Minimum") == true ||
                     currentErrorText?.contains("Maximum") == true) {
+                    clearError()
+                }
+
+                if (!text.isNullOrBlank() && currentErrorText != null) {
                     clearError()
                 }
 
@@ -753,7 +524,6 @@ class InputField @JvmOverloads constructor(
             background = null
             textSize = 16f
 
-            // Set input type for numbers
             inputType = android.text.InputType.TYPE_CLASS_NUMBER or
                     android.text.InputType.TYPE_NUMBER_VARIATION_NORMAL
             imeOptions = EditorInfo.IME_ACTION_NEXT
@@ -787,6 +557,7 @@ class InputField @JvmOverloads constructor(
                 }
 
                 notifyValidationChange()
+                clearError()
             }
 
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
@@ -1117,12 +888,19 @@ class InputField @JvmOverloads constructor(
         container.addView(iconView)
 
         container.setOnClickListener {
+            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            rootView.findFocus()?.let { focused ->
+                focused.clearFocus()
+                imm.hideSoftInputFromWindow(focused.windowToken, 0)
+            }
+
             showOptionDrawer(config.options) { selectedOption ->
                 textView.text = selectedOption
                 textView.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.color000))
 
                 notifyValueChange(selectedOption)
                 notifyValidationChange()
+                clearError()
             }
         }
 
@@ -1201,7 +979,6 @@ class InputField @JvmOverloads constructor(
                 titleText = option
                 delegate = object : OptionCardDelegate {
                     override fun onClick(card: OptionCard) {
-                        Log.d("OptionCard", "${card.titleText} selected")
                         onOptionSelected(option)
                     }
                 }
@@ -1226,25 +1003,12 @@ class InputField @JvmOverloads constructor(
             setContentView(scrollView)
             delegate = object : BottomTrayDelegate {
                 override fun onShow(dialogInterface: DialogInterface) {
-                    Log.d("BottomTray", "Option drawer shown")
                 }
 
                 override fun onDismiss(dialogInterface: DialogInterface) {
-                    Log.d("BottomTray", "Option drawer dismissed")
                 }
 
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
-                    when (newState) {
-                        BottomSheetBehavior.STATE_EXPANDED -> {
-                            Log.d("BottomTray", "Fully expanded")
-                        }
-                        BottomSheetBehavior.STATE_COLLAPSED -> {
-                            Log.d("BottomTray", "Collapsed")
-                        }
-                        BottomSheetBehavior.STATE_HIDDEN -> {
-                            Log.d("BottomTray", "Hidden")
-                        }
-                    }
                 }
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 }
@@ -1275,6 +1039,7 @@ class InputField @JvmOverloads constructor(
                     override fun onItemSelected(position: Int, data: Any?) {
                         notifyValueChange(data?.toString())
                         notifyValidationChange()
+                        clearError()
                     }
                 })
             }
@@ -1292,6 +1057,7 @@ class InputField @JvmOverloads constructor(
                         override fun onCheckChanged(checkBox: CheckBox, isChecked: Boolean) {
                             notifyValueChange(getCheckboxGroupValue(this@InputField))
                             notifyValidationChange()
+                            clearError()
                         }
                     })
                 }
@@ -1319,6 +1085,205 @@ class InputField @JvmOverloads constructor(
         }
         return selectedValues
     }
+
+    private fun notifyValueChange(value: Any?) {
+        delegate?.onValueChange(fieldId, value)
+    }
+
+    private fun notifyValidationChange() {
+        delegate?.onValidationChange(fieldId, isValid())
+    }
+
+    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
+        val typedValue = TypedValue()
+        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
+            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
+                ContextCompat.getColor(context, typedValue.resourceId)
+            } else {
+                typedValue.data
+            }
+        } else {
+            ContextCompat.getColor(context, fallbackColor)
+        }
+    }
+
+    fun configure(config: InputFieldConfig, id: String = "") {
+        this.fieldId = id
+        this.currentConfig = config
+        this.isFieldRequired = config.isRequired
+        this.minLength = config.minLength
+        this.maxLength = config.maxLength
+
+        setTitle(config.title)
+        config.description?.let { setDescription(it) }
+
+        setupInputComponent(config)
+    }
+
+    fun setSupportingText(text: String?) {
+        supportingText = text
+        updateSupportingTextDisplay()
+    }
+
+    fun setMinLength(min: Int) {
+        minLength = min
+        validateCurrentInput()
+    }
+
+    fun setMaxLength(max: Int) {
+        maxLength = max
+        textInputEditText?.filters = if (max > 0) {
+            arrayOf(InputFilter.LengthFilter(max))
+        } else {
+            arrayOf()
+        }
+        validateCurrentInput()
+    }
+
+    fun setError(errorText: String?) {
+        currentErrorText = errorText
+
+        if (!errorText.isNullOrEmpty()) {
+            when (currentConfig?.type) {
+                is InputFieldType.TextInput,
+                is InputFieldType.NumberInput,
+                is InputFieldType.TextArea -> {
+                    val tagMap = textInputEditText?.tag as? MutableMap<String, TextView>
+                    val inlineErrorText = tagMap?.get("errorText")
+                    val counterText = tagMap?.get("counterText")
+                    val supportingTextView = tagMap?.get("supportingText")
+
+                    if (inlineErrorText != null) {
+                        inlineErrorText.text = errorText
+                        inlineErrorText.visibility = View.VISIBLE
+                        errorTextView.visibility = View.GONE
+                        supportingTextView?.visibility = View.GONE
+
+                        if (errorText.contains("Minimum") || errorText.contains("Maximum")) {
+                            counterText?.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+                        }
+
+                        textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
+                    } else {
+                        val textInputLayout = currentInputComponent as? TextInputLayout
+                        if (textInputLayout != null) {
+                            textInputLayout.error = errorText
+                            textInputLayout.isErrorEnabled = true
+                        } else {
+                            errorTextView.text = errorText
+                            errorTextView.visibility = View.VISIBLE
+                            errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+
+                            textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
+                        }
+                    }
+                }
+                is InputFieldType.Dropdown -> {
+                    val textInputLayout = currentInputComponent as? TextInputLayout
+                    if (textInputLayout != null) {
+                        textInputLayout.error = errorText
+                        textInputLayout.isErrorEnabled = true
+                    } else {
+                        errorTextView.text = errorText
+                        errorTextView.visibility = View.VISIBLE
+                        errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+                        dropdownContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
+                    }
+                }
+                is InputFieldType.RadioGroup -> {
+                    errorTextView.text = errorText
+                    errorTextView.visibility = View.VISIBLE
+                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+                    (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(true)
+                }
+                is InputFieldType.CheckboxGroup -> {
+                    errorTextView.text = errorText
+                    errorTextView.visibility = View.VISIBLE
+                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+
+                    (currentInputComponent as? ViewGroup)?.let { container ->
+                        for (i in 0 until container.childCount) {
+                            val child = container.getChildAt(i)
+                            if (child is CheckBox) {
+                                child.setErrorState(true)
+                            }
+                        }
+                    }
+                }
+                else -> {
+                }
+            }
+        } else {
+            clearError()
+        }
+    }
+
+    fun clearError() {
+        currentErrorText = null
+        errorTextView.visibility = View.GONE
+        val tagMap = textInputEditText?.tag as? MutableMap<String, TextView>
+        val inlineErrorText = tagMap?.get("errorText")
+        val counterText = tagMap?.get("counterText")
+        val supportingTextView = tagMap?.get("supportingText")
+
+        inlineErrorText?.visibility = View.GONE
+        counterText?.setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral50))
+        updateSupportingTextDisplay()
+
+        when (currentConfig?.type) {
+            is InputFieldType.TextInput,
+            is InputFieldType.NumberInput,
+            is InputFieldType.TextArea -> {
+                textInputEditText?.let { editText ->
+                    textInputContainer?.let { container ->
+                        updateInputBackground(container, editText, editText.hasFocus())
+                    }
+                } ?: run {
+                    val textInputLayout = currentInputComponent as? TextInputLayout
+                    textInputLayout?.error = null
+                    textInputLayout?.isErrorEnabled = false
+                }
+            }
+            is InputFieldType.Dropdown -> {
+                val textInputLayout = currentInputComponent as? TextInputLayout
+                if (textInputLayout != null) {
+                    textInputLayout.error = null
+                    textInputLayout.isErrorEnabled = false
+                } else {
+                    dropdownContainer?.let { container ->
+                        dropdownTextView?.let { textView ->
+                            container.background = if (isFieldEnabled) {
+                                getCachedDrawable("rounded_normal") { createRoundedBackground() }
+                            } else {
+                                getCachedDrawable("rounded_disabled") { createDisabledBackground() }
+                            }
+                        }
+                    }
+                }
+            }
+            is InputFieldType.RadioGroup -> {
+                errorTextView.visibility = View.GONE
+                (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(false)
+            }
+            is InputFieldType.CheckboxGroup -> {
+                errorTextView.visibility = View.GONE
+
+                (currentInputComponent as? ViewGroup)?.let { container ->
+                    for (i in 0 until container.childCount) {
+                        val child = container.getChildAt(i)
+                        if (child is CheckBox) {
+                            child.setErrorState(false)
+                        }
+                    }
+                }
+            }
+            else -> {
+            }
+        }
+    }
+
+    fun getErrorText(): String? = currentErrorText
+    fun isFieldEnabled(): Boolean = isFieldEnabled
 
     fun getValue(): Any? {
         return when (currentConfig?.type) {
@@ -1436,24 +1401,59 @@ class InputField @JvmOverloads constructor(
         }
     }
 
-    private fun notifyValueChange(value: Any?) {
-        delegate?.onValueChange(fieldId, value)
-    }
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        isFieldEnabled = enabled
 
-    private fun notifyValidationChange() {
-        delegate?.onValidationChange(fieldId, isValid())
-    }
-
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
+        when (currentConfig?.type) {
+            is InputFieldType.TextInput,
+            is InputFieldType.NumberInput,
+            is InputFieldType.TextArea -> {
+                textInputEditText?.let { editText ->
+                    textInputContainer?.let { container ->
+                        editText.isEnabled = enabled
+                        updateTextInputColors(editText, enabled)
+                        updateInputBackground(container, editText, editText.hasFocus() && enabled)
+                    }
+                } ?: run {
+                    val textInputLayout = currentInputComponent as? TextInputLayout
+                    textInputLayout?.isEnabled = enabled
+                    textInputLayout?.editText?.isEnabled = enabled
+                }
             }
-        } else {
-            ContextCompat.getColor(context, fallbackColor)
+            is InputFieldType.Dropdown -> {
+                val textInputLayout = currentInputComponent as? TextInputLayout
+                if (textInputLayout != null) {
+                    textInputLayout.isEnabled = enabled
+                    textInputLayout.editText?.isEnabled = enabled
+                } else {
+                    dropdownContainer?.let { container ->
+                        dropdownTextView?.let { textView ->
+                            container.isEnabled = enabled
+                            container.isClickable = enabled
+                            updateDropdownColors(container, textView, enabled)
+                        }
+                    }
+                }
+            }
+            is InputFieldType.RadioGroup -> {
+                radioGroupComponent?.let { radioGroup ->
+                    radioGroup.isEnabled = enabled
+                    for (i in 0 until radioGroup.childCount) {
+                        radioGroup.getChildAt(i)?.isEnabled = enabled
+                    }
+                }
+            }
+            is InputFieldType.CheckboxGroup -> {
+                checkboxContainer?.let { container ->
+                    container.isEnabled = enabled
+                    for (i in 0 until container.childCount) {
+                        val checkbox = container.getChildAt(i) as? CheckBox
+                        checkbox?.isEnabled = enabled
+                    }
+                }
+            }
+            else -> {}
         }
     }
 

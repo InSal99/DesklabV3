@@ -6,4 +6,6 @@
     <string name="event_detail_description_title">Deskripsi Event</string>
     <string name="event_detail_page_title">Detail Event</string>
     <string name="rsvp_form_page_title">Form Reservasi</string>
+    <string name="offline_attendance_title">Kehadiran Offline</string>
+    <string name="offline_attendance_instruction">Arahkan kamera hingga memuat seluruh kode QR pada aset</string>
 </resources>

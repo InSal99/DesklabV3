@@ -19,11 +19,7 @@ class EventSpeakerAdapter : RecyclerView.Adapter<EventSpeakerAdapter.SpeakerView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpeakerViewHolder {
-        val binding = DetailInformationSpeakerBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding = DetailInformationSpeakerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SpeakerViewHolder(binding)
     }
 

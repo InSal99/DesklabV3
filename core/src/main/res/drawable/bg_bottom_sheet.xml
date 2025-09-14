@@ -10,7 +10,7 @@
             <solid android:color="@color/colorFFF" />
             <corners android:topLeftRadius="@dimen/dimen_20dp"
                 android:topRightRadius="@dimen/dimen_20dp" />
-            <stroke android:color="@color/colorNeutral10" android:width="2dp" />
+            <stroke android:color="@color/colorNeutral30" android:width="1dp" />
         </shape>
     </item>
 </selector>
