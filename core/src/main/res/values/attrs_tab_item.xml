@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TabItem">
+        <attr name="tabItemText" format="string" />
+        <attr name="tabItemBadgeText" format="string" />
+        <attr name="tabItemShowBadge" format="boolean" />
+        <attr name="tabItemState" format="enum">
+            <enum name="active" value="0" />
+            <enum name="inactive" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
