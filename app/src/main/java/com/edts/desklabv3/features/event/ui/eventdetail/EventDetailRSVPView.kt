@@ -1,4 +1,4 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.event.ui.eventdetail
 
 import android.content.DialogInterface
 import android.graphics.Color
@@ -24,6 +24,8 @@ import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.core.util.ListTagHandler
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
+import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
+import com.edts.desklabv3.features.event.ui.rsvp.RSVPFormView
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -213,7 +215,7 @@ class EventDetailRSVPView : Fragment() {
     }
 
     private fun handleJoinOffline() {
-        val scanQRFragment = ScanQRView()
+        val scanQRFragment = ScanQRAttendanceView()
         Log.d("Present Offline", "Go To Scanner")
 
         requireActivity().supportFragmentManager.beginTransaction()
