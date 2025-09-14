@@ -234,12 +234,11 @@ import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.databinding.ActivityMainBinding
-import com.edts.desklabv3.features.AssetQRCodeFragment
+import com.edts.desklabv3.features.event.ui.attendanceoffline.AssetQRCodeFragment
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailRSVPView
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewAttendance
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewNoRSVP
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewTolakUndangan
-import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListAttendanceView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationNoRSVPView
@@ -299,7 +298,6 @@ class MainActivity : AppCompatActivity() {
                 "EventInvitationFragmentNoRSVP" -> EventInvitationFragmentNoRSVP()
                 "MyEventsFragmentNoRSVP" -> MyEventsFragmentNoRSVP()
                 "HomeAttendanceView" -> HomeAttendanceView()
-                "ScanQRAttendanceView" -> ScanQRAttendanceView()
                 "SuccessAttendanceOfflineView" -> SuccessAttendanceOfflineView()
                 "SuccessAttendanceOnlineView" -> SuccessAttendanceOnlineView()
                 "EventListAttendanceView" -> EventListAttendanceView()

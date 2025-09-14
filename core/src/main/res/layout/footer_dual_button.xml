@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/footer_dual_button_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_8dp">
 
     <TextView
         android:id="@+id/tvFooterDualButtonTitle"
+        style="?attr/l2Regular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_18dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:text="Peserta Terdaftar"
         android:textColor="?attr/colorForegroundSecondary"
-        style="?attr/l2Regular"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:layout_marginBottom="@dimen/margin_18dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvFooterDualButtonSupportText1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnFooterDualButtonSecondary"/>
+        app:layout_constraintBottom_toTopOf="@id/btnFooterDualButtonSecondary" />
 
     <TextView
         android:id="@+id/tvFooterDualButtonSupportText1"
+        style="?attr/h2SemiBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
-        style="?attr/h2SemiBold"
-        android:textColor="?attr/colorForegroundPrimary"
-        android:maxLines="1"
-        android:ellipsize="end"
         android:layout_marginStart="@dimen/margin_8dp"
         android:layout_marginEnd="@dimen/margin_4dp"
-        app:layout_constraintStart_toEndOf="@id/tvFooterDualButtonTitle"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="1"
+        android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintTop_toTopOf="@id/tvFooterDualButtonTitle"
+        app:layout_constraintStart_toEndOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterDualButtonTextDivider"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle" />
 
     <TextView
         android:id="@+id/tvFooterDualButtonTextDivider"
+        style="?attr/h2SemiBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="/"
-        style="?attr/h2SemiBold"
-        android:textColor="?attr/colorForegroundPlaceholder"
-        android:maxLines="1"
-        android:ellipsize="end"
         android:layout_marginEnd="@dimen/margin_4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="/"
+        android:textColor="?attr/colorForegroundPlaceholder"
         app:layout_constraintTop_toTopOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterDualButtonSupportText2"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle" />
 
     <TextView
         android:id="@+id/tvFooterDualButtonSupportText2"
+        style="?attr/h2SemiBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
-        style="?attr/h2SemiBold"
-        android:textColor="?attr/colorForegroundPrimary"
-        android:maxLines="1"
         android:ellipsize="end"
+        android:maxLines="1"
+        android:text="1"
+        android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintTop_toTopOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle" />
@@ -69,18 +70,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Button"
-        app:type="SECONDARY"
         app:size="MD"
+        app:type="SECONDARY"
+        app:layout_constraintTop_toBottomOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnFooterDualButtonPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.edts.components.button.Button
         android:id="@+id/btnFooterDualButtonPrimary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10dp"
+        android:text="Test"
+        app:size="MD"
         app:layout_constraintTop_toTopOf="@id/btnFooterDualButtonSecondary"
         app:layout_constraintStart_toEndOf="@id/btnFooterDualButtonSecondary"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/btnFooterDualButtonSecondary" />
 </androidx.constraintlayout.widget.ConstraintLayout>
