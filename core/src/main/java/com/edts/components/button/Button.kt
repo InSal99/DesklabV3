@@ -10,18 +10,17 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
-import android.util.Log
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
-import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
+import com.edts.components.utils.resolveStyleAttribute
 import com.google.android.material.button.MaterialButton
 
 class Button @JvmOverloads constructor(
@@ -30,7 +29,12 @@ class Button @JvmOverloads constructor(
     defStyleAttr: Int = com.google.android.material.R.attr.materialButtonStyle
 ) : MaterialButton(context, attrs, defStyleAttr) {
 
-    enum class ButtonSize(val heightDp: Int, val paddingHorizontalDp: Int, val iconSizeDp: Int, val textPaddingDp: Int) {
+    enum class ButtonSize(
+        val heightDp: Int,
+        val paddingHorizontalDp: Int,
+        val iconSizeDp: Int,
+        val textPaddingDp: Int
+    ) {
         XS(28, 12, 16, 4),
         SM(36, 12, 20, 4),
         MD(40, 16, 24, 6),
@@ -59,13 +63,13 @@ class Button @JvmOverloads constructor(
     init {
         strokeWidth = try {
             resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             1
         }
 
         cornerRadius = try {
             resources.getDimension(R.dimen.radius_999dp)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             99999f
         }
 
@@ -93,9 +97,8 @@ class Button @JvmOverloads constructor(
             R.attr.colorStrokeAccent to R.color.colorPrimary30,
             R.attr.colorForegroundAccentPrimaryIntense to R.color.colorPrimary30
         )
-
         colorAttrs.forEach { (attr, fallback) ->
-            colorCache[attr] = resolveColorAttribute(attr, fallback)
+            colorCache[attr] = context.resolveColorAttribute(attr, fallback)
         }
     }
 
@@ -106,27 +109,21 @@ class Button @JvmOverloads constructor(
                     buttonType = ButtonType.values().getOrElse(
                         getInt(R.styleable.Button_type, ButtonType.PRIMARY.ordinal)
                     ) { ButtonType.PRIMARY }
-
                     buttonSize = ButtonSize.values().getOrElse(
                         getInt(R.styleable.Button_size, ButtonSize.MD.ordinal)
                     ) { ButtonSize.MD }
-
                     buttonState = ButtonState.values().getOrElse(
                         getInt(R.styleable.Button_state, ButtonState.REST.ordinal)
                     ) { ButtonState.REST }
-
                     isButtonDisabled = getBoolean(R.styleable.Button_isButtonDisabled, false)
                     isButtonDestructive = getBoolean(R.styleable.Button_isButtonDestructive, false)
-
                     buttonIcon = getDrawable(R.styleable.Button_icon)
                         ?: getDrawable(R.styleable.Button_android_icon)
-
                     iconPlacement = IconPlacement.values().getOrElse(
                         getInt(R.styleable.Button_iconPlacement, IconPlacement.LEFT.ordinal)
                     ) { IconPlacement.LEFT }
                 }
-            } catch (e: Exception) {
-                Log.w("CustomButton", "Attribute goes fallback")
+            } catch (_: Exception) {
             }
         }
     }
@@ -143,40 +140,28 @@ class Button @JvmOverloads constructor(
         background = null
         isAllCaps = false
         letterSpacing = 0f
-
         updateButtonProperties()
     }
 
     private fun updateButtonProperties() {
         isEnabled = !isButtonDisabled
-
         val textStyle = getTextStyleForButtonSize(buttonSize)
         if (textStyle != 0) {
             setTextAppearance(textStyle)
             letterSpacing = 0f
         }
-
         applyButtonStyling()
         updateLayout()
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        updateLayout()
-    }
-
     private fun updateLayout() {
-        val heightPx = buttonSize.heightDp.dpToPx()
+        val heightPx = buttonSize.heightDp.dpToPx
         layoutParams?.height = heightPx
-
-        if (isAttachedToWindow) {
-            requestLayout()
-        }
+        if (isAttachedToWindow) requestLayout()
     }
 
     private fun applyButtonStyling() {
         val styleKey = generateStyleKey()
-
         val cachedDrawable = drawablePool[styleKey]
         if (cachedDrawable != null) {
             background = cachedDrawable
@@ -184,11 +169,9 @@ class Button @JvmOverloads constructor(
             updateIcon()
             return
         }
-
         val drawable = createBackgroundDrawable()
         drawablePool[styleKey] = drawable
         background = drawable
-
         setTextColor(getTextColorForCurrentState())
         updateIcon()
     }
@@ -225,10 +208,10 @@ class Button @JvmOverloads constructor(
             cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundAttentionIntense))
             val strokeColor = getCachedColor(R.attr.colorStrokeInteractive)
-            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
+            val strokeWidth =
+                if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
-
         return when (buttonState) {
             ButtonState.REST -> baseDrawable
             ButtonState.ON_PRESS -> {
@@ -238,6 +221,7 @@ class Button @JvmOverloads constructor(
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
             }
+
             ButtonState.ON_FOCUS -> {
                 val modifierDrawable = GradientDrawable().apply {
                     cornerRadius = this@Button.cornerRadius
@@ -258,10 +242,10 @@ class Button @JvmOverloads constructor(
             cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundAttentionSubtle))
             val strokeColor = getCachedColor(R.attr.colorStrokeAttentionIntense)
-            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 4 else this@Button.strokeWidth
+            val strokeWidth =
+                if (buttonState == ButtonState.ON_FOCUS) 4 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
-
         return when (buttonState) {
             ButtonState.REST -> baseDrawable
             ButtonState.ON_PRESS -> {
@@ -271,6 +255,7 @@ class Button @JvmOverloads constructor(
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
             }
+
             ButtonState.ON_FOCUS -> {
                 val modifierDrawable = GradientDrawable().apply {
                     cornerRadius = this@Button.cornerRadius
@@ -298,10 +283,10 @@ class Button @JvmOverloads constructor(
             cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundAccentPrimaryIntense))
             val strokeColor = getCachedColor(R.attr.colorStrokeInteractive)
-            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
+            val strokeWidth =
+                if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
-
         return when (buttonState) {
             ButtonState.REST -> baseDrawable
             ButtonState.ON_PRESS -> {
@@ -311,6 +296,7 @@ class Button @JvmOverloads constructor(
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
             }
+
             ButtonState.ON_FOCUS -> {
                 val modifierDrawable = GradientDrawable().apply {
                     cornerRadius = this@Button.cornerRadius
@@ -331,10 +317,10 @@ class Button @JvmOverloads constructor(
             cornerRadius = this@Button.cornerRadius
             setColor(getCachedColor(R.attr.colorBackgroundPrimary))
             val strokeColor = getCachedColor(R.attr.colorStrokeAccent)
-            val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
+            val strokeWidth =
+                if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
-
         return when (buttonState) {
             ButtonState.REST -> baseDrawable
             ButtonState.ON_PRESS -> {
@@ -344,6 +330,7 @@ class Button @JvmOverloads constructor(
                 }
                 LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
             }
+
             ButtonState.ON_FOCUS -> {
                 val modifierDrawable = GradientDrawable().apply {
                     cornerRadius = this@Button.cornerRadius
@@ -366,6 +353,7 @@ class Button @JvmOverloads constructor(
                 ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite)
                 ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAttentionIntense)
             }
+
             else -> when (buttonType) {
                 ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite)
                 ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAccentPrimaryIntense)
@@ -374,10 +362,9 @@ class Button @JvmOverloads constructor(
     }
 
     private fun updateIcon() {
-        val iconSize = buttonSize.iconSizeDp.dpToPx()
-        val basePadding = buttonSize.paddingHorizontalDp.dpToPx()
-        val textPadding = buttonSize.textPaddingDp.dpToPx()
-
+        val iconSize = buttonSize.iconSizeDp.dpToPx
+        val basePadding = buttonSize.paddingHorizontalDp.dpToPx
+        val textPadding = buttonSize.textPaddingDp.dpToPx
         if (buttonIcon != null) {
             when (iconPlacement) {
                 IconPlacement.LEFT -> {
@@ -403,7 +390,6 @@ class Button @JvmOverloads constructor(
             iconPadding = 0
             setPadding(basePadding + textPadding, 0, basePadding + textPadding, 0)
         }
-
         gravity = Gravity.CENTER
     }
 
@@ -414,6 +400,7 @@ class Button @JvmOverloads constructor(
                 ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite)
                 ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAttentionIntense)
             }
+
             else -> when (buttonType) {
                 ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite)
                 ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAccentPrimaryIntense)
@@ -422,21 +409,7 @@ class Button @JvmOverloads constructor(
     }
 
     private fun getCachedColor(@AttrRes attrRes: Int): Int {
-        return colorCache[attrRes] ?: resolveColorAttribute(attrRes, android.R.color.transparent)
-    }
-
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            Log.d("Custom Button", "Fallback Color")
-            ContextCompat.getColor(context, fallbackColor)
-        }
+        return colorCache[attrRes] ?: context.resolveColorAttribute(attrRes, android.R.color.transparent)
     }
 
     private fun getTextStyleForButtonSize(size: ButtonSize): Int {
@@ -446,46 +419,12 @@ class Button @JvmOverloads constructor(
             ButtonSize.MD -> R.attr.l2Medium
             ButtonSize.LG -> R.attr.l1Medium
         }
-
-        return resolveStyleAttribute(attrRes, R.style.TextMedium_Label2)
-    }
-
-    override fun onFocusChanged(gainFocus: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
-        super.onFocusChanged(gainFocus, direction, previouslyFocusedRect)
-        if (gainFocus) {
-            setButtonState(ButtonState.ON_FOCUS)
-        } else {
-            setButtonState(ButtonState.REST)
-        }
-    }
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                setButtonState(ButtonState.ON_PRESS)
-                animateScaleDown()
-                return true
-            }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                if (!isFocused) {
-                    setButtonState(ButtonState.REST)
-                } else {
-                    setButtonState(ButtonState.ON_FOCUS)
-                }
-                animateScaleUp()
-                if (event.action == MotionEvent.ACTION_UP) {
-                    performClick()
-                }
-                return true
-            }
-        }
-        return super.onTouchEvent(event)
+        return context.resolveStyleAttribute(attrRes, R.style.TextMedium_Label2)
     }
 
     private fun animateScaleDown() {
         val scaleDownX = ObjectAnimator.ofFloat(this, "scaleX", 1.0f, 0.95f)
         val scaleDownY = ObjectAnimator.ofFloat(this, "scaleY", 1.0f, 0.95f)
-
         val animatorSet = AnimatorSet().apply {
             playTogether(scaleDownX, scaleDownY)
             duration = 150
@@ -497,19 +436,12 @@ class Button @JvmOverloads constructor(
     private fun animateScaleUp() {
         val scaleUpX = ObjectAnimator.ofFloat(this, "scaleX", scaleX, 1.0f)
         val scaleUpY = ObjectAnimator.ofFloat(this, "scaleY", scaleY, 1.0f)
-
         val animatorSet = AnimatorSet().apply {
             playTogether(scaleUpX, scaleUpY)
             duration = 150
             interpolator = AccelerateDecelerateInterpolator()
         }
         animatorSet.start()
-    }
-
-    override fun performClick(): Boolean {
-        Log.d("CustomButton", "button clicked")
-        buttonDelegate?.onClick(this)
-        return super.performClick()
     }
 
     fun setButtonSize(size: ButtonSize) {
@@ -545,7 +477,7 @@ class Button @JvmOverloads constructor(
     }
 
     fun setCornerRadius(radiusDp: Float) {
-        val newRadius = radiusDp.dpToPx().toFloat()
+        val newRadius = radiusDp.dpToPx.toFloat()
         if (cornerRadius != newRadius) {
             drawablePool.clear()
             applyButtonStyling()
@@ -579,15 +511,41 @@ class Button @JvmOverloads constructor(
         }
     }
 
-    private fun resolveStyleAttribute(@AttrRes attrRes: Int, @StyleRes fallbackStyle: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            typedValue.resourceId
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        updateLayout()
+    }
+
+    override fun onFocusChanged(gainFocus: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
+        super.onFocusChanged(gainFocus, direction, previouslyFocusedRect)
+        if (gainFocus) {
+            setButtonState(ButtonState.ON_FOCUS)
         } else {
-            fallbackStyle
+            setButtonState(ButtonState.REST)
         }
     }
 
-    private fun Int.dpToPx(): Int = (this * density).toInt()
-    private fun Float.dpToPx(): Int = (this * density).toInt()
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                setButtonState(ButtonState.ON_PRESS)
+                animateScaleDown()
+                return true
+            }
+
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                if (!isFocused) {
+                    setButtonState(ButtonState.REST)
+                } else {
+                    setButtonState(ButtonState.ON_FOCUS)
+                }
+                animateScaleUp()
+                if (event.action == MotionEvent.ACTION_UP) {
+                    performClick()
+                }
+                return true
+            }
+        }
+        return super.onTouchEvent(event)
+    }
 }

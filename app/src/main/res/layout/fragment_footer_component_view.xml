@@ -42,7 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
             app:footerType="CALL_TO_ACTION"
-            app:primaryButtonText="Daftar Sekarang" />
+            app:primaryButtonText="Daftar Sekarang"
+            app:footerHasStroke="true" />
 
         <com.edts.components.footer.Footer
             android:id="@+id/footerWithDescription"
@@ -52,7 +53,8 @@
             app:footerType="CALL_TO_ACTION_DETAIL"
             app:footerTitle="Title"
             app:footerDescription="Description Here"
-            app:primaryButtonText="Daftar Sekarang"/>
+            app:primaryButtonText="Daftar Sekarang"
+            app:footerHasStroke="true" />
 
         <com.edts.components.footer.Footer
             android:id="@+id/footerDualButton"
@@ -61,7 +63,8 @@
             android:layout_marginTop="@dimen/margin_12dp"
             app:footerType="DUAL_BUTTON"
             app:primaryButtonText="Button Label"
-            app:secondaryButtonText="Button Label"/>
+            app:secondaryButtonText="Button Label"
+            app:footerHasStroke="true" />
 
         <com.edts.components.footer.Footer
             android:id="@+id/footerStatus"
@@ -72,7 +75,8 @@
             app:footerTitle="Tipe Presensi"
             app:footerDescription="Presensi Offline"
             app:statusBadgeText="Presensi Tercatat"
-            app:statusBadgeType="approved" />
+            app:statusBadgeType="approved"
+            app:footerHasStroke="true" />
 
         <com.edts.components.infoboxfooter.InfoBoxFooter
             android:id="@+id/infoboxFooter"
@@ -86,6 +90,7 @@
             app:primaryButtonText="Register Now"
             app:primaryButtonEnabled="true"
             app:footerTitle="Welcome"
+            app:footerHasStroke="false"
             app:footerDescription="Please complete your registration" />
 
     </LinearLayout>

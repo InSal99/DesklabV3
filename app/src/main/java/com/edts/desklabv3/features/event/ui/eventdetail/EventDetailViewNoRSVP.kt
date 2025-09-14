@@ -26,7 +26,7 @@ import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.core.util.ListTagHandler
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
-import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
+import com.edts.desklabv3.features.event.ui.attendanceoffline.AssetQRCodeFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -201,7 +201,7 @@ class EventDetailViewNoRSVP : Fragment() {
     }
 
     private fun handleJoinOffline() {
-        val scanQRFragment = ScanQRAttendanceView()
+        val scanQRFragment = AssetQRCodeFragment()
         Log.d("Present Offline", "Go To Scanner")
 
         requireActivity().supportFragmentManager.beginTransaction()
@@ -239,7 +239,6 @@ class EventDetailViewNoRSVP : Fragment() {
         val timeLocationList = listOf(
             Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
             Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-//            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
             Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", "123 Main Street, City Center")
         )
 
