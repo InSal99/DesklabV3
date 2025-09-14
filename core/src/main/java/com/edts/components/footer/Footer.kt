@@ -2,13 +2,9 @@ package com.edts.components.footer
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.button.Button
@@ -17,13 +13,13 @@ import com.edts.components.databinding.FooterCallToActionDescriptionBinding
 import com.edts.components.databinding.FooterDualButtonBinding
 import com.edts.components.databinding.FooterNoActionBinding
 import com.edts.components.status.badge.StatusBadge
+import com.edts.components.utils.resolveColorAttribute
 
 class Footer @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    var delegate: FooterDelegate? = null
 
     private var footerType: FooterType = FooterType.CALL_TO_ACTION
     private var primaryButtonText: String = "Daftar Sekarang"
@@ -32,33 +28,23 @@ class Footer @JvmOverloads constructor(
     private var footerDescription: String = ""
     private var statusText: String = ""
     private var statusType: StatusBadge.ChipType = StatusBadge.ChipType.APPROVED
-
+    private var footerHasStroke: Boolean = false
+    private var topStrokeView: View? = null
     private var showDescription: Boolean = false
     private var dualButtonTitle: String = ""
     private var dualButtonSupportText1: String = ""
     private var dualButtonSupportText2: String = ""
-
     private var primaryButtonEnabled: Boolean = true
     private var secondaryButtonEnabled: Boolean = true
     private var primaryButton: Button? = null
     private var secondaryButton: Button? = null
     private var statusBadge: StatusBadge? = null
-
     private var ctaBinding: FooterCallToActionBinding? = null
     private var ctaDescBinding: FooterCallToActionDescriptionBinding? = null
     private var dualButtonBinding: FooterDualButtonBinding? = null
     private var noActionBinding: FooterNoActionBinding? = null
 
-    enum class FooterType(val value: Int) {
-        CALL_TO_ACTION(0),
-        CALL_TO_ACTION_DETAIL(1),
-        DUAL_BUTTON(2),
-        NO_ACTION(3);
-
-        companion object {
-            fun fromInt(value: Int) = values().firstOrNull { it.value == value } ?: CALL_TO_ACTION
-        }
-    }
+    var delegate: FooterDelegate? = null
 
     init {
         orientation = VERTICAL
@@ -74,19 +60,16 @@ class Footer @JvmOverloads constructor(
         try {
             val typeOrdinal = typedArray.getInt(R.styleable.CustomFooter_footerType, FooterType.CALL_TO_ACTION.value)
             footerType = FooterType.fromInt(typeOrdinal)
-
+            footerHasStroke = typedArray.getBoolean(R.styleable.CustomFooter_footerHasStroke, false)
             primaryButtonText = typedArray.getString(R.styleable.CustomFooter_primaryButtonText) ?: primaryButtonText
             secondaryButtonText = typedArray.getString(R.styleable.CustomFooter_secondaryButtonText) ?: secondaryButtonText
             footerTitle = typedArray.getString(R.styleable.CustomFooter_footerTitle) ?: ""
             footerDescription = typedArray.getString(R.styleable.CustomFooter_footerDescription) ?: ""
             statusText = typedArray.getString(R.styleable.CustomFooter_statusBadgeText) ?: ""
-
             val statusTypeOrdinal = typedArray.getInt(R.styleable.CustomFooter_statusBadgeType, StatusBadge.ChipType.APPROVED.ordinal)
             statusType = StatusBadge.ChipType.values().getOrElse(statusTypeOrdinal) { StatusBadge.ChipType.APPROVED }
-
             primaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_primaryButtonEnabled, true)
             secondaryButtonEnabled = typedArray.getBoolean(R.styleable.CustomFooter_secondaryButtonEnabled, true)
-
         } finally {
             typedArray.recycle()
         }
@@ -95,6 +78,17 @@ class Footer @JvmOverloads constructor(
     private fun setupView() {
         removeAllViews()
         clearBindings()
+
+        if (footerHasStroke) {
+            topStrokeView = View(context).apply {
+                layoutParams = LayoutParams(
+                    LayoutParams.MATCH_PARENT,
+                    context.resources.getDimensionPixelSize(R.dimen.dimen_1dp)
+                )
+                setBackgroundColor(context.resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral30))
+            }
+            addView(topStrokeView)
+        }
 
         when (footerType) {
             FooterType.CALL_TO_ACTION -> {
@@ -130,16 +124,13 @@ class Footer @JvmOverloads constructor(
                     binding.tvFooterCTATitle.text = dualButtonTitle
                     binding.tvFooterCTASupportText1.text = dualButtonSupportText1
                     binding.tvFooterCTASupportText2.text = dualButtonSupportText2
-
                     setDescriptionVisibility(showDescription)
-
                     primaryButton = binding.btnFooterCTAPrimary.apply {
                         setLabel(primaryButtonText)
                         isEnabled = primaryButtonEnabled
                     }
                 }
             }
-
             FooterType.CALL_TO_ACTION_DETAIL -> {
                 ctaDescBinding?.let { binding ->
                     binding.tvFooterCTADescTitle.text = footerTitle
@@ -150,15 +141,12 @@ class Footer @JvmOverloads constructor(
                     }
                 }
             }
-
             FooterType.DUAL_BUTTON -> {
                 dualButtonBinding?.let { binding ->
                     binding.tvFooterDualButtonTitle.text = dualButtonTitle
                     binding.tvFooterDualButtonSupportText1.text = dualButtonSupportText1
                     binding.tvFooterDualButtonSupportText2.text = dualButtonSupportText2
-
                     setDescriptionVisibility(showDescription)
-
                     secondaryButton = binding.btnFooterDualButtonSecondary.apply {
                         setLabel(secondaryButtonText)
                         isEnabled = secondaryButtonEnabled
@@ -169,7 +157,6 @@ class Footer @JvmOverloads constructor(
                     }
                 }
             }
-
             FooterType.NO_ACTION -> {
                 noActionBinding?.let { binding ->
                     binding.tvFooterNoActionTitle.text = footerTitle
@@ -212,7 +199,6 @@ class Footer @JvmOverloads constructor(
 
     private fun handlePrimaryButtonClick() {
         delegate?.onPrimaryButtonClicked(footerType)
-
         when (footerType) {
             FooterType.CALL_TO_ACTION,
             FooterType.CALL_TO_ACTION_DETAIL -> {
@@ -227,26 +213,11 @@ class Footer @JvmOverloads constructor(
 
     private fun handleSecondaryButtonClick() {
         delegate?.onSecondaryButtonClicked(footerType)
-
         when (footerType) {
             FooterType.DUAL_BUTTON -> {
                 delegate?.onCancelClicked()
             }
             else -> {}
-        }
-    }
-
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            Log.d("Footer", "Fallback Color")
-            ContextCompat.getColor(context, fallbackColor)
         }
     }
 
@@ -277,7 +248,6 @@ class Footer @JvmOverloads constructor(
     fun setTitleAndDescription(title: String, description: String) {
         footerTitle = title
         footerDescription = description
-
         ctaDescBinding?.let { binding ->
             binding.tvFooterCTADescTitle.text = title
             binding.tvFooterCTADescDescription.text = description
@@ -309,16 +279,13 @@ class Footer @JvmOverloads constructor(
 
     fun setDescriptionVisibility(showDescription: Boolean) {
         this.showDescription = showDescription
-
         val visibility = if (showDescription) View.VISIBLE else View.GONE
-
         dualButtonBinding?.let { binding ->
             binding.tvFooterDualButtonTitle.visibility = visibility
             binding.tvFooterDualButtonSupportText1.visibility = visibility
             binding.tvFooterDualButtonTextDivider.visibility = visibility
             binding.tvFooterDualButtonSupportText2.visibility = visibility
         }
-
         ctaBinding?.let { binding ->
             binding.tvFooterCTATitle.visibility = visibility
             binding.tvFooterCTASupportText1.visibility = visibility
@@ -331,17 +298,22 @@ class Footer @JvmOverloads constructor(
         dualButtonTitle = title
         dualButtonSupportText1 = supportText1
         dualButtonSupportText2 = supportText2
-
         dualButtonBinding?.let { binding ->
             binding.tvFooterDualButtonTitle.text = title
             binding.tvFooterDualButtonSupportText1.text = supportText1
             binding.tvFooterDualButtonSupportText2.text = supportText2
         }
-
         ctaBinding?.let { binding ->
             binding.tvFooterCTATitle.text = title
             binding.tvFooterCTASupportText1.text = supportText1
             binding.tvFooterCTASupportText2.text = supportText2
+        }
+    }
+
+    fun setStroke(hasStroke: Boolean) {
+        if (this.footerHasStroke != hasStroke) {
+            this.footerHasStroke = hasStroke
+            setupView()
         }
     }
 
@@ -352,4 +324,15 @@ class Footer @JvmOverloads constructor(
     fun getDualButtonSupportText1(): String = dualButtonSupportText1
 
     fun getDualButtonSupportText2(): String = dualButtonSupportText2
+
+    enum class FooterType(val value: Int) {
+        CALL_TO_ACTION(0),
+        CALL_TO_ACTION_DETAIL(1),
+        DUAL_BUTTON(2),
+        NO_ACTION(3);
+
+        companion object {
+            fun fromInt(value: Int) = values().firstOrNull { it.value == value } ?: CALL_TO_ACTION
+        }
+    }
 }
