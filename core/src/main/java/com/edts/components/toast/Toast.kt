@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +12,10 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import com.edts.components.R
+import com.edts.components.databinding.LayoutToastViewBinding
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class Toast @JvmOverloads constructor(
@@ -26,57 +23,56 @@ class Toast @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
+
+    private val binding: LayoutToastViewBinding
     private var toastType: Type = Type.GENERAL
     private var toastMessage: String = ""
-    private val iconView: AppCompatImageView by lazy { findViewById(R.id.iv_icon) }
-    private val messageView: AppCompatTextView by lazy { findViewById(R.id.tv_message) }
+
+    var onToastClickListener: (() -> Unit)? = null
 
     enum class Type(@DrawableRes val iconRes: Int, @AttrRes val colorAttr: Int) {
-        SUCCESS(R.drawable.placeholder, R.attr.colorBackgroundSuccessIntense),
-        ERROR(R.drawable.placeholder, R.attr.colorBackgroundAttentionIntense),
-        INFO(R.drawable.placeholder, R.attr.colorBackgroundInfoIntense),
+        SUCCESS(R.drawable.ic_success, R.attr.colorBackgroundSuccessIntense),
+        ERROR(R.drawable.ic_attention, R.attr.colorBackgroundAttentionIntense),
+        INFO(R.drawable.ic_information, R.attr.colorBackgroundInfoIntense),
         GENERAL(R.drawable.placeholder, R.attr.colorBackgroundPrimaryInverse)
     }
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.layout_toast_view, this, true)
+        binding = LayoutToastViewBinding.inflate(LayoutInflater.from(context), this, true)
         setupToast()
-
-        if (attrs != null) {
-            context.theme.obtainStyledAttributes(
-                attrs,
-                R.styleable.CustomToast,
-                0, 0
-            ).apply {
-                try {
-                    val typeIndex = getInt(R.styleable.CustomToast_toastType, 3)
-                    toastType = Type.values()[typeIndex]
-                    toastMessage = getString(R.styleable.CustomToast_toastMessage) ?: ""
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    toastType = Type.GENERAL
-                    toastMessage = ""
-                } finally {
-                    recycle()
-                }
-            }
-        }
-
+        applyAttrs(attrs)
         applyToastStyle()
     }
 
+    private fun applyAttrs(attrs: AttributeSet?) {
+        attrs ?: return
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.CustomToast,
+            0, 0
+        ).apply {
+            try {
+                val typeIndex = getInt(R.styleable.CustomToast_toastType, 3)
+                toastType = Type.values()[typeIndex]
+                toastMessage = getString(R.styleable.CustomToast_toastMessage) ?: ""
+            } finally {
+                recycle()
+            }
+        }
+    }
+
     private fun setupToast() {
-        radius = resources.getDimensionPixelSize(R.dimen.radius_12dp).toFloat()
+        radius = context.resources.getDimensionPixelSize(R.dimen.radius_12dp).toFloat()
         cardElevation = 2f * context.resources.displayMetrics.density
-        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        strokeColor = resolveColorAttribute(R.attr.colorStrokeInteractive, R.color.colorOpacityWhite20)
+        strokeWidth = context.resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
+        strokeColor = context.resolveColorAttribute(R.attr.colorStrokeInteractive, R.color.colorOpacityWhite20)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = resolveColorAttribute(
+            outlineAmbientShadowColor = context.resolveColorAttribute(
                 R.attr.colorShadowNeutralAmbient,
                 R.color.colorGreen50
             )
-            outlineSpotShadowColor = resolveColorAttribute(
+            outlineSpotShadowColor = context.resolveColorAttribute(
                 R.attr.colorShadowNeutralKey,
                 R.color.colorGreen50
             )
@@ -84,22 +80,9 @@ class Toast @JvmOverloads constructor(
     }
 
     private fun applyToastStyle() {
-        setCardBackgroundColor(resolveColorAttribute(toastType.colorAttr, R.color.colorFFF))
-        iconView.setImageResource(toastType.iconRes)
-        messageView.text = toastMessage
-    }
-
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            ContextCompat.getColor(context, fallbackColor)
-        }
+        setCardBackgroundColor(context.resolveColorAttribute(toastType.colorAttr, R.color.colorFFF))
+        binding.ivIcon.setImageResource(toastType.iconRes)
+        binding.tvMessage.text = toastMessage
     }
 
     fun setToast(type: Type, message: String) {
@@ -125,8 +108,8 @@ class Toast @JvmOverloads constructor(
             ).apply {
                 gravity = Gravity.BOTTOM
                 bottomMargin = bottomMarginDp
-                leftMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-                rightMargin = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+                leftMargin = context.resources.getDimensionPixelSize(R.dimen.margin_16dp)
+                rightMargin = context.resources.getDimensionPixelSize(R.dimen.margin_16dp)
             }
         )
 
