@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- CheckBox Text Appearances -->
     <style name="CheckBoxTextAppearance.Normal" parent="TextAppearance.AppCompat">
         <item name="android:textColor">?attr/colorForegroundBlack</item>
         <item name="android:fontFamily">@font/inter_regular</item>
@@ -20,7 +19,6 @@
         <item name="android:textColor">?attr/colorForegroundDisabled</item>
     </style>
 
-    <!-- CustomCheckBox Style -->
     <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:button">@null</item>
         <item name="android:background">@null</item>

@@ -48,5 +48,4 @@
         app:layout_constraintStart_toStartOf="@id/tvExpiredDate"
         app:layout_constraintTop_toBottomOf="@id/tvExpiredDate"
         tools:text="Cuti Terpakai: 1 Hari" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

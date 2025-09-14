@@ -83,5 +83,4 @@
         app:layout_constraintTop_toTopOf="@id/btnFooterDualButtonSecondary"
         app:layout_constraintStart_toEndOf="@id/btnFooterDualButtonSecondary"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

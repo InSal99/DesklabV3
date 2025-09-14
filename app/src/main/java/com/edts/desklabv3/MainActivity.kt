@@ -225,20 +225,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.bottom.navigation.BottomNavigation
 import com.edts.components.bottom.navigation.BottomNavigationDelegate
 import com.edts.components.bottom.navigation.BottomNavigationItem
 import com.edts.components.checkbox.CheckBox
 import com.edts.components.radiobutton.RadioGroup
-import com.edts.components.tab.Tab
+import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.databinding.ActivityMainBinding
-import com.edts.desklabv3.features.event.ui.EventDetailRSVPView
-import com.edts.desklabv3.features.event.ui.EventDetailViewAttendance
-import com.edts.desklabv3.features.event.ui.EventDetailViewNoRSVP
-import com.edts.desklabv3.features.event.ui.EventDetailViewTolakUndangan
+import com.edts.desklabv3.features.AssetQRCodeFragment
+import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailRSVPView
+import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewAttendance
+import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewNoRSVP
+import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewTolakUndangan
 import com.edts.desklabv3.features.event.ui.attendanceoffline.ScanQRAttendanceView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListAttendanceView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
@@ -309,6 +309,7 @@ class MainActivity : AppCompatActivity() {
                 "EventDetailViewTolakUndangan" -> EventDetailViewTolakUndangan()
                 "SuccessDenyInvitationView" -> SuccessDenyInvitationView()
                 "EventListInvitationTolakEndView" -> EventListInvitationTolakEndView()
+                "AssetQRCodeFragment" -> AssetQRCodeFragment()
                 "SuccessRegistrationView" -> SuccessRegistrationView().apply {
                     arguments = Bundle().apply {
                         putString("flow_type", flowType)
@@ -539,8 +540,8 @@ class MainActivity : AppCompatActivity() {
             val undanganTabPosition = 2
             val viewHolder = binding.rvTabEventListDaftarRSVP.findViewHolderForAdapterPosition(undanganTabPosition)
             viewHolder?.let { holder ->
-                val tabView = holder.itemView.findViewById<Tab>(R.id.cvTab)
-                tabView?.apply {
+                val tabItemView = holder.itemView.findViewById<TabItem>(R.id.cvTab)
+                tabItemView?.apply {
                     showBadge = showUndanganBadge
                     if (showUndanganBadge) {
                         badgeText = "1"

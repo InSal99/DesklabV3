@@ -14,7 +14,6 @@ class BottomNavigation @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr), BottomNavigationDelegate {
-
     private val binding: BottomNavigationBinding = BottomNavigationBinding.inflate(
         LayoutInflater.from(context),
         this,
@@ -53,7 +52,7 @@ class BottomNavigation @JvmOverloads constructor(
         )
     }
 
-    private var activeItemPosition: Int = 0 // Default to first item
+    private var activeItemPosition: Int = 0
         set(value) {
             if (field != value && value in 0 until itemCount.value) {
                 val oldValue = field
@@ -185,23 +184,19 @@ class BottomNavigation @JvmOverloads constructor(
             Log.d(TAG, "Item $index visibility: ${if (shouldBeVisible) "VISIBLE" else "GONE"}")
         }
 
-        // Ensure active item is within visible range
         if (activeItemPosition >= itemCount.value) {
             activeItemPosition = 0
         }
 
-        // Make sure we still have an active item after visibility changes
         ensureActiveItemExists()
     }
 
     private fun updateActiveItemState(oldPosition: Int, newPosition: Int) {
-        // Deactivate old item only if it's visible and valid
         if (oldPosition in 0 until navigationItems.size &&
             oldPosition < itemCount.value) {
             navigationItems[oldPosition].navState = BottomNavigationItem.NavState.INACTIVE
         }
 
-        // Activate new item
         if (newPosition in 0 until navigationItems.size) {
             navigationItems[newPosition].navState = BottomNavigationItem.NavState.ACTIVE
         }
@@ -210,7 +205,6 @@ class BottomNavigation @JvmOverloads constructor(
     }
 
     private fun ensureActiveItemExists() {
-        // If no active item or active item is not visible, set first visible item as active
         if (activeItemPosition !in 0 until itemCount.value && itemCount.value > 0) {
             activeItemPosition = 0
             Log.d(TAG, "No active item found, setting first item as active")

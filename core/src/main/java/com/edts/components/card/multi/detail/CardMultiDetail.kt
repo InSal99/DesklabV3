@@ -13,7 +13,6 @@ import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.CardMultiDetailBinding
-import com.edts.components.card.multi.detail.CardMultiDetailDelegate
 import com.google.android.material.card.MaterialCardView
 
 class CardMultiDetail @JvmOverloads constructor(
@@ -21,7 +20,6 @@ class CardMultiDetail @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: CardMultiDetailBinding = CardMultiDetailBinding.inflate(
         LayoutInflater.from(context),
         this,

@@ -14,6 +14,5 @@
         <attr name="footerDescription" />
         <attr name="statusBadgeText" />
         <attr name="statusBadgeType" />
-
     </declare-styleable>
 </resources>

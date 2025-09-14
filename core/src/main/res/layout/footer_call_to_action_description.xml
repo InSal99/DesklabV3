@@ -48,5 +48,4 @@
         app:layout_constraintStart_toEndOf="@id/tvFooterCTADescTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterCTADescDescription" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -74,5 +74,4 @@
         app:layout_constraintTop_toTopOf="@id/btnDetailAction2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/btnDetailAction2" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,6 @@ class Badge @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
     private val binding: BadgeBinding = BadgeBinding.inflate(
         LayoutInflater.from(context),
         this,

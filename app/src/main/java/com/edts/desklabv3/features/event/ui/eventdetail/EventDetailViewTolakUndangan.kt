@@ -1,32 +1,31 @@
-package com.edts.desklabv3.features.event.ui
+package com.edts.desklabv3.features.event.ui.eventdetail
 
-import android.content.ClipData
-import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.os.bundleOf
 import androidx.core.text.HtmlCompat
 import androidx.core.text.parseAsHtml
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
-import com.edts.components.detail.information.DetailInformationA
 import com.edts.components.footer.Footer
 import com.edts.components.footer.FooterDelegate
+import com.edts.components.infobox.InfoBox
+import com.edts.components.input.field.InputField
+import com.edts.components.input.field.InputFieldConfig
+import com.edts.components.input.field.InputFieldDelegate
+import com.edts.components.input.field.InputFieldType
+import com.edts.components.modal.ModalityConfirmationPopUp
 import com.edts.components.modal.ModalityLoadingPopUp
-import com.edts.components.status.badge.StatusBadge
+import com.edts.components.radiobutton.RadioGroup
+import com.edts.components.radiobutton.RadioGroupDelegate
 import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.core.util.ListTagHandler
@@ -36,15 +35,15 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class EventDetailViewAttendance : Fragment() {
+class EventDetailViewTolakUndangan : Fragment() {
 
     private var _binding: FragmentEventDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var timeLocationAdapter: EventTimeLocationAdapter
     private var bottomTray: BottomTray? = null
-    private var fromSuccess: Boolean = false
-    private var attendanceType: String = ""
-    private var meetingLink: String = ""
+    private var inputField: InputField? = null
+    private var currentSelectedOption: String? = null
+    private var trayContentContainer: LinearLayout? = null
 
     companion object {
         const val EVENT_DESCRIPTION_HTML = """
@@ -56,6 +55,7 @@ class EventDetailViewAttendance : Fragment() {
               <li>Networking opportunities with peers</li>
               <li>Q&A sessions with speakers</li>
             </ul>
+            
             <ol>
               <li>Numbered item one</li>
               <li>Numbered item two</li>
@@ -70,6 +70,7 @@ class EventDetailViewAttendance : Fragment() {
               <li>Numbered item eleven</li>
               <li>Numbered item twelve</li>
             </ol>
+            
             <p>Join us for an exciting learning experience! 🚀</p>
             <p>For more information, visit our <a href="https://example.com">website</a>.</p>
         """
@@ -87,19 +88,11 @@ class EventDetailViewAttendance : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fromSuccess = arguments?.getBoolean("from_success", false) ?: false
-        attendanceType = arguments?.getString("attendance_type", "online") ?: "online"
-        meetingLink = arguments?.getString("meeting_link", "") ?: ""
-
         setupBackButton()
         setupSpeakerRecyclerView()
         setupTimeLocationRecyclerView()
         setupHtmlDescription()
         setupFooterButton()
-
-        if (fromSuccess) {
-            applySuccessViewChanges(attendanceType)
-        }
     }
 
     private fun setupBackButton() {
@@ -110,10 +103,10 @@ class EventDetailViewAttendance : Fragment() {
 
     private fun setupFooterButton() {
         binding.eventDetailFooter.footerDelegate = object : FooterDelegate {
-            override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {
+            override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {}
+            override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {
                 showBottomTray()
             }
-            override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {}
             override fun onRegisterClicked() {}
             override fun onContinueClicked() {}
             override fun onCancelClicked() {}
@@ -123,166 +116,269 @@ class EventDetailViewAttendance : Fragment() {
     }
 
     private fun configureFooter() {
-        binding.eventDetailFooter.setFooterType(Footer.FooterType.CALL_TO_ACTION)
-        binding.eventDetailFooter.setPrimaryButtonText("Catat Kehadiran")
-        binding.eventDetailFooter.setPrimaryButtonEnabled(true)
-        binding.eventDetailFooter.showInfoBox(false)
+        binding.eventDetailFooter.apply {
+            setFooterType(Footer.FooterType.DUAL_BUTTON)
+            setPrimaryButtonText("Terima Undangan")
+            setSecondaryButtonText("Tolak Undangan")
+            setPrimaryButtonEnabled(true)
+            setSecondaryButtonEnabled(true)
+            setDescriptionVisibility(true)
+            setDualButtonDescription("Peserta Terdaftar", "15", "200")
+            showInfoBox(true)
+            setInfoBoxText("15 peserta sudah reservasi. Amankan spotmu!")
+            setInfoBoxVariant(InfoBox.InfoBoxVariant.INFORMATION)
+        }
+    }
+
+    private fun showEventInfo() {
+        Toast.info(requireContext(), "Show event info")
     }
 
     private fun showBottomTray() {
         if (bottomTray?.isVisible == true) return
 
         bottomTray = BottomTray.newInstance(
-            title = "Pilih Tipe Kehadiran",
+            title = "Alasan Penolakan",
             showDragHandle = true,
-            showFooter = false,
+            showFooter = true,
             hasShadow = true,
             hasStroke = true
         )
 
-        val contentView = createBottomTrayContent()
-        bottomTray?.setContentView(contentView)
+        val mainContainer = LinearLayout(requireContext()).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            orientation = LinearLayout.VERTICAL
+            setPadding(
+                resources.getDimensionPixelSize(R.dimen.margin_16dp),
+                resources.getDimensionPixelSize(R.dimen.margin_8dp),
+                resources.getDimensionPixelSize(R.dimen.margin_16dp),
+                resources.getDimensionPixelSize(R.dimen.margin_16dp)
+            )
+        }
+        trayContentContainer = mainContainer
+
+        val radioGroup = createRadioGroup()
+        mainContainer.addView(radioGroup)
+        bottomTray?.setContentView(mainContainer)
+
 
         bottomTray?.delegate = object : com.edts.components.tray.BottomTrayDelegate {
             override fun onShow(dialog: DialogInterface) {
+                bottomTray?.configureFooter { footer: Footer ->
+                    footer.setFooterType(Footer.FooterType.DUAL_BUTTON)
+                    footer.setPrimaryButtonText("Kirim")
+                    footer.setSecondaryButtonText("Batalkan")
+                    footer.setPrimaryButtonEnabled(true)
+                    footer.setSecondaryButtonEnabled(true)
+
+                    footer.delegate = object : FooterDelegate {
+                        override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {
+                            handleSubmit()
+                        }
+
+                        override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {
+                            bottomTray?.dismiss()
+                        }
+
+                        override fun onRegisterClicked() {}
+                        override fun onContinueClicked() {}
+                        override fun onCancelClicked() {}
+                    }
+                }
             }
 
             override fun onDismiss(dialog: DialogInterface) {
                 bottomTray = null
+                inputField = null
+                currentSelectedOption = null
+                trayContentContainer = null
             }
-
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            }
+            override fun onStateChanged(bottomSheet: View, newState: Int) {}
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
         }
 
-        bottomTray?.show(childFragmentManager, "event_actions_bottom_tray")
+        bottomTray?.show(childFragmentManager, "rejection_reason_bottom_tray")
     }
 
-    private fun createBottomTrayContent(): View {
-        val contentView = layoutInflater.inflate(com.edts.desklabv3.R.layout.bottom_tray_event_options, null)
-
-        val recyclerView = contentView.findViewById<RecyclerView>(com.edts.desklabv3.R.id.rvEventOptions)
-        val optionAdapter = EventOptionAdapter { position ->
-            Log.d("Present", "User present option $position")
-            bottomTray?.dismiss()
-
-            Handler(Looper.getMainLooper()).postDelayed({
-                handleOptionSelected(position)
-            }, 300)
-        }
-
-        recyclerView.apply {
-            adapter = optionAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        val options = listOf(
-            "online" to R.drawable.ic_chevron_right,
-            "offline" to R.drawable.ic_chevron_right
-        )
-
-        optionAdapter.submitList(options)
-
-        return contentView
-    }
-
-    private fun applySuccessViewChanges(attendanceType: String) {
-        configureFooterForSuccess(attendanceType)
-        updateTimeLocationListWithAction()
-        setupPosterClick()
-    }
-
-    private fun setupPosterClick() {
-        binding.ivDetailEventPoster.setOnClickListener {
-            parentFragmentManager.popBackStack(
-                null,
-                FragmentManager.POP_BACK_STACK_INCLUSIVE
+    private fun createRadioGroup(): RadioGroup {
+        return RadioGroup(requireContext()).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
+
+            buttonSpacing = 8.dpToPx()
+
+            val options = listOf(
+                "Saya berhalangan dengan jadwal lain",
+                "Topik event kurang sesuai minat saya",
+                "Lainnya"
+            )
+
+            setData(options) { item ->
+                item
+            }
+
+            setOnItemSelectedListener(object : RadioGroupDelegate {
+                override fun onItemSelected(position: Int, data: Any?) {
+                    val selectedOption = data.toString()
+                    Log.d("RadioGroup", "Selected: $selectedOption at position $position")
+
+                    if (selectedOption == "Lainnya") {
+                        showInputField()
+                    } else {
+                        hideInputField()
+                    }
+
+                    currentSelectedOption = selectedOption
+                }
+            })
         }
     }
 
-    private fun configureFooterForSuccess(attendanceType: String) {
-        binding.eventDetailFooter.setFooterType(Footer.FooterType.NO_ACTION)
-        binding.eventDetailFooter.setPrimaryButtonEnabled(false)
-        binding.eventDetailFooter.showInfoBox(false)
-        binding.eventDetailFooter.setStatusBadge("Kehadiran Tercatat", StatusBadge.ChipType.APPROVED)
+    private fun showInputField() {
+        hideInputField()
 
-        val typeText = if (attendanceType == "offline") "Kehadiran Offline" else "Kehadiran Online"
-        binding.eventDetailFooter.setTitleAndDescription("Tipe Kehadiran", typeText)
+        inputField = InputField(requireContext()).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                topMargin = resources.getDimensionPixelSize(R.dimen.margin_4dp)
+            }
+
+            val config = InputFieldConfig(
+                type = InputFieldType.TextArea,
+                title = "",
+                hint = "Masukkan alasan penolakan",
+                isRequired = false,
+                minLines = 3,
+                maxLines = 5,
+                minLength = 10,
+                maxLength = 500
+            ).apply {
+                setSupportingText("Minimum 10 karakter")
+            }
+
+            configure(config, "other_reason")
+
+            delegate = object : InputFieldDelegate {
+                override fun onValueChange(fieldId: String, value: Any?) {
+                    Log.d("InputField", "Value changed: $value")
+                }
+
+                override fun onValidationChange(fieldId: String, isValid: Boolean) {
+                    Log.d("InputField", "Validation changed: $isValid")
+                }
+            }
+        }
+
+        trayContentContainer?.addView(inputField)
     }
 
+    private fun hideInputField() {
+        inputField?.let {
+            trayContentContainer?.removeView(it)
+            inputField = null
+        }
+    }
 
-    private fun updateTimeLocationListWithAction() {
-        val startDateTime = "2023-12-25 19:00:00"
-        val endDateTime = "2023-12-27 22:00:00"
-
-        val timeLocationList = listOf(
-            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", meetingLink)
-        )
-
-        timeLocationAdapter.submitList(timeLocationList)
-
-        // Enable actions for link meeting
-        timeLocationAdapter.setLinkMeetingAction(true, meetingLink) { actionType ->
-            when (actionType) {
-                "copy" -> copyMeetingLinkToClipboard()
-                "open" -> openMeetingLink()
+    private fun handleOptionSelected(option: String) {
+        when (option) {
+            "Saya berhalangan dengan jadwal lain" -> {
+                handleOptionOne()
+            }
+            "Topik event kurang sesuai minat saya" -> {
+                handleOptionTwo()
+            }
+            "Lainnya" -> {
             }
         }
     }
 
-    private fun copyMeetingLinkToClipboard() {
-        val clipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-        val clip = ClipData.newPlainText("Meeting Link", meetingLink)
-        clipboardManager.setPrimaryClip(clip)
-        Toast.success(requireContext(), "Link meeting disalin")
-    }
+    private fun handleSubmit() {
+        val selectedOption = currentSelectedOption
+        val otherReason = inputField?.getValue()?.toString()?.trim()
 
-    private fun openMeetingLink() {
-        try {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(meetingLink))
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.error(requireContext(), "Tidak dapat membuka link")
+        when {
+            selectedOption == "Lainnya" && otherReason.isNullOrEmpty() -> {
+                inputField?.setError("Harap jelaskan alasan Anda")
+                Toast.error(requireContext(), "Harap isi alasan lainnya")
+            }
+            selectedOption == "Lainnya" && otherReason != null -> {
+                showConfirmationDialog()
+            }
+            selectedOption != null -> {
+                showConfirmationDialog()
+            }
+            else -> {
+                Toast.error(requireContext(), "Harap pilih alasan")
+            }
         }
     }
 
-    private fun handleOptionSelected(position: Int) {
-        when (position) {
-            0 -> handleJoinOnline()
-            1 -> handleJoinOffline()
+    private fun showConfirmationDialog() {
+        val reason = if (currentSelectedOption == "Lainnya") {
+            inputField?.getValue()?.toString()?.trim() ?: ""
+        } else {
+            currentSelectedOption ?: ""
         }
+
+        ModalityConfirmationPopUp.show(
+            context = requireContext(),
+            title = "Lanjutkan Penolakan?",
+            description = "Dengan melanjutkan, penolakan Anda akan tercatat dan hanya bisa dibatalkan melalui HR. Lanjutkan penolakan?",
+            confirmButtonLabel = "Ya, Lanjutkan",
+            closeButtonLabel = "Tidak",
+            onConfirm = {
+                bottomTray?.dismiss()
+                showLoadingAndNavigate()
+            },
+            onClose = { }
+        )
     }
 
-
-    private fun handleJoinOnline() {
-        // Show loading modal
+    private fun showLoadingAndNavigate() {
         val loadingDialog = ModalityLoadingPopUp.show(
             context = requireContext(),
-            title = "Tunggu sebentar ...",
-            isCancelable = false
+            title = "Tunggu sebentar ..."
         )
 
         binding.root.postDelayed({
             loadingDialog?.dismiss()
-            navigateToSuccessAttendanceOnline()
+            navigateToSuccessScreen()
         }, 3000)
     }
 
-    private fun navigateToSuccessAttendanceOnline() {
-        val result = bundleOf("fragment_class" to "SuccessAttendanceOnlineView")
+    private fun navigateToSuccessScreen() {
+        val result = bundleOf(
+            "fragment_class" to "SuccessDenyInvitationView"
+        )
         parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
-    private fun handleJoinOffline() {
-        val result = bundleOf("fragment_class" to "ScanQRAttendanceView")
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+
+    private fun handleOptionThreeWithReason(reason: String) {
+        Toast.info(requireContext(), "Alasan: $reason")
+        Log.d("Rejection", "Custom reason: $reason")
+    }
+
+    private fun handleOptionOne() {
+        Toast.info(requireContext(), "Option One selected")
+        Log.d("Option", "Option One selected")
+    }
+
+    private fun handleOptionTwo() {
+        Toast.info(requireContext(), "Option Two selected")
+        Log.d("Option", "Option Two selected")
+    }
+
+    private fun handleOptionThree() {
+        Toast.info(requireContext(), "Option Three selected")
+        Log.d("Option", "Option Three selected")
     }
 
     private fun setupSpeakerRecyclerView() {
@@ -400,4 +496,6 @@ class EventDetailViewAttendance : Fragment() {
         bottomTray = null
         _binding = null
     }
+
+    private fun Int.dpToPx(): Int = (this * resources.displayMetrics.density).toInt()
 }

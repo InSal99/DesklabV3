@@ -422,9 +422,19 @@
             app:size="SM"
             android:text="Flow Invited Event - Tolak Undangan"
             android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFlow3"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Flow Cuti Feature Improvements"
+            android:layout_marginTop="@dimen/margin_12dp"
             android:layout_marginBottom="@dimen/margin_32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnFlow3"
+            app:layout_constraintTop_toBottomOf="@id/btnFlow4"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,5 +47,4 @@
             android:textColor="?attr/colorForegroundTertiary"
             tools:text="Rab" />
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

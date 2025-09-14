@@ -40,22 +40,22 @@
 
         </LinearLayout>
 
-        <com.edts.components.tab.Tab
+        <com.edts.components.tab.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"
-            app:tabText="Label"
-            app:tabShowBadge="false"
-            app:tabState="active" />
+            app:tabItemText="Label"
+            app:tabItemShowBadge="false"
+            app:tabItemState="active" />
 
-        <com.edts.components.tab.Tab
+        <com.edts.components.tab.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
-            app:tabText="Label"
-            app:tabBadgeText="1"
-            app:tabShowBadge="true"
-            app:tabState="inactive" />
+            app:tabItemText="Label"
+            app:tabItemBadgeText="1"
+            app:tabItemShowBadge="true"
+            app:tabItemState="inactive" />
 
 
 

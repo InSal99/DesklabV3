@@ -28,8 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cmdContent"
-            />
+            app:layout_constraintEnd_toStartOf="@+id/cmdContent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cmdContent"
@@ -51,8 +50,7 @@
                 android:textColor="?attr/colorForegroundPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/cvCmdDescription"
-                />
+                app:layout_constraintBottom_toTopOf="@+id/cvCmdDescription" />
 
             <com.edts.components.card.multi.detail.CardMultiDetailWrapperInfo
                 android:id="@+id/cvCmdDescription"
@@ -78,5 +76,4 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.google.android.material.card.MaterialCardView>

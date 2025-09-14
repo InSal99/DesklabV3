@@ -44,5 +44,4 @@
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toEndOf="@+id/ivDivider"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

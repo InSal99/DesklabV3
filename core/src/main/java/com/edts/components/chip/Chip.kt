@@ -23,7 +23,6 @@ class Chip @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: SelectionChipBinding = SelectionChipBinding.inflate(
         LayoutInflater.from(context),
         this,
@@ -131,6 +130,9 @@ class Chip @JvmOverloads constructor(
     private var lastClickTime = 0L
     private val clickDebounceDelay = 300L
 
+    private var iconClickCount = 0
+    private var lastIconClickTime = 0L
+
     init {
         context.theme.obtainStyledAttributes(
             attrs,
@@ -169,10 +171,77 @@ class Chip @JvmOverloads constructor(
                 updateChipBadgeVisibility()
                 updateChipIcon()
                 setupPressState()
+                setupIconClickListener()
             } finally {
                 recycle()
             }
         }
+    }
+
+    private fun setupIconClickListener() {
+        binding.ivChip.setOnClickListener { view ->
+            handleIconClick()
+        }
+
+        binding.ivChip.isClickable = true
+        binding.ivChip.isFocusable = true
+
+        binding.ivChip.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    view.alpha = 0.7f
+                    false // Return false to allow the click to be processed
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    view.alpha = 1.0f
+                    false
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun handleIconClick() {
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - lastIconClickTime > clickDebounceDelay) {
+            iconClickCount++
+            lastIconClickTime = currentTime
+
+            Log.d(TAG, "Icon clicked!")
+            Log.d(TAG, "  - Chip Text: ${chipText ?: "No text"}")
+            Log.d(TAG, "  - Chip State: $chipState")
+            Log.d(TAG, "  - Icon visible: ${chipShowIcon}")
+            Log.d(TAG, "  - Total icon clicks: $iconClickCount")
+            Log.d(TAG, "  - Icon click timestamp: $currentTime")
+            Log.d(TAG, "--------------------")
+
+            delegate?.onChipIconClick(this)
+        } else {
+            Log.d(TAG, "Icon click ignored due to debounce (too fast)")
+        }
+    }
+
+    fun setIconClickable(clickable: Boolean) {
+        binding.ivChip.isClickable = clickable
+        binding.ivChip.isFocusable = clickable
+
+        if (!clickable) {
+            binding.ivChip.setOnClickListener(null)
+            binding.ivChip.setOnTouchListener(null)
+        } else {
+            setupIconClickListener()
+        }
+    }
+
+    fun resetIconClickCount() {
+        val previousCount = iconClickCount
+        iconClickCount = 0
+        Log.d(TAG, "Icon '${chipText ?: "Unknown"}' click count reset from $previousCount to 0")
+    }
+
+    fun getIconClickCount(): Int {
+        return iconClickCount
     }
 
     private fun getCachedColor(@AttrRes colorAttr: Int): Int {
@@ -553,7 +622,6 @@ class Chip @JvmOverloads constructor(
 
     fun setActiveBackgroundColor(color: Int) {
         customActiveBackgroundColor = color
-        // If currently in active state, update immediately
         if (chipState == ChipState.ACTIVE) {
             updateChipStateImmediate()
         }

@@ -11,20 +11,11 @@ import com.edts.components.databinding.LeaveQuotaCardBinding
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 
-/**
- * A custom view that displays leave quota information in a card format.
- *
- * This component extends MaterialCardView to encapsulate the layout and logic for displaying
- * key leave-related data. The data can be set via XML attributes or programmatically
- * by setting the component's properties.
- *
- */
 class LeaveQuotaCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: LeaveQuotaCardBinding =
         LeaveQuotaCardBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -57,9 +48,6 @@ class LeaveQuotaCard @JvmOverloads constructor(
         parseAttributes(attrs)
     }
 
-    /**
-     * Parses custom attributes from the XML layout and applies them to the view.
-     */
     private fun parseAttributes(attrs: AttributeSet?) {
         attrs?.let {
             context.withStyledAttributes(it, R.styleable.LeaveQuotaCard, 0, 0) {
@@ -71,9 +59,6 @@ class LeaveQuotaCard @JvmOverloads constructor(
         }
     }
 
-    /**
-     * Configures the visual properties of the card, such as elevation, stroke, and corners.
-     */
     private fun setupCardAppearance() {
         strokeColor = MaterialColors.getColor(this, R.attr.colorStrokeSubtle)
         radius = resources.getDimension(R.dimen.radius_8dp)
