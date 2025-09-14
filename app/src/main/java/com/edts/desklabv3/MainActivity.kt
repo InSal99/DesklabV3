@@ -230,7 +230,7 @@ import com.edts.components.bottom.navigation.BottomNavigationDelegate
 import com.edts.components.bottom.navigation.BottomNavigationItem
 import com.edts.components.checkbox.CheckBox
 import com.edts.components.radiobutton.RadioGroup
-import com.edts.components.tab.Tab
+import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.databinding.ActivityMainBinding
@@ -540,8 +540,8 @@ class MainActivity : AppCompatActivity() {
             val undanganTabPosition = 2
             val viewHolder = binding.rvTabEventListDaftarRSVP.findViewHolderForAdapterPosition(undanganTabPosition)
             viewHolder?.let { holder ->
-                val tabView = holder.itemView.findViewById<Tab>(R.id.cvTab)
-                tabView?.apply {
+                val tabItemView = holder.itemView.findViewById<TabItem>(R.id.cvTab)
+                tabItemView?.apply {
                     showBadge = showUndanganBadge
                     if (showUndanganBadge) {
                         badgeText = "1"

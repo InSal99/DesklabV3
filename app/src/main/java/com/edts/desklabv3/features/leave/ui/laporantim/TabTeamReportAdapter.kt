@@ -3,7 +3,7 @@ package com.edts.desklabv3.features.leave.ui.laporantim
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.edts.components.tab.Tab
+import com.edts.components.tab.TabItem
 import com.edts.desklabv3.databinding.ItemTabBinding
 
 class TabTeamReportAdapter(
@@ -50,7 +50,7 @@ class TabTeamReportAdapter(
         fun bind(tabText: String, isSelected: Boolean, position: Int) {
             binding.cvTab.apply {
                 this.tabText = tabText
-                tabState = if (isSelected) Tab.TabState.ACTIVE else Tab.TabState.INACTIVE
+                tabState = if (isSelected) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
 
                 setOnClickListener {
                     if (!isSelected && position != selectedPosition) {
