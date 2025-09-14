@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipChildren="false"
-    tools:context=".core.component.TabItemComponentView">
+    tools:context=".core.component.TabComponentView">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/btnLibTabItemBack"
+                android:id="@+id/btnLibTabBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
@@ -35,30 +35,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
-                android:text="Tab Item"
+                android:text="Tab"
                 android:textColor="?attr/colorForegroundPrimary" />
 
         </LinearLayout>
 
-        <com.edts.components.tab.TabItem
-            android:layout_width="wrap_content"
+        <com.edts.components.tab.Tab
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"
-            app:tabItemText="Label"
-            app:tabItemShowBadge="false"
-            app:tabItemState="active" />
+            app:initialSelectedPosition="1">
 
-        <com.edts.components.tab.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:tabItemText="Label"
-            app:tabItemBadgeText="1"
-            app:tabItemShowBadge="true"
-            app:tabItemState="inactive" />
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemText="Home"
+                app:tabItemBadgeText="3"
+                app:tabItemShowBadge="true"
+                app:tabItemState="active" />
 
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemText="Profile"
+                app:tabItemBadgeText="!"
+                app:tabItemShowBadge="true"
+                app:tabItemState="inactive" />
 
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemText="Settings"
+                app:tabItemShowBadge="false"
+                app:tabItemState="inactive" />
+        </com.edts.components.tab.Tab>
 
     </LinearLayout>
-
 </FrameLayout>
