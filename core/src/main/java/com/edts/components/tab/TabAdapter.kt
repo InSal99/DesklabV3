@@ -33,9 +33,12 @@ class TabAdapter(
         val isActive = position == selectedPosition
 
         holder.tabItem.apply {
+            resetForBinding()
+
             tabText = data.text
             badgeText = data.badgeText
             showBadge = data.showBadge
+
             tabState = if (isActive) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
 
             delegate = object : TabDelegate {

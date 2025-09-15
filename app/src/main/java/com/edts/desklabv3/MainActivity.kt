@@ -230,6 +230,8 @@ import com.edts.components.bottom.navigation.BottomNavigationDelegate
 import com.edts.components.bottom.navigation.BottomNavigationItem
 import com.edts.components.checkbox.CheckBox
 import com.edts.components.radiobutton.RadioGroup
+import com.edts.components.tab.Tab
+import com.edts.components.tab.TabData
 import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
@@ -244,7 +246,6 @@ import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationNoRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakEndView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakStartView
-import com.edts.desklabv3.features.event.ui.eventlist.TabEventListDaftarRSVPAdapter
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentNoRSVP
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentNoRSVP
@@ -266,7 +267,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dynamicRadioGroup: RadioGroup
     private lateinit var checkboxContainer: LinearLayout
     private val checkboxes = mutableListOf<CheckBox>()
-    private var tabAdapter: TabEventListDaftarRSVPAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -320,6 +320,8 @@ class MainActivity : AppCompatActivity() {
                         putString("meeting_link", bundle.getString("meeting_link", ""))
                     }
                 }
+                "HomeManagerView" -> HomeManagerView()
+                "TeamReportActivityView" -> TeamReportActivityView()
                 else -> EntryPointsView()
             }
             loadFragmentWithUI(fragment, addToBackStack = true)
@@ -478,9 +480,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             // Team report fragments
-            is TeamReportLeaveView, is TeamReportActivityView -> {
+            is TeamReportActivityView -> {
                 configureBottomNavigation(showBadge = false, showBottomNavigation = false)
                 configureHeaders(showTeamReport = true, showEventList = false)
+                configureTeamReportTabs(selectedPosition = 0)
+            }
+
+            is TeamReportLeaveView -> {
+                configureBottomNavigation(showBadge = false, showBottomNavigation = false)
+                configureHeaders(showTeamReport = true, showEventList = false)
+                configureTeamReportTabs(selectedPosition = 1)
             }
 
             // Other fragments (Success views, ScanQR, etc.)
@@ -508,50 +517,124 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureHeaders(showTeamReport: Boolean, showEventList: Boolean) {
-        binding.headerTeamReportActivity.visibility = if (showTeamReport) View.VISIBLE else View.GONE
-        binding.headerEventListDaftarRSVP.visibility = if (showEventList) View.VISIBLE else View.GONE
+        binding.HeaderWrapperTeamReportActivity.visibility = if (showTeamReport) View.VISIBLE else View.GONE
+        binding.headerWrapperEventListDaftarRSVP.visibility = if (showEventList) View.VISIBLE else View.GONE
     }
 
     private fun configureBottomNavigation(showBadge: Boolean, showBottomNavigation: Boolean) {
         Log.d("UI_CONFIG", "Configuring bottom nav: showBadge=$showBadge, showBottomNav=$showBottomNavigation")
         binding.cvBottomNavigation.visibility = if (showBottomNavigation) View.VISIBLE else View.GONE
         binding.cvBottomNavigation.apply {
-            setItemBadge(2, showBadge) // item3 is at position 2 (0-indexed)
+            setItemBadge(2, showBadge)
+        }
+    }
+
+    private fun configureTeamReportTabs(selectedPosition: Int = 0) {
+        Log.d("UI_CONFIG", "Configuring team report tabs: selectedPosition=$selectedPosition")
+
+        binding.cvHeaderTeamReportActivity.delegate = object : com.edts.components.header.HeaderDelegate {
+            override fun onLeftButtonClicked() {
+                loadFragmentWithUI(HomeManagerView(), addToBackStack = true)
+            }
+
+            override fun onRightButtonClicked() {
+                TODO("Not yet implemented")
+            }
+        }
+
+        val tabDataList = mutableListOf<TabData>()
+
+        tabDataList.add(TabData(
+            text = "Aktivitas",
+            badgeText = "",
+            showBadge = false,
+            state = if (selectedPosition == 0) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
+        ))
+
+        tabDataList.add(TabData(
+            text = "Cuti",
+            badgeText = "",
+            showBadge = false,
+            state = if (selectedPosition == 1) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
+        ))
+
+        binding.cvTabTeamReportActivity.apply {
+            setTabs(tabDataList, selectedPosition)
+
+            setOnTabClickListener(object : Tab.OnTabClickListener {
+                override fun onTabClick(position: Int, tabText: String) {
+                    Log.d("UI_CONFIG", "Team report tab clicked: position=$position, text=$tabText")
+
+                    val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+                    when (position) {
+                        0 -> {
+                            if (currentFragment !is TeamReportActivityView) {
+                                loadFragmentWithUI(TeamReportActivityView(), addToBackStack = true)
+                            }
+                        }
+                        1 -> {
+                            if (currentFragment !is TeamReportLeaveView) {
+                                loadFragmentWithUI(TeamReportLeaveView(), addToBackStack = true)
+                            }
+                        }
+                    }
+                }
+            })
         }
     }
 
     private fun configureEventListTabs(showUndanganBadge: Boolean, selectedPosition: Int = 0) {
-        Log.d("UI_CONFIG", "Configuring tabs: showUndanganBadge=$showUndanganBadge")
-        tabAdapter = TabEventListDaftarRSVPAdapter(
-            tabTexts = arrayOf("Daftar Event", "Event Saya", "Undangan"),
-            selectedPosition = selectedPosition
-        ) { position, tabText ->
-            if (position == 2 && tabText == "Undangan") {
-                val result = bundleOf("fragment_class" to "EventInvitationFragmentNoRSVP")
-                supportFragmentManager.setFragmentResult("navigate_fragment", result)
-            }
-        }
-        binding.rvTabEventListDaftarRSVP.adapter = tabAdapter
+        Log.d("UI_CONFIG", "Configuring tabs: showUndanganBadge=$showUndanganBadge, selectedPosition=$selectedPosition")
 
-        // Configure the Undangan tab badge
-        binding.rvTabEventListDaftarRSVP.post {
-            val undanganTabPosition = 2
-            val viewHolder = binding.rvTabEventListDaftarRSVP.findViewHolderForAdapterPosition(undanganTabPosition)
-            viewHolder?.let { holder ->
-                val tabItemView = holder.itemView.findViewById<TabItem>(R.id.cvTab)
-                tabItemView?.apply {
-                    showBadge = showUndanganBadge
-                    if (showUndanganBadge) {
-                        badgeText = "1"
+        val tabDataList = mutableListOf<TabData>()
+
+        tabDataList.add(TabData(
+            text = "Daftar Event",
+            badgeText = null,
+            showBadge = false,
+            state = if (selectedPosition == 0) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
+        ))
+
+        tabDataList.add(TabData(
+            text = "Event Saya",
+            badgeText = null,
+            showBadge = false,
+            state = if (selectedPosition == 1) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
+        ))
+
+        tabDataList.add(
+            TabData(
+            text = "Undangan",
+            badgeText = if (showUndanganBadge) "1" else null,
+            showBadge = showUndanganBadge,
+            state = if (selectedPosition == 2) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
+        ))
+
+        binding.cvTabEventListDaftarRSVP.apply {
+            setTabs(tabDataList, selectedPosition)
+            setOnTabClickListener(object : Tab.OnTabClickListener {
+                override fun onTabClick(position: Int, tabText: String) {
+                    Log.d("UI_CONFIG", "Tab clicked: position=$position, text=$tabText")
+                    when (position) {
+                        0 -> {
+                            val result = bundleOf("fragment_class" to "EventListDaftarRSVPView")
+                            supportFragmentManager.setFragmentResult("navigate_fragment", result)
+                        }
+                        1 -> {
+                            val result = bundleOf("fragment_class" to "MyEventDaftarRSVPView")
+                            supportFragmentManager.setFragmentResult("navigate_fragment", result)
+                        }
+                        2 -> {
+                            val result = bundleOf("fragment_class" to "EventInvitationFragmentNoRSVP")
+                            supportFragmentManager.setFragmentResult("navigate_fragment", result)
+                        }
                     }
-                    Log.d("UI_CONFIG", "Tab badge set: showBadge=$showUndanganBadge")
                 }
-            }
+            })
         }
     }
 
 
-    // Helper method for programmatically switching fragments with UI configuration
     fun switchToFragment(fragment: Fragment) {
         loadFragmentWithUI(fragment)
     }

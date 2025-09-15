@@ -17,7 +17,6 @@ class TeamReportActivityView : Fragment() {
 
     private lateinit var employeeActivityAdapter: EmployeeActivityAdapter
     private lateinit var chipTeamReportAdapter: ChipTeamReportAdapter
-    private lateinit var tabTeamReportAdapter: TabTeamReportAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
