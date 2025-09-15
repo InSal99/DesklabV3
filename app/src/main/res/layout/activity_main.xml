@@ -8,98 +8,123 @@
     tools:ignore="MergeRootFrame">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerTeamReportActivity"
+        android:id="@+id/HeaderWrapperTeamReportActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:paddingTop="62dp"
-        android:paddingHorizontal="@dimen/margin_16dp"
         android:background="@drawable/bg_rectangle_shadow_tinted"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/ivBackBtnTeamReportActivity"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:contentDescription="Notification Button"
-            android:src="@drawable/ic_chevron_left"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1:1"
-            app:tint="?attr/colorForegroundSecondary"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            style="?attr/h1SemiBold"
-            android:id="@+id/tvSectionTitleTeamReportActivity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:text="Laporan Tim"
-            android:textColor="?attr/colorForegroundPrimary"
-            app:layout_constraintStart_toEndOf="@+id/ivBackBtnTeamReportActivity"
-            app:layout_constraintTop_toTopOf="@+id/ivBackBtnTeamReportActivity"
-            app:layout_constraintBottom_toBottomOf="@+id/ivBackBtnTeamReportActivity"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTabTeamReportActivity"
+        <com.edts.components.header.Header
+            android:id="@+id/cvHeaderTeamReportActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:clipToPadding="false"
-            tools:listitem="@layout/item_tab"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/ivBackBtnTeamReportActivity"
-            app:layout_constraintStart_toStartOf="@+id/ivBackBtnTeamReportActivity"
+            app:rightButtonSrc="@drawable/ic_star"
+            app:sectionSubtitleText="Manage your account preferences"
+            app:sectionTitleText="Laporan Tim"
+            app:showLeftButton="true"
+            app:showRightButton="false"
+            app:showSectionSubtitle="false"
+            app:showSectionTitle="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.edts.components.tab.Tab
+            android:id="@+id/cvTabTeamReportActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            app:initialSelectedPosition="1"
+            app:layout_constraintTop_toBottomOf="@+id/cvHeaderTeamReportActivity"
+            app:layout_constraintStart_toStartOf="@+id/cvHeaderTeamReportActivity"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent">
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemBadgeText="3"
+                app:tabItemShowBadge="true"
+                app:tabItemState="active"
+                app:tabItemText="Aktivitas" />
+
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemBadgeText="!"
+                app:tabItemShowBadge="true"
+                app:tabItemState="inactive"
+                app:tabItemText="Cuti" />
+        </com.edts.components.tab.Tab>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerEventListDaftarRSVP"
+        android:id="@+id/headerWrapperEventListDaftarRSVP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:paddingTop="56dp"
-        android:paddingHorizontal="@dimen/margin_16dp"
         android:background="@drawable/bg_rectangle_shadow_tinted"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            style="?attr/d3SemiBold"
-            android:id="@+id/tvSectionTitleEventListDaftarRSVP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:text="Event"
-            android:textColor="?attr/colorForegroundPrimary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTabEventListDaftarRSVP"
+        <com.edts.components.header.Header
+            android:id="@+id/cvHeaderEventListDaftarRSVP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            android:clipToPadding="false"
-            tools:listitem="@layout/item_tab"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitleEventListDaftarRSVP"
-            app:layout_constraintStart_toStartOf="@+id/tvSectionTitleEventListDaftarRSVP"
+            app:rightButtonSrc="@drawable/ic_star"
+            app:sectionSubtitleText="Manage your account preferences"
+            app:sectionTitleText="Event"
+            app:showLeftButton="false"
+            app:showRightButton="false"
+            app:showSectionSubtitle="false"
+            app:showSectionTitle="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.edts.components.tab.Tab
+            android:id="@+id/cvTabEventListDaftarRSVP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            app:initialSelectedPosition="1"
+            app:layout_constraintTop_toBottomOf="@+id/cvHeaderEventListDaftarRSVP"
+            app:layout_constraintStart_toStartOf="@+id/cvHeaderEventListDaftarRSVP"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent">
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemBadgeText="3"
+                app:tabItemShowBadge="true"
+                app:tabItemState="active"
+                app:tabItemText="Daftar Event" />
+
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemBadgeText="!"
+                app:tabItemShowBadge="true"
+                app:tabItemState="inactive"
+                app:tabItemText="Event Saya" />
+
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemBadgeText="!"
+                app:tabItemShowBadge="true"
+                app:tabItemState="inactive"
+                app:tabItemText="Undangan" />
+        </com.edts.components.tab.Tab>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/header_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="HeaderWrapperTeamReportActivity,headerWrapperEventListDaftarRSVP" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -107,7 +132,7 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerEventListDaftarRSVP"
+        app:layout_constraintTop_toBottomOf="@id/header_barrier"
         app:layout_constraintBottom_toTopOf="@+id/cvBottomNavigation" />
 
     <com.edts.components.bottom.navigation.BottomNavigation

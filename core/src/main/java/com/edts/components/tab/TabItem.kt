@@ -57,7 +57,7 @@ class TabItem @JvmOverloads constructor(
 
     private var isFirstLaunch = true
 
-    var tabState: TabState = TabState.ACTIVE
+    var tabState: TabState = TabState.INACTIVE
         set(value) {
             val previousState = field
             field = value
@@ -66,7 +66,7 @@ class TabItem @JvmOverloads constructor(
                 applyTabStateImmediately()
                 isFirstLaunch = false
             } else {
-                updateTabState(animated = previousState != value)
+                updateTabState(animated = true)
             }
         }
 
@@ -106,6 +106,10 @@ class TabItem @JvmOverloads constructor(
         setOnClickListener {
             handleTabClick()
         }
+    }
+
+    fun resetForBinding() {
+        isFirstLaunch = true
     }
 
     private fun handleTabClick() {

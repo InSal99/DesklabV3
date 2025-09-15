@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/margin_16dp"
     android:paddingTop="57dp"
-    android:paddingBottom="18dp"
+    android:paddingBottom="@dimen/margin_12dp"
     android:background="@android:color/transparent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
