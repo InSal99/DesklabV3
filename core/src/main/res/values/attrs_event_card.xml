@@ -17,6 +17,7 @@
         <attr name="cardEventTitle" format="string" />
         <attr name="cardEventDate" format="string" />
 
+        <attr name="showCardStatus" format="boolean" />
         <attr name="cardStatusType" format="enum">
             <enum name="rsvp" value="0" />
             <enum name="registered" value="1" />

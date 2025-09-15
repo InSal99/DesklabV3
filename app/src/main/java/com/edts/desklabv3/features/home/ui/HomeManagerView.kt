@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.desklabv3.R
@@ -53,6 +54,11 @@ class HomeManagerView : Fragment() {
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
+
+        binding.ivCardLaporanTim.setOnClickListener {
+            val result = bundleOf("fragment_class" to "TeamReportActivityView")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        }
     }
 
     override fun onDestroyView() {

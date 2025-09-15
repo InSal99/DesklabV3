@@ -13,13 +13,11 @@ import androidx.annotation.FontRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 
-// Converts HTML String to Spanned (styled text)
 fun String.toSpanned(): Spanned {
     val processedHtml = this.processNumberedLists()
     return Html.fromHtml(processedHtml, Html.FROM_HTML_MODE_COMPACT)
 }
 
-// Helper function to map numbered lists (unsupported) styled text
 private fun String.processNumberedLists(): String {
     return this.replace(Regex("<ol[^>]*>([\\s\\S]*?)</ol>")) { matchResult ->
         val listContent = matchResult.groupValues[1]
@@ -33,7 +31,6 @@ private fun String.processNumberedLists(): String {
     }
 }
 
-// Sets HTML-styled text and makes links clickable
 fun TextView.setHtml(html: String) {
     text = html.toSpanned()
     movementMethod = LinkMovementMethod.getInstance()

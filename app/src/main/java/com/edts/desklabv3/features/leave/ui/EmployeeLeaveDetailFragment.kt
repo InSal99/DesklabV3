@@ -11,7 +11,6 @@ import com.edts.components.R
 import com.edts.desklabv3.databinding.FragmentEmployeeLeaveDetailBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.LeaveQuota
-import com.google.android.material.transition.MaterialSharedAxis
 
 class EmployeeLeaveDetailFragment : Fragment() {
     private var _binding: FragmentEmployeeLeaveDetailBinding? = null
@@ -28,14 +27,14 @@ class EmployeeLeaveDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.ivEmployeeLeaveDetailHeader.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         setupLeaveQuotaRecyclerView()
     }
 
-    /**
-     * Sets up the horizontal RecyclerView for leave quota cards.
-     */
     private fun setupLeaveQuotaRecyclerView() {
-        // Create sample data. In a real app, this would come from an API.
         val leaveQuotaData = listOf(
             LeaveQuota("Cuti Tahun Ini", 5, "15/10/2025", 1),
             LeaveQuota("Cuti Tahun Sebelumnya", 8, "15/10/2025", 2),

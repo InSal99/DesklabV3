@@ -83,8 +83,11 @@ class EventListAdapter(
                 }
 
                 event.statusType?.let { statusType ->
+                    showStatus = true
                     this.statusType = statusType
                     statusText = event.statusText ?: ""
+                } ?: run {
+                    showStatus = false
                 }
 
                 setOnClickListener {
