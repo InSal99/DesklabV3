@@ -7,11 +7,12 @@ import com.edts.components.leave.card.LeaveCounter
 import com.edts.desklabv3.databinding.ItemLeaveCardBinding
 
 class LeaveCardAdapter(
-    private var employees: List<Employee>
+    private var employees: List<Employee>,
+    private val onEmployeeClick: (Employee) -> Unit = {}
 ) : RecyclerView.Adapter<LeaveCardAdapter.LeaveCardViewHolder>() {
 
     class LeaveCardViewHolder(private val binding: ItemLeaveCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(employee: Employee) {
+        fun bind(employee: Employee, onEmployeeClick: (Employee) -> Unit) {
             binding.leaveCard.apply {
                 employeeName = employee.employeeName
                 employeeRole = employee.employeeRole
@@ -24,6 +25,10 @@ class LeaveCardAdapter(
                 }
 
                 employeeImage = com.edts.desklabv3.R.drawable.image_avatar_placeholder
+
+                setOnClickListener {
+                    onEmployeeClick(employee)
+                }
             }
         }
     }
@@ -34,7 +39,7 @@ class LeaveCardAdapter(
     }
 
     override fun onBindViewHolder(holder: LeaveCardViewHolder, position: Int) {
-        holder.bind(employees[position])
+        holder.bind(employees[position], onEmployeeClick)
     }
 
     override fun getItemCount(): Int = employees.size

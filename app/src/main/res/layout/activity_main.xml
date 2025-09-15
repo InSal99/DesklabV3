@@ -126,10 +126,21 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="HeaderWrapperTeamReportActivity,headerWrapperEventListDaftarRSVP" />
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_barrier"
+        app:layout_constraintBottom_toTopOf="@+id/cvBottomNavigation" />
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_barrier"
