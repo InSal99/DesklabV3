@@ -1,35 +1,21 @@
 package com.edts.desklabv3.features.event.ui.eventdetail
 
-import android.content.DialogInterface
-import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.Spanned
-import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.text.HtmlCompat
-import androidx.core.text.parseAsHtml
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.edts.components.R
 import com.edts.components.footer.Footer
 import com.edts.components.footer.FooterDelegate
 import com.edts.components.infobox.InfoBox
-import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
-import com.edts.desklabv3.core.util.ListTagHandler
+import com.edts.desklabv3.R
+import com.edts.desklabv3.core.util.formatDateRange
+import com.edts.desklabv3.core.util.formatTimeRange
+import com.edts.desklabv3.core.util.setupHtmlDescription
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
-import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.ui.rsvp.RSVPFormView
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 class EventDetailRSVPView : Fragment() {
 
@@ -37,6 +23,10 @@ class EventDetailRSVPView : Fragment() {
     private val binding get() = _binding!!
     private lateinit var timeLocationAdapter: EventTimeLocationAdapter
     private var bottomTray: BottomTray? = null
+
+    private var startDateTime: String = ""
+    private var endDateTime: String = ""
+    private var eventDescription: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,10 +40,31 @@ class EventDetailRSVPView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tvDetailEventSpeakerTitle.layoutParams = binding.tvDetailEventSpeakerTitle.layoutParams.apply {
+            if (this is ViewGroup.MarginLayoutParams) {
+                setMargins(0, 0, 0, 0)
+            }
+        }
+        binding.tvDetailEventSpeakerTitle.scaleX = 0f
+        binding.tvDetailEventSpeakerTitle.scaleY = 0f
+
+        binding.rvDetailEventSpeakersInfo.layoutParams = binding.rvDetailEventSpeakersInfo.layoutParams.apply {
+            height = 0
+            if (this is ViewGroup.MarginLayoutParams) {
+                setMargins(0, 0, 0, 0)
+            }
+        }
+
+        binding.dDetail1.layoutParams = binding.dDetail1.layoutParams.apply {
+            if (this is ViewGroup.MarginLayoutParams) {
+                setMargins(0, 16, 0, 0)
+            }
+        }
+
         setupBackButton()
-        setupSpeakerRecyclerView()
+        setEventDetails()
         setupTimeLocationRecyclerView()
-        setupHtmlDescription()
+        binding.tvEventDetailDescription.setupHtmlDescription(eventDescription)
         setupFooterButton()
     }
 
@@ -107,25 +118,10 @@ class EventDetailRSVPView : Fragment() {
         }
     }
 
-    private fun setupSpeakerRecyclerView() {
-        val speakerAdapter = EventSpeakerAdapter()
-        binding.rvDetailEventSpeakersInfo.apply {
-            adapter = speakerAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            addItemDecoration(
-                SpaceItemDecoration(
-                    context = requireContext(),
-                    spaceResId = R.dimen.margin_8dp,
-                    orientation = SpaceItemDecoration.VERTICAL
-                )
-            )
-        }
-
-        val speakerList = listOf(
-            R.drawable.avatar_placeholder to "John Doe",
-            R.drawable.avatar_placeholder to "Jane Smith"
-        )
-        speakerAdapter.submitList(speakerList)
+    private fun setEventDetails() {
+        startDateTime = EVENT_START_DATETIME
+        endDateTime = EVENT_END_DATETIME
+        eventDescription = EVENT_DESCRIPTION_HTML
     }
 
     private fun setupTimeLocationRecyclerView() {
@@ -136,119 +132,39 @@ class EventDetailRSVPView : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        val startDateTime = "2023-12-25 19:00:00"
-        val endDateTime = "2023-12-27 22:00:00"
-
         val timeLocationList = listOf(
-            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-//            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", "123 Main Street, City Center")
+            Triple(R.drawable.ic_calendar, "Tanggal", startDateTime.formatDateRange(endDateTime)),
+            Triple(R.drawable.ic_clock, "Waktu", startDateTime.formatTimeRange(endDateTime)),
+            Triple(R.drawable.ic_video, "Link Meeting", "Tersedia Setelah Kehadiran Tercatat")
         )
 
         timeLocationAdapter.submitList(timeLocationList)
     }
 
-    private fun formatDateRange(startDateTime: String, endDateTime: String): String {
-        return try {
-            val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val startDate = format.parse(startDateTime)!!
-            val endDate = format.parse(endDateTime)!!
-
-            val indonesianLocale = Locale("id", "ID")
-
-            if (isSameDay(startDate, endDate)) {
-                SimpleDateFormat("EEEE, dd MMMM yyyy", indonesianLocale).format(startDate)
-            } else {
-                if (isSameYear(startDate, endDate)) {
-                    val dateFormat = SimpleDateFormat("EEEE, dd MMMM", indonesianLocale)
-                    "${dateFormat.format(startDate)} - ${dateFormat.format(endDate)} ${SimpleDateFormat("yyyy", indonesianLocale).format(endDate)}"
-                } else {
-                    val dateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", indonesianLocale)
-                    "${dateFormat.format(startDate)} - ${dateFormat.format(endDate)}"
-                }
-            }
-        } catch (e: Exception) {
-            "Tanggal tidak valid"
-        }
-    }
-
-    private fun isSameYear(date1: Date, date2: Date): Boolean {
-        val calendar = Calendar.getInstance()
-        calendar.time = date1
-        val year1 = calendar.get(Calendar.YEAR)
-        calendar.time = date2
-        val year2 = calendar.get(Calendar.YEAR)
-        return year1 == year2
-    }
-
-    private fun formatTimeRange(startDateTime: String, endDateTime: String): String {
-        return try {
-            val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val startDate = format.parse(startDateTime)!!
-            val endDate = format.parse(endDateTime)!!
-
-            val indonesianLocale = Locale("id", "ID")
-            val timeFormat = SimpleDateFormat("HH:mm", indonesianLocale)
-
-            "${timeFormat.format(startDate)} - ${timeFormat.format(endDate)} WIB"
-        } catch (e: Exception) {
-            "Waktu tidak valid"
-        }
-    }
-
-    private fun isSameDay(date1: Date, date2: Date): Boolean {
-        val calendar = Calendar.getInstance()
-        calendar.time = date1
-        val day1 = calendar.get(Calendar.DAY_OF_YEAR)
-        calendar.time = date2
-        val day2 = calendar.get(Calendar.DAY_OF_YEAR)
-        return day1 == day2
-    }
-
-    private fun setupHtmlDescription() {
-        val preprocessed = EVENT_DESCRIPTION_HTML
-            .replace("<ul>", "<myul>")
-            .replace("</ul>", "</myul>")
-            .replace("<ol>", "<myol>")
-            .replace("</ol>", "</myol>")
-            .replace("<li>", "<myli>")
-            .replace("</li>", "</myli>")
-
-        val handler = ListTagHandler(binding.tvEventDetailDescription)
-
-        val spanned: Spanned = preprocessed.parseAsHtml(HtmlCompat.FROM_HTML_MODE_LEGACY, null, handler)
-        binding.tvEventDetailDescription.text = spanned
-
-        binding.tvEventDetailDescription.movementMethod = LinkMovementMethod.getInstance()
-    }
-
     companion object {
+        const val EVENT_START_DATETIME = "2025-07-23 15:00:00"
+        const val EVENT_END_DATETIME = "2025-07-23 17:00:00"
+
         const val EVENT_DESCRIPTION_HTML = """
-            <p>Spark Talks is our new sharing session series to <b>ignite ideas</b> and spread knowledge across EDTS. This session is designed to create a space where trainees share fresh insights with Edtizens sparking curiosity, collaboration, and growth!</p>
-            <p>This session features:</p>
+            <p>HALO EDTIZENS! 🔥</p>
+            <p>Siap-siap, medan pertempuran Land of Dawn akan segera memanas! Saatnya menunjukkan siapa yang benar-benar penguasa lantai 40 & 42 dalam dunia Mobile Legends!</p>
+            <p>EDTS and Ukirama Mobile Legends Championship 2024 resmi dimulai! 🎮</p>
+            <p>Turnamen ini bukan sekadar game ini adalah ajang pembuktian. Unjuk strategi, kerja sama tim, refleks cepat, dan mental juara!</p>
+            <p>🛡️⚔️ Apa yang Bisa Kamu Harapkan? </p>
             <ul>
-              <li>Interactive discussions with industry experts</li>
-              <li>Hands-on workshops and activities</li>
-              <li>Networking opportunities with peers</li>
-              <li>Q&A sessions with speakers</li>
+              <li>Pertempuran epik 5v5 yang mendebarkan antara tim-tim terbaik dari EDTS dan Ukirama.</li>
+              <li>Kesempatan untuk menunjukkan skill individu & kerja sama tim. Momen clutch, comeback dramatis, dan strategi outplay yang akan jadi bahan obrolan sebulan ke depan!</li>
+              <li>Suasana seru, support antar kolega, dan tentu saja... hadiah & pengakuan sebagai Champion!</li>
             </ul>
+            <p>🛡️⚔️ Bagaimana cara mendaftarkan tim? </p>
             <ol>
-              <li>Numbered item one</li>
-              <li>Numbered item two</li>
-              <li>Numbered item three that is a bit longer so we can see wrapping across lines.</li>
-              <li>Bullet item four that is a bit longer so we can see wrapping across lines.</li>
-              <li>Numbered item five</li>
-              <li>Numbered item six</li>
-              <li>Numbered item seven that is a bit longer so we can see wrapping across lines.</li>
-              <li>Bullet item eight that is a bit longer so we can see wrapping across lines.</li>
-              <li>Numbered item nine</li>
-              <li>Numbered item ten</li>
-              <li>Numbered item eleven</li>
-              <li>Numbered item twelve</li>
+              <li>Daftarkan diri pada acara ini</li>
+              <li>Isi data tim pada form reservasi</li>
+              <li>Tunggu email konfirmasi pendaftaran</li>
+              <li>Jika terkonfirmasi, maka bersiaplah untuk bertempur!</li>
             </ol>
-            <p>Join us for an exciting learning experience! 🚀</p>
-            <p>For more information, visit our <a href="https://example.com">website</a>.</p>
+            <p>Jika ada pertanyaan bisa menghubungi <a href="https://telegram.org/">@myudasulaiman</a>.</p>
+            <p>Terima kasih 🙏😊</p>
         """
     }
 }
