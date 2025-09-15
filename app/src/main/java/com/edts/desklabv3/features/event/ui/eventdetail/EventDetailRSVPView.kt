@@ -11,11 +11,11 @@ import com.edts.components.footer.FooterDelegate
 import com.edts.components.infobox.InfoBox
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.R
-import com.edts.desklabv3.core.util.formatDateRange
-import com.edts.desklabv3.core.util.formatTimeRange
-import com.edts.desklabv3.core.util.setupHtmlDescription
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
 import com.edts.desklabv3.features.event.ui.rsvp.RSVPFormView
+import formatDateRange
+import formatTimeRange
+import setupHtmlDescription
 
 class EventDetailRSVPView : Fragment() {
 
