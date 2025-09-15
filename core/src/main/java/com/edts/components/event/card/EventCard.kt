@@ -78,6 +78,12 @@ class EventCard @JvmOverloads constructor(
             updateDescription()
         }
 
+    var showStatus: Boolean = true
+        set(value) {
+            field = value
+            updateStatusVisibility()
+        }
+
     var statusType: EventCardStatus.StatusType = EventCardStatus.StatusType.UNREGISTERED
         set(value) {
             field = value
@@ -140,6 +146,7 @@ class EventCard @JvmOverloads constructor(
                 eventDate = getString(R.styleable.EventCard_cardEventDate)
 
                 val statusTypeValue = getInt(R.styleable.EventCard_cardStatusType, 0)
+                showStatus = getBoolean(R.styleable.EventCard_showCardStatus, true)
                 statusType = EventCardStatus.StatusType.fromValue(statusTypeValue)
                 statusText = getString(R.styleable.EventCard_cardStatusText)
 
@@ -150,10 +157,15 @@ class EventCard @JvmOverloads constructor(
                 updateDescription()
                 updateStatus()
                 setupCardPressState()
+                updateStatusVisibility()
             } finally {
                 recycle()
             }
         }
+    }
+
+    private fun updateStatusVisibility() {
+        binding.cvEventCardStatus?.visibility = if (showStatus) View.VISIBLE else View.GONE
     }
 
     private fun resolveColorAttribute(colorRes: Int): Int {

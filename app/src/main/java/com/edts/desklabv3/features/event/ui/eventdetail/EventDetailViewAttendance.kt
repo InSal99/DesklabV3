@@ -25,9 +25,9 @@ import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.components.tray.BottomTrayDelegate
 import com.edts.desklabv3.R
-import com.edts.desklabv3.core.util.formatDateRange
-import com.edts.desklabv3.core.util.formatTimeRange
-import com.edts.desklabv3.core.util.setupHtmlDescription
+import formatDateRange
+import formatTimeRange
+import setupHtmlDescription
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 
