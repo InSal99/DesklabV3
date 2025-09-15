@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
@@ -17,6 +18,7 @@ import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.core.util.Utils
 import com.edts.desklabv3.databinding.FragmentTeamReportLeaveViewBinding
 import com.edts.desklabv3.features.event.ui.eventdetail.EventOptionAdapter
+import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailFragment
 
 class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
@@ -66,7 +68,11 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         )
 
         filteredEmployees = originalEmployees
-        leaveCardAdapter = LeaveCardAdapter(filteredEmployees)
+        leaveCardAdapter = LeaveCardAdapter(filteredEmployees) { employee ->
+            if (employee.employeeName == "Raka Aditya Pratama") {
+                navigateToEmployeeDetail()
+            }
+        }
 
         binding.rvLeaveCards.apply {
             adapter = leaveCardAdapter
@@ -82,6 +88,14 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         }
 
         updateEmptyState()
+    }
+
+    private fun navigateToEmployeeDetail() {
+//        val fragment = EmployeeLeaveDetailFragment()
+//        parentFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container, fragment)
+//            .addToBackStack(null)
+//            .commit()
     }
 
     private fun setupSearchFunctionality() {
