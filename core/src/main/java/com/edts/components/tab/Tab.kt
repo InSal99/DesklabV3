@@ -32,6 +32,8 @@ class Tab @JvmOverloads constructor(
         adapter = tabAdapter
         clipToPadding = false
 
+        addItemDecoration(TabSpaceItemDecoration(context))
+
         context.theme.obtainStyledAttributes(attrs, R.styleable.Tab, 0, 0).apply {
             try {
                 val initialSelectedPosition = getInt(R.styleable.Tab_initialSelectedPosition, 0)
@@ -111,4 +113,22 @@ class Tab @JvmOverloads constructor(
     fun getSelectedTabText(): String? = tabDataList.getOrNull(selectedPosition)?.text
     fun getTabCount(): Int = tabDataList.size
     fun isPositionSelected(position: Int): Boolean = position == selectedPosition
+
+    private class TabSpaceItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
+        private val space = context.resources.displayMetrics.density * 8
+
+        override fun getItemOffsets(
+            outRect: android.graphics.Rect,
+            view: android.view.View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            val position = parent.getChildAdapterPosition(view)
+            val itemCount = state.itemCount
+
+            if (position < itemCount - 1) {
+                outRect.right = space.toInt()
+            }
+        }
+    }
 }

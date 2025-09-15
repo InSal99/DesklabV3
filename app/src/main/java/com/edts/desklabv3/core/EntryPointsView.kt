@@ -24,6 +24,7 @@ import com.edts.desklabv3.core.component.SortButtonComponentView
 import com.edts.desklabv3.core.component.TabComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
+import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportActivityView
 import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
 
 class EntryPointsView : Fragment() {
@@ -196,8 +197,9 @@ class EntryPointsView : Fragment() {
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
-        binding.btnFlow5.setOnClickListener{
-            navigateToFragment(TeamReportLeaveView())
+        binding.btnFlow5.setOnClickListener {
+            val result = bundleOf("fragment_class" to "HomeManagerView")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
     }
 
