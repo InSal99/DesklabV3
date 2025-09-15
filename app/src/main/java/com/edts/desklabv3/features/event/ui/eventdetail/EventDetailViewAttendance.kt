@@ -8,32 +8,28 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Spanned
-import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.core.text.HtmlCompat
-import androidx.core.text.parseAsHtml
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.edts.components.R
 import com.edts.components.footer.Footer
 import com.edts.components.footer.FooterDelegate
 import com.edts.components.modal.ModalityLoadingPopUp
 import com.edts.components.status.badge.StatusBadge
 import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
-import com.edts.desklabv3.core.util.ListTagHandler
+import com.edts.components.tray.BottomTrayDelegate
+import com.edts.desklabv3.R
+import com.edts.desklabv3.core.util.formatDateRange
+import com.edts.desklabv3.core.util.formatTimeRange
+import com.edts.desklabv3.core.util.setupHtmlDescription
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
+import com.edts.desklabv3.features.SpaceItemDecoration
 
 class EventDetailViewAttendance : Fragment() {
 
@@ -45,34 +41,9 @@ class EventDetailViewAttendance : Fragment() {
     private var attendanceType: String = ""
     private var meetingLink: String = ""
 
-    companion object {
-        const val EVENT_DESCRIPTION_HTML = """
-            <p>Spark Talks is our new sharing session series to <b>ignite ideas</b> and spread knowledge across EDTS. This session is designed to create a space where trainees share fresh insights with Edtizens sparking curiosity, collaboration, and growth!</p>
-            <p>This session features:</p>
-            <ul>
-              <li>Interactive discussions with industry experts</li>
-              <li>Hands-on workshops and activities</li>
-              <li>Networking opportunities with peers</li>
-              <li>Q&A sessions with speakers</li>
-            </ul>
-            <ol>
-              <li>Numbered item one</li>
-              <li>Numbered item two</li>
-              <li>Numbered item three that is a bit longer so we can see wrapping across lines.</li>
-              <li>Bullet item four that is a bit longer so we can see wrapping across lines.</li>
-              <li>Numbered item five</li>
-              <li>Numbered item six</li>
-              <li>Numbered item seven that is a bit longer so we can see wrapping across lines.</li>
-              <li>Bullet item eight that is a bit longer so we can see wrapping across lines.</li>
-              <li>Numbered item nine</li>
-              <li>Numbered item ten</li>
-              <li>Numbered item eleven</li>
-              <li>Numbered item twelve</li>
-            </ol>
-            <p>Join us for an exciting learning experience! 🚀</p>
-            <p>For more information, visit our <a href="https://example.com">website</a>.</p>
-        """
-    }
+    private var startDateTime: String = ""
+    private var endDateTime: String = ""
+    private var eventDescription: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -86,14 +57,11 @@ class EventDetailViewAttendance : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fromSuccess = arguments?.getBoolean("from_success", false) ?: false
-        attendanceType = arguments?.getString("attendance_type", "online") ?: "online"
-        meetingLink = arguments?.getString("meeting_link", "") ?: ""
-
         setupBackButton()
+        setEventDetails()
         setupSpeakerRecyclerView()
         setupTimeLocationRecyclerView()
-        setupHtmlDescription()
+        binding.tvEventDetailDescription.setupHtmlDescription(eventDescription)
         setupFooterButton()
 
         if (fromSuccess) {
@@ -101,10 +69,28 @@ class EventDetailViewAttendance : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        bottomTray?.dismiss()
+        bottomTray = null
+        _binding = null
+    }
+
     private fun setupBackButton() {
         binding.ivDetailBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+    }
+
+    private fun setEventDetails() {
+        binding.ivDetailEventPoster.setImageResource(com.edts.components.R.drawable.poster1)
+        binding.tvDetailEventType.text = "Hybrid Event"
+        binding.tvDetailEventCategory.text = "People Development"
+        binding.tvDetailEventTitle.text = "Simplifying UX Complexity: Bridging the Gap Between Design and Development"
+
+        startDateTime = EVENT_START_DATETIME
+        endDateTime = EVENT_END_DATETIME
+        eventDescription = EVENT_DESCRIPTION_HTML
     }
 
     private fun setupFooterButton() {
@@ -142,19 +128,13 @@ class EventDetailViewAttendance : Fragment() {
         val contentView = createBottomTrayContent()
         bottomTray?.setContentView(contentView)
 
-        bottomTray?.delegate = object : com.edts.components.tray.BottomTrayDelegate {
-            override fun onShow(dialog: DialogInterface) {
-            }
-
+        bottomTray?.delegate = object : BottomTrayDelegate {
+            override fun onShow(dialog: DialogInterface) {}
             override fun onDismiss(dialog: DialogInterface) {
                 bottomTray = null
             }
-
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            }
+            override fun onStateChanged(bottomSheet: View, newState: Int) {}
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
         }
 
         bottomTray?.show(childFragmentManager, "event_actions_bottom_tray")
@@ -213,21 +193,55 @@ class EventDetailViewAttendance : Fragment() {
         binding.eventDetailFooter.setTitleAndDescription("Tipe Kehadiran", typeText)
     }
 
+    private fun setupSpeakerRecyclerView() {
+        val speakerAdapter = EventSpeakerAdapter()
+        binding.rvDetailEventSpeakersInfo.apply {
+            adapter = speakerAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            val spaceDecoration = SpaceItemDecoration(
+                requireContext(),
+                com.edts.components.R.dimen.margin_8dp,
+                SpaceItemDecoration.VERTICAL
+            )
+            addItemDecoration(spaceDecoration)
+        }
 
-    private fun updateTimeLocationListWithAction() {
-        val startDateTime = "2023-12-25 19:00:00"
-        val endDateTime = "2023-12-27 22:00:00"
+        val speakerList = listOf(
+            com.edts.desklabv3.R.drawable.image_speaker_1 to "Yovita Handayiani",
+            com.edts.desklabv3.R.drawable.image_speaker_2 to "Fauzan Sukmapratama",
+            com.edts.desklabv3.R.drawable.image_speaker_3 to "Intan Saliya Utomo"
+        )
+        speakerAdapter.submitList(speakerList)
+    }
+
+    private fun setupTimeLocationRecyclerView() {
+        timeLocationAdapter = EventTimeLocationAdapter()
+
+        binding.rvDetailEventTimeLocation.apply {
+            adapter = timeLocationAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
 
         val timeLocationList = listOf(
-            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", meetingLink)
+            Triple(R.drawable.ic_calendar, "Tanggal", startDateTime.formatDateRange(endDateTime)),
+            Triple(R.drawable.ic_clock, "Waktu", startDateTime.formatTimeRange(endDateTime)),
+            Triple(R.drawable.ic_location, "Lokasi Offline", "Amphitheater"),
+            Triple(R.drawable.ic_video, "Link Meeting", "Tersedia Setelah Kehadiran Tercatat")
+        )
+
+        timeLocationAdapter.submitList(timeLocationList)
+    }
+
+    private fun updateTimeLocationListWithAction() {
+        val timeLocationList = listOf(
+            Triple(R.drawable.ic_calendar, "Tanggal", startDateTime.formatDateRange(endDateTime)),
+            Triple(R.drawable.ic_clock, "Waktu", startDateTime.formatTimeRange(endDateTime)),
+            Triple(R.drawable.ic_location, "Lokasi Offline", "Amphitheater"),
+            Triple(R.drawable.ic_video, "Link Meeting", meetingLink)
         )
 
         timeLocationAdapter.submitList(timeLocationList)
 
-        // Enable actions for link meeting
         timeLocationAdapter.setLinkMeetingAction(true, meetingLink) { actionType ->
             when (actionType) {
                 "copy" -> copyMeetingLinkToClipboard()
@@ -259,9 +273,7 @@ class EventDetailViewAttendance : Fragment() {
         }
     }
 
-
     private fun handleJoinOnline() {
-        // Show loading modal
         val loadingDialog = ModalityLoadingPopUp.show(
             context = requireContext(),
             title = "Tunggu sebentar ...",
@@ -280,124 +292,21 @@ class EventDetailViewAttendance : Fragment() {
     }
 
     private fun handleJoinOffline() {
-//        val result = bundleOf("fragment_class" to "ScanQRAttendanceView")
         val result = bundleOf("fragment_class" to "AssetQRCodeFragment")
         parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
-    private fun setupSpeakerRecyclerView() {
-        val speakerAdapter = EventSpeakerAdapter()
-        binding.rvDetailEventSpeakersInfo.apply {
-            adapter = speakerAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+    companion object {
+        const val EVENT_START_DATETIME = "2025-07-24 15:00:00"
+        const val EVENT_END_DATETIME = "2025-07-24 17:00:00"
 
-        val speakerList = listOf(
-            R.drawable.avatar_placeholder to "John Doe",
-            R.drawable.avatar_placeholder to "Jane Smith"
-        )
-        speakerAdapter.submitList(speakerList)
-    }
-
-    private fun setupTimeLocationRecyclerView() {
-        timeLocationAdapter = EventTimeLocationAdapter()
-
-        binding.rvDetailEventTimeLocation.apply {
-            adapter = timeLocationAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        val startDateTime = "2023-12-25 19:00:00"
-        val endDateTime = "2023-12-27 22:00:00"
-
-        val timeLocationList = listOf(
-            Triple(com.edts.desklabv3.R.drawable.ic_calendar, "Tanggal", formatDateRange(startDateTime, endDateTime)),
-            Triple(com.edts.desklabv3.R.drawable.ic_clock, "Waktu", formatTimeRange(startDateTime, endDateTime)),
-            Triple(com.edts.desklabv3.R.drawable.ic_location, "Lokasi Offline", "Grand Ballroom, Hotel Majestic"),
-            Triple(com.edts.desklabv3.R.drawable.ic_video, "Link Meeting", "123 Main Street, City Center")
-        )
-
-        timeLocationAdapter.submitList(timeLocationList)
-    }
-
-    private fun formatDateRange(startDateTime: String, endDateTime: String): String {
-        return try {
-            val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val startDate = format.parse(startDateTime)!!
-            val endDate = format.parse(endDateTime)!!
-
-            val indonesianLocale = Locale("id", "ID")
-
-            if (isSameDay(startDate, endDate)) {
-                SimpleDateFormat("EEEE, dd MMMM yyyy", indonesianLocale).format(startDate)
-            } else {
-                if (isSameYear(startDate, endDate)) {
-                    val dateFormat = SimpleDateFormat("EEEE, dd MMMM", indonesianLocale)
-                    "${dateFormat.format(startDate)} - ${dateFormat.format(endDate)} ${SimpleDateFormat("yyyy", indonesianLocale).format(endDate)}"
-                } else {
-                    val dateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", indonesianLocale)
-                    "${dateFormat.format(startDate)} - ${dateFormat.format(endDate)}"
-                }
-            }
-        } catch (e: Exception) {
-            "Tanggal tidak valid"
-        }
-    }
-
-    private fun isSameYear(date1: Date, date2: Date): Boolean {
-        val calendar = Calendar.getInstance()
-        calendar.time = date1
-        val year1 = calendar.get(Calendar.YEAR)
-        calendar.time = date2
-        val year2 = calendar.get(Calendar.YEAR)
-        return year1 == year2
-    }
-
-    private fun formatTimeRange(startDateTime: String, endDateTime: String): String {
-        return try {
-            val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val startDate = format.parse(startDateTime)!!
-            val endDate = format.parse(endDateTime)!!
-
-            val indonesianLocale = Locale("id", "ID")
-            val timeFormat = SimpleDateFormat("HH:mm", indonesianLocale)
-
-            "${timeFormat.format(startDate)} - ${timeFormat.format(endDate)} WIB"
-        } catch (e: Exception) {
-            "Waktu tidak valid"
-        }
-    }
-
-    private fun isSameDay(date1: Date, date2: Date): Boolean {
-        val calendar = Calendar.getInstance()
-        calendar.time = date1
-        val day1 = calendar.get(Calendar.DAY_OF_YEAR)
-        calendar.time = date2
-        val day2 = calendar.get(Calendar.DAY_OF_YEAR)
-        return day1 == day2
-    }
-
-    private fun setupHtmlDescription() {
-        val preprocessed = EVENT_DESCRIPTION_HTML
-            .replace("<ul>", "<myul>")
-            .replace("</ul>", "</myul>")
-            .replace("<ol>", "<myol>")
-            .replace("</ol>", "</myol>")
-            .replace("<li>", "<myli>")
-            .replace("</li>", "</myli>")
-
-        val handler = ListTagHandler(binding.tvEventDetailDescription)
-
-        val spanned: Spanned = preprocessed.parseAsHtml(HtmlCompat.FROM_HTML_MODE_LEGACY, null, handler)
-        binding.tvEventDetailDescription.text = spanned
-
-        binding.tvEventDetailDescription.movementMethod = LinkMovementMethod.getInstance()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        bottomTray?.dismiss()
-        bottomTray = null
-        _binding = null
+        const val EVENT_DESCRIPTION_HTML = """
+            <p>Welcome to Spark Talks!</p>
+            <p>Spark Talks is our new sharing session series to ignite ideas and spread knowledge across EDTS. This session is designed to create a space where trainees share fresh insights with Edtizens sparking curiosity, collaboration, and growth!</p>
+            <p>For our very first Spark Talks of the year, join Via, Fauzan, and Intan as they dive into the fascinating world of Simplifying UX Complexity: Bridging the Gap Between Design and Development.</p>
+            <p>We’ll explore how design and development often speak different “languages,” and how we can build better digital products by bringing them closer together.  Expect fun stories, practical tips, and eye-opening perspectives from both design and tech sides! Special treat!</p>
+            <p>The first 30 onsite attendees will get free coffee don’t miss out!</p>
+            <p>Let’s spark something new together!🔥</p>
+        """
     }
 }
