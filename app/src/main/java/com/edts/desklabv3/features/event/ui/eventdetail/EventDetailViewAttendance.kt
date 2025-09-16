@@ -126,7 +126,7 @@ class EventDetailViewAttendance : Fragment() {
         )
 
         val contentView = createBottomTrayContent()
-        bottomTray?.setContentView(contentView)
+        bottomTray?.setTrayContentView(contentView)
 
         bottomTray?.delegate = object : BottomTrayDelegate {
             override fun onShow(dialog: DialogInterface) {}

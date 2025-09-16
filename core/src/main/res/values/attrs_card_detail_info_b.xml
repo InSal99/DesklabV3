@@ -5,6 +5,10 @@
             <enum name="image" value="0" />
             <enum name="icon" value="1" />
         </attr>
+        <attr name="cdibRightSlotType" format="enum">
+            <enum name="image" value="0" />
+            <enum name="custom" value="1" />
+        </attr>
         <attr name="cdibLeftSlotSrc" format="reference" />
         <attr name="cdibLeftSlotSize" format="dimension" />
         <attr name="cdibLeftSlotBackgroundColor" format="reference|color" />

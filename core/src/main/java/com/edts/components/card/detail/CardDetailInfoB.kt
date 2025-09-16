@@ -68,7 +68,17 @@ class CardDetailInfoB @JvmOverloads constructor(
 
     enum class RightSlotType {
         IMAGE,
-        CUSTOM
+        CUSTOM;
+
+        companion object {
+            fun fromValue(value: Int): RightSlotType {
+                return when (value) {
+                    0 -> IMAGE
+                    1 -> CUSTOM
+                    else -> IMAGE
+                }
+            }
+        }
     }
 
     var rightSlotType: RightSlotType = RightSlotType.IMAGE
@@ -250,6 +260,9 @@ class CardDetailInfoB @JvmOverloads constructor(
                 if (rightSlotSrcRes != -1) {
                     rightSlotSrc = rightSlotSrcRes
                 }
+
+                val rightSlotTypeValue = getInt(R.styleable.CardDetailInfoB_cdibRightSlotType, 0)
+                rightSlotType = RightSlotType.fromValue(rightSlotTypeValue)
 
                 val rightSlotTintRes = getResourceId(R.styleable.CardDetailInfoB_cdibRightSlotTint, -1)
                 if (rightSlotTintRes != -1) {

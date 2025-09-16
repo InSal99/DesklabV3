@@ -137,7 +137,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         )
 
         val contentView = createBottomTrayContent()
-        bottomTray?.setContentView(contentView)
+        bottomTray?.setTrayContentView(contentView)
 
         bottomTray?.delegate = object : com.edts.components.tray.BottomTrayDelegate {
             override fun onShow(dialog: DialogInterface) {
