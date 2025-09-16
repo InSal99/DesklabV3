@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
@@ -35,6 +37,11 @@ class SuccessAttendanceOnlineView : Fragment() {
         binding.tvDescAttendanceOffline.text = "Terima kasih telah konfirmasi kehadiranmu"
         binding.cvPrimaryBtnAttendanceOffline.text = "Akses Meeting"
         binding.cvSecondaryBtnAttendanceOffline.text = "Lihat Detail Event"
+
+        val lottieView = view.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
+        lottieView.setAnimation(R.raw.ic_success)
+        lottieView.repeatCount = LottieDrawable.INFINITE
+        lottieView.playAnimation()
 
         setupButtonClickListeners()
     }
