@@ -14,7 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.annotation.StyleRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -27,6 +26,7 @@ import androidx.core.view.isVisible
 import com.edts.components.R
 import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -35,14 +35,16 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 
 class BottomTray : BottomSheetDialogFragment() {
+
     private var _binding: BottomTrayBinding? = null
     private val binding get() = _binding!!
+    private var _title: String? = null
+    private var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>? = null
+    private val cachedColors = mutableMapOf<Int, Int>()
+    private val cachedDrawables = mutableMapOf<String, Drawable>()
+    private var pendingContentView: View? = null
 
     var delegate: BottomTrayDelegate? = null
-
-    private var _title: String? = null
-    private var _contentView: View? = null
-
     var dragHandleVisibility: Boolean = true
         set(value) {
             field = value
@@ -51,7 +53,6 @@ class BottomTray : BottomSheetDialogFragment() {
                 bottomSheetBehavior?.isDraggable = value
             }
         }
-
     var showFooter: Boolean = true
         set(value) {
             field = value
@@ -59,7 +60,6 @@ class BottomTray : BottomSheetDialogFragment() {
                 binding.trayFooter.isVisible = value
             }
         }
-
     var hasShadow: Boolean = true
         set(value) {
             field = value
@@ -67,7 +67,6 @@ class BottomTray : BottomSheetDialogFragment() {
                 updateBackground()
             }
         }
-
     var hasStroke: Boolean = true
         set(value) {
             field = value
@@ -75,7 +74,6 @@ class BottomTray : BottomSheetDialogFragment() {
                 updateBackground()
             }
         }
-
     var snapPoints: IntArray = intArrayOf()
         set(value) {
             field = value.copyOf()
@@ -83,7 +81,6 @@ class BottomTray : BottomSheetDialogFragment() {
                 bottomSheetBehavior?.peekHeight = value.first()
             }
         }
-
     var isCancelableOnTouchOutside: Boolean = true
     var customAnimationsEnabled: Boolean = true
 
@@ -95,7 +92,6 @@ class BottomTray : BottomSheetDialogFragment() {
                 applyTitleAppearance()
             }
         }
-
     @ColorRes
     var titleTextColor: Int? = R.color.color000
         set(value) {
@@ -105,38 +101,13 @@ class BottomTray : BottomSheetDialogFragment() {
             }
         }
 
-    private var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>? = null
-
-    private val cachedColors = mutableMapOf<Int, Int>()
-    private val cachedDrawables = mutableMapOf<String, Drawable>()
-
-    private val cornerRadius by lazy {
-        TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, 16f,
-            requireContext().resources.displayMetrics
-        )
-    }
-
-    private val shadowPadding by lazy {
-        (8 * requireContext().resources.displayMetrics.density).toInt()
-    }
-
-    private val dragHandleCornerRadius by lazy {
-        2f * requireContext().resources.displayMetrics.density
-    }
-
-    fun getBottomSheetBehavior(): BottomSheetBehavior<FrameLayout>? = bottomSheetBehavior
-
     override fun getTheme(): Int = R.style.ThemeOverlay_DesklabV3_UIKit_BottomSheetDialog
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-
         dialog.setCanceledOnTouchOutside(isCancelableOnTouchOutside)
-
         setupEdgeToEdge(dialog)
         setupDialogShowListener(dialog)
-
         return dialog
     }
 
@@ -151,13 +122,11 @@ class BottomTray : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRootView()
         setupWindowInsets()
         setupViews()
         updateBackground()
         setupDragHandle()
-
         if (customAnimationsEnabled) {
             setCustomAnimations()
         }
@@ -173,7 +142,6 @@ class BottomTray : BottomSheetDialogFragment() {
             WindowCompat.setDecorFitsSystemWindows(window, false)
             window.statusBarColor = Color.TRANSPARENT
             window.navigationBarColor = Color.TRANSPARENT
-
             WindowInsetsControllerCompat(window, window.decorView).apply {
                 isAppearanceLightNavigationBars = true
                 isAppearanceLightStatusBars = true
@@ -196,18 +164,14 @@ class BottomTray : BottomSheetDialogFragment() {
         coordinator?.apply {
             clipToPadding = false
             clipChildren = false
-            clipToOutline = false
-            setPadding(0, 0, 0, 0)
-            setBackgroundColor(Color.TRANSPARENT)
         }
 
         bottomSheet?.apply {
-            clipToOutline = false
-            clipChildren = false
             clipToPadding = false
+            clipChildren = false
+            clipToOutline = false
             setWillNotDraw(false)
             setBackgroundColor(Color.TRANSPARENT)
-
             ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
                 val sysBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                 view.setPadding(sysBars.left, 0, sysBars.right, 0)
@@ -215,6 +179,7 @@ class BottomTray : BottomSheetDialogFragment() {
             }
         }
     }
+
 
     private fun setupBehavior(dialog: BottomSheetDialog) {
         val bottomSheet = dialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
@@ -249,17 +214,16 @@ class BottomTray : BottomSheetDialogFragment() {
     private fun setupViews() {
         binding.trayTitle.text = _title
         binding.trayTitle.isVisible = !_title.isNullOrEmpty()
-
-        _contentView?.let {
-            binding.trayContent.removeAllViews()
-            binding.trayContent.addView(it)
-        }
-
         binding.trayDragHandle.isVisible = dragHandleVisibility
         binding.trayFooter.isVisible = showFooter
-
         applyTitleAppearance()
         applyTitleColor()
+
+        pendingContentView?.let { view ->
+            binding.trayContent.removeAllViews()
+            binding.trayContent.addView(view)
+            pendingContentView = null
+        }
     }
 
     private fun setupDragHandle() {
@@ -270,13 +234,10 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun updateBackground() {
         if (_binding == null) return
-
         val background = getBackgroundDrawable(hasShadow, hasStroke)
         binding.root.background = background
-
-        val padding = if (hasShadow) shadowPadding else 0
+        val padding = if (hasShadow) (8 * resources.displayMetrics.density).toInt() else 0
         binding.root.setPadding(0, padding, 0, 0)
-
         binding.root.apply {
             clipToOutline = false
             clipChildren = false
@@ -293,44 +254,40 @@ class BottomTray : BottomSheetDialogFragment() {
     }
 
     private fun createBackgroundDrawable(hasShadow: Boolean, hasStroke: Boolean): Drawable {
+        val cornerRadius = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, 16f,
+            requireContext().resources.displayMetrics
+        )
         val shapeAppearanceModel = ShapeAppearanceModel.builder()
             .setTopLeftCorner(CornerFamily.ROUNDED, cornerRadius)
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
-
-        val bgColor = resolveColorAttribute(R.attr.colorBackgroundPrimary, R.color.colorFFF)
-
+        val bgColor = requireContext().resolveColorAttribute(R.attr.colorBackgroundPrimary, R.color.colorFFF)
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
-
             if (hasShadow) {
                 initializeElevationOverlay(requireContext())
                 elevation = TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP, 8f, requireContext().resources.displayMetrics
                 )
                 shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
-                val shadowColor = resolveColorAttribute(R.attr.colorShadowNeutralKey, R.color.colorNeutral70Opacity20)
+                val shadowColor = requireContext().resolveColorAttribute(R.attr.colorShadowNeutralKey, R.color.colorNeutral70Opacity20)
                 setShadowColor(shadowColor)
             }
         }
-
         if (!hasStroke) {
             return backgroundDrawable
         }
-
-        val strokeColor = resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral70Opacity20)
+        val strokeColor = requireContext().resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral70Opacity20)
         val strokeWidth = resources.getDimension(R.dimen.stroke_weight_1dp)
-
         val strokeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(Color.TRANSPARENT)
             setStroke(strokeWidth, strokeColor)
         }
-
         val insetDrawable = InsetDrawable(
             strokeDrawable,
             0, 0, 0, -strokeWidth.toInt()
         )
-
         return LayerDrawable(arrayOf(backgroundDrawable, insetDrawable))
     }
 
@@ -341,13 +298,13 @@ class BottomTray : BottomSheetDialogFragment() {
     }
 
     private fun createDragHandleDrawable(): MaterialShapeDrawable {
+        val dragHandleCornerRadius = 2f * requireContext().resources.displayMetrics.density
         val shapeAppearanceModel = ShapeAppearanceModel.builder()
             .setAllCorners(CornerFamily.ROUNDED, dragHandleCornerRadius)
             .build()
-
         return MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(
-                resolveColorAttribute(R.attr.colorForegroundTertiary, R.color.colorNeutral50)
+                requireContext().resolveColorAttribute(R.attr.colorForegroundTertiary, R.color.colorNeutral50)
             )
         }
     }
@@ -369,21 +326,6 @@ class BottomTray : BottomSheetDialogFragment() {
         }
     }
 
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
-        return cachedColors.getOrPut(attrRes) {
-            val typedValue = TypedValue()
-            if (requireContext().theme.resolveAttribute(attrRes, typedValue, true)) {
-                if (typedValue.type == TypedValue.TYPE_REFERENCE) {
-                    ContextCompat.getColor(requireContext(), typedValue.resourceId)
-                } else {
-                    typedValue.data
-                }
-            } else {
-                ContextCompat.getColor(requireContext(), fallbackColor)
-            }
-        }
-    }
-
     private fun setCustomAnimations() {
     }
 
@@ -391,7 +333,6 @@ class BottomTray : BottomSheetDialogFragment() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             delegate?.onStateChanged(bottomSheet, newState)
         }
-
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
             delegate?.onSlide(bottomSheet, slideOffset)
             handleSnapping(bottomSheet, slideOffset)
@@ -400,7 +341,6 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun handleSnapping(bottomSheet: View, slideOffset: Float) {
         if (snapPoints.isEmpty() || slideOffset <= 0.1f) return
-
         val targetSnapPoint = findNearestSnapPoint(bottomSheet.height, slideOffset)
         targetSnapPoint?.let { snapPoint ->
             bottomSheetBehavior?.setPeekHeight(snapPoint, true)
@@ -422,6 +362,8 @@ class BottomTray : BottomSheetDialogFragment() {
         _binding = null
     }
 
+    fun getBottomSheetBehavior(): BottomSheetBehavior<FrameLayout>? = bottomSheetBehavior
+
     fun setTitle(text: String) {
         _title = text
         if (_binding != null) {
@@ -437,15 +379,16 @@ class BottomTray : BottomSheetDialogFragment() {
 
     fun getTitle(): CharSequence? = _title
 
-    fun setContentView(view: View) {
-        _contentView = view
+    fun setTrayContentView(view: View) {
         if (_binding != null) {
             binding.trayContent.removeAllViews()
             binding.trayContent.addView(view)
+        } else {
+            pendingContentView = view
         }
     }
 
-    fun getContentView(): FrameLayout? = if (_binding != null) binding.trayContent else null
+    fun getTrayContentView(): FrameLayout? = if (_binding != null) binding.trayContent else null
 
     fun setDragHandleVisible(visible: Boolean) {
         dragHandleVisibility = visible
@@ -491,7 +434,6 @@ class BottomTray : BottomSheetDialogFragment() {
 
     companion object {
         fun newInstance(): BottomTray = BottomTray()
-
         fun newInstance(
             title: String? = null,
             showDragHandle: Boolean = true,

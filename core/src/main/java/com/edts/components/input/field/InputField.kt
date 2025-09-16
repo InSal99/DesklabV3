@@ -12,7 +12,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -39,7 +38,6 @@ import com.edts.components.radiobutton.RadioGroup
 import com.edts.components.radiobutton.RadioGroupDelegate
 import com.edts.components.tray.BottomTray
 import com.edts.components.tray.BottomTrayDelegate
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputLayout
 
@@ -1000,7 +998,7 @@ class InputField @JvmOverloads constructor(
             hasShadow = true,
             hasStroke = true
         ).apply {
-            setContentView(scrollView)
+            setTrayContentView(scrollView)
             delegate = object : BottomTrayDelegate {
                 override fun onShow(dialogInterface: DialogInterface) {
                 }
