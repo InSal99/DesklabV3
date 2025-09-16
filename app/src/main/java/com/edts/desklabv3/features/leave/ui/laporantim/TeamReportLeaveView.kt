@@ -158,9 +158,8 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     private fun createBottomTrayContent(): View {
-        val contentView = layoutInflater.inflate(com.edts.desklabv3.R.layout.bottom_tray_event_options, null)
+        val bindingTray = com.edts.desklabv3.databinding.BottomTrayEventOptionsBinding.inflate(layoutInflater)
 
-        val recyclerView = contentView.findViewById<RecyclerView>(com.edts.desklabv3.R.id.rvEventOptions)
         val optionAdapter = EventOptionAdapter { position ->
             Log.d("Sorting", "User selected sort option $position")
             bottomTray?.dismiss()
@@ -170,7 +169,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             }, 300)
         }
 
-        recyclerView.apply {
+        bindingTray.rvEventOptions.apply {
             adapter = optionAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
@@ -184,7 +183,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
         optionAdapter.submitList(options)
 
-        return contentView
+        return bindingTray.root
     }
 
     private fun handleOptionSelected(position: Int) {

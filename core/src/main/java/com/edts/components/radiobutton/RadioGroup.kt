@@ -148,9 +148,14 @@ class RadioGroup @JvmOverloads constructor(
 
     fun setErrorStateOnData(data: Any, error: Boolean) {
         val entry = radioButtonDataMap.entries.find { it.value == data }
-        entry?.let {
-            val radioButton = findViewById<RadioButton>(it.key)
-            radioButton?.setErrorState(error)
+        entry?.let { mapEntry ->
+            for (i in 0 until childCount) {
+                val child = getChildAt(i)
+                if (child.id == mapEntry.key && child is RadioButton) {
+                    child.setErrorState(error)
+                    break
+                }
+            }
         }
     }
 
