@@ -627,6 +627,7 @@ class MainActivity : AppCompatActivity() {
     private var flow3PagerAdapter: TabFragmentAdapter? = null  // HomeInvitationNoRSVPView flow
     private var flow4PagerAdapter: TabFragmentAdapter? = null  // HomeInvitationTolakView flow
     private var teamReportPagerAdapter: TabFragmentAdapter? = null
+    private var currentFlow: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -766,13 +767,23 @@ class MainActivity : AppCompatActivity() {
 
         if (addToBackStack) {
             transaction.addToBackStack(fragment::class.java.simpleName)
+            transaction.commit()
+            supportFragmentManager.executePendingTransactions()
+        } else {
+            transaction.commitNow()
         }
 
-        transaction.commit()
-        configureUIForFragment(fragment)
+        binding.root.post {
+            configureUIForFragment(fragment)
+        }
     }
 
     private fun configureUIForFragment(fragment: Fragment) {
+        if (!fragment.isAdded || fragment.isDetached || fragment.isRemoving) {
+            Log.w("UI_CONFIG", "Fragment not ready for UI configuration: ${fragment::class.java.simpleName}")
+            return
+        }
+
         Log.d("UI_CONFIG", "Configuring UI for: ${fragment::class.java.simpleName}")
 
         when (fragment) {
@@ -906,6 +917,7 @@ class MainActivity : AppCompatActivity() {
         showViewPager()
 
         // 🔑 CONFIGURE TABS FIRST to prevent glitch
+        binding.viewPager.visibility = View.GONE
         configureFlow1Tabs(selectedPosition)
 
         if (flow1PagerAdapter == null) {
@@ -919,10 +931,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewPager.post {
             if (binding.viewPager.adapter != flow1PagerAdapter) {
+                binding.viewPager.adapter = null
                 binding.viewPager.adapter = flow1PagerAdapter
                 binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
             }
             binding.viewPager.setCurrentItem(selectedPosition, false)
+            binding.viewPager.visibility = View.VISIBLE
         }
     }
 
@@ -931,6 +945,7 @@ class MainActivity : AppCompatActivity() {
         showViewPager()
 
         // 🔑 CONFIGURE TABS FIRST to prevent glitch
+        binding.viewPager.visibility = View.GONE
         configureFlow2Tabs(selectedPosition)
 
         if (flow2PagerAdapter == null) {
@@ -944,10 +959,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewPager.post {
             if (binding.viewPager.adapter != flow2PagerAdapter) {
+                binding.viewPager.adapter = null
                 binding.viewPager.adapter = flow2PagerAdapter
                 binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
             }
             binding.viewPager.setCurrentItem(selectedPosition, false)
+            binding.viewPager.visibility = View.VISIBLE
         }
     }
 
@@ -956,6 +973,7 @@ class MainActivity : AppCompatActivity() {
         showViewPager()
 
         // 🔑 CONFIGURE TABS FIRST to prevent glitch
+        binding.viewPager.visibility = View.GONE
         configureFlow3Tabs(selectedPosition)
 
         if (flow3PagerAdapter == null) {
@@ -969,10 +987,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewPager.post {
             if (binding.viewPager.adapter != flow3PagerAdapter) {
+                binding.viewPager.adapter = null
                 binding.viewPager.adapter = flow3PagerAdapter
                 binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
             }
             binding.viewPager.setCurrentItem(selectedPosition, false)
+            binding.viewPager.visibility = View.VISIBLE
         }
     }
 
@@ -981,6 +1001,7 @@ class MainActivity : AppCompatActivity() {
         showViewPager()
 
         // 🔑 CONFIGURE TABS FIRST to prevent glitch
+        binding.viewPager.visibility = View.GONE
         configureFlow4Tabs(selectedPosition)
 
         if (flow4PagerAdapter == null) {
@@ -994,10 +1015,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewPager.post {
             if (binding.viewPager.adapter != flow4PagerAdapter) {
+                binding.viewPager.adapter = null
                 binding.viewPager.adapter = flow4PagerAdapter
                 binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
             }
             binding.viewPager.setCurrentItem(selectedPosition, false)
+            binding.viewPager.visibility = View.VISIBLE
         }
     }
 
@@ -1005,6 +1028,7 @@ class MainActivity : AppCompatActivity() {
         showViewPager()
 
         // 🔑 CONFIGURE TABS FIRST to prevent glitch
+        binding.viewPager.visibility = View.GONE
         configureTeamReportTabs(selectedPosition)
 
         if (teamReportPagerAdapter == null) {
@@ -1017,10 +1041,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewPager.post {
             if (binding.viewPager.adapter != teamReportPagerAdapter) {
+                binding.viewPager.adapter = null
                 binding.viewPager.adapter = teamReportPagerAdapter
                 binding.cvTabTeamReportActivity.setupWithViewPager2(binding.viewPager)
             }
             binding.viewPager.setCurrentItem(selectedPosition, false)
+            binding.viewPager.visibility = View.VISIBLE
         }
     }
 

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
@@ -91,12 +90,14 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     private fun navigateToEmployeeDetail() {
-//        val fragment = EmployeeLeaveDetailFragment()
-//        parentFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, fragment)
-//            .addToBackStack(null)
-//            .commit()
+        val fragment = EmployeeLeaveDetailFragment()
+        parentFragmentManager.beginTransaction()
+            .replace(com.edts.desklabv3.R.id.fragment_container, fragment)
+            .addToBackStack(EmployeeLeaveDetailFragment::class.java.simpleName)
+            .commit()
     }
+
+
 
     private fun setupSearchFunctionality() {
         binding.cvSearchKaryawan.delegate = this
@@ -157,9 +158,8 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     private fun createBottomTrayContent(): View {
-        val contentView = layoutInflater.inflate(com.edts.desklabv3.R.layout.bottom_tray_event_options, null)
+        val bindingTray = com.edts.desklabv3.databinding.BottomTrayEventOptionsBinding.inflate(layoutInflater)
 
-        val recyclerView = contentView.findViewById<RecyclerView>(com.edts.desklabv3.R.id.rvEventOptions)
         val optionAdapter = EventOptionAdapter { position ->
             Log.d("Sorting", "User selected sort option $position")
             bottomTray?.dismiss()
@@ -169,7 +169,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             }, 300)
         }
 
-        recyclerView.apply {
+        bindingTray.rvEventOptions.apply {
             adapter = optionAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
@@ -183,7 +183,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
         optionAdapter.submitList(options)
 
-        return contentView
+        return bindingTray.root
     }
 
     private fun handleOptionSelected(position: Int) {

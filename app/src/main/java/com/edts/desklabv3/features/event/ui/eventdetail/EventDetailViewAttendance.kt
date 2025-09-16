@@ -141,9 +141,8 @@ class EventDetailViewAttendance : Fragment() {
     }
 
     private fun createBottomTrayContent(): View {
-        val contentView = layoutInflater.inflate(com.edts.desklabv3.R.layout.bottom_tray_event_options, null)
+        val binding = com.edts.desklabv3.databinding.BottomTrayEventOptionsBinding.inflate(layoutInflater)
 
-        val recyclerView = contentView.findViewById<RecyclerView>(com.edts.desklabv3.R.id.rvEventOptions)
         val optionAdapter = EventOptionAdapter { position ->
             Log.d("Present", "User present option $position")
             bottomTray?.dismiss()
@@ -153,7 +152,7 @@ class EventDetailViewAttendance : Fragment() {
             }, 300)
         }
 
-        recyclerView.apply {
+        binding.rvEventOptions.apply {
             adapter = optionAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
@@ -165,8 +164,9 @@ class EventDetailViewAttendance : Fragment() {
 
         optionAdapter.submitList(options)
 
-        return contentView
+        return binding.root
     }
+
 
     private fun applySuccessViewChanges(attendanceType: String) {
         configureFooterForSuccess(attendanceType)

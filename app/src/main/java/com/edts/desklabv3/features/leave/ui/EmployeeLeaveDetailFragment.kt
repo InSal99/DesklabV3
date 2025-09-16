@@ -11,6 +11,7 @@ import com.edts.components.R
 import com.edts.desklabv3.databinding.FragmentEmployeeLeaveDetailBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.LeaveQuota
+import com.edts.desklabv3.features.home.ui.HomeManagerView
 
 class EmployeeLeaveDetailFragment : Fragment() {
     private var _binding: FragmentEmployeeLeaveDetailBinding? = null
@@ -27,8 +28,22 @@ class EmployeeLeaveDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivEmployeeLeaveDetailHeader.setOnClickListener {
-            parentFragmentManager.popBackStack()
+        binding.cvEmployeeLeaveDetailHeader.delegate = object : com.edts.components.header.HeaderDelegate {
+            override fun onLeftButtonClicked() {
+                parentFragmentManager.popBackStack()
+            }
+
+            override fun onRightButtonClicked() {
+                // TODO: Implement if needed
+            }
+        }
+
+        binding.cvMultiDetail2.setOnClickListener{
+            val fragment = EmployeeLeaveHistoryView()
+            parentFragmentManager.beginTransaction()
+                .replace(com.edts.desklabv3.R.id.fragment_container, fragment)
+                .addToBackStack(EmployeeLeaveDetailFragment::class.java.simpleName)
+                .commit()
         }
 
         setupLeaveQuotaRecyclerView()
@@ -38,7 +53,7 @@ class EmployeeLeaveDetailFragment : Fragment() {
         val leaveQuotaData = listOf(
             LeaveQuota("Cuti Tahun Ini", 5, "15/10/2025", 1),
             LeaveQuota("Cuti Tahun Sebelumnya", 8, "15/10/2025", 2),
-            LeaveQuota("Cuti Tahun Progresif", 3, "15/10/2025", 0)
+            LeaveQuota("Cuti Progresif", 3, "15/10/2025", 0)
         )
 
         val adapter = EmployeeLeaveQuotaAdapter(leaveQuotaData)
