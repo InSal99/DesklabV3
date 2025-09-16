@@ -190,7 +190,7 @@ class Chip @JvmOverloads constructor(
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     view.alpha = 0.7f
-                    false // Return false to allow the click to be processed
+                    false
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     view.alpha = 1.0f

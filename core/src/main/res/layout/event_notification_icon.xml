@@ -15,5 +15,5 @@
         android:layout_height="@dimen/margin_12dp"
         android:layout_margin="@dimen/margin_4dp"
         android:contentDescription="Notification Icon"
-        android:src="@drawable/ic_notification_event" />
+        android:src="@drawable/ic_notification_event"/>
 </com.google.android.material.card.MaterialCardView>

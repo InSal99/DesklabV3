@@ -16,7 +16,6 @@ class InfoBoxFooter @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
     private val infoBox: InfoBox
     private val footer: Footer
     private var _footerType: Footer.FooterType = Footer.FooterType.CALL_TO_ACTION

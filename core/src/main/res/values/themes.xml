@@ -5,13 +5,16 @@
         <item name="colorPrimary">@color/colorPrimary30</item>
         <item name="colorPrimaryVariant">@color/colorPrimary50</item>
         <item name="colorOnPrimary">@color/white</item>
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/colorSecondary30</item>
         <item name="colorSecondaryVariant">@color/colorSecondary50</item>
         <item name="colorOnSecondary">@color/colorBlack70</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/colorFFF</item>
         <item name="android:windowLightStatusBar">true</item>
+
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/inter_medium</item>
         <item name="fontFamily">@font/inter_medium</item>
@@ -324,6 +327,4 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
-
-
 </resources>

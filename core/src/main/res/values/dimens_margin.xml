@@ -19,7 +19,6 @@
     <dimen name="margin_48dp">48dp</dimen>
     <dimen name="margin_72dp">72dp</dimen>
 
-
     <dimen name="radius_0dp">0dp</dimen>
     <dimen name="radius_4dp">4dp</dimen>
     <dimen name="radius_5dp">5dp</dimen>
@@ -31,7 +30,6 @@
     <dimen name="radius_16dp">16dp</dimen>
     <dimen name="radius_20dp">20dp</dimen>
     <dimen name="radius_999dp">999dp</dimen>
-
 
     <dimen name="stroke_weight_0.5dp">0.5dp</dimen>
     <dimen name="stroke_weight_1dp">1dp</dimen>

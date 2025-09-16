@@ -22,7 +22,7 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/wrapperHeader"
-        app:layout_constraintBottom_toBottomOf="@+id/wrapperHeader" />
+        app:layout_constraintBottom_toBottomOf="@+id/wrapperHeader"/>
 
     <LinearLayout
         android:id="@+id/wrapperHeader"
@@ -69,6 +69,5 @@
         app:layout_constraintBottom_toBottomOf="@id/wrapperHeader"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/wrapperHeader" />
-
+        app:layout_constraintTop_toTopOf="@+id/wrapperHeader"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

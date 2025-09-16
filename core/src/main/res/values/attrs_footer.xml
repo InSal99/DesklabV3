@@ -7,18 +7,13 @@
             <enum name="DUAL_BUTTON" value="2" />
             <enum name="NO_ACTION" value="3" />
         </attr>
-
         <attr name="footerHasStroke" format="boolean" />
-
         <attr name="primaryButtonText" format="string" />
         <attr name="secondaryButtonText" format="string" />
-
         <attr name="primaryButtonEnabled" format="boolean" />
         <attr name="secondaryButtonEnabled" format="boolean" />
-
         <attr name="footerTitle" format="string" />
         <attr name="footerDescription" format="string" />
-
         <attr name="statusBadgeText" />
         <attr name="statusBadgeType" />
     </declare-styleable>

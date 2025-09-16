@@ -4,6 +4,5 @@
     <color name="error_color">@color/colorRed30</color>
     <color name="info_color">@color/colorPrimary30</color>
     <color name="general_color">@color/color000</color>
-
     <color name="toast_stroke_color">@color/color000Opacity20</color>
 </resources>

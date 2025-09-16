@@ -17,7 +17,6 @@ class DropdownFilterHorizontal @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: DropdownFilterHorizontalBinding
 
     var dropdownFilterHorizontalDelegate: DropdownFilterHorizontalDelegate? = null

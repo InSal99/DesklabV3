@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clDetailInformationRoot"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivInfoIcon"
@@ -15,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvInfoTitle"
         app:layout_constraintBottom_toBottomOf="@id/tvDetailDescription"
-        app:tint="?attr/colorForegroundTertiary" />
+        app:tint="?attr/colorForegroundTertiary"/>
 
     <TextView
         android:id="@+id/tvInfoTitle"
@@ -31,7 +30,7 @@
         app:layout_constraintStart_toEndOf="@id/ivInfoIcon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tvDetailDescription"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/tvDetailDescription"
@@ -61,7 +60,7 @@
         app:layout_constraintStart_toStartOf="@id/ivInfoIcon"
         app:layout_constraintTop_toBottomOf="@id/tvDetailDescription"
         app:layout_constraintEnd_toStartOf="@id/btnDetailAction1"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.edts.components.button.Button
         android:id="@+id/btnDetailAction1"
@@ -73,5 +72,5 @@
         app:layout_constraintStart_toEndOf="@id/btnDetailAction2"
         app:layout_constraintTop_toTopOf="@id/btnDetailAction2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/btnDetailAction2" />
+        app:layout_constraintBottom_toBottomOf="@id/btnDetailAction2"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

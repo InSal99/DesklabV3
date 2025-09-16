@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:notificationIcon="@drawable/ic_notification_event" />
+        app:notificationIcon="@drawable/ic_notification_event"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvNotificationType"
@@ -25,7 +25,7 @@
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintBottom_toBottomOf="@+id/notificationIcon"
         app:layout_constraintStart_toEndOf="@+id/notificationIcon"
-        app:layout_constraintTop_toTopOf="@+id/notificationIcon" />
+        app:layout_constraintTop_toTopOf="@+id/notificationIcon"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvNotificationTitle"
@@ -38,7 +38,7 @@
         android:text="EDTS Town-Hall 2025: Power of Change"
         android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintStart_toStartOf="@+id/notificationIcon"
-        app:layout_constraintTop_toBottomOf="@+id/notificationIcon" />
+        app:layout_constraintTop_toBottomOf="@+id/notificationIcon"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvNotificationDescription"
@@ -49,7 +49,7 @@
         android:text="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toStartOf="@+id/tvNotificationTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvNotificationTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNotificationTitle"/>
 
     <com.edts.components.button.Button
         android:id="@+id/btnNotification"
@@ -62,5 +62,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNotificationDescription"
-        tools:text="Terima Undangan" />
+        tools:text="Terima Undangan"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@
         android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Konfirmasi Undangan" />
+        tools:text="Konfirmasi Undangan"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvModalityDescription"
@@ -27,7 +27,7 @@
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toStartOf="@+id/tvModalityTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvModalityTitle"
-        tools:text="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?" />
+        tools:text="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"/>
 
     <LinearLayout
         android:id="@+id/btnModalityContainer"
@@ -47,11 +47,11 @@
             app:isButtonDestructive="false"
             app:isButtonDisabled="false"
             app:size="MD"
-            app:type="SECONDARY" />
+            app:type="SECONDARY"/>
 
         <Space
             android:layout_width="@dimen/margin_10dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <com.edts.components.button.Button
             android:id="@+id/btnModalityConfirm"
@@ -62,6 +62,6 @@
             app:isButtonDestructive="false"
             app:isButtonDisabled="false"
             app:size="MD"
-            app:type="PRIMARY" />
+            app:type="PRIMARY"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

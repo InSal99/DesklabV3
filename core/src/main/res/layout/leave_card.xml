@@ -36,6 +36,5 @@
             android:layout_height="wrap_content"
             app:counterText="99 Hari"
             app:counterType="normal"/>
-
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

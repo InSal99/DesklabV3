@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Pekan 5" />
+        tools:text="Pekan 5"/>
 
     <ImageView
         android:id="@+id/tvDotSpacer"
@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvTitleLabel"
         app:layout_constraintStart_toEndOf="@+id/tvTitleLabel"
         app:layout_constraintTop_toTopOf="@+id/tvTitleLabel"
-        app:tint="?attr/colorForegroundPlaceholder" />
+        app:tint="?attr/colorForegroundPlaceholder"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvDescriptionLabel"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvDotSpacer"
         app:layout_constraintStart_toEndOf="@+id/tvDotSpacer"
         app:layout_constraintTop_toTopOf="@+id/tvDotSpacer"
-        tools:text="26 Jan - 1 Feb" />
+        tools:text="26 Jan - 1 Feb"/>
 
     <ImageView
         android:id="@+id/ivChevronDown"
@@ -49,5 +49,5 @@
         android:src="@drawable/ic_chevron_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

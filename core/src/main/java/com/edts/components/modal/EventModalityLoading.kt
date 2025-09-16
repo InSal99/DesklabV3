@@ -16,7 +16,6 @@ class EventModalityLoading @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: EventModalityLoadingBinding = EventModalityLoadingBinding.inflate(LayoutInflater.from(context), this, true)
 
     var title: String? = null

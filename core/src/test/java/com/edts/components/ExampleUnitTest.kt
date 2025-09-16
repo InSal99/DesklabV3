@@ -1,7 +1,6 @@
 package com.edts.components
 
 import org.junit.Test
-
 import org.junit.Assert.*
 
 /**

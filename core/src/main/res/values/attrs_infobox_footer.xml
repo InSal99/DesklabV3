@@ -4,7 +4,6 @@
         <attr name="text" />
         <attr name="variant" />
         <attr name="showInfoBox" format="boolean" />
-
         <attr name="footerType" />
         <attr name="primaryButtonText" />
         <attr name="secondaryButtonText" />

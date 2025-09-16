@@ -14,7 +14,7 @@
         android:layout_height="16dp"
         android:layout_marginEnd="@dimen/margin_8dp"
         android:src="@drawable/placeholder"
-        android:tint="@color/colorWhite" />
+        android:tint="@color/colorWhite"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_message"
@@ -22,5 +22,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Test"
-        android:textColor="@color/colorWhite" />
+        android:textColor="@color/colorWhite"/>
 </androidx.appcompat.widget.LinearLayoutCompat>

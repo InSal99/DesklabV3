@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvFooterDualButtonSupportText1"
-        app:layout_constraintBottom_toTopOf="@id/btnFooterDualButtonSecondary" />
+        app:layout_constraintBottom_toTopOf="@id/btnFooterDualButtonSecondary"/>
 
     <TextView
         android:id="@+id/tvFooterDualButtonSupportText1"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintStart_toEndOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterDualButtonTextDivider"
-        app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle" />
+        app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle"/>
 
     <TextView
         android:id="@+id/tvFooterDualButtonTextDivider"
@@ -50,7 +50,7 @@
         android:textColor="?attr/colorForegroundPlaceholder"
         app:layout_constraintTop_toTopOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterDualButtonSupportText2"
-        app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle" />
+        app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle"/>
 
     <TextView
         android:id="@+id/tvFooterDualButtonSupportText2"
@@ -63,7 +63,7 @@
         android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintTop_toTopOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle" />
+        app:layout_constraintBottom_toBottomOf="@id/tvFooterDualButtonTitle"/>
 
     <com.edts.components.button.Button
         android:id="@+id/btnFooterDualButtonSecondary"
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnFooterDualButtonPrimary"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.edts.components.button.Button
         android:id="@+id/btnFooterDualButtonPrimary"
@@ -87,5 +87,5 @@
         app:layout_constraintTop_toTopOf="@id/btnFooterDualButtonSecondary"
         app:layout_constraintStart_toEndOf="@id/btnFooterDualButtonSecondary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/btnFooterDualButtonSecondary" />
+        app:layout_constraintBottom_toBottomOf="@id/btnFooterDualButtonSecondary"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
