@@ -431,11 +431,23 @@
             app:size="SM"
             android:text="My Event Card"
             android:layout_marginStart="@dimen/margin_12dp"
-            android:layout_marginBottom="@dimen/margin_32dp"
             app:layout_constraintStart_toEndOf="@id/btnLibEventModalityLoading"
             app:layout_constraintTop_toTopOf="@id/btnLibEventModalityLoading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/btnLibEventModalityLoading"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibMonthlyPicker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Monthly Picker"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLibEventModalityLoading"
+            app:layout_constraintEnd_toEndOf="@id/btnLibEventModalityLoading"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -18,14 +18,13 @@ import com.edts.desklabv3.core.component.EventCardComponentView
 import com.edts.desklabv3.core.component.EventCardStatusComponentView
 import com.edts.desklabv3.core.component.HeaderComponentView
 import com.edts.desklabv3.core.component.InputSearchComponentView
+import com.edts.desklabv3.core.component.MonthlyPickerComponentView
 import com.edts.desklabv3.core.component.SelectionChipComponentView
 import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
 import com.edts.desklabv3.core.component.SortButtonComponentView
 import com.edts.desklabv3.core.component.TabComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
-import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportActivityView
-import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
 
 class EntryPointsView : Fragment() {
 
@@ -175,6 +174,10 @@ class EntryPointsView : Fragment() {
         }
         binding.btnLibMyEventCard.setOnClickListener {
             navigateToFragment(MyEventsComponentFragment())
+        }
+
+        binding.btnLibMonthlyPicker.setOnClickListener {
+            navigateToFragment(MonthlyPickerComponentView())
         }
 
         binding.btnFlow1.setOnClickListener {
