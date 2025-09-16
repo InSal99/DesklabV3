@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
@@ -91,12 +90,14 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     private fun navigateToEmployeeDetail() {
-//        val fragment = EmployeeLeaveDetailFragment()
-//        parentFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, fragment)
-//            .addToBackStack(null)
-//            .commit()
+        val fragment = EmployeeLeaveDetailFragment()
+        parentFragmentManager.beginTransaction()
+            .replace(com.edts.desklabv3.R.id.fragment_container, fragment)
+            .addToBackStack(EmployeeLeaveDetailFragment::class.java.simpleName)
+            .commit()
     }
+
+
 
     private fun setupSearchFunctionality() {
         binding.cvSearchKaryawan.delegate = this
