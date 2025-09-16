@@ -25,11 +25,11 @@ import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.components.tray.BottomTrayDelegate
 import com.edts.desklabv3.R
+import com.edts.desklabv3.databinding.FragmentEventDetailBinding
+import com.edts.desklabv3.features.SpaceItemDecoration
 import formatDateRange
 import formatTimeRange
 import setupHtmlDescription
-import com.edts.desklabv3.databinding.FragmentEventDetailBinding
-import com.edts.desklabv3.features.SpaceItemDecoration
 
 class EventDetailViewAttendance : Fragment() {
 
@@ -126,7 +126,7 @@ class EventDetailViewAttendance : Fragment() {
         )
 
         val contentView = createBottomTrayContent()
-        bottomTray?.setContentView(contentView)
+        bottomTray?.setTrayContentView(contentView)
 
         bottomTray?.delegate = object : BottomTrayDelegate {
             override fun onShow(dialog: DialogInterface) {}

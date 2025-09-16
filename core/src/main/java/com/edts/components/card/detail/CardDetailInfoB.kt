@@ -19,6 +19,7 @@ import com.edts.components.card.multi.detail.CardLeftSlot
 import com.edts.components.databinding.CardDetailInfoBBinding
 import com.google.android.material.card.MaterialCardView
 import android.view.MotionEvent
+import android.view.ViewGroup
 
 class CardDetailInfoB @JvmOverloads constructor(
     context: Context,
@@ -63,6 +64,27 @@ class CardDetailInfoB @JvmOverloads constructor(
         set(value) {
             field = value
             updateDescriptionVisibility()
+        }
+
+    enum class RightSlotType {
+        IMAGE,
+        CUSTOM;
+
+        companion object {
+            fun fromValue(value: Int): RightSlotType {
+                return when (value) {
+                    0 -> IMAGE
+                    1 -> CUSTOM
+                    else -> IMAGE
+                }
+            }
+        }
+    }
+
+    var rightSlotType: RightSlotType = RightSlotType.IMAGE
+        set(value) {
+            field = value
+            updateRightSlotVisibility()
         }
 
     var showRightSlot: Boolean = true
@@ -239,6 +261,9 @@ class CardDetailInfoB @JvmOverloads constructor(
                     rightSlotSrc = rightSlotSrcRes
                 }
 
+                val rightSlotTypeValue = getInt(R.styleable.CardDetailInfoB_cdibRightSlotType, 0)
+                rightSlotType = RightSlotType.fromValue(rightSlotTypeValue)
+
                 val rightSlotTintRes = getResourceId(R.styleable.CardDetailInfoB_cdibRightSlotTint, -1)
                 if (rightSlotTintRes != -1) {
                     rightSlotTint = rightSlotTintRes
@@ -368,7 +393,16 @@ class CardDetailInfoB @JvmOverloads constructor(
     }
 
     private fun updateRightSlotVisibility() {
-        binding.ivCdibRightSlot.visibility = if (showRightSlot) View.VISIBLE else View.GONE
+        when (rightSlotType) {
+            RightSlotType.IMAGE -> {
+                binding.ivCdibRightSlot.visibility = if (showRightSlot) View.VISIBLE else View.GONE
+                binding.flCdibRightSlotContainer.visibility = View.GONE
+            }
+            RightSlotType.CUSTOM -> {
+                binding.ivCdibRightSlot.visibility = View.GONE
+                binding.flCdibRightSlotContainer.visibility = if (showRightSlot) View.VISIBLE else View.GONE
+            }
+        }
     }
 
     private fun updateLeftSlotVisibility() {
@@ -588,6 +622,12 @@ class CardDetailInfoB @JvmOverloads constructor(
         rightSlotSrc?.let {
             binding.ivCdibRightSlot.setImageResource(it)
         }
+    }
+
+    fun setRightSlotView(view: View) {
+        rightSlotType = RightSlotType.CUSTOM
+        binding.flCdibRightSlotContainer.removeAllViews()
+        binding.flCdibRightSlotContainer.addView(view)
     }
 
     private fun updateRightSlotTint() {

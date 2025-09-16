@@ -146,7 +146,7 @@ class EventDetailViewTolakUndangan : Fragment() {
 
         val radioGroup = createRadioGroup()
         mainContainer.addView(radioGroup)
-        bottomTray?.setContentView(mainContainer)
+        bottomTray?.setTrayContentView(mainContainer)
 
         bottomTray?.delegate = object : BottomTrayDelegate {
             override fun onShow(dialog: DialogInterface) {
@@ -280,7 +280,6 @@ class EventDetailViewTolakUndangan : Fragment() {
             confirmButtonLabel = "Ya, Lanjutkan",
             closeButtonLabel = "Tidak",
             onConfirm = {
-                bottomTray?.dismiss()
                 showLoadingAndNavigate()
             },
             onClose = {}
@@ -294,8 +293,12 @@ class EventDetailViewTolakUndangan : Fragment() {
             isCancelable = false
         )
         binding.root.postDelayed({
+            bottomTray?.dismiss()
             loadingDialog?.dismiss()
-            navigateToSuccessScreen()
+
+            binding.root.postDelayed({
+                navigateToSuccessScreen()
+            }, 300)
         }, 3000)
     }
 
