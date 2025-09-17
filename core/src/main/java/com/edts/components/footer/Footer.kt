@@ -20,7 +20,6 @@ class Footer @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
     private var footerType: FooterType = FooterType.CALL_TO_ACTION
     private var primaryButtonText: String = "Daftar Sekarang"
     private var secondaryButtonText: String = "Button Label"
@@ -318,11 +317,8 @@ class Footer @JvmOverloads constructor(
     }
 
     fun isDescriptionVisible(): Boolean = showDescription
-
     fun getDualButtonTitle(): String = dualButtonTitle
-
     fun getDualButtonSupportText1(): String = dualButtonSupportText1
-
     fun getDualButtonSupportText2(): String = dualButtonSupportText2
 
     enum class FooterType(val value: Int) {

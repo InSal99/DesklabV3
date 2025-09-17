@@ -19,7 +19,6 @@ class DropdownFilter @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: SelectionDropdownFilterBinding = SelectionDropdownFilterBinding.inflate(
         LayoutInflater.from(context),
         this,

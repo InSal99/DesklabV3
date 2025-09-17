@@ -6,7 +6,6 @@
     <color name="radio_center_disabled">?attr/colorBackgroundPrimary</color>
     <color name="radio_primary">?attr/colorBackgroundAccentPrimaryIntense</color>
     <color name="radio_primary_center">?attr/colorForegroundWhite</color>
-
     <color name="radio_text_default">?attr/colorForegroundPrimary</color>
     <color name="radio_text_disabled">?attr/colorForegroundDisabled</color>
 </resources>

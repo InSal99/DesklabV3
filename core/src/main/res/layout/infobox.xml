@@ -13,7 +13,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/placeholder"
-        app:tint="?attr/colorForegroundTertiary" />
+        app:tint="?attr/colorForegroundTertiary"/>
 
     <TextView
         android:id="@+id/tvInfoText"
@@ -23,7 +23,5 @@
         android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:text="Tersisa 35 dari 40 slot reservasi!"
-        android:textColor="?attr/colorForegroundTertiary" />
+        android:textColor="?attr/colorForegroundTertiary"/>
 </LinearLayout>
-
-

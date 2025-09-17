@@ -676,6 +676,4 @@
         <item name="cornerSizeTopRight">@dimen/radius_16dp</item>
         <item name="cornerSizeTopLeft">@dimen/radius_16dp</item>
     </style>
-
-
 </resources>
