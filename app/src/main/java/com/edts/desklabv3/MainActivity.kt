@@ -19,6 +19,7 @@ import com.edts.components.tab.TabData
 import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
+import com.edts.desklabv3.core.util.createBottomShadowBackgroundCustom
 import com.edts.desklabv3.core.util.setupWithViewPager2
 import com.edts.desklabv3.core.withPushAnimation
 import com.edts.desklabv3.databinding.ActivityMainBinding
@@ -640,6 +641,9 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.HeaderWrapperTeamReportActivity.background = this.createBottomShadowBackgroundCustom()
+        binding.headerWrapperEventListDaftarRSVP.background = this.createBottomShadowBackgroundCustom()
 
         if (savedInstanceState == null) {
 //            loadFragmentWithUI(EntryPointsView(), addToBackStack = false)

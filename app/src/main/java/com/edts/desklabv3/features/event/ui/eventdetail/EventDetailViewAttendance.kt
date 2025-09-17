@@ -258,6 +258,13 @@ class EventDetailViewAttendance : Fragment() {
                 "open" -> openMeetingLink()
             }
         }
+
+        binding.ivDetailEventPoster.setOnClickListener {
+            parentFragmentManager.popBackStack(
+                "EntryPoints",
+                0
+            )
+        }
     }
 
     private fun copyMeetingLinkToClipboard() {

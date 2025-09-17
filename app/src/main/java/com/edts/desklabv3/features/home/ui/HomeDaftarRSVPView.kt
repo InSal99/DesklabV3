@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.utils.resolveColorAttribute
 import com.edts.desklabv3.R
-import com.edts.desklabv3.core.util.createTopShadowBackground
+import com.edts.desklabv3.core.util.createTopShadowBackgroundCustom
 import com.edts.desklabv3.databinding.FragmentHomeDaftarRsvpViewBinding
 import com.edts.desklabv3.features.home.model.ActivityItem
 import com.edts.desklabv3.features.home.model.ActivityType
@@ -59,17 +59,10 @@ class HomeDaftarRSVPView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.clContentLayout.background =
-//            requireContext().createTopShadowBackground(
-//                requireContext().getColor(com.edts.components.R.color.colorFFF)
-//            )
-
-        binding.clContentLayout.background =
-            requireContext().createTopShadowBackground(
-                fillColor = requireContext().getColor(com.edts.components.R.color.colorFFF), // or theme surface
-                shadowHeightDp = 12
-            )
-
+        binding.clContentLayout.background = requireContext().createTopShadowBackgroundCustom(
+            fillColor = requireContext().resolveColorAttribute(android.R.attr.colorBackground, com.edts.components.R.color.colorFFF),
+            shadowOffsetDp = 12
+        )
 
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
@@ -167,10 +160,9 @@ class HomeDaftarRSVPView : Fragment() {
     private fun handleActivityClick(activity: ActivityItem) {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
 
-        if (activity.type == ActivityType.Event) {
+        if (activity.title == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
             navigateToEventList(activity)
         } else {
-            // Handle other activity types if needed
             Log.d("HomeView", "Non-event activity clicked: ${activity.title}")
         }
     }
