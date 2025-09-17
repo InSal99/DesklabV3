@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:gravity="center" >
+    android:gravity="center">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivDetailImage"
@@ -12,7 +12,7 @@
         android:layout_height="32dp"
         android:scaleType="centerCrop"
         android:src="@drawable/avatar_placeholder"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CircleImageView" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CircleImageView"/>
 
     <TextView
         android:id="@+id/tvDetailName"
@@ -22,5 +22,5 @@
         android:text="Some Name"
         style="?attr/l2Medium"
         android:textColor="?attr/colorForegroundPrimary"
-        android:layout_marginStart="@dimen/margin_8dp" />
+        android:layout_marginStart="@dimen/margin_8dp"/>
 </LinearLayout>

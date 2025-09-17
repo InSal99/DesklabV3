@@ -11,7 +11,6 @@ class Tab @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : RecyclerView(context, attrs, defStyleAttr) {
-
     interface OnTabClickListener {
         fun onTabClick(position: Int, tabText: String)
     }

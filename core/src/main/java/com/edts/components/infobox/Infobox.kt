@@ -21,7 +21,6 @@ class InfoBox @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding = InfoboxBinding.inflate(LayoutInflater.from(context), this, true)
 
     var text: CharSequence? = null

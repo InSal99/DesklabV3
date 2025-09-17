@@ -15,7 +15,7 @@
         app:day="Rab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.edts.components.event.card.EventCardBadge
         android:id="@+id/eventCardBadge"
@@ -26,7 +26,7 @@
         app:eventCardBadgeText="Terdaftar"
         app:layout_constraintBottom_toBottomOf="@id/tvEventType"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvEventType" />
+        app:layout_constraintTop_toTopOf="@id/tvEventType"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvEventType"
@@ -37,7 +37,7 @@
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintStart_toEndOf="@id/customCalendarCard"
         app:layout_constraintTop_toTopOf="@id/customCalendarCard"
-        tools:text="Online Event" />
+        tools:text="Online Event"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvEventTitle"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvEventType"
         app:layout_constraintTop_toBottomOf="@id/tvEventType"
-        tools:text="Simplifying UX Complexity: Bridging the Gap Between Design and Development" />
+        tools:text="Simplifying UX Complexity: Bridging the Gap Between Design and Development"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvEventTime"
@@ -61,5 +61,5 @@
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintBottom_toBottomOf="@id/customCalendarCard"
         app:layout_constraintStart_toStartOf="@id/tvEventTitle"
-        tools:text="18:00 - 20:00" />
+        tools:text="18:00 - 20:00"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

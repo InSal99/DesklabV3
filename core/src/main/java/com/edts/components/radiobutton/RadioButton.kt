@@ -19,7 +19,7 @@ class RadioButton @JvmOverloads constructor(
     private var selectedTextAppearance = R.style.RadioTextAppearance_Selected
     private var disabledTextAppearance = R.style.RadioTextAppearance_Disabled
     private var disabledSelectedTextAppearance = R.style.RadioTextAppearance_DisabledSelected
-    private var errorTextAppearance = R.style.RadioTextAppearance_Normal // Add error text appearance
+    private var errorTextAppearance = R.style.RadioTextAppearance_Normal
     private var radioChangedDelegate: RadioButtonDelegate? = null
     private var isErrorState: Boolean = false
 

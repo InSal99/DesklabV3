@@ -36,5 +36,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cpiLoading"
-        tools:text="Loading Title ..." />
+        tools:text="Loading Title ..."/>
 </androidx.constraintlayout.widget.ConstraintLayout>

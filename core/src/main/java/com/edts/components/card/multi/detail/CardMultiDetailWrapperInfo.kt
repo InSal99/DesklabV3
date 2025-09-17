@@ -13,7 +13,6 @@ class CardMultiDetailWrapperInfo @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
     private val binding: CardMultiDetailWrapperInfoBinding = CardMultiDetailWrapperInfoBinding.inflate(
         LayoutInflater.from(context),
         this,

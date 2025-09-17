@@ -4,11 +4,9 @@
         <attr name="myEventType" format="string" />
         <attr name="myEventTitle" format="string" />
         <attr name="myEventTime" format="string" />
-
         <attr name="month" />
         <attr name="date" />
         <attr name="day" />
-
         <attr name="badgeText" />
         <attr name="badgeType" />
         <attr name="badgeSize" />

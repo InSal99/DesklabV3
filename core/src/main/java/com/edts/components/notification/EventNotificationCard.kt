@@ -130,4 +130,3 @@ class EventNotificationCard @JvmOverloads constructor(
         }
     }
 }
-

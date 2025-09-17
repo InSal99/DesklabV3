@@ -13,7 +13,6 @@ class EventCalendarCard @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
     private val binding: EventCalendarCardBinding = EventCalendarCardBinding.inflate(LayoutInflater.from(context), this, true)
 
     var month: String? = null

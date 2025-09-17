@@ -51,6 +51,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tab"
-        android:background="?attr/colorStrokeAccent"
-        />
+        android:background="?attr/colorStrokeAccent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

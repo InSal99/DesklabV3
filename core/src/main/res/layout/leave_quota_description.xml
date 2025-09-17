@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Saldo Cuti Tahunan" />
+        tools:text="Saldo Cuti Tahunan"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvLeaveQuota"
@@ -27,5 +27,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLeaveQuotaTitle"
-        tools:text="1 Hari" />
+        tools:text="1 Hari"/>
 </merge>

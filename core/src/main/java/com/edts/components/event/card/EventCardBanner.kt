@@ -12,7 +12,6 @@ class EventCardBanner @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
     private val binding: EventCardBannerBinding = EventCardBannerBinding.inflate(
         LayoutInflater.from(context),
         this,

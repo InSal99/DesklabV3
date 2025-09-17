@@ -35,7 +35,6 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 
 class BottomTray : BottomSheetDialogFragment() {
-
     private var _binding: BottomTrayBinding? = null
     private val binding get() = _binding!!
     private var _title: String? = null
@@ -179,7 +178,6 @@ class BottomTray : BottomSheetDialogFragment() {
             }
         }
     }
-
 
     private fun setupBehavior(dialog: BottomSheetDialog) {
         val bottomSheet = dialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)

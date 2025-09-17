@@ -52,5 +52,5 @@
         android:layout_marginStart="@dimen/margin_8dp"
         app:layout_constraintTop_toTopOf="@id/tvName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/tvRole" />
+        app:layout_constraintBottom_toBottomOf="@id/tvRole"/>
 </merge>

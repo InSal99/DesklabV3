@@ -29,7 +29,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:text="label"
-            android:textColor="?attr/colorForegroundPrimary" />
+            android:textColor="?attr/colorForegroundPrimary"/>
 
         <com.edts.components.badge.Badge
             android:id="@+id/cvBadgeChip"

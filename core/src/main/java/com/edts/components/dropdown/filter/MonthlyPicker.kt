@@ -24,7 +24,6 @@ class MonthlyPicker @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     enum class PickerType {
         UNSELECTED,
         SELECTED,

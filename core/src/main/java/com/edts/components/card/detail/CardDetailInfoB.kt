@@ -19,7 +19,6 @@ import com.edts.components.card.multi.detail.CardLeftSlot
 import com.edts.components.databinding.CardDetailInfoBBinding
 import com.google.android.material.card.MaterialCardView
 import android.view.MotionEvent
-import android.view.ViewGroup
 
 class CardDetailInfoB @JvmOverloads constructor(
     context: Context,

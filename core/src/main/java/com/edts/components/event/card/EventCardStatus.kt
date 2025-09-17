@@ -13,7 +13,6 @@ class EventCardStatus @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
     private val binding: EventCardStatusBinding = EventCardStatusBinding.inflate(
         LayoutInflater.from(context),
         this,
