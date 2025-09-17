@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.footer.Footer
@@ -13,6 +14,7 @@ import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
 import com.edts.desklabv3.features.event.ui.rsvp.RSVPFormView
+import com.edts.desklabv3.features.home.model.ActivityItem
 import formatDateRange
 import formatTimeRange
 import setupHtmlDescription
@@ -97,11 +99,8 @@ class EventDetailRSVPView : Fragment() {
     }
 
     private fun navigateToRSVPForm() {
-        val rsvpFormView = RSVPFormView()
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(android.R.id.content, rsvpFormView)
-            .addToBackStack("RSVPFormView")
-            .commit()
+        val result = bundleOf("fragment_class" to "RSVPFormView")
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     private fun configureFooter() {

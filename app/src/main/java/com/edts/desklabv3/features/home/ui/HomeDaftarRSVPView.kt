@@ -1,5 +1,8 @@
 package com.edts.desklabv3.features.home.ui
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,7 +12,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.edts.components.utils.resolveColorAttribute
 import com.edts.desklabv3.R
+import com.edts.desklabv3.core.util.createTopShadowBackground
 import com.edts.desklabv3.databinding.FragmentHomeDaftarRsvpViewBinding
 import com.edts.desklabv3.features.home.model.ActivityItem
 import com.edts.desklabv3.features.home.model.ActivityType
@@ -53,6 +58,19 @@ class HomeDaftarRSVPView : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        binding.clContentLayout.background =
+//            requireContext().createTopShadowBackground(
+//                requireContext().getColor(com.edts.components.R.color.colorFFF)
+//            )
+
+        binding.clContentLayout.background =
+            requireContext().createTopShadowBackground(
+                fillColor = requireContext().getColor(com.edts.components.R.color.colorFFF), // or theme surface
+                shadowHeightDp = 12
+            )
+
+
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
@@ -158,7 +176,6 @@ class HomeDaftarRSVPView : Fragment() {
     }
 
     private fun navigateToEventList(activity: ActivityItem) {
-//        val result = bundleOf("fragment_class" to "EventListDaftarRSVPView")
         val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
         parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }

@@ -9,15 +9,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
 import com.edts.components.input.search.InputSearchDelegate
 import com.edts.components.tray.BottomTray
+import com.edts.desklabv3.MainActivity
 import com.edts.desklabv3.core.util.Utils
 import com.edts.desklabv3.databinding.FragmentTeamReportLeaveViewBinding
 import com.edts.desklabv3.features.event.ui.eventdetail.EventOptionAdapter
-import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailFragment
+import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailView
 
 class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
@@ -90,14 +91,22 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     private fun navigateToEmployeeDetail() {
-        val fragment = EmployeeLeaveDetailFragment()
-        parentFragmentManager.beginTransaction()
-            .replace(com.edts.desklabv3.R.id.fragment_container, fragment)
-            .addToBackStack(EmployeeLeaveDetailFragment::class.java.simpleName)
-            .commit()
+//        val fragment = EmployeeLeaveDetailView()
+//        parentFragmentManager.beginTransaction()
+//            .replace(com.edts.desklabv3.R.id.fragment_container, fragment)
+//            .addToBackStack(EmployeeLeaveDetailView::class.java.simpleName)
+//            .commit()
+
+        (activity as? MainActivity)?.saveCurrentTeamReportTab()
+
+//        val result = bundleOf("fragment_class" to "EmployeeLeaveDetailView")
+
+        val result = bundleOf(
+            "fragment_class" to "EmployeeLeaveDetailView",
+            "source_fragment" to "TeamReportLeaveView"
+        )
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
-
-
 
     private fun setupSearchFunctionality() {
         binding.cvSearchKaryawan.delegate = this

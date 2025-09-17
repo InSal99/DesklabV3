@@ -45,6 +45,16 @@ class EventDetailViewAttendance : Fragment() {
     private var endDateTime: String = ""
     private var eventDescription: String = ""
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            fromSuccess = it.getBoolean("from_success", false)
+            attendanceType = it.getString("attendance_type", "")
+            meetingLink = it.getString("meeting_link", "")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -177,8 +187,8 @@ class EventDetailViewAttendance : Fragment() {
     private fun setupPosterClick() {
         binding.ivDetailEventPoster.setOnClickListener {
             parentFragmentManager.popBackStack(
-                null,
-                FragmentManager.POP_BACK_STACK_INCLUSIVE
+                "EntryPoints",
+                0
             )
         }
     }

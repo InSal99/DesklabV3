@@ -51,7 +51,7 @@ class EntryPointsView : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupButtonClickListeners()
-        setupNavigationListener()
+//        setupNavigationListener()
     }
 
     private fun setupButtonClickListeners() {
@@ -190,52 +190,53 @@ class EntryPointsView : Fragment() {
 
         binding.btnFlow1.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeDaftarRSVPView")
-            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
         binding.btnFlow2.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeInvitationNoRSVPView")
-            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
         binding.btnFlow3.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeAttendanceView")
-            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
         binding.btnFlow4.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeInvitationTolakView")
-            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
         binding.btnFlow5.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeManagerView")
-            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
     }
 
-    private fun setupNavigationListener() {
-        parentFragmentManager.setFragmentResultListener("entrypoint_navigation", this) { _, bundle ->
-            when (bundle.getString("fragment_class")) {
-                "HomeDaftarRSVPView" -> navigateWithAnimation(HomeDaftarRSVPView.newInstance())
-                "HomeInvitationNoRSVPView" -> navigateWithAnimation(HomeInvitationNoRSVPView.newInstance())
-                "HomeAttendanceView" -> navigateWithAnimation(HomeAttendanceView.newInstance())
-                "HomeInvitationTolakView" -> navigateWithAnimation(HomeInvitationTolakView.newInstance())
-                "HomeManagerView" -> navigateWithAnimation(HomeManagerView.newInstance())
-                "EventDetailRSVPView" -> navigateWithAnimation(EventDetailRSVPView())
-                "EventListDaftarRSVPView" -> navigateWithAnimation(EventListDaftarRSVPView())
-            }
-        }
-    }
+//    private fun setupNavigationListener() {
+//        parentFragmentManager.setFragmentResultListener("entrypoint_navigation", this) { _, bundle ->
+//            when (bundle.getString("fragment_class")) {
+//                "HomeDaftarRSVPView" -> navigateWithAnimation(HomeDaftarRSVPView.newInstance())
+//                "HomeInvitationNoRSVPView" -> navigateWithAnimation(HomeInvitationNoRSVPView.newInstance())
+//                "HomeAttendanceView" -> navigateWithAnimation(HomeAttendanceView.newInstance())
+//                "HomeInvitationTolakView" -> navigateWithAnimation(HomeInvitationTolakView.newInstance())
+//                "HomeManagerView" -> navigateWithAnimation(HomeManagerView.newInstance())
+//                "EventDetailRSVPView" -> navigateWithAnimation(EventDetailRSVPView())
+//                "EventListDaftarRSVPView" -> navigateWithAnimation(EventListDaftarRSVPView())
+//            }
+//        }
+//    }
 
     private fun navigateWithAnimation(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in_right,  // enter
-                R.anim.slide_out_left,  // exit
-                R.anim.slide_in_left,   // popEnter
-                R.anim.slide_out_right  // popExit
-            )
+//            .setCustomAnimations(
+//                R.anim.slide_in_right,  // enter
+//                R.anim.slide_out_left,  // exit
+//                R.anim.slide_in_left,   // popEnter
+//                R.anim.slide_out_right  // popExit
+//            )
+            .withPushAnimation()
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
@@ -243,12 +244,13 @@ class EntryPointsView : Fragment() {
 
     private fun navigateToFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in_right,
-                R.anim.slide_out_left,
-                R.anim.slide_in_left,
-                R.anim.slide_out_right
-            )
+//            .setCustomAnimations(
+//                R.anim.slide_in_right,
+//                R.anim.slide_out_left,
+//                R.anim.slide_in_left,
+//                R.anim.slide_out_right
+//            )
+            .withPushAnimation()
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
