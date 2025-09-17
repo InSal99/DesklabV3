@@ -25,6 +25,13 @@ import com.edts.desklabv3.core.component.SortButtonComponentView
 import com.edts.desklabv3.core.component.TabComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
+import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailRSVPView
+import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
+import com.edts.desklabv3.features.home.ui.HomeAttendanceView
+import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
+import com.edts.desklabv3.features.home.ui.HomeInvitationNoRSVPView
+import com.edts.desklabv3.features.home.ui.HomeInvitationTolakView
+import com.edts.desklabv3.features.home.ui.HomeManagerView
 
 class EntryPointsView : Fragment() {
 
@@ -44,6 +51,7 @@ class EntryPointsView : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupButtonClickListeners()
+        setupNavigationListener()
     }
 
     private fun setupButtonClickListeners() {
@@ -182,32 +190,65 @@ class EntryPointsView : Fragment() {
 
         binding.btnFlow1.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeDaftarRSVPView")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
         }
 
         binding.btnFlow2.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeInvitationNoRSVPView")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
         }
 
         binding.btnFlow3.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeAttendanceView")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
         }
 
         binding.btnFlow4.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeInvitationTolakView")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
         }
 
         binding.btnFlow5.setOnClickListener {
             val result = bundleOf("fragment_class" to "HomeManagerView")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            parentFragmentManager.setFragmentResult("entrypoint_navigation", result)
         }
+    }
+
+    private fun setupNavigationListener() {
+        parentFragmentManager.setFragmentResultListener("entrypoint_navigation", this) { _, bundle ->
+            when (bundle.getString("fragment_class")) {
+                "HomeDaftarRSVPView" -> navigateWithAnimation(HomeDaftarRSVPView.newInstance())
+                "HomeInvitationNoRSVPView" -> navigateWithAnimation(HomeInvitationNoRSVPView.newInstance())
+                "HomeAttendanceView" -> navigateWithAnimation(HomeAttendanceView.newInstance())
+                "HomeInvitationTolakView" -> navigateWithAnimation(HomeInvitationTolakView.newInstance())
+                "HomeManagerView" -> navigateWithAnimation(HomeManagerView.newInstance())
+                "EventDetailRSVPView" -> navigateWithAnimation(EventDetailRSVPView())
+                "EventListDaftarRSVPView" -> navigateWithAnimation(EventListDaftarRSVPView())
+            }
+        }
+    }
+
+    private fun navigateWithAnimation(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                R.anim.slide_in_right,  // enter
+                R.anim.slide_out_left,  // exit
+                R.anim.slide_in_left,   // popEnter
+                R.anim.slide_out_right  // popExit
+            )
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun navigateToFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                R.anim.slide_in_right,
+                R.anim.slide_out_left,
+                R.anim.slide_in_left,
+                R.anim.slide_out_right
+            )
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
