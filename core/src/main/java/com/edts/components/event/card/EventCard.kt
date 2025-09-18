@@ -165,7 +165,7 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun updateStatusVisibility() {
-        binding.cvEventCardStatus?.visibility = if (showStatus) View.VISIBLE else View.GONE
+        binding.cvEventCardStatus?.visibility = if (showStatus) View.VISIBLE else View.INVISIBLE
     }
 
     private fun resolveColorAttribute(colorRes: Int): Int {

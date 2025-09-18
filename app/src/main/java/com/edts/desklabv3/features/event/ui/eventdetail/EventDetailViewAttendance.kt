@@ -77,6 +77,13 @@ class EventDetailViewAttendance : Fragment() {
         if (fromSuccess) {
             applySuccessViewChanges(attendanceType)
         }
+
+        binding.ivDetailEventPoster.setOnClickListener {
+            parentFragmentManager.popBackStack(
+                "EntryPoints",
+                0
+            )
+        }
     }
 
     override fun onDestroyView() {
@@ -257,13 +264,6 @@ class EventDetailViewAttendance : Fragment() {
                 "copy" -> copyMeetingLinkToClipboard()
                 "open" -> openMeetingLink()
             }
-        }
-
-        binding.ivDetailEventPoster.setOnClickListener {
-            parentFragmentManager.popBackStack(
-                "EntryPoints",
-                0
-            )
         }
     }
 
