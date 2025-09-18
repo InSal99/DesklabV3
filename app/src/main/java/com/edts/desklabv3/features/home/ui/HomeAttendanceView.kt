@@ -100,7 +100,7 @@ class HomeAttendanceView : Fragment() {
         val groupedData = GroupedActivitiesAdapter.groupActivitiesByDate(filteredActivities)
 
         groupedActivitiesAdapter = GroupedActivitiesAdapter(groupedData) { activity ->
-            handleActivityClick()
+            handleActivityClick(activity)
         }
 
         binding.rvActivitiesGroup.apply {
@@ -137,8 +137,10 @@ class HomeAttendanceView : Fragment() {
         }
     }
 
-    private fun handleActivityClick() {
-        navigateToEventDetailAttendance()
+    private fun handleActivityClick(activityItem: ActivityItem) {
+        if (activityItem.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+            navigateToEventDetailAttendance()
+        }
     }
 
     private fun navigateToEventDetailAttendance() {
