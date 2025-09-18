@@ -21,14 +21,11 @@
         <attr name="maxLines" format="integer" />
         <attr name="minLines" format="integer" />
         <attr name="options" format="reference" />
-
         <attr name="fieldEnabled" format="boolean" />
         <attr name="errorText" format="string" />
         <attr name="showError" format="boolean" />
-
         <attr name="requiredColor" format="color|reference" />
         <attr name="errorColor" format="color|reference" />
-
         <attr name="titleTextAppearance" format="reference" />
         <attr name="descriptionTextAppearance" format="reference" />
     </declare-styleable>

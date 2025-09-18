@@ -9,14 +9,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
 import com.edts.components.input.search.InputSearchDelegate
 import com.edts.components.tray.BottomTray
+import com.edts.desklabv3.MainActivity
 import com.edts.desklabv3.core.util.Utils
 import com.edts.desklabv3.databinding.FragmentTeamReportLeaveViewBinding
 import com.edts.desklabv3.features.event.ui.eventdetail.EventOptionAdapter
+import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailView
 
 class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
@@ -66,7 +68,11 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         )
 
         filteredEmployees = originalEmployees
-        leaveCardAdapter = LeaveCardAdapter(filteredEmployees)
+        leaveCardAdapter = LeaveCardAdapter(filteredEmployees) { employee ->
+            if (employee.employeeName == "Raka Aditya Pratama") {
+                navigateToEmployeeDetail()
+            }
+        }
 
         binding.rvLeaveCards.apply {
             adapter = leaveCardAdapter
@@ -82,6 +88,24 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         }
 
         updateEmptyState()
+    }
+
+    private fun navigateToEmployeeDetail() {
+//        val fragment = EmployeeLeaveDetailView()
+//        parentFragmentManager.beginTransaction()
+//            .replace(com.edts.desklabv3.R.id.fragment_container, fragment)
+//            .addToBackStack(EmployeeLeaveDetailView::class.java.simpleName)
+//            .commit()
+
+        (activity as? MainActivity)?.saveCurrentTeamReportTab()
+
+//        val result = bundleOf("fragment_class" to "EmployeeLeaveDetailView")
+
+        val result = bundleOf(
+            "fragment_class" to "EmployeeLeaveDetailView",
+            "source_fragment" to "TeamReportLeaveView"
+        )
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     private fun setupSearchFunctionality() {
@@ -122,7 +146,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         )
 
         val contentView = createBottomTrayContent()
-        bottomTray?.setContentView(contentView)
+        bottomTray?.setTrayContentView(contentView)
 
         bottomTray?.delegate = object : com.edts.components.tray.BottomTrayDelegate {
             override fun onShow(dialog: DialogInterface) {
@@ -143,9 +167,8 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     private fun createBottomTrayContent(): View {
-        val contentView = layoutInflater.inflate(com.edts.desklabv3.R.layout.bottom_tray_event_options, null)
+        val bindingTray = com.edts.desklabv3.databinding.BottomTrayEventOptionsBinding.inflate(layoutInflater)
 
-        val recyclerView = contentView.findViewById<RecyclerView>(com.edts.desklabv3.R.id.rvEventOptions)
         val optionAdapter = EventOptionAdapter { position ->
             Log.d("Sorting", "User selected sort option $position")
             bottomTray?.dismiss()
@@ -155,7 +178,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             }, 300)
         }
 
-        recyclerView.apply {
+        bindingTray.rvEventOptions.apply {
             adapter = optionAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
@@ -169,7 +192,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
         optionAdapter.submitList(options)
 
-        return contentView
+        return bindingTray.root
     }
 
     private fun handleOptionSelected(position: Int) {

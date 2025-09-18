@@ -16,10 +16,10 @@ class InfoBoxFooter @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
     private val infoBox: InfoBox
     private val footer: Footer
     private var _footerType: Footer.FooterType = Footer.FooterType.CALL_TO_ACTION
+    private var attrsHasStrokeBeenSet: Boolean = false
 
     var infoText: CharSequence? = null
         set(value) {
@@ -43,6 +43,10 @@ class InfoBoxFooter @JvmOverloads constructor(
         set(value) {
             field = value
             infoBox.visibility = if (value) View.VISIBLE else View.GONE
+
+            if (!attrsHasStrokeBeenSet) {
+                footer.setStroke(!value)
+            }
         }
 
     init {
@@ -101,8 +105,13 @@ class InfoBoxFooter @JvmOverloads constructor(
 
             footer.setPrimaryButtonEnabled(typedArray.getBoolean(R.styleable.InfoBoxFooter_primaryButtonEnabled, true))
             footer.setSecondaryButtonEnabled(typedArray.getBoolean(R.styleable.InfoBoxFooter_secondaryButtonEnabled, true))
-            val hasStroke = typedArray.getBoolean(R.styleable.InfoBoxFooter_footerHasStroke, false)
-            footer.setStroke(hasStroke)
+            if (typedArray.hasValue(R.styleable.InfoBoxFooter_footerHasStroke)) {
+                attrsHasStrokeBeenSet = true
+                val hasStroke = typedArray.getBoolean(R.styleable.InfoBoxFooter_footerHasStroke, false)
+                footer.setStroke(hasStroke)
+            } else {
+                footer.setStroke(!isInfoBoxVisible)
+            }
         } finally {
             typedArray.recycle()
         }
@@ -160,6 +169,7 @@ class InfoBoxFooter @JvmOverloads constructor(
     }
 
     fun setFooterStroke(hasStroke: Boolean) {
+        attrsHasStrokeBeenSet = true
         footer.setStroke(hasStroke)
     }
 

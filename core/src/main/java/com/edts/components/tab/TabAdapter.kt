@@ -8,7 +8,6 @@ class TabAdapter(
     private var selectedPosition: Int,
     private val onClick: (Int, String) -> Unit
 ) : RecyclerView.Adapter<TabAdapter.TabViewHolder>() {
-
     private var recyclerView: RecyclerView? = null
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
@@ -33,9 +32,12 @@ class TabAdapter(
         val isActive = position == selectedPosition
 
         holder.tabItem.apply {
+            resetForBinding()
+
             tabText = data.text
             badgeText = data.badgeText
             showBadge = data.showBadge
+
             tabState = if (isActive) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
 
             delegate = object : TabDelegate {

@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTASupportText1"
-        app:layout_constraintBottom_toTopOf="@id/btnFooterCTAPrimary" />
+        app:layout_constraintBottom_toTopOf="@id/btnFooterCTAPrimary"/>
 
     <TextView
         android:id="@+id/tvFooterCTASupportText1"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintStart_toEndOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTATextDivider"
-        app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle" />
+        app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>
 
     <TextView
         android:id="@+id/tvFooterCTATextDivider"
@@ -49,7 +49,7 @@
         android:textColor="?attr/colorForegroundPlaceholder"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTASupportText2"
-        app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle" />
+        app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>
 
     <TextView
         android:id="@+id/tvFooterCTASupportText2"
@@ -62,7 +62,7 @@
         android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle" />
+        app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>
 
     <com.edts.components.button.Button
         android:id="@+id/btnFooterCTAPrimary"
@@ -72,5 +72,5 @@
         app:size="MD"
         app:layout_constraintTop_toBottomOf="@id/tvFooterCTATitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

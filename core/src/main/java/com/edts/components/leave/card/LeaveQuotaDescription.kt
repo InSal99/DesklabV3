@@ -9,7 +9,7 @@ import androidx.annotation.AttrRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
-import com.edts.components.databinding.LeaveQuotaDescriptionBinding // Import the generated binding class
+import com.edts.components.databinding.LeaveQuotaDescriptionBinding
 import java.util.regex.Pattern
 
 class LeaveQuotaDescription @JvmOverloads constructor(

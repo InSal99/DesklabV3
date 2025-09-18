@@ -18,12 +18,12 @@
         android:maxLines="1"
         android:paddingHorizontal="@dimen/margin_4dp"
         android:text="@string/option_card_title"
-        android:textColor="?attr/colorForegroundPrimary" />
+        android:textColor="?attr/colorForegroundPrimary"/>
 
     <ImageView
         android:id="@+id/ivOptionAction"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/ic_chevron_right"
-        app:tint="?attr/colorForegroundTertiary" />
+        app:tint="?attr/colorForegroundTertiary"/>
 </LinearLayout>

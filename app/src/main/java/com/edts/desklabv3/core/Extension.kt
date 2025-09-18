@@ -12,14 +12,14 @@ import androidx.annotation.ColorRes
 import androidx.annotation.FontRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.FragmentTransaction
+import com.edts.desklabv3.R
 
-// Converts HTML String to Spanned (styled text)
 fun String.toSpanned(): Spanned {
     val processedHtml = this.processNumberedLists()
     return Html.fromHtml(processedHtml, Html.FROM_HTML_MODE_COMPACT)
 }
 
-// Helper function to map numbered lists (unsupported) styled text
 private fun String.processNumberedLists(): String {
     return this.replace(Regex("<ol[^>]*>([\\s\\S]*?)</ol>")) { matchResult ->
         val listContent = matchResult.groupValues[1]
@@ -33,7 +33,6 @@ private fun String.processNumberedLists(): String {
     }
 }
 
-// Sets HTML-styled text and makes links clickable
 fun TextView.setHtml(html: String) {
     text = html.toSpanned()
     movementMethod = LinkMovementMethod.getInstance()
@@ -53,6 +52,15 @@ fun Context?.colorAttr(attributedId: Int): Int {
 
 fun Context?.color(@ColorRes colorRes: Int) =
     this?.let { ContextCompat.getColor(it, colorRes) } ?: Color.TRANSPARENT
+
+fun FragmentTransaction.withPushAnimation(): FragmentTransaction {
+    return this.setCustomAnimations(
+        R.anim.slide_in_right,   // enter
+        R.anim.slide_out_left,   // exit
+        R.anim.slide_in_left,    // popEnter
+        R.anim.slide_out_right   // popExit
+    ).setTransition(FragmentTransaction.TRANSIT_NONE) // prevent double anim
+}
 
 val Int.px: Float get() = (this / Resources.getSystem().displayMetrics.density)
 val Int.dp: Float get() = (this * Resources.getSystem().displayMetrics.density)

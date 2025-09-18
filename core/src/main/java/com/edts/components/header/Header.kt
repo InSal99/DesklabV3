@@ -3,6 +3,7 @@ package com.edts.components.header
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -15,7 +16,6 @@ class Header @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
     private val binding: HeaderBinding =
         HeaderBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -96,8 +96,32 @@ class Header @JvmOverloads constructor(
                 if (rightButtonDrawableRes != -1) {
                     rightButtonSrc = rightButtonDrawableRes
                 }
+
+                updateTitleStyle()
             } finally {
                 recycle()
+            }
+        }
+    }
+
+    private fun updateTitleStyle() {
+        val shouldUseLargerStyle = !showLeftButton && !showSectionSubtitle
+
+        if (shouldUseLargerStyle) {
+            val typedValue = TypedValue()
+            if (context.theme.resolveAttribute(R.attr.d3SemiBold, typedValue, true)) {
+                binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
+                Log.d(TAG, "Applied d3SemiBold style to title")
+            } else {
+                Log.w(TAG, "d3SemiBold style not found, keeping current style")
+            }
+        } else {
+            val typedValue = TypedValue()
+            if (context.theme.resolveAttribute(R.attr.h1SemiBold, typedValue, true)) {
+                binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
+                Log.d(TAG, "Applied h1SemiBold style to title")
+            } else {
+                Log.w(TAG, "h1SemiBold style not found, keeping current style")
             }
         }
     }

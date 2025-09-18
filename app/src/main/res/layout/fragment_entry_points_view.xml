@@ -4,12 +4,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".core.EntryPointsView">
+    tools:context=".core.EntryPointsView"
+    android:background="?attr/colorBackgroundPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_16dp" >
+
+        <TextView
+            android:id="@+id/tvFlowTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Flow Prototype"
+            style="?attr/d3SemiBold"
+            android:textColor="?attr/colorForegroundPrimary"
+            android:layout_marginTop="@dimen/margin_32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Flow Registrasi Event - RSVP"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFlowTitle"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Flow Invited Event - No RSVP"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFlow1"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Flow Attendance - Hybrid Event"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFlow2"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Flow Invited Event - Tolak Undangan"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFlow3"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnFlow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:size="SM"
+            android:text="Flow Cuti Feature Improvements"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFlow4" />
 
         <TextView
             android:id="@+id/tvLibraryTitle"
@@ -20,7 +82,7 @@
             android:textColor="?attr/colorForegroundPrimary"
             android:layout_marginTop="@dimen/margin_32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/btnFlow5" />
 
         <com.edts.components.button.Button
             android:id="@+id/btnLibButton"
@@ -372,69 +434,20 @@
             android:layout_marginStart="@dimen/margin_12dp"
             app:layout_constraintStart_toEndOf="@id/btnLibEventModalityLoading"
             app:layout_constraintTop_toTopOf="@id/btnLibEventModalityLoading"
+            app:layout_constraintBottom_toBottomOf="@id/btnLibEventModalityLoading"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            android:id="@+id/tvFlowTitle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Flow Prototype"
-            style="?attr/d3SemiBold"
-            android:textColor="?attr/colorForegroundPrimary"
-            android:layout_marginTop="@dimen/margin_32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnLibMyEventCard" />
-
         <com.edts.components.button.Button
-            android:id="@+id/btnFlow1"
-            android:layout_width="match_parent"
+            android:id="@+id/btnLibMonthlyPicker"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:size="SM"
-            android:text="Flow Registrasi Event - RSVP"
+            android:text="Monthly Picker"
             android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginBottom="40dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvFlowTitle"/>
-
-        <com.edts.components.button.Button
-            android:id="@+id/btnFlow2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:size="SM"
-            android:text="Flow Invited Event - No RSVP"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnFlow1"/>
-
-        <com.edts.components.button.Button
-            android:id="@+id/btnFlow3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:size="SM"
-            android:text="Flow Attendance - Hybrid Event"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnFlow2"/>
-
-        <com.edts.components.button.Button
-            android:id="@+id/btnFlow4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:size="SM"
-            android:text="Flow Invited Event - Tolak Undangan"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnFlow3"/>
-
-        <com.edts.components.button.Button
-            android:id="@+id/btnFlow5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:size="SM"
-            android:text="Flow Cuti Feature Improvements"
-            android:layout_marginTop="@dimen/margin_12dp"
-            android:layout_marginBottom="@dimen/margin_32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnFlow4"
+            app:layout_constraintTop_toBottomOf="@id/btnLibEventModalityLoading"
+            app:layout_constraintEnd_toEndOf="@id/btnLibEventModalityLoading"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

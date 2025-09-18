@@ -98,38 +98,18 @@
         app:layout_constraintTop_toBottomOf="@+id/wrapperHeader"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/ivShortcut"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="68dp"-->
-<!--        android:layout_marginTop="@dimen/margin_8dp"-->
-<!--        android:contentDescription="Shortcut"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/wrapper_shortcut"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/ivActivity"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/ivActivity"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ivActivity" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/ivCardLaporanTim"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="68dp"-->
-<!--        android:layout_marginTop="@dimen/margin_8dp"-->
-<!--        android:contentDescription="Shortcut"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/card_laporan_tim" />-->
-
     <HorizontalScrollView
         android:id="@+id/scrollViewShortcuts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginBottom="@dimen/margin_8dp"
         android:paddingHorizontal="@dimen/margin_16dp"
         android:scrollbars="none"
         android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivActivity">
+        app:layout_constraintTop_toBottomOf="@+id/ivActivity" >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -158,16 +138,15 @@
     </HorizontalScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clContentLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:minHeight="492dp"
-        android:layout_marginTop="@dimen/margin_24dp"
-        android:paddingTop="@dimen/margin_20dp"
-        android:background="@drawable/bg_bottom_sheet_shadow_tinted"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollViewShortcuts"
+        android:layout_marginTop="@dimen/margin_12dp"
+        android:paddingTop="@dimen/margin_32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewShortcuts">
 
         <ImageView
             android:id="@+id/ivEmptyState"

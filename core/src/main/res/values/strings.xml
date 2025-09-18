@@ -27,8 +27,7 @@
     <string name="leave_used_format">Cuti Terpakai: %d Hari</string>
     <string name="chip_image_view_content_description">Chip Close Action</string>
 
-
-<!--Dummy Data-->
+    <!--Dummy Data-->
     <string-array name="countries">
         <item>Indonesia</item>
         <item>United States</item>

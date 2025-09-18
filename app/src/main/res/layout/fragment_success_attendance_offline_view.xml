@@ -20,14 +20,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
+<!--        <ImageView-->
+<!--            android:id="@+id/ivIllustAttendanceOffline"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:contentDescription="Illustrasi"-->
+<!--            android:src="@drawable/il_check"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            app:layout_constraintDimensionRatio="1:1"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/ivIllustAttendanceOffline"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="Illustrasi"
-            android:src="@drawable/il_check"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1:1"
+            app:lottie_rawRes="@raw/il_success"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

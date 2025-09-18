@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
@@ -30,11 +32,15 @@ class SuccessAttendanceOnlineView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivIllustAttendanceOffline.setImageResource(R.drawable.il_check)
         binding.tvTitleAttendanceOffline.text = "Kehadiran Tercatat!"
         binding.tvDescAttendanceOffline.text = "Terima kasih telah konfirmasi kehadiranmu"
         binding.cvPrimaryBtnAttendanceOffline.text = "Akses Meeting"
         binding.cvSecondaryBtnAttendanceOffline.text = "Lihat Detail Event"
+
+        val lottieView = view.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
+        lottieView.setAnimation(R.raw.il_success)
+        lottieView.repeatCount = LottieDrawable.INFINITE
+        lottieView.playAnimation()
 
         setupButtonClickListeners()
     }
@@ -72,9 +78,9 @@ class SuccessAttendanceOnlineView : Fragment() {
     private fun navigateToEventDetail() {
         val result = bundleOf(
             "fragment_class" to "EventDetailViewAttendance",
-            "from_success" to true, // ← Add this identifier
+            "from_success" to true,
             "attendance_type" to "online",
-            "meeting_link" to meetingLink // ← Pass the meeting link
+            "meeting_link" to meetingLink
         )
         parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }

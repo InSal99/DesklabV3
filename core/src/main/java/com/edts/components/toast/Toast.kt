@@ -23,7 +23,6 @@ class Toast @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: LayoutToastViewBinding
     private var toastType: Type = Type.GENERAL
     private var toastMessage: String = ""
