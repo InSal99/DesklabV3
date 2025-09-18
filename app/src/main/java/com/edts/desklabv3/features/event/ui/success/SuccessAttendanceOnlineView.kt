@@ -79,9 +79,9 @@ class SuccessAttendanceOnlineView : Fragment() {
     private fun navigateToEventDetail() {
         val result = bundleOf(
             "fragment_class" to "EventDetailViewAttendance",
-            "from_success" to true, // ← Add this identifier
+            "from_success" to true,
             "attendance_type" to "online",
-            "meeting_link" to meetingLink // ← Pass the meeting link
+            "meeting_link" to meetingLink
         )
         parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }

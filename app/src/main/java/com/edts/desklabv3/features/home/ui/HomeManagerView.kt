@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.edts.components.utils.resolveColorAttribute
 import com.edts.desklabv3.R
+import com.edts.desklabv3.core.util.createTopShadowBackgroundCustom
 import com.edts.desklabv3.databinding.FragmentHomeDaftarRsvpViewBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.home.model.ActivityItem
@@ -51,6 +53,12 @@ class HomeManagerView : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.clContentLayout.background = requireContext().createTopShadowBackgroundCustom(
+            fillColor = requireContext().resolveColorAttribute(android.R.attr.colorBackground, com.edts.components.R.color.colorFFF),
+            shadowOffsetDp = 12
+        )
+
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
