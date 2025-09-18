@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
 
@@ -26,7 +28,11 @@ class SuccessAttendanceOfflineView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivIllustAttendanceOffline.setImageResource(R.drawable.il_check)
+        val lottieView = view.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
+        lottieView.setAnimation(R.raw.il_success)
+        lottieView.repeatCount = LottieDrawable.INFINITE
+        lottieView.playAnimation()
+
         binding.tvTitleAttendanceOffline.text = "Kehadiran Tercatat!"
         binding.tvDescAttendanceOffline.text = "Terima kasih telah konfirmasi kehadiranmu"
         binding.cvPrimaryBtnAttendanceOffline.text = "Lihat Detail Event"
