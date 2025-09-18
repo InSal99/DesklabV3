@@ -199,9 +199,10 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        // Navigate to event detail using Fragment Result API
-        val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        if (event.eventTitle == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
+            val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        }
     }
 
     override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String, changeCount: Int) {

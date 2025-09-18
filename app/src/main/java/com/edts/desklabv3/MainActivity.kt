@@ -19,7 +19,9 @@ import com.edts.components.tab.TabData
 import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
+import com.edts.desklabv3.core.util.createBottomShadowBackgroundCustom
 import com.edts.desklabv3.core.util.setupWithViewPager2
+import com.edts.desklabv3.core.withPushAnimation
 import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.attendanceoffline.AssetQRCodeFragment
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailRSVPView
@@ -35,6 +37,7 @@ import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentNo
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentNoRSVP
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentRSVP
+import com.edts.desklabv3.features.event.ui.rsvp.RSVPFormView
 import com.edts.desklabv3.features.event.ui.success.SuccessAttendanceOfflineView
 import com.edts.desklabv3.features.event.ui.success.SuccessAttendanceOnlineView
 import com.edts.desklabv3.features.event.ui.success.SuccessDenyInvitationView
@@ -44,6 +47,8 @@ import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
 import com.edts.desklabv3.features.home.ui.HomeInvitationNoRSVPView
 import com.edts.desklabv3.features.home.ui.HomeInvitationTolakView
 import com.edts.desklabv3.features.home.ui.HomeManagerView
+import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailView
+import com.edts.desklabv3.features.leave.ui.EmployeeLeaveHistoryView
 import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportActivityView
 import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
 
@@ -628,6 +633,8 @@ class MainActivity : AppCompatActivity() {
     private var flow4PagerAdapter: TabFragmentAdapter? = null  // HomeInvitationTolakView flow
     private var teamReportPagerAdapter: TabFragmentAdapter? = null
     private var currentFlow: String? = null
+    private var currentTeamReportTab: Int = 0
+    private var isNavigatingBackFromDetail: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -635,13 +642,31 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.HeaderWrapperTeamReportActivity.background = this.createBottomShadowBackgroundCustom()
+        binding.headerWrapperEventListDaftarRSVP.background = this.createBottomShadowBackgroundCustom()
+
         if (savedInstanceState == null) {
-            loadFragmentWithUI(EntryPointsView(), addToBackStack = false)
+//            loadFragmentWithUI(EntryPointsView(), addToBackStack = false)
+            supportFragmentManager.beginTransaction()
+                .withPushAnimation()
+                .replace(R.id.fragment_container, EntryPointsView())
+                .addToBackStack("EntryPoints")
+                .commit()
         }
 
         supportFragmentManager.setFragmentResultListener("navigate_fragment", this) { requestKey, bundle ->
             val fragmentClassName = bundle.getString("fragment_class")
             val flowType = bundle.getString("flow_type", "")
+            val sourceFragment = bundle.getString("source_fragment", "")
+
+            if (fragmentClassName == "EmployeeLeaveDetailView" || fragmentClassName == "EmployeeLeaveHistoryView") {
+                isNavigatingBackFromDetail = true // Set this to true, not false
+                // Store the source fragment information
+                if (sourceFragment == "TeamReportLeaveView") {
+                    currentTeamReportTab = 1 // Ensure we remember we came from tab 1
+                }
+            }
+
             val fragment = when (fragmentClassName) {
                 "HomeDaftarRSVPView" -> HomeDaftarRSVPView()
                 "EventListDaftarRSVPView" -> EventListDaftarRSVPView()
@@ -663,6 +688,9 @@ class MainActivity : AppCompatActivity() {
                 "SuccessDenyInvitationView" -> SuccessDenyInvitationView()
                 "EventListInvitationTolakEndView" -> EventListInvitationTolakEndView()
                 "AssetQRCodeFragment" -> AssetQRCodeFragment()
+                "RSVPFormView" -> RSVPFormView()
+                "EmployeeLeaveDetailView" -> EmployeeLeaveDetailView()
+                "EmployeeLeaveHistoryView" -> EmployeeLeaveHistoryView()
                 "SuccessRegistrationView" -> SuccessRegistrationView().apply {
                     arguments = Bundle().apply {
                         putString("flow_type", flowType)
@@ -684,8 +712,28 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.addOnBackStackChangedListener {
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+
+            // Detect if we're coming back to TeamReport from detail views
+            if (currentFragment is TeamReportActivityView || currentFragment is TeamReportLeaveView) {
+                val backStackEntryCount = supportFragmentManager.backStackEntryCount
+                if (backStackEntryCount > 0) {
+                    val topEntry = supportFragmentManager.getBackStackEntryAt(backStackEntryCount - 1)
+                    val previousFragmentName = if (backStackEntryCount > 1) {
+                        supportFragmentManager.getBackStackEntryAt(backStackEntryCount - 2).name
+                    } else null
+
+                    // Check if we came from a detail view
+                    if (topEntry.name == "EmployeeLeaveDetailView" || topEntry.name == "EmployeeLeaveHistoryView" ||
+                        previousFragmentName == "EmployeeLeaveDetailView" || previousFragmentName == "EmployeeLeaveHistoryView") {
+                        isNavigatingBackFromDetail = true
+                    }
+                }
+            }
+
             currentFragment?.let {
-                configureUIForFragment(it)
+                binding.root.post {
+                    currentFragment?.let { configureUIForFragment(it) }
+                }
             }
         }
 
@@ -763,6 +811,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadFragmentWithUI(fragment: Fragment, addToBackStack: Boolean = true) {
         val transaction = supportFragmentManager.beginTransaction()
+            .withPushAnimation()
             .replace(R.id.fragment_container, fragment)
 
         if (addToBackStack) {
@@ -889,12 +938,55 @@ class MainActivity : AppCompatActivity() {
                 configureHeaders(showTeamReport = false, showEventList = false)
                 showFragmentContainer()
                 binding.cvBottomNavigation.setActiveItem(0)
+                isNavigatingBackFromDetail = false
             }
 
+//            is TeamReportActivityView, is TeamReportLeaveView -> {
+//                val selectedPosition = if (fragment is TeamReportLeaveView) 1 else 0
+//                configureBottomNavigation(showBadge = false, showBottomNavigation = false)
+//                configureHeaders(showTeamReport = true, showEventList = false)
+//                setupTeamReportViewPager(selectedPosition)
+//            }
+
+//            is TeamReportActivityView, is TeamReportLeaveView -> {
+//                configureBottomNavigation(showBadge = false, showBottomNavigation = false)
+//                configureHeaders(showTeamReport = true, showEventList = false)
+//
+//                // Determine the correct tab position
+//                val selectedPosition = when {
+//                    // If we're navigating back from detail and had saved the tab state
+//                    isNavigatingBackFromDetail -> {
+//                        isNavigatingBackFromDetail = false // Reset the flag
+//                        currentTeamReportTab // Use the saved tab position
+//                    }
+//                    // Normal navigation - determine by fragment type
+//                    fragment is TeamReportLeaveView -> 1
+//                    fragment is TeamReportActivityView -> 0
+//                    else -> 0
+//                }
+//
+//                Log.d("UI_CONFIG", "Team report selected position: $selectedPosition, fragment: ${fragment::class.java.simpleName}")
+//                setupTeamReportViewPager(selectedPosition)
+//            }
+
             is TeamReportActivityView, is TeamReportLeaveView -> {
-                val selectedPosition = if (fragment is TeamReportLeaveView) 1 else 0
                 configureBottomNavigation(showBadge = false, showBottomNavigation = false)
                 configureHeaders(showTeamReport = true, showEventList = false)
+
+                // Determine the correct tab position
+                val selectedPosition = when {
+                    // If we're navigating back from detail and had saved the tab state
+                    isNavigatingBackFromDetail -> {
+                        isNavigatingBackFromDetail = false // Reset the flag
+                        currentTeamReportTab // Use the saved tab position
+                    }
+                    // Normal navigation - determine by fragment type
+                    fragment is TeamReportLeaveView -> 1
+                    fragment is TeamReportActivityView -> 0
+                    else -> 0
+                }
+
+                Log.d("UI_CONFIG", "Team report selected position: $selectedPosition, fragment: ${fragment::class.java.simpleName}")
                 setupTeamReportViewPager(selectedPosition)
             }
 
@@ -1024,11 +1116,56 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+//    private fun setupTeamReportViewPager(selectedPosition: Int = 0) {
+//        showViewPager()
+//
+//        // 🔑 CONFIGURE TABS FIRST to prevent glitch
+//        binding.viewPager.visibility = View.GONE
+//        configureTeamReportTabs(selectedPosition)
+//
+//        if (teamReportPagerAdapter == null) {
+//            val fragments = listOf(
+//                TeamReportActivityView(),
+//                TeamReportLeaveView()
+//            )
+//            teamReportPagerAdapter = TabFragmentAdapter(this, fragments)
+//        }
+//
+//        binding.viewPager.post {
+//            if (binding.viewPager.adapter != teamReportPagerAdapter) {
+//                binding.viewPager.adapter = null
+//                binding.viewPager.adapter = teamReportPagerAdapter
+//                binding.cvTabTeamReportActivity.setupWithViewPager2(binding.viewPager)
+//            }
+//            binding.viewPager.setCurrentItem(selectedPosition, false)
+//            binding.viewPager.visibility = View.VISIBLE
+//        }
+//    }
+
+//    private fun setupTeamReportViewPager(selectedPosition: Int = 0) {
+//        currentTeamReportTab = selectedPosition
+//        showViewPager()
+//        configureTeamReportTabs(selectedPosition)
+//
+//        if (teamReportPagerAdapter == null) {
+//            val fragments = listOf(
+//                TeamReportActivityView(),
+//                TeamReportLeaveView()
+//            )
+//            teamReportPagerAdapter = TabFragmentAdapter(this, fragments)
+//            binding.viewPager.adapter = teamReportPagerAdapter
+//            binding.cvTabTeamReportActivity.setupWithViewPager2(binding.viewPager)
+//        }
+//
+//        binding.viewPager.setCurrentItem(selectedPosition, false)
+//        binding.viewPager.visibility = View.VISIBLE
+//    }
+
     private fun setupTeamReportViewPager(selectedPosition: Int = 0) {
+        currentTeamReportTab = selectedPosition
         showViewPager()
 
-        // 🔑 CONFIGURE TABS FIRST to prevent glitch
-        binding.viewPager.visibility = View.GONE
+        // Always configure tabs first
         configureTeamReportTabs(selectedPosition)
 
         if (teamReportPagerAdapter == null) {
@@ -1037,18 +1174,18 @@ class MainActivity : AppCompatActivity() {
                 TeamReportLeaveView()
             )
             teamReportPagerAdapter = TabFragmentAdapter(this, fragments)
+            binding.viewPager.adapter = teamReportPagerAdapter
+            binding.cvTabTeamReportActivity.setupWithViewPager2(binding.viewPager)
         }
 
+        // Ensure the correct tab is selected
         binding.viewPager.post {
-            if (binding.viewPager.adapter != teamReportPagerAdapter) {
-                binding.viewPager.adapter = null
-                binding.viewPager.adapter = teamReportPagerAdapter
-                binding.cvTabTeamReportActivity.setupWithViewPager2(binding.viewPager)
-            }
             binding.viewPager.setCurrentItem(selectedPosition, false)
             binding.viewPager.visibility = View.VISIBLE
+            Log.d("UI_CONFIG", "ViewPager set to position: $selectedPosition")
         }
     }
+
 
     // Tab configurations for each flow
     private fun configureFlow1Tabs(selectedPosition: Int = 0) {
@@ -1196,12 +1333,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToProfile() {
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.popBackStack("EntryPoints", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, EntryPointsView())
-            .commit()
-
+        loadFragmentWithUI(EntryPointsView(), addToBackStack = false)
         binding.cvBottomNavigation.setActiveItem(3)
     }
 
@@ -1226,6 +1360,22 @@ class MainActivity : AppCompatActivity() {
     private fun showViewPager() {
         binding.fragmentContainer.visibility = View.GONE
         binding.viewPager.visibility = View.VISIBLE
+    }
+
+//    private fun saveCurrentTeamReportTab() {
+//        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+//        when (currentFragment) {
+//            is TeamReportActivityView -> currentTeamReportTab = 0
+//            is TeamReportLeaveView -> currentTeamReportTab = 1
+//        }
+//    }
+
+    fun saveCurrentTeamReportTab() {
+        // Get the current tab position from the ViewPager instead of fragment type
+        if (::binding.isInitialized && binding.viewPager.adapter == teamReportPagerAdapter) {
+            currentTeamReportTab = binding.viewPager.currentItem
+            Log.d("UI_CONFIG", "Saved current team report tab: $currentTeamReportTab")
+        }
     }
 
     fun switchToFragment(fragment: Fragment) {

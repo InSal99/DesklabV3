@@ -1,4 +1,336 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.Desklab.Kit" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Base application theme. -->
+    <style name="Theme.Desklab.Kit" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary30</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary50</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorSecondary30</item>
+        <item name="colorSecondaryVariant">@color/colorSecondary50</item>
+        <item name="colorOnSecondary">@color/colorBlack70</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/colorFFF</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="fontFamily">@font/inter_medium</item>
+
+        <!-- Calendar -->
+        <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
+        <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
+
+        <!-- Modality Dialog -->
+        <item name="materialAlertDialogTheme">@style/Theme.App.Dialog.Confirmation</item>
+
+        <!-- Background Colors -->
+        <item name="colorBackgroundPrimary">@color/colorFFF</item>
+        <item name="colorBackgroundPrimaryTinted">@color/colorNeutralGrayBlue10</item>
+        <item name="colorBackgroundPrimaryInverse">@color/color000</item>
+        <item name="colorBackgroundSecondary">@color/colorNeutral10</item>
+        <item name="colorBackgroundSecondaryTinted">@color/colorNeutralGrayBlue20</item>
+        <item name="colorBackgroundTertiary">@color/colorNeutral20</item>
+        <item name="colorBackgroundOverlay">@color/color000Opacity50</item>
+        <item name="colorBackgroundDisabled">@color/color000Opacity5</item>
+
+        <!-- Accent Background Colors -->
+        <item name="colorBackgroundAccentPrimarySubtle">@color/colorPrimary10</item>
+        <item name="colorBackgroundAccentPrimaryIntense">@color/colorPrimary30</item>
+        <item name="colorBackgroundAccentSecondary">@color/colorSecondary30</item>
+        <item name="colorBackgroundAccentDisabled">@color/colorPrimaryOpacity5</item>
+
+        <!-- Modifier Background Colors -->
+        <item name="colorBackgroundModifierCardElevated">@color/colorOpacityWhite5</item>
+        <item name="colorBackgroundModifierCardElevatedInverse">@color/colorOpacityWhite5</item>
+        <item name="colorBackgroundModifierCardSurface">@color/colorOpacityWhite2</item>
+        <item name="colorBackgroundModifierOnHover">@color/color000Opacity2</item>
+        <item name="colorBackgroundModifierOnPress">@color/color000Opacity5</item>
+        <item name="colorBackgroundModifierOnPressIntense">@color/color000Opacity12</item>
+
+        <!-- Info Background Colors -->
+        <item name="colorBackgroundInfoSubtle">@color/colorBlue10</item>
+        <item name="colorBackgroundInfoIntense">@color/colorBlue50</item>
+
+        <!-- Success Background Colors -->
+        <item name="colorBackgroundSuccessSubtle">@color/colorGreen10</item>
+        <item name="colorBackgroundSuccessIntense">@color/colorGreen50</item>
+
+        <!-- Warning Background Colors -->
+        <item name="colorBackgroundWarningSubtle">@color/colorOrange10</item>
+        <item name="colorBackgroundWarningIntense">@color/colorOrange40</item>
+
+        <!-- Attention Background Colors -->
+        <item name="colorBackgroundAttentionSubtle">@color/colorRed10</item>
+        <item name="colorBackgroundAttentionIntense">@color/colorRed40</item>
+
+        <!-- Utility Background Colors -->
+        <!-- libur -->
+        <item name="colorBackgroundUtilityLiburSubtle">@color/colorRed10</item>
+        <item name="colorBackgroundUtilityLiburIntense">@color/colorRed30</item>
+
+        <!-- cuti -->
+        <item name="colorBackgroundUtilityCutiSubtle">@color/colorPrimary10</item>
+        <item name="colorBackgroundUtilityCutiIntense">@color/colorPrimary30</item>
+
+        <!-- kerja khusus -->
+        <item name="colorBackgroundUtilityKerjaKhususSubtle">@color/colorSecondary10</item>
+        <item name="colorBackgroundUtilityKerjaKhususIntense">@color/colorSecondary30</item>
+
+        <!-- ulang tahun -->
+        <item name="colorBackgroundUtilityUlangTahunSubtle">@color/colorGreen10</item>
+        <item name="colorBackgroundUtilityUlangTahunIntense">@color/colorGreen40</item>
+
+        <!-- event -->
+        <item name="colorBackgroundUtilityEventSubtle">@color/colorOrange10</item>
+        <item name="colorBackgroundUtilityEventIntense">@color/colorOrange40</item>
+
+        <!-- Basic Foreground Colors -->
+        <item name="colorForegroundPrimary">@color/color000</item>
+        <item name="colorForegroundPrimaryInverse">@color/colorFFF</item>
+        <item name="colorForegroundSecondary">@color/colorNeutral60</item>
+        <item name="colorForegroundTertiary">@color/colorNeutral50</item>
+        <item name="colorForegroundPlaceholder">@color/colorNeutral40</item>
+        <item name="colorForegroundDisabled">@color/color000Opacity20</item>
+        <item name="colorForegroundOverlay">?attr/colorBackgroundOverlay</item>
+        <item name="colorForegroundWhite">@color/colorFFF</item>
+        <item name="colorForegroundBlack">@color/color000</item>
+
+        <!-- Modifier Foreground Colors -->
+        <item name="colorForegroundModifierCardElevated">?attr/colorBackgroundModifierCardElevated
+        </item>
+        <item name="colorForegroundModifierCardSurface">?attr/colorBackgroundModifierCardSurface
+        </item>
+
+        <!-- Accent Foreground Colors -->
+        <item name="colorForegroundAccentPrimarySubtle">@color/colorPrimary10</item>
+        <item name="colorForegroundAccentPrimaryIntense">@color/colorPrimary30</item>
+
+        <!-- Info Foreground Colors -->
+        <item name="colorForegroundInfoSubtle">@color/colorBlue10</item>
+        <item name="colorForegroundInfoIntense">@color/colorBlue50</item>
+
+        <!-- Success Foreground Colors -->
+        <item name="colorForegroundSuccessSubtle">@color/colorGreen10</item>
+        <item name="colorForegroundSuccessIntense">@color/colorGreen50</item>
+
+        <!-- Warning Foreground Colors -->
+        <item name="colorForegroundWarningSubtle">@color/colorOrange10</item>
+        <item name="colorForegroundWarningIntense">@color/colorOrange50</item>
+
+        <!-- Attention Foreground Colors -->
+        <item name="colorForegroundAttentionSubtle">@color/colorRed10</item>
+        <item name="colorForegroundAttentionIntense">@color/colorRed40</item>
+
+        <!-- Utility Foreground Colors -->
+        <!-- libur -->
+        <item name="colorForegroundUtilityLiburSubtle">@color/colorRed10</item>
+        <item name="colorForegroundUtilityLiburIntense">@color/colorRed30</item>
+
+        <!-- cuti -->
+        <item name="colorForegroundUtilityCutiSubtle">@color/colorPrimary10</item>
+        <item name="colorForegroundUtilityCutiIntense">@color/colorPrimary30</item>
+
+        <!-- kerja-khusus -->
+        <item name="colorForegroundUtilityKerjaKhususSubtle">@color/colorSecondary10</item>
+        <item name="colorForegroundUtilityKerjaKhususIntense">@color/colorSecondary30</item>
+
+        <!-- ulang-tahun -->
+        <item name="colorForegroundUtilityUlangTahunSubtle">@color/colorGreen10</item>
+        <item name="colorForegroundUtilityUlangTahunIntense">@color/colorGreen40</item>
+
+        <!-- Basic Stroke Colors -->
+        <item name="colorStrokeSubtle">@color/colorNeutral30</item>
+        <item name="colorStrokeInteractive">@color/colorOpacityWhite20</item>
+        <item name="colorStrokeIntense">@color/colorNeutral40</item>
+        <item name="colorStrokeFocus">@color/colorPrimary50</item>
+        <item name="colorStrokeAccent">@color/colorPrimary30</item>
+        <item name="colorStrokeDisabled">@color/color000Opacity12</item>
+        <item name="colorStrokeCutout">?attr/colorBackgroundPrimary</item>
+
+        <!-- Semantic Stroke Colors -->
+        <!-- Info -->
+        <item name="colorStrokeInfoSubtle">@color/colorBlue10</item>
+        <item name="colorStrokeInfoIntense">@color/colorBlue50</item>
+
+        <!-- Success -->
+        <item name="colorStrokeSuccessSubtle">@color/colorGreen10</item>
+        <item name="colorStrokeSuccessIntense">@color/colorGreen50</item>
+
+        <!-- Warning -->
+        <item name="colorStrokeWarningSubtle">@color/colorOrange10</item>
+        <item name="colorStrokeWarningIntense">@color/colorOrange50</item>
+
+        <!-- Attention -->
+        <item name="colorStrokeAttentionSubtle">@color/colorRed10</item>
+        <item name="colorStrokeAttentionIntense">@color/colorRed50</item>
+
+        <!-- Utility Stroke Colors -->
+        <!-- libur -->
+        <item name="colorStrokeUtilityLiburSubtle">@color/colorRed10</item>
+        <item name="colorStrokeUtilityLiburIntense">@color/colorRed30</item>
+
+        <!-- cuti -->
+        <item name="colorStrokeUtilityCutiSubtle">@color/colorPrimary10</item>
+        <item name="colorStrokeUtilityCutiIntense">@color/colorPrimary30</item>
+
+        <!-- kerja khusus -->
+        <item name="colorStrokeUtilityKerjaKhususSubtle">@color/colorSecondary10</item>
+        <item name="colorStrokeUtilityKerjaKhususIntense">@color/colorSecondary30</item>
+
+        <!-- ulang tahun -->
+        <item name="colorStrokeUtilityUlangTahunSubtle">@color/colorGreen10</item>
+        <item name="colorStrokeUtilityUlangTahunIntense">@color/colorGreen40</item>
+
+        <!-- event -->
+        <item name="colorStrokeUtilityEventSubtle">@color/colorOrange10</item>
+        <item name="colorStrokeUtilityEventIntense">@color/colorOrange40</item>
+
+        <!-- Shadow Colors -->
+        <!-- Neutral -->
+        <item name="colorShadowNeutralKey">@color/color000Opacity10</item>
+        <item name="colorShadowNeutralAmbient">@color/color000Opacity5</item>
+
+        <!-- Tinted -->
+        <item name="colorShadowTintedKey">@color/colorPrimaryOpacity20</item>
+        <item name="colorShadowTintedAmbient">@color/colorPrimaryOpacity10</item>
+
+        <!-- Illustration Colors -->
+        <item name="colorIllustrationBg">@color/colorPrimaryOpacity5</item>
+        <item name="colorIllustrationIcon">@color/colorPrimary50</item>
+        <item name="colorIllustrationRippleIntense">@color/colorPrimaryOpacity20</item>
+        <item name="colorIllustrationRippleSubtle">@color/colorPrimaryOpacity2</item>
+
+        <!-- Display -->
+        <item name="d1SemiBold">@style/TextSemiBold.Display1</item>
+        <item name="d2SemiBold">@style/TextSemiBold.Display2</item>
+        <item name="d3SemiBold">@style/TextSemiBold.Display3</item>
+        <item name="d3Bold">@style/TextBold.Display3</item>
+
+        <!-- Headings -->
+        <item name="h1SemiBold">@style/TextSemiBold.Heading1</item>
+        <item name="h1Bold">@style/TextBold.Heading1</item>
+        <item name="h2SemiBold">@style/TextSemiBold.Heading2</item>
+        <item name="h2Bold">@style/TextBold.Heading2</item>
+        <item name="h3SemiBold">@style/TextSemiBold.Heading3</item>
+        <item name="h4SemiBold">@style/TextSemiBold.Heading4</item>
+
+        <!-- Paragraphs -->
+        <item name="p1Bold">@style/TextBold.Paragraph1</item>
+        <item name="p1SemiBold">@style/TextSemiBold.Paragraph1</item>
+        <item name="p1Medium">@style/TextMedium.Paragraph1</item>
+        <item name="p1Regular">@style/TextRegular.Paragraph1</item>
+        <item name="p2SemiBold">@style/TextSemiBold.Paragraph2</item>
+        <item name="p2Medium">@style/TextMedium.Paragraph2</item>
+        <item name="p2Regular">@style/TextRegular.Paragraph2</item>
+
+        <!-- Labels -->
+        <item name="l1Bold">@style/TextBold.Label1</item>
+        <item name="l1Medium">@style/TextMedium.Label1</item>
+        <item name="l1Regular">@style/TextRegular.Label1</item>
+        <item name="l2SemiBold">@style/TextSemiBold.Label2</item>
+        <item name="l2Medium">@style/TextMedium.Label2</item>
+        <item name="l2Regular">@style/TextRegular.Label2</item>
+        <item name="l3SemiBold">@style/TextSemiBold.Label3</item>
+        <item name="l3Medium">@style/TextMedium.Label3</item>
+        <item name="l3Regular">@style/TextRegular.Label3</item>
+        <item name="l4SemiBold">@style/TextSemiBold.Label4</item>
+        <item name="l4Medium">@style/TextMedium.Label4</item>
+        <item name="l4Regular">@style/TextRegular.Label4</item>
+        <item name="l5SemiBold">@style/TextSemiBold.Label5</item>
+        <item name="l5Medium">@style/TextMedium.Label5</item>
+        <item name="l5Regular">@style/TextRegular.Label5</item>
+
+    </style>
+
+    <style name="NoActionBar" parent="Theme.Desklab.Kit">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="DialogTheme" parent="NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+
+    <style name="WhiteBar" parent="Theme.Desklab.Kit">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="android:statusBarColor">@color/colorFFF</item>
+    </style>
+
+    <!--        <style name="Theme.Desklab.Starting" parent="Theme.SplashScreen">-->
+    <!--            <item name="windowSplashScreenBackground">@color/colorPrimary30</item>-->
+    <!--            <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>-->
+    <!--            <item name="windowSplashScreenAnimationDuration">2000</item>-->
+    <!--            <item name="postSplashScreenTheme">@style/NoActionBar</item>-->
+    <!--        </style>-->
+
+    <style name="SplashTheme" parent="NoActionBar">
+        <item name="android:windowBackground">@drawable/app_launch</item>
+    </style>
+
+    <style name="HomeTheme" parent="NoActionBar">
+        <item name="android:statusBarColor">@color/colorPrimary30</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Action bar style -->
+    <style name="ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@drawable/bg_bottom_stroke</item>
+        <item name="android:titleTextStyle">@style/ActionBarText</item>
+        <item name="android:textColor">@color/colorNeutral70</item>
+        <item name="android:elevation">0dp</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- THIS is where you can color the arrow! -->
+        <item name="colorControlNormal">@color/colorBlack50</item>
+    </style>
+
+    <style name="ActionBarText">
+        <item name="android:textColor">@color/colorBlack70</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+    </style>
+
+    <!-- Search view style -->
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Bottom sheet style -->
+    <style name="BottomSheet" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
+    </style>
+
+    <!-- Rating bar style -->
+    <style name="CustomRatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_rating_bar</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:maxHeight">30dp</item>
+    </style>
+
+    <!-- Circular ImageView -->
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 </resources>
+
+
+<!--<resources xmlns:tools="http://schemas.android.com/tools">-->
+<!--    <style name="Theme.Desklab.Kit" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+<!--    </style>-->
+<!--</resources>-->
