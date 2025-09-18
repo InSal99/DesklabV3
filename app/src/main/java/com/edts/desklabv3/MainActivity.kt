@@ -33,8 +33,11 @@ import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationNoRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakEndView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakStartView
+import com.edts.desklabv3.features.event.ui.invitation.EventInvitationEmptyView
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentNoRSVP
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
+import com.edts.desklabv3.features.event.ui.myevent.MyEventsEmptyView
+import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentAttendance
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentNoRSVP
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentRSVP
 import com.edts.desklabv3.features.event.ui.rsvp.RSVPFormView
@@ -799,8 +802,13 @@ class MainActivity : AppCompatActivity() {
         val targetHomeFragment = when (currentFragment) {
             is EventListInvitationNoRSVPView -> HomeInvitationNoRSVPView()
             is MyEventsFragmentNoRSVP, is EventInvitationFragmentNoRSVP -> HomeInvitationNoRSVPView()
+
             is EventListInvitationTolakStartView -> HomeInvitationTolakView()
-            is HomeInvitationTolakView -> EventListInvitationTolakStartView()
+            is EventInvitationFragmentTolakUndangan -> HomeInvitationTolakView()
+
+            is EventListAttendanceView -> HomeAttendanceView()
+            is MyEventsFragmentAttendance -> HomeAttendanceView()
+
             else -> HomeDaftarRSVPView()
         }
 
@@ -928,7 +936,7 @@ class MainActivity : AppCompatActivity() {
             is EventListInvitationTolakEndView -> {
                 configureBottomNavigation(showBadge = false, showBottomNavigation = true)
                 configureHeaders(showTeamReport = false, showEventList = true)
-                setupFlow4ViewPager(selectedPosition = 2) // Show as Undangan tab but no badge
+                setupFlow4ViewPager(selectedPosition = 0)
                 binding.cvBottomNavigation.setActiveItem(2)
             }
 
@@ -999,6 +1007,143 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+//    // Flow 1: HomeDaftarRSVPView → EventListDaftarRSVPView + MyEventsFragmentRSVP + Empty Undangan
+//    private fun setupFlow1ViewPager(selectedPosition: Int = 0) {
+//        showViewPager()
+//
+//        // 🔑 CONFIGURE TABS FIRST to prevent glitch
+//        binding.viewPager.visibility = View.GONE
+//        configureFlow1Tabs(selectedPosition)
+//
+//        if (flow1PagerAdapter == null) {
+//            val fragments = listOf(
+//                EventListDaftarRSVPView(),    // Tab 0: Daftar Event
+//                MyEventsEmptyView(),       // Tab 1: Event Saya
+//                EventInvitationEmptyView()
+//            )
+//            flow1PagerAdapter = TabFragmentAdapter(this, fragments)
+//        }
+//
+//        binding.viewPager.post {
+//            if (binding.viewPager.adapter != flow1PagerAdapter) {
+//                binding.viewPager.adapter = null
+//                binding.viewPager.adapter = flow1PagerAdapter
+//                binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
+//            }
+//            binding.viewPager.setCurrentItem(selectedPosition, false)
+//            binding.viewPager.visibility = View.VISIBLE
+//        }
+//    }
+//
+//    // Flow 2: HomeAttendanceView → EventListAttendanceView + Empty Event Saya + Empty Undangan
+//    private fun setupFlow2ViewPager(selectedPosition: Int = 0) {
+//        showViewPager()
+//
+//        // 🔑 CONFIGURE TABS FIRST to prevent glitch
+//        binding.viewPager.visibility = View.GONE
+//        configureFlow2Tabs(selectedPosition)
+//
+//        if (flow2PagerAdapter == null) {
+//            val fragments = listOf(
+//                EventListAttendanceView(),    // Tab 0: Daftar Event
+//                MyEventsFragmentAttendance(),        // Tab 1: Event Saya (empty)
+//                EventInvitationEmptyView()         // Tab 2: Undangan (empty)
+//            )
+//            flow2PagerAdapter = TabFragmentAdapter(this, fragments)
+//        }
+//
+//        binding.viewPager.post {
+//            if (binding.viewPager.adapter != flow2PagerAdapter) {
+//                binding.viewPager.adapter = null
+//                binding.viewPager.adapter = flow2PagerAdapter
+//                binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
+//            }
+//            binding.viewPager.setCurrentItem(selectedPosition, false)
+//            binding.viewPager.visibility = View.VISIBLE
+//        }
+//    }
+//
+//    // Flow 3: HomeInvitationNoRSVPView → EventListInvitationNoRSVPView + MyEventsFragmentNoRSVP + EventInvitationFragmentNoRSVP
+//    private fun setupFlow3ViewPager(selectedPosition: Int = 0) {
+//        showViewPager()
+//
+//        // 🔑 CONFIGURE TABS FIRST to prevent glitch
+//        binding.viewPager.visibility = View.GONE
+//        configureFlow3Tabs(selectedPosition)
+//
+//        if (flow3PagerAdapter == null) {
+//            val fragments = listOf(
+//                EventListInvitationNoRSVPView(),  // Tab 0: Daftar Event
+//                MyEventsEmptyView(),         // Tab 1: Event Saya
+//                EventInvitationFragmentNoRSVP()   // Tab 2: Undangan
+//            )
+//            flow3PagerAdapter = TabFragmentAdapter(this, fragments)
+//        }
+//
+//        binding.viewPager.post {
+//            if (binding.viewPager.adapter != flow3PagerAdapter) {
+//                binding.viewPager.adapter = null
+//                binding.viewPager.adapter = flow3PagerAdapter
+//                binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
+//            }
+//            binding.viewPager.setCurrentItem(selectedPosition, false)
+//            binding.viewPager.visibility = View.VISIBLE
+//        }
+//    }
+//
+//    // Flow 4: HomeInvitationTolakView → EventListInvitationTolakStartView + Empty Event Saya + EventInvitationFragmentTolakUndangan
+//    private fun setupFlow4ViewPager(selectedPosition: Int = 0) {
+//        showViewPager()
+//
+//        // 🔑 CONFIGURE TABS FIRST to prevent glitch
+//        binding.viewPager.visibility = View.GONE
+//        configureFlow4Tabs(selectedPosition)
+//
+//        if (flow4PagerAdapter == null) {
+//            val fragments = listOf(
+//                EventListInvitationTolakStartView(),    // Tab 0: Daftar Event
+//                MyEventsEmptyView(),                   // Tab 1: Event Saya (empty)
+//                EventInvitationFragmentTolakUndangan()  // Tab 2: Undangan
+//            )
+//            flow4PagerAdapter = TabFragmentAdapter(this, fragments)
+//        }
+//
+//        binding.viewPager.post {
+//            if (binding.viewPager.adapter != flow4PagerAdapter) {
+//                binding.viewPager.adapter = null
+//                binding.viewPager.adapter = flow4PagerAdapter
+//                binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
+//            }
+//            binding.viewPager.setCurrentItem(selectedPosition, false)
+//            binding.viewPager.visibility = View.VISIBLE
+//        }
+//    }
+//
+//    private fun setupTeamReportViewPager(selectedPosition: Int = 0) {
+//        currentTeamReportTab = selectedPosition
+//        showViewPager()
+//
+//        // Always configure tabs first
+//        configureTeamReportTabs(selectedPosition)
+//
+//        if (teamReportPagerAdapter == null) {
+//            val fragments = listOf(
+//                TeamReportActivityView(),
+//                TeamReportLeaveView()
+//            )
+//            teamReportPagerAdapter = TabFragmentAdapter(this, fragments)
+//            binding.viewPager.adapter = teamReportPagerAdapter
+//            binding.cvTabTeamReportActivity.setupWithViewPager2(binding.viewPager)
+//        }
+//
+//        // Ensure the correct tab is selected
+//        binding.viewPager.post {
+//            binding.viewPager.setCurrentItem(selectedPosition, false)
+//            binding.viewPager.visibility = View.VISIBLE
+//            Log.d("UI_CONFIG", "ViewPager set to position: $selectedPosition")
+//        }
+//    }
+
     // Create an empty fragment for disabled tabs
     private fun createEmptyFragment(): Fragment {
         return Fragment() // This will show an empty view
@@ -1016,7 +1161,7 @@ class MainActivity : AppCompatActivity() {
             val fragments = listOf(
                 EventListDaftarRSVPView(),    // Tab 0: Daftar Event
                 MyEventsFragmentRSVP(),       // Tab 1: Event Saya
-                createEmptyFragment()         // Tab 2: Undangan (empty)
+                EventInvitationEmptyView()
             )
             flow1PagerAdapter = TabFragmentAdapter(this, fragments)
         }
@@ -1043,8 +1188,8 @@ class MainActivity : AppCompatActivity() {
         if (flow2PagerAdapter == null) {
             val fragments = listOf(
                 EventListAttendanceView(),    // Tab 0: Daftar Event
-                createEmptyFragment(),        // Tab 1: Event Saya (empty)
-                createEmptyFragment()         // Tab 2: Undangan (empty)
+                MyEventsFragmentAttendance(),        // Tab 1: Event Saya (empty)
+                EventInvitationEmptyView()         // Tab 2: Undangan (empty)
             )
             flow2PagerAdapter = TabFragmentAdapter(this, fragments)
         }
@@ -1099,7 +1244,7 @@ class MainActivity : AppCompatActivity() {
         if (flow4PagerAdapter == null) {
             val fragments = listOf(
                 EventListInvitationTolakStartView(),    // Tab 0: Daftar Event
-                createEmptyFragment(),                   // Tab 1: Event Saya (empty)
+                MyEventsEmptyView(),                   // Tab 1: Event Saya (empty)
                 EventInvitationFragmentTolakUndangan()  // Tab 2: Undangan
             )
             flow4PagerAdapter = TabFragmentAdapter(this, fragments)

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.event.card.EventCardStatus
 import com.edts.components.input.search.InputSearchDelegate
@@ -180,9 +181,10 @@ class EventListAttendanceView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        //TODO
-        // Handle event item click
-        // Navigate to event detail or perform other actions
+        val result = bundleOf(
+            "fragment_class" to "EventDetailViewAttendance"
+        )
+        parentFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String, changeCount: Int) {
