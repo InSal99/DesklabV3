@@ -1,6 +1,12 @@
 package com.edts.components.checkbox
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.content.Context
+import android.graphics.Rect
+import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.StateListDrawable
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
@@ -13,6 +19,7 @@ class CheckBox @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = androidx.appcompat.R.attr.checkboxStyle
 ) : AppCompatCheckBox(context, attrs, defStyleAttr) {
+
     private var normalTextAppearance = R.style.CheckBoxTextAppearance_Normal
     private var selectedTextAppearance = R.style.CheckBoxTextAppearance_Selected
     private var disabledTextAppearance = R.style.CheckBoxTextAppearance_Disabled
@@ -20,6 +27,7 @@ class CheckBox @JvmOverloads constructor(
     private var errorTextAppearance = R.style.CheckBoxTextAppearance_Normal
     private var checkBoxDelegate: CheckboxDelegate? = null
     private var isErrorState: Boolean = false
+    private var currentAnimator: ValueAnimator? = null
 
     init {
         setBackgroundResource(android.R.color.transparent)
@@ -66,8 +74,105 @@ class CheckBox @JvmOverloads constructor(
     }
 
     override fun setChecked(checked: Boolean) {
+        val wasChecked = isChecked
         super.setChecked(checked)
+
+        if (wasChecked != checked && isShown && width > 0) {
+            animateCheckMark(checked)
+        }
+
         updateTextAppearance()
+    }
+
+    private fun animateCheckMark(checked: Boolean) {
+        Log.d("CheckBox", "animateCheckMark called - checked: $checked")
+
+        currentAnimator?.cancel()
+
+        val drawable = buttonDrawable
+        Log.d("CheckBox", "buttonDrawable: $drawable")
+
+        val currentDrawable = if (drawable is StateListDrawable) {
+            drawable.current
+        } else {
+            drawable
+        }
+
+        if (currentDrawable !is LayerDrawable || currentDrawable.numberOfLayers < 2) {
+            Log.d("CheckBox", "Cannot animate - not a proper LayerDrawable")
+            return
+        }
+
+        val checkMarkDrawable = currentDrawable.getDrawable(1)
+        if (checkMarkDrawable == null) {
+            Log.d("CheckBox", "Check mark drawable is null")
+            return
+        }
+
+        val originalBounds = Rect(checkMarkDrawable.bounds)
+        val centerX = originalBounds.centerX()
+        val centerY = originalBounds.centerY()
+        val maxWidth = originalBounds.width()
+        val maxHeight = originalBounds.height()
+
+        val targetScale = if (checked) 1f else 0f
+        val startScale = if (checked) 0f else 1f
+
+        currentAnimator = ValueAnimator.ofFloat(startScale, targetScale).apply {
+            duration = 200
+            interpolator = android.view.animation.DecelerateInterpolator()
+
+            addUpdateListener { animator ->
+                val scale = animator.animatedValue as Float
+
+                if (scale == 0f) {
+                    checkMarkDrawable.setTint(ContextCompat.getColor(context, android.R.color.transparent))
+                } else {
+                    val tintColor = when {
+                        !isEnabled -> ContextCompat.getColor(context, R.color.color000Opacity20)
+                        else -> ContextCompat.getColor(context, R.color.colorFFF)
+                    }
+                    checkMarkDrawable.setTint(tintColor)
+
+                    val newWidth = (maxWidth * scale).toInt()
+                    val newHeight = (maxHeight * scale).toInt()
+
+                    val newLeft = centerX - newWidth / 2
+                    val newTop = centerY - newHeight / 2
+                    val newRight = centerX + newWidth / 2
+                    val newBottom = centerY + newHeight / 2
+
+                    checkMarkDrawable.setBounds(newLeft, newTop, newRight, newBottom)
+                }
+
+                invalidate()
+            }
+
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    currentAnimator = null
+
+                    if (!checked) {
+                        checkMarkDrawable.bounds = originalBounds
+                        checkMarkDrawable.setTint(ContextCompat.getColor(context, android.R.color.transparent))
+                    } else {
+                        checkMarkDrawable.bounds = originalBounds
+                        val tintColor = when {
+                            !isEnabled -> ContextCompat.getColor(context, R.color.color000Opacity20)
+                            else -> ContextCompat.getColor(context, R.color.colorFFF)
+                        }
+                        checkMarkDrawable.setTint(tintColor)
+                    }
+                    invalidate()
+                }
+
+                override fun onAnimationCancel(animation: Animator) {
+                    currentAnimator = null
+                }
+            })
+        }
+
+        currentAnimator?.start()
     }
 
     override fun setEnabled(enabled: Boolean) {
@@ -91,6 +196,12 @@ class CheckBox @JvmOverloads constructor(
             mergeDrawableStates(drawableState, STATE_ERROR)
         }
         return drawableState
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        currentAnimator?.cancel()
+        currentAnimator = null
     }
 
     private fun updateTextAppearance() {
