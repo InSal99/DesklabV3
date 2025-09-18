@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvModalityTitle"
         tools:text="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"/>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnModalityContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,21 +53,26 @@
             app:isButtonDestructive="false"
             app:isButtonDisabled="false"
             app:size="MD"
-            app:type="SECONDARY"/>
-
-        <Space
-            android:layout_width="@dimen/margin_10dp"
-            android:layout_height="wrap_content"/>
+            app:type="SECONDARY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnModalityConfirm"/>
 
         <com.edts.components.button.Button
             android:id="@+id/btnModalityConfirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_10dp"
             android:text="Ya, Lanjutkan"
             app:isButtonDestructive="false"
             app:isButtonDisabled="false"
             app:size="MD"
-            app:type="PRIMARY"/>
-    </LinearLayout>
+            app:type="PRIMARY"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnModalityClose"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
