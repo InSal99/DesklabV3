@@ -56,6 +56,7 @@
             android:orientation="vertical"
             android:paddingVertical="@dimen/margin_12dp"
             android:paddingHorizontal="@dimen/margin_12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvEventCardBanner"
             app:layout_constraintStart_toStartOf="parent">
             <com.edts.components.event.card.EventCardDescription
