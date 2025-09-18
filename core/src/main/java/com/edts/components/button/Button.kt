@@ -460,6 +460,8 @@ class Button @JvmOverloads constructor(
     fun setButtonDisabled(disabled: Boolean) {
         if (isButtonDisabled != disabled) {
             isButtonDisabled = disabled
+            isClickable = !disabled
+            isFocusable = !disabled
             updateButtonProperties()
         }
     }
@@ -525,6 +527,9 @@ class Button @JvmOverloads constructor(
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (isButtonDisabled || !isEnabled || !isClickable) {
+            return false
+        }
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 setButtonState(ButtonState.ON_PRESS)

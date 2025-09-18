@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <!-- Error state -->
-    <item android:state_checked="false" android:state_enabled="true" app:checkbox_state_error="true">
-        <shape android:shape="rectangle">
-            <stroke
-                android:width="@dimen/stroke_weight_1dp"
-                android:color="?attr/colorStrokeAttentionIntense"/>
-            <solid
-                android:color="?attr/colorBackgroundPrimary"/>
-            <size
-                android:width="16dp"
-                android:height="16dp"/>
-            <corners
-                android:radius="@dimen/radius_6dp"/>
-        </shape>
+    <item android:state_checked="false"
+        android:state_enabled="true"
+        app:checkbox_state_error="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <stroke
+                        android:width="@dimen/stroke_weight_1dp"
+                        android:color="?attr/colorStrokeAttentionIntense"/>
+                    <solid
+                        android:color="?attr/colorBackgroundPrimary"/>
+                    <size
+                        android:width="16dp"
+                        android:height="16dp"/>
+                    <corners
+                        android:radius="@dimen/radius_6dp"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_check"
+                android:top="2dp"
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:gravity="center"
+                android:tint="@android:color/transparent" />
+        </layer-list>
     </item>
 
     <!-- Checked & Enabled -->
-    <item android:state_checked="true" android:state_enabled="true">
+    <item android:state_checked="true"
+        android:state_enabled="true">
         <layer-list>
             <item>
                 <shape android:shape="rectangle">
@@ -34,17 +50,18 @@
                 </shape>
             </item>
             <item android:drawable="@drawable/ic_check"
-            android:top="2dp"
-            android:bottom="2dp"
-            android:left="2dp"
-            android:right="2dp"
-            android:gravity="center"
-            android:tint="?attr/colorForegroundPrimary" />
+                android:top="2dp"
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:gravity="center"
+                android:tint="?attr/colorForegroundPrimary" />
         </layer-list>
     </item>
 
     <!-- Checked & Disabled -->
-    <item android:state_checked="true" android:state_enabled="false">
+    <item android:state_checked="true"
+        android:state_enabled="false">
         <layer-list>
             <item>
                 <shape android:shape="rectangle">
@@ -71,34 +88,60 @@
     </item>
 
     <!-- Unchecked & Enabled -->
-    <item android:state_checked="false" android:state_enabled="true">
-        <shape android:shape="rectangle">
-            <stroke
-                android:width="@dimen/stroke_weight_1dp"
-                android:color="?attr/colorStrokeSubtle"/>
-            <solid
-                android:color="?attr/colorBackgroundPrimary"/>
-            <size
-                android:width="16dp"
-                android:height="16dp"/>
-            <corners
-                android:radius="@dimen/radius_6dp"/>
-        </shape>
+    <item android:state_checked="false"
+        android:state_enabled="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <stroke
+                        android:width="@dimen/stroke_weight_1dp"
+                        android:color="?attr/colorStrokeSubtle"/>
+                    <solid
+                        android:color="?attr/colorBackgroundPrimary"/>
+                    <size
+                        android:width="16dp"
+                        android:height="16dp"/>
+                    <corners
+                        android:radius="@dimen/radius_6dp"/>
+                </shape>
+            </item>
+            <!-- Invisible check mark for animation -->
+            <item android:drawable="@drawable/ic_check"
+                android:top="2dp"
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:gravity="center"
+                android:tint="@android:color/transparent" />
+        </layer-list>
     </item>
 
     <!-- Unchecked & Disabled -->
-    <item android:state_checked="false" android:state_enabled="false">
-        <shape android:shape="rectangle">
-            <stroke
-                android:width="@dimen/stroke_weight_1dp"
-                android:color="?attr/colorStrokeSubtle"/>
-            <solid
-                android:color="?attr/colorBackgroundDisabled"/>
-            <size
-                android:width="16dp"
-                android:height="16dp"/>
-            <corners
-                android:radius="@dimen/radius_6dp"/>
-        </shape>
+    <item android:state_checked="false"
+        android:state_enabled="false">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <stroke
+                        android:width="@dimen/stroke_weight_1dp"
+                        android:color="?attr/colorStrokeSubtle"/>
+                    <solid
+                        android:color="?attr/colorBackgroundDisabled"/>
+                    <size
+                        android:width="16dp"
+                        android:height="16dp"/>
+                    <corners
+                        android:radius="@dimen/radius_6dp"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_check"
+                android:top="8dp"
+                android:bottom="8dp"
+                android:left="8dp"
+                android:right="8dp"
+                android:gravity="center"
+                android:tint="@android:color/transparent" />
+        </layer-list>
     </item>
+
 </selector>
