@@ -49,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivEventCard"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="113dp"
@@ -58,7 +58,8 @@
             android:paddingHorizontal="@dimen/margin_12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvEventCardBanner"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
             <com.edts.components.event.card.EventCardDescription
                 android:id="@+id/cvEventCardDescription"
                 android:layout_width="match_parent"
@@ -66,7 +67,8 @@
                 app:eventTitle="EDTS Town-Hall 2025: Power of Change"
                 app:eventDate="23 Juli 2025"
                 app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <com.edts.components.event.card.EventCardStatus
                 android:id="@+id/cvEventCardStatus"
@@ -76,7 +78,9 @@
                 app:statusType="unregistered"
                 app:statusText="Pendaftaran Ditutup"
                 app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
-                app:layout_constraintStart_toStartOf="parent"/>
-        </LinearLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
