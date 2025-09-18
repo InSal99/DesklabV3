@@ -32,14 +32,13 @@ class SuccessAttendanceOnlineView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivIllustAttendanceOffline.setImageResource(R.drawable.il_check)
         binding.tvTitleAttendanceOffline.text = "Kehadiran Tercatat!"
         binding.tvDescAttendanceOffline.text = "Terima kasih telah konfirmasi kehadiranmu"
         binding.cvPrimaryBtnAttendanceOffline.text = "Akses Meeting"
         binding.cvSecondaryBtnAttendanceOffline.text = "Lihat Detail Event"
 
         val lottieView = view.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
-        lottieView.setAnimation(R.raw.ic_success)
+        lottieView.setAnimation(R.raw.il_success)
         lottieView.repeatCount = LottieDrawable.INFINITE
         lottieView.playAnimation()
 

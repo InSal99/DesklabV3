@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
 
@@ -24,7 +26,11 @@ class SuccessDenyInvitationView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivIllustAttendanceOffline.setImageResource(R.drawable.il_calendar)
+        val lottieView = view.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
+        lottieView.setAnimation(R.raw.il_calendar)
+        lottieView.repeatCount = LottieDrawable.INFINITE
+        lottieView.playAnimation()
+
         binding.tvTitleAttendanceOffline.text = "Undangan Ditolak!"
         binding.tvDescAttendanceOffline.text = "Kamu tetap bisa ikut event lainnya"
         binding.cvPrimaryBtnAttendanceOffline.text = "Lihat Event Lainnya"
