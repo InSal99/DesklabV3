@@ -30,7 +30,7 @@ class SuccessAttendanceOfflineView : Fragment() {
 
         val lottieView = view.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
         lottieView.setAnimation(R.raw.il_success)
-        lottieView.repeatCount = LottieDrawable.INFINITE
+        lottieView.repeatCount = 0
         lottieView.playAnimation()
 
         binding.tvTitleAttendanceOffline.text = "Kehadiran Tercatat!"
