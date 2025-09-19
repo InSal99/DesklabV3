@@ -3,12 +3,16 @@ package com.edts.desklabv3
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.edts.components.bottom.navigation.BottomNavigation
 import com.edts.components.bottom.navigation.BottomNavigationDelegate
 import com.edts.components.bottom.navigation.BottomNavigationItem
@@ -1491,11 +1495,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureBottomNavigation(showBadge: Boolean, showBottomNavigation: Boolean) {
-        Log.d("UI_CONFIG", "Configuring bottom nav: showBadge=$showBadge, showBottomNav=$showBottomNavigation")
-        binding.cvBottomNavigation.visibility = if (showBottomNavigation) View.VISIBLE else View.GONE
-        binding.cvBottomNavigation.apply {
-            setItemBadge(2, showBadge)
+        val bottomNav = binding.cvBottomNavigation
+        bottomNav.setItemBadge(2, showBadge)
+
+        val transition = TransitionSet().apply {
+            addTransition(Fade())
+            duration = 100
         }
+
+        val parent = bottomNav.parent as ViewGroup
+        TransitionManager.beginDelayedTransition(parent, transition)
+
+        bottomNav.visibility = if (showBottomNavigation) View.VISIBLE else View.GONE
     }
 
     private fun showFragmentContainer() {
