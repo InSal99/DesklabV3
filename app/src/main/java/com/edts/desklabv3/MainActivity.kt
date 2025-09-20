@@ -782,6 +782,11 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToEventList() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
+        if (currentFragment is HomeManagerView) {
+            Toast.info(this, "Navigating to Event")
+            return
+        }
+
         val targetFragment = when (currentFragment) {
             is EventListInvitationNoRSVPView -> EventListInvitationNoRSVPView()
             is HomeInvitationTolakView,
@@ -800,16 +805,12 @@ class MainActivity : AppCompatActivity() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
         val targetHomeFragment = when (currentFragment) {
-            is EventListInvitationNoRSVPView -> HomeInvitationNoRSVPView()
-            is MyEventsFragmentNoRSVP, is EventInvitationFragmentNoRSVP -> HomeInvitationNoRSVPView()
-
-            is EventListInvitationTolakStartView -> HomeInvitationTolakView()
-            is EventInvitationFragmentTolakUndangan -> HomeInvitationTolakView()
-
-            is EventListAttendanceView -> HomeAttendanceView()
-            is MyEventsFragmentAttendance -> HomeAttendanceView()
-
-            else -> HomeDaftarRSVPView()
+            is EventListInvitationNoRSVPView, is MyEventsFragmentNoRSVP, is EventInvitationFragmentNoRSVP -> HomeInvitationNoRSVPView()
+            is EventListInvitationTolakStartView, is EventListInvitationTolakEndView, is EventInvitationFragmentTolakUndangan -> HomeInvitationTolakView()
+            is EventListAttendanceView, is MyEventsFragmentAttendance -> HomeAttendanceView()
+            is EventListDaftarRSVPView, is MyEventsFragmentRSVP -> HomeDaftarRSVPView()
+            is HomeManagerView -> HomeManagerView()
+            else -> HomeManagerView()
         }
 
         if (currentFragment?.javaClass != targetHomeFragment.javaClass) {

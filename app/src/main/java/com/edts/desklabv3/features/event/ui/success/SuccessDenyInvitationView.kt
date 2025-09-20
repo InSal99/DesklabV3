@@ -45,7 +45,7 @@ class SuccessDenyInvitationView : Fragment() {
         }
 
         binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
-            val result = bundleOf("fragment_class" to "HomeDaftarRSVPView")
+            val result = bundleOf("fragment_class" to "HomeInvitationTolakView")
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
     }
