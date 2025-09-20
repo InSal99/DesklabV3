@@ -53,10 +53,12 @@ class MyEventsFragmentAttendance : Fragment() {
         // Setup Event List RecyclerView
         eventAdapter = MyEventAdapter { event ->
 //            Toast.makeText(requireContext(), "Clicked on: ${event.title}", Toast.LENGTH_SHORT).show()
-            val result = bundleOf(
-                "fragment_class" to "EventDetailViewAttendance"
-            )
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            if(event.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
+                val result = bundleOf(
+                    "fragment_class" to "EventDetailViewAttendance"
+                )
+                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            }
         }
         binding.rvMyEvent.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -114,8 +116,8 @@ class MyEventsFragmentAttendance : Fragment() {
             val (badgeText, badgeType) = when(status) {
                 MyEventStatus.BERLANGSUNG -> "Berlangsung" to EventCardBadge.BadgeType.LIVE
                 MyEventStatus.TERDAFTAR -> "Terdaftar" to EventCardBadge.BadgeType.REGISTERED
-                MyEventStatus.HADIR -> "Hadir" to EventCardBadge.BadgeType.REGISTERED
-                MyEventStatus.TIDAK_HADIR -> "Tidak Hadir" to EventCardBadge.BadgeType.LIVE
+                MyEventStatus.HADIR -> "Hadir" to EventCardBadge.BadgeType.ATTENDED
+                MyEventStatus.TIDAK_HADIR -> "Tidak Hadir" to EventCardBadge.BadgeType.NOTATTENDED
             }
             return MyEvent(
                 status = status,

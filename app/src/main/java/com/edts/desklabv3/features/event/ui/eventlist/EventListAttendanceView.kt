@@ -181,10 +181,12 @@ class EventListAttendanceView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        val result = bundleOf(
-            "fragment_class" to "EventDetailViewAttendance"
-        )
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        if(event.eventTitle == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
+            val result = bundleOf(
+                "fragment_class" to "EventDetailViewAttendance"
+            )
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        }
     }
 
     override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String, changeCount: Int) {
