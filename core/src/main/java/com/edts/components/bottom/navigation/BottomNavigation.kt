@@ -198,7 +198,9 @@ class BottomNavigation @JvmOverloads constructor(
         }
 
         if (newPosition in 0 until navigationItems.size) {
-            navigationItems[newPosition].navState = BottomNavigationItem.NavState.ACTIVE
+            navigationItems[newPosition].post {
+                navigationItems[newPosition].navState = BottomNavigationItem.NavState.ACTIVE
+            }
         }
 
         Log.d(TAG, "Active item changed from $oldPosition to $newPosition")

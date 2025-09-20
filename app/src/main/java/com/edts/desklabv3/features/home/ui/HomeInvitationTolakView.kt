@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.utils.resolveColorAttribute
@@ -145,6 +146,11 @@ class HomeInvitationTolakView : Fragment() {
 
     private fun handleActivityClick(activity: ActivityItem) {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
+
+        if (activity.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+            val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        }
     }
 
     companion object {
