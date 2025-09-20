@@ -789,10 +789,10 @@ class MainActivity : AppCompatActivity() {
 
         val targetFragment = when (currentFragment) {
             is EventListInvitationNoRSVPView -> EventListInvitationNoRSVPView()
-            is HomeInvitationTolakView,
-            is EventListInvitationTolakStartView -> EventListInvitationTolakStartView()
+            is HomeInvitationTolakView, is EventListInvitationTolakStartView -> EventListInvitationTolakStartView()
             is HomeAttendanceView -> EventListAttendanceView()
             is HomeInvitationNoRSVPView -> EventListInvitationNoRSVPView()
+            is HomeDaftarRSVPView -> EventListDaftarRSVPView()
             else -> EventListDaftarRSVPView()
         }
 
