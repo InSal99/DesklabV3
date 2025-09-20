@@ -161,7 +161,9 @@ class HomeInvitationNoRSVPView : Fragment() {
 
     private fun navigateToEventDetail(activity: ActivityItem) {
         val result = bundleOf("fragment_class" to "EventDetailViewNoRSVP")
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity()
+            .supportFragmentManager
+            .setFragmentResult("navigate_fragment", result)
     }
 
     companion object {

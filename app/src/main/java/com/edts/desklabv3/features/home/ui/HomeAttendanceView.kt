@@ -147,7 +147,9 @@ class HomeAttendanceView : Fragment() {
         val result = bundleOf(
             "fragment_class" to "EventDetailViewAttendance"
         )
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity()
+            .supportFragmentManager
+            .setFragmentResult("navigate_fragment", result)
     }
 
     companion object {
