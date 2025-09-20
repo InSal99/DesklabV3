@@ -138,7 +138,7 @@ class AssetQRCodeFragment : Fragment() {
 
     private fun setup() {
         binding.ivScanQRBack.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            requireActivity().supportFragmentManager.popBackStack()
         }
 
         binding.ivScanQRFlash.setOnClickListener {

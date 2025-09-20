@@ -118,15 +118,6 @@ class HomeDaftarRSVPView : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             isNestedScrollingEnabled = false
 
-//            // Only add decoration once during setup
-//            if (activitiesDecoration == null) {
-//                activitiesDecoration = SpaceItemDecoration(
-//                    context = requireContext(),
-//                    spaceResId = R.dimen.activity_group_item_spacing,
-//                    orientation = SpaceItemDecoration.VERTICAL
-//                )
-//                addItemDecoration(activitiesDecoration!!)
-//            }
         }
     }
 
@@ -169,7 +160,9 @@ class HomeDaftarRSVPView : Fragment() {
 
     private fun navigateToEventList(activity: ActivityItem) {
         val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity()
+            .supportFragmentManager
+            .setFragmentResult("navigate_fragment", result)
     }
 
 //    fun updateChipTexts(newTexts: Array<String>) {
