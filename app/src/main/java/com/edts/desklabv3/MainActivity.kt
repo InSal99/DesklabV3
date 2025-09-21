@@ -158,10 +158,18 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                 fragment is SuccessDenyInvitationView ||
                 fragment is SuccessRegistrationView ||
                 fragment is EntryPointsView) {
+
+                android.util.Log.d("MainActivity", "Handling success fragment: ${fragment::class.java.simpleName}")
+
                 supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .commit()
+
+                binding.root.post {
+                    android.util.Log.d("MainActivity", "Configuring UI for success fragment")
+                    configureUIForFragment(fragment)
+                }
             } else {
                 loadFragmentWithUI(fragment, addToBackStack = true)
 
