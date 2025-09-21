@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.transition.Fade
@@ -16,9 +18,16 @@ import androidx.transition.TransitionSet
 import com.edts.components.bottom.navigation.BottomNavigation
 import com.edts.components.bottom.navigation.BottomNavigationDelegate
 import com.edts.components.bottom.navigation.BottomNavigationItem
+import com.edts.components.checkbox.CheckBox
 import com.edts.components.header.HeaderDelegate
+import com.edts.components.radiobutton.RadioGroup
+import com.edts.components.tab.Tab
+import com.edts.components.tab.TabData
+import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
+import com.edts.desklabv3.core.util.createBottomShadowBackgroundCustom
+import com.edts.desklabv3.core.util.setupWithViewPager2
 import com.edts.desklabv3.core.withPushAnimation
 import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.EventMenuFragment
@@ -32,8 +41,10 @@ import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationNoRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakEndView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakStartView
+import com.edts.desklabv3.features.event.ui.invitation.EventInvitationEmptyView
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentNoRSVP
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
+import com.edts.desklabv3.features.event.ui.myevent.MyEventsEmptyView
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentAttendance
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentNoRSVP
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentRSVP
@@ -57,7 +68,6 @@ import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportMenuFragment
 class MainActivity : AppCompatActivity(), HeaderConfigurator {
     private lateinit var binding: ActivityMainBinding
     private var currentFlow: String? = null
-    private var currentTeamReportTab: Int = 0
     private var isNavigatingBackFromDetail: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -191,12 +201,12 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
 
         header.postDelayed({
             val transitionSet = TransitionSet().apply {
-            if (isVisible) {
-                addTransition(Slide(Gravity.TOP).apply { duration = 125 })
-            } else {
-                addTransition(Fade(Fade.OUT).apply { duration = 150 })
+                if (isVisible) {
+                    addTransition(Slide(Gravity.TOP).apply { duration = 125 })
+                } else {
+                    addTransition(Fade(Fade.OUT).apply { duration = 150 })
+                }
             }
-        }
             TransitionManager.beginDelayedTransition(header, transitionSet)
             header.visibility = if (isVisible) View.VISIBLE else View.GONE
 
@@ -381,7 +391,7 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             }
 
             is TeamReportMenuFragment -> {
-                configureBottomNavigation(showBadge = false, showBottomNavigation = true)
+                configureBottomNavigation(showBadge = false, showBottomNavigation = false)
                 configureHeader(
                     title = "Laporan Tim",
                     showLeftButton = true,
