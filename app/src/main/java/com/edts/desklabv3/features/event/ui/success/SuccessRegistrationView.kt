@@ -96,28 +96,57 @@ class SuccessRegistrationView : Fragment() {
 
     private fun setupButtonClicks() {
         binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
-            parentFragmentManager.setFragmentResult(
-                "navigate_fragment",
-                bundleOf(
-                    "fragment_class" to "EventMenuFragment",
-                    "flow_type" to flowType,
-                    "selected_tab" to 1 // Event Saya
-                )
-            )
+            when (flowType) {
+                "RegisRSVP" -> {
+                    parentFragmentManager.setFragmentResult(
+                        "navigate_fragment",
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "RegisEndRSVP",
+                            "selected_tab" to 1 // Event Saya
+                        )
+                    )
+                }
+                "InvitationNoRSVP" -> {
+                    parentFragmentManager.setFragmentResult(
+                        "navigate_fragment",
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "InvitationENDNoRSVP",
+                            "selected_tab" to 1 // Event Saya
+                        )
+                    )
+                }
+                else -> {}
+            }
         }
 
         binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
-            parentFragmentManager.setFragmentResult(
-                "navigate_fragment",
-                bundleOf(
-                    "fragment_class" to "EventMenuFragment",
-                    "flow_type" to flowType,
-                    "selected_tab" to 0 // Daftar Event
-                )
-            )
+            when (flowType) {
+                "RegisRSVP" -> {
+                    parentFragmentManager.setFragmentResult(
+                        "navigate_fragment",
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "RegisEndRSVP",
+                            "selected_tab" to 0 // Daftar Event
+                        )
+                    )
+                }
+                "InvitationNoRSVP" -> {
+                    parentFragmentManager.setFragmentResult(
+                        "navigate_fragment",
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "InvitationENDNoRSVP",
+                            "selected_tab" to 0 // Daftar Event
+                        )
+                    )
+                }
+                else -> {}
+            }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

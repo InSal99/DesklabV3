@@ -34,12 +34,15 @@ class HomeMenuFragment : Fragment() {
 
         val fragment = when (flowType) {
             "RegisRSVP" -> HomeDaftarRSVPView()
-            "InvitationNoRSVP" -> HomeInvitationNoRSVPView()
+            "RegisEndRSVP" -> HomeDaftarRSVPView()
+            "InvitationNoRSVP" -> HomeInvitationNoRSVPView.newInstance(isEndFlow = false)
+            "InvitationENDNoRSVP" -> HomeInvitationNoRSVPView.newInstance(isEndFlow = true)
             "Attendance" -> HomeAttendanceView()
-            "TolakUndangan" -> HomeInvitationTolakView()
-            "TolakUndanganEnd" -> HomeInvitationTolakView()
+            "AttendanceEnd" -> HomeAttendanceView()
+            "TolakUndangan" -> HomeInvitationTolakView.newInstance(isEndFlow = false)
+            "TolakUndanganEnd" -> HomeInvitationTolakView.newInstance(isEndFlow = true)
             "TeamReport" -> HomeManagerView()
-            else -> HomeDaftarRSVPView()
+            else -> Fragment()
         }
 
         loadFragment(fragment)
@@ -48,10 +51,12 @@ class HomeMenuFragment : Fragment() {
     }
 
     private fun loadFragment(fragment: Fragment) {
-        fragment.arguments = arguments
+        Log.d("HomeMenuFragment", "Loading fragment: ${fragment::class.java.simpleName}")
+//        fragment.arguments = arguments
         childFragmentManager.beginTransaction()
             .replace(R.id.home_fragment_container, fragment)
             .commit()
+        Log.d("HomeMenuFragment", "Fragment transaction committed")
     }
 
     override fun onAttach(context: Context) {

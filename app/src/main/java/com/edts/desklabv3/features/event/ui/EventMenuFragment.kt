@@ -56,14 +56,44 @@ class EventMenuFragment : Fragment() {
 
         when (flowType) {
             "RegisRSVP" -> setupFlow1ViewPager(selectedTab)
-            "InvitationNoRSVP" -> setupFlow2ViewPager(selectedTab)
-            "Attendance" -> setupFlow3ViewPager(selectedTab)
+            "RegisEndRSVP" -> setupFlow1EndViewPager(selectedTab)
+            "Attendance" -> setupFlow2ViewPager(selectedTab)
+            "AttendanceEnd" -> setupFlow2EndViewPager(selectedTab)
+            "InvitationNoRSVP" -> setupFlow3ViewPager(selectedTab)
+            "InvitationENDNoRSVP" -> setupFlow3EndViewPager(selectedTab)
             "TolakUndangan" -> setupFlow4ViewPager(selectedTab)
             "TolakUndanganEnd" -> setupFlow4EndViewPager(selectedTab)
-            else -> setupFlow1ViewPager(selectedTab)
+            else -> Fragment()
         }
 
         Log.d("UI_CONFIG", "Event Menu Flow $flowType")
+    }
+
+    private fun setupFlow2EndViewPager(selectedPosition: Int = 0) {
+        val fragments = listOf(
+            EventListAttendanceView.newInstance(useEndList = true),
+            MyEventsFragmentAttendance(),
+            EventInvitationEmptyView()
+        )
+        setupViewPager("flow2", fragments, selectedPosition)
+    }
+
+    private fun setupFlow3EndViewPager(selectedPosition: Int = 0) {
+        val fragments = listOf(
+            EventListInvitationNoRSVPView.newInstance(useEndList = true),
+            MyEventsFragmentNoRSVP(),
+            EventInvitationEmptyView()
+        )
+        setupViewPager("flow3", fragments, selectedPosition)
+    }
+
+    private fun setupFlow1EndViewPager(selectedPosition: Int = 0) {
+        val fragments = listOf(
+            EventListDaftarRSVPView.newInstance(useEndList = true),
+            MyEventsFragmentRSVP(),
+            EventInvitationEmptyView()
+        )
+        setupViewPager("flow1end", fragments, selectedPosition)
     }
 
     override fun onAttach(context: Context) {
@@ -84,6 +114,8 @@ class EventMenuFragment : Fragment() {
     }
 
     private fun configureTabs(selectedPosition: Int = 0) {
+        val flowType = arguments?.getString("flow_type", "") ?: ""
+
         val tabDataList = listOf(
             TabData(
                 text = "Daftar Event",
@@ -99,8 +131,8 @@ class EventMenuFragment : Fragment() {
             ),
             TabData(
                 text = "Undangan",
-                badgeText = null,
-                showBadge = false,
+                badgeText = if (flowType == "InvitationNoRSVP" || flowType == "TolakUndangan") "1" else null,
+                showBadge = flowType == "InvitationNoRSVP" || flowType == "TolakUndangan",
                 state = if (selectedPosition == 2) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
             )
         )
@@ -133,7 +165,7 @@ class EventMenuFragment : Fragment() {
     private fun setupFlow1ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
             EventListDaftarRSVPView(),
-            MyEventsFragmentRSVP(),
+            MyEventsEmptyView(),
             EventInvitationEmptyView()
         )
         setupViewPager("flow1", fragments, selectedPosition)
@@ -151,7 +183,7 @@ class EventMenuFragment : Fragment() {
     private fun setupFlow3ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
             EventListInvitationNoRSVPView(),
-            MyEventsFragmentNoRSVP(),
+            MyEventsFragmentRSVP(),
             EventInvitationFragmentNoRSVP()
         )
         setupViewPager("flow3", fragments, selectedPosition)
@@ -170,7 +202,7 @@ class EventMenuFragment : Fragment() {
         val fragments = listOf(
             EventListInvitationTolakEndView(),
             MyEventsEmptyView(),
-            EventInvitationFragmentTolakUndangan()
+            EventInvitationEmptyView()
         )
         setupViewPager("flow4end", fragments, selectedPosition)
     }
