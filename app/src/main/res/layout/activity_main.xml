@@ -7,14 +7,14 @@
     tools:context=".MainActivity"
     tools:ignore="MergeRootFrame">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/HeaderWrapperTeamReportActivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/HeaderWrapperTeamReportActivity"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
 
         <com.edts.components.header.Header
             android:id="@+id/cvHeaderTeamReportActivity"
@@ -30,109 +30,109 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <com.edts.components.tab.Tab
-            android:id="@+id/cvTabTeamReportActivity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
-            app:initialSelectedPosition="1"
-            app:layout_constraintTop_toBottomOf="@+id/cvHeaderTeamReportActivity"
-            app:layout_constraintStart_toStartOf="@+id/cvHeaderTeamReportActivity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-            <com.edts.components.tab.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tabItemBadgeText="3"
-                app:tabItemShowBadge="true"
-                app:tabItemState="active"
-                app:tabItemText="Aktivitas" />
+<!--        <com.edts.components.tab.Tab-->
+<!--            android:id="@+id/cvTabTeamReportActivity"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/margin_16dp"-->
+<!--            app:initialSelectedPosition="1"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/cvHeaderTeamReportActivity"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/cvHeaderTeamReportActivity"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent">-->
+<!--            <com.edts.components.tab.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:tabItemBadgeText="3"-->
+<!--                app:tabItemShowBadge="true"-->
+<!--                app:tabItemState="active"-->
+<!--                app:tabItemText="Aktivitas" />-->
 
-            <com.edts.components.tab.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tabItemBadgeText="!"
-                app:tabItemShowBadge="true"
-                app:tabItemState="inactive"
-                app:tabItemText="Cuti" />
-        </com.edts.components.tab.Tab>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            <com.edts.components.tab.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:tabItemBadgeText="!"-->
+<!--                app:tabItemShowBadge="true"-->
+<!--                app:tabItemState="inactive"-->
+<!--                app:tabItemText="Cuti" />-->
+<!--        </com.edts.components.tab.Tab>-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerWrapperEventListDaftarRSVP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/headerWrapperEventListDaftarRSVP"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
 
-        <com.edts.components.header.Header
-            android:id="@+id/cvHeaderEventListDaftarRSVP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:rightButtonSrc="@drawable/ic_star"
-            app:sectionSubtitleText="Manage your account preferences"
-            app:sectionTitleText="Event"
-            app:showLeftButton="false"
-            app:showRightButton="false"
-            app:showSectionSubtitle="false"
-            app:showSectionTitle="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+<!--        <com.edts.components.header.Header-->
+<!--            android:id="@+id/cvHeaderEventListDaftarRSVP"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:rightButtonSrc="@drawable/ic_star"-->
+<!--            app:sectionSubtitleText="Manage your account preferences"-->
+<!--            app:sectionTitleText="Event"-->
+<!--            app:showLeftButton="false"-->
+<!--            app:showRightButton="false"-->
+<!--            app:showSectionSubtitle="false"-->
+<!--            app:showSectionTitle="true"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"/>-->
 
-        <com.edts.components.tab.Tab
-            android:id="@+id/cvTabEventListDaftarRSVP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
-            app:initialSelectedPosition="1"
-            app:layout_constraintTop_toBottomOf="@+id/cvHeaderEventListDaftarRSVP"
-            app:layout_constraintStart_toStartOf="@+id/cvHeaderEventListDaftarRSVP"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-            <com.edts.components.tab.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tabItemBadgeText="3"
-                app:tabItemShowBadge="true"
-                app:tabItemState="active"
-                app:tabItemText="Daftar Event" />
+<!--        <com.edts.components.tab.Tab-->
+<!--            android:id="@+id/cvTabEventListDaftarRSVP"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/margin_16dp"-->
+<!--            app:initialSelectedPosition="1"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/cvHeaderEventListDaftarRSVP"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/cvHeaderEventListDaftarRSVP"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent">-->
+<!--            <com.edts.components.tab.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:tabItemBadgeText="3"-->
+<!--                app:tabItemShowBadge="true"-->
+<!--                app:tabItemState="active"-->
+<!--                app:tabItemText="Daftar Event" />-->
 
-            <com.edts.components.tab.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tabItemBadgeText="!"
-                app:tabItemShowBadge="true"
-                app:tabItemState="inactive"
-                app:tabItemText="Event Saya" />
+<!--            <com.edts.components.tab.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:tabItemBadgeText="!"-->
+<!--                app:tabItemShowBadge="true"-->
+<!--                app:tabItemState="inactive"-->
+<!--                app:tabItemText="Event Saya" />-->
 
-            <com.edts.components.tab.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tabItemBadgeText="!"
-                app:tabItemShowBadge="true"
-                app:tabItemState="inactive"
-                app:tabItemText="Undangan" />
-        </com.edts.components.tab.Tab>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            <com.edts.components.tab.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:tabItemBadgeText="!"-->
+<!--                app:tabItemShowBadge="true"-->
+<!--                app:tabItemState="inactive"-->
+<!--                app:tabItemText="Undangan" />-->
+<!--        </com.edts.components.tab.Tab>-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/header_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="HeaderWrapperTeamReportActivity,headerWrapperEventListDaftarRSVP" />
+<!--    <androidx.constraintlayout.widget.Barrier-->
+<!--        android:id="@+id/header_barrier"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:barrierDirection="bottom"-->
+<!--        app:constraint_referenced_ids="HeaderWrapperTeamReportActivity,headerWrapperEventListDaftarRSVP" />-->
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_barrier"
-        app:layout_constraintBottom_toTopOf="@+id/cvBottomNavigation" />
+<!--    <androidx.viewpager2.widget.ViewPager2-->
+<!--        android:id="@+id/view_pager"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/header_barrier"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/cvBottomNavigation" />-->
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -142,7 +142,7 @@
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_barrier"
+        app:layout_constraintTop_toBottomOf="@id/cvHeaderTeamReportActivity"
         app:layout_constraintBottom_toTopOf="@+id/cvBottomNavigation" />
 
     <com.edts.components.bottom.navigation.BottomNavigation

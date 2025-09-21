@@ -25,6 +25,7 @@ import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.components.tray.BottomTrayDelegate
 import com.edts.desklabv3.R
+import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import formatDateRange
@@ -79,11 +80,14 @@ class EventDetailViewAttendance : Fragment() {
         }
 
         binding.ivDetailEventPoster.setOnClickListener {
-            parentFragmentManager.popBackStack(
-                "EntryPoints",
-                0
-            )
+            requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, EntryPointsView())
+                .addToBackStack("EntryPoints")
+                .commit()
         }
+
     }
 
     override fun onDestroyView() {
@@ -95,7 +99,7 @@ class EventDetailViewAttendance : Fragment() {
 
     private fun setupBackButton() {
         binding.ivDetailBack.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 
