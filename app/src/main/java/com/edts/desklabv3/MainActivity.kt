@@ -284,7 +284,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             else -> currentFlow ?: "RegisRSVP"
         }
 
-        // Save the flow so we always know what the user is in
         currentFlow = flowType
 
         val eventMenuFragment = EventMenuFragment().apply {

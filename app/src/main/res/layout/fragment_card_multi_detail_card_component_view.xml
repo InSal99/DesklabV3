@@ -72,7 +72,7 @@
         <com.edts.components.card.multi.detail.CardMultiDetail
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
+            android:layout_marginTop="@dimen/margin_16dp"
             app:cmdLeftSlotType="image"
             app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
             app:cmdTitle="21 Jun - 23 Jun 2025"
@@ -84,7 +84,7 @@
         <com.edts.components.card.multi.detail.CardMultiDetail
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
+            android:layout_marginTop="@dimen/margin_16dp"
             app:cmdLeftSlotType="image"
             app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
             app:cmdTitle="21 Jun - 23 Jun 2025"
@@ -98,7 +98,7 @@
         <com.edts.components.card.multi.detail.CardMultiDetail
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
+            android:layout_marginTop="@dimen/margin_16dp"
             app:cmdLeftSlotType="image"
             app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
             app:cmdTitle="21 Jun - 23 Jun 2025"

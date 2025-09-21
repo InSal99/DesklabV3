@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.event.card.EventCardBadge
 import com.edts.components.event.card.EventCardStatus
@@ -201,9 +202,10 @@ class EventListInvitationTolakEndView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        //TODO
-        // Handle event item click
-        // Navigate to event detail or perform other actions
+        if (event.eventTitle == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
+            val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
+            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        }
     }
 
     override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String, changeCount: Int) {

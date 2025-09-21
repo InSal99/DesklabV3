@@ -49,11 +49,13 @@ class EventInvitationFragmentTolakUndangan : Fragment() {
 //                    "Card clicked: ${notification.title}",
 //                    Toast.LENGTH_SHORT
 //                ).show()
-                val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
-                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+                if(notification.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
+                    val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
+                    parentFragmentManager.setFragmentResult("navigate_fragment", result)
+                }
             },
             onButtonClick = {
-                showConfirmationModal()
+//                showConfirmationModal()
             }
         )
 
