@@ -40,12 +40,20 @@ class SuccessDenyInvitationView : Fragment() {
 
     private fun setupButtonListeners() {
         binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
-            val result = bundleOf("fragment_class" to "EventListInvitationTolakEndView")
+            val result = bundleOf(
+                "fragment_class" to "EventMenuFragment",
+                "flow_type" to "TolakUndanganEnd",
+                "selected_tab" to 0
+            )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
         binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
-            val result = bundleOf("fragment_class" to "HomeInvitationTolakView")
+            val result = bundleOf(
+                "fragment_class" to "HomeMenuFragment",
+                "flow_type" to "TolakUndanganEnd",
+                "selected_tab" to 0
+            )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
     }

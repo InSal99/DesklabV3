@@ -46,53 +46,78 @@ class SuccessRegistrationView : Fragment() {
         binding.cvSecondaryBtnAttendanceOffline.text = "Lihat Event Lain"
     }
 
+//    private fun setupButtonClicks() {
+//        binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
+//            when (flowType) {
+//                "RegisRSVP" -> {
+//                    parentFragmentManager.setFragmentResult(
+//                        "navigate_fragment",
+//                        bundleOf("fragment_class" to "MyEventDaftarRSVPView")
+//                    )
+//                }
+//                "InvitationNoRSVP" -> {
+//                    parentFragmentManager.setFragmentResult(
+//                        "navigate_fragment",
+//                        bundleOf("fragment_class" to "MyEventsFragmentNoRSVP")
+//                    )
+//                }
+//                else -> {
+//                    parentFragmentManager.setFragmentResult(
+//                        "navigate_fragment",
+//                        bundleOf("fragment_class" to "MyEventDaftarRSVPView")
+//                    )
+//                }
+//            }
+//        }
+//
+//        binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
+//            when (flowType) {
+//                "RegisRSVP" -> {
+//                    parentFragmentManager.setFragmentResult(
+//                        "navigate_fragment",
+//                        bundleOf("fragment_class" to "EventListDaftarRSVPView")
+//                    )
+//                }
+//                "InvitationNoRSVP" -> {
+//                    parentFragmentManager.setFragmentResult(
+//                        "navigate_fragment",
+//                        bundleOf("fragment_class" to "EventListInvitationNoRSVPView")
+//                    )
+//                }
+//                else -> {
+//                    parentFragmentManager.setFragmentResult(
+//                        "navigate_fragment",
+//                        bundleOf("fragment_class" to "EventListDaftarRSVPView")
+//                    )
+//                }
+//            }
+//        }
+//    }
+
     private fun setupButtonClicks() {
         binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
-            when (flowType) {
-                "RegisRSVP" -> {
-                    parentFragmentManager.setFragmentResult(
-                        "navigate_fragment",
-                        bundleOf("fragment_class" to "MyEventDaftarRSVPView")
-                    )
-                }
-                "InvitationNoRSVP" -> {
-                    parentFragmentManager.setFragmentResult(
-                        "navigate_fragment",
-                        bundleOf("fragment_class" to "MyEventsFragmentNoRSVP")
-                    )
-                }
-                else -> {
-                    parentFragmentManager.setFragmentResult(
-                        "navigate_fragment",
-                        bundleOf("fragment_class" to "MyEventDaftarRSVPView")
-                    )
-                }
-            }
+            parentFragmentManager.setFragmentResult(
+                "navigate_fragment",
+                bundleOf(
+                    "fragment_class" to "EventMenuFragment",
+                    "flow_type" to flowType,
+                    "selected_tab" to 1 // Event Saya
+                )
+            )
         }
 
         binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
-            when (flowType) {
-                "RegisRSVP" -> {
-                    parentFragmentManager.setFragmentResult(
-                        "navigate_fragment",
-                        bundleOf("fragment_class" to "EventListDaftarRSVPView")
-                    )
-                }
-                "InvitationNoRSVP" -> {
-                    parentFragmentManager.setFragmentResult(
-                        "navigate_fragment",
-                        bundleOf("fragment_class" to "EventListInvitationNoRSVPView")
-                    )
-                }
-                else -> {
-                    parentFragmentManager.setFragmentResult(
-                        "navigate_fragment",
-                        bundleOf("fragment_class" to "EventListDaftarRSVPView")
-                    )
-                }
-            }
+            parentFragmentManager.setFragmentResult(
+                "navigate_fragment",
+                bundleOf(
+                    "fragment_class" to "EventMenuFragment",
+                    "flow_type" to flowType,
+                    "selected_tab" to 0 // Daftar Event
+                )
+            )
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
