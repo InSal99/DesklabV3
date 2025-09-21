@@ -391,7 +391,7 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             }
 
             is TeamReportMenuFragment -> {
-                configureBottomNavigation(showBadge = false, showBottomNavigation = true)
+                configureBottomNavigation(showBadge = false, showBottomNavigation = false)
                 configureHeader(
                     title = "Laporan Tim",
                     showLeftButton = true,
