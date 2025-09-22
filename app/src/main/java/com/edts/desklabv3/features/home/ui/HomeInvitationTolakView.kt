@@ -63,7 +63,8 @@ class HomeInvitationTolakView : Fragment() {
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
 
-        binding.cvNotificationBadge.visibility = View.VISIBLE
+        val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
+        binding.cvNotificationBadge.visibility = if (isEndFlow) View.INVISIBLE else View.VISIBLE
     }
 
     override fun onDestroyView() {
@@ -146,15 +147,28 @@ class HomeInvitationTolakView : Fragment() {
 
     private fun handleActivityClick(activity: ActivityItem) {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
-
-        if (activity.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
-            val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
+        if (!isEndFlow) {
+            if (activity.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                val result = bundleOf(
+                    "fragment_class" to "EventDetailViewTolakUndangan",
+                    "flow_type" to "TolakUndangan"
+                )
+                requireActivity().supportFragmentManager.setFragmentResult(
+                    "navigate_fragment",
+                    result
+                )
+                android.util.Log.d("HomeView", "Fragment result sent to activity")
+            }
         }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeDaftarRSVPView()
+        fun newInstance(isEndFlow: Boolean = false) = HomeInvitationTolakView().apply {
+            arguments = Bundle().apply {
+                putBoolean("is_end_flow", isEndFlow)
+            }
+        }
     }
 }

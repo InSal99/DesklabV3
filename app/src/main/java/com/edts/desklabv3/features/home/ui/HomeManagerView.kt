@@ -67,6 +67,8 @@ class HomeManagerView : Fragment() {
             val result = bundleOf("fragment_class" to "TeamReportMenuFragment")
             requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
         }
+
+        binding.cvNotificationBadge.visibility = View.INVISIBLE
     }
 
     override fun onDestroyView() {

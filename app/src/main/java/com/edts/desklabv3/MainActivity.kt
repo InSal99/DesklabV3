@@ -68,6 +68,11 @@ import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportMenuFragment
 class MainActivity : AppCompatActivity(), HeaderConfigurator {
     private lateinit var binding: ActivityMainBinding
     private var currentFlow: String? = null
+        set(value) {
+            Log.d("FLOW_CHANGE", "currentFlow changed from $field to $value")
+            Log.d("FLOW_CHANGE", "Stack trace: ${Thread.currentThread().stackTrace.take(5).joinToString("\n")}")
+            field = value
+        }
     private var isNavigatingBackFromDetail: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +93,8 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             val fragmentClassName = bundle.getString("fragment_class")
             val flowType = bundle.getString("flow_type", "")
 
+            android.util.Log.d("MainActivity", "Received fragment result: $fragmentClassName, flow: $flowType")
+
             val fragment = when (fragmentClassName) {
                 "HomeDaftarRSVPView" -> HomeDaftarRSVPView()
                 "EventListDaftarRSVPView" -> EventListDaftarRSVPView()
@@ -105,7 +112,10 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                 "HomeInvitationTolakView" -> HomeInvitationTolakView()
                 "EventListInvitationTolakStartView" -> EventListInvitationTolakStartView()
                 "EventInvitationFragmentTolakUndangan" -> EventInvitationFragmentTolakUndangan()
-                "EventDetailViewTolakUndangan" -> EventDetailViewTolakUndangan()
+                "EventDetailViewTolakUndangan" -> {
+                    android.util.Log.d("MainActivity", "Creating EventDetailViewTolakUndangan")
+                    EventDetailViewTolakUndangan()
+                }
                 "SuccessDenyInvitationView" -> SuccessDenyInvitationView()
                 "EventListInvitationTolakEndView" -> EventListInvitationTolakEndView()
                 "AssetQRCodeFragment" -> AssetQRCodeFragment()
@@ -148,12 +158,25 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                 fragment is SuccessDenyInvitationView ||
                 fragment is SuccessRegistrationView ||
                 fragment is EntryPointsView) {
+
+                android.util.Log.d("MainActivity", "Handling success fragment: ${fragment::class.java.simpleName}")
+
                 supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .commit()
+
+                binding.root.post {
+                    android.util.Log.d("MainActivity", "Configuring UI for success fragment")
+                    configureUIForFragment(fragment)
+                }
             } else {
                 loadFragmentWithUI(fragment, addToBackStack = true)
+
+                when (fragment) {
+                    is EventMenuFragment -> binding.cvBottomNavigation.setActiveItem(2)
+                    is HomeMenuFragment -> binding.cvBottomNavigation.setActiveItem(0)
+                }
             }
         }
 
@@ -281,7 +304,10 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             is EventListInvitationTolakStartView,
             is EventListInvitationTolakEndView,
             is HomeInvitationTolakView,
-            is EventInvitationFragmentTolakUndangan -> "TolakUndangan"
+            is EventInvitationFragmentTolakUndangan -> {
+                Log.d("FLOW_DEBUG", "Matched InvitationNoRSVP: ${currentFragment?.javaClass?.simpleName}")
+                "TolakUndangan"
+            }
 
             is EventListAttendanceView,
             is HomeAttendanceView,
@@ -291,23 +317,53 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             is HomeDaftarRSVPView,
             is MyEventsFragmentRSVP -> "RegisRSVP"
 
-            else -> currentFlow ?: "RegisRSVP"
+            is HomeManagerView -> "TeamReport"
+            else -> currentFlow ?: "None"
         }
+
+        Log.d("FLOW_DEBUG", "No match found for: ${flowType}")
 
         currentFlow = flowType
 
-        val eventMenuFragment = EventMenuFragment().apply {
-            arguments = Bundle().apply {
-                putString("flow_type", flowType)
-                putInt("selected_tab", 0)
+        if (flowType == "None" || flowType == "TeamReport") {
+            Toast.info(this, "Navigating to Event")
+            return
+        }else{
+            val eventMenuFragment = EventMenuFragment().apply {
+                arguments = Bundle().apply {
+                    putString("flow_type", flowType)
+                    putInt("selected_tab", 0)
+                }
             }
+            loadFragmentWithUI(eventMenuFragment, addToBackStack = true)
         }
-        loadFragmentWithUI(eventMenuFragment, addToBackStack = true)
     }
 
     private fun navigateToHome() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
-        val flowType = "RegisRSVP"
+        val flowType = when (currentFragment) {
+            is EventListInvitationNoRSVPView,
+            is HomeInvitationNoRSVPView,
+            is MyEventsFragmentNoRSVP,
+            is EventInvitationFragmentNoRSVP -> "InvitationNoRSVP"
+
+            is EventListInvitationTolakStartView,
+            is HomeInvitationTolakView,
+            is EventInvitationFragmentTolakUndangan -> "TolakUndangan"
+
+            is EventListInvitationTolakEndView -> "TolakUndanganEnd"
+
+            is EventListAttendanceView,
+            is HomeAttendanceView,
+            is MyEventsFragmentAttendance -> "Attendance"
+
+            is EventListDaftarRSVPView,
+            is HomeDaftarRSVPView,
+            is MyEventsFragmentRSVP -> "RegisRSVP"
+
+            is HomeManagerView -> "TeamReport"
+            else -> currentFlow ?: "None"
+        }
 
         currentFlow = flowType
 
@@ -368,26 +424,64 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             }
 
             is HomeMenuFragment -> {
-                val showBadge = currentFlow == "TolakUndangan"
-                configureBottomNavigation(
-                    showBadge = showBadge,
-                    showBottomNavigation = true
-                )
+                val showBadge = false
+                if(currentFlow == "TolakUndangan"){
+                    configureBottomNavigation(
+                        showBadge = true,
+                        showBottomNavigation = true
+                    )
+                }
+                else if(currentFlow == "InvitationNoRSVP"){
+                    configureBottomNavigation(
+                        showBadge = true,
+                        showBottomNavigation = true
+                    )
+                }
+                else{
+                    configureBottomNavigation(
+                        showBadge = showBadge,
+                        showBottomNavigation = true
+                    )
+                }
                 configureHeader(isVisible = false)
                 binding.cvBottomNavigation.setActiveItem(0)
             }
 
             is EventMenuFragment -> {
-                val showBadge = currentFlow == "TolakUndangan"
-                configureBottomNavigation(
-                    showBadge = showBadge,
-                    showBottomNavigation = true
-                )
-                configureHeader(
-                    title = "Event",
-                    showLeftButton = false,
-                    isVisible = true
-                )
+                val showBadge = false
+                if(currentFlow == "TolakUndangan"){
+                    configureBottomNavigation(
+                        showBadge = true,
+                        showBottomNavigation = true
+                    )
+                    configureHeader(
+                        title = "Event",
+                        showLeftButton = false,
+                        isVisible = true
+                    )
+                }
+                else if(currentFlow == "InvitationNoRSVP"){
+                    configureBottomNavigation(
+                        showBadge = true,
+                        showBottomNavigation = true
+                    )
+                    configureHeader(
+                        title = "Event",
+                        showLeftButton = false,
+                        isVisible = true
+                    )
+                }
+                else{
+                    configureBottomNavigation(
+                        showBadge = showBadge,
+                        showBottomNavigation = true
+                    )
+                    configureHeader(
+                        title = "Event",
+                        showLeftButton = false,
+                        isVisible = true
+                    )
+                }
             }
 
             is TeamReportMenuFragment -> {

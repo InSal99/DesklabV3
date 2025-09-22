@@ -67,6 +67,8 @@ class HomeDaftarRSVPView : Fragment() {
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
+
+        binding.cvNotificationBadge.visibility = View.INVISIBLE
     }
 
     override fun onDestroyView() {
@@ -152,7 +154,10 @@ class HomeDaftarRSVPView : Fragment() {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
 
         if (activity.title == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
-            navigateToEventList(activity)
+            val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+            if (!useEndList) {
+                navigateToEventList(activity)
+            }
         } else {
             Log.d("HomeView", "Non-event activity clicked: ${activity.title}")
         }
@@ -173,6 +178,10 @@ class HomeDaftarRSVPView : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeDaftarRSVPView()
+        fun newInstance(isEndFlow: Boolean = false) = HomeDaftarRSVPView().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", isEndFlow)
+            }
+        }
     }
 }
