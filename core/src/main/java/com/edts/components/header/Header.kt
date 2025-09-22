@@ -35,12 +35,14 @@ class Header @JvmOverloads constructor(
         set(value) {
             field = value
             binding.ivLeftBtn.visibility = if (value) View.VISIBLE else View.GONE
+            updateTitleStyle()
         }
 
     var sectionTitleText: String = ""
         set(value) {
             field = value
             binding.tvSectionTitle.text = value
+            updateTitleStyle()
         }
 
     var showSectionTitle: Boolean = true
