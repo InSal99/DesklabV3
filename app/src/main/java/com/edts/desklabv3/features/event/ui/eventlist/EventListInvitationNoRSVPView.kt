@@ -246,7 +246,7 @@ class EventListInvitationNoRSVPView : Fragment(), InputSearchDelegate {
         if(!useEndList) {
             if (event.eventTitle == "EDTS Town-Hall 2025: Power of Change") {
                 val result = bundleOf("fragment_class" to "EventDetailViewNoRSVP")
-                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+                requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
             }
         }
     }
