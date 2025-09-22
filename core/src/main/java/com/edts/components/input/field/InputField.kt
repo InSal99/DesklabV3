@@ -1052,7 +1052,7 @@ class InputField @JvmOverloads constructor(
                     text = option
                     setCustomCheckBoxDelegate(object : CheckboxDelegate {
                         override fun onCheckChanged(checkBox: CheckBox, isChecked: Boolean) {
-                            notifyValueChange(getCheckboxGroupValue(this@InputField))
+                            notifyValueChange(getCheckboxGroupValue(this@InputField.checkboxContainer))
                             notifyValidationChange()
                             clearError()
                         }

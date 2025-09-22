@@ -1,14 +1,11 @@
 package com.edts.desklabv3.features.event.ui.rsvp
 
-import android.content.Context
-import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.input.field.InputField
 import com.edts.components.input.field.InputFieldConfig
 import com.edts.components.input.field.InputFieldDelegate
+import com.edts.components.input.field.InputFieldType
 
 class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
 
@@ -24,25 +21,14 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
         fun bind(config: InputFieldConfig, position: Int) {
             val fieldId = "field_$position"
             inputField.configure(config, fieldId)
-            val editText = findEditText(inputField)
 
-            if (editText != null) {
-                editText.setOnFocusChangeListener { _, hasFocus ->
-                    if (hasFocus) {
-                        onFieldFocused?.invoke(position)
-                    }
-                }
-            } else {
-                inputField.setOnClickListener {
-                    hideKeyboard(inputField)
+            if (config.type == InputFieldType.CheckboxGroup && config.isRequired) {
+                responses[fieldId] = emptySet<String>()
+            }
+
+            inputField.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
                     onFieldFocused?.invoke(position)
-                }
-
-                inputField.setOnFocusChangeListener { _, hasFocus ->
-                    if (hasFocus) {
-                        hideKeyboard(inputField)
-                        onFieldFocused?.invoke(position)
-                    }
                 }
             }
 
@@ -55,31 +41,12 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
                     onValidationChange?.invoke(isValid)
                 }
 
-                override fun onValidationChange(fieldId: String, isValid: Boolean) { }
+                override fun onValidationChange(fieldId: String, isValid: Boolean) {}
             }
         }
-
-        private fun hideKeyboard(view: View) {
-            val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
-        }
-
-        private fun findEditText(view: View): EditText? {
-            if (view is EditText) {
-                return view
-            }
-            if (view is ViewGroup) {
-                for (i in 0 until view.childCount) {
-                    val result = findEditText(view.getChildAt(i))
-                    if (result != null) return result
-                }
-            }
-            return null
-        }
-
     }
 
-    private fun validateAllFields(): Boolean {
+    fun validateAllFields(): Boolean {
         for ((index, config) in formConfigs.withIndex()) {
             if (config.isRequired) {
                 val fieldId = "field_$index"
@@ -94,23 +61,46 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
 
     fun validateAllFieldsAndShowErrors(): Boolean {
         var allValid = true
-        for ((index, config) in formConfigs.withIndex()) {
-            val holder = recyclerView?.findViewHolderForAdapterPosition(index) as? ViewHolder
-            val field = holder?.inputField
-            val isValid = field?.isValid() ?: false
+        var firstInvalidIndex: Int? = null
 
-            if (!isValid && config.isRequired) {
-                field?.setError("Mohon lengkapi field ini terlebih dahulu")
+        for ((index, config) in formConfigs.withIndex()) {
+            val fieldId = "field_$index"
+            val value = responses[fieldId]
+
+            val isValid = isFieldValid(config, value)
+
+            if (!isValid) {
                 allValid = false
+                if (firstInvalidIndex == null) firstInvalidIndex = index
+
+                val holder = recyclerView?.findViewHolderForAdapterPosition(index) as? ViewHolder
+                holder?.inputField?.setError("Mohon lengkapi field ini terlebih dahulu")
             }
         }
         return allValid
     }
 
+    private fun isFieldValid(config: InputFieldConfig, value: Any?): Boolean {
+        if (!config.isRequired) return true
+
+        return when {
+            value == null -> false
+            value is Collection<*> -> value.isNotEmpty()
+            value is Array<*> -> value.isNotEmpty()
+            value is String -> value.isNotBlank()
+            value is Boolean -> value
+            value is Number -> value.toDouble() != 0.0
+            else -> {
+                val str = value.toString()
+                str.isNotBlank() && str != "[]" && str != "{}"
+            }
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inputField = InputField(parent.context).apply {
             layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,  // ← This is the key fix
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         }
@@ -130,9 +120,7 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun getResponses(): Map<String, Any?> {
-        return responses.toMap()
-    }
+    fun getResponses(): Map<String, Any?> = responses.toMap()
 
     override fun onAttachedToRecyclerView(rv: RecyclerView) {
         super.onAttachedToRecyclerView(rv)
