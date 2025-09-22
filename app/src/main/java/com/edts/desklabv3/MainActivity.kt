@@ -330,6 +330,7 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
         Log.d("FLOW_DEBUG", "No match found for: ${flowType}")
 
         currentFlow = flowType
+        val tag = "EventMenu_$flowType"
 
         if (flowType == "None" || flowType == "TeamReport") {
             Toast.info(this, "Navigating to Event")
@@ -371,6 +372,7 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             else -> currentFlow ?: "None"
         }
 
+        val tag = "HomeMenu_$flowType"
         currentFlow = flowType
 
         val isAlreadyHome = currentFragment is HomeMenuFragment &&
@@ -382,7 +384,11 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                     putString("flow_type", flowType)
                 }
             }
-            loadFragmentWithUI(homeMenuFragment, addToBackStack = true)
+            supportFragmentManager.beginTransaction()
+                .withPushAnimation()
+                .replace(R.id.fragment_container, homeMenuFragment, tag)
+                .addToBackStack(tag)
+                .commit()
         }
     }
 

@@ -147,9 +147,11 @@ class EventMenuFragment : Fragment() {
     ) {
         configureTabs(selectedPosition)
 
-        val adapter = pagerAdapters.getOrPut(flowKey) {
-            TabFragmentAdapter(requireActivity(), fragments)
-        }
+//        val adapter = pagerAdapters.getOrPut(flowKey) {
+//            TabFragmentAdapter(requireActivity(), fragments)
+//        }
+
+        val adapter = TabFragmentAdapter(this, fragments)
 
         binding.viewPager.post {
             if (binding.viewPager.adapter != adapter) {
@@ -173,18 +175,24 @@ class EventMenuFragment : Fragment() {
 
     private fun setupFlow2ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
-            EventListAttendanceView(),
-            MyEventsFragmentAttendance(),
-            EventInvitationEmptyView()
+            EventListInvitationNoRSVPView(),
+            MyEventsFragmentRSVP(),
+            EventInvitationFragmentNoRSVP()
+//            EventListAttendanceView(),
+//            MyEventsFragmentAttendance(),
+//            EventInvitationEmptyView()
         )
         setupViewPager("flow2", fragments, selectedPosition)
     }
 
     private fun setupFlow3ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
-            EventListInvitationNoRSVPView(),
-            MyEventsFragmentRSVP(),
-            EventInvitationFragmentNoRSVP()
+            EventListAttendanceView(),
+            MyEventsFragmentAttendance(),
+            EventInvitationEmptyView()
+//            EventListInvitationNoRSVPView(),
+//            MyEventsFragmentNoRSVP(),
+//            EventInvitationFragmentNoRSVP()
         )
         setupViewPager("flow3", fragments, selectedPosition)
     }

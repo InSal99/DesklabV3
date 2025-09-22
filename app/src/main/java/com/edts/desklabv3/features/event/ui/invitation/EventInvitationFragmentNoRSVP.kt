@@ -67,7 +67,7 @@ class EventInvitationFragmentNoRSVP : Fragment() {
 
     private fun navigateToEventDetail() {
         val result = bundleOf("fragment_class" to "EventDetailViewNoRSVP")
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     private fun createSampleData(): List<EventInvitation> {
