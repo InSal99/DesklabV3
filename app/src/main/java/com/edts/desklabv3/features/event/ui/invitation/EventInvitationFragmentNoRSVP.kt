@@ -114,7 +114,7 @@ class EventInvitationFragmentNoRSVP : Fragment() {
             "fragment_class" to "SuccessRegistrationView",
             "flow_type" to "InvitationNoRSVP"
         )
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     override fun onDestroyView() {

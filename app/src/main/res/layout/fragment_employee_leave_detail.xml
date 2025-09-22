@@ -15,7 +15,7 @@
         android:background="@drawable/bg_rectangle_shadow_tinted"
         app:rightButtonSrc="@drawable/ic_star"
         app:sectionSubtitleText="Manage your account preferences"
-        app:sectionTitleText="DetailCuti"
+        app:sectionTitleText="Detail Cuti"
         app:showLeftButton="true"
         app:showRightButton="false"
         app:showSectionSubtitle="false"
