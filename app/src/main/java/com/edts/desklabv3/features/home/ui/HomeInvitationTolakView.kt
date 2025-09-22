@@ -147,14 +147,19 @@ class HomeInvitationTolakView : Fragment() {
 
     private fun handleActivityClick(activity: ActivityItem) {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
-
-        if (activity.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
-            val result = bundleOf(
-                "fragment_class" to "EventDetailViewTolakUndangan",
-                "flow_type" to "TolakUndangan"
-            )
-            requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
-            android.util.Log.d("HomeView", "Fragment result sent to activity")
+        val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
+        if (!isEndFlow) {
+            if (activity.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                val result = bundleOf(
+                    "fragment_class" to "EventDetailViewTolakUndangan",
+                    "flow_type" to "TolakUndangan"
+                )
+                requireActivity().supportFragmentManager.setFragmentResult(
+                    "navigate_fragment",
+                    result
+                )
+                android.util.Log.d("HomeView", "Fragment result sent to activity")
+            }
         }
     }
 

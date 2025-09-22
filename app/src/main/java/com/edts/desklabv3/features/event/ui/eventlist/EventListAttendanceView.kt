@@ -208,11 +208,14 @@ class EventListAttendanceView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        if(event.eventTitle == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
-            val result = bundleOf(
-                "fragment_class" to "EventDetailViewAttendance"
-            )
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+        if(!useEndList) {
+            if (event.eventTitle == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                val result = bundleOf(
+                    "fragment_class" to "EventDetailViewAttendance"
+                )
+                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            }
         }
     }
 

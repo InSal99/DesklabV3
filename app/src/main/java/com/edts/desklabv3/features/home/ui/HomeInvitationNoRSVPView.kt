@@ -153,7 +153,10 @@ class HomeInvitationNoRSVPView : Fragment() {
 
         when {
             activity.title == "EDTS Town-Hall 2025: Power of Change" -> {
-                navigateToEventDetail(activity)
+                val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
+                if(!isEndFlow) {
+                    navigateToEventDetail(activity)
+                }
             }
 
             else -> {

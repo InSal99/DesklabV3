@@ -33,12 +33,12 @@ class HomeMenuFragment : Fragment() {
         val flowType = arguments?.getString("flow_type", "") ?: ""
 
         val fragment = when (flowType) {
-            "RegisRSVP" -> HomeDaftarRSVPView()
-            "RegisEndRSVP" -> HomeDaftarRSVPView()
+            "RegisRSVP" -> HomeDaftarRSVPView.newInstance(isEndFlow = false)
+            "RegisEndRSVP" -> HomeDaftarRSVPView.newInstance(isEndFlow = true)
             "InvitationNoRSVP" -> HomeInvitationNoRSVPView.newInstance(isEndFlow = false)
             "InvitationENDNoRSVP" -> HomeInvitationNoRSVPView.newInstance(isEndFlow = true)
-            "Attendance" -> HomeAttendanceView()
-            "AttendanceEnd" -> HomeAttendanceView()
+            "Attendance" -> HomeAttendanceView.newInstance(isEndFlow = false)
+            "AttendanceEnd" -> HomeAttendanceView.newInstance(isEndFlow = true)
             "TolakUndangan" -> HomeInvitationTolakView.newInstance(isEndFlow = false)
             "TolakUndanganEnd" -> HomeInvitationTolakView.newInstance(isEndFlow = true)
             "TeamReport" -> HomeManagerView()

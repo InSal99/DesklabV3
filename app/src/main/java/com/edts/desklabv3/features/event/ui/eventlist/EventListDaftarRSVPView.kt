@@ -240,9 +240,12 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        if (event.eventTitle == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
-            val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+        if(!useEndList) {
+            if (event.eventTitle == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
+                val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
+                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            }
         }
     }
 

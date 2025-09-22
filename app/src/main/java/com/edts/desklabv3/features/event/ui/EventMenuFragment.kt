@@ -72,7 +72,7 @@ class EventMenuFragment : Fragment() {
     private fun setupFlow2EndViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
             EventListAttendanceView.newInstance(useEndList = true),
-            MyEventsFragmentAttendance(),
+            MyEventsFragmentAttendance.newInstance(useEndList = true),
             EventInvitationEmptyView()
         )
         setupViewPager("flow2", fragments, selectedPosition)

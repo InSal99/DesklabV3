@@ -140,8 +140,11 @@ class HomeAttendanceView : Fragment() {
     }
 
     private fun handleActivityClick(activityItem: ActivityItem) {
-        if (activityItem.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
-            navigateToEventDetailAttendance()
+        val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+        if(!useEndList) {
+            if (activityItem.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                navigateToEventDetailAttendance()
+            }
         }
     }
 
@@ -156,6 +159,10 @@ class HomeAttendanceView : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeAttendanceView()
+        fun newInstance(isEndFlow: Boolean = false) = HomeAttendanceView().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", isEndFlow)
+            }
+        }
     }
 }
