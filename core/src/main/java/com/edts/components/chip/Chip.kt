@@ -2,6 +2,7 @@ package com.edts.components.chip
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
@@ -178,6 +179,7 @@ class Chip @JvmOverloads constructor(
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupIconClickListener() {
         binding.ivChip.setOnClickListener { view ->
             handleIconClick()

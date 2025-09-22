@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
@@ -32,12 +33,13 @@ class SuccessRegistrationView : Fragment() {
 
         setupUI()
         setupButtonClicks()
+        setupBackButton()
     }
 
     private fun setupUI() {
         val lottieView = view?.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
         lottieView?.setAnimation(R.raw.il_success)
-        lottieView?.repeatCount = LottieDrawable.INFINITE
+        lottieView?.repeatCount = 0
         lottieView?.playAnimation()
 
         binding.tvTitleAttendanceOffline.text = "Registrasi Berhasil!"
@@ -52,21 +54,24 @@ class SuccessRegistrationView : Fragment() {
                 "RegisRSVP" -> {
                     parentFragmentManager.setFragmentResult(
                         "navigate_fragment",
-                        bundleOf("fragment_class" to "MyEventDaftarRSVPView")
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "RegisEndRSVP",
+                            "selected_tab" to 1 // Event Saya
+                        )
                     )
                 }
                 "InvitationNoRSVP" -> {
                     parentFragmentManager.setFragmentResult(
                         "navigate_fragment",
-                        bundleOf("fragment_class" to "MyEventsFragmentNoRSVP")
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "InvitationENDNoRSVP",
+                            "selected_tab" to 1 // Event Saya
+                        )
                     )
                 }
-                else -> {
-                    parentFragmentManager.setFragmentResult(
-                        "navigate_fragment",
-                        bundleOf("fragment_class" to "MyEventDaftarRSVPView")
-                    )
-                }
+                else -> {}
             }
         }
 
@@ -75,23 +80,36 @@ class SuccessRegistrationView : Fragment() {
                 "RegisRSVP" -> {
                     parentFragmentManager.setFragmentResult(
                         "navigate_fragment",
-                        bundleOf("fragment_class" to "EventListDaftarRSVPView")
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "RegisEndRSVP",
+                            "selected_tab" to 0 // Daftar Event
+                        )
                     )
                 }
                 "InvitationNoRSVP" -> {
                     parentFragmentManager.setFragmentResult(
                         "navigate_fragment",
-                        bundleOf("fragment_class" to "EventListInvitationNoRSVPView")
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "InvitationENDNoRSVP",
+                            "selected_tab" to 0 // Daftar Event
+                        )
                     )
                 }
-                else -> {
-                    parentFragmentManager.setFragmentResult(
-                        "navigate_fragment",
-                        bundleOf("fragment_class" to "EventListDaftarRSVPView")
-                    )
-                }
+                else -> {}
             }
         }
+    }
+
+    private fun setupBackButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {

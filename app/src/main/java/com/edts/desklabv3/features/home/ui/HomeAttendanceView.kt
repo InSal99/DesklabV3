@@ -57,6 +57,8 @@ class HomeAttendanceView : Fragment() {
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
+
+        binding.cvNotificationBadge.visibility = View.INVISIBLE
     }
 
     override fun onDestroyView() {
@@ -100,7 +102,7 @@ class HomeAttendanceView : Fragment() {
         val groupedData = GroupedActivitiesAdapter.groupActivitiesByDate(filteredActivities)
 
         groupedActivitiesAdapter = GroupedActivitiesAdapter(groupedData) { activity ->
-            handleActivityClick()
+            handleActivityClick(activity)
         }
 
         binding.rvActivitiesGroup.apply {
@@ -137,19 +139,30 @@ class HomeAttendanceView : Fragment() {
         }
     }
 
-    private fun handleActivityClick() {
-        navigateToEventDetailAttendance()
+    private fun handleActivityClick(activityItem: ActivityItem) {
+        val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+        if(!useEndList) {
+            if (activityItem.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                navigateToEventDetailAttendance()
+            }
+        }
     }
 
     private fun navigateToEventDetailAttendance() {
         val result = bundleOf(
             "fragment_class" to "EventDetailViewAttendance"
         )
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity()
+            .supportFragmentManager
+            .setFragmentResult("navigate_fragment", result)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeAttendanceView()
+        fun newInstance(isEndFlow: Boolean = false) = HomeAttendanceView().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", isEndFlow)
+            }
+        }
     }
 }

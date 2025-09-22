@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.input.field.InputField
 import com.edts.components.input.field.InputFieldConfig
 import com.edts.components.input.field.InputFieldDelegate
+import com.edts.components.input.field.InputFieldType
 
 class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
 
@@ -14,12 +15,22 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
 
     var onResponseChange: ((Map<String, Any?>) -> Unit)? = null
     var onValidationChange: ((Boolean) -> Unit)? = null
+    var onFieldFocused: ((Int) -> Unit)? = null
 
     inner class ViewHolder(val inputField: InputField) : RecyclerView.ViewHolder(inputField) {
         fun bind(config: InputFieldConfig, position: Int) {
             val fieldId = "field_$position"
-
             inputField.configure(config, fieldId)
+
+            if (config.type == InputFieldType.CheckboxGroup && config.isRequired) {
+                responses[fieldId] = emptySet<String>()
+            }
+
+            inputField.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    onFieldFocused?.invoke(position)
+                }
+            }
 
             inputField.delegate = object : InputFieldDelegate {
                 override fun onValueChange(fieldId: String, value: Any?) {
@@ -30,14 +41,12 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
                     onValidationChange?.invoke(isValid)
                 }
 
-                override fun onValidationChange(fieldId: String, isValid: Boolean) {
-                    // Handle validation if needed
-                }
+                override fun onValidationChange(fieldId: String, isValid: Boolean) {}
             }
         }
     }
 
-    private fun validateAllFields(): Boolean {
+    fun validateAllFields(): Boolean {
         for ((index, config) in formConfigs.withIndex()) {
             if (config.isRequired) {
                 val fieldId = "field_$index"
@@ -52,23 +61,46 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
 
     fun validateAllFieldsAndShowErrors(): Boolean {
         var allValid = true
-        for ((index, config) in formConfigs.withIndex()) {
-            val holder = recyclerView?.findViewHolderForAdapterPosition(index) as? ViewHolder
-            val field = holder?.inputField
-            val isValid = field?.isValid() ?: false
+        var firstInvalidIndex: Int? = null
 
-            if (!isValid && config.isRequired) {
-                field?.setError("Mohon lengkapi field ini terlebih dahulu")
+        for ((index, config) in formConfigs.withIndex()) {
+            val fieldId = "field_$index"
+            val value = responses[fieldId]
+
+            val isValid = isFieldValid(config, value)
+
+            if (!isValid) {
                 allValid = false
+                if (firstInvalidIndex == null) firstInvalidIndex = index
+
+                val holder = recyclerView?.findViewHolderForAdapterPosition(index) as? ViewHolder
+                holder?.inputField?.setError("Mohon lengkapi field ini terlebih dahulu")
             }
         }
         return allValid
     }
 
+    private fun isFieldValid(config: InputFieldConfig, value: Any?): Boolean {
+        if (!config.isRequired) return true
+
+        return when {
+            value == null -> false
+            value is Collection<*> -> value.isNotEmpty()
+            value is Array<*> -> value.isNotEmpty()
+            value is String -> value.isNotBlank()
+            value is Boolean -> value
+            value is Number -> value.toDouble() != 0.0
+            else -> {
+                val str = value.toString()
+                str.isNotBlank() && str != "[]" && str != "{}"
+            }
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inputField = InputField(parent.context).apply {
             layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,  // ← This is the key fix
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         }
@@ -88,9 +120,7 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun getResponses(): Map<String, Any?> {
-        return responses.toMap()
-    }
+    fun getResponses(): Map<String, Any?> = responses.toMap()
 
     override fun onAttachedToRecyclerView(rv: RecyclerView) {
         super.onAttachedToRecyclerView(rv)
@@ -102,128 +132,3 @@ class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
         recyclerView = null
     }
 }
-
-
-
-
-//class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
-//
-//    private val formConfigs = mutableListOf<InputFieldConfig>()
-//    private val fieldResponses = mutableMapOf<String, Any?>()
-//
-//    var onFieldValueChange: ((String, Any?) -> Unit)? = null
-//    var onFieldValidationChange: ((String, Boolean) -> Unit)? = null
-//
-//    inner class ViewHolder(val inputField: InputField) : RecyclerView.ViewHolder(inputField) {
-//        fun bind(config: InputFieldConfig, fieldId: String) {
-//            inputField.configure(config, fieldId)
-//
-//            // Set existing value if available
-//            fieldResponses[fieldId]?.let { inputField.setValue(it) }
-//
-//            inputField.delegate = object : InputFieldDelegate {
-//                override fun onValueChange(fieldId: String, value: Any?) {
-//                    fieldResponses[fieldId] = value
-//                    onFieldValueChange?.invoke(fieldId, value)
-//                }
-//
-//                override fun onValidationChange(fieldId: String, isValid: Boolean) {
-//                    onFieldValidationChange?.invoke(fieldId, isValid)
-//                }
-//            }
-//        }
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        val inputField = InputField(parent.context).apply {
-//            layoutParams = ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT
-//            )
-//        }
-//        return ViewHolder(inputField)
-//    }
-//
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        val config = formConfigs[position]
-//        val fieldId = "field_$position" // Simple ID generation
-//        holder.bind(config, fieldId)
-//    }
-//
-//    override fun getItemCount(): Int = formConfigs.size
-//
-//    fun setFormConfigs(configs: List<InputFieldConfig>) {
-//        formConfigs.clear()
-//        formConfigs.addAll(configs)
-//        notifyDataSetChanged()
-//    }
-//
-//    fun getFieldValues(): Map<String, Any?> {
-//        return fieldResponses.toMap()
-//    }
-//
-//    fun clearAllValues() {
-//        fieldResponses.clear()
-//        notifyDataSetChanged()
-//    }
-//}
-
-
-
-//class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
-//
-//    private val formItems = mutableListOf<RSVPFormItem>()
-//
-//    inner class ViewHolder(val inputField: InputField) : RecyclerView.ViewHolder(inputField) {
-//        fun bind(item: RSVPFormItem) {
-//            inputField.setValue(item)
-//        }
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        // Create your custom InputField programmatically
-//        val inputField = InputField(parent.context).apply {
-//            layoutParams = ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT
-//            )
-//        }
-//        return ViewHolder(inputField)
-//    }
-//
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        holder.bind(formItems[position])
-//    }
-//
-//    override fun getItemCount(): Int = formItems.size
-//
-//    fun submitList(items: List<RSVPFormItem>) {
-//        formItems.clear()
-//        formItems.addAll(items)
-//        notifyDataSetChanged()
-//    }
-//
-//    // Method to collect all responses
-//    fun getFormResponses(): Map<String, String> {
-//        val responses = mutableMapOf<String, String>()
-//        formItems.forEachIndexed { index, item ->
-//            // You might need to track responses differently since we're using custom views
-//            // This approach assumes you can access the InputField's response
-//            val response = "get_response_from_view_holder" // Implement this properly
-//            responses[item.id] = response
-//        }
-//        return responses
-//    }
-//}
-//
-//data class RSVPFormItem(
-//    val id: String,
-//    val question: String,
-//    val isRequired: Boolean,
-//    val inputType: InputType = InputType.TEXT,
-//    val placeholder: String? = null
-//)
-//
-//enum class InputType {
-//    TEXT, NUMBER, EMAIL, PHONE, MULTILINE
-//}

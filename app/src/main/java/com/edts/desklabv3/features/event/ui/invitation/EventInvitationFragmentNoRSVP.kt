@@ -67,7 +67,7 @@ class EventInvitationFragmentNoRSVP : Fragment() {
 
     private fun navigateToEventDetail() {
         val result = bundleOf("fragment_class" to "EventDetailViewNoRSVP")
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     private fun createSampleData(): List<EventInvitation> {
@@ -114,7 +114,7 @@ class EventInvitationFragmentNoRSVP : Fragment() {
             "fragment_class" to "SuccessRegistrationView",
             "flow_type" to "InvitationNoRSVP"
         )
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
     }
 
     override fun onDestroyView() {

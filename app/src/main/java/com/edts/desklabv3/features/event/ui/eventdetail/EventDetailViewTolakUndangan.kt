@@ -75,7 +75,7 @@ class EventDetailViewTolakUndangan : Fragment() {
 
     private fun setupBackButton() {
         binding.ivDetailBack.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 

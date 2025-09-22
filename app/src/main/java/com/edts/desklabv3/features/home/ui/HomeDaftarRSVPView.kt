@@ -28,7 +28,6 @@ class HomeDaftarRSVPView : Fragment() {
     private lateinit var groupedActivitiesAdapter: GroupedActivitiesAdapter
 
     private var chipDecoration: RecyclerView.ItemDecoration? = null
-//    private var activitiesDecoration: RecyclerView.ItemDecoration? = null
 
     private val allActivities = listOf(
         ActivityItem("EDTS Town-Hall 2025: Power of Change", "15:00 - 17:00 WIB", true, ActivityType.Event, "2025-07-23"),
@@ -67,6 +66,8 @@ class HomeDaftarRSVPView : Fragment() {
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
+
+        binding.cvNotificationBadge.visibility = View.INVISIBLE
     }
 
     override fun onDestroyView() {
@@ -118,15 +119,6 @@ class HomeDaftarRSVPView : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             isNestedScrollingEnabled = false
 
-//            // Only add decoration once during setup
-//            if (activitiesDecoration == null) {
-//                activitiesDecoration = SpaceItemDecoration(
-//                    context = requireContext(),
-//                    spaceResId = R.dimen.activity_group_item_spacing,
-//                    orientation = SpaceItemDecoration.VERTICAL
-//                )
-//                addItemDecoration(activitiesDecoration!!)
-//            }
         }
     }
 
@@ -161,7 +153,10 @@ class HomeDaftarRSVPView : Fragment() {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
 
         if (activity.title == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
-            navigateToEventList(activity)
+            val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+            if (!useEndList) {
+                navigateToEventList(activity)
+            }
         } else {
             Log.d("HomeView", "Non-event activity clicked: ${activity.title}")
         }
@@ -169,17 +164,17 @@ class HomeDaftarRSVPView : Fragment() {
 
     private fun navigateToEventList(activity: ActivityItem) {
         val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
-        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        requireActivity()
+            .supportFragmentManager
+            .setFragmentResult("navigate_fragment", result)
     }
-
-//    fun updateChipTexts(newTexts: Array<String>) {
-//        if (::chipAdapter.isInitialized) {
-//            chipAdapter.updateChipTexts(newTexts)
-//        }
-//    }
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeDaftarRSVPView()
+        fun newInstance(isEndFlow: Boolean = false) = HomeDaftarRSVPView().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", isEndFlow)
+            }
+        }
     }
 }

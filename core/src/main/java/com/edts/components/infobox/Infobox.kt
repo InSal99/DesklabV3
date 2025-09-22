@@ -29,6 +29,8 @@ class InfoBox @JvmOverloads constructor(
             binding.tvInfoText.text = value
         }
 
+    var iconSRC: Int? = null
+
     var variant: InfoBoxVariant = InfoBoxVariant.INFORMATION
         set(value) {
             field = value
@@ -117,25 +119,25 @@ class InfoBox @JvmOverloads constructor(
             InfoBoxVariant.INFORMATION -> {
                 gradientDrawable?.setColor(context.resolveColorAttribute(R.attr.colorBackgroundInfoSubtle, Color.TRANSPARENT))
                 binding.tvInfoText.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundInfoIntense, Color.BLACK))
-                binding.ivInfoIcon.setImageResource(R.drawable.ic_information)
+                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_information)
                 binding.ivInfoIcon.setColorFilter(context.resolveColorAttribute(R.attr.colorForegroundInfoIntense, Color.BLACK))
             }
             InfoBoxVariant.SUCCESS -> {
                 gradientDrawable?.setColor(context.resolveColorAttribute(R.attr.colorBackgroundSuccessSubtle, Color.TRANSPARENT))
                 binding.tvInfoText.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundSuccessIntense, Color.BLACK))
-                binding.ivInfoIcon.setImageResource(R.drawable.ic_success)
+                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_success)
                 binding.ivInfoIcon.setColorFilter(context.resolveColorAttribute(R.attr.colorForegroundSuccessIntense, Color.BLACK))
             }
             InfoBoxVariant.ERROR -> {
                 gradientDrawable?.setColor(context.resolveColorAttribute(R.attr.colorBackgroundAttentionSubtle, Color.TRANSPARENT))
                 binding.tvInfoText.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundAttentionIntense, Color.BLACK))
-                binding.ivInfoIcon.setImageResource(R.drawable.ic_error)
+                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_error)
                 binding.ivInfoIcon.setColorFilter(context.resolveColorAttribute(R.attr.colorForegroundAttentionIntense, Color.BLACK))
             }
             InfoBoxVariant.GENERAL -> {
                 gradientDrawable?.setColor(context.resolveColorAttribute(R.attr.colorBackgroundSecondary, Color.TRANSPARENT))
                 binding.tvInfoText.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundPrimary, Color.BLACK))
-                binding.ivInfoIcon.setImageResource(R.drawable.placeholder)
+                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.placeholder)
                 binding.ivInfoIcon.setColorFilter(context.resolveColorAttribute(R.attr.colorForegroundTertiary, Color.BLACK))
             }
         }

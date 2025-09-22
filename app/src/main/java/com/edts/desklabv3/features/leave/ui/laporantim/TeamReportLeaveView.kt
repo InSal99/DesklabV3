@@ -97,7 +97,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 //            .addToBackStack(EmployeeLeaveDetailView::class.java.simpleName)
 //            .commit()
 
-        (activity as? MainActivity)?.saveCurrentTeamReportTab()
+//        (activity as? MainActivity)?.saveCurrentTeamReportTab()
 
 //        val result = bundleOf("fragment_class" to "EmployeeLeaveDetailView")
 

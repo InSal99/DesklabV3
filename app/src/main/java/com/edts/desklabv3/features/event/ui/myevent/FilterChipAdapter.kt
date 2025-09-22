@@ -28,7 +28,14 @@ class FilterChipAdapter(
         fun bind(chipData: FilterChip, onChipClicked: (FilterChip) -> Unit) {
             chipView.chipText = chipData.text
             chipView.chipState = if (chipData.isSelected) Chip.ChipState.ACTIVE else Chip.ChipState.INACTIVE
-            itemView.setOnClickListener { onChipClicked(chipData) }
+
+            if (chipData.isSelected) {
+                itemView.setOnClickListener(null)
+                itemView.isClickable = false
+            } else {
+                itemView.setOnClickListener { onChipClicked(chipData) }
+                itemView.isClickable = true
+            }
         }
     }
 

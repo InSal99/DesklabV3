@@ -4,7 +4,6 @@
     android:id="@+id/EventCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="330dp"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_8dp"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
@@ -56,12 +55,14 @@
             android:orientation="vertical"
             android:paddingVertical="@dimen/margin_12dp"
             android:paddingHorizontal="@dimen/margin_12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvEventCardBanner"
             app:layout_constraintStart_toStartOf="parent">
             <com.edts.components.event.card.EventCardDescription
                 android:id="@+id/cvEventCardDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="68dp"
                 app:eventTitle="EDTS Town-Hall 2025: Power of Change"
                 app:eventDate="23 Juli 2025"
                 app:layout_constraintTop_toBottomOf="parent"

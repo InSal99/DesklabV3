@@ -80,6 +80,7 @@ class BottomNavigationItem @JvmOverloads constructor(
     private companion object {
         const val ANIMATION_DURATION = 150L
         const val BOUNCE_ANIMATION_DURATION = 600L
+        const val INDICATOR_ANIMATION_DURATION = 200L
         const val BOUNCE_SCALE_FACTOR = 1.15f
         const val BOUNCE_OVERSHOOT_TENSION = 1.2f
         const val TAG = "BottomNavigationItem"
@@ -133,11 +134,18 @@ class BottomNavigationItem @JvmOverloads constructor(
 
         animateIconBounce()
 
-        val newState = if (navState == NavState.ACTIVE) NavState.INACTIVE else NavState.ACTIVE
-        navState = newState
-        delegate?.onBottomNavigationItemClicked(this, itemPosition, clickCount)
+        val previousState = navState
 
-        Log.d(TAG, "  - New State: $navState")
+        if (delegate != null) {
+            Log.d(TAG, "  - Has delegate, notifying parent component")
+            delegate?.onBottomNavigationItemClicked(this, itemPosition, clickCount)
+        } else {
+            val newState = if (navState == NavState.ACTIVE) NavState.INACTIVE else NavState.ACTIVE
+            Log.d(TAG, "  - Standalone mode, changing state to: $newState")
+            navState = newState
+        }
+
+        Log.d(TAG, "  - Final State: $navState")
         Log.d(TAG, "--------------------")
     }
 
@@ -232,6 +240,7 @@ class BottomNavigationItem @JvmOverloads constructor(
                 val indicatorColor = ContextCompat.getColor(context, typedValue.resourceId)
                 binding.bottomNavigationIndicator.setBackgroundColor(indicatorColor)
                 binding.bottomNavigationIndicator.visibility = View.VISIBLE
+                binding.bottomNavigationIndicator.scaleX = 1f
             }
             NavState.INACTIVE -> {
                 context.theme.resolveAttribute(R.attr.colorForegroundTertiary, typedValue, true)
@@ -239,10 +248,8 @@ class BottomNavigationItem @JvmOverloads constructor(
                 binding.tvBottomNavigation.setTextColor(inactiveColor)
                 binding.ivBottomNavigation.imageTintList = ColorStateList.valueOf(inactiveColor)
 
-                context.theme.resolveAttribute(R.attr.colorStrokeSubtle, typedValue, true)
-                val indicatorInactiveColor = ContextCompat.getColor(context, typedValue.resourceId)
-                binding.bottomNavigationIndicator.setBackgroundColor(indicatorInactiveColor)
-                binding.bottomNavigationIndicator.visibility = View.VISIBLE
+                binding.bottomNavigationIndicator.visibility = View.GONE
+                binding.bottomNavigationIndicator.scaleX = 0f
             }
         }
     }
@@ -284,19 +291,22 @@ class BottomNavigationItem @JvmOverloads constructor(
             }
         }
 
+        binding.bottomNavigationIndicator.setBackgroundColor(indicatorColor)
         binding.bottomNavigationIndicator.visibility = View.VISIBLE
-        val indicatorColorAnimator = ValueAnimator.ofArgb(currentTextColor, indicatorColor).apply {
-            duration = ANIMATION_DURATION
-            interpolator = AccelerateDecelerateInterpolator()
-            addUpdateListener { animation ->
-                val color = animation.animatedValue as Int
-                binding.bottomNavigationIndicator.setBackgroundColor(color)
-            }
-        }
+        binding.bottomNavigationIndicator.scaleX = 0f
 
-        AnimatorSet().apply {
-            playTogether(textColorAnimator, iconColorAnimator, indicatorColorAnimator)
-            start()
+        binding.bottomNavigationIndicator.post {
+            binding.bottomNavigationIndicator.pivotX = binding.bottomNavigationIndicator.width / 2f
+
+            val indicatorAnimator = ObjectAnimator.ofFloat(binding.bottomNavigationIndicator, "scaleX", 0f, 1f).apply {
+                duration = INDICATOR_ANIMATION_DURATION
+                interpolator = AccelerateDecelerateInterpolator()
+            }
+
+            AnimatorSet().apply {
+                playTogether(textColorAnimator, iconColorAnimator, indicatorAnimator)
+                start()
+            }
         }
     }
 
@@ -306,12 +316,8 @@ class BottomNavigationItem @JvmOverloads constructor(
         context.theme.resolveAttribute(R.attr.colorForegroundTertiary, typedValue, true)
         val inactiveColor = ContextCompat.getColor(context, typedValue.resourceId)
 
-        context.theme.resolveAttribute(R.attr.colorStrokeSubtle, typedValue, true)
-        val indicatorInactiveColor = ContextCompat.getColor(context, typedValue.resourceId)
-
         val currentTextColor = binding.tvBottomNavigation.currentTextColor
         val currentIconColor = binding.ivBottomNavigation.imageTintList?.defaultColor ?: currentTextColor
-        val currentIndicatorColor = binding.bottomNavigationIndicator.solidColor
 
         val textColorAnimator = ValueAnimator.ofArgb(currentTextColor, inactiveColor).apply {
             duration = ANIMATION_DURATION
@@ -331,17 +337,18 @@ class BottomNavigationItem @JvmOverloads constructor(
             }
         }
 
-        val indicatorColorAnimator = ValueAnimator.ofArgb(currentIndicatorColor, indicatorInactiveColor).apply {
-            duration = ANIMATION_DURATION
+        val indicatorAnimator = ObjectAnimator.ofFloat(binding.bottomNavigationIndicator, "scaleX", 1f, 0f).apply {
+            duration = INDICATOR_ANIMATION_DURATION
             interpolator = AccelerateDecelerateInterpolator()
             addUpdateListener { animation ->
-                val color = animation.animatedValue as Int
-                binding.bottomNavigationIndicator.setBackgroundColor(color)
+                if (animation.animatedFraction == 1f) {
+                    binding.bottomNavigationIndicator.visibility = View.GONE
+                }
             }
         }
 
         AnimatorSet().apply {
-            playTogether(textColorAnimator, iconColorAnimator, indicatorColorAnimator)
+            playTogether(textColorAnimator, iconColorAnimator, indicatorAnimator)
             start()
         }
     }

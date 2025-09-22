@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import com.airbnb.lottie.LottieAnimationView
-import com.airbnb.lottie.LottieDrawable
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
 
@@ -28,7 +28,7 @@ class SuccessDenyInvitationView : Fragment() {
 
         val lottieView = view.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
         lottieView.setAnimation(R.raw.il_calendar)
-        lottieView.repeatCount = LottieDrawable.INFINITE
+        lottieView.repeatCount = 0
         lottieView.playAnimation()
 
         binding.tvTitleAttendanceOffline.text = "Undangan Ditolak!"
@@ -37,18 +37,37 @@ class SuccessDenyInvitationView : Fragment() {
         binding.cvSecondaryBtnAttendanceOffline.text = "Kembali Ke Beranda"
 
         setupButtonListeners()
+        setupBackButton()
     }
 
     private fun setupButtonListeners() {
         binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
-            val result = bundleOf("fragment_class" to "EventListInvitationTolakEndView")
+            val result = bundleOf(
+                "fragment_class" to "EventMenuFragment",
+                "flow_type" to "TolakUndanganEnd",
+                "selected_tab" to 0
+            )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
 
         binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
-            val result = bundleOf("fragment_class" to "HomeDaftarRSVPView")
+            val result = bundleOf(
+                "fragment_class" to "HomeMenuFragment",
+                "flow_type" to "TolakUndanganEnd",
+                "selected_tab" to 0
+            )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
+    }
+
+    private fun setupBackButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {

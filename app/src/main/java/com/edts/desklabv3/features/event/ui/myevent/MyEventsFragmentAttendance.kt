@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -51,7 +52,16 @@ class MyEventsFragmentAttendance : Fragment() {
     private fun setupUI() {
         // Setup Event List RecyclerView
         eventAdapter = MyEventAdapter { event ->
-            Toast.makeText(requireContext(), "Clicked on: ${event.title}", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), "Clicked on: ${event.title}", Toast.LENGTH_SHORT).show()
+            val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+            if(!useEndList) {
+                if (event.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                    val result = bundleOf(
+                        "fragment_class" to "EventDetailViewAttendance"
+                    )
+                    requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
+                }
+            }
         }
         binding.rvMyEvent.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -109,8 +119,8 @@ class MyEventsFragmentAttendance : Fragment() {
             val (badgeText, badgeType) = when(status) {
                 MyEventStatus.BERLANGSUNG -> "Berlangsung" to EventCardBadge.BadgeType.LIVE
                 MyEventStatus.TERDAFTAR -> "Terdaftar" to EventCardBadge.BadgeType.REGISTERED
-                MyEventStatus.HADIR -> "Hadir" to EventCardBadge.BadgeType.REGISTERED
-                MyEventStatus.TIDAK_HADIR -> "Tidak Hadir" to EventCardBadge.BadgeType.LIVE
+                MyEventStatus.HADIR -> "Hadir" to EventCardBadge.BadgeType.ATTENDED
+                MyEventStatus.TIDAK_HADIR -> "Tidak Hadir" to EventCardBadge.BadgeType.NOTATTENDED
             }
             return MyEvent(
                 status = status,
@@ -168,5 +178,14 @@ class MyEventsFragmentAttendance : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(useEndList: Boolean = false) = MyEventsFragmentAttendance().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", useEndList)
+            }
+        }
     }
 }

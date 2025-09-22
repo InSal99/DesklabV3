@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.edts.components.toast.Toast
@@ -39,10 +41,11 @@ class SuccessAttendanceOnlineView : Fragment() {
 
         val lottieView = view.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
         lottieView.setAnimation(R.raw.il_success)
-        lottieView.repeatCount = LottieDrawable.INFINITE
+        lottieView.repeatCount = 0
         lottieView.playAnimation()
 
         setupButtonClickListeners()
+        setupBackButton()
     }
 
     private fun setupButtonClickListeners() {
@@ -53,6 +56,16 @@ class SuccessAttendanceOnlineView : Fragment() {
         binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
             navigateToEventDetail()
         }
+    }
+
+    private fun setupBackButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                }
+            }
+        )
     }
 
     private fun showShareTray() {
