@@ -244,7 +244,7 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
         if(!useEndList) {
             if (event.eventTitle == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
                 val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
-                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+                requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
             }
         }
     }

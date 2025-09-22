@@ -204,7 +204,7 @@ class EventListInvitationTolakStartView : Fragment(), InputSearchDelegate {
     private fun handleEventClick(event: EventSample) {
         if(event.eventTitle == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
             val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
         }
     }
 
