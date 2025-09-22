@@ -202,10 +202,6 @@ class EventListInvitationTolakEndView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-//        if (event.eventTitle == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
-//            val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
-//            requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
-//        }
     }
 
     override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String, changeCount: Int) {
