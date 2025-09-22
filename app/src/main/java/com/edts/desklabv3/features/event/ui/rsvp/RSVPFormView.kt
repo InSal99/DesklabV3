@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.doOnLayout
+import androidx.core.view.updatePadding
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +32,8 @@ class RSVPFormView : Fragment(), FooterDelegate {
     private lateinit var binding: FragmentRsvpFormViewBinding
     private lateinit var adapter: RSVPFormAdapter
     private val formConfigs = mutableListOf<InputFieldConfig>()
+    private var footerHeight = 0
+    private var pendingScrollToPosition: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +44,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,6 +51,50 @@ class RSVPFormView : Fragment(), FooterDelegate {
         setupRecyclerView()
         setupFormFields()
         setupFooter()
+
+        binding.rvRsvpFormList.clipToPadding = false
+        binding.eventRsvpFooter.doOnLayout { footerHeight = it.height }
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+            val imeHeight = if (imeVisible) imeInsets.bottom else 0
+            val navBarHeight = systemBarsInsets.bottom
+
+            val bottomPadding = if (imeVisible) imeHeight else navBarHeight + footerHeight
+            binding.rvRsvpFormList.updatePadding(bottom = bottomPadding)
+            binding.eventRsvpFooter.translationY = if (imeVisible) -imeHeight.toFloat() else 0f
+
+            if (imeVisible) {
+                pendingScrollToPosition?.let { pos ->
+                    binding.rvRsvpFormList.postDelayed({
+                        scrollToFieldPosition(pos, imeHeight)
+                    }, 100)
+                    pendingScrollToPosition = null
+                }
+            }
+
+            insets
+        }
+    }
+
+    private fun scrollToFieldPosition(position: Int, keyboardHeight: Int) {
+        val holder = binding.rvRsvpFormList.findViewHolderForAdapterPosition(position)
+        holder?.itemView?.let { itemView ->
+            val itemLocation = IntArray(2)
+            itemView.getLocationInWindow(itemLocation)
+
+            val scrollViewLocation = IntArray(2)
+            binding.rootScrollView.getLocationInWindow(scrollViewLocation)
+
+            val relativeY = itemLocation[1] - scrollViewLocation[1]
+            val availableHeight = binding.rootScrollView.height - keyboardHeight
+            val targetOffset = availableHeight / 4
+            val targetScrollY = binding.rootScrollView.scrollY + relativeY - targetOffset
+
+            binding.rootScrollView.smoothScrollTo(0, maxOf(0, targetScrollY))
+        }
     }
 
     private fun setupBackButton() {
@@ -59,6 +108,18 @@ class RSVPFormView : Fragment(), FooterDelegate {
 
         adapter.onResponseChange = { responses ->
             updateSubmitButtonState(responses)
+        }
+
+        adapter.onFieldFocused = { position ->
+            pendingScrollToPosition = position
+            val imeInsets = ViewCompat.getRootWindowInsets(binding.root)?.getInsets(WindowInsetsCompat.Type.ime())
+            val imeHeight = imeInsets?.bottom ?: 0
+
+            if (imeHeight > 0) {
+                binding.rvRsvpFormList.postDelayed({
+                    scrollToFieldPosition(position, imeHeight)
+                }, 150)
+            }
         }
 
         binding.rvRsvpFormList.apply {

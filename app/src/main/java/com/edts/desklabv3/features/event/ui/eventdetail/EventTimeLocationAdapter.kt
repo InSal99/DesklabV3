@@ -21,21 +21,16 @@ class EventTimeLocationAdapter : RecyclerView.Adapter<EventTimeLocationAdapter.T
                 icon = ContextCompat.getDrawable(context, item.first)
                 title = item.second
                 description = item.third
-
-                // Show actions only for "Link Meeting" item (4th position) if enabled
                 hasAction = showActionForLinkMeeting && position == 3
 
                 if (hasAction) {
-                    // SWITCHED: Primary button is now "Bergabung Online"
                     actionButton1.text = "Bergabung Online"
-                    // SWITCHED: Secondary button is now "Copy Link"
                     actionButton2.text = "Copy Link"
 
-                    // SWITCHED: Primary button opens the link
                     actionButton1.setOnClickListener {
                         onActionClickListener?.invoke("open")
                     }
-                    // SWITCHED: Secondary button copies to clipboard
+
                     actionButton2.setOnClickListener {
                         onActionClickListener?.invoke("copy")
                     }
@@ -69,6 +64,6 @@ class EventTimeLocationAdapter : RecyclerView.Adapter<EventTimeLocationAdapter.T
         showActionForLinkMeeting = show
         meetingLink = link
         onActionClickListener = listener
-        notifyItemChanged(3) // Notify the 4th item (Link Meeting) to update
+        notifyItemChanged(3)
     }
 }

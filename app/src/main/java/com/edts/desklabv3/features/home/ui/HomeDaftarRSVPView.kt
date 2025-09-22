@@ -28,7 +28,6 @@ class HomeDaftarRSVPView : Fragment() {
     private lateinit var groupedActivitiesAdapter: GroupedActivitiesAdapter
 
     private var chipDecoration: RecyclerView.ItemDecoration? = null
-//    private var activitiesDecoration: RecyclerView.ItemDecoration? = null
 
     private val allActivities = listOf(
         ActivityItem("EDTS Town-Hall 2025: Power of Change", "15:00 - 17:00 WIB", true, ActivityType.Event, "2025-07-23"),
@@ -169,12 +168,6 @@ class HomeDaftarRSVPView : Fragment() {
             .supportFragmentManager
             .setFragmentResult("navigate_fragment", result)
     }
-
-//    fun updateChipTexts(newTexts: Array<String>) {
-//        if (::chipAdapter.isInitialized) {
-//            chipAdapter.updateChipTexts(newTexts)
-//        }
-//    }
 
     companion object {
         @JvmStatic
