@@ -181,7 +181,7 @@ class EventMenuFragment : Fragment() {
     private fun setupFlow3ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
             EventListInvitationNoRSVPView(),
-            MyEventsFragmentNoRSVP(),
+            MyEventsFragmentRSVP(),
             EventInvitationFragmentNoRSVP()
         )
         setupViewPager("flow3", fragments, selectedPosition)
