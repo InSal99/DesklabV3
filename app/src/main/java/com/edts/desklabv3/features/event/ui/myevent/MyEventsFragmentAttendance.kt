@@ -53,11 +53,14 @@ class MyEventsFragmentAttendance : Fragment() {
         // Setup Event List RecyclerView
         eventAdapter = MyEventAdapter { event ->
 //            Toast.makeText(requireContext(), "Clicked on: ${event.title}", Toast.LENGTH_SHORT).show()
-            if(event.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
-                val result = bundleOf(
-                    "fragment_class" to "EventDetailViewAttendance"
-                )
-                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+            if(!useEndList) {
+                if (event.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                    val result = bundleOf(
+                        "fragment_class" to "EventDetailViewAttendance"
+                    )
+                    parentFragmentManager.setFragmentResult("navigate_fragment", result)
+                }
             }
         }
         binding.rvMyEvent.apply {
@@ -175,5 +178,14 @@ class MyEventsFragmentAttendance : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(useEndList: Boolean = false) = MyEventsFragmentAttendance().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", useEndList)
+            }
+        }
     }
 }

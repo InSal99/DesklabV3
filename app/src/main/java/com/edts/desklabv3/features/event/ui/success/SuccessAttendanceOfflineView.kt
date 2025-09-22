@@ -65,7 +65,7 @@ class SuccessAttendanceOfflineView : Fragment() {
     private fun navigateToEventList() {
         val result = bundleOf(
             "fragment_class" to "EventMenuFragment",
-            "flow_type" to "Attendance",
+            "flow_type" to "AttendanceEnd",
             "selected_tab" to 0
         )
         parentFragmentManager.setFragmentResult("navigate_fragment", result)

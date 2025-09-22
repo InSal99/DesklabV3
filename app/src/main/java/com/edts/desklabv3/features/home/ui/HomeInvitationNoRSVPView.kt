@@ -64,7 +64,10 @@ class HomeInvitationNoRSVPView : Fragment() {
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
 
-        binding.cvNotificationBadge.visibility = View.VISIBLE
+        val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
+        binding.cvNotificationBadge.visibility = if (isEndFlow) View.INVISIBLE else View.VISIBLE
+
+        Log.d("HomeInvitationNoRSVP", "isEndFlow: $isEndFlow, badge visibility: ${binding.cvNotificationBadge.visibility}")
     }
 
     override fun onDestroyView() {
@@ -150,7 +153,10 @@ class HomeInvitationNoRSVPView : Fragment() {
 
         when {
             activity.title == "EDTS Town-Hall 2025: Power of Change" -> {
-                navigateToEventDetail(activity)
+                val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
+                if(!isEndFlow) {
+                    navigateToEventDetail(activity)
+                }
             }
 
             else -> {
@@ -168,6 +174,10 @@ class HomeInvitationNoRSVPView : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeDaftarRSVPView()
+        fun newInstance(isEndFlow: Boolean = false) = HomeInvitationNoRSVPView().apply {
+            arguments = Bundle().apply {
+                putBoolean("is_end_flow", isEndFlow)
+            }
+        }
     }
 }

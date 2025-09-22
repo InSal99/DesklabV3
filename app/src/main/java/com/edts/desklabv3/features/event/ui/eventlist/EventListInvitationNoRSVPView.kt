@@ -45,14 +45,33 @@ class EventListInvitationNoRSVPView : Fragment(), InputSearchDelegate {
             badgeText = "Diundang"
         ),
         EventSample(
+            eventTitle = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
+            eventImage = "image_event_simplyfying",
+            eventCategory = EventCategory.PEOPLE_DEVELOPMENT,
+            eventType = EventType.Hybrid(name = "Hybrid Event", meetingUrl = "", platform = "Teams", location = "EDTS Office"),
+            eventDate = dateFormatter.parse("24 Juli 2025") ?: Date(),
+            statusText = "Reservasi Sekarang!",
+            statusType = EventCardStatus.StatusType.RSVP
+        ),
+        EventSample(
+            eventTitle = "IT Security Awareness: Stay Ahead of Threats, Stay Secure",
+            eventImage = "image_event_it",
+            eventCategory = EventCategory.GENERAL_EVENT,
+            eventType = EventType.Offline(name = "Offline Event", location = "EDTS Office"),
+            eventDate = dateFormatter.parse("24 Juli 2025") ?: Date()
+        ),
+        EventSample(
             eventTitle = "Game Night with EDTS: Mobile Legend Online Tournament 2025",
             eventImage = "image_event_game",
             eventCategory = EventCategory.EMPLOYEE_BENEFIT,
             eventType = EventType.Online(name = "Online Event", meetingUrl = "", platform = "Discord"),
             eventDate = dateFormatter.parse("23 Juli 2025") ?: Date(),
-            statusText = "Reservasi Sekarang!",
-            statusType = EventCardStatus.StatusType.RSVP
-        ),
+            badgeText = "Terdaftar",
+            badgeType = EventCardBadge.BadgeType.REGISTERED
+        )
+    )
+
+    private val undanganEndNoRSVPList = listOf(
         EventSample(
             eventTitle = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
             eventImage = "image_event_simplyfying",
@@ -68,6 +87,24 @@ class EventListInvitationNoRSVPView : Fragment(), InputSearchDelegate {
             eventCategory = EventCategory.GENERAL_EVENT,
             eventType = EventType.Offline(name = "Offline Event", location = "EDTS Office"),
             eventDate = dateFormatter.parse("24 Juli 2025") ?: Date()
+        ),
+        EventSample(
+            eventTitle = "EDTS Town-Hall 2025: Power of Change",
+            eventImage = "image_event_power",
+            eventCategory = EventCategory.GENERAL_EVENT,
+            eventType = EventType.Hybrid(name = "Hybrid Event", meetingUrl = "", platform = "Teams", location = "EDTS Office"),
+            eventDate = dateFormatter.parse("23 Juli 2025") ?: Date(),
+            badgeText = "Terdaftar",
+            badgeType = EventCardBadge.BadgeType.REGISTERED
+        ),
+        EventSample(
+            eventTitle = "Game Night with EDTS: Mobile Legend Online Tournament 2025",
+            eventImage = "image_event_game",
+            eventCategory = EventCategory.EMPLOYEE_BENEFIT,
+            eventType = EventType.Online(name = "Online Event", meetingUrl = "", platform = "Discord"),
+            eventDate = dateFormatter.parse("23 Juli 2025") ?: Date(),
+            badgeText = "Terdaftar",
+            badgeType = EventCardBadge.BadgeType.REGISTERED
         )
     )
 
@@ -88,6 +125,9 @@ class EventListInvitationNoRSVPView : Fragment(), InputSearchDelegate {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+        currentEventList = if (useEndList) undanganEndNoRSVPList else undanganNoRSVPList
 
         originalEvents = currentEventList
         filteredEvents = originalEvents
@@ -202,9 +242,12 @@ class EventListInvitationNoRSVPView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        if(event.eventTitle == "EDTS Town-Hall 2025: Power of Change"){
-            val result = bundleOf("fragment_class" to "EventDetailViewNoRSVP")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+        if(!useEndList) {
+            if (event.eventTitle == "EDTS Town-Hall 2025: Power of Change") {
+                val result = bundleOf("fragment_class" to "EventDetailViewNoRSVP")
+                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            }
         }
     }
 
@@ -243,6 +286,10 @@ class EventListInvitationNoRSVPView : Fragment(), InputSearchDelegate {
 
     companion object {
         @JvmStatic
-        fun newInstance() = EventListDaftarRSVPView()
+        fun newInstance(useEndList: Boolean = false) = EventListInvitationNoRSVPView().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", useEndList)
+            }
+        }
     }
 }

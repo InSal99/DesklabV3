@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.edts.components.event.card.EventCardBadge
 import com.edts.components.event.card.EventCardStatus
 import com.edts.components.input.search.InputSearchDelegate
 import com.edts.desklabv3.R
@@ -39,7 +40,30 @@ class EventListAttendanceView : Fragment(), InputSearchDelegate {
             eventType = EventType.Hybrid(name = "Hybrid Event", meetingUrl = "", platform = "Teams", location = "EDTS Office"),
             eventDate = dateFormatter.parse("24 Juli 2025") ?: Date(),
             statusText = "Catat Kehadiran",
-            statusType = EventCardStatus.StatusType.REGISTERED
+            statusType = EventCardStatus.StatusType.REGISTERED,
+            badgeType = EventCardBadge.BadgeType.LIVE,
+            badgeText = "Berlangsung"
+        ),
+        EventSample(
+            eventTitle = "IT Security Awareness: Stay Ahead of Threats, Stay Secure",
+            eventImage = "image_event_it",
+            eventCategory = EventCategory.GENERAL_EVENT,
+            eventType = EventType.Offline(name = "Offline Event", location = "EDTS Office"),
+            eventDate = dateFormatter.parse("24 Juli 2025") ?: Date()
+        )
+    )
+
+    private val attendanceEndList = listOf(
+        EventSample(
+            eventTitle = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
+            eventImage = "image_event_simplyfying",
+            eventCategory = EventCategory.PEOPLE_DEVELOPMENT,
+            eventType = EventType.Hybrid(name = "Hybrid Event", meetingUrl = "", platform = "Teams", location = "EDTS Office"),
+            eventDate = dateFormatter.parse("24 Juli 2025") ?: Date(),
+            statusText = "Kehadiran Tercatat",
+            statusType = EventCardStatus.StatusType.REGISTERED,
+            badgeType = EventCardBadge.BadgeType.LIVE,
+            badgeText = "Berlangsung"
         ),
         EventSample(
             eventTitle = "IT Security Awareness: Stay Ahead of Threats, Stay Secure",
@@ -67,6 +91,9 @@ class EventListAttendanceView : Fragment(), InputSearchDelegate {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+        currentEventList = if (useEndList) attendanceEndList else attendanceList
 
         originalEvents = currentEventList
         filteredEvents = originalEvents
@@ -181,11 +208,14 @@ class EventListAttendanceView : Fragment(), InputSearchDelegate {
     }
 
     private fun handleEventClick(event: EventSample) {
-        if(event.eventTitle == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
-            val result = bundleOf(
-                "fragment_class" to "EventDetailViewAttendance"
-            )
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+        val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+        if(!useEndList) {
+            if (event.eventTitle == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                val result = bundleOf(
+                    "fragment_class" to "EventDetailViewAttendance"
+                )
+                parentFragmentManager.setFragmentResult("navigate_fragment", result)
+            }
         }
     }
 
@@ -224,6 +254,10 @@ class EventListAttendanceView : Fragment(), InputSearchDelegate {
 
     companion object {
         @JvmStatic
-        fun newInstance() = EventListDaftarRSVPView()
+        fun newInstance(useEndList: Boolean = false) = EventListAttendanceView().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", useEndList)
+            }
+        }
     }
 }
