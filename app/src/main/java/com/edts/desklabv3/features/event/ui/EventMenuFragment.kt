@@ -147,10 +147,6 @@ class EventMenuFragment : Fragment() {
     ) {
         configureTabs(selectedPosition)
 
-//        val adapter = pagerAdapters.getOrPut(flowKey) {
-//            TabFragmentAdapter(requireActivity(), fragments)
-//        }
-
         val adapter = TabFragmentAdapter(this, fragments)
 
         binding.viewPager.post {
@@ -175,24 +171,18 @@ class EventMenuFragment : Fragment() {
 
     private fun setupFlow2ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
-            EventListInvitationNoRSVPView(),
-            MyEventsFragmentRSVP(),
-            EventInvitationFragmentNoRSVP()
-//            EventListAttendanceView(),
-//            MyEventsFragmentAttendance(),
-//            EventInvitationEmptyView()
+            EventListAttendanceView(),
+            MyEventsFragmentAttendance(),
+            EventInvitationEmptyView()
         )
         setupViewPager("flow2", fragments, selectedPosition)
     }
 
     private fun setupFlow3ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
-            EventListAttendanceView(),
-            MyEventsFragmentAttendance(),
-            EventInvitationEmptyView()
-//            EventListInvitationNoRSVPView(),
-//            MyEventsFragmentNoRSVP(),
-//            EventInvitationFragmentNoRSVP()
+            EventListInvitationNoRSVPView(),
+            MyEventsFragmentNoRSVP(),
+            EventInvitationFragmentNoRSVP()
         )
         setupViewPager("flow3", fragments, selectedPosition)
     }
@@ -215,198 +205,3 @@ class EventMenuFragment : Fragment() {
         setupViewPager("flow4end", fragments, selectedPosition)
     }
 }
-
-
-
-
-
-
-
-
-
-
-//class EventMenuFragment: Fragment() {
-//
-//    private var _binding: FragmentEventMenuBinding? = null
-//    private val binding get() = _binding!!
-//
-//    private var flow1PagerAdapter: TabFragmentAdapter? = null
-//    private var flow2PagerAdapter: TabFragmentAdapter? = null
-//    private var flow3PagerAdapter: TabFragmentAdapter? = null
-//    private var flow4PagerAdapter: TabFragmentAdapter? = null
-//    private var headerConfigurator: HeaderConfigurator? = null
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        _binding = FragmentEventMenuBinding.inflate(inflater, container, false)
-//        return binding.root
-//    }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        headerConfigurator?.configureHeader(
-//            title = "Event",
-//            showLeftButton = false
-//        )
-//
-////        setupFlow1ViewPager()
-////        setupFlow2ViewPager()
-////        setupFlow3ViewPager()
-////        setupFlow4ViewPager()
-//
-//        val flowType = arguments?.getString("flow_type", "") ?: ""
-//        val selectedTab: Int = arguments?.getInt("selected_tab", 0) ?: 0
-//
-//        when (flowType) {
-//            "RegisRSVP" -> setupFlow1ViewPager(selectedTab)
-//            "InvitationNoRSVP" -> setupFlow2ViewPager(selectedTab)
-//            "Attendance" -> setupFlow3ViewPager(selectedTab)
-//            "TolakUndangan" -> setupFlow4ViewPager(selectedTab)
-//            else -> setupFlow1ViewPager(selectedTab)
-//        }
-//    }
-//
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        if (context is HeaderConfigurator) {
-//            headerConfigurator = context
-//        }
-//    }
-//
-//    override fun onDetach() {
-//        super.onDetach()
-//        headerConfigurator = null
-//    }
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
-//
-//    private fun configureFlow1Tabs(selectedPosition: Int = 0) {
-//        val tabDataList = mutableListOf<TabData>()
-//
-//        tabDataList.add(
-//            TabData(
-//            text = "Daftar Event",
-//            badgeText = null,
-//            showBadge = false,
-//            state = if (selectedPosition == 0) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
-//        )
-//        )
-//
-//        tabDataList.add(
-//            TabData(
-//            text = "Event Saya",
-//            badgeText = null,
-//            showBadge = false,
-//            state = if (selectedPosition == 1) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
-//        )
-//        )
-//
-//        tabDataList.add(
-//            TabData(
-//            text = "Undangan",
-//            badgeText = null,
-//            showBadge = false,
-//            state = if (selectedPosition == 2) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
-//        )
-//        )
-//
-//        binding.cvTabEventListDaftarRSVP.setTabs(tabDataList, selectedPosition)
-//    }
-//
-//    private fun setupFlow1ViewPager(selectedPosition: Int = 0) {
-//        configureFlow1Tabs(selectedPosition)
-//
-//        if (flow1PagerAdapter == null) {
-//            val fragments = listOf(
-//                EventListDaftarRSVPView(),
-//                MyEventsFragmentRSVP(),
-//                EventInvitationEmptyView()
-//            )
-//            flow1PagerAdapter = TabFragmentAdapter(requireActivity(), fragments)
-//        }
-//
-//        if (binding.viewPager.adapter != flow1PagerAdapter) {
-//            binding.viewPager.adapter = null
-//            binding.viewPager.adapter = flow1PagerAdapter
-//            binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
-//        }
-//        binding.viewPager.setCurrentItem(selectedPosition, false)
-//    }
-//
-//    private fun setupFlow2ViewPager(selectedPosition: Int = 0) {
-//        if (flow2PagerAdapter == null) {
-//            val fragments = listOf(
-//                EventListAttendanceView(),    // Tab 0: Daftar Event
-//                MyEventsFragmentAttendance(),        // Tab 1: Event Saya (empty)
-//                EventInvitationEmptyView()         // Tab 2: Undangan (empty)
-//            )
-//            flow2PagerAdapter = TabFragmentAdapter(requireActivity(), fragments)
-//        }
-//
-//        binding.viewPager.post {
-//            if (binding.viewPager.adapter != flow2PagerAdapter) {
-//                binding.viewPager.adapter = null
-//                binding.viewPager.adapter = flow2PagerAdapter
-//                binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
-//            }
-//            binding.viewPager.setCurrentItem(selectedPosition, false)
-//            binding.viewPager.visibility = View.VISIBLE
-//        }
-//        binding.viewPager.setCurrentItem(selectedPosition, false)
-//    }
-//
-//    // Flow 3: HomeInvitationNoRSVPView → EventListInvitationNoRSVPView + MyEventsFragmentNoRSVP + EventInvitationFragmentNoRSVP
-//    private fun setupFlow3ViewPager(selectedPosition: Int = 0) {
-//        if (flow3PagerAdapter == null) {
-//            val fragments = listOf(
-//                EventListInvitationNoRSVPView(),  // Tab 0: Daftar Event
-//                MyEventsFragmentNoRSVP(),         // Tab 1: Event Saya
-//                EventInvitationFragmentNoRSVP()   // Tab 2: Undangan
-//            )
-//            flow3PagerAdapter = TabFragmentAdapter(requireActivity(), fragments)
-//        }
-//
-//        binding.viewPager.post {
-//            if (binding.viewPager.adapter != flow3PagerAdapter) {
-//                binding.viewPager.adapter = null
-//                binding.viewPager.adapter = flow3PagerAdapter
-//                binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
-//            }
-//            binding.viewPager.setCurrentItem(selectedPosition, false)
-//            binding.viewPager.visibility = View.VISIBLE
-//        }
-//        binding.viewPager.setCurrentItem(selectedPosition, false)
-//    }
-//
-//    // Flow 4: HomeInvitationTolakView → EventListInvitationTolakStartView + Empty Event Saya + EventInvitationFragmentTolakUndangan
-//    private fun setupFlow4ViewPager(selectedPosition: Int = 0) {
-//
-//        if (flow4PagerAdapter == null) {
-//            val fragments = listOf(
-//                EventListInvitationTolakStartView(),    // Tab 0: Daftar Event
-//                MyEventsEmptyView(),                   // Tab 1: Event Saya (empty)
-//                EventInvitationFragmentTolakUndangan()  // Tab 2: Undangan
-//            )
-//            flow4PagerAdapter = TabFragmentAdapter(requireActivity(), fragments)
-//        }
-//
-//        binding.viewPager.post {
-//            if (binding.viewPager.adapter != flow4PagerAdapter) {
-//                binding.viewPager.adapter = null
-//                binding.viewPager.adapter = flow4PagerAdapter
-//                binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
-//            }
-//            binding.viewPager.setCurrentItem(selectedPosition, false)
-//            binding.viewPager.visibility = View.VISIBLE
-//        }
-//        binding.viewPager.setCurrentItem(selectedPosition, false)
-//    }
-//
-//}

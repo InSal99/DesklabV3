@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import com.airbnb.lottie.LottieAnimationView
 import com.edts.desklabv3.R
@@ -36,6 +37,7 @@ class SuccessDenyInvitationView : Fragment() {
         binding.cvSecondaryBtnAttendanceOffline.text = "Kembali Ke Beranda"
 
         setupButtonListeners()
+        setupBackButton()
     }
 
     private fun setupButtonListeners() {
@@ -56,6 +58,16 @@ class SuccessDenyInvitationView : Fragment() {
             )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
+    }
+
+    private fun setupBackButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
@@ -32,6 +33,7 @@ class SuccessRegistrationView : Fragment() {
 
         setupUI()
         setupButtonClicks()
+        setupBackButton()
     }
 
     private fun setupUI() {
@@ -45,54 +47,6 @@ class SuccessRegistrationView : Fragment() {
         binding.cvPrimaryBtnAttendanceOffline.text = "Lihat Event Saya"
         binding.cvSecondaryBtnAttendanceOffline.text = "Lihat Event Lain"
     }
-
-//    private fun setupButtonClicks() {
-//        binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
-//            when (flowType) {
-//                "RegisRSVP" -> {
-//                    parentFragmentManager.setFragmentResult(
-//                        "navigate_fragment",
-//                        bundleOf("fragment_class" to "MyEventDaftarRSVPView")
-//                    )
-//                }
-//                "InvitationNoRSVP" -> {
-//                    parentFragmentManager.setFragmentResult(
-//                        "navigate_fragment",
-//                        bundleOf("fragment_class" to "MyEventsFragmentNoRSVP")
-//                    )
-//                }
-//                else -> {
-//                    parentFragmentManager.setFragmentResult(
-//                        "navigate_fragment",
-//                        bundleOf("fragment_class" to "MyEventDaftarRSVPView")
-//                    )
-//                }
-//            }
-//        }
-//
-//        binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
-//            when (flowType) {
-//                "RegisRSVP" -> {
-//                    parentFragmentManager.setFragmentResult(
-//                        "navigate_fragment",
-//                        bundleOf("fragment_class" to "EventListDaftarRSVPView")
-//                    )
-//                }
-//                "InvitationNoRSVP" -> {
-//                    parentFragmentManager.setFragmentResult(
-//                        "navigate_fragment",
-//                        bundleOf("fragment_class" to "EventListInvitationNoRSVPView")
-//                    )
-//                }
-//                else -> {
-//                    parentFragmentManager.setFragmentResult(
-//                        "navigate_fragment",
-//                        bundleOf("fragment_class" to "EventListDaftarRSVPView")
-//                    )
-//                }
-//            }
-//        }
-//    }
 
     private fun setupButtonClicks() {
         binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
@@ -146,6 +100,16 @@ class SuccessRegistrationView : Fragment() {
                 else -> {}
             }
         }
+    }
+
+    private fun setupBackButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {
