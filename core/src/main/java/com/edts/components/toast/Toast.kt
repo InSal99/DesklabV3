@@ -26,6 +26,7 @@ class Toast @JvmOverloads constructor(
     private val binding: LayoutToastViewBinding
     private var toastType: Type = Type.GENERAL
     private var toastMessage: String = ""
+    var toastIcon: Int? = null
 
     var onToastClickListener: (() -> Unit)? = null
 
@@ -80,7 +81,7 @@ class Toast @JvmOverloads constructor(
 
     private fun applyToastStyle() {
         setCardBackgroundColor(context.resolveColorAttribute(toastType.colorAttr, R.color.colorFFF))
-        binding.ivIcon.setImageResource(toastType.iconRes)
+        binding.ivIcon.setImageResource(toastIcon ?: toastType.iconRes)
         binding.tvMessage.text = toastMessage
     }
 

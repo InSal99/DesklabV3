@@ -49,6 +49,14 @@
         app:badgeBackgroundTint="?attr/colorBackgroundAttentionIntense"/>
 
     <com.google.android.material.divider.MaterialDivider
+        android:layout_width="0dp"
+        android:layout_height="@dimen/stroke_weight_2dp"
+        android:background="?attr/colorStrokeSubtle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="@id/bottomNavigation"/>
+
+    <com.google.android.material.divider.MaterialDivider
         android:id="@+id/bottomNavigationIndicator"
         android:layout_width="0dp"
         android:layout_height="@dimen/stroke_weight_2dp"
