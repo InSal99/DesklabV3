@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/margin_16dp"
-    android:paddingTop="57dp"
-    android:paddingBottom="@dimen/margin_12dp"
+    android:paddingTop="@dimen/margin_16dp"
+    android:paddingBottom="@dimen/margin_16dp"
     android:background="@android:color/transparent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -24,13 +24,13 @@
         app:layout_constraintTop_toTopOf="@+id/wrapperHeader"
         app:layout_constraintBottom_toBottomOf="@+id/wrapperHeader"/>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/wrapperHeader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:minHeight="34dp"
         android:layout_marginStart="@dimen/margin_8dp"
         android:layout_marginEnd="@dimen/margin_8dp"
-        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivLeftBtn"
@@ -39,24 +39,32 @@
         <TextView
             android:id="@+id/tvSectionTitle"
             style="?attr/h1SemiBold"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_4dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="This is Page Title"
-            android:textColor="?attr/colorForegroundPrimary"/>
+            android:textColor="?attr/colorForegroundPrimary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvSectionSubtitle"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/tvSectionSubtitle"
             style="?attr/l3Regular"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="This is Page Title"
-            android:textColor="?attr/colorForegroundSecondary"/>
-    </LinearLayout>
+            android:textColor="?attr/colorForegroundSecondary"
+            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/ivRightBtn"
