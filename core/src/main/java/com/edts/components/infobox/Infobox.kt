@@ -103,9 +103,14 @@ class InfoBox @JvmOverloads constructor(
 
     private fun initAttrs(attrs: AttributeSet?) {
         if (attrs != null) {
-            context.obtainStyledAttributes(attrs, R.styleable.InfoBox).use {
-                text = it.getString(R.styleable.InfoBox_text)
-                variant = InfoBoxVariant.fromValue(it.getInt(R.styleable.InfoBox_variant, 0))
+            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.InfoBox)
+            try {
+                text = typedArray.getString(R.styleable.InfoBox_text)
+                variant = InfoBoxVariant.fromValue(
+                    typedArray.getInt(R.styleable.InfoBox_variant, 0)
+                )
+            } finally {
+                typedArray.recycle()
             }
         }
     }
