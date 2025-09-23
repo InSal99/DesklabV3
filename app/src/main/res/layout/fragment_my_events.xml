@@ -9,7 +9,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/layoutEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:src="@drawable/image_my_event_empty"
+            android:visibility="gone"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:layout_marginVertical="@dimen/margin_16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="328:450"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvFilterChips"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible" />
 
         <com.edts.components.input.search.InputSearch
             android:id="@+id/inputSearchEvent"
@@ -46,19 +63,5 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/rvFilterChips"
             tools:itemCount="5" />
-
-        <ImageView
-            android:id="@+id/layoutEmptyState"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/image_my_event_empty"
-            android:visibility="gone"
-            android:layout_marginHorizontal="@dimen/margin_16dp"
-            android:layout_marginVertical="@dimen/margin_16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvFilterChips"
-            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

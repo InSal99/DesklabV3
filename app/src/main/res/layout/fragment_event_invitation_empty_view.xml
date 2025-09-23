@@ -8,11 +8,11 @@
     android:background="?attr/colorBackgroundPrimaryTinted">
 
     <ImageView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginVertical="@dimen/margin_16dp"
         android:contentDescription="Empty State"
-        android:scaleType="fitStart"
+        android:scaleType="centerCrop"
         android:src="@drawable/empty_state_invitation"
         app:layout_constraintDimensionRatio="328:450"
         app:layout_constraintStart_toStartOf="parent"
