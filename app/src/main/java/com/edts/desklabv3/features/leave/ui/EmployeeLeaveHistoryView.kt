@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentEmployeeLeaveHistoryViewBinding
 
-class EmployeeLeaveHistoryView : Fragment() {
+class EmployeeLeaveHistoryView : Fragment(), InsetConfigurable {
 
     private var _binding: FragmentEmployeeLeaveHistoryViewBinding? = null
     private val binding get() = _binding!!
@@ -33,6 +34,8 @@ class EmployeeLeaveHistoryView : Fragment() {
             }
         }
     }
+
+    override fun applyBottomInset(): Boolean = false
 
     override fun onDestroyView() {
         super.onDestroyView()

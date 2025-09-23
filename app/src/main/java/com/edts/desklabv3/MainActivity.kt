@@ -28,6 +28,7 @@ import com.edts.components.tab.TabData
 import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
+import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.core.util.createBottomShadowBackgroundCustom
 import com.edts.desklabv3.core.util.setupWithViewPager2
 import com.edts.desklabv3.core.withPushAnimation
@@ -84,7 +85,16 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val currentFragment = supportFragmentManager
+                .findFragmentById(R.id.fragment_container)
+            val wantsBottomInset = (currentFragment as? InsetConfigurable)?.applyBottomInset() ?: true
+
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                if (wantsBottomInset) systemBars.bottom else 0
+            )
             insets
         }
         if (savedInstanceState == null) {
@@ -187,6 +197,7 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
         }
 
         supportFragmentManager.addOnBackStackChangedListener {
+            binding.root.requestApplyInsets()
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
             if (currentFragment is TeamReportActivityView || currentFragment is TeamReportLeaveView) {

@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentHeaderComponentViewBinding
 
-class HeaderComponentView : Fragment() {
+class HeaderComponentView : Fragment(), InsetConfigurable {
     private var _binding: FragmentHeaderComponentViewBinding? = null
     private val binding get() = _binding!!
 
@@ -27,6 +28,8 @@ class HeaderComponentView : Fragment() {
             parentFragmentManager.popBackStack()
         }
     }
+
+    override fun applyBottomInset(): Boolean = false
 
     override fun onDestroyView() {
         super.onDestroyView()

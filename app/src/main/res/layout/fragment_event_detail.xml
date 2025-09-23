@@ -42,20 +42,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_18dp"
+        android:layout_marginBottom="-20dp"
         android:background="@drawable/bg_bottom_sheet"
         android:clipToPadding="true"
         app:layout_constraintTop_toBottomOf="@id/tvDetailTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/eventDetailFooter">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="-20dp"
             android:clipToPadding="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/eventDetailFooter">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -195,26 +195,26 @@
                     app:layout_constraintBottom_toBottomOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.core.widget.NestedScrollView>
 
-        <com.edts.components.infoboxfooter.InfoBoxFooter
-            android:id="@+id/eventDetailFooter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/margin_24dp"
-            android:background="@android:color/transparent"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            app:footerTitle="Welcome"
-            app:footerDescription="Please complete your registration"
-            app:footerType="CALL_TO_ACTION_DETAIL"
-            app:text="This is an information message"
-            app:primaryButtonEnabled="true"
-            app:primaryButtonText="Register Now"
-            app:variant="information"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.edts.components.infoboxfooter.InfoBoxFooter
+        android:id="@+id/eventDetailFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:footerTitle="Welcome"
+        app:footerDescription="Please complete your registration"
+        app:footerType="CALL_TO_ACTION_DETAIL"
+        app:text="This is an information message"
+        app:primaryButtonEnabled="true"
+        app:primaryButtonText="Register Now"
+        app:variant="information"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
