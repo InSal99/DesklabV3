@@ -21,8 +21,9 @@ import com.edts.desklabv3.databinding.FragmentAssetQrCodeReaderBinding
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import com.edts.components.modal.ModalityLoadingPopUp
+import com.edts.desklabv3.core.util.InsetConfigurable
 
-class AssetQRCodeFragment : Fragment() {
+class AssetQRCodeFragment : Fragment(), InsetConfigurable {
 
     private var _binding: FragmentAssetQrCodeReaderBinding? = null
     private val binding get() = _binding!!
@@ -95,6 +96,8 @@ class AssetQRCodeFragment : Fragment() {
             }
         }
     }
+
+    override fun applyBottomInset(): Boolean = false
 
     private fun initializeCamera() {
         if (isInitialized || isInitializing) return

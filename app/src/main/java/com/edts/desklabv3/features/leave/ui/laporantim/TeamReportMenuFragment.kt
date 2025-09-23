@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.edts.components.tab.Tab
@@ -13,10 +15,11 @@ import com.edts.components.tab.TabData
 import com.edts.components.tab.TabItem
 import com.edts.desklabv3.HeaderConfigurator
 import com.edts.desklabv3.TabFragmentAdapter
+import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.core.util.setupWithViewPager2
 import com.edts.desklabv3.databinding.FragmentTeamReportMenuBinding
 
-class TeamReportMenuFragment : Fragment() {
+class TeamReportMenuFragment : Fragment(), InsetConfigurable {
 
     private var _binding: FragmentTeamReportMenuBinding? = null
     private val binding get() = _binding!!
@@ -77,6 +80,8 @@ class TeamReportMenuFragment : Fragment() {
         teamReportPagerAdapter = null
         _binding = null
     }
+
+    override fun applyBottomInset(): Boolean = false
 
     private fun setupTeamReportViewPager(selectedPosition: Int = 0) {
         currentTeamReportTab = selectedPosition

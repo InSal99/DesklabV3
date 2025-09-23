@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.edts.desklabv3.R
+import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentBadgeComponentViewBinding
 import com.edts.desklabv3.databinding.FragmentMonthlyPickerComponentViewBinding
 
-class MonthlyPickerComponentView : Fragment() {
+class MonthlyPickerComponentView : Fragment(), InsetConfigurable {
     private var _binding: FragmentMonthlyPickerComponentViewBinding? = null
     private val binding get() = _binding!!
 
@@ -29,6 +30,8 @@ class MonthlyPickerComponentView : Fragment() {
             parentFragmentManager.popBackStack()
         }
     }
+
+    override fun applyBottomInset(): Boolean = false
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,14 +1,19 @@
 package com.edts.desklabv3.features.event.ui.success
 
+import android.content.ActivityNotFoundException
 import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.LottieAnimationView
@@ -80,13 +85,51 @@ class SuccessAttendanceOnlineView : Fragment() {
         if (shareChooser.resolveActivity(requireActivity().packageManager) != null) {
             startActivity(shareChooser)
         } else {
-            // Use the correct ClipboardManager class
             val clipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
             val clip = ClipData.newPlainText("Link Meeting", meetingLink)
             clipboardManager.setPrimaryClip(clip)
             Toast.success(requireContext(), "Link meeting berhasil disalin")
         }
     }
+
+//    private fun showShareTray() {
+//        val options = arrayOf("Salin Link", "Buka di Browser", "Bagikan via Aplikasi…")
+//        AlertDialog.Builder(requireContext())
+//            .setTitle("Bagikan link meeting")
+//            .setItems(options) { _, which ->
+//                when (which) {
+//                    0 -> copyLinkToClipboard()
+//                    1 -> openInBrowser()
+//                    2 -> openSystemShareSheet()
+//                }
+//            }
+//            .show()
+//    }
+//
+//    private fun copyLinkToClipboard() {
+//        val clipboardManager =
+//            requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+//        val clip = ClipData.newPlainText("Link Meeting", meetingLink)
+//        clipboardManager.setPrimaryClip(clip)
+//        Toast.success(requireContext(), "Link meeting berhasil disalin")
+//    }
+//
+//    private fun openInBrowser() {
+//        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(meetingLink))
+//        try {
+//            startActivity(browserIntent)
+//        } catch (e: ActivityNotFoundException) {
+//            Toast.error(requireContext(), "Tidak ada aplikasi browser ditemukan")
+//        }
+//    }
+//
+//    private fun openSystemShareSheet() {
+//        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+//            putExtra(Intent.EXTRA_TEXT, meetingLink)
+//            type = "text/plain"
+//        }
+//        startActivity(Intent.createChooser(shareIntent, "Bagikan link meeting"))
+//    }
 
     private fun navigateToEventDetail() {
         val result = bundleOf(

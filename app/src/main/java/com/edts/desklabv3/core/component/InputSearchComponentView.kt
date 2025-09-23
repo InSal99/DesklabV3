@@ -5,10 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentInputSearchComponentViewBinding
 
 
-class InputSearchComponentView : Fragment() {
+class InputSearchComponentView : Fragment(), InsetConfigurable {
     private var _binding: FragmentInputSearchComponentViewBinding? = null
     private val binding get() = _binding!!
 
@@ -28,6 +29,8 @@ class InputSearchComponentView : Fragment() {
             parentFragmentManager.popBackStack()
         }
     }
+
+    override fun applyBottomInset(): Boolean = false
 
     override fun onDestroyView() {
         super.onDestroyView()
