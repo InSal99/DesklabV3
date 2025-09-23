@@ -63,9 +63,12 @@ class OptionCard @JvmOverloads constructor(
 
     private fun initAttrs(attrs: AttributeSet?) {
         if (attrs != null) {
-            context.obtainStyledAttributes(attrs, R.styleable.OptionCard).use {
-                titleText = it.getString(R.styleable.OptionCard_cardText)
-                iconDrawable = it.getDrawable(R.styleable.OptionCard_cardIcon)
+            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.OptionCard)
+            try {
+                titleText = typedArray.getString(R.styleable.OptionCard_cardText)
+                iconDrawable = typedArray.getDrawable(R.styleable.OptionCard_cardIcon)
+            } finally {
+                typedArray.recycle()
             }
         }
     }

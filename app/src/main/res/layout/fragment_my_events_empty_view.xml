@@ -11,6 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/layoutEmptyState"
+            android:layout_marginVertical="@dimen/margin_16dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:contentDescription="Empty State"
+            android:src="@drawable/empty_state_my_event"
+            app:layout_constraintDimensionRatio="328:450"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvFilterChips"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
         <com.edts.components.input.search.InputSearch
             android:id="@+id/inputSearchEvent"
             android:layout_width="match_parent"
@@ -34,19 +48,5 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/inputSearchEvent"
             tools:itemCount="5" />
-
-        <ImageView
-            android:id="@+id/layoutEmptyState"
-            android:layout_marginVertical="@dimen/margin_16dp"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:contentDescription="Empty State"
-            android:scaleType="fitStart"
-            android:src="@drawable/empty_state_my_event"
-            app:layout_constraintDimensionRatio="328:450"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvFilterChips"
-            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
