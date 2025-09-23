@@ -25,6 +25,7 @@ import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
 import com.edts.desklabv3.core.component.SortButtonComponentView
 import com.edts.desklabv3.core.component.TabComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
+import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
@@ -34,7 +35,7 @@ import com.edts.desklabv3.features.home.ui.HomeInvitationNoRSVPView
 import com.edts.desklabv3.features.home.ui.HomeInvitationTolakView
 import com.edts.desklabv3.features.home.ui.HomeManagerView
 
-class EntryPointsView : Fragment() {
+class EntryPointsView : Fragment(), InsetConfigurable {
 
     private var _binding: FragmentEntryPointsViewBinding? = null
     private val binding get() = _binding!!
@@ -53,6 +54,8 @@ class EntryPointsView : Fragment() {
 
         setupButtonClickListeners()
     }
+
+    override fun applyBottomInset(): Boolean = false
 
     private fun setupButtonClickListeners() {
         binding.btnLibButton.setOnClickListener {

@@ -35,7 +35,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
     private lateinit var adapter: RSVPFormAdapter
     private val formConfigs = mutableListOf<InputFieldConfig>()
     private var footerHeight = 0
-    private var pendingScrollToPosition: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,31 +64,20 @@ class RSVPFormView : Fragment(), FooterDelegate {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
-            val imeHeight = if (imeVisible) imeInsets.bottom else 0
+            val navBarInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
-            if (imeVisible) {
-                binding.rootScrollView.updatePadding(bottom = imeHeight)
-                binding.eventRsvpFooter.translationY = -imeHeight.toFloat()
-            } else {
-                binding.rootScrollView.updatePadding(bottom = 0)
-                binding.eventRsvpFooter.translationY = 0f
-            }
+            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+            val imeHeight = if (imeVisible) {
+                imeInsets.bottom - navBarInsets.bottom
+            } else 0
+
+            binding.rootScrollView.updatePadding(bottom = imeHeight)
+            binding.eventRsvpFooter.translationY = -imeHeight.toFloat()
 
             insets
         }
-    }
 
-    private fun scrollToFieldPosition(position: Int) {
-        binding.rvRsvpFormList.post {
-            val holder = binding.rvRsvpFormList.findViewHolderForAdapterPosition(position)
-            holder?.itemView?.let { itemView ->
-                val rect = Rect()
-                itemView.getDrawingRect(rect)
-                binding.rootScrollView.offsetDescendantRectToMyCoords(itemView, rect)
-                binding.rootScrollView.smoothScrollTo(0, rect.top)
-            }
-        }
+
     }
 
     private fun setupBackButton() {
@@ -104,19 +92,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
         adapter.onResponseChange = { responses ->
             updateSubmitButtonState(responses)
         }
-
-        adapter.onFieldFocused = { position ->
-            pendingScrollToPosition = position
-            val imeVisible = ViewCompat.getRootWindowInsets(binding.root)
-                ?.isVisible(WindowInsetsCompat.Type.ime()) ?: false
-
-            if (imeVisible) {
-                binding.rootScrollView.postDelayed({
-                    scrollToFieldPosition(position)
-                }, 150)
-            }
-        }
-
 
         binding.rvRsvpFormList.apply {
             adapter = this@RSVPFormView.adapter
