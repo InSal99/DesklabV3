@@ -6,8 +6,6 @@
     android:paddingHorizontal="@dimen/margin_16dp"
     android:paddingTop="@dimen/margin_16dp"
     android:paddingBottom="@dimen/margin_8dp"
-    android:layout_marginBottom="@dimen/margin_24dp"
-    android:layout_marginTop="44dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.event.ui.success.SuccessAttendanceOfflineView"
     android:background="?attr/colorBackgroundPrimary">
