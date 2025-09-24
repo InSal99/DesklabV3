@@ -411,16 +411,30 @@ class Chip @JvmOverloads constructor(
     }
 
     private fun animateToState(newState: ChipState) {
+        if (isAnimatingToState(newState)) {
+            return
+        }
+
         cancelAllAnimations()
 
         val animationDuration = 200L
+        var completedAnimations = 0
+        val totalAnimations = 5
+
+        val onAnimationComplete = {
+            completedAnimations++
+            if (completedAnimations >= totalAnimations) {
+                updateChipStateImmediate()
+            }
+        }
 
         when (newState) {
             ChipState.INACTIVE -> {
                 animateBackgroundColor(
                     getActiveBackgroundColor(),
                     getCachedColor(R.attr.colorBackgroundPrimary),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
                 animateStrokeColor(
                     if (chipState == ChipState.ACTIVE && pressState == PressState.ON_PRESS) {
@@ -429,22 +443,26 @@ class Chip @JvmOverloads constructor(
                         getCachedColor(R.attr.colorStrokeInteractive)
                     },
                     getCachedColor(R.attr.colorStrokeSubtle),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
                 animateTextColor(
                     getCachedColor(R.attr.colorForegroundPrimaryInverse),
                     getCachedColor(R.attr.colorForegroundPrimary),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
                 animateIconTint(
                     getCachedColor(R.attr.colorForegroundPrimaryInverse),
                     getCachedColor(R.attr.colorForegroundSecondary),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
                 animateBadgeStrokeColor(
                     getCachedColor(R.attr.colorStrokeInteractive),
                     ContextCompat.getColor(context, android.R.color.transparent),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
             }
 
@@ -452,7 +470,8 @@ class Chip @JvmOverloads constructor(
                 animateBackgroundColor(
                     getCachedColor(R.attr.colorBackgroundPrimary),
                     getActiveBackgroundColor(),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
                 animateStrokeColor(
                     getCachedColor(R.attr.colorStrokeSubtle),
@@ -461,81 +480,174 @@ class Chip @JvmOverloads constructor(
                     } else {
                         getCachedColor(R.attr.colorStrokeInteractive)
                     },
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
                 animateTextColor(
                     getCachedColor(R.attr.colorForegroundPrimary),
                     getCachedColor(R.attr.colorForegroundPrimaryInverse),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
                 animateIconTint(
                     getCachedColor(R.attr.colorForegroundSecondary),
                     getCachedColor(R.attr.colorForegroundPrimaryInverse),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
                 animateBadgeStrokeColor(
                     ContextCompat.getColor(context, android.R.color.transparent),
                     getCachedColor(R.attr.colorStrokeInteractive),
-                    animationDuration
+                    animationDuration,
+                    onAnimationComplete
                 )
             }
         }
     }
 
-    private fun animateBackgroundColor(fromColor: Int, toColor: Int, duration: Long) {
+    private fun isAnimatingToState(targetState: ChipState): Boolean {
+        return (backgroundAnimator?.isRunning == true ||
+                strokeAnimator?.isRunning == true ||
+                textColorAnimator?.isRunning == true ||
+                iconTintAnimator?.isRunning == true ||
+                badgeStrokeAnimator?.isRunning == true) &&
+                chipState == targetState
+    }
+
+    private fun animateBackgroundColor(fromColor: Int, toColor: Int, duration: Long, onComplete: (() -> Unit)? = null) {
         backgroundAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
             this.duration = duration
             addUpdateListener { animator ->
                 val color = animator.animatedValue as Int
                 binding.chip.setCardBackgroundColor(color)
             }
+            addListener(object : android.animation.AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: android.animation.Animator) {
+                    onComplete?.invoke()
+                }
+            })
             start()
         }
     }
 
-    private fun animateStrokeColor(fromColor: Int, toColor: Int, duration: Long) {
+    private fun animateStrokeColor(fromColor: Int, toColor: Int, duration: Long, onComplete: (() -> Unit)? = null) {
         strokeAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
             this.duration = duration
             addUpdateListener { animator ->
                 val color = animator.animatedValue as Int
                 binding.chip.strokeColor = color
             }
+            addListener(object : android.animation.AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: android.animation.Animator) {
+                    onComplete?.invoke()
+                }
+            })
             start()
         }
     }
 
-    private fun animateTextColor(fromColor: Int, toColor: Int, duration: Long) {
+    private fun animateTextColor(fromColor: Int, toColor: Int, duration: Long, onComplete: (() -> Unit)? = null) {
         textColorAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
             this.duration = duration
             addUpdateListener { animator ->
                 val color = animator.animatedValue as Int
                 binding.tvChip.setTextColor(color)
             }
+            addListener(object : android.animation.AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: android.animation.Animator) {
+                    onComplete?.invoke()
+                }
+            })
             start()
         }
     }
 
-    private fun animateIconTint(fromColor: Int, toColor: Int, duration: Long) {
+    private fun animateIconTint(fromColor: Int, toColor: Int, duration: Long, onComplete: (() -> Unit)? = null) {
         iconTintAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
             this.duration = duration
             addUpdateListener { animator ->
                 val color = animator.animatedValue as Int
                 ImageViewCompat.setImageTintList(binding.ivChip, ColorStateList.valueOf(color))
             }
+            addListener(object : android.animation.AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: android.animation.Animator) {
+                    onComplete?.invoke()
+                }
+            })
             start()
         }
     }
 
-    private fun animateBadgeStrokeColor(fromColor: Int, toColor: Int, duration: Long) {
+    private fun animateBadgeStrokeColor(fromColor: Int, toColor: Int, duration: Long, onComplete: (() -> Unit)? = null) {
         badgeStrokeAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
             this.duration = duration
             addUpdateListener { animator ->
                 val color = animator.animatedValue as Int
                 binding.cvBadgeChip.badgeStrokeColor = color
             }
+            addListener(object : android.animation.AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: android.animation.Animator) {
+                    onComplete?.invoke()
+                }
+            })
             start()
         }
     }
+
+//    private fun animateBackgroundColor(fromColor: Int, toColor: Int, duration: Long) {
+//        backgroundAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
+//            this.duration = duration
+//            addUpdateListener { animator ->
+//                val color = animator.animatedValue as Int
+//                binding.chip.setCardBackgroundColor(color)
+//            }
+//            start()
+//        }
+//    }
+//
+//    private fun animateStrokeColor(fromColor: Int, toColor: Int, duration: Long) {
+//        strokeAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
+//            this.duration = duration
+//            addUpdateListener { animator ->
+//                val color = animator.animatedValue as Int
+//                binding.chip.strokeColor = color
+//            }
+//            start()
+//        }
+//    }
+//
+//    private fun animateTextColor(fromColor: Int, toColor: Int, duration: Long) {
+//        textColorAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
+//            this.duration = duration
+//            addUpdateListener { animator ->
+//                val color = animator.animatedValue as Int
+//                binding.tvChip.setTextColor(color)
+//            }
+//            start()
+//        }
+//    }
+//
+//    private fun animateIconTint(fromColor: Int, toColor: Int, duration: Long) {
+//        iconTintAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
+//            this.duration = duration
+//            addUpdateListener { animator ->
+//                val color = animator.animatedValue as Int
+//                ImageViewCompat.setImageTintList(binding.ivChip, ColorStateList.valueOf(color))
+//            }
+//            start()
+//        }
+//    }
+//
+//    private fun animateBadgeStrokeColor(fromColor: Int, toColor: Int, duration: Long) {
+//        badgeStrokeAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
+//            this.duration = duration
+//            addUpdateListener { animator ->
+//                val color = animator.animatedValue as Int
+//                binding.cvBadgeChip.badgeStrokeColor = color
+//            }
+//            start()
+//        }
+//    }
 
     private fun cancelAllAnimations() {
         backgroundAnimator?.cancel()
