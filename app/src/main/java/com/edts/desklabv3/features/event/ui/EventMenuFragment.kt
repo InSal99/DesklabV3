@@ -155,6 +155,7 @@ class EventMenuFragment : Fragment() {
                 binding.viewPager.adapter = adapter
                 binding.cvTabEventListDaftarRSVP.setupWithViewPager2(binding.viewPager)
             }
+            binding.viewPager.isUserInputEnabled = false
             binding.viewPager.setCurrentItem(selectedPosition, false)
             binding.viewPager.visibility = View.VISIBLE
         }
