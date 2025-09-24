@@ -5,6 +5,9 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -12,20 +15,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.edts.components.toast.Toast
+import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.R
+import com.edts.desklabv3.databinding.ContentCustomShareTrayBinding
 import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
+import com.edts.desklabv3.databinding.ItemShareActionBinding
 
 class SuccessAttendanceOnlineView : Fragment() {
     private var _binding: FragmentSuccessAttendanceOfflineViewBinding? = null
     private val binding get() = _binding!!
-
     private val meetingLink = "https://teams.microsoft.com/l/meetup-join/your-meeting-id"
 
     override fun onCreateView(
@@ -74,8 +80,15 @@ class SuccessAttendanceOnlineView : Fragment() {
     }
 
     private fun showShareTray() {
-        val shareIntent = Intent().apply {
-            action = Intent.ACTION_SEND
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            showSystemShareTray()
+        } else {
+            showCustomShareTray()
+        }
+    }
+
+    private fun showSystemShareTray() {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
             putExtra(Intent.EXTRA_TEXT, meetingLink)
             type = "text/plain"
         }
@@ -85,51 +98,116 @@ class SuccessAttendanceOnlineView : Fragment() {
         if (shareChooser.resolveActivity(requireActivity().packageManager) != null) {
             startActivity(shareChooser)
         } else {
-            val clipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-            val clip = ClipData.newPlainText("Link Meeting", meetingLink)
-            clipboardManager.setPrimaryClip(clip)
-            Toast.success(requireContext(), "Link meeting berhasil disalin")
+            copyLinkToClipboard()
         }
     }
 
-//    private fun showShareTray() {
-//        val options = arrayOf("Salin Link", "Buka di Browser", "Bagikan via Aplikasi…")
-//        AlertDialog.Builder(requireContext())
-//            .setTitle("Bagikan link meeting")
-//            .setItems(options) { _, which ->
-//                when (which) {
-//                    0 -> copyLinkToClipboard()
-//                    1 -> openInBrowser()
-//                    2 -> openSystemShareSheet()
-//                }
-//            }
-//            .show()
-//    }
-//
-//    private fun copyLinkToClipboard() {
-//        val clipboardManager =
-//            requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-//        val clip = ClipData.newPlainText("Link Meeting", meetingLink)
-//        clipboardManager.setPrimaryClip(clip)
-//        Toast.success(requireContext(), "Link meeting berhasil disalin")
-//    }
-//
-//    private fun openInBrowser() {
-//        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(meetingLink))
-//        try {
-//            startActivity(browserIntent)
-//        } catch (e: ActivityNotFoundException) {
-//            Toast.error(requireContext(), "Tidak ada aplikasi browser ditemukan")
-//        }
-//    }
-//
-//    private fun openSystemShareSheet() {
-//        val shareIntent = Intent(Intent.ACTION_SEND).apply {
-//            putExtra(Intent.EXTRA_TEXT, meetingLink)
-//            type = "text/plain"
-//        }
-//        startActivity(Intent.createChooser(shareIntent, "Bagikan link meeting"))
-//    }
+    private fun showCustomShareTray() {
+        val tray = BottomTray.newInstance(
+            title = "Bagikan link meeting",
+            showDragHandle = true,
+            showFooter = false,
+            hasShadow = true,
+            hasStroke = true
+        )
+
+        val shareBinding = ContentCustomShareTrayBinding.inflate(layoutInflater)
+        setupCustomShareView(shareBinding, tray)
+        tray.setTrayContentView(shareBinding.root)
+        tray.show(parentFragmentManager, "CustomShareTray")
+    }
+
+    private fun setupCustomShareView(shareBinding: ContentCustomShareTrayBinding, tray: BottomTray) {
+        shareBinding.tvMeetingLink.text = meetingLink
+        shareBinding.btnCopy.setOnClickListener {
+            copyLinkToClipboard()
+            tray.dismiss()
+        }
+        setupShareAppsInActionRow(shareBinding.actionRow, tray)
+    }
+
+    private fun setupShareAppsInActionRow(actionRow: LinearLayout, tray: BottomTray) {
+        val shareApps = getAvailableShareApps()
+        actionRow.removeAllViews()
+
+        val browserDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_chrome)!!
+        addShareAppItem(actionRow, browserDrawable, "Browser") {
+            openInBrowser()
+            tray.dismiss()
+        }
+
+        shareApps.take(6).forEach { resolveInfo ->
+            val packageManager = requireActivity().packageManager
+            val icon = resolveInfo.loadIcon(packageManager)
+            val label = resolveInfo.loadLabel(packageManager).toString()
+
+            addShareAppItem(actionRow, icon, label) {
+                shareWithApp(resolveInfo)
+                tray.dismiss()
+            }
+        }
+    }
+
+    private fun addShareAppItem(container: LinearLayout, drawable: Drawable, label: String, onClick: () -> Unit) {
+        val itemBinding = ItemShareActionBinding.inflate(LayoutInflater.from(container.context), container, false)
+        itemBinding.ivActionIcon.setImageDrawable(drawable)
+        itemBinding.ivActionIcon.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        itemBinding.ivActionIcon.adjustViewBounds = true
+        itemBinding.tvActionLabel.text = label
+        itemBinding.root.setOnClickListener { onClick() }
+        container.addView(itemBinding.root)
+    }
+
+    private fun getAvailableShareApps(): List<ResolveInfo> {
+        val context = requireContext()
+        val packageManager = context.packageManager
+
+        val shareIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, meetingLink)
+        }
+
+        return try {
+            packageManager.queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
+                .take(8)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
+    }
+
+    private fun shareWithApp(resolveInfo: ResolveInfo) {
+        val shareIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, meetingLink)
+            type = "text/plain"
+            setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name)
+        }
+
+        try {
+            startActivity(shareIntent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.error(requireContext(), "Aplikasi tidak tersedia")
+        }
+    }
+
+    private fun copyLinkToClipboard() {
+        val clipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Link Meeting", meetingLink)
+        clipboardManager.setPrimaryClip(clip)
+
+        Toast.success(requireContext(), "Link meeting disalin")
+    }
+
+    private fun openInBrowser() {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(meetingLink))
+        try {
+            startActivity(browserIntent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.error(requireContext(), "Tidak ada aplikasi browser ditemukan")
+        }
+    }
 
     private fun navigateToEventDetail() {
         val result = bundleOf(

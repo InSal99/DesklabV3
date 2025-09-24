@@ -56,12 +56,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
         binding.rvRsvpFormList.clipToPadding = false
         binding.eventRsvpFooter.doOnLayout { footerHeight = it.height }
 
-        binding.rvRsvpFormList.apply {
-            isNestedScrollingEnabled = false
-            overScrollMode = View.OVER_SCROLL_NEVER
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
             val navBarInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -76,7 +70,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
 
             insets
         }
-
 
     }
 

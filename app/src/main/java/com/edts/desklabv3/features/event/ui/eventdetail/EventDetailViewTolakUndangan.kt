@@ -232,7 +232,7 @@ class EventDetailViewTolakUndangan : Fragment() {
                 type = InputFieldType.TextArea,
                 title = "",
                 hint = "Masukkan alasan penolakan",
-                isRequired = false,
+                isRequired = true,
                 minLines = 3,
                 maxLines = 5,
                 minLength = 10,
@@ -256,12 +256,14 @@ class EventDetailViewTolakUndangan : Fragment() {
 
     private fun handleSubmit() {
         val selectedOption = currentSelectedOption
-        val otherReason = inputField?.getValue()?.toString()?.trim()
 
         when {
-            selectedOption == "Lainnya" && otherReason.isNullOrEmpty() -> {
-                inputField?.setError("Harap jelaskan alasan Anda")
-                Toast.error(requireContext(), "Harap isi alasan lainnya")
+            selectedOption == "Lainnya" -> {
+                if (inputField?.isValid() == true) {
+                    showConfirmationDialog()
+                } else {
+                    Toast.error(requireContext(), "Harap isi alasan minimal 10 karakter")
+                }
             }
             selectedOption != null -> {
                 showConfirmationDialog()
@@ -271,6 +273,7 @@ class EventDetailViewTolakUndangan : Fragment() {
             }
         }
     }
+
 
     private fun showConfirmationDialog() {
         ModalityConfirmationPopUp.show(
