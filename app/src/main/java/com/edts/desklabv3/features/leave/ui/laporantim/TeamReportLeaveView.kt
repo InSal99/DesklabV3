@@ -60,11 +60,11 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 
     private fun setupRecyclerView() {
         originalEmployees = listOf(
-            Employee("Raka Aditya Pratama", "Associate Product Manager", "5 Hari"),
-            Employee("Bimo Ardiansyah Wijaya", "Senior Product Manager", "0 Hari"),
-            Employee("Indah Permata Wulandari", "Associate Product Manager", "8 Hari"),
-            Employee("Ayu Kartika Sari", "Lead Product Manager", "12 Hari"),
-            Employee("Gilang Mahardika Saputra", "Product Manager", "-1 Hari")
+            Employee(com.edts.desklabv3.R.drawable.image_avatar_raka, "Raka Aditya Pratama", "Associate Product Manager", "5 Hari"),
+            Employee(com.edts.desklabv3.R.drawable.image_avatar_bimo, "Bimo Ardiansyah Wijaya", "Senior Product Manager", "0 Hari"),
+            Employee(com.edts.desklabv3.R.drawable.image_avatar_indah, "Indah Permata Wulandari", "Associate Product Manager", "8 Hari"),
+            Employee(com.edts.desklabv3.R.drawable.image_avatar_ayu, "Ayu Kartika Sari", "Lead Product Manager", "12 Hari"),
+            Employee(com.edts.desklabv3.R.drawable.image_avatar_gilang, "Gilang Mahardika Saputra", "Product Manager", "-1 Hari")
         )
 
         filteredEmployees = originalEmployees

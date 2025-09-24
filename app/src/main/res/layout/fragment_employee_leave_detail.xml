@@ -30,7 +30,7 @@
         android:layout_marginHorizontal="@dimen/margin_16dp"
         android:layout_marginTop="@dimen/margin_24dp"
         app:cdibDescText="Associate Product Manager"
-        app:cdibLeftSlotSrc="@drawable/image_avatar_placeholder"
+        app:cdibLeftSlotSrc="@drawable/image_avatar_raka"
         app:cdibLeftSlotType="image"
         app:cdibShowIndicator="false"
         app:cdibShowRightSlot="false"
