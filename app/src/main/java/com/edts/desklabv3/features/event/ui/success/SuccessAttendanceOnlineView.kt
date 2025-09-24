@@ -20,7 +20,6 @@ import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.edts.components.toast.Toast
@@ -33,7 +32,6 @@ import com.edts.desklabv3.databinding.ItemShareActionBinding
 class SuccessAttendanceOnlineView : Fragment() {
     private var _binding: FragmentSuccessAttendanceOfflineViewBinding? = null
     private val binding get() = _binding!!
-
     private val meetingLink = "https://teams.microsoft.com/l/meetup-join/your-meeting-id"
 
     override fun onCreateView(
@@ -152,15 +150,11 @@ class SuccessAttendanceOnlineView : Fragment() {
 
     private fun addShareAppItem(container: LinearLayout, drawable: Drawable, label: String, onClick: () -> Unit) {
         val itemBinding = ItemShareActionBinding.inflate(LayoutInflater.from(container.context), container, false)
-
         itemBinding.ivActionIcon.setImageDrawable(drawable)
         itemBinding.ivActionIcon.scaleType = ImageView.ScaleType.CENTER_INSIDE
         itemBinding.ivActionIcon.adjustViewBounds = true
-
         itemBinding.tvActionLabel.text = label
-
         itemBinding.root.setOnClickListener { onClick() }
-
         container.addView(itemBinding.root)
     }
 
@@ -203,7 +197,7 @@ class SuccessAttendanceOnlineView : Fragment() {
         val clip = ClipData.newPlainText("Link Meeting", meetingLink)
         clipboardManager.setPrimaryClip(clip)
 
-        Toast.success(requireContext(), "Link meeting berhasil disalin")
+        Toast.success(requireContext(), "Link meeting disalin")
     }
 
     private fun openInBrowser() {
@@ -228,35 +222,5 @@ class SuccessAttendanceOnlineView : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private class ShareAppsAdapter(
-        private val shareApps: List<ResolveInfo>,
-        private val packageManager: PackageManager,
-        private val onItemClick: (ResolveInfo) -> Unit
-    ) : RecyclerView.Adapter<ShareAppsAdapter.ShareAppViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShareAppViewHolder {
-            val binding = ItemShareActionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ShareAppViewHolder(binding)
-        }
-
-        override fun onBindViewHolder(holder: ShareAppViewHolder, position: Int) {
-            holder.bind(shareApps[position], packageManager, onItemClick)
-        }
-
-        override fun getItemCount(): Int = shareApps.size
-
-        class ShareAppViewHolder(private val binding: ItemShareActionBinding) : RecyclerView.ViewHolder(binding.root) {
-
-            fun bind(resolveInfo: ResolveInfo, packageManager: PackageManager, onItemClick: (ResolveInfo) -> Unit) {
-                binding.ivActionIcon.setImageDrawable(resolveInfo.loadIcon(packageManager))
-                binding.tvActionLabel.text = resolveInfo.loadLabel(packageManager).toString()
-
-                binding.root.setOnClickListener {
-                    onItemClick(resolveInfo)
-                }
-            }
-        }
     }
 }
