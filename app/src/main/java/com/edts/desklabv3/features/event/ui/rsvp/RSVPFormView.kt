@@ -1,8 +1,6 @@
 package com.edts.desklabv3.features.event.ui.rsvp
 
-import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,29 +46,89 @@ class RSVPFormView : Fragment(), FooterDelegate {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.eventRsvpFooter.doOnLayout { footerHeight = it.height }
+
+        setupKeyboardAndScrollBehavior()
         setupBackButton()
         setupRecyclerView()
         setupFormFields()
         setupFooter()
+    }
 
-        binding.rvRsvpFormList.clipToPadding = false
-        binding.eventRsvpFooter.doOnLayout { footerHeight = it.height }
-
+    private fun setupKeyboardAndScrollBehavior() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val navBarInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
             val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
             val imeHeight = if (imeVisible) {
-                imeInsets.bottom - navBarInsets.bottom
+                imeInsets.bottom - systemBars.bottom
             } else 0
 
-            binding.rootScrollView.updatePadding(bottom = imeHeight)
-            binding.eventRsvpFooter.translationY = -imeHeight.toFloat()
+            if (imeHeight > 0) {
+                binding.rootScrollView.updatePadding(bottom = imeHeight)
+                binding.eventRsvpFooter.translationY = -imeHeight.toFloat()
 
-            insets
+                view?.post {
+                    scrollToFocusedField()
+                }
+            } else {
+                binding.rootScrollView.updatePadding(bottom = 0)
+                binding.eventRsvpFooter.translationY = 0f
+            }
+            WindowInsetsCompat.CONSUMED
+        }
+    }
+
+    private fun scrollToFocusedField() {
+        val focusedView = activity?.currentFocus ?: return
+
+        if (!isViewInsideRecyclerView(focusedView)) return
+
+        val position = findRecyclerViewItemPosition(focusedView)
+
+        if (position != -1) {
+            binding.rvRsvpFormList.smoothScrollToPosition(position)
+            binding.rvRsvpFormList.post {
+                val viewHolder = binding.rvRsvpFormList.findViewHolderForAdapterPosition(position)
+                viewHolder?.itemView?.let { itemView ->
+                    scrollToViewInNestedScrollView(itemView)
+                }
+            }
+        }
+    }
+
+    private fun isViewInsideRecyclerView(view: View): Boolean {
+        var parent = view.parent
+        while (parent != null) {
+            if (parent == binding.rvRsvpFormList) return true
+            parent = parent.parent
+        }
+        return false
+    }
+
+    private fun findRecyclerViewItemPosition(view: View): Int {
+        var currentView = view
+        while (currentView.parent != binding.rvRsvpFormList && currentView.parent != null) {
+            currentView = currentView.parent as View
         }
 
+        return binding.rvRsvpFormList.getChildAdapterPosition(currentView)
+    }
+
+    private fun scrollToViewInNestedScrollView(targetView: View) {
+        val scrollView = binding.rootScrollView
+        val scrollViewLocation = IntArray(2)
+        scrollView.getLocationOnScreen(scrollViewLocation)
+
+        val targetLocation = IntArray(2)
+        targetView.getLocationOnScreen(targetLocation)
+
+        val scrollOffset = targetLocation[1] - scrollViewLocation[1] - scrollView.paddingTop
+        val extraPadding = 100
+        val finalOffset = scrollOffset - extraPadding
+
+        scrollView.smoothScrollTo(0, scrollView.scrollY + finalOffset)
     }
 
     private fun setupBackButton() {
