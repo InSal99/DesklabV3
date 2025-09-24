@@ -1369,13 +1369,29 @@ class InputField @JvmOverloads constructor(
             is InputFieldType.CheckboxGroup -> (value as? List<*>)?.isNotEmpty() == true
             else -> false
         }
-        if (isRequiredValid && (minLength > 0 || maxLength > 0)) {
+
+        if (!isRequiredValid) {
+            val fieldName = currentConfig?.title?.takeIf { it.isNotBlank() } ?: "Field"
+            setError("$fieldName wajib diisi")
+            return false
+        }
+
+        if (minLength > 0 || maxLength > 0) {
             val text = value?.toString() ?: ""
             val length = text.length
-            if (minLength > 0 && length < minLength) return false
-            if (maxLength > 0 && length > maxLength) return false
+
+            if (minLength > 0 && length < minLength) {
+                setError("Minimal $minLength karakter")
+                return false
+            }
+            if (maxLength > 0 && length > maxLength) {
+                setError("Maksimal $maxLength karakter")
+                return false
+            }
         }
-        return isRequiredValid
+
+        clearError()
+        return true
     }
 
     fun getNumericValue(): Double? {
