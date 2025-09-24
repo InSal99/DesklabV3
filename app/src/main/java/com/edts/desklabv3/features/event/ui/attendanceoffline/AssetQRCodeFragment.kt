@@ -20,8 +20,12 @@ import com.edts.components.toast.Toast
 import com.edts.desklabv3.databinding.FragmentAssetQrCodeReaderBinding
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import com.edts.components.modal.ModalityLoadingPopUp
 import com.edts.desklabv3.core.util.InsetConfigurable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class AssetQRCodeFragment : Fragment(), InsetConfigurable {
 
@@ -29,6 +33,7 @@ class AssetQRCodeFragment : Fragment(), InsetConfigurable {
     private val binding get() = _binding!!
     private var isInitialized = false
     private var isInitializing = false
+    private var isProcessingQR = false
 
     private val requestCameraPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -75,6 +80,7 @@ class AssetQRCodeFragment : Fragment(), InsetConfigurable {
         super.onDestroyView()
         isInitialized = false
         isInitializing = false
+        isProcessingQR = false
         _binding = null
     }
 
@@ -220,19 +226,123 @@ class AssetQRCodeFragment : Fragment(), InsetConfigurable {
         }
     }
 
-    private fun processQRFound(text: String) {
-        Log.d("QRFragment", "QR Found")
-        val dialog = ModalityLoadingPopUp.show(requireContext(), "Tunggu Sebentar...")
+//    private fun processQRFound(text: String) {
+//        Log.d("QRFragment", "QR Found")
+//        val dialog = ModalityLoadingPopUp.show(requireContext(), "Tunggu Sebentar...")
+//
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            dialog?.dismiss()
+//            val result = bundleOf("fragment_class" to "SuccessAttendanceOfflineView")
+//            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+//            qrCodeResultListener?.invoke(text)
+//        }, 3000)
+//
+//        if (!text.startsWith("desklab://")) {
+//            Log.d("QRFragment", "Link format is compatible")
+//        }
+//    }
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            dialog?.dismiss()
-            val result = bundleOf("fragment_class" to "SuccessAttendanceOfflineView")
-            parentFragmentManager.setFragmentResult("navigate_fragment", result)
-            qrCodeResultListener?.invoke(text)
-        }, 3000)
+    private fun processQRFound(text: String) {
+        if (isProcessingQR) return
+        isProcessingQR = true
+
+        Log.d("QRFragment", "QR Found")
+
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+            val dialog = ModalityLoadingPopUp.show(requireContext(), "Tunggu Sebentar...")
+
+            delay(3000)
+
+            if (isAdded && !isDetached && view != null) {
+                try {
+                    // Ensure dialog dismiss happens on main thread
+                    dialog?.dismiss()
+
+                    // Wait for dismissal to complete
+                    delay(300)
+
+                    // Navigate only after dialog is dismissed
+                    if (isAdded && view != null) {
+                        val result = bundleOf("fragment_class" to "SuccessAttendanceOfflineView")
+                        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+                        qrCodeResultListener?.invoke(text)
+                    }
+                } catch (e: Exception) {
+                    Log.e("QRFragment", "Error in processQRFound", e)
+                    dialog?.dismiss()
+                }
+            } else {
+                dialog?.dismiss()
+            }
+
+            isProcessingQR = false
+        }
 
         if (!text.startsWith("desklab://")) {
             Log.d("QRFragment", "Link format is compatible")
         }
     }
+
+//    private fun processQRFound(text: String) {
+//        if (isProcessingQR) return
+//        isProcessingQR = true
+//
+//        Log.d("QRFragment", "QR Found")
+//
+//        val dialog = ModalityLoadingPopUp.show(requireContext(), "Tunggu Sebentar...")
+//
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            if (isAdded && view != null) {
+//                dialog?.setOnDismissListener {
+//                    if (isAdded && view != null) {
+//                        val result = bundleOf("fragment_class" to "SuccessAttendanceOfflineView")
+//                        parentFragmentManager.setFragmentResult("navigate_fragment", result)
+//                        qrCodeResultListener?.invoke(text)
+//                    }
+//                    isProcessingQR = false
+//                }
+//                dialog?.dismiss()
+//            } else {
+//                dialog?.dismiss()
+//                isProcessingQR = false
+//            }
+//        }, 3000)
+//    }
+
+//    private fun processQRFound(text: String) {
+//        if (isProcessingQR) return
+//        isProcessingQR = true
+//
+//        Log.d("QRFragment", "QR Found")
+//
+//        val dialog = ModalityLoadingPopUp.show(requireContext(), "Tunggu Sebentar...")
+//
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            try {
+//                if (isAdded && view != null) {
+//                    dialog?.dismiss()
+//
+//                    Handler(Looper.getMainLooper()).postDelayed({
+//                        if (isAdded && view != null) {
+//                            val result = bundleOf("fragment_class" to "SuccessAttendanceOfflineView")
+//                            parentFragmentManager.setFragmentResult("navigate_fragment", result)
+//                            qrCodeResultListener?.invoke(text)
+//                        }
+//                        isProcessingQR = false
+//                    }, 200) // Small delay after dismissal
+//                } else {
+//                    dialog?.dismiss()
+//                    isProcessingQR = false
+//                }
+//            } catch (e: Exception) {
+//                Log.e("QRFragment", "Error in processQRFound", e)
+//                dialog?.dismiss()
+//                isProcessingQR = false
+//            }
+//        }, 3000)
+//
+//        if (!text.startsWith("desklab://")) {
+//            Log.d("QRFragment", "Link format is compatible")
+//        }
+//    }
 }
