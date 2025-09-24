@@ -25,7 +25,7 @@ class LeaveCardAdapter(
                     LeaveCounter.CounterType.CRITICAL
                 }
 
-                employeeImage = com.edts.desklabv3.R.drawable.image_avatar_placeholder
+                employeeImage = employeeImage
 
                 setOnClickListener {
                     onEmployeeClick(employee)
