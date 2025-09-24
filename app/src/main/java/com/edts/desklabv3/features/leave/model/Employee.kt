@@ -1,6 +1,7 @@
 package com.edts.desklabv3.features.leave.ui.laporantim
 
 data class Employee(
+    val employeeImg: Int,
     val employeeName: String,
     val employeeRole: String,
     val counterText: String,
