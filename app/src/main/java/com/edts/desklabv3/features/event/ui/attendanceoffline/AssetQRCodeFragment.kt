@@ -209,7 +209,7 @@ class AssetQRCodeFragment : Fragment(), InsetConfigurable {
             var found = false
             for (pointF in points) {
                 if (!rectF.contains(pointF.x, pointF.y)) {
-                    found = false
+                    found = true
                     break
                 }
             }
@@ -221,6 +221,7 @@ class AssetQRCodeFragment : Fragment(), InsetConfigurable {
     }
 
     private fun processQRFound(text: String) {
+        Log.d("QRFragment", "QR Found")
         val dialog = ModalityLoadingPopUp.show(requireContext(), "Tunggu Sebentar...")
 
         Handler(Looper.getMainLooper()).postDelayed({

@@ -94,7 +94,7 @@ class EventInvitationFragmentTolakUndangan : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-                Toast.makeText(requireContext(), "Modal Closed.", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "Modal Closed.", Toast.LENGTH_SHORT).show()
             }
         )
     }
