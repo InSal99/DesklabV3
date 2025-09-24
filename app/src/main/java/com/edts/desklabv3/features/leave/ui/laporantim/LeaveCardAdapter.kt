@@ -14,6 +14,7 @@ class LeaveCardAdapter(
     class LeaveCardViewHolder(private val binding: ItemLeaveCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(employee: Employee, onEmployeeClick: (Employee) -> Unit) {
             binding.leaveCard.apply {
+                employeeImage = employee.employeeImg
                 employeeName = employee.employeeName
                 employeeRole = employee.employeeRole
                 counterText = employee.counterText
