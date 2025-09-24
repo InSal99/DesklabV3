@@ -95,6 +95,8 @@ class TeamReportMenuFragment : Fragment(), InsetConfigurable {
             binding.viewPager.adapter = teamReportPagerAdapter
             binding.cvTabTeamReportActivity.setupWithViewPager2(binding.viewPager)
 
+//            binding.viewPager.isUserInputEnabled = false
+
             pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     currentTeamReportTab = position
