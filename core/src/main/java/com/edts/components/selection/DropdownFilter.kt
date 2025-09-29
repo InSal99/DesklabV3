@@ -1,4 +1,4 @@
-package com.edts.components.chip
+package com.edts.components.selection
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
