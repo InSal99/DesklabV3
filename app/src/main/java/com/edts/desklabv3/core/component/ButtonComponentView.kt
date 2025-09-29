@@ -1,15 +1,15 @@
-package com.edts.desklabv3.core
+package com.edts.desklabv3.core.component
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edts.desklabv3.databinding.FragmentDetailInformationSpeakerComponentViewBinding
+import androidx.fragment.app.Fragment
+import com.edts.desklabv3.databinding.FragmentButtonComponentViewBinding
 
-class DetailInformationSpeakerComponentView : Fragment() {
+class ButtonComponentView : Fragment() {
 
-    private var _binding: FragmentDetailInformationSpeakerComponentViewBinding? = null
+    private var _binding: FragmentButtonComponentViewBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,14 +17,14 @@ class DetailInformationSpeakerComponentView : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailInformationSpeakerComponentViewBinding.inflate(inflater, container, false)
+        _binding = FragmentButtonComponentViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLibInfoSpeakerBack.setOnClickListener {
+        binding.btnLibButtonBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
     }

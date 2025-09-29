@@ -1,15 +1,15 @@
-package com.edts.desklabv3.core
+package com.edts.desklabv3.core.component
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edts.desklabv3.databinding.FragmentOptionCardComponentViewBinding
+import com.edts.desklabv3.databinding.FragmentRadioButtonComponentViewBinding
 
-class OptionCardComponentView : Fragment() {
+class RadioButtonComponentView : Fragment() {
 
-    private var _binding: FragmentOptionCardComponentViewBinding? = null
+    private var _binding: FragmentRadioButtonComponentViewBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,14 +17,14 @@ class OptionCardComponentView : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOptionCardComponentViewBinding.inflate(inflater, container, false)
+        _binding = FragmentRadioButtonComponentViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLibOptionCardBack.setOnClickListener {
+        binding.btnLibRadioButtonBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
     }

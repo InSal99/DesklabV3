@@ -1,15 +1,15 @@
-package com.edts.desklabv3.core
+package com.edts.desklabv3.core.component
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edts.desklabv3.databinding.FragmentInfoboxComponentViewBinding
+import com.edts.desklabv3.databinding.FragmentDetailInformationAComponentViewBinding
 
-class InfoboxComponentView : Fragment() {
+class DetailInformationAComponentView : Fragment() {
 
-    private var _binding: FragmentInfoboxComponentViewBinding? = null
+    private var _binding: FragmentDetailInformationAComponentViewBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,14 +17,14 @@ class InfoboxComponentView : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInfoboxComponentViewBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailInformationAComponentViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLibInfoboxBack.setOnClickListener {
+        binding.btnLibInfoABack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
     }
