@@ -1,15 +1,16 @@
-package com.edts.desklabv3.core
+package com.edts.desklabv3.core.component
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edts.desklabv3.databinding.FragmentFooterComponentViewBinding
+import com.edts.components.toast.Toast
+import com.edts.desklabv3.databinding.FragmentToastComponentViewBinding
 
-class FooterComponentView : Fragment() {
+class ToastComponentView : Fragment() {
 
-    private var _binding: FragmentFooterComponentViewBinding? = null
+    private var _binding: FragmentToastComponentViewBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,16 +18,24 @@ class FooterComponentView : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFooterComponentViewBinding.inflate(inflater, container, false)
+        _binding = FragmentToastComponentViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLibFooterBack.setOnClickListener {
+        binding.btnLibToastBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+
+        binding.btnLibToastShow.setOnClickListener {
+            showToastAnimation()
+        }
+    }
+
+    private fun showToastAnimation() {
+        Toast.info(requireContext(), "This is toast!")
     }
 
     override fun onDestroyView() {
