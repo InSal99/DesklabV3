@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/EventCardBanner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorNeutralGrayBlue10"
+    android:paddingHorizontal="@dimen/margin_12dp"
+    android:paddingVertical="@dimen/margin_4dp">
+
+    <TextView
+        style="?attr/l3Medium"
+        android:id="@+id/tvEvenCardType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/event_card_banner_type"
+        android:textColor="?attr/colorForegroundTertiary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        style="?attr/l3Medium"
+        android:id="@+id/tvEvenCardDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_4dp"
+        android:text="@string/event_card_divider"
+        android:textColor="?attr/colorForegroundTertiary"
+        app:layout_constraintStart_toEndOf="@+id/tvEvenCardType"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        style="?attr/l3Medium"
+        android:id="@+id/tvEvenCardCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_4dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/event_card_banner_category"
+        android:textColor="?attr/colorForegroundTertiary"
+        app:layout_constraintStart_toEndOf="@+id/tvEvenCardDivider"
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

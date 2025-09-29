@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundPrimaryTinted"
+    tools:context=".features.event.ui.eventdetail.EventDetailViewAttendance">
+
+    <ImageView
+        android:id="@+id/ivDetailBack"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="@dimen/radius_8dp"
+        android:layout_marginBottom="@dimen/margin_18dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_chevron_left"
+        app:tint="?attr/colorForegroundSecondary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvDetailTitle"
+        app:layout_constraintDimensionRatio="1:1" />
+
+    <TextView
+        android:id="@+id/tvDetailTitle"
+        style="?attr/h1SemiBold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:text="@string/event_detail_page_title"
+        android:textColor="?attr/colorForegroundPrimary"
+        app:layout_constraintTop_toTopOf="@id/ivDetailBack"
+        app:layout_constraintStart_toEndOf="@id/ivDetailBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ivDetailBack" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_18dp"
+        android:layout_marginBottom="-20dp"
+        android:background="@drawable/bg_bottom_sheet"
+        android:clipToPadding="true"
+        app:layout_constraintTop_toBottomOf="@id/tvDetailTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/eventDetailFooter">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivDetailEventPoster"
+                    android:layout_width="match_parent"
+                    android:layout_height="164dp"
+                    android:layout_marginHorizontal="@dimen/margin_16dp"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/poster4"
+                    app:shapeAppearanceOverlay="@style/DetailPageImageBackground"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDetailEventType"
+                    style="?attr/l3SemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:text="Online Event"
+                    android:textColor="?attr/colorForegroundTertiary"
+                    app:layout_constraintTop_toBottomOf="@id/ivDetailEventPoster"
+                    app:layout_constraintStart_toStartOf="@id/ivDetailEventPoster" />
+
+                <TextView
+                    android:id="@+id/tvDetailDot"
+                    style="?attr/l3SemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4dp"
+                    android:text="·"
+                    android:textColor="?attr/colorForegroundTertiary"
+                    app:layout_constraintTop_toTopOf="@id/tvDetailEventType"
+                    app:layout_constraintStart_toEndOf="@id/tvDetailEventType" />
+
+                <TextView
+                    android:id="@+id/tvDetailEventCategory"
+                    style="?attr/l3SemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4dp"
+                    android:text="General Event"
+                    android:textColor="?attr/colorForegroundTertiary"
+                    app:layout_constraintTop_toTopOf="@id/tvDetailEventType"
+                    app:layout_constraintStart_toEndOf="@id/tvDetailDot" />
+
+                <TextView
+                    android:id="@+id/tvDetailEventTitle"
+                    style="?attr/h1SemiBold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:text="Game Night with EDTS: Mobile Legend Online Tournament 2025"
+                    android:textColor="?attr/colorForegroundPrimary"
+                    app:layout_constraintTop_toBottomOf="@id/tvDetailEventType"
+                    app:layout_constraintStart_toStartOf="@id/tvDetailEventType"
+                    app:layout_constraintEnd_toEndOf="@id/ivDetailEventPoster" />
+
+                <TextView
+                    android:id="@+id/tvDetailEventSpeakerTitle"
+                    style="?attr/l3Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    android:text="@string/event_detail_speaker_title"
+                    android:textColor="?attr/colorForegroundSecondary"
+                    app:layout_constraintTop_toBottomOf="@id/tvDetailEventTitle"
+                    app:layout_constraintStart_toStartOf="@id/tvDetailEventTitle" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDetailEventSpeakersInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/tvDetailEventSpeakerTitle"
+                    app:layout_constraintStart_toStartOf="@id/tvDetailEventSpeakerTitle"
+                    app:layout_constraintEnd_toEndOf="@id/tvDetailEventTitle" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/dDetail1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_28dp"
+                    app:dividerColor="?attr/colorStrokeSubtle"
+                    app:layout_constraintTop_toBottomOf="@id/rvDetailEventSpeakersInfo"
+                    app:layout_constraintStart_toStartOf="@id/rvDetailEventSpeakersInfo"
+                    app:layout_constraintEnd_toEndOf="@id/rvDetailEventSpeakersInfo" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDetailEventTimeLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/dDetail1"
+                    app:layout_constraintStart_toStartOf="@id/dDetail1"
+                    app:layout_constraintEnd_toEndOf="@id/dDetail1" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/dDetail2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="@dimen/margin_12dp"
+                    app:dividerColor="?attr/colorStrokeSubtle"
+                    app:layout_constraintTop_toBottomOf="@id/rvDetailEventTimeLocation"
+                    app:layout_constraintStart_toStartOf="@id/rvDetailEventTimeLocation"
+                    app:layout_constraintEnd_toEndOf="@id/rvDetailEventTimeLocation" />
+
+                <TextView
+                    android:id="@+id/tvEventDetailDescriptionTitle"
+                    style="?attr/h1SemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    android:text="@string/event_detail_description_title"
+                    android:textColor="?attr/colorForegroundPrimary"
+                    app:layout_constraintTop_toBottomOf="@id/dDetail2"
+                    app:layout_constraintStart_toStartOf="@id/dDetail2" />
+
+                <TextView
+                    android:id="@+id/tvEventDetailDescription"
+                    style="?attr/p1Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    android:text="Spark Talks is our new sharing session..."
+                    android:textColor="?attr/colorForegroundSecondary"
+                    app:layout_constraintTop_toBottomOf="@id/tvEventDetailDescriptionTitle"
+                    app:layout_constraintStart_toStartOf="@id/dDetail2"
+                    app:layout_constraintEnd_toEndOf="@id/dDetail2"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.edts.components.infoboxfooter.InfoBoxFooter
+        android:id="@+id/eventDetailFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:footerTitle="Welcome"
+        app:footerDescription="Please complete your registration"
+        app:footerType="CALL_TO_ACTION_DETAIL"
+        app:text="This is an information message"
+        app:primaryButtonEnabled="true"
+        app:primaryButtonText="Register Now"
+        app:variant="information"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

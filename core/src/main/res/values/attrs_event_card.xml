@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EventCard">
+        <attr name="eventImageSrc" format="reference" />
+        <attr name="showCardBadge" format="boolean" />
+        <attr name="cardBadgeType" format="enum">
+            <enum name="live" value="0" />
+            <enum name="invited" value="1" />
+            <enum name="registered" value="2" />
+        </attr>
+        <attr name="cardBadgeText" format="string" />
+        <attr name="cardEventType" format="string" />
+        <attr name="cardEventCategory" format="string" />
+        <attr name="cardEventTitle" format="string" />
+        <attr name="cardEventDate" format="string" />
+        <attr name="showCardStatus" format="boolean" />
+        <attr name="cardStatusType" format="enum">
+            <enum name="rsvp" value="0" />
+            <enum name="registered" value="1" />
+            <enum name="unregistered" value="2" />
+        </attr>
+        <attr name="cardStatusText" format="string" />
+    </declare-styleable>
+</resources>

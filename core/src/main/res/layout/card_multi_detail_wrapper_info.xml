@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMultiDetailWrapperInfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvInfo1"
+        style="?attr/l4Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/card_multi_detail_wrapper_info_01"
+        android:textColor="?attr/colorForegroundSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivDivider"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivDivider"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginStart="@dimen/margin_6dp"
+        android:background="@drawable/circle_shape"
+        android:contentDescription="@string/card_multi_detail_wrapper_info_divider"
+        android:textColor="?attr/colorForegroundPlaceholder"
+        app:layout_constraintStart_toEndOf="@+id/tvInfo1"
+        app:layout_constraintEnd_toStartOf="@+id/tvInfo2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvInfo2"
+        style="?attr/l4Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_6dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/card_multi_detail_wrapper_info_02"
+        android:textColor="?attr/colorForegroundSecondary"
+        app:layout_constraintStart_toEndOf="@+id/ivDivider"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

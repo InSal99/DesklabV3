@@ -4,16 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.components"
-    compileSdk = 35
+    namespace = "com.edts.components"
+    compileSdk = 34
 
     defaultConfig {
-//        applicationId = "com.example.components"
         minSdk = 24
-//        targetSdk = 35
-//        versionCode = 1
-//        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,6 +25,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    configurations.all {
+        resolutionStrategy {
+            force("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
+            force("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10")
+            force("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
+        }
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -39,14 +41,13 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.library)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
 }

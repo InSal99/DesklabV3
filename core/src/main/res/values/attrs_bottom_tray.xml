@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomTray">
+        <attr name="showDragHandle" format="boolean" />
+        <attr name="titleText" format="string" />
+        <attr name="showFooter" format="boolean" />
+        <attr name="hasShadow" format="boolean" />
+        <attr name="hasStroke" format="boolean" />
+    </declare-styleable>
+</resources>

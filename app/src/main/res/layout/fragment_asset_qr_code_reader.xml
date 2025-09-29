@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <com.edts.desklabv3.features.event.ui.attendanceoffline.AssetQRCodeReaderView
+        android:id="@+id/qrCodeReaderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/vUp"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="#80000000"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/vBottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        app:layout_constraintTop_toBottomOf="@id/vLeft"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View
+        android:id="@+id/vLeft"
+        android:layout_width="78dp"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        app:layout_constraintBottom_toTopOf="@id/vBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vUp" />
+
+    <View
+        android:id="@+id/vRight"
+        android:layout_width="78dp"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        app:layout_constraintBottom_toTopOf="@id/vBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vUp" />
+
+    <FrameLayout
+        android:id="@+id/flScan"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/vBottom"
+        app:layout_constraintEnd_toStartOf="@id/vRight"
+        app:layout_constraintStart_toEndOf="@id/vLeft"
+        app:layout_constraintTop_toBottomOf="@id/vUp">
+
+        <View
+            android:id="@+id/vScan"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorFFF" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/ivFrameTopLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="-2dp"
+        android:src="@drawable/scanner_frame_top_left"
+        app:layout_constraintStart_toEndOf="@id/vLeft"
+        app:layout_constraintTop_toTopOf="@id/vLeft" />
+
+    <ImageView
+        android:id="@+id/ivFrameTopRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-2dp"
+        android:layout_marginEnd="-2dp"
+        android:src="@drawable/scanner_frame_top_right"
+        app:layout_constraintEnd_toStartOf="@id/vRight"
+        app:layout_constraintTop_toTopOf="@id/vRight" />
+
+    <ImageView
+        android:id="@+id/ivFrameBottomLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-2dp"
+        android:layout_marginBottom="-2dp"
+        android:src="@drawable/scanner_frame_bottom_left"
+        app:layout_constraintBottom_toBottomOf="@id/ivFrameBottomRight"
+        app:layout_constraintStart_toStartOf="@id/ivFrameTopLeft" />
+
+    <ImageView
+        android:id="@+id/ivFrameBottomRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="-2dp"
+        android:src="@drawable/scanner_frame_bottom_right"
+        app:layout_constraintBottom_toTopOf="@id/vBottom"
+        app:layout_constraintEnd_toStartOf="@id/vRight" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="?attr/p1Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_22dp"
+        android:gravity="center"
+        android:text="@string/offline_attendance_instruction"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/vRight"
+        app:layout_constraintStart_toEndOf="@id/vLeft"
+        app:layout_constraintTop_toTopOf="@id/vBottom" />
+
+    <ImageView
+        android:id="@+id/ivScanQRBack"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="@dimen/radius_8dp"
+        android:layout_marginBottom="@dimen/margin_18dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_chevron_left"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/tvScanQRTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorForegroundPrimaryInverse" />
+
+    <TextView
+        android:id="@+id/tvScanQRTitle"
+        style="?attr/d3SemiBold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:text="@string/offline_attendance_title"
+        android:textColor="?attr/colorForegroundPrimaryInverse"
+        app:layout_constraintBottom_toBottomOf="@id/ivScanQRBack"
+        app:layout_constraintEnd_toStartOf="@id/ivScanQRFlash"
+        app:layout_constraintStart_toEndOf="@id/ivScanQRBack"
+        app:layout_constraintTop_toTopOf="@id/ivScanQRBack" />
+
+    <ImageView
+        android:id="@+id/ivScanQRFlash"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/radius_16dp"
+        android:layout_marginBottom="@dimen/margin_18dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_flash"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvScanQRTitle"
+        app:layout_constraintTop_toTopOf="@id/ivScanQRBack"
+        app:tint="?attr/colorForegroundPrimaryInverse" />
+
+    <FrameLayout
+        android:id="@+id/flBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

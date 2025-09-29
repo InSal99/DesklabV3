@@ -376,47 +376,43 @@
         <item name="android:textSize">@dimen/text_size_10sp</item>
     </style>
 
-    <style name="NegativeButton.White">
-        <item name="android:background">@drawable/bg_button_white</item>
-        <item name="android:textColor">@color/colorBlack70</item>
-    </style>
+<!--    <style name="NegativeButton.White">-->
+<!--        <item name="android:background">@drawable/bg_button_white</item>-->
+<!--        <item name="android:textColor">@color/colorBlack70</item>-->
+<!--    </style>-->
 
     <!-- Text Display Style -->
     <style name="TextSemiBold.Display1">
         <item name="android:textSize">@dimen/text_size_28sp</item>
-<!--        <item name="fontWeight">600</item>-->
         <item name="lineHeight">@dimen/line_height_30</item>
     </style>
 
     <style name="TextSemiBold.Display2">
         <item name="android:textSize">@dimen/text_size_24sp</item>
-        <!--        <item name="fontWeight">600</item>-->
         <item name="lineHeight">@dimen/line_height_26</item>
     </style>
 
     <style name="TextSemiBold.Display3">
         <item name="android:textSize">@dimen/text_size_20sp</item>
-        <!--        <item name="fontWeight">600</item>-->
         <item name="lineHeight">@dimen/line_height_24</item>
     </style>
 
     <style name="TextBold.Display3">
         <item name="android:textSize">@dimen/text_size_20sp</item>
         <item name="fontWeight">600</item>
-        <item name="lineHeight">@dimen/text_size_24sp</item>
+        <item name="lineHeight">@dimen/line_height_24</item>
     </style>
 
     <!-- Text H1 Style -->
     <style name="TextSemiBold.Heading1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-<!--        <item name="fontWeight">600</item>-->
         <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextBold.Heading1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
         <item name="fontWeight">600</item>
-        <item name="lineHeight">@dimen/text_size_18sp</item>
+        <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextSemiBold.Heading2">
@@ -427,7 +423,7 @@
     <style name="TextBold.Heading2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">600</item>
-        <item name="lineHeight">@dimen/text_size_16sp</item>
+        <item name="lineHeight">@dimen/line_height_16</item>
     </style>
 
     <style name="TextSemiBold.Heading3">
@@ -443,56 +439,49 @@
     <!-- Text Label Style -->
     <style name="TextRegular.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="fontWeight">500</item> //?
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextMedium.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextBold.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
         <item name="fontWeight">500</item>
-        <item name="lineHeight">@dimen/text_size_18sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextMedium.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextSemiBold.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">500</item>
-        <item name="lineHeight">@dimen/text_size_14sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextMedium.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextSemiBold.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/text_size_14sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label4">
@@ -507,10 +496,11 @@
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
-    <style name="TextSemiBold.Label4">
+<!-- add parent because error when changing event badge size in kotlin file-->
+    <style name="TextSemiBold.Label4" parent="@style/TextAppearance.MaterialComponents.Body2">
         <item name="android:textSize">@dimen/text_size_10sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/text_size_10sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label5">
@@ -528,7 +518,7 @@
     <style name="TextSemiBold.Label5">
         <item name="android:textSize">@dimen/text_size_8sp</item>
         <item name="fontWeight">500</item>
-        <item name="lineHeight">@dimen/text_size_10sp</item>
+        <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <!-- Text Paragraph Style -->
@@ -547,18 +537,29 @@
     <style name="TextSemiBold.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="fontWeight">400</item>
-        <item name="lineHeight">@dimen/text_size_20sp</item>
+        <item name="lineHeight">@dimen/line_height_20</item>
+    </style>
+
+<!--New-->
+    <style name="TextBold.Paragraph1">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="fontWeight">400</item>
+        <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
     <style name="TextRegular.Paragraph2">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
     <style name="TextMedium.Paragraph2">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
+        <item name="lineHeight">@dimen/line_height_18</item>
+    </style>
+
+<!--new-->
+    <style name="TextSemiBold.Paragraph2">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
         <item name="lineHeight">@dimen/line_height_18</item>
     </style>
 
@@ -579,5 +580,100 @@
     <style name="BadgeStyle" parent="ShapeAppearance.Material3.Corner.ExtraLarge">
         <item name="android:textSize">8sp</item>
         <item name="android:layout_margin">20dp</item>
+    </style>
+
+    <style name="CustomRadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/ic_radio_button</item>
+<!--        <item name="android:buttonTint">@null</item>-->
+<!--        <item name="useMaterialThemeColors">false</item>-->
+        <item name="android:textAppearance">@style/RadioTextAppearance</item>
+    </style>
+
+    <style name="CustomRadioButton.Normal" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Normal</item>
+    </style>
+
+    <style name="CustomRadioButton.Selected" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Selected</item>
+    </style>
+
+    <style name="CustomRadioButton.Disabled" parent="CustomRadioButton">
+        <item name="android:textAppearance">@style/RadioTextAppearance.Disabled</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="Widget.App.DynamicRadioGroup" parent="">
+        <item name="checkboxNormalTextAppearance">@style/RadioTextAppearance.Normal</item>
+        <item name="radioSelectedTextAppearance">@style/RadioTextAppearance.Selected</item>
+        <item name="radioDisabledTextAppearance">@style/RadioTextAppearance.Disabled</item>
+        <item name="radioButtonSpacing">@dimen/margin_8dp</item>
+    </style>
+
+    <style name="RadioButtonTextAppearance" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/color000</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Toast.Style" parent="MaterialAlertDialog.Material3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="CustomButton.TextStyle" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textAppearance">@style/TextMedium.Label2</item>
+    </style>
+
+    <style name="CustomButton.TextStyle.ExtraSmall" parent="CustomButton.TextStyle">
+        <item name="android:textAppearance">@style/TextMedium.Label4</item>
+    </style>
+
+    <style name="CustomButton.TextStyle.Small" parent="CustomButton.TextStyle">
+        <item name="android:textAppearance">@style/TextMedium.Label3</item>
+    </style>
+
+    <style name="CustomButton.TextStyle.Medium" parent="CustomButton.TextStyle">
+        <item name="android:textAppearance">@style/TextMedium.Label2</item>
+    </style>
+
+    <style name="CustomButton.TextStyle.Large" parent="CustomButton.TextStyle">
+        <item name="android:textAppearance">@style/TextMedium.Label1</item>
+    </style>
+
+    <style name="ShapeAppearance.App.CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Modality Dialog -->
+    <style name="Theme.App.Dialog.Confirmation" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/Style.App.Dialog.Confirmation</item>
+    </style>
+
+    <style name="Style.App.Dialog.Confirmation" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="backgroundTint">?attr/colorBackgroundPrimary</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.Dialog.Custom</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Dialog.Custom" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="Widget.DesklabV3.UIKit.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.DesklabV3.UIKit.BottomSheet</item>
+    </style>
+
+    <style name="ThemeOverlay.DesklabV3.UIKit.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.DesklabV3.UIKit.BottomSheet.Modal</item>
+    </style>
+
+    <style name="ShapeAppearance.DesklabV3.UIKit.BottomSheet" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/radius_16dp</item>
+        <item name="cornerSizeTopLeft">@dimen/radius_16dp</item>
     </style>
 </resources>

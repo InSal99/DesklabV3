@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorBackgroundPrimary"
+    android:padding="@dimen/margin_16dp">
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/cpiLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:indicatorColor="?attr/colorForegroundAccentPrimaryIntense"
+        app:indicatorSize="44dp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:trackColor="?attr/colorBackgroundTertiary"
+        app:trackCornerRadius="@dimen/radius_999dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvModalTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvModalTitle"
+        style="?attr/h1SemiBold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textColor="?attr/colorForegroundPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cpiLoading"
+        tools:text="Loading Title ..."/>
+</androidx.constraintlayout.widget.ConstraintLayout>

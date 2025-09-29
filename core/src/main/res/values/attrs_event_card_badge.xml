@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EventCardBadge">
+        <attr name="badgeType" format="enum">
+            <enum name="live" value="0" />
+            <enum name="invited" value="1" />
+            <enum name="registered" value="2" />
+            <enum name="attended" value="3" />
+            <enum name="notattended" value="4" />
+        </attr>
+        <attr name="badgeSize" format="enum">
+            <enum name="Small" value="0" />
+            <enum name="Large" value="1" />
+        </attr>
+        <attr name="eventCardBadgeText" format="string" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/EventCardDescription"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvEvenCardSTitle"
+        style="?attr/p1SemiBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/event_card_description_title"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="?attr/colorForegroundPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvEvenCardDate"
+        style="?attr/l3Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/event_card_description_date"
+        android:textColor="?attr/colorForegroundTertiary"
+        app:layout_constraintTop_toBottomOf="@+id/tvEvenCardSTitle"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

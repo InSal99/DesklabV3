@@ -1,0 +1,85 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	
++++ b/app/src/main/res/layout/activity_main.xml	(date 1755369018490)
+@@ -183,75 +183,5 @@
+             app:text="Test"
+             app:variant="information"
+             android:layout_marginHorizontal="@dimen/margin_16dp"/>
+-
+-        <com.example.components.event.card.EventCard
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="@dimen/margin_16dp"/>
+-
+-        <!--        <com.example.components.radiobutton.CustomRadioGroup-->
+-        <!--            android:id="@+id/rbTest"-->
+-        <!--            style="@style/Widget.App.DynamicRadioGroup"-->
+-        <!--            android:layout_width="match_parent"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:layout_marginTop="32dp"-->
+-        <!--            android:minHeight="@dimen/margin_0dp"/>-->
+-        <!--    -->
+-        <!--        <com.example.components.radiobutton.CustomRadioButton-->
+-        <!--            android:layout_width="wrap_content"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:text="Text"-->
+-        <!--            android:checked="true"-->
+-        <!--            android:enabled="true"/>-->
+-        <!--    -->
+-        <!--        <com.example.components.radiobutton.CustomRadioButton-->
+-        <!--            android:layout_width="wrap_content"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:text="Text"-->
+-        <!--            android:checked="true"-->
+-        <!--            android:enabled="false"/>-->
+-        <!--    -->
+-        <!--        <com.example.components.radiobutton.CustomRadioButton-->
+-        <!--            android:layout_width="wrap_content"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:text="Text"-->
+-        <!--            android:checked="false"-->
+-        <!--            android:enabled="true"/>-->
+-        <!--    -->
+-        <!--        <com.example.components.radiobutton.CustomRadioButton-->
+-        <!--            android:layout_width="wrap_content"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:text="Text"-->
+-        <!--            android:checked="false"-->
+-        <!--            android:enabled="false"/>-->
+-        <!--    -->
+-        <!--        <com.example.components.radiobutton.CustomRadioButton-->
+-        <!--            android:layout_width="wrap_content"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:text="Text"-->
+-        <!--            android:checked="true"-->
+-        <!--            android:enabled="true"/>-->
+-        <!--    -->
+-        <!--        <com.example.components.radiobutton.CustomRadioButton-->
+-        <!--            android:layout_width="wrap_content"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:text="Text"-->
+-        <!--            android:checked="true"-->
+-        <!--            android:enabled="false"/>-->
+-        <!--    -->
+-        <!--        <com.example.components.checkbox.CustomCheckBox-->
+-        <!--            android:layout_width="wrap_content"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:text="Text"-->
+-        <!--            android:checked="false"-->
+-        <!--            android:enabled="true"/>-->
+-        <!--    -->
+-        <!--        <com.example.components.checkbox.CustomCheckBox-->
+-        <!--            android:layout_width="wrap_content"-->
+-        <!--            android:layout_height="wrap_content"-->
+-        <!--            android:text="Text"-->
+-        <!--            android:checked="false"-->
+-        <!--            android:enabled="false"/>-->
+-
+     </LinearLayout>
+ </ScrollView>
+\ No newline at end of file

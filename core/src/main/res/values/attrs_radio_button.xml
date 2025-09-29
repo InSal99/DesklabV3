@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="radio_state_error" format="boolean" />
+
     <declare-styleable name="CustomRadioButton">
         <attr name="radioVariant" format="enum">
             <enum name="normal" value="0" />
             <enum name="primary" value="1" />
         </attr>
+        <attr name="isRadioError" format="boolean" />
+        <attr name="android:textAppearance"/>
     </declare-styleable>
 </resources>

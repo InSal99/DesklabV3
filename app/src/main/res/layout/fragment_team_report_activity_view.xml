@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.leave.ui.laporantim.TeamReportActivityView"
+    android:background="?attr/colorBackgroundPrimaryTinted">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChipTeamReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_16dp"
+        android:paddingHorizontal="@dimen/margin_16dp"
+        android:paddingBottom="@dimen/margin_24dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_chip"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.edts.components.dropdown.filter.DropdownFilterHorizontal
+        android:id="@+id/cvFilterHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:dropdownDescription="26 Jan - 1 Feb"
+        app:dropdownTitle="Pekan 5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvChipTeamReport"
+        app:layout_constraintBottom_toTopOf="@+id/rvEmployeeActivities"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEmployeeActivities"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/margin_16dp"
+        android:paddingBottom="@dimen/margin_24dp"
+        android:paddingHorizontal="@dimen/margin_16dp"
+        tools:listitem="@layout/item_employee_activity"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/cvFilterHorizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

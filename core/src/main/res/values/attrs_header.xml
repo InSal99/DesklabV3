@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Header">
+        <attr name="showLeftButton" format="boolean" />
+        <attr name="sectionTitleText" format="string" />
+        <attr name="showSectionTitle" format="boolean" />
+        <attr name="sectionSubtitleText" format="string" />
+        <attr name="showSectionSubtitle" format="boolean" />
+        <attr name="showRightButton" format="boolean" />
+        <attr name="rightButtonSrc" format="reference" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardDetailInfoB"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius_12dp"
+    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
+    app:strokeWidth="@dimen/stroke_weight_1dp"
+    app:strokeColor="?attr/colorStrokeSubtle"
+    app:cardElevation="2dp"
+    app:rippleColor="@android:color/transparent"
+    android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
+    android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_12dp">
+
+        <com.edts.components.card.multi.detail.CardLeftSlot
+            android:id="@+id/cvCardLeftSlotCdib"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:slotType="image"
+            app:slotSrc="@drawable/ic_star"
+            app:slotBackgroundColor="?attr/colorBackgroundAttentionIntense"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cdibContent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cdibContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4dp"
+            android:layout_marginEnd="@dimen/margin_4dp"
+            android:paddingHorizontal="@dimen/margin_4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlotCdib"
+            app:layout_constraintEnd_toStartOf="@+id/ivCdibRightSlot">
+
+            <TextView
+                style="?attr/l2Medium"
+                android:id="@+id/tvCdibTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/card_multi_detail_title"
+                android:textColor="?attr/colorForegroundPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                style="?attr/l3Regular"
+                android:id="@+id/tvCdibDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_0dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/card_multi_detail_title"
+                android:textColor="?attr/colorForegroundSecondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCdibTitle"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/ivCdibRightSlot"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/card_right_slot_image_content_view"
+            android:src="@drawable/placeholder"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:tint="?attr/colorForegroundTertiary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <FrameLayout
+            android:id="@+id/flCdibRightSlotContainer"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

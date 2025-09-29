@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="textInputStyle" />
+
+    <declare-styleable name="InputField">
+        <attr name="fieldTitle" format="string" />
+        <attr name="fieldDescription" format="string" />
+        <attr name="fieldHint" format="string" />
+        <attr name="fieldRequired" format="boolean" />
+        <attr name="inputType" format="enum">
+            <enum name="textInput" value="0" />
+            <enum name="numberInput" value="1" />
+            <enum name="textArea" value="2" />
+            <enum name="dropdown" value="3" />
+            <enum name="radioGroup" value="4" />
+            <enum name="checkboxGroup" value="5" />
+        </attr>
+        <attr name="supportingText" format="string" />
+        <attr name="maxLength" format="integer" />
+        <attr name="minLength" format="integer" />
+        <attr name="maxLines" format="integer" />
+        <attr name="minLines" format="integer" />
+        <attr name="options" format="reference" />
+        <attr name="fieldEnabled" format="boolean" />
+        <attr name="errorText" format="string" />
+        <attr name="showError" format="boolean" />
+        <attr name="requiredColor" format="color|reference" />
+        <attr name="errorColor" format="color|reference" />
+        <attr name="titleTextAppearance" format="reference" />
+        <attr name="descriptionTextAppearance" format="reference" />
+    </declare-styleable>
+</resources>

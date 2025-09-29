@@ -1,19 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="MergeRootFrame">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        <com.edts.components.header.Header
+            android:id="@+id/cvHeaderTeamReportActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rightButtonSrc="@drawable/ic_star"
+            app:sectionSubtitleText="Manage your account preferences"
+            app:sectionTitleText="Laporan Tim"
+            app:showLeftButton="true"
+            app:showRightButton="false"
+            app:showSectionSubtitle="false"
+            app:showSectionTitle="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-8dp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvHeaderTeamReportActivity"
+        app:layout_constraintBottom_toTopOf="@+id/cvBottomNavigation" />
 
+    <com.edts.components.bottom.navigation.BottomNavigation
+        android:id="@+id/cvBottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:itemCount="four"
+        app:item1State="active"
+        app:item1Icon="@drawable/ic_navigation"
+        app:item1Text="Home"
+        app:item1ShowBadge="false"
+        app:item2State="inactive"
+        app:item2Icon="@drawable/ic_user_people"
+        app:item2Text="Karyawan"
+        app:item2ShowBadge="false"
+        app:item3State="inactive"
+        app:item3Icon="@drawable/ic_notification_horn"
+        app:item3Text="Event"
+        app:item3ShowBadge="false"
+        app:item4State="inactive"
+        app:item4Icon="@drawable/ic_user_person"
+        app:item4Text="Profil"
+        app:item4ShowBadge="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

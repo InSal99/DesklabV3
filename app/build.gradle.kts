@@ -1,16 +1,16 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.example.desklabv3"
-    compileSdk = 35
+    namespace = "com.edts.desklabv3"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.desklabv3"
+        applicationId = "com.edts.desklabv3"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -30,6 +30,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    configurations.all {
+        resolutionStrategy {
+            force( "org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
+            force ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
+        }
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -39,14 +45,18 @@ android {
 }
 
 dependencies {
-
     implementation(project(":core"))
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation(libs.androidx.constraintlayout)
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation("com.airbnb.android:lottie:5.2.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.2") {
+        isTransitive = true
+    }
 }

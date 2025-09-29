@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EventModalityConfirmation">
+        <attr name="modalTitle" format="string" />
+        <attr name="modalDescription" format="string" />
+        <attr name="modalConfirmButtonLabel" format="string" />
+        <attr name="modalCloseButtonLabel" format="string" />
+    </declare-styleable>
+</resources>

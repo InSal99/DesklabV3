@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMultiDetail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius_12dp"
+    app:strokeWidth="@dimen/stroke_weight_1dp"
+    app:strokeColor="?attr/colorStrokeSubtle"
+    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
+    app:cardElevation="2dp"
+    app:rippleColor="@android:color/transparent"
+    android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
+    android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_12dp">
+
+        <com.edts.components.card.multi.detail.CardLeftSlot
+            android:id="@+id/cvCardLeftSlot"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:slotType="icon"
+            app:slotSrc="@drawable/ic_star"
+            app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cmdContent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cmdContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4dp"
+            android:paddingHorizontal="@dimen/margin_4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlot">
+
+            <TextView
+                style="?attr/l2Medium"
+                android:id="@+id/tvCmdTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/card_multi_detail_title"
+                android:textColor="?attr/colorForegroundPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/cvCmdDescription"/>
+
+            <com.edts.components.card.multi.detail.CardMultiDetailWrapperInfo
+                android:id="@+id/cvCmdDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2dp"
+                app:info1Text="Cuti Tahunan"
+                app:info2Text="3 Hari"
+                app:showInfo2="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCmdTitle"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/ivCmdRightSlot"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/card_right_slot_image_content_view"
+            android:src="@drawable/placeholder"
+            app:layout_constraintDimensionRatio="1:1"
+            app:tint="?attr/colorForegroundTertiary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
