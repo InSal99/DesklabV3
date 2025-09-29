@@ -1,4 +1,4 @@
-package com.edts.components.chip
+package com.edts.components.selection
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator

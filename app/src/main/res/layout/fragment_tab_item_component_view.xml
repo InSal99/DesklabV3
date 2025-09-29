@@ -58,8 +58,6 @@
             app:tabItemShowBadge="true"
             app:tabItemState="inactive" />
 
-
-
     </LinearLayout>
 
 </FrameLayout>
