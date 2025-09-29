@@ -19,43 +19,20 @@ import com.edts.components.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
-/**
- * A custom UI component that displays a single month as a clickable picker.
- *
- * This component is stateful and visually represents different states based on user interaction
- * and its persistent type. It separates its logic into a persistent `PickerType` (e.g., selected, unselected)
- * and a temporary `InteractionState` (e.g., pressed, focused) for robust state management.
- *
- */
 class MonthlyPicker @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
-    /**
-     * Defines the persistent, logical state of the picker.
-     * This state is changed by user clicks and can be set programmatically or via XML.
-     */
     enum class PickerType {
-        /** The default state, indicating the month is not selected. */
         UNSELECTED,
-        /** The state indicating the month has been chosen by the user. */
         SELECTED,
-        /** The state where the picker is inactive and cannot be interacted with. */
         DISABLED
     }
 
-    /**
-     * Defines the temporary, visual state based on direct user interaction.
-     * This state is managed internally and should not be set from outside the class.
-     */
     enum class InteractionState {
-        /** The default state when there is no active interaction. */
         REST,
-        /** The state when the user is actively pressing down on the view. */
         ON_PRESS,
-        /** The state when the view is highlighted by a focus event (e.g., keyboard navigation). */
         ON_FOCUS
     }
 
@@ -68,17 +45,8 @@ class MonthlyPicker @JvmOverloads constructor(
     private val colorCache = mutableMapOf<Int, Int>()
     private val drawableCache = mutableMapOf<String, Drawable>()
 
-    /**
-     * The delegate responsible for handling click events on this picker.
-     * Assign an object that implements [MonthlyPickerDelegate] to receive callbacks.
-     */
     var delegate: MonthlyPickerDelegate? = null
 
-    /**
-     * The persistent type of the picker, which determines its primary appearance and state.
-     * Can be set via the `app:pickerType` XML attribute or programmatically.
-     * Changing this value will trigger a visual update.
-     */
     var type: PickerType = PickerType.UNSELECTED
         set(value) {
             if (field != value) {
@@ -87,7 +55,6 @@ class MonthlyPicker @JvmOverloads constructor(
             }
         }
 
-    /** The internal interaction state of the picker. */
     private var interactionState: InteractionState = InteractionState.REST
         set(value) {
             if (field != value) {
@@ -109,9 +76,6 @@ class MonthlyPicker @JvmOverloads constructor(
         setupComponent()
     }
 
-    /**
-     * Parses custom XML attributes and initializes the component's state.
-     */
     private fun parseAttributes(attrs: AttributeSet?) {
         attrs?.let {
             context.withStyledAttributes(it, R.styleable.MonthlyPicker, 0, 0) {
@@ -126,10 +90,6 @@ class MonthlyPicker @JvmOverloads constructor(
         }
     }
 
-    /**
-     * Applies all visual styles to the component based on its current `type` and `interactionState`.
-     * This includes text color, background, and stroke. It also manages the `isEnabled` property.
-     */
     private fun applyStyling() {
         isEnabled = (type != PickerType.DISABLED)
 
@@ -147,11 +107,6 @@ class MonthlyPicker @JvmOverloads constructor(
         background = backgroundDrawable
     }
 
-    /**
-     * Creates the appropriate [Drawable] for the component's background by combining base styles
-     * from the `PickerType` with temporary modifiers from the `InteractionState`.
-     * @return A drawable representing the current combined state.
-     */
     private fun createBackgroundDrawable(): Drawable {
         val (backgroundColor, strokeColor) = when (type) {
             PickerType.UNSELECTED -> Pair(Color.TRANSPARENT, getCachedColor(R.attr.colorStrokeSubtle))
@@ -179,17 +134,11 @@ class MonthlyPicker @JvmOverloads constructor(
         return baseDrawable
     }
 
-    /**
-     * Handles focus changes to update the `interactionState`.
-     */
     override fun onFocusChanged(gainFocus: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
         super.onFocusChanged(gainFocus, direction, previouslyFocusedRect)
         interactionState = if (gainFocus) InteractionState.ON_FOCUS else InteractionState.REST
     }
 
-    /**
-     * Handles touch events to manage the `interactionState` and toggle the `type` on click.
-     */
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (!isEnabled) return super.onTouchEvent(event)
 
@@ -212,9 +161,6 @@ class MonthlyPicker @JvmOverloads constructor(
         return super.onTouchEvent(event)
     }
 
-    /**
-     * Performs the click action, logging the event and notifying the delegate.
-     */
     override fun performClick(): Boolean {
         Log.d("CustomMonthlyPicker", "Monthly Picker Clicked ✅")
         if (!isEnabled) return false
@@ -222,18 +168,11 @@ class MonthlyPicker @JvmOverloads constructor(
         return super.performClick()
     }
 
-    /**
-     * Sets the text to be displayed on the picker.
-     * @param label The string to display (e.g., "Jan", "Feb").
-     */
     fun setMonthLabel(label: String) {
         this.monthLabel = label
         monthLabelView.text = label
     }
 
-    /**
-     * Finalizes component setup.
-     */
     private fun setupComponent() {
         cardElevation = 0f
         radius = defaultCornerRadius
@@ -243,9 +182,6 @@ class MonthlyPicker @JvmOverloads constructor(
         applyStyling()
     }
 
-    /**
-     * Creates and configures the internal TextView for displaying the month label.
-     */
     private fun createMonthLabelView(): MaterialTextView {
         val style = R.style.TextMedium_Label2
         return MaterialTextView(context, null, 0).apply {
@@ -259,9 +195,6 @@ class MonthlyPicker @JvmOverloads constructor(
         }
     }
 
-    /**
-     * Preloads theme color attributes into a cache for faster access.
-     */
     private fun preloadColors() {
         val colorAttrs = mapOf(
             R.attr.colorForegroundPrimary to R.color.color000,
@@ -279,16 +212,10 @@ class MonthlyPicker @JvmOverloads constructor(
         }
     }
 
-    /**
-     * Retrieves a color from the cache.
-     */
     private fun getCachedColor(@AttrRes attrRes: Int): Int {
         return colorCache[attrRes] ?: resolveColorAttribute(attrRes, android.R.color.transparent)
     }
 
-    /**
-     * Resolves a color attribute from the current theme, providing a fallback if not found.
-     */
     private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColorRes: Int): Int {
         val typedValue = TypedValue()
         return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {

@@ -9,7 +9,6 @@ import com.edts.components.databinding.EventModalityLoadingBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object ModalityLoadingPopUp {
-
     fun show(
         context: Context,
         title: String,

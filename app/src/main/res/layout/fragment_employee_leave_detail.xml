@@ -8,14 +8,20 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <ImageView
-        android:id="@+id/ivEmployeeLeaveDetailHeader"
+    <com.edts.components.header.Header
+        android:id="@+id/cvEmployeeLeaveDetailHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:contentDescription="Invitation Header"
-        android:src="@drawable/image_employee_leave_detail"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/bg_rectangle_shadow_tinted"
+        app:rightButtonSrc="@drawable/ic_star"
+        app:sectionSubtitleText="Manage your account preferences"
+        app:sectionTitleText="Detail Cuti"
+        app:showLeftButton="true"
+        app:showRightButton="false"
+        app:showSectionSubtitle="false"
+        app:showSectionTitle="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <com.edts.components.card.detail.CardDetailInfoB
         android:id="@+id/cvEmployeeProfile"
@@ -24,13 +30,13 @@
         android:layout_marginHorizontal="@dimen/margin_16dp"
         android:layout_marginTop="@dimen/margin_24dp"
         app:cdibDescText="Associate Product Manager"
-        app:cdibLeftSlotSrc="@drawable/image_avatar_placeholder"
+        app:cdibLeftSlotSrc="@drawable/image_avatar_raka"
         app:cdibLeftSlotType="image"
         app:cdibShowIndicator="false"
         app:cdibShowRightSlot="false"
         app:cdibTitleText="Raka Aditya Pratama"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivEmployeeLeaveDetailHeader" />
+        app:layout_constraintTop_toBottomOf="@id/cvEmployeeLeaveDetailHeader" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLeaveInfoCards"

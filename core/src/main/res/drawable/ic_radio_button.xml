@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <!-- Error state -->
-    <item android:state_checked="false" android:state_enabled="true" app:radio_state_error="true">
-        <shape android:shape="oval">
-            <stroke android:width="@dimen/stroke_weight_1dp" android:color="@color/colorRed50"/>
-            <solid android:color="@color/colorFFF"/>
-            <size android:width="16dp" android:height="16dp"/>
-        </shape>
+    <item android:state_checked="false"
+        android:state_enabled="true"
+        app:radio_state_error="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <stroke android:width="@dimen/stroke_weight_1dp" android:color="@color/colorRed50"/>
+                    <solid android:color="@color/colorFFF"/>
+                    <size android:width="16dp" android:height="16dp"/>
+                </shape>
+            </item>
+            <!-- Empty inner layer for consistency -->
+            <item android:top="8dp" android:bottom="8dp" android:left="8dp" android:right="8dp">
+                <shape android:shape="oval">
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+        </layer-list>
     </item>
 
     <!-- Selected & Not Disabled -->
-    <item android:state_checked="true" android:state_enabled="true">
+    <item android:state_checked="true"
+        android:state_enabled="true">
         <layer-list>
             <item>
                 <shape android:shape="oval">
@@ -28,7 +43,8 @@
     </item>
 
     <!-- Selected & Disabled -->
-    <item android:state_checked="true" android:state_enabled="false">
+    <item android:state_checked="true"
+        android:state_enabled="false">
         <layer-list>
             <item>
                 <shape android:shape="oval">
@@ -46,20 +62,41 @@
     </item>
 
     <!-- Unselected & Not Disabled -->
-    <item android:state_checked="false" android:state_enabled="true">
-        <shape android:shape="oval">
-            <stroke android:width="1dp" android:color="@color/colorNeutral30"/>
-            <size android:width="16dp" android:height="16dp"/>
-            <solid android:color="@color/colorFFF"/>
-        </shape>
+    <item android:state_checked="false"
+        android:state_enabled="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <stroke android:width="1dp" android:color="@color/colorNeutral30"/>
+                    <size android:width="16dp" android:height="16dp"/>
+                    <solid android:color="@color/colorFFF"/>
+                </shape>
+            </item>
+            <item android:top="8dp" android:bottom="8dp" android:left="8dp" android:right="8dp">
+                <shape android:shape="oval">
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+        </layer-list>
     </item>
 
     <!-- Unselected & Disabled -->
-    <item android:state_checked="false" android:state_enabled="false">
-        <shape android:shape="oval">
-            <stroke android:width="1dp" android:color="@color/colorNeutral30"/>
-            <size android:width="16dp" android:height="16dp"/>
-            <solid android:color="@color/color000Opacity5"/>
-        </shape>
+    <item android:state_checked="false"
+        android:state_enabled="false">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <stroke android:width="1dp" android:color="@color/colorNeutral30"/>
+                    <size android:width="16dp" android:height="16dp"/>
+                    <solid android:color="@color/color000Opacity5"/>
+                </shape>
+            </item>
+            <item android:top="8dp" android:bottom="8dp" android:left="8dp" android:right="8dp">
+                <shape android:shape="oval">
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+        </layer-list>
     </item>
+
 </selector>

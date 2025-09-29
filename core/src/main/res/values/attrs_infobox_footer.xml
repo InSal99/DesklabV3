@@ -4,7 +4,6 @@
         <attr name="text" />
         <attr name="variant" />
         <attr name="showInfoBox" format="boolean" />
-
         <attr name="footerType" />
         <attr name="primaryButtonText" />
         <attr name="secondaryButtonText" />
@@ -14,6 +13,6 @@
         <attr name="footerDescription" />
         <attr name="statusBadgeText" />
         <attr name="statusBadgeType" />
-
+        <attr name="footerHasStroke" />
     </declare-styleable>
 </resources>

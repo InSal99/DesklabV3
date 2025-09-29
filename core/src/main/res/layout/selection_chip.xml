@@ -13,7 +13,6 @@
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
-
     <LinearLayout
         android:id="@+id/wrapperChip"
         android:layout_width="wrap_content"
@@ -30,7 +29,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:text="label"
-            android:textColor="?attr/colorForegroundPrimary" />
+            android:textColor="?attr/colorForegroundPrimary"/>
 
         <com.edts.components.badge.Badge
             android:id="@+id/cvBadgeChip"
@@ -54,5 +53,4 @@
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundSecondary"/>
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

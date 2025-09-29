@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toast_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
+    android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_8dp"
-    android:paddingHorizontal="@dimen/margin_12dp">
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_icon"
@@ -22,7 +21,6 @@
         style="?attr/l2Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="Test"/>
-
+        android:text="Test"
+        android:textColor="@color/colorWhite"/>
 </androidx.appcompat.widget.LinearLayoutCompat>

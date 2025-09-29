@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundPrimary" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
-                android:src="@drawable/placeholder"
+                android:src="@drawable/ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary" />
 
             <TextView
@@ -40,6 +41,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
             app:fieldHint="Enter your full name"
             app:fieldRequired="true"
             app:fieldDescription="This is description"
@@ -52,6 +54,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldHint="Enter your full name"
             app:fieldRequired="true"
             app:fieldDescription="This is description"
@@ -65,6 +68,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldHint="Enter your full name"
             app:fieldRequired="true"
             app:fieldDescription="This is description"
@@ -77,7 +81,47 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_20dp"
+            app:fieldHint="Enter your age"
+            app:fieldRequired="true"
+            app:fieldDescription="This is description"
+            app:fieldTitle="Age"
+            app:fieldEnabled="true"
+            app:supportingText="Some supporting text"
+            app:inputType="numberInput"
+            app:maxLength="50" />
+
+        <com.edts.components.input.field.InputField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:fieldHint="Enter yourage"
+            app:fieldRequired="true"
+            app:fieldDescription="This is description"
+            app:fieldTitle="Age"
+            app:fieldEnabled="true"
+            app:errorText="Some error"
+            app:supportingText="Some supporting text"
+            app:inputType="numberInput"
+            app:maxLength="50" />
+
+        <com.edts.components.input.field.InputField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            app:fieldHint="Enter your age"
+            app:fieldRequired="true"
+            app:fieldDescription="This is description"
+            app:fieldTitle="Age"
+            app:fieldEnabled="false"
+            app:supportingText="Some supporting text"
+            app:inputType="numberInput"
+            app:maxLength="50" />
+
+        <com.edts.components.input.field.InputField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20dp"
             app:fieldDescription="Provide a brief description"
             app:fieldHint="Enter description here"
             app:fieldTitle="Description"
@@ -91,7 +135,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldDescription="Provide a brief description"
             app:fieldHint="Enter description here"
             app:fieldTitle="Description"
@@ -106,7 +150,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldDescription="Provide a brief description"
             app:fieldHint="Enter description here"
             app:fieldTitle="Description"
@@ -120,7 +164,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_20dp"
             app:fieldHint="Select your country"
             app:fieldDescription="Some description"
             app:fieldRequired="true"
@@ -133,7 +177,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldHint="Select your country"
             app:fieldDescription="Some description"
             app:fieldRequired="true"
@@ -147,7 +191,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldHint="Select your country"
             app:fieldDescription="Some description"
             app:fieldRequired="true"
@@ -160,7 +204,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_20dp"
             app:fieldRequired="true"
             app:fieldDescription="Some description"
             app:fieldEnabled="true"
@@ -172,7 +216,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldRequired="true"
             app:errorText="Some Error"
             app:fieldDescription="Some description"
@@ -185,7 +229,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldRequired="true"
             app:fieldDescription="Some description"
             app:fieldEnabled="false"
@@ -197,7 +241,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_20dp"
             app:fieldDescription="Select all that apply"
             app:fieldTitle="Interests"
             app:fieldEnabled="true"
@@ -208,7 +252,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldDescription="Select all that apply"
             app:fieldTitle="Interests"
             app:errorText="Some error"
@@ -219,7 +263,7 @@
         <com.edts.components.input.field.InputField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
             app:fieldDescription="Select all that apply"
             app:fieldTitle="Interests"
             app:fieldEnabled="false"

@@ -14,7 +14,7 @@
         android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Cuti Tahun Ini" />
+        tools:text="Cuti Tahun Ini"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvLeaveQuota"
@@ -25,7 +25,7 @@
         android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintStart_toStartOf="@id/tvLeaveQuotaTitle"
         app:layout_constraintTop_toBottomOf="@id/tvLeaveQuotaTitle"
-        tools:text="3 hari" />
+        tools:text="3 hari"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvExpiredDate"
@@ -36,7 +36,7 @@
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintStart_toStartOf="@id/tvLeaveQuota"
         app:layout_constraintTop_toBottomOf="@id/tvLeaveQuota"
-        tools:text="Kedaluwarsa: 01/08/2026" />
+        tools:text="Kedaluwarsa: 01/08/2026"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvLeaveUsed"
@@ -47,6 +47,5 @@
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintStart_toStartOf="@id/tvExpiredDate"
         app:layout_constraintTop_toBottomOf="@id/tvExpiredDate"
-        tools:text="Cuti Terpakai: 1 Hari" />
-
+        tools:text="Cuti Terpakai: 1 Hari"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.leave.ui.laporantim.TeamReportLeaveView">
 
+    <ImageView
+        android:id="@+id/ivEmptyStateLeaveList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:paddingBottom="@dimen/margin_24dp"
+        android:clipToPadding="false"
+        android:contentDescription="Empty State"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_state_leave"
+        android:visibility="gone"
+        app:layout_constraintDimensionRatio="328:450"
+        app:layout_constraintTop_toBottomOf="@+id/cvSearchKaryawan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <com.edts.components.input.search.InputSearch
         android:id="@+id/cvSearchKaryawan"
         android:layout_width="0dp"
@@ -29,23 +46,7 @@
         app:layout_constraintTop_toTopOf="@+id/cvSearchKaryawan"
         app:layout_constraintBottom_toBottomOf="@+id/cvSearchKaryawan"
         app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <ImageView
-        android:id="@+id/ivEmptyStateLeaveList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:paddingBottom="@dimen/margin_24dp"
-        android:clipToPadding="false"
-        android:contentDescription="Empty State"
-        android:scaleType="centerCrop"
-        android:src="@drawable/empty_state_leave"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/cvSearchKaryawan"
-        app:layout_constraintStart_toStartOf="@id/cvSearchKaryawan"
-        app:layout_constraintEnd_toEndOf="@id/cvSortBtn"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:sortIcon="@drawable/ic_sort"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLeaveCards"
@@ -60,5 +61,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_leave_card" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

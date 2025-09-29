@@ -13,16 +13,11 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 import androidx.core.view.isVisible
 
-/**
- * A custom view that displays a notification with a type, title, description, and an optional button.
- * This component extends MaterialCardView for a flatter view hierarchy and better performance.
- */
 class EventNotificationCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     enum class EventType(val displayName: String) {
         GENERAL_EVENT("GENERAL EVENT"),
         PEOPLE_DEVELOPMENT("PEOPLE DEVELOPMENT"),
@@ -38,9 +33,6 @@ class EventNotificationCard @JvmOverloads constructor(
 
     private val binding: EventNotificationCardBinding = EventNotificationCardBinding.inflate(LayoutInflater.from(context), this, true)
 
-    /**
-     * The delegate responsible for handling click events on this component.
-     */
     var delegate: EventNotificationCardDelegate? = null
 
     var title: String
@@ -138,4 +130,3 @@ class EventNotificationCard @JvmOverloads constructor(
         }
     }
 }
-

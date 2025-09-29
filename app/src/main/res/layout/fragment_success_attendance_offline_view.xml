@@ -6,8 +6,6 @@
     android:paddingHorizontal="@dimen/margin_16dp"
     android:paddingTop="@dimen/margin_16dp"
     android:paddingBottom="@dimen/margin_8dp"
-    android:layout_marginBottom="@dimen/margin_24dp"
-    android:layout_marginTop="44dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.event.ui.success.SuccessAttendanceOfflineView"
     android:background="?attr/colorBackgroundPrimary">
@@ -20,14 +18,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
+<!--        <ImageView-->
+<!--            android:id="@+id/ivIllustAttendanceOffline"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:contentDescription="Illustrasi"-->
+<!--            android:src="@drawable/il_check"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            app:layout_constraintDimensionRatio="1:1"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/ivIllustAttendanceOffline"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="Illustrasi"
-            android:src="@drawable/il_check"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1:1"
+            app:lottie_rawRes="@raw/il_success"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

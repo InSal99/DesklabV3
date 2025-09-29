@@ -9,7 +9,7 @@ import androidx.annotation.AttrRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
-import com.edts.components.databinding.LeaveQuotaDescriptionBinding // Import the generated binding class
+import com.edts.components.databinding.LeaveQuotaDescriptionBinding
 import java.util.regex.Pattern
 
 class LeaveQuotaDescription @JvmOverloads constructor(
@@ -17,7 +17,6 @@ class LeaveQuotaDescription @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
-
     private val binding: LeaveQuotaDescriptionBinding
     private val defaultTextColor: Int
     private val attentionTextColor: Int

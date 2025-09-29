@@ -1,13 +1,20 @@
 package com.edts.desklabv3.features.home.ui
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.edts.components.utils.resolveColorAttribute
 import com.edts.desklabv3.R
+import com.edts.desklabv3.core.util.createTopShadowBackgroundCustom
 import com.edts.desklabv3.databinding.FragmentHomeDaftarRsvpViewBinding
 import com.edts.desklabv3.features.home.model.ActivityItem
 import com.edts.desklabv3.features.home.model.ActivityType
@@ -21,7 +28,6 @@ class HomeDaftarRSVPView : Fragment() {
     private lateinit var groupedActivitiesAdapter: GroupedActivitiesAdapter
 
     private var chipDecoration: RecyclerView.ItemDecoration? = null
-    private var activitiesDecoration: RecyclerView.ItemDecoration? = null
 
     private val allActivities = listOf(
         ActivityItem("EDTS Town-Hall 2025: Power of Change", "15:00 - 17:00 WIB", true, ActivityType.Event, "2025-07-23"),
@@ -51,9 +57,17 @@ class HomeDaftarRSVPView : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.clContentLayout.background = requireContext().createTopShadowBackgroundCustom(
+            fillColor = requireContext().resolveColorAttribute(android.R.attr.colorBackground, com.edts.components.R.color.colorFFF),
+            shadowOffsetDp = 12
+        )
+
         setupChipRecyclerView()
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
+
+        binding.cvNotificationBadge.visibility = View.INVISIBLE
     }
 
     override fun onDestroyView() {
@@ -105,15 +119,6 @@ class HomeDaftarRSVPView : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             isNestedScrollingEnabled = false
 
-//            // Only add decoration once during setup
-//            if (activitiesDecoration == null) {
-//                activitiesDecoration = SpaceItemDecoration(
-//                    context = requireContext(),
-//                    spaceResId = R.dimen.activity_group_item_spacing,
-//                    orientation = SpaceItemDecoration.VERTICAL
-//                )
-//                addItemDecoration(activitiesDecoration!!)
-//            }
         }
     }
 
@@ -128,11 +133,9 @@ class HomeDaftarRSVPView : Fragment() {
             else -> allActivities
         }
 
-        // Update the grouped activities RecyclerView data only
         val groupedData = GroupedActivitiesAdapter.groupActivitiesByDate(filteredActivities)
         groupedActivitiesAdapter.updateDateGroups(groupedData)
 
-        // Update empty state visibility
         updateEmptyStateVisibility()
     }
 
@@ -148,16 +151,30 @@ class HomeDaftarRSVPView : Fragment() {
 
     private fun handleActivityClick(activity: ActivityItem) {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
+
+        if (activity.title == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
+            val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
+            if (!useEndList) {
+                navigateToEventList(activity)
+            }
+        } else {
+            Log.d("HomeView", "Non-event activity clicked: ${activity.title}")
+        }
     }
 
-    fun updateChipTexts(newTexts: Array<String>) {
-        if (::chipAdapter.isInitialized) {
-            chipAdapter.updateChipTexts(newTexts)
-        }
+    private fun navigateToEventList(activity: ActivityItem) {
+        val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
+        requireActivity()
+            .supportFragmentManager
+            .setFragmentResult("navigate_fragment", result)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeDaftarRSVPView()
+        fun newInstance(isEndFlow: Boolean = false) = HomeDaftarRSVPView().apply {
+            arguments = Bundle().apply {
+                putBoolean("use_end_list", isEndFlow)
+            }
+        }
     }
 }

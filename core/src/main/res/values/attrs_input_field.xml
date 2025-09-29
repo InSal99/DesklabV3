@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Material Design Text Input Style -->
     <attr name="textInputStyle" />
 
-    <!-- InputField Custom Attributes -->
     <declare-styleable name="InputField">
-        <!-- Existing attributes -->
         <attr name="fieldTitle" format="string" />
         <attr name="fieldDescription" format="string" />
         <attr name="fieldHint" format="string" />
         <attr name="fieldRequired" format="boolean" />
         <attr name="inputType" format="enum">
             <enum name="textInput" value="0" />
-            <enum name="textArea" value="1" />
-            <enum name="dropdown" value="2" />
-            <enum name="radioGroup" value="3" />
-            <enum name="checkboxGroup" value="4" />
+            <enum name="numberInput" value="1" />
+            <enum name="textArea" value="2" />
+            <enum name="dropdown" value="3" />
+            <enum name="radioGroup" value="4" />
+            <enum name="checkboxGroup" value="5" />
         </attr>
         <attr name="supportingText" format="string" />
         <attr name="maxLength" format="integer" />
@@ -23,17 +21,11 @@
         <attr name="maxLines" format="integer" />
         <attr name="minLines" format="integer" />
         <attr name="options" format="reference" />
-
-        <!-- New error and disabled state attributes -->
         <attr name="fieldEnabled" format="boolean" />
         <attr name="errorText" format="string" />
         <attr name="showError" format="boolean" />
-
-        <!-- Color attributes for styling -->
         <attr name="requiredColor" format="color|reference" />
         <attr name="errorColor" format="color|reference" />
-
-        <!-- Text appearance attributes -->
         <attr name="titleTextAppearance" format="reference" />
         <attr name="descriptionTextAppearance" format="reference" />
     </declare-styleable>

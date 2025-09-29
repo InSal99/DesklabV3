@@ -18,14 +18,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import com.edts.components.R
-import com.edts.components.input.search.InputSearchDelegate
 
 class InputSearch @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: InputSearchBinding = InputSearchBinding.inflate(
         LayoutInflater.from(context),
         this,
@@ -118,7 +116,7 @@ class InputSearch @JvmOverloads constructor(
                 setupFocusListeners()
                 setupTextWatcher()
                 setupCloseIconListener()
-                setupSearchActionListener() // Uncommented this line
+                setupSearchActionListener()
             } finally {
                 recycle()
             }
@@ -205,7 +203,6 @@ class InputSearch @JvmOverloads constructor(
                 Log.d(TAG, "  - Click timestamp: $currentTime")
 
                 binding.etSearch.text?.clear()
-                // Clear focus and hide keyboard when close icon is clicked
                 binding.etSearch.clearFocus()
                 hideKeyboard()
 
@@ -236,7 +233,6 @@ class InputSearch @JvmOverloads constructor(
                 Log.d(TAG, "  - Total searches: $searchSubmitCount")
                 Log.d(TAG, "  - Action ID: $actionId")
 
-                // Clear focus and hide keyboard when search is submitted
                 binding.etSearch.clearFocus()
                 hideKeyboard()
 
@@ -391,7 +387,6 @@ class InputSearch @JvmOverloads constructor(
         binding.etSearch.text?.clear()
     }
 
-    // Add method to manually clear focus (useful for external clicks)
     override fun clearFocus() {
         binding.etSearch.clearFocus()
         hideKeyboard()

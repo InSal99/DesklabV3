@@ -46,22 +46,6 @@ class ChipTeamReportAdapter(
         notifyItemChanged(newPosition)
     }
 
-    fun updateChipTexts(newChipTexts: Array<String>) {
-        chipTexts = newChipTexts
-        selectedPosition = if (newChipTexts.isNotEmpty()) 0 else -1
-        notifyDataSetChanged()
-    }
-
-    fun getSelectedPosition(): Int = selectedPosition
-
-    fun getSelectedChipText(): String? {
-        return if (selectedPosition in chipTexts.indices) {
-            chipTexts[selectedPosition]
-        } else {
-            null
-        }
-    }
-
     private fun getChipBackgroundColor(chipText: String, context: android.content.Context): Int {
         return when (chipText) {
             "Mingguan" -> resolveColorAttribute(R.attr.colorBackgroundPrimaryInverse, context)
@@ -88,6 +72,7 @@ class ChipTeamReportAdapter(
     }
 
     inner class ChipViewHolder(private val binding: ItemChipBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var lastClickTime = 0L
 
         fun bind(chipText: String, isSelected: Boolean, position: Int) {
             binding.chip.apply {
@@ -99,6 +84,14 @@ class ChipTeamReportAdapter(
                 chipState = if (isSelected) Chip.ChipState.ACTIVE else Chip.ChipState.INACTIVE
 
                 setOnClickListener {
+//                    if (!isSelected && position != selectedPosition) {
+//                        updateSelectedPosition(position)
+//                        onChipClick(position, chipText)
+//                    }
+                    val currentTime = System.currentTimeMillis()
+                    if (currentTime - lastClickTime < 300) return@setOnClickListener
+                    lastClickTime = currentTime
+
                     if (!isSelected && position != selectedPosition) {
                         updateSelectedPosition(position)
                         onChipClick(position, chipText)

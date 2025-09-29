@@ -9,15 +9,17 @@ import com.edts.components.footer.Footer
 import com.edts.components.footer.FooterDelegate
 import com.edts.components.infobox.InfoBox
 import com.edts.components.status.badge.StatusBadge
+import com.edts.components.utils.dpToPx
 
 class InfoBoxFooter @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
     private val infoBox: InfoBox
     private val footer: Footer
+    private var _footerType: Footer.FooterType = Footer.FooterType.CALL_TO_ACTION
+    private var attrsHasStrokeBeenSet: Boolean = false
 
     var infoText: CharSequence? = null
         set(value) {
@@ -41,9 +43,11 @@ class InfoBoxFooter @JvmOverloads constructor(
         set(value) {
             field = value
             infoBox.visibility = if (value) View.VISIBLE else View.GONE
-        }
 
-    private var _footerType: Footer.FooterType = Footer.FooterType.CALL_TO_ACTION
+            if (!attrsHasStrokeBeenSet) {
+                footer.setStroke(!value)
+            }
+        }
 
     init {
         orientation = VERTICAL
@@ -53,7 +57,7 @@ class InfoBoxFooter @JvmOverloads constructor(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                setMargins(0, 0, 0, 0)
+                setMargins(0, 8.dpToPx, 0, 0)
             }
         }
 
@@ -64,7 +68,6 @@ class InfoBoxFooter @JvmOverloads constructor(
             ).apply {
                 setMargins(0, 0, 0, 0)
             }
-            setShadowVisibility(false)
         }
 
         addView(infoBox)
@@ -102,7 +105,13 @@ class InfoBoxFooter @JvmOverloads constructor(
 
             footer.setPrimaryButtonEnabled(typedArray.getBoolean(R.styleable.InfoBoxFooter_primaryButtonEnabled, true))
             footer.setSecondaryButtonEnabled(typedArray.getBoolean(R.styleable.InfoBoxFooter_secondaryButtonEnabled, true))
-
+            if (typedArray.hasValue(R.styleable.InfoBoxFooter_footerHasStroke)) {
+                attrsHasStrokeBeenSet = true
+                val hasStroke = typedArray.getBoolean(R.styleable.InfoBoxFooter_footerHasStroke, false)
+                footer.setStroke(hasStroke)
+            } else {
+                footer.setStroke(!isInfoBoxVisible)
+            }
         } finally {
             typedArray.recycle()
         }
@@ -157,6 +166,11 @@ class InfoBoxFooter @JvmOverloads constructor(
 
     fun setDualButtonDescription(title: String, supportText1: String, supportText2: String) {
         footer.setDualButtonDescription(title, supportText1, supportText2)
+    }
+
+    fun setFooterStroke(hasStroke: Boolean) {
+        attrsHasStrokeBeenSet = true
+        footer.setStroke(hasStroke)
     }
 
     fun getInfoBox(): InfoBox = infoBox

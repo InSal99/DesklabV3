@@ -45,7 +45,6 @@
                 android:id="@+id/tvDropdownFilterDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:text="Description"
@@ -81,8 +80,6 @@
             app:tint="?attr/colorForegroundSecondary"
             app:layout_constraintStart_toEndOf="@+id/cvBadgeDropdownFilter"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.google.android.material.card.MaterialCardView>

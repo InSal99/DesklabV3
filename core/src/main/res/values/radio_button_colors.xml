@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Radio Button Colors -->
     <color name="radio_border_normal">?attr/colorStrokeInteractive</color>
     <color name="radio_border_disabled">?attr/colorStrokeSubtle</color>
     <color name="radio_center_selected">?attr/colorForegroundDisabled</color>
     <color name="radio_center_disabled">?attr/colorBackgroundPrimary</color>
     <color name="radio_primary">?attr/colorBackgroundAccentPrimaryIntense</color>
     <color name="radio_primary_center">?attr/colorForegroundWhite</color>
-
-    <!-- Text Colors -->
     <color name="radio_text_default">?attr/colorForegroundPrimary</color>
     <color name="radio_text_disabled">?attr/colorForegroundDisabled</color>
 </resources>

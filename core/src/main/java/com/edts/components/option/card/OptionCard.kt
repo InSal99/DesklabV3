@@ -1,7 +1,5 @@
 package com.edts.components.option.card
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
@@ -10,8 +8,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
@@ -24,7 +20,6 @@ class OptionCard @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding = OptionCardBinding.inflate(LayoutInflater.from(context), this, true)
 
     var delegate: OptionCardDelegate? = null
@@ -68,9 +63,12 @@ class OptionCard @JvmOverloads constructor(
 
     private fun initAttrs(attrs: AttributeSet?) {
         if (attrs != null) {
-            context.obtainStyledAttributes(attrs, R.styleable.OptionCard).use {
-                titleText = it.getString(R.styleable.OptionCard_cardText)
-                iconDrawable = it.getDrawable(R.styleable.OptionCard_cardIcon)
+            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.OptionCard)
+            try {
+                titleText = typedArray.getString(R.styleable.OptionCard_cardText)
+                iconDrawable = typedArray.getDrawable(R.styleable.OptionCard_cardIcon)
+            } finally {
+                typedArray.recycle()
             }
         }
     }

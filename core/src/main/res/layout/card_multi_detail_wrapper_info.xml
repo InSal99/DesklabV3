@@ -16,7 +16,7 @@
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivDivider"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/ivDivider"
@@ -44,5 +44,4 @@
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toEndOf="@+id/ivDivider"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

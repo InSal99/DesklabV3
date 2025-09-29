@@ -5,56 +5,115 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
+import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
 import com.edts.desklabv3.R
+import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SuccessRegistrationView.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SuccessRegistrationView : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentSuccessAttendanceOfflineViewBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var flowType: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_success_registration_view, container, false)
+    ): View {
+        _binding = FragmentSuccessAttendanceOfflineViewBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SuccessRegistrationView.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SuccessRegistrationView().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        flowType = arguments?.getString("flow_type", "") ?: ""
+
+        setupUI()
+        setupButtonClicks()
+        setupBackButton()
+    }
+
+    private fun setupUI() {
+        val lottieView = view?.findViewById<LottieAnimationView>(R.id.ivIllustAttendanceOffline)
+        lottieView?.setAnimation(R.raw.il_success)
+        lottieView?.repeatCount = 0
+        lottieView?.playAnimation()
+
+        binding.tvTitleAttendanceOffline.text = "Registrasi Berhasil!"
+        binding.tvDescAttendanceOffline.text = "Lihat event saya untuk detail pendaftaran"
+        binding.cvPrimaryBtnAttendanceOffline.text = "Lihat Event Saya"
+        binding.cvSecondaryBtnAttendanceOffline.text = "Lihat Event Lain"
+    }
+
+    private fun setupButtonClicks() {
+        binding.cvPrimaryBtnAttendanceOffline.setOnClickListener {
+            when (flowType) {
+                "RegisRSVP" -> {
+                    parentFragmentManager.setFragmentResult(
+                        "navigate_fragment",
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "RegisEndRSVP",
+                            "selected_tab" to 1 // Event Saya
+                        )
+                    )
+                }
+                "InvitationNoRSVP" -> {
+                    parentFragmentManager.setFragmentResult(
+                        "navigate_fragment",
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "InvitationENDNoRSVP",
+                            "selected_tab" to 1 // Event Saya
+                        )
+                    )
+                }
+                else -> {}
+            }
+        }
+
+        binding.cvSecondaryBtnAttendanceOffline.setOnClickListener {
+            when (flowType) {
+                "RegisRSVP" -> {
+                    parentFragmentManager.setFragmentResult(
+                        "navigate_fragment",
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "RegisEndRSVP",
+                            "selected_tab" to 0 // Daftar Event
+                        )
+                    )
+                }
+                "InvitationNoRSVP" -> {
+                    parentFragmentManager.setFragmentResult(
+                        "navigate_fragment",
+                        bundleOf(
+                            "fragment_class" to "EventMenuFragment",
+                            "flow_type" to "InvitationENDNoRSVP",
+                            "selected_tab" to 0 // Daftar Event
+                        )
+                    )
+                }
+                else -> {}
+            }
+        }
+    }
+
+    private fun setupBackButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
                 }
             }
+        )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

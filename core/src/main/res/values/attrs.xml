@@ -212,5 +212,4 @@
     <attr name="l5SemiBold" format="reference"/>
     <attr name="l5Medium" format="reference"/>
     <attr name="l5Regular" format="reference"/>
-
 </resources>

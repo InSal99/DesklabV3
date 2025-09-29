@@ -25,10 +25,33 @@ class FilterChipAdapter(
     }
 
     class ChipViewHolder(private val chipView: Chip) : RecyclerView.ViewHolder(chipView) {
+        private var lastClickTime = 0L
+
         fun bind(chipData: FilterChip, onChipClicked: (FilterChip) -> Unit) {
             chipView.chipText = chipData.text
             chipView.chipState = if (chipData.isSelected) Chip.ChipState.ACTIVE else Chip.ChipState.INACTIVE
-            itemView.setOnClickListener { onChipClicked(chipData) }
+
+//            if (chipData.isSelected) {
+//                itemView.setOnClickListener(null)
+//                itemView.isClickable = false
+//            } else {
+//                itemView.setOnClickListener { onChipClicked(chipData) }
+//                itemView.isClickable = true
+//            }
+
+            if (chipData.isSelected) {
+                itemView.setOnClickListener(null)
+                itemView.isClickable = false
+            } else {
+                itemView.setOnClickListener {
+                    val currentTime = System.currentTimeMillis()
+                    if (currentTime - lastClickTime < 300) return@setOnClickListener
+                    lastClickTime = currentTime
+
+                    onChipClicked(chipData)
+                }
+                itemView.isClickable = true
+            }
         }
     }
 

@@ -14,7 +14,6 @@ import com.edts.components.radiobutton.RadioGroup
 import com.edts.components.radiobutton.RadioGroupDelegate
 import com.edts.components.tray.BottomTray
 import com.edts.components.tray.BottomTrayDelegate
-import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentBottomTrayComponentViewBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -58,7 +57,7 @@ class BottomTrayComponentView : Fragment() {
         )
 
         val contentView = createTrayContentView()
-        bottomTray.setContentView(contentView)
+        bottomTray.setTrayContentView(contentView)
 
         bottomTray.configureFooter { footer ->
             footer.setFooterType(Footer.FooterType.DUAL_BUTTON)

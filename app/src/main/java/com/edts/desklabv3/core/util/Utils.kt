@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.input.search.InputSearch
 import com.edts.desklabv3.core.DatePattern

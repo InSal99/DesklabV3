@@ -5,27 +5,22 @@
             <enum name="PRIMARY" value="0" />
             <enum name="SECONDARY" value="1" />
         </attr>
-
         <attr name="size" format="enum">
             <enum name="XS" value="0" />
             <enum name="SM" value="1" />
             <enum name="MD" value="2" />
             <enum name="LG" value="3" />
         </attr>
-
         <attr name="state" format="enum">
             <enum name="REST" value="0" />
             <enum name="ON_PRESS" value="1" />
             <enum name="ON_FOCUS" value="2" />
         </attr>
-
         <attr name="isButtonDisabled" format="boolean" />
         <attr name="isButtonDestructive" format="boolean" />
-
         <attr name="android:text" />
         <attr name="android:enabled" />
         <attr name="android:icon" />
-
         <attr name="icon" format="reference" />
         <attr name="iconPlacement" format="enum">
             <enum name="LEFT" value="0" />
@@ -36,32 +31,3 @@
         <attr name="iconPadding" format="dimension" />
     </declare-styleable>
 </resources>
-
-
-<!--<resources>-->
-<!--    <declare-styleable name="CustomButton">-->
-<!--        <attr name="customButtonType" format="enum">-->
-<!--            <enum name="PRIMARY" value="0" />-->
-<!--            <enum name="SECONDARY" value="1" />-->
-<!--        </attr>-->
-
-<!--        <attr name="customButtonSize" format="enum">-->
-<!--            <enum name="XS" value="0" />-->
-<!--            <enum name="SM" value="1" />-->
-<!--            <enum name="MD" value="2" />-->
-<!--            <enum name="LG" value="3" />-->
-<!--        </attr>-->
-
-<!--        <attr name="customButtonState" format="enum">-->
-<!--            <enum name="REST" value="0" />-->
-<!--            <enum name="ON_PRESS" value="1" />-->
-<!--            <enum name="ON_FOCUS" value="2" />-->
-<!--        </attr>-->
-
-<!--        <attr name="isButtonDisabled" format="boolean" />-->
-<!--        <attr name="isButtonDestructive" format="boolean" />-->
-<!--        <attr name="label" format="string" />-->
-<!--        <attr name="iconLeft" format="reference" />-->
-<!--        <attr name="iconRight" format="reference" />-->
-<!--    </declare-styleable>-->
-<!--</resources>-->

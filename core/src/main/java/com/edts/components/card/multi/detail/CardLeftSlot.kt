@@ -16,7 +16,6 @@ class CardLeftSlot @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
     private val binding: CardLeftSlotBinding = CardLeftSlotBinding.inflate(
         LayoutInflater.from(context),
         this,
@@ -128,18 +127,15 @@ class CardLeftSlot @JvmOverloads constructor(
     private fun updateSlotBackgroundColor() {
         slotBackgroundColor?.let { colorRes ->
             try {
-                // Try to resolve as color resource first
                 val color = ContextCompat.getColor(context, colorRes)
                 binding.cardLeftSlot.setCardBackgroundColor(color)
             } catch (e: Exception) {
                 try {
-                    // Try to resolve as theme attribute
                     val typedValue = TypedValue()
                     context.theme.resolveAttribute(colorRes, typedValue, true)
                     val color = ContextCompat.getColor(context, typedValue.resourceId)
                     binding.cardLeftSlot.setCardBackgroundColor(color)
                 } catch (e: Exception) {
-                    // Use as direct color value
                     binding.cardLeftSlot.setCardBackgroundColor(colorRes)
                 }
             }
@@ -149,18 +145,15 @@ class CardLeftSlot @JvmOverloads constructor(
     private fun updateSlotTint() {
         slotTint?.let { tintRes ->
             try {
-                // Try to resolve as color resource first
                 val colorStateList = ContextCompat.getColorStateList(context, tintRes)
                 binding.ivCardLeftSlot.imageTintList = colorStateList
             } catch (e: Exception) {
                 try {
-                    // Try to resolve as theme attribute
                     val typedValue = TypedValue()
                     context.theme.resolveAttribute(tintRes, typedValue, true)
                     val colorStateList = ContextCompat.getColorStateList(context, typedValue.resourceId)
                     binding.ivCardLeftSlot.imageTintList = colorStateList
                 } catch (e: Exception) {
-                    // Use as direct color value
                     binding.ivCardLeftSlot.imageTintList = ColorStateList.valueOf(tintRes)
                 }
             }
