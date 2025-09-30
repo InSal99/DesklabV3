@@ -67,6 +67,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:tabItemText="Settings"
+                app:tabItemShowBadge="true"
+                app:tabItemBadgeText=""
+                app:tabItemState="inactive" />
+
+            <com.edts.components.tab.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabItemText="Label"
                 app:tabItemShowBadge="false"
                 app:tabItemState="inactive" />
         </com.edts.components.tab.Tab>
