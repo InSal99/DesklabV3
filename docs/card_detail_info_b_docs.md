@@ -1,11 +1,11 @@
 # Card: Detail Information B
 
 | Feature / Variation | Preview |
-| ------------------- | ------- |
-| Full Featured | ![Left Slot + Title + Description + Right Slot + Indicator] |
-| With Icon & Badge | ![Icon Left Slot + Title + Description + Right Slot + Indicator] |
-| Title Only | ![Left Slot + Title + Right Slot] |
-| Minimal | ![Title Only] |
+|---------------------| ------- |
+| Full Featured Image | ![Left Slot + Title + Description + Right Slot + Indicator] |
+| Full Featured Icon  | ![Icon Left Slot + Title + Description + Right Slot + Indicator] |
+| LeftSlot & Title    | ![Left Slot + Title + Right Slot] |
+| Title Only          | ![Title Only] |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |

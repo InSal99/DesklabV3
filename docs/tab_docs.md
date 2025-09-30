@@ -2,7 +2,7 @@
 
 | Feature / Variation | Preview                  |
 |---------------------|--------------------------|
-| Four Item           | ![Tab Component Example] |
+| Four Items          | ![Tab Component Example] |
 
 | **TabState** | **Visual Effect** |
 | ------------ | ----------------- |

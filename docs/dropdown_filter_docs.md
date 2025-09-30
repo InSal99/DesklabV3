@@ -2,7 +2,7 @@
 
 | Feature / Variation | Preview |
 | ------------------- | ------- |
-| With Badge & Description | ![Label + Description + Badge(1) + Icon] |
+| With Badge & Description | ![Label + Description + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/v1759226807/sdf_with_badge_description_ngzkgh.gif) |
 | With Badge Only | ![Label + Badge(1) + Icon] |
 | Icon Only | ![Label + Icon] |
 
