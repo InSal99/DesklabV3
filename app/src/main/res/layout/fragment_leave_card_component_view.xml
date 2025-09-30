@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundPrimary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/margin_16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/margin_32dp" >
+
+            <ImageView
+                android:id="@+id/btnLibLeaveCardBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_chevron_left"
+                app:tint="?attr/colorForegroundSecondary" />
+
+            <TextView
+                android:id="@+id/tvLibraryTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Leave Card"
+                style="?attr/d3SemiBold"
+                android:textColor="?attr/colorForegroundPrimary"
+                android:layout_marginStart="@dimen/margin_12dp" />
+
+        </LinearLayout>
+
+        <com.edts.components.leave.card.LeaveCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:employeeName="John Doe"
+            app:employeeImage="@drawable/avatar_placeholder"
+            app:employeeRole="General Staff"
+            app:counterText="5 Hari"
+            app:counterType="normal"
+            android:layout_marginTop="@dimen/margin_24dp"/>
+
+        <com.edts.components.leave.card.LeaveCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:employeeName="Jenny Dove"
+            app:employeeImage="@drawable/avatar_placeholder"
+            app:employeeRole="General Staff"
+            app:counterText="0 Hari"
+            app:counterType="critical"
+            android:layout_marginTop="@dimen/margin_12dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

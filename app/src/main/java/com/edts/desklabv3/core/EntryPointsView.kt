@@ -26,6 +26,7 @@ import com.edts.desklabv3.core.component.HeaderComponentView
 import com.edts.desklabv3.core.component.InfoboxComponentView
 import com.edts.desklabv3.core.component.InputFieldComponentView
 import com.edts.desklabv3.core.component.InputSearchComponentView
+import com.edts.desklabv3.core.component.LeaveCardComponentView
 import com.edts.desklabv3.core.component.MonthlyPickerComponentView
 import com.edts.desklabv3.core.component.OptionCardComponentView
 import com.edts.desklabv3.core.component.RadioButtonComponentView
@@ -193,6 +194,10 @@ class EntryPointsView : Fragment(), InsetConfigurable {
 
         binding.btnLibMonthlyPicker.setOnClickListener {
             navigateToFragment(MonthlyPickerComponentView())
+        }
+
+        binding.btnLibLeaveCard.setOnClickListener {
+            navigateToFragment(LeaveCardComponentView())
         }
 
         binding.btnFlow1.setOnClickListener {

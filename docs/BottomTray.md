@@ -4,11 +4,8 @@
 
 BottomTray is a highly customizable Android BottomSheetDialogFragment that provides a Material Design-compliant bottom sheet with advanced features including keyboard handling, snap points, edge-to-edge display, customizable styling, and footer actions. It extends `BottomSheetDialogFragment` to offer a flexible container for bottom sheet content with automatic window inset handling and smooth animations.
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| **With Drag Handle** | Rounded top corners with visible drag handle |
-| **Without Drag Handle** | Rounded top corners, non-draggable |
-| **With Footer** | Includes bottom footer section for actions |
+### Preview
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_600/v1759228566/traygif_whtbkz.gif)
 
 ---
 
