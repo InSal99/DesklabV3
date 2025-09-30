@@ -1,12 +1,12 @@
 # Card: Multi Detail Card
 
-| Feature / Variation | Preview                                                                                                                                                                                  |
-| ------------------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Full Featured (Icon) | ![Icon + Title + Info1 + Info2 + Right Arrow](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,c_fit,q_auto,f_auto,dpr_auto/v1759227886/cmdc_full_featured_icon_m7uuar.gif) |
-| Single Info (Icon) | ![Icon + Title + Info1 + Right Arrow](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,c_fit,q_auto,f_auto,dpr_auto/v1759227886/cmdc_single_info_icon_mqvb9c.gif)                 |
-| Full Featured (Image) | ![Image + Title + Info1 + Info2 + Right Arrow](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,c_fit,q_auto,f_auto,dpr_auto/v1759227885/cmdc_full_featured_image_zngf7t.gif)     |
-| Non-Clickable (Image) | ![Image + Title + Info1 + Info2](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,c_fit,q_auto,f_auto,dpr_auto/v1759227884/cmdc_non_clickable_image_icn2ej.png)                   |
-| Minimal | ![Title + Info1 + Info2](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200c_fit,q_auto,f_auto,dpr_auto/v1759227884/cmdc_minimal_ha1zej.png)                                        |
+| Feature / Variation | Preview                                                                                                                                                                                    |
+| ------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Full Featured (Icon) | ![Icon + Title + Info1 + Info2 + Right Arrow](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_120,f_auto,dpr_auto/v1759227886/cmdc_full_featured_icon_m7uuar.gif)   |
+| Single Info (Icon) | ![Icon + Title + Info1 + Right Arrow](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_120,f_auto,dpr_auto/v1759227886/cmdc_single_info_icon_mqvb9c.gif)             |
+| Full Featured (Image) | ![Image + Title + Info1 + Info2 + Right Arrow](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_120,f_auto,dpr_auto/v1759227885/cmdc_full_featured_image_zngf7t.gif) |
+| Non-Clickable (Image) | ![Image + Title + Info1 + Info2](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_120,f_auto,dpr_auto/v1759227884/cmdc_non_clickable_image_icn2ej.png)                |
+| Minimal | ![Title + Info1 + Info2](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_120,f_auto,dpr_auto/v1759227884/cmdc_minimal_ha1zej.png)                                   |
 
 | **LeftSlotType** | **Display** |
 | ---------------- | ----------- |
