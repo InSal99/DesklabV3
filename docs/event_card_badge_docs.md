@@ -5,6 +5,7 @@
 | Large - Live | ![Berlangsung (Red background, white text)] |
 | Large - Invited | ![Diundang (Yellow background, white text)] |
 | Large - Registered | ![Terdaftar (Green background, white text)] |
+| Small - Registered | ![Terdaftar (Green background, white text)] |
 | Small - Live | ![Berlangsung (Compact, red)] |
 | Small - Attended | ![Hadir (Compact, gray)] |
 | Small - Not Attended | ![Tidak Hadir (Compact, gray)] |

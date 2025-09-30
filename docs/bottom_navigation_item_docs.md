@@ -1,9 +1,9 @@
 # Bottom Navigation Item
 
 | Feature / Variation | Preview |
-| ------------------- | ------- |
-| Active State | ![Label + Icon (Active Color) + Indicator + Badge] |
-| Inactive State | ![Label + Icon (Inactive Color) + No Indicator] |
+|---------------------| ------- |
+| With Badge          | ![Label + Icon (Active Color) + Indicator + Badge] |
+| Without Badge       | ![Label + Icon (Inactive Color) + No Indicator] |
 
 | **NavState** | **Visual Effect** |
 | ------------ | ----------------- |

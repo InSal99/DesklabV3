@@ -1,10 +1,8 @@
 # Tab
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| With Badges | ![Home(3) + Profile(!) + Settings] |
-| Mixed Badges | ![Active Tab + Badge Tab + Plain Tab] |
-| Badge-free | ![Tab1 + Tab2 + Tab3] |
+| Feature / Variation | Preview                  |
+|---------------------|--------------------------|
+| Four Item           | ![Tab Component Example] |
 
 | **TabState** | **Visual Effect** |
 | ------------ | ----------------- |

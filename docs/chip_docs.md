@@ -1,11 +1,11 @@
 # Selection : Chip
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| Small with Badge & Icon | ![Chip Label + Badge(3) + Close Icon] |
-| Medium with Icon Only | ![Chip Label + Close Icon] |
-| Text Only | ![Chip Label] |
-| Custom Background | ![Chip Label with custom color] |
+| Feature / Variation     | Preview                                |
+|-------------------------|----------------------------------------|
+| Small with Badge & Icon | ![Chip Label + Badge(3) + Close Icon]  |
+| Medium with Icon Only   | ![Chip Label + Close Icon]             |
+| Text Only               | ![Chip Label]                          |
+| Custom Active Color     | ![Chip Label with custom active color] |
 
 | **ChipState** | **Visual Effect** |
 | ------------- | ----------------- |

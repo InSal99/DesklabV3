@@ -1,10 +1,9 @@
 # Event Card
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
+| Feature / Variation           | Preview |
+|-------------------------------| ------- |
 | Full Card with Badge & Status | ![Image + Badge + Banner + Description + Status] |
-| Without Badge | ![Image + Banner + Description + Status] |
-| Without Status | ![Image + Badge + Banner + Description] |
+| Without Badge & Status              | ![Image + Banner + Description] |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |

@@ -1,10 +1,10 @@
 # Badge
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| With Text | ![Badge with number "5"] |
-| Dot Only | ![Small circular indicator] |
-| Color Variants | ![Info / Attention / Warning styles] |
+| Feature / Variation | Preview                         |
+|---------------------|---------------------------------|
+| With Text           | ![Badge with number]            |
+| With Stroke & Text  | ![Badge with stroke and number] |
+| Dot Only            | ![Small circular indicator]     |
 
 | **Display Mode** | **Visual** |
 | ---------------- | ---------- |
