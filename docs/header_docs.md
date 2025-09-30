@@ -1,12 +1,12 @@
 # Header
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
+| Feature / Variation                           | Preview |
+|-----------------------------------------------| ------- |
 | Full Header (Left + Title + Subtitle + Right) | ![←  Title / Subtitle  ⋮] |
-| No Left Button | ![Title / Subtitle  ⋮] |
-| No Right Button | ![←  Title / Subtitle] |
-| Title Only (No Left + No Subtitle) | ![Large Title  ⋮] |
-| Title Only (With Left + No Subtitle) | ![←  Title] |
+| No Left Button                                | ![Title / Subtitle  ⋮] |
+| No Left & Right Button                        | ![←  Title / Subtitle] |
+| Title Only                                    | ![Large Title  ⋮] |
+| Title With Left Button                        | ![←  Title] |
 
 | **Text Style** | **Applied When** |
 | -------------- | ---------------- |

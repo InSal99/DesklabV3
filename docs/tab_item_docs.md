@@ -1,10 +1,9 @@
 # Tab Item
 
 | Feature / Variation | Preview |
-| ------------------- | ------- |
-| Active State | ![Label + Active Indicator + Badge] |
-| Inactive State | ![Label + No Indicator + Badge] |
-| Without Badge | ![Label + Active/Inactive State] |
+| ---------------- | ------- |
+| Without Badge | ![Label + Active Indicator + Badge] |
+| With Badge | ![Label + No Indicator + Badge] |
 
 | **TabState** | **Visual Effect** |
 | ------------ | ----------------- |

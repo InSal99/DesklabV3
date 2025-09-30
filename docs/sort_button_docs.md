@@ -3,7 +3,6 @@
 | Feature / Variation | Preview |
 | ------------------- | ------- |
 | Default Sort Icon | ![Sort icon button] |
-| Custom Icon | ![Custom filter icon] |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |
