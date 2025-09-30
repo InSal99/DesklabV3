@@ -3,10 +3,10 @@
 ## Overview
 Detail Information A is a customizable information display component that shows an icon, title, description, and optional action buttons. It's designed for displaying detailed information in a structured format with flexible interaction options, automatically managing view visibility and layout constraints based on content availability.
 
-| Variation | Preview |
-| --------------- | --------------- |
-| **Default** | ![Standard Layout] |
-| **With Actions** | ![With Actions] |
+| Variation | Preview                                                                                                                        |
+| --------------- |--------------------------------------------------------------------------------------------------------------------------------|
+| **Default** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229295/Screenshot_2025-09-30_at_17.47.46_vfop2v.png) |
+| **With Actions** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229295/Screenshot_2025-09-30_at_17.47.58_iroouo.png)                                                                                                              |
 
 ---
 
