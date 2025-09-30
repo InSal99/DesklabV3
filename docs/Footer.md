@@ -12,10 +12,10 @@ It supports delegates for handling button events, stroke customization, and dyna
 
 | Feature / Variation | Preview |
 | ------------------- | ------- |
-| Call To Action | ![footer-cta](...) |
-| Call To Action Detail | ![footer-cta-detail](...) |
-| Dual Button | ![footer-dual](...) |
-| No Action | ![footer-noaction](...) |
+| Call To Action | ![footer-cta](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229524/Screenshot_2025-09-30_at_17.51.17_f6lppm.png) |
+| Call To Action Detail | ![footer-cta-detail](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229524/Screenshot_2025-09-30_at_17.51.33_iofiup.png) |
+| Dual Button | ![footer-dual](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229525/Screenshot_2025-09-30_at_17.51.43_fltxgg.png) |
+| No Action | ![footer-noaction](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229525/Screenshot_2025-09-30_at_17.51.51_lfdrh0.png) |
 
 ---
 

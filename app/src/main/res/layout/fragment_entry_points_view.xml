@@ -500,5 +500,18 @@
             app:layout_constraintTop_toBottomOf="@id/btnLibEventModalityLoading"
             app:layout_constraintEnd_toEndOf="@id/btnLibEventModalityLoading"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.edts.components.button.Button
+            android:id="@+id/btnLibLeaveCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:size="MD"
+            app:type="SECONDARY"
+            android:text="Leave Card"
+            android:layout_marginStart="@dimen/margin_12dp"
+            app:layout_constraintStart_toEndOf="@id/btnLibMonthlyPicker"
+            app:layout_constraintTop_toTopOf="@id/btnLibMonthlyPicker"
+            app:layout_constraintBottom_toBottomOf="@id/btnLibMonthlyPicker"
+            app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

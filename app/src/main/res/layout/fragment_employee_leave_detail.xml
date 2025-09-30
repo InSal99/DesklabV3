@@ -73,6 +73,7 @@
         app:cmdLeftSlotTint="?attr/colorForegroundInfoIntense"
         app:cmdRightSlotSrc="@drawable/ic_chevron_right"
         app:cmdRightSlotTint="?attr/colorForegroundTertiary"
+        app:cmdLeftSlotSrc="@drawable/ic_alarm"
         app:cmdShowInfo2="false"
         app:cmdTitle="7 - 8 Jul 2025"
         app:layout_constraintTop_toBottomOf="@id/tvLeaveHistory" />
@@ -85,6 +86,7 @@
         android:layout_marginTop="@dimen/margin_8dp"
         app:cmdInfo1Text="Cuti Tahunan"
         app:cmdInfo2Text="3 Hari"
+        app:cmdLeftSlotSrc="@drawable/ic_success"
         app:cmdLeftSlotBackgroundColor="?attr/colorBackgroundSuccessSubtle"
         app:cmdLeftSlotTint="?attr/colorForegroundSuccessIntense"
         app:cmdRightSlotSrc="@drawable/ic_chevron_right"
@@ -100,6 +102,7 @@
         android:layout_marginTop="@dimen/margin_8dp"
         app:cmdInfo1Text="Cuti Tahunan (Siang)"
         app:cmdInfo2Text="1 Hari"
+        app:cmdLeftSlotSrc="@drawable/ic_decline"
         app:cmdLeftSlotBackgroundColor="?attr/colorBackgroundAttentionSubtle"
         app:cmdLeftSlotTint="?attr/colorForegroundAttentionIntense"
         app:cmdRightSlotSrc="@drawable/ic_chevron_right"
