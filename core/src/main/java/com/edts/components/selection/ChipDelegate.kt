@@ -1,4 +1,4 @@
-package com.edts.components.chip
+package com.edts.components.selection
 
 interface ChipDelegate {
     fun onChipClick(chip: Chip, newState: Chip.ChipState)
