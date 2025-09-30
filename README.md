@@ -104,9 +104,10 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 
 ### Utility Components
 
-| Component | Status | Documentation |
-|-----------|--------|---------------|
-| **Monthly Picker** | 🔨 In Progress | [View Docs]() |
+| Component                      | Status | Documentation |
+|--------------------------------|--------|---------------|
+| **Monthly Picker**             | ✅ Complete | [View Docs](docs/MonthlyPicker.md) |
+| **Dropdown Filter Horizontal** | ✅ Complete | [View Docs](docs/DropdownFilterHorizontal.md) |
 
 ---
 
