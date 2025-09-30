@@ -1,10 +1,10 @@
 # Event Card: Status
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| RSVP Status | ![Warning color text] |
-| Registered Status | ![Success color text] |
-| Unregistered Status | ![Attention color text] |
+| Feature / Variation | Preview                                                                                                                   |
+| ------------------- |---------------------------------------------------------------------------------------------------------------------------|
+| RSVP Status | ![Warning color text](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759228577/ecs_rsvp_status_nlxiwx.png)                                                                                                   |
+| Registered Status | ![Success color text](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759228577/ecs_registered_status_k7lwec.png)     |
+| Unregistered Status | ![Attention color text](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759228578/ecs_unregistered_status_lvogdv.png) |
 
 | **StatusType** | **Color Theme** |
 | -------------- | --------------- |

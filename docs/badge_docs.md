@@ -1,10 +1,10 @@
 # Badge
 
-| Feature / Variation | Preview                         |
-|---------------------|---------------------------------|
-| With Text           | ![Badge with number]            |
-| With Stroke & Text  | ![Badge with stroke and number] |
-| Dot Only            | ![Small circular indicator]     |
+| Feature / Variation | Preview                                                                                                          |
+|---------------------|------------------------------------------------------------------------------------------------------------------|
+| With Text           | ![Badge with number](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759228652/b_with_text_p4xmsm.png)       |
+| With Stroke & Text  | ![Badge with stroke and number](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759228650/b_with_stroke_text_crq8lx.png)                                                                                |
+| Dot Only            | ![Small circular indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759228650/b_dot_only_y29ozx.png) |
 
 | **Display Mode** | **Visual** |
 | ---------------- | ---------- |
