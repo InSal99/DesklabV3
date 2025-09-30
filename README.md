@@ -77,8 +77,8 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 | **Event Card**           | ✅ Complete | [View Docs](md/event_card_docs.md) |
 | **Event Card: Badge**    | ✅ Complete | [View Docs](md/event_card_badge_docs.md) |
 | **Event Card: Status**   | ✅ Complete | [View Docs](md/event_card_status_docs.md) |
-| **Invitation Card**      | 🔨 In Progress | [View Docs]() |
-| **My Event Card**        | 🔨 In Progress | [View Docs]() |
+| **Event Notification Cardd** | ✅ Complete | [View Docs](docs/EventNotificationCard.md) |
+| **My Event Card**        | ✅ Complete | [View Docs](docs/MyEventCard.md) |
 | **Leave Card**           | ✅ Complete | [View Docs](docs/LeaveCard.md) |
 
 ### Selection Components
@@ -97,10 +97,10 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 
 ### Modal Components
 
-| Component | Status | Documentation |
-|-----------|--------|---------------|
-| **Dialog Pop-Up** | 🔨 In Progress | [View Docs]() |
-| **Loading Pop-Up** | 🔨 In Progress | [View Docs]() |
+| Component                 | Status | Documentation |
+|---------------------------|--------|---------------|
+| **Modality Confirmation** | ✅ Complete | [View Docs](docs/ModalityConfirmation.md) |
+| **Modality Loading**      | ✅ Complete | [View Docs](docs/ModalityLoading.md) |
 
 ### Utility Components
 
