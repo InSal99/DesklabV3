@@ -9,11 +9,8 @@ It supports:
 - Configurable visibility of the InfoBox  
 - Delegation via `FooterDelegate`  
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| InfoBox + CTA Footer | ![infoboxfooter-cta](...) |
-| InfoBox + Dual Button Footer | ![infoboxfooter-dual](...) |
-| InfoBox Hidden (Footer only) | ![infoboxfooter-hidden](...) |
+### Preview
+![infobox-footer](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229784/Screenshot_2025-09-30_at_17.56.11_qf34ye.png)
 
 ---
 

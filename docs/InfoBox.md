@@ -5,12 +5,12 @@ A custom `InfoBox` component extending **MaterialCardView**, used to display con
 
 It supports **variants** (`Information`, `Success`, `Error`, `General`), each with distinct background, text, and icon colors. The component also renders a **top shadow with elevation** and custom rounded corners.
 
-| Variant | Preview |
-| ------- | ------- |
-| Information | ![infobox-info](...) |
-| Success | ![infobox-success](...) |
-| Error | ![infobox-error](...) |
-| General | ![infobox-general](...) |
+| Variant     | Preview                    |
+|-------------|----------------------------|
+| Information | ![infobox-info](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229997/Screenshot_2025-09-30_at_17.59.30_jr5gqt.png)       |
+| Success     | ![infobox-success](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229996/Screenshot_2025-09-30_at_17.59.18_w6vszx.png)    |
+| Error       | ![infobox-error](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229996/Screenshot_2025-09-30_at_17.59.09_hls9tf.png)      |
+| General     | ![infobox-general](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229997/Screenshot_2025-09-30_at_17.59.39_wcabin.png)    |
 
 ---
 

@@ -5,7 +5,7 @@
 It’s designed for event/session details, team members, or any case where a person’s name and avatar need to be displayed.
 
 ## Preview
-![detail-speaker](...)
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229381/Screenshot_2025-09-30_at_17.49.29_nqthvz.png)
 
 ---
 

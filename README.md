@@ -23,7 +23,7 @@ Add the dependency to your app's `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation("")
+    implementation 'com.github.InSal99:DesklabV3:$latestVersion'
 }
 ```
 
@@ -37,11 +37,11 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 
 | Component | Status | Documentation |
 |-----------|--------|---------------|
-| **Button** | 🔨 In Progress | [View Docs]() |
-| **Checkbox** | 🔨 In Progress | [View Docs]() |
-| **Radio Button** | 🔨 In Progress | [View Docs]() |
-| **Input Field** | 🔨 In Progress | [View Docs]() |
-| **Input Search** | ✅ Complete | [View Docs](md/input_search_docs.md) |
+| **Button** | ✅ Complete | [View Docs](docs/Button.md) |
+| **Checkbox** | ✅ Complete | [View Docs](docs/CheckBox.md) |
+| **Radio Button** | ✅ Complete | [View Docs](docs/RadioButton.md) |
+| **Input Field** | ✅ Complete | [View Docs](docs/InputField.md) |
+| **Input Search** | ✅ Complete | [View Docs](docs/input_search_docs.md) |
 | **Sort Button** | ✅ Complete | [View Docs](md/sort_button_docs.md) |
 
 ### Navigation Components
@@ -56,28 +56,30 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 
 ### Display Components
 
-| Component | Status | Documentation |
-|-----------|--------|---------------|
-| **Infobox** | 🔨 In Progress | [View Docs]() |
-| **Toast** | 🔨 In Progress | [View Docs]() |
-| **Status Badge** | 🔨 In Progress | [View Docs]() |
-| **Badge** | ✅ Complete | [View Docs](md/badge_docs.md) |
-| **Info Speaker** | 🔨 In Progress | [View Docs]() |
-| **Footer** | 🔨 In Progress | [View Docs]() |
+| Component               | Status | Documentation |
+|-------------------------|--------|---------------|
+| **Infobox**             | ✅ Complete | [View Docs](docs/InfoBox.md) |
+| **Toast**               | ✅ Complete | [View Docs](docs/Toast.md) |
+| **Status Badge**        | ✅ Complete | [View Docs](docs/StatusBadge.md) |
+| **Badge**               | ✅ Complete | [View Docs](md/badge_docs.md) |
+| **Detail Info Speaker** | ✅ Complete | [View Docs](docs/DetailInformationSpeaker.md) |
+| **Footer**              | ✅ Complete | [View Docs](docs/Footer.md) |
+| **Infobox Footer**      | ✅ Complete | [View Docs](docs/InfoBoxFooter.md) |
 
 ### Card Components
 
-| Component | Status | Documentation |
-|-----------|--------|---------------|
-| **Option Card** | 🔨 In Progress | [View Docs]() |
-| **Multi Detail Card** | ✅ Complete | [View Docs](md/card_multi_detail_docs.md) |
+| Component                | Status | Documentation |
+|--------------------------|--------|---------------|
+| **Option Card**          | ✅ Complete | [View Docs](docs/OptionCard.md) |
+| **Multi Detail Card**    | ✅ Complete | [View Docs](md/card_multi_detail_docs.md) |
 | **Detail Information B** | ✅ Complete | [View Docs](md/card_detail_info_b_docs.md) |
-| **Card: Left Slot** | ✅ Complete | [View Docs](md/card_left_slot_docs.md) |
-| **Event Card** | ✅ Complete | [View Docs](md/event_card_docs.md) |
-| **Event Card: Badge** | ✅ Complete | [View Docs](md/event_card_badge_docs.md) |
-| **Event Card: Status** | ✅ Complete | [View Docs](md/event_card_status_docs.md) |
-| **Invitation Card** | 🔨 In Progress | [View Docs]() |
-| **My Event Card** | 🔨 In Progress | [View Docs]() |
+| **Card: Left Slot**      | ✅ Complete | [View Docs](md/card_left_slot_docs.md) |
+| **Event Card**           | ✅ Complete | [View Docs](md/event_card_docs.md) |
+| **Event Card: Badge**    | ✅ Complete | [View Docs](md/event_card_badge_docs.md) |
+| **Event Card: Status**   | ✅ Complete | [View Docs](md/event_card_status_docs.md) |
+| **Event Notification Cardd** | ✅ Complete | [View Docs](docs/EventNotificationCard.md) |
+| **My Event Card**        | ✅ Complete | [View Docs](docs/MyEventCard.md) |
+| **Leave Card**           | ✅ Complete | [View Docs](docs/LeaveCard.md) |
 
 ### Selection Components
 
@@ -90,21 +92,22 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 
 | Component | Status | Documentation |
 |-----------|--------|---------------|
-| **Bottom Tray** | 🔨 In Progress | [View Docs]() |
-| **Flat: Detail Info A** | 🔨 In Progress | [View Docs]() |
+| **Bottom Tray** | ✅ Complete | [View Docs](docs/BottomTray.md) |
+| **Flat: Detail Info A** | ✅ Complete | [View Docs](docs/DetailInformationA.md) |
 
 ### Modal Components
 
-| Component | Status | Documentation |
-|-----------|--------|---------------|
-| **Dialog Pop-Up** | 🔨 In Progress | [View Docs]() |
-| **Loading Pop-Up** | 🔨 In Progress | [View Docs]() |
+| Component                 | Status | Documentation |
+|---------------------------|--------|---------------|
+| **Modality Confirmation** | ✅ Complete | [View Docs](docs/ModalityConfirmation.md) |
+| **Modality Loading**      | ✅ Complete | [View Docs](docs/ModalityLoading.md) |
 
 ### Utility Components
 
-| Component | Status | Documentation |
-|-----------|--------|---------------|
-| **Monthly Picker** | 🔨 In Progress | [View Docs]() |
+| Component                      | Status | Documentation |
+|--------------------------------|--------|---------------|
+| **Monthly Picker**             | ✅ Complete | [View Docs](docs/MonthlyPicker.md) |
+| **Dropdown Filter Horizontal** | ✅ Complete | [View Docs](docs/DropdownFilterHorizontal.md) |
 
 ---
 
@@ -113,7 +116,7 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 Here's a simple example of how to use a component from the library:
 
 ```kotlin
-import com.desklab.components.button.DesklabButton
+import com.desklab.components.button.Button
 ```
 
 For detailed usage examples and customization options, please refer to the individual component documentation linked in the tables above.

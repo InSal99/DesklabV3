@@ -92,7 +92,7 @@
             app:primaryButtonEnabled="true"
             app:footerTitle="Welcome"
             app:footerHasStroke="false"
-            app:footerDescription="Please complete your registration" />
+            app:footerDescription="Please complete registration" />
 
     </LinearLayout>
 

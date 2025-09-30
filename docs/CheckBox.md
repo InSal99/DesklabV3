@@ -9,12 +9,11 @@ A custom `CheckBox` component extending **AppCompatCheckBox**, providing:
 
 This component is styled consistently with app theme and offers enhanced UX over the default checkbox.
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| Checked / Unchecked | ![checkbox-state](...) |
-| Enabled / Disabled | ![checkbox-enabled](...) |
-| Error State | ![checkbox-error](...) |
-| Animated CheckMark | ![checkbox-anim](...) |
+| Variation          | Preview                                                                                                                           |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| Unchecked          | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228781/Screenshot_2025-09-30_at_17.39.14_uvxkxg.png) |
+| Checked            | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228780/Screenshot_2025-09-30_at_17.39.04_i1fmmk.png) |
+| Disabled           | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228781/Screenshot_2025-09-30_at_17.39.14_uvxkxg.png) |
 
 
 ---
@@ -112,6 +111,8 @@ checkbox.setErrorState(true)
 ---
 
 ## Animation Details
+
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229185/checkboxgif_uhw6nq.gif)
 
 | Animation | Duration | Interpolator | Description |
 | --------- | -------- | ------------ | ----------- |
