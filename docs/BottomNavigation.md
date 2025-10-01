@@ -2,11 +2,11 @@
 
 | Feature / Variation | Preview                                                                                                            |
 | ------------------- |--------------------------------------------------------------------------------------------------------------------|
-| One Item | ![Single navigation item](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759286976/bn_one_item_lhdm0e.gif)    |
-| Two Items | ![Two navigation items](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759286976/bn_two_items_c2pplp.gif)                                                                                          |
-| Three Items | ![Three navigation items](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759286977/bn_three_items_pxyoga.gif) |
-| Four Items | ![Four navigation items](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759286977/bn_four_items_ghoggn.gif)   |
-| Five Items | ![Five navigation items](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759286977/bn_five_items_hxddnt.gif)   |
+| One Item | ![Single navigation item](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286976/bn_one_item_lhdm0e.gif)    |
+| Two Items | ![Two navigation items](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286976/bn_two_items_c2pplp.gif)                                                                                          |
+| Three Items | ![Three navigation items](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286977/bn_three_items_pxyoga.gif) |
+| Four Items | ![Four navigation items](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286977/bn_four_items_ghoggn.gif)   |
+| Five Items | ![Five navigation items](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286977/bn_five_items_hxddnt.gif)   |
 
 | **NavState** | **Visual Effect** |
 | ------------ | ----------------- |

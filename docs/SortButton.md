@@ -2,7 +2,7 @@
 
 | Feature / Variation | Preview               |
 | ------------------- |-----------------------|
-| Default Sort Icon | ![Sort icon button](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287518/sb_default_sort_icon_a36lp3.gif) |
+| Default Sort Icon | ![Sort icon button](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287518/sb_default_sort_icon_a36lp3.gif) |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |

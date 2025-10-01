@@ -2,10 +2,10 @@
 
 | Feature / Variation     | Preview                                                                                                                                  |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| Small with Badge & Icon | ![Chip Label + Badge(3) + Close Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759227714/sc_small_with_badge_icon_tleoib.gif) |
-| Medium with Icon Only   | ![Chip Label + Close Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759227715/sc_medium_with_icon_only_tgsxd6.gif)            |
-| Text Only               | ![Chip Label](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759227714/sc_text_only_zhinm8.gif)                                     |
-| Custom Active Color     | ![Chip Label with custom active color](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759227714/sc_custom_active_color_wudlql.gif)                                                                                                 |
+| Small with Badge & Icon | ![Chip Label + Badge(3) + Close Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759227714/sc_small_with_badge_icon_tleoib.gif) |
+| Medium with Icon Only   | ![Chip Label + Close Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759227715/sc_medium_with_icon_only_tgsxd6.gif)            |
+| Text Only               | ![Chip Label](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759227714/sc_text_only_zhinm8.gif)                                     |
+| Custom Active Color     | ![Chip Label with custom active color](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759227714/sc_custom_active_color_wudlql.gif)                                                                                                 |
 
 | **ChipState** | **Visual Effect** |
 | ------------- | ----------------- |

@@ -2,8 +2,8 @@
 
 | Feature / Variation | Preview                                                                                                                        |
 | ---------------- |--------------------------------------------------------------------------------------------------------------------------------|
-| Without Badge | ![Label + Active Indicator + Badge](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287166/ti_without_badge_mrvsmw.gif) |
-| With Badge | ![Label + No Indicator + Badge](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287166/ti_with_badge_yruas9.gif)                                                                                              |
+| Without Badge | ![Label + Active Indicator + Badge](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287166/ti_without_badge_mrvsmw.gif) |
+| With Badge | ![Label + No Indicator + Badge](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287166/ti_with_badge_yruas9.gif)                                                                                              |
 
 | **TabState** | **Visual Effect** |
 | ------------ | ----------------- |

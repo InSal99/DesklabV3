@@ -2,8 +2,8 @@
 
 | Feature / Variation | Preview                                                                                                                                     |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| With Badge          | ![Label + Icon (Active Color) + Indicator + Badge](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287066/bni_with_badge_aouhky.gif) |
-| Without Badge       | ![Label + Icon (Inactive Color) + No Indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287065/bni_without_badge_ig2xiy.gif)                                                                                           |
+| With Badge          | ![Label + Icon (Active Color) + Indicator + Badge](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287066/bni_with_badge_aouhky.gif) |
+| Without Badge       | ![Label + Icon (Inactive Color) + No Indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287065/bni_without_badge_ig2xiy.gif)                                                                                           |
 
 | **NavState** | **Visual Effect** |
 | ------------ | ----------------- |
