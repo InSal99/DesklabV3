@@ -35,18 +35,27 @@
     app:myEventTime="18:00 - 20:00"
     app:month="JUL"
     app:date="24"
-    app:day="Rab" />
+    app:day="Rab"
+    app:badgeText="Terdaftar"
+    app:badgeType="registered"
+    app:badgeSize="Small"
+    app:myEventBadgeVisible="true" />
 ```
 
-#### XML Attributes
-| Attribute      | Format   | Description                               |
-| :------------- | :------- | :---------------------------------------- |
-| `myEventType`  | `string` | Event category or type label              |
-| `myEventTitle` | `string` | Primary event title (supports 2 lines)    |
-| `myEventTime`  | `string` | Event time range display                  |
-| `month`        | `string` | 3-letter month abbreviation (e.g., "JUL") |
-| `date`         | `string` | Date number (e.g., "24")                  |
-| `day`          | `string` | 3-letter day abbreviation (e.g., "Rab")   |
+### XML Attributes
+| Attribute | Format | Description |
+| :-------- | :----- | :---------- |
+| `myEventType` | `string` | Event category or type label |
+| `myEventTitle` | `string` | Primary event title (supports 2 lines) |
+| `myEventTime` | `string` | Event time range display |
+| `month` | `string` | 3-letter month abbreviation (e.g., "JUL") |
+| `date` | `string` | Date number (e.g., "24") |
+| `day` | `string` | 3-letter day abbreviation (e.g., "Rab") |
+| `badgeText` | `string` | Badge display text |
+| `badgeType` | `enum` | Badge style type (registered, completed, etc.) |
+| `badgeSize` | `enum` | Badge size (Small, Medium, Large) |
+| `myEventBadgeVisible` | `boolean` | Show/hide badge |
+
 
 > **Note**: Badge properties (`badgeText`, `badgeType`, `badgeSize`, `myEventBadgeVisible`) are declared in the styleable attributes but must be set programmatically using the `setBadgeData()` method.
 
