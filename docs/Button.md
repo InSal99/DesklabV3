@@ -4,9 +4,9 @@
 A customizable `Button` component extending **MaterialButton**, supporting different sizes, states, types, icons, and destructive variations. It is designed for flexible use across UI contexts with consistent styling, animations, and accessibility.
 
 
-| Variation        | Default                                                                                                                           | Destructive | Disabled |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------| ------- | ------- |
-| Primary Button   | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759218901/Screenshot_2025-09-30_at_14.53.03_kyelw4.png) | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759219205/Screenshot_2025-09-30_at_14.59.37_pkilt5.png) | [HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759227287/Screenshot_2025-09-30_at_17.13.25_lz7p5z.png) |
+| Variation        | Default                                                                                                                           | Destructive | Disabled                                                                                                                          |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------| ------- |-----------------------------------------------------------------------------------------------------------------------------------|
+| Primary Button   | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759218901/Screenshot_2025-09-30_at_14.53.03_kyelw4.png) | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759219205/Screenshot_2025-09-30_at_14.59.37_pkilt5.png) | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759227287/Screenshot_2025-09-30_at_17.13.25_lz7p5z.png) |
 | Secondary Button | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759227289/Screenshot_2025-09-30_at_17.13.39_dpxlso.png) | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759227287/Screenshot_2025-09-30_at_17.13.54_q1ueup.png) | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759227287/Screenshot_2025-09-30_at_17.13.25_lz7p5z.png) |
 
 ---

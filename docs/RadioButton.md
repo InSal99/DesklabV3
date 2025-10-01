@@ -1,11 +1,11 @@
 # Radio Button
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| **RadioButton - Normal** | Unchecked radio button with normal text |
-| **RadioButton - Selected** | Checked with animated inner circle |
-| **RadioButton - Error** | Red indicator with error styling |
-| **RadioGroup** | Container managing multiple RadioButton selections |
+| Type                  | Preview |
+|-----------------------| ------- |
+| **Normal**            | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290446/Screenshot_2025-10-01_at_10.45.34_kv2vos.png) |
+| **Selected**          | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290446/Screenshot_2025-10-01_at_10.45.42_g8ipjs.png) |
+| **Disabled**          | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290446/Screenshot_2025-10-01_at_10.45.47_j6peqo.png) |
+| **Disabled Selected** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290446/Screenshot_2025-10-01_at_10.45.51_djsien.png) |
 
 ## Overview
 
@@ -174,6 +174,8 @@ interface RadioGroupDelegate {
 | Inner Circle Scale | `200ms` | `DecelerateInterpolator` | Animates inner circle from 0 to 1 scale when checking |
 
 ### Animation Behavior
+
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290843/radiobuttongif_lat7zc.gif)
 
 - **Check Animation**: Inner circle scales from 0% to 100% with deceleration
 - **Uncheck Animation**: Inner circle scales from 100% to 0% with deceleration

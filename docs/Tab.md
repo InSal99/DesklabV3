@@ -1,8 +1,8 @@
 # Tab
 
-| Feature / Variation | Preview                  |
-|---------------------|--------------------------|
-| Four Items          | ![Tab Component Example] |
+| Feature / Variation | Preview                    |
+|---------------------|----------------------------|
+| Four Items          | ![Tab Component Example](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287120/t_four_items_bgr6th.gif) |
 
 | **TabState** | **Visual Effect** |
 | ------------ | ----------------- |

@@ -112,7 +112,7 @@ checkbox.setErrorState(true)
 
 ## Animation Details
 
-![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229185/checkboxgif_uhw6nq.gif)
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759229185/checkboxgif_uhw6nq.gif)
 
 | Animation | Duration | Interpolator | Description |
 | --------- | -------- | ------------ | ----------- |

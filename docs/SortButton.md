@@ -1,8 +1,8 @@
 # Sort Button
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| Default Sort Icon | ![Sort icon button] |
+| Feature / Variation | Preview                                                                                                                                        |
+| ------------------- |------------------------------------------------------------------------------------------------------------------------------------------------|
+| Default Sort Icon | ![Sort icon button](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759287518/sb_default_sort_icon_a36lp3.gif) |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |
