@@ -1,9 +1,9 @@
 # Card: Left Slot
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| Image Type | ![Avatar/Image fills full container] |
-| Icon Type | ![20dp icon centered with background] |
+| Feature / Variation | Preview                                                                                                                       |
+| ------------------- |-------------------------------------------------------------------------------------------------------------------------------|
+| Image Type | ![Avatar/Image fills full container](https://res.cloudinary.com/dacnnk5j4/image/upload/w_100,c_scale,q_auto,f_auto/v1759286743/cls_image_type_ngrzy6.png) |
+| Icon Type | ![20dp icon centered with background](https://res.cloudinary.com/dacnnk5j4/image/upload/w_100,c_scale,q_auto,f_auto/v1759286743/cls_icon_type_seo2us.png)                                                                                       |
 
 | **SlotType** | **Value** |
 | ------------ | --------- |
