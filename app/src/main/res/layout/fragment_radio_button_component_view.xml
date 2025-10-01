@@ -65,6 +65,13 @@
             android:enabled="false"
             android:layout_marginTop="@dimen/margin_12dp"/>
 
+        <com.edts.components.radiobutton.RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            app:isRadioError="true"
+            android:layout_marginTop="@dimen/margin_12dp"/>
+
     </LinearLayout>
 
 </ScrollView>
