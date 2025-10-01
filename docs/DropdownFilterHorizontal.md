@@ -1,89 +1,125 @@
 # Dropdown Filter Horizontal
-The `DropdownFilterHorizontal` is a custom Android view component designed to function as a compact, clickable filter button. It provides a clear and intuitive way for users to see the currently selected filter value and tap to open a more detailed selection interface, such as a bottom sheet or a dialog.
 
-Built on `MaterialCardView`, it is styled as a modern, pill-shaped chip with a title, an optional description, and a chevron icon to indicate interactivity.
+The `DropdownFilterHorizontal` is a custom Android view component built on `MaterialCardView` that functions as a compact, clickable filter button. It displays a primary title with an optional description and provides visual feedback when interacted with.
 
 ## Visual Anatomy
-The component is composed of several key elements laid out horizontally.
 
-![Dropdown Filter Horizontal](https://res.cloudinary.com/fauzanspratama/image/upload/v1759227687/Dropdown_Filter_Horizontal_bmyhjt.png)
+![Dropdown Filter Horizontal](https://res.cloudinary.com/fauzanspratama/image/upload/v1759299514/Dropdown_Filter_Horizontal_bmyhjt.png)
 
-| Element         | View ID              | Description                                                                                                                         |
-| :-------------- | :------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| **Container**   | (root)               | The root `MaterialCardView` which provides the pill shape, stroke, elevation, and ripple effect.                                    |
-| **Title**       | `tvTitleLabel`       | A `MaterialTextView` that displays the primary filter value (e.g., "Pekan 5").                                                      |
-| **Separator**   | `tvDotSpacer`        | An `ImageView` shaped as a dot. It visually separates the title and description and is only visible when a description is provided. |
-| **Description** | `tvDescriptionLabel` | A `MaterialTextView` for optional, secondary information (e.g., "26 Jan - 1 Feb").                                                  |
-| **Indicator**   | `ivChevronDown`      | An `ImageView` with a chevron icon that signals to the user that the component is clickable.                                        |
+| Element         | View ID              | Description                                                                 |
+| :-------------- | :------------------- | :-------------------------------------------------------------------------- |
+| **Container**   | (root)               | `MaterialCardView` with pill shape, stroke, elevation, and ripple effect    |
+| **Title**       | `tvTitleLabel`       | Primary filter value (e.g., "Pekan 5")                                      |
+| **Separator**   | `tvDotSpacer`        | Dot-shaped separator, visible only when description is provided             |
+| **Description** | `tvDescriptionLabel` | Optional secondary information (e.g., "26 Jan - 1 Feb")                     |
+| **Indicator**   | `ivChevronDown`      | Chevron icon indicating interactivity                                       |
 
 ## Key Features
-- **Dual-Text Display**: Capable of showing both a primary `title` and an optional secondary `description` to provide clear context for the current filter selection.
-- **Smart Separator**: The dot separator automatically shows and hides itself based on whether the `description` text is present, ensuring a clean UI.
-- **Delegate Pattern**: Utilizes the `DropdownFilterHorizontalDelegate` interface for clean and decoupled handling of click events.
-- **Material Design Styling**: Comes pre-styled as a rounded, pill-shaped card with a subtle stroke, elevation, and a built-in ripple effect for user feedback, aligning with modern UI standards.
-- **Flexible Configuration**: Can be fully configured within XML layouts or created and managed programmatically in Kotlin code.
+- **Dual-Text Display**: Primary title with optional description
+- **Smart Separator**: Dot separator auto-shows/hides based on description content
+- **Delegate Pattern**: Clean click event handling via `DropdownFilterHorizontalDelegate`
+- **Material Design**: Pill-shaped card with stroke, elevation, and ripple effect
+- **Flexible Configuration**: XML attributes or programmatic Kotlin setup
 
 ## XML Implementation
-Add the `DropdownFilterHorizontal` to any layout file and configure its initial text using the custom `app` attributes.
 
-```XML
+```xml
 <com.edts.components.dropdown.filter.DropdownFilterHorizontal
-    android:id="@+id/date_filter"
+    android:id="@+id/weekly_filter"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:dropdownTitle="Pekan 5"
     app:dropdownDescription="26 Jan - 1 Feb" />
-
-<com.edts.components.dropdown.filter.DropdownFilterHorizontal
-    android:id="@+id/category_filter"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    app:dropdownTitle="Semua Kategori" />
 ```
 
 #### XML Attributes
-These attributes are defined in `attrs_dropdown_filter_horizontal.xml`.
-
-| Attribute             | Format   | Description                                                                                                       |
-| :-------------------- | :------- | :---------------------------------------------------------------------------------------------------------------- |
-| `dropdownTitle`       | `string` | Sets the primary text displayed on the left side of the component.                                                |
-| `dropdownDescription` | `string` | Sets the optional secondary text. If this is null or empty, the description and the dot separator will be hidden. |
+| Attribute             | Format   | Description                                                                 |
+| :-------------------- | :------- | :-------------------------------------------------------------------------- |
+| `dropdownTitle`       | `string` | Primary text displayed on the left side                                     |
+| `dropdownDescription` | `string` | Optional secondary text (hides dot separator when empty)                    |
 
 ## Kotlin Implementation
-The component can be easily controlled in your Kotlin code, allowing for dynamic updates to its content and handling of user interactions.
 
-#### Configuration
-You can set the title and description at runtime. The component's UI will update automatically.
+#### Basic Configuration
+```kotlin
+val weeklyFilter = findViewById<DropdownFilterHorizontal>(R.id.date_filter)
+weeklyFilter.title = "Pekan 5"
+weeklyFilter.description = "26 Jan - 1 Feb"
 
-```Kotlin
-// Find the view in the layout
-val dateFilter = findViewById<DropdownFilterHorizontal>(R.id.date_filter)
-
-// Update the title and description dynamically
-dateFilter.title = "Bulanan"
-dateFilter.description = "September 2025"
-
-// To hide the description and the dot separator, set the description to null or empty
-dateFilter.description = null
+// Hide description and separator
+weeklyFilter.description = null
 ```
 
-#### Handling Events
-To respond to user taps, implement the `DropdownFilterHorizontalDelegate` interface and assign it to the component. The primary use case is to show a selection dialog or bottom sheet.
+#### View Binding with Delegate
+```kotlin
+private lateinit var binding: ActivityMainBinding
 
-```Kotlin
-// In your Activity or Fragment
-val dateFilter = findViewById<DropdownFilterHorizontal>(R.id.date_filter)
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+    
+    setupDropdownFilters()
+}
 
-dateFilter.dropdownFilterHorizontalDelegate = object : DropdownFilterHorizontalDelegate {
-    override fun onClick(dropdown: DropdownFilterHorizontal) {
-        // Best practice: Show a BottomSheet or DialogFragment for filter options
-        showDatePickerBottomSheet()
+private fun setupDropdownFilters() {
+    binding.weeklyFilter.apply {
+        title = "Pekan 5"
+        description = "26 Jan - 1 Feb"
+        dropdownFilterHorizontalDelegate = object : DropdownFilterHorizontalDelegate {
+            override fun onClick(dropdown: DropdownFilterHorizontal) {
+                showDatePickerBottomSheet()
+            }
+        }
     }
 }
+```
 
-private fun showDatePickerBottomSheet() {
-    // ... logic to display your filter selection UI ...
+#### Memory Management
+```kotlin
+override fun onDestroyView() {
+    binding.weeklyFilter.dropdownFilterHorizontalDelegate = null
+    super.onDestroyView()
 }
 ```
 
+## Do's and Don'ts
+
+### ✅ Do's
+- Use for filter selection scenarios
+- Provide clear, concise labels
+- Update title/description to reflect current selection
+- Maintain adequate spacing between multiple filters
+- Clear delegates in `onDestroyView()` to prevent memory leaks
+- Test accessibility for screen readers
+
+### ❌ Don'ts
+- Use for primary actions like "Submit" or "Save"
+- Overload with lengthy text
+- Ignore touch target size (minimum 48dp)
+- Assign multiple delegate instances
+- Block main thread in selection dialogs
+
+## Performance Considerations
+
+- **RecyclerView Usage**: Clear delegates in `onViewRecycled()`
+- **Batch Updates**: Use `apply{}` for multiple property changes
+- **Efficient Layout**: Uses `wrap_content` without complex measurements
+- **Memory Management**: Always nullify delegates in lifecycle methods
+
+## Material Design Styling
+
+The component implements Material Design with:
+
+- **Shape**: Pill-shaped using `radius_999dp` corner radius
+- **Elevation**: Subtle 1dp elevation for hierarchy
+- **Stroke**: 1dp border using `colorStrokeSubtle` attribute
+- **Ripple Effect**: Touch feedback using `colorBackgroundModifierOnPress`
+- **Typography**: `l3SemiBold` for title, `l3Regular` for description
+- **Colors**: Uses theme attributes for dynamic theming support
+- **Icons**: Standard Material chevron-down icon
+
+---
+
+> [!note]
+> This component seamlessly integrates with the `MonthlyPicker` component to provide a complete filter selection experience. When users tap the `DropdownFilterHorizontal`, it typically opens a bottom sheet containing a grid of `MonthlyPicker` chips for intuitive month selection, creating a cohesive and user-friendly filtering interface.
