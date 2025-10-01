@@ -1,103 +1,240 @@
 # Event Notification Card
-The `EventNotificationCard` is a dedicated UI component designed to notify an employee about an invitation to an event. It presents information in a structured and easily scannable format, ensuring the user can quickly understand the notification's context. The card consists of several key elements: an icon, an event type label, a title, a detailed description, and an optional call-to-action button.
 
-## Component Preview
+The `EventNotificationCard` is a dedicated UI component designed to notify an employee about an invitation to an event. It presents information in a structured and easily scannable format, ensuring the user can quickly understand the notification's context. The card consists of several key elements: an icon, an event type label, a title, a detailed description, and an optional call-to-action button.
+
+## Visual Anatomy
 The component is a self-contained card with a clean layout, suitable for display in lists or feeds.
 
-## Key Features
-- **Structured Layout**: Provides a consistent and clear presentation for event details, including an icon, type, title, description, and an action button.
-- **Customizable Content**: Allows for easy modification of the title, description, and button text through both XML attributes and programmatic setters.
-- **Event Typing**: Supports predefined event categories (`GENERAL_EVENT`, `PEOPLE_DEVELOPMENT`, `EMPLOYEE_BENEFIT`) to help users distinguish between different types of notifications.
-- **Interactive Callbacks**: Utilizes a delegate pattern (`EventNotificationCardDelegate`) to handle user interactions, supporting separate callbacks for clicks on the card itself and on the action button.
-- **Conditional Action Button**: The primary action button can be dynamically shown or hidden based on the notification's requirements.
+![Event Notification Card](https://res.cloudinary.com/fauzanspratama/image/upload/v1759290714/Event_Notification_Card_pscvuc.png)
 
----
+| Element | Description |
+| :------ | :---------- |
+| **Icon** | Circular icon indicating event type with subtle background |
+| **Event Type** | Badge showing event category (GENERAL EVENT, PEOPLE DEVELOPMENT, etc.) |
+| **Title** | Primary event name using `l2SemiBold` typography |
+| **Description** | Detailed event information using `p2Regular` typography |
+| **Action Button** | Interactive button for accepting invitations or other actions |
+
+## Key Features
+- **Multiple Event Types**: Supports GENERAL_EVENT, PEOPLE_DEVELOPMENT, and EMPLOYEE_BENEFIT with automatic styling
+- **Dual Interaction**: Separate delegates for card clicks and button clicks
+- **Flexible Visibility**: Configurable button visibility and text
+- **Material Design**: Card-based layout with proper elevation and shadows
+- **Custom Icon Support**: Embedded EventNotificationIcon component with circular background
+- **Theme Integration**: Uses app theme colors and typography
+
+## Event Types
+
+| Event Type | Use Case Description |
+| :--- | :--- |
+| **GENERAL_EVENT** | Company-wide events, town halls, social gatherings, announcements, and general corporate communications |
+| **PEOPLE_DEVELOPMENT** | Training sessions, workshops, skill development programs, leadership training, and professional growth activities |
+| **EMPLOYEE_BENEFIT** | Benefit announcements, healthcare programs, wellness initiatives, insurance updates, and employee welfare programs |
 
 ## XML Implementation
-The `EventNotificationCard` is designed to be used directly within your Kotlin code or XML layouts. Add the component to your layout file and configure its initial appearance using the available custom attributes.
 
-#### Attributes
-These attributes can be set on the `EventNotificationCard` in your XML layout.
-
-| Attribute                   | Format   | Description                                                                                                                                |
-| :-------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| `notificationTitle`         | `String` | Sets the main title of the notification.                                                                                                   |
-| `notificationDescription`   | `String` | Sets the descriptive body text of the notification.                                                                                        |
-| `notificationButtonText`    | `String` | Sets the text for the action button.                                                                                                       |
-| `notificationButtonVisible` | `String` | Determines if the action button is visible (`true`) or hidden (`false`). Defaults to `true`.                                               |
-| `notificationEventType`     | `String` | Sets the event type. Accepts "General Event", "People Development", or "Employee Benefit" (case-insensitive). Defaults to `GENERAL_EVENT`. |
-
-#### Example Usage
-```XML
+### Main Card Usage
+```xml
 <com.edts.components.notification.EventNotificationCard
-    android:id="@+id/event_card"
+    android:id="@+id/eventNotification"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:notificationTitle="EDTS Town-Hall 2025: Power of Change"
-    app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB."
+    app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
     app:notificationButtonText="Terima Undangan"
     app:notificationButtonVisible="true"
-    app:notificationEventType="General Event" />
+    app:notificationEventType="GENERAL_EVENT" />
 ```
 
----
+#### XML Attributes
+| Attribute | Format | Description |
+| :-------- | :----- | :---------- |
+| `notificationTitle` | `string` | Primary event title text |
+| `notificationDescription` | `string` | Detailed event description |
+| `notificationButtonText` | `string` | Action button label text |
+| `notificationButtonVisible` | `boolean` | Show/hide action button |
+| `notificationEventType` | `string` | Event type: GENERAL_EVENT, PEOPLE_DEVELOPMENT, EMPLOYEE_BENEFIT |
 
-## Programmatically Implementation
-You can also access and modify the card's properties programmatically in your Fragment or Activity.
-
-#### Component Properties
-| Property          | Type                             | Description                                                                                                                                |
-| :---------------- | :------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| `title`           | `String`                         | Sets the main title of the notification.                                                                                                   |
-| `description`     | `String`                         | Sets the descriptive body text of the notification.                                                                                        |
-| `buttonText`      | `String`                         | Sets the text for the action button.                                                                                                       |
-| `isButtonVisible` | `Boolean`                        | Determines if the action button is visible (`true`) or hidden (`false`). Defaults to `true`.                                               |
-| `eventType`       | `EventType`                      | Sets the event type. Accepts "General Event", "People Development", or "Employee Benefit" (case-insensitive). Defaults to `GENERAL_EVENT`. |
-| `delegate`        | `EventNotificationCardDelegate?` |                                                                                                                                            |
-
-#### Example Usage
-```Kotlin
-// In your Fragment or Activity
-val eventCard = binding.eventCard
-
-// Update the card's content dynamically
-eventCard.title = "New Event Title"
-eventCard.description = "This is an updated description for the event."
-eventCard.buttonText = "View Details"
-eventCard.isButtonVisible = true
-eventCard.eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
+### Icon Component Usage
+```xml
+<com.edts.components.notification.EventNotificationIcon
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:notificationIcon="@drawable/ic_custom_event" />
 ```
 
-#### Handing Clicks
-To respond to user interactions, your Fragment or Activity must implement the `EventNotificationCardDelegate` interface and set itself as the delegate for the card instance.
+#### Icon XML Attributes
+| Attribute | Format | Description |
+| :-------- | :----- | :---------- |
+| `notificationIcon` | `reference` | Drawable resource for the icon |
 
-```Kotlin
-// 1. Implement the delegate in your Fragment or Activity class
-class NotificationFragment : Fragment(), EventNotificationCardDelegate {
+## Kotlin Implementation
 
-    private lateinit var binding: FragmentNotificationBinding
+### Basic Configuration
+```kotlin
+val notificationCard = findViewById<EventNotificationCard>(R.id.eventNotification)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+// Set content dynamically
+notificationCard.apply {
+    title = "Team Building Workshop"
+    description = "Join us for team activities and bonding exercises next Friday"
+    buttonText = "Confirm Attendance"
+    isButtonVisible = true
+    eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
+}
+```
 
-        // 2. Set the delegate on your card instance
-        binding.eventCard.delegate = this //
+### Event Type Management
+```kotlin
+// Set event type with automatic UI updates
+notificationCard.eventType = EventNotificationCard.EventType.EMPLOYEE_BENEFIT
+
+// Or from string
+notificationCard.eventType = EventNotificationCard.EventType.fromString("GENERAL_EVENT")
+```
+
+### Event Handling with Delegate
+```kotlin
+notificationCard.delegate = object : EventNotificationCardDelegate {
+    override fun onButtonClick(notificationCard: EventNotificationCard) {
+        // Handle button tap (accept invitation, etc.)
+        showConfirmationDialog()
     }
 
-    // 3. Override the required methods to handle callbacks
-    override fun onButtonClick(notificationCard: EventNotificationCard) { //
-        // Handle the action button click
-        // For example, accept an invitation
-        val title = notificationCard.title
-        Toast.makeText(context, "Button clicked for: $title", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onCardClick(notificationCard: EventNotificationCard) { //
-        // Handle the card click
-        // For example, navigate to a details screen
-        val title = notificationCard.title
-        Toast.makeText(context, "Card clicked for: $title", Toast.LENGTH_SHORT).show()
+    override fun onCardClick(notificationCard: EventNotificationCard) {
+        // Handle entire card tap (view details, etc.)
+        navigateToEventDetails()
     }
 }
 ```
 
+### View Binding Implementation
+```kotlin
+private lateinit var binding: ActivityMainBinding
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+    
+    setupNotificationCard()
+}
+
+private fun setupNotificationCard() {
+    binding.eventNotification.apply {
+        title = "Annual Company Party"
+        description = "Celebrate our achievements together at the grand ballroom"
+        buttonText = "RSVP Now"
+        eventType = EventNotificationCard.EventType.GENERAL_EVENT
+        
+        delegate = object : EventNotificationCardDelegate {
+            override fun onButtonClick(notificationCard: EventNotificationCard) {
+                handleRsvp(notificationCard.title)
+            }
+
+            override fun onCardClick(notificationCard: EventNotificationCard) {
+                showEventDetails(notificationCard.title)
+            }
+        }
+    }
+}
+```
+
+## Do's and Don'ts
+
+### ✅ Do's
+- Use for event invitations and announcements
+- Provide clear, concise titles and descriptions
+- Set appropriate event types for consistent styling
+- Handle both card and button interactions meaningfully
+- Use actionable button text ("RSVP", "Confirm", "Learn More")
+- Test with different content lengths for proper layout
+
+### ❌ Don'ts
+- Use for non-event notifications
+- Override the event type styling unnecessarily
+- Use vague button labels like "Click Here"
+- Ignore accessibility for screen readers
+- Forget to handle configuration changes
+- Use excessively long titles that truncate
+
+## Performance Considerations
+
+### RecyclerView Usage
+```kotlin
+class NotificationAdapter : RecyclerView.Adapter<NotificationViewHolder>() {
+    
+    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
+        val notification = getItem(position)
+        
+        holder.binding.eventNotification.apply {
+            title = notification.title
+            description = notification.description
+            buttonText = notification.buttonText
+            eventType = notification.eventType
+            
+            delegate = object : EventNotificationCardDelegate {
+                override fun onButtonClick(notificationCard: EventNotificationCard) {
+                    onButtonClicked(holder.bindingAdapterPosition)
+                }
+
+                override fun onCardClick(notificationCard: EventNotificationCard) {
+                    onCardClicked(holder.bindingAdapterPosition)
+                }
+            }
+        }
+    }
+    
+    override fun onViewRecycled(holder: NotificationViewHolder) {
+        holder.binding.eventNotification.delegate = null
+        super.onViewRecycled(holder)
+    }
+}
+```
+
+## Material Design Styling
+
+The component implements Material Design with:
+
+- **Card Layout**: 
+  - 12dp corner radius
+  - 1dp elevation with dynamic shadows
+  - Subtle stroke border using `colorStrokeSubtle`
+  - 12dp padding for content spacing
+
+- **Typography**:
+  - Title: `l2SemiBold` for prominence
+  - Description: `p2Regular` for readability
+  - Event Type: `l4Medium` with all caps for badge-like appearance
+
+- **Icon System**:
+  - Circular `MaterialCardView` container
+  - 12dp icon size with 4dp margin
+  - Tertiary background color
+  - Subtle stroke border
+
+- **Button Integration**:
+  - Uses app's button component with `PRIMARY` type
+  - `MD` size for balanced proportions
+  - Automatic ripple and interaction states
+
+- **Color Scheme**:
+  - Title: `colorForegroundPrimary`
+  - Description: `colorForegroundSecondary` 
+  - Event Type: `colorForegroundTertiary`
+  - Icons: Theme-based tinting
+
+### Custom Styling
+```xml
+<style name="Widget.Desklab.EventNotificationCard" parent="Widget.Material3.CardView">
+    <item name="cardBackgroundColor">?attr/colorBackgroundPrimary</item>
+    <item name="strokeColor">?attr/colorStrokeSubtle</item>
+    <item name="cardElevation">1dp</item>
+    <item name="cardCornerRadius">12dp</item>
+</style>
+```
+
+---
+
+>[!Note]
+>This component is designed for event notification systems within Desklab apps. It works well in lists, detail screens, and as standalone notification items. The dual delegate pattern allows for flexible interaction handling based on your app's navigation patterns.
