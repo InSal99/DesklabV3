@@ -4,12 +4,8 @@
 
 OptionCard is a selectable card component that displays an option with text and an icon. It features Material Design styling with elevation, stroke, shadow, and ripple effects. Commonly used in dropdown menus, option lists, and selection interfaces.
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| **Default Card** | Text with chevron icon |
-| **Custom Icon** | Text with custom drawable/resource |
-| **Interactive** | Ripple effect on press |
-
+### Preview
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290856/optioncardgif_fe8kox.gif)
 ---
 
 ## Basic Usage
