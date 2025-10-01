@@ -47,7 +47,7 @@ It can also be instantiated directly in Kotlin code.
 val monthlyPicker = MonthlyPicker(requireContext())
 ```
 
-##### Configuration
+#### Configuration
 **Setting the Label**: Use the `setMonthLabel` method to define the display text.
 ```Kotlin
 monthlyPicker.setMonthLabel("Jan")
@@ -79,7 +79,8 @@ monthlyPicker.delegate = object : MonthlyPickerDelegate {
 ## Advanced Example: Dynamic Grid in a Bottom Sheet
 A best practice for using the `MonthlyPicker` is to create a dynamic and reusable month selection interface within a bottom sheet. This allows users to easily select a month and year without leaving the current screen. This guide outlines how to build this feature programmatically.
 
-![Monthly Picker | 512](https://res.cloudinary.com/fauzanspratama/image/upload/v1759226356/Monthly_Picker_emkoi0.gif)
+#### Preview
+![Monthly Picker](https://res.cloudinary.com/fauzanspratama/image/upload/c_scale,w_512/v1759226356/Monthly_Picker_emkoi0.gif)
 
 #### Step 1: Manage State in Your Fragment or Activity
 Before building the UI, define the necessary state variables in your hosting Fragment or Activity. This includes the list of month names and variables to track the user's selection.

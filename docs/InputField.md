@@ -4,14 +4,14 @@
 
 InputField is a flexible, customizable form input component that supports multiple input types with built-in validation, error handling, and visual feedback. It provides a unified interface for various input scenarios including text entry, numeric input, dropdown selection, and option groups.
 
-| Feature / Variation | Description | Preview |
-| ------------------- | ------- | ------- |
-| **Text Input** | Single-line text entry with validation | ![text-input](...) |
-| **Number Input** | Numeric keyboard input with validation | ![number-input](...) |
-| **Text Area** | Multi-line text input | ![text-area](...) |
-| **Dropdown** | Selection from predefined options | ![dropdown](...) |
-| **Radio Group** | Single selection from multiple options | ![radio-group](...) |
-| **Checkbox Group** | Multiple selection from options | ![checkbox-group](...) |
+| Feature / Variation | Description | Preview                                                                                                                                 |
+| ------------------- | ------- |-----------------------------------------------------------------------------------------------------------------------------------------|
+| **Text Input** | Single-line text entry with validation | ![text-input](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759289636/Screenshot_2025-10-01_at_10.32.02_a0bih1.png) |
+| **Number Input** | Numeric keyboard input with validation | ![number-input](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759289727/Screenshot_2025-10-01_at_10.35.13_avsvka.png)             |
+| **Text Area** | Multi-line text input | ![text-area](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759289636/Screenshot_2025-10-01_at_10.32.17_jvqq8e.png)                |
+| **Dropdown** | Selection from predefined options | ![dropdown](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759289636/Screenshot_2025-10-01_at_10.32.45_ks5kcb.png)                 |
+| **Radio Group** | Single selection from multiple options | ![radio-group](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759289636/Screenshot_2025-10-01_at_10.32.56_jycyjz.png)              |
+| **Checkbox Group** | Multiple selection from options | ![checkbox-group](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759289636/Screenshot_2025-10-01_at_10.33.09_hmzla1.png)           |
 
 ---
 
