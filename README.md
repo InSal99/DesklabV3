@@ -41,18 +41,18 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 | **Checkbox** | ✅ Complete | [View Docs](docs/CheckBox.md) |
 | **Radio Button** | ✅ Complete | [View Docs](docs/RadioButton.md) |
 | **Input Field** | ✅ Complete | [View Docs](docs/InputField.md) |
-| **Input Search** | ✅ Complete | [View Docs](docs/input_search_docs.md) |
-| **Sort Button** | ✅ Complete | [View Docs](docs/sort_button_docs.md) |
+| **Input Search** | ✅ Complete | [View Docs](docs/InputSearch) |
+| **Sort Button** | ✅ Complete | [View Docs](docs/SortButton) |
 
 ### Navigation Components
 
 | Component | Status | Documentation |
 |-----------|--------|---------------|
-| **Bottom Navigation** | ✅ Complete | [View Docs](docs/bottom_navigation_docs.md) |
-| **Bottom Navigation Item** | ✅ Complete | [View Docs](docs/bottom_navigation_item_docs.md) |
-| **Tab** | ✅ Complete | [View Docs](docs/tab_docs.md) |
-| **Tab Item** | ✅ Complete | [View Docs](docs/tab_item_docs.md) |
-| **Header** | ✅ Complete | [View Docs](docs/header_docs.md) |
+| **Bottom Navigation** | ✅ Complete | [View Docs](docs/BottomNavigation) |
+| **Bottom Navigation Item** | ✅ Complete | [View Docs](docs/BottomNavigationItem) |
+| **Tab** | ✅ Complete | [View Docs](docs/Tab) |
+| **Tab Item** | ✅ Complete | [View Docs](docs/TabItem) |
+| **Header** | ✅ Complete | [View Docs](docs/Header) |
 
 ### Display Components
 
@@ -61,7 +61,7 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 | **Infobox**             | ✅ Complete | [View Docs](docs/InfoBox.md) |
 | **Toast**               | ✅ Complete | [View Docs](docs/Toast.md) |
 | **Status Badge**        | ✅ Complete | [View Docs](docs/StatusBadge.md) |
-| **Badge**               | ✅ Complete | [View Docs](docs/badge_docs.md) |
+| **Badge**               | ✅ Complete | [View Docs](docs/Badge) |
 | **Detail Info Speaker** | ✅ Complete | [View Docs](docs/DetailInformationSpeaker.md) |
 | **Footer**              | ✅ Complete | [View Docs](docs/Footer.md) |
 | **Infobox Footer**      | ✅ Complete | [View Docs](docs/InfoBoxFooter.md) |
@@ -71,12 +71,12 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 | Component                | Status | Documentation |
 |--------------------------|--------|---------------|
 | **Option Card**          | ✅ Complete | [View Docs](docs/OptionCard.md) |
-| **Multi Detail Card**    | ✅ Complete | [View Docs](docs/card_multi_detail_docs.md) |
-| **Detail Information B** | ✅ Complete | [View Docs](docs/card_detail_info_b_docs.md) |
-| **Card: Left Slot**      | ✅ Complete | [View Docs](docs/card_left_slot_docs.md) |
-| **Event Card**           | ✅ Complete | [View Docs](docs/event_card_docs.md) |
-| **Event Card: Badge**    | ✅ Complete | [View Docs](docs/event_card_badge_docs.md) |
-| **Event Card: Status**   | ✅ Complete | [View Docs](docs/event_card_status_docs.md) |
+| **Multi Detail Card**    | ✅ Complete | [View Docs](docs/CardMultiDetail) |
+| **Detail Information B** | ✅ Complete | [View Docs](docs/CardDetailInfoB) |
+| **Card: Left Slot**      | ✅ Complete | [View Docs](docs/CardLeftSlot) |
+| **Event Card**           | ✅ Complete | [View Docs](docs/EventCard) |
+| **Event Card: Badge**    | ✅ Complete | [View Docs](docs/EventCardBadge) |
+| **Event Card: Status**   | ✅ Complete | [View Docs](docs/EventCardStatus) |
 | **Event Notification Cardd** | ✅ Complete | [View Docs](docs/EventNotificationCard.md) |
 | **My Event Card**        | ✅ Complete | [View Docs](docs/MyEventCard.md) |
 | **Leave Card**           | ✅ Complete | [View Docs](docs/LeaveCard.md) |
@@ -85,8 +85,8 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 
 | Component | Status | Documentation |
 |-----------|--------|---------------|
-| **Dropdown Filter** | ✅ Complete | [View Docs](docs/dropdown_filter_docs.md) |
-| **Chip** | ✅ Complete | [View Docs](docs/chip_docs.md) |
+| **Dropdown Filter** | ✅ Complete | [View Docs](docs/DropdownFilter) |
+| **Chip** | ✅ Complete | [View Docs](docs/Chip) |
 
 ### Container Components
 
