@@ -41,18 +41,18 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 | **Checkbox** | ✅ Complete | [View Docs](docs/CheckBox.md) |
 | **Radio Button** | ✅ Complete | [View Docs](docs/RadioButton.md) |
 | **Input Field** | ✅ Complete | [View Docs](docs/InputField.md) |
-| **Input Search** | ✅ Complete | [View Docs](docs/InputSearch) |
-| **Sort Button** | ✅ Complete | [View Docs](docs/SortButton) |
+| **Input Search** | ✅ Complete | [View Docs](docs/InputSearch.md) |
+| **Sort Button** | ✅ Complete | [View Docs](docs/SortButton.md) |
 
 ### Navigation Components
 
 | Component | Status | Documentation |
 |-----------|--------|---------------|
-| **Bottom Navigation** | ✅ Complete | [View Docs](docs/BottomNavigation) |
-| **Bottom Navigation Item** | ✅ Complete | [View Docs](docs/BottomNavigationItem) |
-| **Tab** | ✅ Complete | [View Docs](docs/Tab) |
-| **Tab Item** | ✅ Complete | [View Docs](docs/TabItem) |
-| **Header** | ✅ Complete | [View Docs](docs/Header) |
+| **Bottom Navigation** | ✅ Complete | [View Docs](docs/BottomNavigation.md) |
+| **Bottom Navigation Item** | ✅ Complete | [View Docs](docs/BottomNavigationItem.md) |
+| **Tab** | ✅ Complete | [View Docs](docs/Tab.md) |
+| **Tab Item** | ✅ Complete | [View Docs](docs/TabItem.md) |
+| **Header** | ✅ Complete | [View Docs](docs/Header.md) |
 
 ### Display Components
 
@@ -61,7 +61,7 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 | **Infobox**             | ✅ Complete | [View Docs](docs/InfoBox.md) |
 | **Toast**               | ✅ Complete | [View Docs](docs/Toast.md) |
 | **Status Badge**        | ✅ Complete | [View Docs](docs/StatusBadge.md) |
-| **Badge**               | ✅ Complete | [View Docs](docs/Badge) |
+| **Badge**               | ✅ Complete | [View Docs](docs/Badge.md) |
 | **Detail Info Speaker** | ✅ Complete | [View Docs](docs/DetailInformationSpeaker.md) |
 | **Footer**              | ✅ Complete | [View Docs](docs/Footer.md) |
 | **Infobox Footer**      | ✅ Complete | [View Docs](docs/InfoBoxFooter.md) |
@@ -71,12 +71,12 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 | Component                | Status | Documentation |
 |--------------------------|--------|---------------|
 | **Option Card**          | ✅ Complete | [View Docs](docs/OptionCard.md) |
-| **Multi Detail Card**    | ✅ Complete | [View Docs](docs/CardMultiDetail) |
-| **Detail Information B** | ✅ Complete | [View Docs](docs/CardDetailInfoB) |
-| **Card: Left Slot**      | ✅ Complete | [View Docs](docs/CardLeftSlot) |
-| **Event Card**           | ✅ Complete | [View Docs](docs/EventCard) |
-| **Event Card: Badge**    | ✅ Complete | [View Docs](docs/EventCardBadge) |
-| **Event Card: Status**   | ✅ Complete | [View Docs](docs/EventCardStatus) |
+| **Multi Detail Card**    | ✅ Complete | [View Docs](docs/CardMultiDetail.md) |
+| **Detail Information B** | ✅ Complete | [View Docs](docs/CardDetailInfoB.md) |
+| **Card: Left Slot**      | ✅ Complete | [View Docs](docs/CardLeftSlot.md) |
+| **Event Card**           | ✅ Complete | [View Docs](docs/EventCard.md) |
+| **Event Card: Badge**    | ✅ Complete | [View Docs](docs/EventCardBadge.md) |
+| **Event Card: Status**   | ✅ Complete | [View Docs](docs/EventCardStatus.md) |
 | **Event Notification Cardd** | ✅ Complete | [View Docs](docs/EventNotificationCard.md) |
 | **My Event Card**        | ✅ Complete | [View Docs](docs/MyEventCard.md) |
 | **Leave Card**           | ✅ Complete | [View Docs](docs/LeaveCard.md) |
@@ -85,8 +85,8 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 
 | Component | Status | Documentation |
 |-----------|--------|---------------|
-| **Dropdown Filter** | ✅ Complete | [View Docs](docs/DropdownFilter) |
-| **Chip** | ✅ Complete | [View Docs](docs/Chip) |
+| **Dropdown Filter** | ✅ Complete | [View Docs](docs/DropdownFilter.md) |
+| **Chip** | ✅ Complete | [View Docs](docs/Chip.md) |
 
 ### Container Components
 
