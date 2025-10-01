@@ -2,13 +2,13 @@
 
 | Feature / Variation | Preview                                                                                                                                    |
 | ------------------- |--------------------------------------------------------------------------------------------------------------------------------------------|
-| Large - Live | ![Berlangsung (Red background, white text)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759228472/ecb_large_live_rppjjo.png)       |
-| Large - Invited | ![Diundang (Yellow background, white text)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759228477/ecb_large_invited_qw0o6p.png)    |
-| Large - Registered | ![Terdaftar (Green background, white text)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759228471/ecb_large_registered_vaddhy.png)                                                                                              |
-| Small - Registered | ![Terdaftar (Green background, white text)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759228474/ecb_small_registered_qgekey.png) |
-| Small - Live | ![Berlangsung (Compact, red)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759228477/ecb_small_live_podjzu.png)                     |
-| Small - Attended | ![Hadir (Compact, gray)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759228471/ecb_small_attended_afvu5k.png)                      |
-| Small - Not Attended | ![Tidak Hadir (Compact, gray)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759228475/ecb_small_not_attended_skj2dv.png)            |
+| Large - Live | ![Berlangsung (Red background, white text)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759228472/ecb_large_live_rppjjo.png)       |
+| Large - Invited | ![Diundang (Yellow background, white text)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759228477/ecb_large_invited_qw0o6p.png)    |
+| Large - Registered | ![Terdaftar (Green background, white text)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759228471/ecb_large_registered_vaddhy.png)                                                                                              |
+| Small - Registered | ![Terdaftar (Green background, white text)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759228474/ecb_small_registered_qgekey.png) |
+| Small - Live | ![Berlangsung (Compact, red)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759228477/ecb_small_live_podjzu.png)                     |
+| Small - Attended | ![Hadir (Compact, gray)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759228471/ecb_small_attended_afvu5k.png)                      |
+| Small - Not Attended | ![Tidak Hadir (Compact, gray)](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759228475/ecb_small_not_attended_skj2dv.png)            |
 
 | **BadgeType** | **Color Theme** |
 | ------------- | --------------- |
