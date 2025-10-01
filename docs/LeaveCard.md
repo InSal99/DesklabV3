@@ -6,9 +6,8 @@ Leave Card is a custom component that extends `MaterialCardView` to display empl
 
 | Variation            | Preview                                                                                                                                |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| **Normal Counter**   | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/vc_scale,w_400/1759231063/Screenshot_2025-09-30_at_18.17.01_u81mi7.png) |
-| **Critical Counter** | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759231063/Screenshot_2025-09-30_at_18.17.06_sgkz1t.png) |
-| **On-Click Action**  | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229784/Screenshot_2025-09-30_at_17.56.11_qf34ye.png) |
+| **Normal Counter**   | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759231266/leavecardgif_wcbpeg.gif) |
+| **Critical Counter** | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759316036/leavecardcriticalgif_tn9l3g.gif) |
 
 ---
 
