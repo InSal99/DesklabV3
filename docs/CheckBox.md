@@ -9,11 +9,12 @@ A custom `CheckBox` component extending **AppCompatCheckBox**, providing:
 
 This component is styled consistently with app theme and offers enhanced UX over the default checkbox.
 
-| Variation          | Preview                                                                                                                           |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| Unchecked          | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228781/Screenshot_2025-09-30_at_17.39.14_uvxkxg.png) |
-| Checked            | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228780/Screenshot_2025-09-30_at_17.39.04_i1fmmk.png) |
-| Disabled           | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228781/Screenshot_2025-09-30_at_17.39.14_uvxkxg.png) |
+| Variation | Preview                                                                                                                           |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------------|
+| Unchecked | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228781/Screenshot_2025-09-30_at_17.39.14_uvxkxg.png) |
+| Checked   | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228780/Screenshot_2025-09-30_at_17.39.04_i1fmmk.png) |
+| Disabled  | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759228780/Screenshot_2025-09-30_at_17.39.20_kfqbim.png) |
+| Error     | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759304456/Screenshot_2025-10-01_at_14.40.42_u0tr2q.png) |
 
 
 ---

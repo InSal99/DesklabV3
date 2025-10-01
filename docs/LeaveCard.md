@@ -4,11 +4,10 @@
 
 Leave Card is a custom component that extends `MaterialCardView` to display employee leave information in a card format. It combines employee details (name, role, profile image) with a leave counter display, providing an interactive, Material Design-compliant card with ripple effects and customizable styling. The component uses composition to integrate `EmployeeInfo` and `LeaveCounter` sub-components.
 
-| Variation            | Preview                                                                                                                                              |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Normal Counter**   | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/vc_scale,w_400/1759231063/Screenshot_2025-09-30_at_18.17.01_u81mi7.png                |
-| **Critical Counter** | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759231063/Screenshot_2025-09-30_at_18.17.06_sgkz1t.png)               |
-| **On-Click Action**  | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759229784/Screenshot_2025-09-30_at_17.56.11_qf34ye.png) |
+| Variation            | Preview                                                                                                                                |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Normal Counter**   | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759231266/leavecardgif_wcbpeg.gif) |
+| **Critical Counter** | ![leavecard](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759316036/leavecardcriticalgif_tn9l3g.gif) |
 
 ---
 
@@ -17,7 +16,7 @@ Leave Card is a custom component that extends `MaterialCardView` to display empl
 ### 1. Add to Layout
 
 ```xml
-<your.edts.components.leave.card.LeaveCard
+<com.edts.components.leave.card.LeaveCard
     android:id="@+id/leaveCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

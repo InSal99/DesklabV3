@@ -63,8 +63,6 @@ button.apply {
 | `STATE_ON_PRESS` | `1` | Pressed style + scale-down animation | Touch feedback |
 | `STATE_ON_FOCUS` | `2` | Focused style with outline | Keyboard / accessibility |
 
-
-
 ---
 
 ## Properties Reference
@@ -126,20 +124,9 @@ button.apply {
 
 ---
 
-## Customization Examples
-
-### Color & Style Override
-
-```kotlin
-button.apply {
-    setButtonDisabled(true)
-    setCornerRadius(12f) // custom radius in dp
-}
-```
-
----
-
 ## Animation Details
+
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759304663/buttongif_jxcgwd.gif)
 
 | Animation | Duration | Interpolator | Description |
 | --------- | -------- | ------------ | ----------- |
