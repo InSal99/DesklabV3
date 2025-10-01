@@ -167,7 +167,7 @@ viewModel.operationResult.observe(this) { result ->
 
 ## Animation Details
 
-![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_600v1759301900/toastgif_orluti.gif)
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_600/v1759301900/toastgif_orluti.gif)
 
 | Animation Type | Duration | Interpolator | Description |
 | -------------- | -------- | ------------ | ----------- |
