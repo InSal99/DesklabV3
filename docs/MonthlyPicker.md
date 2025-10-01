@@ -79,6 +79,7 @@ monthlyPicker.delegate = object : MonthlyPickerDelegate {
 ## Advanced Example: Dynamic Grid in a Bottom Sheet
 A best practice for using the `MonthlyPicker` is to create a dynamic and reusable month selection interface within a bottom sheet. This allows users to easily select a month and year without leaving the current screen. This guide outlines how to build this feature programmatically.
 
+#### Preview
 ![Monthly Picker](https://res.cloudinary.com/fauzanspratama/image/upload/c_scale,w_512/v1759226356/Monthly_Picker_emkoi0.gif)
 
 #### Step 1: Manage State in Your Fragment or Activity
