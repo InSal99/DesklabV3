@@ -2,9 +2,9 @@
 
 | Feature / Variation | Preview                                                                                                                                                                       |
 | ------------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| With Badge & Description | ![Label + Description + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759226807/sdf_with_badge_description_ngzkgh.gif) |
-| With Badge Only | ![Label + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759226807/sdf_with_badge_only_sso95s.gif)                      |
-| Icon Only | ![Label + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759226806/sdf_icon_only_vcdpse.gif)                                                                                                                                                             |
+| With Badge & Description | ![Label + Description + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759226807/sdf_with_badge_description_ngzkgh.gif) |
+| With Badge Only | ![Label + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759226807/sdf_with_badge_only_sso95s.gif)                      |
+| Icon Only | ![Label + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759226806/sdf_icon_only_vcdpse.gif)                                                                                                                                                             |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |

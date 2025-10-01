@@ -1,11 +1,11 @@
 # Card: Detail Information B
 
-| Feature / Variation | Preview |
-|---------------------| ------- |
-| Full Featured Image | ![Left Slot + Title + Description + Right Slot + Indicator] |
-| Full Featured Icon  | ![Icon Left Slot + Title + Description + Right Slot + Indicator] |
-| LeftSlot & Title    | ![Left Slot + Title + Right Slot] |
-| Title Only          | ![Title Only] |
+| Feature / Variation | Preview                                                                                                                                                            |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Full Featured Image | ![Left Slot + Title + Description + Right Slot + Indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286625/cdib_full_featured_image_dwctzc.gif)     |
+| Full Featured Icon  | ![Icon Left Slot + Title + Description + Right Slot + Indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286625/cdib_full_featured_icon_lc4vsz.gif) |
+| LeftSlot & Title    | ![Left Slot + Title + Right Slot](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286624/cdib_left_slot_title_u09fab.png)                                   |
+| Title Only          | ![Title Only](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286625/cdib_title_only_muz4dr.png)                                                                                                                                                    |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |

@@ -1,9 +1,9 @@
 # Event Card
 
-| Feature / Variation           | Preview |
-|-------------------------------| ------- |
-| Full Card with Badge & Status | ![Image + Badge + Banner + Description + Status] |
-| Without Badge & Status              | ![Image + Banner + Description] |
+| Feature / Variation           | Preview                                                                                                                           |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| Full Card with Badge & Status | ![Image + Badge + Banner + Description + Status](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287572/ec_full_card_with_badge_status_rvbfiu.gif)                                                                                |
+| Without Badge & Status              | ![Image + Banner + Description](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287574/ec_without_badge_status_wg9isd.gif) |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |
