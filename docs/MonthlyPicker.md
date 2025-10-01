@@ -47,7 +47,7 @@ It can also be instantiated directly in Kotlin code.
 val monthlyPicker = MonthlyPicker(requireContext())
 ```
 
-##### Configuration
+#### Configuration
 **Setting the Label**: Use the `setMonthLabel` method to define the display text.
 ```Kotlin
 monthlyPicker.setMonthLabel("Jan")
