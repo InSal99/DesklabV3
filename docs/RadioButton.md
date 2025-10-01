@@ -6,6 +6,7 @@
 | **Selected**          | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290446/Screenshot_2025-10-01_at_10.45.42_g8ipjs.png) |
 | **Disabled**          | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290446/Screenshot_2025-10-01_at_10.45.47_j6peqo.png) |
 | **Disabled Selected** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759290446/Screenshot_2025-10-01_at_10.45.51_djsien.png) |
+| **Error**             | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759306969/Screenshot_2025-10-01_at_15.22.34_rydlyv.png) |
 
 ## Overview
 

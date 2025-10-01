@@ -4,12 +4,12 @@
 
 Toast is a custom Android view component that extends `MaterialCardView` to display temporary notification messages with animated slide-in/slide-out effects. It provides a Material Design-compliant alternative to Android's default Toast with better customization, including type-based styling (Success, Error, Info, General) and automatic dismissal with smooth animations.
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| **SUCCESS** | Green background with success icon |
-| **ERROR** | Red/Orange background with attention icon |
-| **INFO** | Blue background with information icon |
-| **GENERAL** | Dark background with custom/placeholder icon |
+| Feature / Variation | Preview                                                                                                                           |
+| ------------------- |-----------------------------------------------------------------------------------------------------------------------------------|
+| **SUCCESS** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759301607/Screenshot_2025-10-01_at_13.52.36_zgmf0f.png) |
+| **ERROR** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759301607/Screenshot_2025-10-01_at_13.52.43_trcmtp.png) |
+| **INFO** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759301607/Screenshot_2025-10-01_at_13.52.56_zwdnho.png) |
+| **GENERAL** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_400/v1759301607/Screenshot_2025-10-01_at_13.53.03_dmvmb3.png)               |
 
 ---
 
@@ -166,6 +166,8 @@ viewModel.operationResult.observe(this) { result ->
 - **Single Instance**: Ensures only one toast is visible at a time per parent container
 
 ## Animation Details
+
+![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_600v1759301900/toastgif_orluti.gif)
 
 | Animation Type | Duration | Interpolator | Description |
 | -------------- | -------- | ------------ | ----------- |
