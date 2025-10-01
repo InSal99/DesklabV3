@@ -1,80 +1,181 @@
 # Modality Loading
 
-## Overview
-The `ModalityLoadingPopUp` is a utility object designed to display a modal loading dialog. This component is essential for providing feedback to the user during long-running, asynchronous operations such as network requests or data processing. It blocks interaction with the underlying UI, ensuring the user waits for the task to complete.
+A modal loading dialog component that provides user feedback during asynchronous operations, blocking UI interaction while processes complete.
 
-The dialog consists of a circular progress indicator and a customizable title, clearly communicating that a process is underway.
+## Visual Anatomy
+
+![Modality Loading](https://res.cloudinary.com/fauzanspratama/image/upload/c_scale,w_480/v1759304413/Modality_Loading_kvx2qc.gif)
+
+| Element | Description |
+| :------ | :---------- |
+| **Progress Indicator** | Circular progress indicator with accent color |
+| **Title** | Customizable loading message using `h1SemiBold` typography |
 
 ## Key Features
-- **Blocks UI Interaction**: Prevents user interaction with the app while a background task is running.
-- **Clear Visual Feedback**: Uses a `CircularProgressIndicator` and a text label to inform the user of an active process.
-- **Simple API**: A single static method, `ModalityLoadingPopUp.show()`, makes it extremely easy to implement.
-- **Programmatic Control**: The `show()` method returns the `AlertDialog` instance, allowing you to dismiss the dialog programmatically when the task is finished.
-- **Customizable Title**: The loading message can be customized to provide context for the operation being performed.
-- **Cancelable Action**: Provides an option to control whether the user can dismiss the dialog using the back button or by tapping outside.
+- **UI Blocking**: Prevents user interaction during background tasks
+- **Clear Visual Feedback**: Circular progress indicator with customizable message
+- **Simple API**: Single `show()` method returns dismissible dialog instance
+- **Cancelable Option**: Configurable back button and outside tap behavior
+- **Dual Usage**: Available as pop-up dialog and static view
+- **Theme Integration**: Follows app theme colors and styling
 
----
-## Kotlin Implementation
-The primary method for displaying the loading dialog is through the `ModalityLoadingPopUp` object.
+## Pop-Up Dialog Implementation
 
-### Method Details
-#### `show()`
-Inflates and displays a modal loading dialog, returning the created `AlertDialog` instance for later control.
-
-```Kotlin
-object ModalityLoadingPopUp {
-    fun show(
-        context: Context,
-        title: String,
-        isCancelable: Boolean = false
-    ): AlertDialog?
-}
-```
-
-### Parameters
-| Parameter      | Type      | Description                                          |
-| -------------- | --------- | ---------------------------------------------------- |
-| `context`      | `Context` | The context in which the dialog should be displayed. |
-| `title`        | `String`  | The title text displayed at the top of the dialog.   |
-| `isCancelable` | `Boolean` | The main message or descriptive text of the dialog.  |
-> [!note]
-> The `show()` function returns the created `AlertDialog?` instance. This is crucial for dismissing the dialog once your background operation is complete. You should store this reference to call `.dismiss()` on it later.
-
-### Example Usage
-It's common to show the dialog before starting a background task (like a network call) and dismiss it in a `finally` block or when the task completes.
-
-```Kotlin
-import androidx.appcompat.app.AlertDialog
-import kotlinx.coroutines.launch
-
-// ... inside a Fragment or Activity
-
-// Keep a reference to the dialog
+### Kotlin Usage
+```kotlin
 private var loadingDialog: AlertDialog? = null
 
-private fun performSomeTask() {
-    // Show the dialog and store the instance
+private fun performNetworkRequest() {
+    // Show loading dialog
     loadingDialog = ModalityLoadingPopUp.show(
         context = requireContext(),
-        title = "Fetching data...",
+        title = "Tunggu sebentar...",
         isCancelable = false
     )
 
-    // Launch a coroutine for a background task
+    // Execute background task
     lifecycleScope.launch {
         try {
-            // Simulate network delay
-            delay(3000) 
-            // Data fetching logic here ...
+            val result = apiService.fetchData()
+            handleResult(result)
+        } catch (e: Exception) {
+            showError(e)
         } finally {
-            // Ensure the dialog is dismissed even if an error occurs
+            // Always dismiss when done
             loadingDialog?.dismiss()
         }
     }
 }
+```
 
-// Call the function from a button click or another trigger
-binding.myButton.setOnClickListener {
-    performSomeTask()
+#### Parameters
+| Parameter | Type | Description |
+| :-------- | :--- | :---------- |
+| `context` | `Context` | Context for dialog display |
+| `title` | `String` | Loading message text |
+| `isCancelable` | `Boolean` | Allow dismissal via back button or outside tap |
+
+**Returns**: `AlertDialog?` - Dialog instance for programmatic dismissal
+
+## Static View Implementation
+
+### XML Usage
+```xml
+<com.edts.components.modal.EventModalityLoading
+    android:id="@+id/loading_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:modalLoadingTitle="Tunggu sebentar..." />
+```
+
+#### XML Attributes
+| Attribute | Format | Description |
+| :-------- | :----- | :---------- |
+| `modalLoadingTitle` | `string` | Loading message text |
+
+### Programmatic Control
+```kotlin
+// Show/hide static loading view
+binding.loadingView.isVisible = true
+binding.loadingView.title = "Tunggu sebentar..."
+
+// When done
+binding.loadingView.isVisible = false
+```
+
+## Advanced Usage Patterns
+
+### Coroutine Integration
+```kotlin
+private suspend fun <T> withLoading(
+    message: String,
+    block: suspend () -> T
+): T {
+    val dialog = ModalityLoadingPopUp.show(requireContext(), message, false)
+    return try {
+        block()
+    } finally {
+        dialog?.dismiss()
+    }
+}
+
+// Usage
+lifecycleScope.launch {
+    val data = withLoading("Loading user profile...") {
+        userRepository.getProfile()
+    }
+    updateUI(data)
 }
 ```
+
+## Do's and Don'ts
+
+### ✅ Do's
+- Use for operations taking more than 1-2 seconds
+- Provide specific, actionable loading messages
+- Make non-cancelable for critical operations
+- Always dismiss in `finally` block to prevent stuck dialogs
+- Use with coroutines or background threads
+- Test both success and error dismissal scenarios
+
+### ❌ Don'ts
+- Use for instant or very short operations
+- Use vague messages like "Loading..." when possible
+- Allow cancellation for operations that leave data inconsistent
+- Forget to handle configuration changes (use ViewModel)
+- Block the main thread while showing loading
+- Show multiple loading dialogs simultaneously
+
+## Performance Considerations
+
+### Memory Management
+```kotlin
+// Store dialog reference properly
+private var loadingDialog: AlertDialog? = null
+
+override fun onDestroy() {
+    loadingDialog?.dismiss()
+    loadingDialog = null
+    super.onDestroy()
+}
+```
+
+## Material Design Styling
+
+The component implements Material Design with:
+
+- **Progress Indicator**: 
+  - 44dp circular indicator
+  - `colorForegroundAccentPrimaryIntense` for active progress
+  - `colorBackgroundTertiary` for track background
+  - Rounded track corners using `radius_999dp`
+- **Typography**: `h1SemiBold` for loading message
+- **Card Layout**: 
+  - 16dp corner radius
+  - 2dp elevation
+  - 1dp subtle border using `colorStrokeSubtle`
+  - Primary background color
+- **Shadow**: Dynamic shadow colors for API 28+
+
+### Customization
+```xml
+<!-- Modality Dialog -->  
+<style name="Theme.App.Dialog.Confirmation" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">  
+    <item name="alertDialogStyle">@style/Style.App.Dialog.Confirmation</item>  
+</style>  
+  
+<style name="Style.App.Dialog.Confirmation" parent="MaterialAlertDialog.MaterialComponents">  
+    <item name="backgroundTint">?attr/colorBackgroundPrimary</item>  
+    <item name="shapeAppearance">@style/ShapeAppearance.App.Dialog.Custom</item>  
+</style>  
+  
+<style name="ShapeAppearance.App.Dialog.Custom" parent="ShapeAppearance.MaterialComponents.MediumComponent">  
+    <item name="cornerFamily">rounded</item>  
+    <item name="cornerSize">16dp</item>  
+</style>
+```
+
+---
+
+>[!Note]
+>Use this component for operations requiring user patience. The pop-up version is ideal for transient operations, while the static view works well for persistent loading states within screens. Always ensure proper dismissal to maintain good user experience.

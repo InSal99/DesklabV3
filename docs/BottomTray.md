@@ -184,23 +184,7 @@ bottomTray.configureFooter { footer ->
 bottomTray.show(supportFragmentManager, "ConfirmTray")
 ```
 
-### Example 3: With Snap Points
-
-```kotlin
-val bottomTray = BottomTray.newInstance(title = "Adjustable Sheet")
-
-// Set snap points (in pixels)
-val peekHeight = (300 * resources.displayMetrics.density).toInt()
-val midHeight = (500 * resources.displayMetrics.density).toInt()
-bottomTray.snapPoints = intArrayOf(peekHeight, midHeight)
-
-val contentView = layoutInflater.inflate(R.layout.scrollable_content, null)
-bottomTray.setTrayContentView(contentView)
-
-bottomTray.show(supportFragmentManager, "SnappingTray")
-```
-
-### Example 4: With Delegate Callbacks
+### Example 3: With Delegate Callbacks
 
 ```kotlin
 val bottomTray = BottomTray.newInstance(title = "Interactive Sheet")
@@ -232,7 +216,7 @@ bottomTray.setTrayContentView(contentView)
 bottomTray.show(supportFragmentManager, "InteractiveTray")
 ```
 
-### Example 5: Non-Draggable Sheet
+### Example 4: Non-Draggable Sheet
 
 ```kotlin
 val bottomTray = BottomTray.newInstance(
@@ -248,52 +232,7 @@ bottomTray.setTrayContentView(contentView)
 bottomTray.show(supportFragmentManager, "ReadOnlyTray")
 ```
 
-### Example 6: Minimal Styling
-
-```kotlin
-val bottomTray = BottomTray.newInstance()
-bottomTray.apply {
-    setTitle("Minimal Sheet")
-    hasShadow = false
-    hasStroke = false
-    dragHandleVisibility = false
-    showFooter = false
-}
-
-val contentView = layoutInflater.inflate(R.layout.minimal_content, null)
-bottomTray.setTrayContentView(contentView)
-
-bottomTray.show(supportFragmentManager, "MinimalTray")
-```
-
-### Example 7: With Form and Keyboard Handling
-
-```kotlin
-val bottomTray = BottomTray.newInstance(
-    title = "Enter Details",
-    showFooter = true
-)
-
-// Wrap content in ScrollView for keyboard handling
-val scrollView = ScrollView(this).apply {
-    val formView = layoutInflater.inflate(R.layout.form_content, this, false)
-    addView(formView)
-}
-
-bottomTray.setTrayContentView(scrollView)
-
-bottomTray.configureFooter { footer ->
-    footer.setPrimaryButtonText("Submit")
-    footer.setPrimaryButtonClickListener {
-        // Submit form
-        bottomTray.dismiss()
-    }
-}
-
-bottomTray.show(supportFragmentManager, "FormTray")
-```
-
-### Example 8: Programmatic Control
+### Example 5: Programmatic Control
 
 ```kotlin
 val bottomTray = BottomTray.newInstance(title = "Controlled Sheet")
@@ -391,8 +330,8 @@ The component fully supports edge-to-edge display:
 
 ### Dimensions
 - `stroke_weight_1dp`: Stroke width
-- 16dp: Corner radius (hardcoded)
-- 8dp: Shadow elevation (hardcoded)
+- 16dp: Corner radius 
+- 8dp: Shadow elevation 
 
 ## Common Use Cases
 
@@ -412,16 +351,6 @@ val bottomTray = BottomTray.newInstance(
     showDragHandle = true
 )
 // Add RecyclerView with options
-```
-
-### Confirmation Dialog
-```kotlin
-val bottomTray = BottomTray.newInstance(
-    title = "Confirm Delete",
-    showFooter = true,
-    showDragHandle = false
-)
-// Add confirmation message and footer buttons
 ```
 
 ### Multi-Step Flow

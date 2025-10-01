@@ -4,12 +4,12 @@
 
 StatusBadge is a custom Android view component that extends `AppCompatTextView` to display status indicators with predefined styles. It combines text, icons, and color-coded backgrounds to represent different states (Approved, Decline, Waiting, Cancel) with a consistent, badge-like appearance.
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| **APPROVED** | Green background with success icon |
-| **DECLINE** | Red/Orange background with error icon |
-| **WAITING** | Blue background with alarm icon |
-| **CANCEL** | Gray background with close icon |
+| Type         | Preview |
+|--------------| ------- |
+| **APPROVED** | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_300/v1759301293/Screenshot_2025-10-01_at_13.46.59_xyc89k.png) |
+| **DECLINE**  | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_300/v1759301293/Screenshot_2025-10-01_at_13.47.14_kqo9as.png) |
+| **WAITING**  | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_300/v1759301293/Screenshot_2025-10-01_at_13.47.06_iwz3be.png) |
+| **CANCEL**   | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_300/v1759301293/Screenshot_2025-10-01_at_13.47.29_mewhdh.png) |
 
 ---
 
@@ -18,7 +18,7 @@ StatusBadge is a custom Android view component that extends `AppCompatTextView` 
 ### 1. Add to Layout
 
 ```xml
-<your.edts.components.status.badge.StatusBadge
+<com.edts.components.status.badge.StatusBadge
     android:id="@+id/statusBadge"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
