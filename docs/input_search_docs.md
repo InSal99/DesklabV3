@@ -1,11 +1,11 @@
 # Input Search
 
-| Feature / Variation | Preview |
-| ------------------- | ------- |
-| REST State | ![Search input with subtle stroke and placeholder text] |
-| FOCUS State | ![Search input with accent stroke and active cursor] |
-| ERROR State | ![Search input with red attention stroke] |
-| DISABLED State | ![Greyed out search input with disabled appearance] |
+| Feature / Variation | Preview                                                                                                                                         |
+| ------------------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
+| REST State | ![Search input with subtle stroke and placeholder text](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287436/is_rest_state_fp64po.gif) |
+| FOCUS State | ![Search input with accent stroke and active cursor](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287421/is_focus_state_lmzqtt.png)                                                                                          |
+| ERROR State | ![Search input with red attention stroke](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287435/is_error_state_nfyquc.gif)              |
+| DISABLED State | ![Greyed out search input with disabled appearance](https://res.cloudinary.com/dacnnk5j4/image/upload/w_200,h_100,c_fit,q_auto,f_auto/v1759287433/is_disabled_state_hlrqug.png) |
 
 | **State** | **Visual Effect** |
 | --------- | ----------------- |
