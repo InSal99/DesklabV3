@@ -71,7 +71,7 @@ class EventCardBadge @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                val badgeTypeValue = getInt(R.styleable.EventCardBadge_badgeType, 0)
+                val badgeTypeValue = getInt(R.styleable.EventCardBadge_eventBadgeType, 0)
                 badgeType = BadgeType.fromValue(badgeTypeValue)
                 val badgeSizeValue = getInt(R.styleable.EventCardBadge_badgeSize, 1)
                 badgeSize = BadgeSize.fromValue(badgeSizeValue)

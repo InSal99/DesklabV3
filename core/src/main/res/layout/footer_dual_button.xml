@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:text="Button"
         app:size="MD"
-        app:type="SECONDARY"
+        app:buttonType="SECONDARY"
         app:layout_constraintTop_toBottomOf="@id/tvFooterDualButtonTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnFooterDualButtonPrimary"

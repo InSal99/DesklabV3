@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="InfoBox">
         <attr name="text" format="string"/>
-        <attr name="variant" format="enum">
+        <attr name="infoboxType" format="enum">
             <enum name="information" value="0"/>
             <enum name="success" value="1"/>
             <enum name="error" value="2"/>

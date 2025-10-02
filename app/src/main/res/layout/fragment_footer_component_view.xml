@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             app:text="This is an information message"
             android:layout_marginTop="@dimen/margin_12dp"
-            app:variant="information"
+            app:infoboxType="information"
             app:showInfoBox="true"
             app:footerType="CALL_TO_ACTION_DETAIL"
             app:primaryButtonText="Register Now"
