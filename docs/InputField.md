@@ -24,12 +24,11 @@ InputField is a flexible, customizable form input component that supports multip
     android:id="@+id/inputField"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:inputType="textArea"
     app:fieldTitle="Full Name"
     app:fieldDescription="Enter your legal name"
     app:fieldHint="John Doe"
     app:fieldRequired="true"
-    app:inputType="textInput"
+    app:inputFieldType="textInput"
     app:maxLength="50"
     app:minLength="3" />
 ```
@@ -94,7 +93,7 @@ inputField.configure(
 | `fieldHint` | `String` | `null` | Placeholder text for input |
 | `fieldRequired` | `Boolean` | `false` | Whether field is mandatory |
 | `fieldEnabled` | `Boolean` | `true` | Whether field is enabled |
-| `inputType` | `Enum` | `textInput` | Type of input field |
+| `inputFieldType` | `Enum` | `textInput` | Type of input field |
 | `maxLength` | `Int` | `0` | Maximum character/digit limit |
 | `minLength` | `Int` | `0` | Minimum character/digit requirement |
 | `maxLines` | `Int` | `4` | Maximum lines for TextArea |
