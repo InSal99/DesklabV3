@@ -69,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Test"
-        app:size="MD"
+        app:buttonSize="MD"
         app:layout_constraintTop_toBottomOf="@id/tvFooterCTATitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
