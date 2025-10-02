@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Button">
-        <attr name="type" format="enum">
+        <attr name="buttonType" format="enum">
             <enum name="PRIMARY" value="0" />
             <enum name="SECONDARY" value="1" />
         </attr>
-        <attr name="size" format="enum">
+        <attr name="buttonCustomSize" format="enum">
             <enum name="XS" value="0" />
             <enum name="SM" value="1" />
             <enum name="MD" value="2" />
             <enum name="LG" value="3" />
         </attr>
-        <attr name="state" format="enum">
+        <attr name="buttonState" format="enum">
             <enum name="REST" value="0" />
             <enum name="ON_PRESS" value="1" />
             <enum name="ON_FOCUS" value="2" />

@@ -24,7 +24,7 @@ It supports **variants** (`Information`, `Success`, `Error`, `General`), each wi
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:text="This is an information box"
-    app:variant="information"
+    app:infoboxType="information"
 />
 ```
 
@@ -62,7 +62,7 @@ infoBox.variant = InfoBox.InfoBoxVariant.ERROR
 | Attribute | Format | Values | Description |
 | --------- | ------ | ------ | ----------- |
 | `text` | `string` | Any string | Text content of the InfoBox |
-| `variant` | `enum` | `information (0)`, `success (1)`, `error (2)`, `general (3)` | Selects the InfoBox variant |
+| `infoboxType` | `enum` | `information (0)`, `success (1)`, `error (2)`, `general (3)` | Selects the InfoBox variant |
 
 ---
 

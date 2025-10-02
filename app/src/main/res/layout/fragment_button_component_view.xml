@@ -42,8 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="XS"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="XS"
             app:icon="@drawable/placeholder" />
 
         <com.edts.components.button.Button
@@ -51,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="SM"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="SM"
             app:icon="@drawable/placeholder" />
 
         <com.edts.components.button.Button
@@ -60,8 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder" />
 
         <com.edts.components.button.Button
@@ -69,8 +69,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="LG"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="LG"
             app:icon="@drawable/placeholder" />
 
         <com.edts.components.button.Button
@@ -78,8 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder" />
 
         <com.edts.components.button.Button
@@ -87,8 +87,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
             app:iconPlacement="LEFT" />
 
@@ -97,8 +97,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
             app:iconPlacement="RIGHT" />
 
@@ -107,8 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:icon="@drawable/placeholder" />
 
@@ -117,8 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:icon="@drawable/placeholder"
             app:iconPlacement="LEFT" />
@@ -128,8 +128,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:icon="@drawable/placeholder"
             app:iconPlacement="RIGHT" />
@@ -139,8 +139,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:isButtonDisabled="true"
             app:icon="@drawable/placeholder" />
@@ -150,8 +150,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:isButtonDisabled="true"
             app:icon="@drawable/placeholder"
@@ -162,8 +162,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="PRIMARY"
-            app:size="MD"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:isButtonDisabled="true"
             app:icon="@drawable/placeholder"
@@ -174,8 +174,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="SECONDARY"
-            app:size="MD"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder" />
 
         <com.edts.components.button.Button
@@ -183,8 +183,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="SECONDARY"
-            app:size="MD"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
             app:iconPlacement="LEFT" />
 
@@ -193,40 +193,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Button Label"
-            app:type="SECONDARY"
-            app:size="MD"
-            app:icon="@drawable/placeholder"
-            app:iconPlacement="RIGHT" />
-
-        <com.edts.components.button.Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Button Label"
-            app:isButtonDestructive="true"
-            app:type="SECONDARY"
-            app:size="MD"
-            app:icon="@drawable/placeholder" />
-
-        <com.edts.components.button.Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Button Label"
-            app:isButtonDestructive="true"
-            app:type="SECONDARY"
-            app:size="MD"
-            app:icon="@drawable/placeholder"
-            app:iconPlacement="LEFT" />
-
-        <com.edts.components.button.Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Button Label"
-            app:isButtonDestructive="true"
-            app:type="SECONDARY"
-            app:size="MD"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
             app:iconPlacement="RIGHT" />
 
@@ -236,9 +204,41 @@
             android:layout_marginTop="8dp"
             android:text="Button Label"
             app:isButtonDestructive="true"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
+            app:icon="@drawable/placeholder" />
+
+        <com.edts.components.button.Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Button Label"
+            app:isButtonDestructive="true"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
+            app:icon="@drawable/placeholder"
+            app:iconPlacement="LEFT" />
+
+        <com.edts.components.button.Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Button Label"
+            app:isButtonDestructive="true"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
+            app:icon="@drawable/placeholder"
+            app:iconPlacement="RIGHT" />
+
+        <com.edts.components.button.Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Button Label"
+            app:isButtonDestructive="true"
             app:isButtonDisabled="true"
-            app:type="SECONDARY"
-            app:size="MD"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder" />
 
         <com.edts.components.button.Button
@@ -248,8 +248,8 @@
             android:text="Button Label"
             app:isButtonDestructive="true"
             app:isButtonDisabled="true"
-            app:type="SECONDARY"
-            app:size="MD"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
             app:iconPlacement="LEFT" />
 
@@ -260,8 +260,8 @@
             android:text="Button Label"
             app:isButtonDestructive="true"
             app:isButtonDisabled="true"
-            app:type="SECONDARY"
-            app:size="MD"
+            app:buttonType="SECONDARY"
+            buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
             app:iconPlacement="RIGHT" />
 

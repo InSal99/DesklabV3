@@ -4,7 +4,7 @@
 A composite `InfoBoxFooter` component that combines an **InfoBox** (information message) with a **Footer** (CTA or dual-button layout).  
 
 It supports:
-- All **InfoBox variants** (`Information`, `Success`, `Error`, `General`)  
+- All **InfoBox types** (`Information`, `Success`, `Error`, `General`)  
 - All **Footer types** (`CallToAction`, `CallToActionDetail`, `DualButton`, `NoAction`)  
 - Configurable visibility of the InfoBox  
 - Delegation via `FooterDelegate`  
@@ -24,7 +24,7 @@ It supports:
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:text="Your session will expire soon"
-    app:variant="error"
+    app:infoboxType="error"
     app:showInfoBox="true"
     app:footerType="dual_button"
     app:primaryButtonText="Continue"
@@ -60,7 +60,7 @@ infoBoxFooter.apply {
 
 ## Display Modes
 
-- InfoBox Variants: Information, Success, Error, General
+- InfoBox types: Information, Success, Error, General
 - Footer Types: CallToAction, CallToActionDetail, DualButton, NoAction
 - Visibility Control: InfoBox can be shown/hidden while keeping footer active
 

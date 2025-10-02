@@ -31,7 +31,7 @@
     android:id="@+id/eventBadge"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:badgeType="live"
+    app:eventBadgeType="live"
     app:badgeSize="Large"
     app:eventCardBadgeText="Berlangsung" />
 ```
@@ -179,7 +179,7 @@ binding.compactBadge.apply {
 <com.edts.components.event.card.EventCardBadge
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:badgeType="live"
+    app:eventBadgeType="live"
     app:badgeSize="Large"
     app:eventCardBadgeText="Berlangsung" />
 
@@ -187,7 +187,7 @@ binding.compactBadge.apply {
 <com.edts.components.event.card.EventCardBadge
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:badgeType="invited"
+    app:eventBadgeType="invited"
     app:badgeSize="Large"
     app:eventCardBadgeText="Diundang" />
 
@@ -195,7 +195,7 @@ binding.compactBadge.apply {
 <com.edts.components.event.card.EventCardBadge
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:badgeType="registered"
+    app:eventBadgeType="registered"
     app:badgeSize="Large"
     app:eventCardBadgeText="Terdaftar" />
 
@@ -203,7 +203,7 @@ binding.compactBadge.apply {
 <com.edts.components.event.card.EventCardBadge
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:badgeType="registered"
+    app:eventBadgeType="registered"
     app:badgeSize="Small"
     app:eventCardBadgeText="Terdaftar" />
 
@@ -211,7 +211,7 @@ binding.compactBadge.apply {
 <com.edts.components.event.card.EventCardBadge
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:badgeType="attended"
+    app:eventBadgeType="attended"
     app:badgeSize="Small"
     app:eventCardBadgeText="Hadir" />
 
@@ -219,7 +219,7 @@ binding.compactBadge.apply {
 <com.edts.components.event.card.EventCardBadge
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:badgeType="notattended"
+    app:eventBadgeType="notattended"
     app:badgeSize="Small"
     app:eventCardBadgeText="Tidak Hadir" />
 ```
