@@ -134,17 +134,6 @@ interface BottomTrayDelegate {
 }
 ```
 
-### BottomSheet States
-
-| State | Value | Description |
-| ----- | ----- | ----------- |
-| `STATE_COLLAPSED` | `4` | Bottom sheet is collapsed to peek height |
-| `STATE_EXPANDED` | `3` | Bottom sheet is fully expanded |
-| `STATE_DRAGGING` | `1` | User is dragging the bottom sheet |
-| `STATE_SETTLING` | `2` | Bottom sheet is settling to a position |
-| `STATE_HIDDEN` | `5` | Bottom sheet is hidden |
-| `STATE_HALF_EXPANDED` | `6` | Bottom sheet is half expanded |
-
 ## Usage Examples
 
 ### Example 1: Simple Bottom Sheet
