@@ -106,7 +106,7 @@ class Button @JvmOverloads constructor(
             try {
                 context.withStyledAttributes(attributeSet, R.styleable.Button, defStyleAttr, 0) {
                     buttonType = ButtonType.values().getOrElse(
-                        getInt(R.styleable.Button_type, ButtonType.PRIMARY.ordinal)
+                        getInt(R.styleable.Button_buttonType, ButtonType.PRIMARY.ordinal)
                     ) { ButtonType.PRIMARY }
                     buttonSize = ButtonSize.values().getOrElse(
                         getInt(R.styleable.Button_size, ButtonSize.MD.ordinal)

@@ -82,7 +82,7 @@ class InfoBoxFooter @JvmOverloads constructor(
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.InfoBoxFooter, 0, 0)
         try {
             infoText = typedArray.getString(R.styleable.InfoBoxFooter_text)
-            val infoVariantValue = typedArray.getInt(R.styleable.InfoBoxFooter_variant, 0)
+            val infoVariantValue = typedArray.getInt(R.styleable.InfoBoxFooter_infoboxType, 0)
             infoVariant = InfoBox.InfoBoxVariant.fromValue(infoVariantValue)
             isInfoBoxVisible = typedArray.getBoolean(R.styleable.InfoBoxFooter_showInfoBox, true)
 

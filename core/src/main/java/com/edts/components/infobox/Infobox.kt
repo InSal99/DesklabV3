@@ -107,7 +107,7 @@ class InfoBox @JvmOverloads constructor(
             try {
                 text = typedArray.getString(R.styleable.InfoBox_text)
                 variant = InfoBoxVariant.fromValue(
-                    typedArray.getInt(R.styleable.InfoBox_variant, 0)
+                    typedArray.getInt(R.styleable.InfoBox_infoboxType, 0)
                 )
             } finally {
                 typedArray.recycle()

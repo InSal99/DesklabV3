@@ -44,7 +44,7 @@
         android:layout_height="match_parent"
         android:text="Click to Show Loading Pop-Up"
         app:size="MD"
-        app:type="SECONDARY"
+        app:buttonType="SECONDARY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

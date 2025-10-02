@@ -8,7 +8,7 @@
         <attr name="date" />
         <attr name="day" />
         <attr name="badgeText" />
-        <attr name="badgeType" />
+        <attr name="eventBadgeType" />
         <attr name="badgeSize" />
         <attr name="myEventBadgeVisible" format="boolean" />
     </declare-styleable>
