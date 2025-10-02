@@ -1,4 +1,4 @@
-package com.edts.desklabv3.features.leave.ui.laporantim
+package com.edts.desklabv3.features.leave.ui.teamreport
 
 import android.content.Context
 import android.os.Bundle
@@ -6,8 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.edts.components.tab.Tab

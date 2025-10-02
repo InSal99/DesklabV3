@@ -14,13 +14,13 @@ import com.edts.desklabv3.TabFragmentAdapter
 import com.edts.desklabv3.core.util.setupWithViewPager2
 import com.edts.desklabv3.databinding.FragmentEventMenuBinding
 import com.edts.desklabv3.features.event.ui.eventlist.EventListAttendanceView
-import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
+import com.edts.desklabv3.features.event.ui.eventlist.EventListRegistrationRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationNoRSVPView
-import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakEndView
-import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakStartView
+import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationDeclineEndView
+import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationDeclineStartView
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationEmptyView
-import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentNoRSVP
-import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
+import com.edts.desklabv3.features.event.ui.invitation.EventInvitationNoRSVPView
+import com.edts.desklabv3.features.event.ui.invitation.EventInvitationDeclineView
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsEmptyView
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentAttendance
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentNoRSVP
@@ -89,7 +89,7 @@ class EventMenuFragment : Fragment() {
 
     private fun setupFlow1EndViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
-            EventListDaftarRSVPView.newInstance(useEndList = true),
+            EventListRegistrationRSVPView.newInstance(useEndList = true),
             MyEventsFragmentRSVP(),
             EventInvitationEmptyView()
         )
@@ -163,7 +163,7 @@ class EventMenuFragment : Fragment() {
 
     private fun setupFlow1ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
-            EventListDaftarRSVPView(),
+            EventListRegistrationRSVPView(),
             MyEventsEmptyView(),
             EventInvitationEmptyView()
         )
@@ -183,23 +183,23 @@ class EventMenuFragment : Fragment() {
         val fragments = listOf(
             EventListInvitationNoRSVPView(),
             MyEventsFragmentRSVP(),
-            EventInvitationFragmentNoRSVP()
+            EventInvitationNoRSVPView()
         )
         setupViewPager("flow3", fragments, selectedPosition)
     }
 
     private fun setupFlow4ViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
-            EventListInvitationTolakStartView(),
+            EventListInvitationDeclineStartView(),
             MyEventsEmptyView(),
-            EventInvitationFragmentTolakUndangan()
+            EventInvitationDeclineView()
         )
         setupViewPager("flow4", fragments, selectedPosition)
     }
 
     private fun setupFlow4EndViewPager(selectedPosition: Int = 0) {
         val fragments = listOf(
-            EventListInvitationTolakEndView(),
+            EventListInvitationDeclineEndView(),
             MyEventsEmptyView(),
             EventInvitationEmptyView()
         )

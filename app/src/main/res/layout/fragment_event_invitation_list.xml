@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="?attr/colorBackgroundPrimaryTinted"
-    tools:context=".features.event.ui.invitation.EventInvitationFragmentNoRSVP">
+    tools:context=".features.event.ui.invitation.EventInvitationNoRSVPView">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEventInvitation"

@@ -12,7 +12,7 @@ import com.edts.desklabv3.core.EventModalityLoadingComponentFragment
 import com.edts.desklabv3.core.MyEventsComponentFragment
 import com.edts.desklabv3.databinding.ActivityFauzanLayoutBinding
 import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailView
-import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
+import com.edts.desklabv3.features.event.ui.invitation.EventInvitationDeclineView
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentAttendance
 
 class FauzanLayoutActivity : AppCompatActivity() {
@@ -58,7 +58,7 @@ class FauzanLayoutActivity : AppCompatActivity() {
         }
 
         binding.cvNotificationCard.setOnClickListener {
-            showFragment(EventInvitationFragmentTolakUndangan())
+            showFragment(EventInvitationDeclineView())
         }
 
         binding.cvNotificationCard2.setOnClickListener {
