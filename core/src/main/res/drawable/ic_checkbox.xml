@@ -134,13 +134,6 @@
                         android:radius="@dimen/radius_6dp"/>
                 </shape>
             </item>
-            <item android:drawable="@drawable/ic_check"
-                android:top="2dp"
-                android:bottom="2dp"
-                android:left="2dp"
-                android:right="2dp"
-                android:gravity="center"
-                android:tint="@android:color/transparent" />
         </layer-list>
     </item>
 
