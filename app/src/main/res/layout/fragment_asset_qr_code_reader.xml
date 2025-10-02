@@ -100,7 +100,7 @@
         app:layout_constraintBottom_toTopOf="@id/vBottom"
         app:layout_constraintEnd_toStartOf="@id/vRight" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         style="?attr/p1Medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="?attr/colorForegroundPrimaryInverse" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvScanQRTitle"
         style="?attr/d3SemiBold"
         android:layout_width="0dp"

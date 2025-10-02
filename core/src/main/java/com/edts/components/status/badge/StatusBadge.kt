@@ -6,15 +6,15 @@ import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.edts.components.R
+import com.google.android.material.textview.MaterialTextView
 
 class StatusBadge @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = android.R.attr.textViewStyle
-) : AppCompatTextView(context, attrs, defStyleAttr) {
+) : MaterialTextView(context, attrs, defStyleAttr) {
     enum class ChipType(
         val backgroundColorAttr: Int,
         val textColorAttr: Int,

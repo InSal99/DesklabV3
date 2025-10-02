@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toast_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="@dimen/margin_12dp"
-    android:paddingVertical="@dimen/margin_8dp"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/margin_12dp"
+    android:paddingVertical="@dimen/margin_8dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/iv_icon"
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginEnd="@dimen/margin_8dp"
         android:src="@drawable/placeholder"
-        android:tint="@color/colorWhite"/>
+        app:tint="?attr/colorForegroundWhite"
+        tools:ignore="ContentDescription" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_message"
         style="?attr/l2Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test"
-        android:textColor="@color/colorWhite"/>
-</androidx.appcompat.widget.LinearLayoutCompat>
+        android:textColor="?attr/colorForegroundWhite"
+        tools:text="Toast Placeholder" />
+</LinearLayout>

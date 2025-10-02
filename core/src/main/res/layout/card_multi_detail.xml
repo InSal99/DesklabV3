@@ -39,9 +39,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlot">
 
-            <TextView
-                style="?attr/l2Medium"
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCmdTitle"
+                style="?attr/l2Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"

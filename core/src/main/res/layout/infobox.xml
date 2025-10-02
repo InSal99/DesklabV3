@@ -15,7 +15,7 @@
         android:src="@drawable/placeholder"
         app:tint="?attr/colorForegroundTertiary"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvInfoText"
         style="?attr/l3Medium"
         android:layout_width="0dp"

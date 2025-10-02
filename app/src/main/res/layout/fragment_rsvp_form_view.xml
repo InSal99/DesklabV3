@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="?attr/colorForegroundSecondary" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvRsvpTitle"
         style="?attr/h1SemiBold"
         android:layout_width="0dp"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvRsvpEventTitle"
                 style="?attr/h1SemiBold"
                 android:layout_width="0dp"
