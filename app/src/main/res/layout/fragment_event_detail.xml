@@ -211,7 +211,7 @@
         app:text="This is an information message"
         app:primaryButtonEnabled="true"
         app:primaryButtonText="Register Now"
-        app:variant="information"
+        app:infoboxType="information"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

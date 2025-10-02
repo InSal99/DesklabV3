@@ -79,7 +79,7 @@
         android:layout_marginBottom="@dimen/margin_8dp"
         android:text="Lihat Detail Event"
         app:size="MD"
-        app:type="PRIMARY"
+        app:buttonType="PRIMARY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/cvSecondaryBtnAttendanceOffline"/>
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:text="Lihat Event Lain"
         app:size="MD"
-        app:type="SECONDARY"
+        app:buttonType="SECONDARY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

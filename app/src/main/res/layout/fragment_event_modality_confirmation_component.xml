@@ -48,6 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:size="MD"
-        app:type="SECONDARY" />
+        app:buttonType="SECONDARY" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

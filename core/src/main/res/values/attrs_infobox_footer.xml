@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="InfoBoxFooter">
         <attr name="text" />
-        <attr name="variant" />
+        <attr name="infoboxType" />
         <attr name="showInfoBox" format="boolean" />
         <attr name="footerType" />
         <attr name="primaryButtonText" />
