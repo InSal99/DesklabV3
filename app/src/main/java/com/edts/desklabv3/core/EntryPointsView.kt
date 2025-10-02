@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.transition.Visibility
 import com.edts.desklabv3.R
 import com.edts.desklabv3.core.component.BadgeComponentView
 import com.edts.desklabv3.core.component.BottomNavigationComponentView
@@ -27,13 +26,6 @@ import com.edts.desklabv3.core.component.TabComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
 import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
-import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailRSVPView
-import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
-import com.edts.desklabv3.features.home.ui.HomeAttendanceView
-import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
-import com.edts.desklabv3.features.home.ui.HomeInvitationNoRSVPView
-import com.edts.desklabv3.features.home.ui.HomeInvitationTolakView
-import com.edts.desklabv3.features.home.ui.HomeManagerView
 
 class EntryPointsView : Fragment(), InsetConfigurable {
 

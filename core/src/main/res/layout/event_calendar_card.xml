@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="?attr/colorForegroundTertiary"
-            tools:text="JUL"/>
+            tools:text="JUL" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDate"
@@ -33,7 +33,7 @@
             android:layout_marginTop="@dimen/margin_2dp"
             android:textAlignment="center"
             android:textColor="?attr/colorForegroundPrimary"
-            tools:text="88"/>
+            tools:text="88" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDay"
@@ -45,6 +45,6 @@
             android:paddingVertical="@dimen/margin_4dp"
             android:textAlignment="center"
             android:textColor="?attr/colorForegroundTertiary"
-            tools:text="Rab"/>
+            tools:text="Rab" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

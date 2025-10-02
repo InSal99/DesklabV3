@@ -28,7 +28,7 @@
                 app:cardBackgroundColor="?attr/colorBackgroundInfoIntense"
                 app:cardCornerRadius="@dimen/margin_8dp">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     style="?attr/d3Bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                 app:cardBackgroundColor="?attr/colorBackgroundInfoIntense"
                 app:cardCornerRadius="@dimen/margin_8dp">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     style="?attr/d3Bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

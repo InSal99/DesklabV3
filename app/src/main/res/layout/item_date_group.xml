@@ -7,7 +7,7 @@
     android:clipChildren="false"
     android:paddingBottom="@dimen/margin_16dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvDate"
         style="?attr/l2Medium"
         android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="@+id/rvActivities"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvMonth"
         style="?attr/l3Regular"
         android:layout_width="wrap_content"
