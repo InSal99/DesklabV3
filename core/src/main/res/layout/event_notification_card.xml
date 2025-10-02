@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8dp"
         android:layout_weight="1"
-        app:size="MD"
+        app:buttonSize="MD"
         app:buttonType="PRIMARY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
