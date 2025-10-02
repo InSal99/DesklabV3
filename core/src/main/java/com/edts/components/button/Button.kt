@@ -109,10 +109,10 @@ class Button @JvmOverloads constructor(
                         getInt(R.styleable.Button_buttonType, ButtonType.PRIMARY.ordinal)
                     ) { ButtonType.PRIMARY }
                     buttonSize = ButtonSize.values().getOrElse(
-                        getInt(R.styleable.Button_size, ButtonSize.MD.ordinal)
+                        getInt(R.styleable.Button_buttonSize, ButtonSize.MD.ordinal)
                     ) { ButtonSize.MD }
                     buttonState = ButtonState.values().getOrElse(
-                        getInt(R.styleable.Button_state, ButtonState.REST.ordinal)
+                        getInt(R.styleable.Button_buttonState, ButtonState.REST.ordinal)
                     ) { ButtonState.REST }
                     isButtonDisabled = getBoolean(R.styleable.Button_isButtonDisabled, false)
                     isButtonDestructive = getBoolean(R.styleable.Button_isButtonDestructive, false)
