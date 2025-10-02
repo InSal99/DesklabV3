@@ -20,7 +20,7 @@ A customizable `Button` component extending **MaterialButton**, supporting diffe
     android:id="@+id/btnPrimary"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:type="PRIMARY"
+    app:buttonType="PRIMARY"
     app:size="MD"
     app:state="REST"
     app:isButtonDisabled="false"
