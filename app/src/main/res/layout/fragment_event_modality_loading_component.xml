@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Click to Show Loading Pop-Up"
-        app:buttonSize="MD"
+        buttonCustomSize="MD"
         app:buttonType="SECONDARY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,7 +5,7 @@
             <enum name="PRIMARY" value="0" />
             <enum name="SECONDARY" value="1" />
         </attr>
-        <attr name="buttonSize" format="enum">
+        <attr name="buttonCustomSize" format="enum">
             <enum name="XS" value="0" />
             <enum name="SM" value="1" />
             <enum name="MD" value="2" />
