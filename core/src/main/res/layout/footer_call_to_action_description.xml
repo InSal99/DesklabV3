@@ -42,7 +42,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Button"
-        app:buttonSize="MD"
+        buttonCustomSize="MD"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTADescTitle"
         app:layout_constraintStart_toEndOf="@id/tvFooterCTADescTitle"
         app:layout_constraintEnd_toEndOf="parent"
