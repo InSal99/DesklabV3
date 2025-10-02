@@ -21,7 +21,7 @@
         android:id="@+id/eventCardBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:badgeType="registered"
+        app:eventBadgeType="registered"
         app:badgeSize="Small"
         app:eventCardBadgeText="Terdaftar"
         app:layout_constraintBottom_toBottomOf="@id/tvEventType"

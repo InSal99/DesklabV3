@@ -46,28 +46,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:text="Label"
-            app:variant="success"
+            app:infoboxType="success"
             android:layout_marginTop="@dimen/margin_12dp"/>
 
         <com.edts.components.infobox.InfoBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:text="Label"
-            app:variant="error"
+            app:infoboxType="error"
             android:layout_marginTop="@dimen/margin_12dp"/>
 
         <com.edts.components.infobox.InfoBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:text="Label"
-            app:variant="information"
+            app:infoboxType="information"
             android:layout_marginTop="@dimen/margin_12dp"/>
 
         <com.edts.components.infobox.InfoBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:text="Label"
-            app:variant="general"
+            app:infoboxType="general"
             android:layout_marginTop="@dimen/margin_12dp"/>
 
     </LinearLayout>
