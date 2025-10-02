@@ -109,7 +109,7 @@ class Button @JvmOverloads constructor(
                         getInt(R.styleable.Button_buttonType, ButtonType.PRIMARY.ordinal)
                     ) { ButtonType.PRIMARY }
                     buttonSize = ButtonSize.values().getOrElse(
-                        getInt(R.styleable.Button_buttonSize, ButtonSize.MD.ordinal)
+                        getInt(R.styleable.Button_buttonCustomSize, ButtonSize.MD.ordinal)
                     ) { ButtonSize.MD }
                     buttonState = ButtonState.values().getOrElse(
                         getInt(R.styleable.Button_buttonState, ButtonState.REST.ordinal)
