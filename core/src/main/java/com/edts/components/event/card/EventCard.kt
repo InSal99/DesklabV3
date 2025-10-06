@@ -1,18 +1,17 @@
 package com.edts.components.event.card
 
 import android.content.Context
-import android.graphics.Paint
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.EventCardBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class EventCard @JvmOverloads constructor(
@@ -26,9 +25,8 @@ class EventCard @JvmOverloads constructor(
         this,
         true
     )
-    private val shadowPaint1 = Paint()
-    private val shadowPaint2 = Paint()
-    private val cornerRadiusPx = 8 * context.resources.displayMetrics.density
+
+    private val cornerRadiusPx = 8.dpToPx.toFloat()
 
     var eventImageSrc: Int? = null
         set(value) {
@@ -107,8 +105,6 @@ class EventCard @JvmOverloads constructor(
             updateCardBackground()
         }
 
-    private val colorCache = mutableMapOf<Int, Int>()
-
     var eventCardDelegate: EventCardDelegate? = null
 
     private var clickCount = 0
@@ -165,47 +161,39 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun updateStatusVisibility() {
-        binding.cvEventCardStatus?.visibility = if (showStatus) View.VISIBLE else View.INVISIBLE
-    }
-
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
-            }
-        }
-    }
-
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
-        }
+        binding.cvEventCardStatus.visibility = if (showStatus) View.VISIBLE else View.INVISIBLE
     }
 
     private fun updateCardBackground() {
+        val backgroundColor = context.resolveColorAttribute(
+            R.attr.colorBackgroundPrimary,
+            android.R.color.white
+        )
+
         when (cardState) {
             CardState.REST -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+                setCardBackgroundColor(backgroundColor)
                 val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                    cornerRadius = 12.dpToPx.toFloat()
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierCardElevated,
+                            android.R.color.transparent
+                        )
+                    )
                 }
                 foreground = elevatedModifierDrawable
             }
             CardState.ON_PRESS -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+                setCardBackgroundColor(backgroundColor)
                 val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                    cornerRadius = 12.dpToPx.toFloat()
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierOnPress,
+                            android.R.color.black
+                        )
+                    )
                 }
                 foreground = overlayDrawable
             }
@@ -221,7 +209,7 @@ class EventCard @JvmOverloads constructor(
             MotionEvent.ACTION_UP -> {
                 Log.d(TAG, "ACTION_UP - setting REST state")
                 cardState = CardState.REST
-                handleClick()
+                performClick()
             }
             MotionEvent.ACTION_CANCEL -> {
                 Log.d(TAG, "ACTION_CANCEL - setting REST state")
@@ -249,7 +237,6 @@ class EventCard @JvmOverloads constructor(
             Log.d(TAG, "  - Status Text: ${statusText ?: "No status text"}")
             Log.d(TAG, "  - Total clicks: $clickCount")
             Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Total system clicks: $clickCount")
             Log.d(TAG, "--------------------")
 
             eventCardDelegate?.onEventCardClick(this)
@@ -271,61 +258,43 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun updateBadgeVisibility() {
-        binding.cvEventCardBadge?.visibility = if (showBadge) View.VISIBLE else View.GONE
+        binding.cvEventCardBadge.visibility = if (showBadge) View.VISIBLE else View.GONE
     }
 
     private fun updateBadge() {
-        binding.cvEventCardBadge?.let { badge ->
-            badge.badgeType = badgeType
-            badgeText?.let { text ->
-                badge.badgeText = text
-            }
+        binding.cvEventCardBadge.badgeType = badgeType
+        badgeText?.let { text ->
+            binding.cvEventCardBadge.badgeText = text
         }
     }
 
     private fun updateBanner() {
-        binding.cvEventCardBanner?.let { banner ->
-            eventType?.let { type ->
-                banner.eventType = type
-            }
-            eventCategory?.let { category ->
-                banner.eventCategory = category
-            }
+        eventType?.let { type ->
+            binding.cvEventCardBanner.eventType = type
+        }
+        eventCategory?.let { category ->
+            binding.cvEventCardBanner.eventCategory = category
         }
     }
 
     private fun updateDescription() {
-        binding.cvEventCardDescription?.let { description ->
-            eventTitle?.let { title ->
-                description.eventTitle = title
-            }
-            eventDate?.let { date ->
-                description.eventDate = date
-            }
+        eventTitle?.let { title ->
+            binding.cvEventCardDescription.eventTitle = title
+        }
+        eventDate?.let { date ->
+            binding.cvEventCardDescription.eventDate = date
         }
     }
 
     private fun updateStatus() {
-        binding.cvEventCardStatus?.let { status ->
-            status.statusType = statusType
-            statusText?.let { text ->
-                status.statusText = text
-            }
+        binding.cvEventCardStatus.statusType = statusType
+        statusText?.let { text ->
+            binding.cvEventCardStatus.statusText = text
         }
     }
 
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-        Log.d(TAG, "Click count reset from $previousCount to 0")
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
-    }
-
     override fun performClick(): Boolean {
-        Log.d(TAG, "Programmatic click triggered")
+        Log.d(TAG, "Click event triggered")
         handleClick()
         return super.performClick()
     }

@@ -8,14 +8,12 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
 import android.util.Log
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.MotionEvent
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
@@ -42,7 +40,6 @@ class MonthlyPicker @JvmOverloads constructor(
     private val focusStrokeWidth: Int
     private val defaultCornerRadius: Float
 
-    private val colorCache = mutableMapOf<Int, Int>()
     private val drawableCache = mutableMapOf<String, Drawable>()
 
     var delegate: MonthlyPickerDelegate? = null
@@ -71,10 +68,11 @@ class MonthlyPicker @JvmOverloads constructor(
         monthLabelView = createMonthLabelView()
         addView(monthLabelView)
 
-        preloadColors()
         parseAttributes(attrs)
         setupComponent()
     }
+
+
 
     private fun parseAttributes(attrs: AttributeSet?) {
         attrs?.let {
@@ -90,13 +88,25 @@ class MonthlyPicker @JvmOverloads constructor(
         }
     }
 
+    // REFACTORED: Now uses the extension function directly to resolve colors.
     private fun applyStyling() {
         isEnabled = (type != PickerType.DISABLED)
 
+        val fallbackColorRes = android.R.color.transparent
+
         val textColor = when (type) {
-            PickerType.UNSELECTED -> getCachedColor(R.attr.colorForegroundPrimary)
-            PickerType.SELECTED -> getCachedColor(R.attr.colorForegroundPrimaryInverse)
-            PickerType.DISABLED -> getCachedColor(R.attr.colorForegroundDisabled)
+            PickerType.UNSELECTED -> {
+                val resolved = context.resolveColorAttribute(R.attr.colorForegroundPrimary, fallbackColorRes)
+                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+            }
+            PickerType.SELECTED -> {
+                val resolved = context.resolveColorAttribute(R.attr.colorForegroundPrimaryInverse, fallbackColorRes)
+                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+            }
+            PickerType.DISABLED -> {
+                val resolved = context.resolveColorAttribute(R.attr.colorForegroundDisabled, fallbackColorRes)
+                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+            }
         }
         monthLabelView.setTextColor(textColor)
 
@@ -107,12 +117,35 @@ class MonthlyPicker @JvmOverloads constructor(
         background = backgroundDrawable
     }
 
+    // REFACTORED: Now uses the extension function directly to resolve colors.
     private fun createBackgroundDrawable(): Drawable {
+        val fallbackColorRes = android.R.color.transparent
+
         val (backgroundColor, strokeColor) = when (type) {
-            PickerType.UNSELECTED -> Pair(Color.TRANSPARENT, getCachedColor(R.attr.colorStrokeSubtle))
-            PickerType.SELECTED -> Pair(getCachedColor(R.attr.colorBackgroundAccentPrimaryIntense), getCachedColor(
-                R.attr.colorStrokeInteractive))
-            PickerType.DISABLED -> Pair(Color.TRANSPARENT, getCachedColor(R.attr.colorStrokeDisabled))
+            PickerType.UNSELECTED -> Pair(
+                Color.TRANSPARENT,
+                run {
+                    val resolved = context.resolveColorAttribute(R.attr.colorStrokeSubtle, fallbackColorRes)
+                    try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+                }
+            )
+            PickerType.SELECTED -> Pair(
+                run {
+                    val resolved = context.resolveColorAttribute(R.attr.colorBackgroundAccentPrimaryIntense, fallbackColorRes)
+                    try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+                },
+                run {
+                    val resolved = context.resolveColorAttribute(R.attr.colorStrokeInteractive, fallbackColorRes)
+                    try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+                }
+            )
+            PickerType.DISABLED -> Pair(
+                Color.TRANSPARENT,
+                run {
+                    val resolved = context.resolveColorAttribute(R.attr.colorStrokeDisabled, fallbackColorRes)
+                    try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+                }
+            )
         }
 
         val currentStrokeWidth = if (interactionState == InteractionState.ON_FOCUS) focusStrokeWidth else strokeWidth
@@ -124,9 +157,13 @@ class MonthlyPicker @JvmOverloads constructor(
         }
 
         if (interactionState == InteractionState.ON_PRESS && type != PickerType.DISABLED) {
+            val modifierColor = run {
+                val resolved = context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, fallbackColorRes)
+                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+            }
             val modifierDrawable = GradientDrawable().apply {
                 cornerRadius = this@MonthlyPicker.radius
-                setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                setColor(modifierColor)
             }
             return LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
         }
@@ -192,41 +229,6 @@ class MonthlyPicker @JvmOverloads constructor(
             textAlignment = TEXT_ALIGNMENT_CENTER
             val verticalPadding = resources.getDimensionPixelSize(R.dimen.margin_12dp)
             setPadding(0, verticalPadding, 0, verticalPadding)
-        }
-    }
-
-    private fun preloadColors() {
-        val colorAttrs = mapOf(
-            R.attr.colorForegroundPrimary to R.color.color000,
-            R.attr.colorForegroundPrimaryInverse to android.R.color.white,
-            R.attr.colorForegroundDisabled to R.color.color000Opacity20,
-            R.attr.colorBackgroundAccentPrimaryIntense to R.color.colorPrimary30,
-            R.attr.colorStrokeSubtle to R.color.colorNeutral30,
-            R.attr.colorStrokeInteractive to R.color.colorOpacityWhite20,
-            R.attr.colorStrokeDisabled to R.color.color000Opacity12,
-            R.attr.colorBackgroundModifierOnPress to R.color.color000Opacity5
-        )
-
-        colorAttrs.forEach { (attr, fallback) ->
-            colorCache[attr] = resolveColorAttribute(attr, fallback)
-        }
-    }
-
-    private fun getCachedColor(@AttrRes attrRes: Int): Int {
-        return colorCache[attrRes] ?: resolveColorAttribute(attrRes, android.R.color.transparent)
-    }
-
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            if (typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT && typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT) {
-                typedValue.data
-            } else {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            }
-        } else {
-            Log.w("CustomMonthlyPicker", "Attribute '$attrRes' not found, using fallback color.")
-            ContextCompat.getColor(context, fallbackColorRes)
         }
     }
 }

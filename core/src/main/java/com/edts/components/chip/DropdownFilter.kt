@@ -4,14 +4,14 @@ import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.SelectionDropdownFilterBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class DropdownFilter @JvmOverloads constructor(
@@ -72,9 +72,6 @@ class DropdownFilter @JvmOverloads constructor(
             updateCardBackground()
         }
 
-
-    private val colorCache = mutableMapOf<Int, Int>()
-
     var delegate: DropdownFilterDelegate? = null
 
     private var clickCount = 0
@@ -86,7 +83,7 @@ class DropdownFilter @JvmOverloads constructor(
     }
 
     init {
-        radius = 999f * resources.displayMetrics.density
+        radius = 999f.dpToPx
         isClickable = true
         isFocusable = true
 
@@ -160,29 +157,41 @@ class DropdownFilter @JvmOverloads constructor(
             if (dropdownFilterShowDesc) View.VISIBLE else View.GONE
     }
 
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
-        }
-    }
-
     private fun updateCardBackground() {
         when (cardState) {
             CardState.REST -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.transparent
+                    )
+                )
+                foreground = GradientDrawable().apply {
+                    cornerRadius = 12f.dpToPx
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierCardElevated,
+                            android.R.color.transparent
+                        )
+                    )
                 }
-                foreground = elevatedModifierDrawable
             }
             CardState.ON_PRESS -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.transparent
+                    )
+                )
+                foreground = GradientDrawable().apply {
+                    cornerRadius = 12f.dpToPx
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierOnPress,
+                            android.R.color.transparent
+                        )
+                    )
                 }
-                foreground = overlayDrawable
             }
         }
     }
@@ -196,7 +205,7 @@ class DropdownFilter @JvmOverloads constructor(
             MotionEvent.ACTION_UP -> {
                 Log.d(TAG, "ACTION_UP - setting REST state")
                 cardState = CardState.REST
-                handleClick()
+                performClick()
             }
             MotionEvent.ACTION_CANCEL -> {
                 Log.d(TAG, "ACTION_CANCEL - setting REST state")
@@ -221,7 +230,6 @@ class DropdownFilter @JvmOverloads constructor(
             Log.d(TAG, "  - Show Description: $dropdownFilterShowDesc")
             Log.d(TAG, "  - Total clicks: $clickCount")
             Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Total system clicks: $clickCount")
             Log.d(TAG, "--------------------")
 
             delegate?.onDropdownFilterClick(this)
@@ -234,33 +242,6 @@ class DropdownFilter @JvmOverloads constructor(
         isClickable = true
         isFocusable = true
         updateCardBackground()
-    }
-
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
-            }
-        }
-    }
-
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-        Log.d(TAG, "Click count reset from $previousCount to 0")
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
     }
 
     override fun performClick(): Boolean {

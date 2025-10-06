@@ -11,14 +11,16 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.card.multi.detail.CardLeftSlot
 import com.edts.components.databinding.CardDetailInfoBBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.pxToDp
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
-import android.view.MotionEvent
 
 class CardDetailInfoB @JvmOverloads constructor(
     context: Context,
@@ -111,8 +113,6 @@ class CardDetailInfoB @JvmOverloads constructor(
             updateCardBackground()
         }
 
-    private val colorCache = mutableMapOf<Int, Int>()
-
     enum class LeftSlotType(val value: Int) {
         IMAGE(0),
         ICON(1);
@@ -136,7 +136,7 @@ class CardDetailInfoB @JvmOverloads constructor(
             updateLeftSlotSrc()
         }
 
-    var leftSlotSize: Int = (32 * context.resources.displayMetrics.density).toInt()
+    var leftSlotSize: Int = 32.dpToPx
         set(value) {
             field = value
             updateLeftSlotSize()
@@ -296,7 +296,7 @@ class CardDetailInfoB @JvmOverloads constructor(
 
     override fun dispatchDraw(canvas: Canvas) {
         super.dispatchDraw(canvas)
-        radius = 12f * resources.displayMetrics.density
+        radius = 12f.dpToPx
         if (showIndicator) {
             drawIndicator(canvas)
         }
@@ -330,17 +330,17 @@ class CardDetailInfoB @JvmOverloads constructor(
 
         path.arcTo(
             RectF(
-                halfStroke + strokeWidth *3,
+                halfStroke + strokeWidth * 3,
                 height - cornerRadiusPx * 2 - halfStroke,
                 cornerRadiusPx * 2 + halfStroke + strokeWidth,
                 height - halfStroke
             ),
             90f, 90f, false
         )
-        path.lineTo(halfStroke + strokeWidth *3, cornerRadiusPx)
+        path.lineTo(halfStroke + strokeWidth * 3, cornerRadiusPx)
         path.arcTo(
             RectF(
-                halfStroke + strokeWidth *3,
+                halfStroke + strokeWidth * 3,
                 halfStroke,
                 cornerRadiusPx * 2 + halfStroke + strokeWidth,
                 cornerRadiusPx * 2 + halfStroke
@@ -353,7 +353,7 @@ class CardDetailInfoB @JvmOverloads constructor(
     private fun updateIndicatorColor() {
         indicatorColor?.let { color ->
             if (color > 0) {
-                val resolvedColor = resolveColorAttribute(color)
+                val resolvedColor = context.resolveColorAttribute(color, color)
                 indicatorPaint.color = resolvedColor
             } else {
                 indicatorPaint.color = color
@@ -413,14 +413,14 @@ class CardDetailInfoB @JvmOverloads constructor(
         val contentLayoutParams = binding.cdibContent.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
 
         if (showLeftSlot) {
-            contentLayoutParams.marginStart = (4 * resources.displayMetrics.density).toInt()
+            contentLayoutParams.marginStart = 4.dpToPx
             contentLayoutParams.startToEnd = binding.cvCardLeftSlotCdib.id
             contentLayoutParams.startToStart = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.UNSET
 
             binding.cdibContent.setPadding(
-                (4 * resources.displayMetrics.density).toInt(),
+                4.dpToPx,
                 binding.cdibContent.paddingTop,
-                (4 * resources.displayMetrics.density).toInt(),
+                4.dpToPx,
                 binding.cdibContent.paddingBottom
             )
         } else {
@@ -451,37 +451,58 @@ class CardDetailInfoB @JvmOverloads constructor(
         }
     }
 
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
-        }
-    }
-
     private fun updateCardBackground() {
         when (cardState) {
             CardState.REST -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.transparent
+                    )
+                )
+                foreground = GradientDrawable().apply {
+                    cornerRadius = 12f.dpToPx
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierCardElevated,
+                            android.R.color.transparent
+                        )
+                    )
                 }
-                foreground = elevatedModifierDrawable
             }
             CardState.ON_PRESS -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.transparent
+                    )
+                )
+                foreground = GradientDrawable().apply {
+                    cornerRadius = 12f.dpToPx
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierOnPress,
+                            android.R.color.transparent
+                        )
+                    )
                 }
-                foreground = overlayDrawable
             }
             CardState.DISABLED -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val disabledDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.transparent
+                    )
+                )
+                foreground = GradientDrawable().apply {
+                    cornerRadius = 12f.dpToPx
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierCardElevated,
+                            android.R.color.transparent
+                        )
+                    )
                 }
-                foreground = disabledDrawable
                 alpha = 1.0f
             }
         }
@@ -500,7 +521,7 @@ class CardDetailInfoB @JvmOverloads constructor(
             MotionEvent.ACTION_UP -> {
                 Log.d("CardTouch", "ACTION_UP - setting REST state")
                 cardState = CardState.REST
-                handleClick()
+                performClick()
             }
             MotionEvent.ACTION_CANCEL -> {
                 Log.d("CardTouch", "ACTION_CANCEL - setting REST state")
@@ -531,14 +552,10 @@ class CardDetailInfoB @JvmOverloads constructor(
         }
     }
 
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-        Log.d("CardClick", "Click count reset from $previousCount to 0")
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
+    override fun performClick(): Boolean {
+        Log.d("CardClick", "Programmatic click triggered")
+        handleClick()
+        return super.performClick()
     }
 
     private fun setupCardPressState() {
@@ -569,7 +586,7 @@ class CardDetailInfoB @JvmOverloads constructor(
     private fun updateLeftSlotBackgroundColor() {
         leftSlotBackgroundColor?.let { color ->
             if (color > 0) {
-                val resolvedColor = resolveColorAttribute(color)
+                val resolvedColor = context.resolveColorAttribute(color, color)
                 binding.cvCardLeftSlotCdib.slotBackgroundColor = resolvedColor
             } else {
                 binding.cvCardLeftSlotCdib.slotBackgroundColor = color
@@ -580,27 +597,10 @@ class CardDetailInfoB @JvmOverloads constructor(
     private fun updateLeftSlotTint() {
         leftSlotTint?.let { color ->
             if (color > 0) {
-                val resolvedColor = resolveColorAttribute(color)
+                val resolvedColor = context.resolveColorAttribute(color, color)
                 binding.cvCardLeftSlotCdib.slotTint = resolvedColor
             } else {
                 binding.cvCardLeftSlotCdib.slotTint = color
-            }
-        }
-    }
-
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
             }
         }
     }
