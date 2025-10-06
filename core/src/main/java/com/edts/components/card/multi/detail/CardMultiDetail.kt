@@ -2,9 +2,7 @@ package com.edts.components.card.multi.detail
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -120,10 +118,7 @@ class CardMultiDetail @JvmOverloads constructor(
     private var cardState: CardState = CardState.REST
         set(value) {
             field = value
-//            updateCardBackground()
         }
-
-    private val colorCache = mutableMapOf<Int, Int>()
 
     var delegate: CardMultiDetailDelegate? = null
 
@@ -136,7 +131,7 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     init {
-        radius = 12f * resources.displayMetrics.density
+        radius = 12f.dpToPx
 
         context.theme.obtainStyledAttributes(
             attrs,
@@ -227,58 +222,6 @@ class CardMultiDetail @JvmOverloads constructor(
         }
     }
 
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
-        }
-    }
-
-//    private fun updateCardBackground() {
-//        if (!isClickable) return
-//
-//        when (cardState) {
-//            CardState.REST -> {
-//                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-//                val elevatedModifierDrawable = GradientDrawable().apply {
-//                    cornerRadius = 12f * resources.displayMetrics.density
-//                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
-//                }
-//                foreground = elevatedModifierDrawable
-//            }
-//            CardState.ON_PRESS -> {
-//                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-//                val overlayDrawable = GradientDrawable().apply {
-//                    cornerRadius = 12f * resources.displayMetrics.density
-//                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
-//                }
-//                foreground = overlayDrawable
-//            }
-//        }
-//    }
-
-//    override fun onTouchEvent(event: MotionEvent): Boolean {
-//        if (!isClickable) {
-//            return false
-//        }
-//
-//        when (event.action) {
-//            MotionEvent.ACTION_DOWN -> {
-//                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
-//                cardState = CardState.ON_PRESS
-//            }
-//            MotionEvent.ACTION_UP -> {
-//                Log.d(TAG, "ACTION_UP - setting REST state")
-//                cardState = CardState.REST
-//                handleClick()
-//            }
-//            MotionEvent.ACTION_CANCEL -> {
-//                Log.d(TAG, "ACTION_CANCEL - setting REST state")
-//                cardState = CardState.REST
-//            }
-//        }
-//        return super.onTouchEvent(event)
-//    }
-
     private fun handleClick() {
         val currentTime = System.currentTimeMillis()
 
@@ -306,7 +249,6 @@ class CardMultiDetail @JvmOverloads constructor(
 
     private fun setupCardPressState() {
         updateClickability()
-//        updateCardBackground()
     }
 
     private fun updateClickability() {
@@ -407,23 +349,6 @@ class CardMultiDetail @JvmOverloads constructor(
             ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
         } else{
             ContextCompat.getColorStateList(context, android.R.color.transparent)
-        }
-    }
-
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
-            }
         }
     }
 

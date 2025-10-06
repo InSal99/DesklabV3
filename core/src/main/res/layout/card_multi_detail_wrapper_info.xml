@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvInfo1"
         style="?attr/l4Regular"
         android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvInfo2"
         style="?attr/l4Regular"
         android:layout_width="wrap_content"

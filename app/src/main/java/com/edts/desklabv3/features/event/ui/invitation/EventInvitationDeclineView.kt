@@ -6,7 +6,6 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -19,7 +18,7 @@ import com.edts.desklabv3.databinding.FragmentEventInvitationListBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.EventInvitation
 
-class EventInvitationFragmentTolakUndangan : Fragment() {
+class EventInvitationDeclineView : Fragment() {
 
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!

@@ -6,7 +6,7 @@
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_8dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTATitle"
         style="?attr/l2Regular"
         android:layout_width="0dp"
@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTASupportText1"
         app:layout_constraintBottom_toTopOf="@id/btnFooterCTAPrimary"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTASupportText1"
         style="?attr/h2SemiBold"
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTATextDivider"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTATextDivider"
         style="?attr/h2SemiBold"
         android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTASupportText2"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTASupportText2"
         style="?attr/h2SemiBold"
         android:layout_width="wrap_content"

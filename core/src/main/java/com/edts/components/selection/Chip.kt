@@ -1,13 +1,11 @@
-package com.edts.components.selection
+package com.edts.components.chip
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
-import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -83,8 +81,6 @@ class Chip @JvmOverloads constructor(
             }
         }
 
-    private val colorCache = mutableMapOf<Int, Int>()
-
     private var customActiveBackgroundColor: Int? = null
 
     var chipText: String? = null
@@ -149,7 +145,7 @@ class Chip @JvmOverloads constructor(
                 val chipSizeValue = getInt(R.styleable.Chip_chipSize, 0)
                 chipSize = ChipSize.fromValue(chipSizeValue)
 
-                radius = 999f * resources.displayMetrics.density
+                radius = 999.dpToPx.toFloat()
                 rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
 
                 chipText = getString(R.styleable.Chip_chipText)
@@ -197,20 +193,6 @@ class Chip @JvmOverloads constructor(
         rippleDrawable.radius = (9* Resources.getSystem().displayMetrics.density).toInt()
 
         binding.ivChip.background = rippleDrawable
-
-//        binding.ivChip.setOnTouchListener { view, event ->
-//            when (event.action) {
-//                MotionEvent.ACTION_DOWN -> {
-//                    view.alpha = 0.7f
-//                    false
-//                }
-//                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-//                    view.alpha = 1.0f
-//                    false
-//                }
-//                else -> false
-//            }
-//        }
     }
 
     private fun handleIconClick() {
@@ -264,7 +246,7 @@ class Chip @JvmOverloads constructor(
     }
 
     private fun getActiveBackgroundColor(): Int {
-        return customActiveBackgroundColor ?: getCachedColor(R.attr.colorBackgroundPrimaryInverse)
+        return customActiveBackgroundColor ?: resolveAttrColor(R.attr.colorBackgroundPrimaryInverse)
     }
 
     private fun setupPressState() {
@@ -289,55 +271,14 @@ class Chip @JvmOverloads constructor(
     }
 
     private fun updatePressState() {
-//        when (pressState) {
-//            PressState.REST -> {
-//                val elevatedModifierDrawable = GradientDrawable().apply {
-//                    cornerRadius = 999f * resources.displayMetrics.density
-//                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
-//                }
-//                foreground = elevatedModifierDrawable
-//            }
-//            PressState.ON_PRESS -> {
-//                val overlayDrawable = GradientDrawable().apply {
-//                    cornerRadius = 999f * resources.displayMetrics.density
-//                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
-//                }
-//                foreground = overlayDrawable
-//            }
-//        }
-
         if (chipState == ChipState.ACTIVE) {
             binding.chip.strokeColor = if (pressState == PressState.ON_PRESS) {
-                getCachedColor(R.attr.colorStrokeSubtle)
+                resolveAttrColor(R.attr.colorStrokeSubtle)
             } else {
-                getCachedColor(R.attr.colorStrokeInteractive)
+                resolveAttrColor(R.attr.colorStrokeInteractive)
             }
         }
     }
-
-//    override fun onTouchEvent(event: MotionEvent): Boolean {
-//        when (event.action) {
-//            MotionEvent.ACTION_DOWN -> {
-//                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
-//                pressState = PressState.ON_PRESS
-//                return true
-//            }
-//            MotionEvent.ACTION_UP -> {
-//                Log.d(TAG, "ACTION_UP - setting REST state")
-//                pressState = PressState.REST
-//                if (isEnabled && isClickable) {
-//                    performClick()
-//                }
-//                return true
-//            }
-//            MotionEvent.ACTION_CANCEL -> {
-//                Log.d(TAG, "ACTION_CANCEL - setting REST state")
-//                pressState = PressState.REST
-//                return true
-//            }
-//        }
-//        return super.onTouchEvent(event)
-//    }
 
     override fun performClick(): Boolean {
         val currentTime = System.currentTimeMillis()
@@ -409,12 +350,12 @@ class Chip @JvmOverloads constructor(
 
         when (chipState) {
             ChipState.INACTIVE -> {
-                binding.chip.setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                binding.chip.strokeColor = getCachedColor(R.attr.colorStrokeSubtle)
-                binding.tvChip.setTextColor(getCachedColor(R.attr.colorForegroundPrimary))
+                binding.chip.setCardBackgroundColor(resolveAttrColor(R.attr.colorBackgroundPrimary))
+                binding.chip.strokeColor = resolveAttrColor(R.attr.colorStrokeSubtle)
+                binding.tvChip.setTextColor(resolveAttrColor(R.attr.colorForegroundPrimary))
                 ImageViewCompat.setImageTintList(
                     binding.ivChip,
-                    ColorStateList.valueOf(getCachedColor(R.attr.colorForegroundSecondary))
+                    ColorStateList.valueOf(resolveAttrColor(R.attr.colorForegroundSecondary))
                 )
                 binding.cvBadgeChip.badgeStrokeColor = ContextCompat.getColor(context, android.R.color.transparent)
             }
@@ -422,16 +363,16 @@ class Chip @JvmOverloads constructor(
             ChipState.ACTIVE -> {
                 binding.chip.setCardBackgroundColor(getActiveBackgroundColor())
                 binding.chip.strokeColor = if (pressState == PressState.ON_PRESS) {
-                    getCachedColor(R.attr.colorStrokeSubtle)
+                    resolveAttrColor(R.attr.colorStrokeSubtle)
                 } else {
-                    getCachedColor(R.attr.colorStrokeInteractive)
+                    resolveAttrColor(R.attr.colorStrokeInteractive)
                 }
-                binding.tvChip.setTextColor(getCachedColor(R.attr.colorForegroundPrimaryInverse))
+                binding.tvChip.setTextColor(resolveAttrColor(R.attr.colorForegroundPrimaryInverse))
                 ImageViewCompat.setImageTintList(
                     binding.ivChip,
-                    ColorStateList.valueOf(getCachedColor(R.attr.colorForegroundPrimaryInverse))
+                    ColorStateList.valueOf(resolveAttrColor(R.attr.colorForegroundPrimaryInverse))
                 )
-                binding.cvBadgeChip.badgeStrokeColor = getCachedColor(R.attr.colorStrokeInteractive)
+                binding.cvBadgeChip.badgeStrokeColor = resolveAttrColor(R.attr.colorStrokeInteractive)
             }
         }
     }
@@ -458,34 +399,34 @@ class Chip @JvmOverloads constructor(
             ChipState.INACTIVE -> {
                 animateBackgroundColor(
                     getActiveBackgroundColor(),
-                    getCachedColor(R.attr.colorBackgroundPrimary),
+                    resolveAttrColor(R.attr.colorBackgroundPrimary),
                     animationDuration,
                     onAnimationComplete
                 )
                 animateStrokeColor(
                     if (chipState == ChipState.ACTIVE && pressState == PressState.ON_PRESS) {
-                        getCachedColor(R.attr.colorStrokeSubtle)
+                        resolveAttrColor(R.attr.colorStrokeSubtle)
                     } else {
-                        getCachedColor(R.attr.colorStrokeInteractive)
+                        resolveAttrColor(R.attr.colorStrokeInteractive)
                     },
-                    getCachedColor(R.attr.colorStrokeSubtle),
+                    resolveAttrColor(R.attr.colorStrokeSubtle),
                     animationDuration,
                     onAnimationComplete
                 )
                 animateTextColor(
-                    getCachedColor(R.attr.colorForegroundPrimaryInverse),
-                    getCachedColor(R.attr.colorForegroundPrimary),
+                    resolveAttrColor(R.attr.colorForegroundPrimaryInverse),
+                    resolveAttrColor(R.attr.colorForegroundPrimary),
                     animationDuration,
                     onAnimationComplete
                 )
                 animateIconTint(
-                    getCachedColor(R.attr.colorForegroundPrimaryInverse),
-                    getCachedColor(R.attr.colorForegroundSecondary),
+                    resolveAttrColor(R.attr.colorForegroundPrimaryInverse),
+                    resolveAttrColor(R.attr.colorForegroundSecondary),
                     animationDuration,
                     onAnimationComplete
                 )
                 animateBadgeStrokeColor(
-                    getCachedColor(R.attr.colorStrokeInteractive),
+                    resolveAttrColor(R.attr.colorStrokeInteractive),
                     ContextCompat.getColor(context, android.R.color.transparent),
                     animationDuration,
                     onAnimationComplete
@@ -494,36 +435,36 @@ class Chip @JvmOverloads constructor(
 
             ChipState.ACTIVE -> {
                 animateBackgroundColor(
-                    getCachedColor(R.attr.colorBackgroundPrimary),
+                    resolveAttrColor(R.attr.colorBackgroundPrimary),
                     getActiveBackgroundColor(),
                     animationDuration,
                     onAnimationComplete
                 )
                 animateStrokeColor(
-                    getCachedColor(R.attr.colorStrokeSubtle),
+                    resolveAttrColor(R.attr.colorStrokeSubtle),
                     if (pressState == PressState.ON_PRESS) {
-                        getCachedColor(R.attr.colorStrokeSubtle)
+                        resolveAttrColor(R.attr.colorStrokeSubtle)
                     } else {
-                        getCachedColor(R.attr.colorStrokeInteractive)
+                        resolveAttrColor(R.attr.colorStrokeInteractive)
                     },
                     animationDuration,
                     onAnimationComplete
                 )
                 animateTextColor(
-                    getCachedColor(R.attr.colorForegroundPrimary),
-                    getCachedColor(R.attr.colorForegroundPrimaryInverse),
+                    resolveAttrColor(R.attr.colorForegroundPrimary),
+                    resolveAttrColor(R.attr.colorForegroundPrimaryInverse),
                     animationDuration,
                     onAnimationComplete
                 )
                 animateIconTint(
-                    getCachedColor(R.attr.colorForegroundSecondary),
-                    getCachedColor(R.attr.colorForegroundPrimaryInverse),
+                    resolveAttrColor(R.attr.colorForegroundSecondary),
+                    resolveAttrColor(R.attr.colorForegroundPrimaryInverse),
                     animationDuration,
                     onAnimationComplete
                 )
                 animateBadgeStrokeColor(
                     ContextCompat.getColor(context, android.R.color.transparent),
-                    getCachedColor(R.attr.colorStrokeInteractive),
+                    resolveAttrColor(R.attr.colorStrokeInteractive),
                     animationDuration,
                     onAnimationComplete
                 )
@@ -620,84 +561,12 @@ class Chip @JvmOverloads constructor(
         }
     }
 
-//    private fun animateBackgroundColor(fromColor: Int, toColor: Int, duration: Long) {
-//        backgroundAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
-//            this.duration = duration
-//            addUpdateListener { animator ->
-//                val color = animator.animatedValue as Int
-//                binding.chip.setCardBackgroundColor(color)
-//            }
-//            start()
-//        }
-//    }
-//
-//    private fun animateStrokeColor(fromColor: Int, toColor: Int, duration: Long) {
-//        strokeAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
-//            this.duration = duration
-//            addUpdateListener { animator ->
-//                val color = animator.animatedValue as Int
-//                binding.chip.strokeColor = color
-//            }
-//            start()
-//        }
-//    }
-//
-//    private fun animateTextColor(fromColor: Int, toColor: Int, duration: Long) {
-//        textColorAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
-//            this.duration = duration
-//            addUpdateListener { animator ->
-//                val color = animator.animatedValue as Int
-//                binding.tvChip.setTextColor(color)
-//            }
-//            start()
-//        }
-//    }
-//
-//    private fun animateIconTint(fromColor: Int, toColor: Int, duration: Long) {
-//        iconTintAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
-//            this.duration = duration
-//            addUpdateListener { animator ->
-//                val color = animator.animatedValue as Int
-//                ImageViewCompat.setImageTintList(binding.ivChip, ColorStateList.valueOf(color))
-//            }
-//            start()
-//        }
-//    }
-//
-//    private fun animateBadgeStrokeColor(fromColor: Int, toColor: Int, duration: Long) {
-//        badgeStrokeAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor).apply {
-//            this.duration = duration
-//            addUpdateListener { animator ->
-//                val color = animator.animatedValue as Int
-//                binding.cvBadgeChip.badgeStrokeColor = color
-//            }
-//            start()
-//        }
-//    }
-
     private fun cancelAllAnimations() {
         backgroundAnimator?.cancel()
         strokeAnimator?.cancel()
         textColorAnimator?.cancel()
         iconTintAnimator?.cancel()
         badgeStrokeAnimator?.cancel()
-    }
-
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
-            }
-        }
     }
 
     private fun updateChipText() {

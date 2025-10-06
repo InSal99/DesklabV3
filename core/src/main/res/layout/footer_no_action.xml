@@ -7,7 +7,7 @@
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_8dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterNoActionTitle"
         style="?attr/l3Regular"
         android:layout_width="0dp"
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/bFooterNoActionStatus"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterNoActionDescription"
         style="?attr/l2Medium"
         android:layout_width="0dp"

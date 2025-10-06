@@ -20,7 +20,7 @@ import com.edts.desklabv3.features.SpaceItemDecoration
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
+class EventListRegistrationRSVPView : Fragment(), InputSearchDelegate {
 
     private var _binding: FragmentEventListDaftarRsvpViewBinding? = null
     private val binding get() = _binding!!
@@ -285,7 +285,7 @@ class EventListDaftarRSVPView : Fragment(), InputSearchDelegate {
 
     companion object {
         @JvmStatic
-        fun newInstance(useEndList: Boolean = false) = EventListDaftarRSVPView().apply {
+        fun newInstance(useEndList: Boolean = false) = EventListRegistrationRSVPView().apply {
             arguments = Bundle().apply {
                 putBoolean("use_end_list", useEndList)
             }

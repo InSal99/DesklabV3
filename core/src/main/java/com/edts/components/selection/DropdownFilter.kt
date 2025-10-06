@@ -1,19 +1,14 @@
-package com.edts.components.selection
+package com.edts.components.chip
 
 import android.content.Context
-import android.content.res.ColorStateList
-import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.AttrRes
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.SelectionDropdownFilterBinding
@@ -74,11 +69,7 @@ class DropdownFilter @JvmOverloads constructor(
     private var cardState: CardState = CardState.REST
         set(value) {
             field = value
-//            updateCardBackground()
         }
-
-
-    private val colorCache = mutableMapOf<Int, Int>()
 
     var delegate: DropdownFilterDelegate? = null
 
@@ -91,7 +82,7 @@ class DropdownFilter @JvmOverloads constructor(
     }
 
     init {
-        radius = 999f * resources.displayMetrics.density
+        radius = 999f.dpToPx
         isClickable = true
         isFocusable = true
 
@@ -187,46 +178,6 @@ class DropdownFilter @JvmOverloads constructor(
         }
     }
 
-//    private fun updateCardBackground() {
-//        when (cardState) {
-//            CardState.REST -> {
-//                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-//                val elevatedModifierDrawable = GradientDrawable().apply {
-//                    cornerRadius = 12f * resources.displayMetrics.density
-//                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
-//                }
-//                foreground = elevatedModifierDrawable
-//            }
-//            CardState.ON_PRESS -> {
-//                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-//                val overlayDrawable = GradientDrawable().apply {
-//                    cornerRadius = 12f * resources.displayMetrics.density
-//                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
-//                }
-//                foreground = overlayDrawable
-//            }
-//        }
-//    }
-
-//    override fun onTouchEvent(event: MotionEvent): Boolean {
-//        when (event.action) {
-//            MotionEvent.ACTION_DOWN -> {
-//                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
-//                cardState = CardState.ON_PRESS
-//            }
-//            MotionEvent.ACTION_UP -> {
-//                Log.d(TAG, "ACTION_UP - setting REST state")
-//                cardState = CardState.REST
-//                handleClick()
-//            }
-//            MotionEvent.ACTION_CANCEL -> {
-//                Log.d(TAG, "ACTION_CANCEL - setting REST state")
-//                cardState = CardState.REST
-//            }
-//        }
-//        return super.onTouchEvent(event)
-//    }
-
     private fun handleClick() {
         val currentTime = System.currentTimeMillis()
 
@@ -254,80 +205,11 @@ class DropdownFilter @JvmOverloads constructor(
     private fun setupCardPressState() {
         isClickable = true
         isFocusable = true
-//        updateCardBackground()
-    }
-
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
-            }
-        }
-    }
-
-    private fun updateWrapperWidth() {
-        layoutParams?.let { params ->
-            binding.wrapper.layoutParams = (binding.wrapper.layoutParams as ConstraintLayout.LayoutParams).apply {
-                width = if (params.width == LayoutParams.MATCH_PARENT) {
-                    0
-                } else {
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-                }
-            }
-        }
-    }
-
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-        Log.d(TAG, "Click count reset from $previousCount to 0")
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
     }
 
     override fun performClick(): Boolean {
         Log.d(TAG, "Programmatic click triggered")
         handleClick()
         return super.performClick()
-    }
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
-
-        binding.wrapper.layoutParams = (binding.wrapper.layoutParams as ConstraintLayout.LayoutParams).apply {
-            width = if (widthMode == MeasureSpec.EXACTLY || widthMode == MeasureSpec.AT_MOST) {
-                val specSize = MeasureSpec.getSize(widthMeasureSpec)
-                if (widthMode == MeasureSpec.EXACTLY && specSize > 0) {
-                    0
-                } else {
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-                }
-            } else {
-                ConstraintLayout.LayoutParams.WRAP_CONTENT
-            }
-        }
-
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        updateWrapperWidth()
-    }
-
-    override fun setLayoutParams(params: ViewGroup.LayoutParams?) {
-        super.setLayoutParams(params)
-        updateWrapperWidth()
     }
 }

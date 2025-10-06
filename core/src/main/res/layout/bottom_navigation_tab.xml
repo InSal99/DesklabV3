@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tvBottomNavigation"
         app:tint="?attr/colorForegroundAccentPrimaryIntense"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvBottomNavigation"
         style="?attr/l3Medium"
         android:layout_width="wrap_content"

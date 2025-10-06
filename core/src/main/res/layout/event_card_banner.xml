@@ -8,7 +8,7 @@
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_4dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="?attr/l3Medium"
         android:id="@+id/tvEvenCardType"
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="?attr/l3Medium"
         android:id="@+id/tvEvenCardDivider"
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toEndOf="@+id/tvEvenCardType"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="?attr/l3Medium"
         android:id="@+id/tvEvenCardCategory"
         android:layout_width="wrap_content"

@@ -43,9 +43,9 @@
             app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlotCdib"
             app:layout_constraintEnd_toStartOf="@+id/ivCdibRightSlot">
 
-            <TextView
-                style="?attr/l2Medium"
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCdibTitle"
+                style="?attr/l2Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -55,9 +55,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                style="?attr/l3Regular"
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCdibDescription"
+                style="?attr/l3Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_0dp"
