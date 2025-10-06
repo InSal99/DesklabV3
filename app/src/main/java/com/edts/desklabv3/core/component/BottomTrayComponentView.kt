@@ -2,7 +2,6 @@ package com.edts.desklabv3.core.component
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.edts.components.radiobutton.RadioGroupDelegate
 import com.edts.components.tray.BottomTray
 import com.edts.components.tray.BottomTrayDelegate
 import com.edts.desklabv3.databinding.FragmentBottomTrayComponentViewBinding
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class BottomTrayComponentView : Fragment() {
 
@@ -71,61 +69,39 @@ class BottomTrayComponentView : Fragment() {
             footer.delegate = object : FooterDelegate {
                 override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {
                     when (footerType) {
-                        Footer.FooterType.DUAL_BUTTON -> {
-                            Log.d("BottomTray", "Lanjutkan button clicked")
-                        }
-                        else -> {}
+                        Footer.FooterType.DUAL_BUTTON -> { }
+                        else -> { }
                     }
                 }
 
                 override fun onSecondaryButtonClicked(footerType: Footer.FooterType) {
                     when (footerType) {
                         Footer.FooterType.DUAL_BUTTON -> {
-                            Log.d("BottomTray", "Batal button clicked")
                             bottomTray.dismiss()
                         }
                         else -> {}
                     }
                 }
 
-                override fun onRegisterClicked() {
-                    Log.d("BottomTray", "Lanjutkan clicked")
-                }
+                override fun onRegisterClicked() { }
 
-                override fun onContinueClicked() {
-                    Log.d("BottomTray", "Continue clicked")
-                }
+                override fun onContinueClicked() { }
 
                 override fun onCancelClicked() {
-                    Log.d("BottomTray", "Batal clicked")
                     bottomTray.dismiss()
                 }
             }
         }
 
         bottomTray.delegate = object : BottomTrayDelegate {
-            override fun onShow(dialogInterface: DialogInterface) {
-                Log.d("BottomTray", "Tray shown")
-            }
+            override fun onShow(dialogInterface: DialogInterface) { }
 
-            override fun onDismiss(dialogInterface: DialogInterface) {
-                Log.d("BottomTray", "Tray dismissed")
-            }
+            override fun onDismiss(dialogInterface: DialogInterface) { }
 
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-                    BottomSheetBehavior.STATE_EXPANDED -> Log.d("BottomTray", "Expanded")
-                    BottomSheetBehavior.STATE_COLLAPSED -> Log.d("BottomTray", "Collapsed")
-                    BottomSheetBehavior.STATE_HIDDEN -> Log.d("BottomTray", "Hidden")
-                }
-            }
+            override fun onStateChanged(bottomSheet: View, newState: Int) { }
 
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                Log.d("BottomTray", "Slide offset: $slideOffset")
-            }
+            override fun onSlide(bottomSheet: View, slideOffset: Float) { }
         }
-
-        bottomTray.snapPoints = intArrayOf(300, 600)
         bottomTray.show(parentFragmentManager, "BottomTrayTag")
     }
 
@@ -146,9 +122,7 @@ class BottomTrayComponentView : Fragment() {
             setData(options) { it -> it }
 
             setOnItemSelectedListener(object : RadioGroupDelegate {
-                override fun onItemSelected(position: Int, data: Any?) {
-                    Log.d("BottomTray", "Selected position: $position, data: $data")
-                }
+                override fun onItemSelected(position: Int, data: Any?) { }
             })
 
             layoutParams = LinearLayout.LayoutParams(

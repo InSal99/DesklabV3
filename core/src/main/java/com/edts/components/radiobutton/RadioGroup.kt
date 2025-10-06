@@ -66,6 +66,39 @@ class RadioGroup @JvmOverloads constructor(
         }
     }
 
+    private fun updateAllRadioButtonsTextAppearance() {
+        for (i in 0 until childCount) {
+            val radioButton = getChildAt(i) as? RadioButton
+            radioButton?.let {
+                it.setTextAppearances(
+                    normalTextAppearance,
+                    selectedTextAppearance,
+                    disabledTextAppearance,
+                    disabledSelectedTextAppearance,
+                    errorTextAppearance
+                )
+            }
+        }
+    }
+
+    private fun updateButtonMargins() {
+        for (i in 0 until childCount) {
+            val child = getChildAt(i)
+            if (child.layoutParams is LayoutParams) {
+                val params = child.layoutParams as LayoutParams
+                params.setMargins(0, 0, 0, buttonSpacing)
+                child.layoutParams = params
+            }
+        }
+    }
+
+    private fun getPositionById(id: Int): Int {
+        for (i in 0 until childCount) {
+            if (getChildAt(i).id == id) return i
+        }
+        return -1
+    }
+
     fun <T> setData(dataList: List<T>, itemDisplayProvider: (T) -> String) {
         removeAllViews()
         radioButtonDataMap.clear()
@@ -99,36 +132,8 @@ class RadioGroup @JvmOverloads constructor(
             val position = getPositionById(checkedId)
             val data = radioButtonDataMap[checkedId]
 
-            Log.d("CustomRadioGroup", "Item selected at position: $position, with data: $data")
-
             radioGroupDelegate?.onItemSelected(position, data)
             updateAllRadioButtonsTextAppearance()
-        }
-    }
-
-    private fun updateAllRadioButtonsTextAppearance() {
-        for (i in 0 until childCount) {
-            val radioButton = getChildAt(i) as? RadioButton
-            radioButton?.let {
-                it.setTextAppearances(
-                    normalTextAppearance,
-                    selectedTextAppearance,
-                    disabledTextAppearance,
-                    disabledSelectedTextAppearance,
-                    errorTextAppearance
-                )
-            }
-        }
-    }
-
-    private fun updateButtonMargins() {
-        for (i in 0 until childCount) {
-            val child = getChildAt(i)
-            if (child.layoutParams is LayoutParams) {
-                val params = child.layoutParams as LayoutParams
-                params.setMargins(0, 0, 0, buttonSpacing)
-                child.layoutParams = params
-            }
         }
     }
 
@@ -185,12 +190,5 @@ class RadioGroup @JvmOverloads constructor(
     fun selectItemByData(data: Any) {
         val entry = radioButtonDataMap.entries.find { it.value == data }
         entry?.let { check(it.key) }
-    }
-
-    private fun getPositionById(id: Int): Int {
-        for (i in 0 until childCount) {
-            if (getChildAt(i).id == id) return i
-        }
-        return -1
     }
 }

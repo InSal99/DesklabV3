@@ -14,9 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.ScrollView
 import androidx.annotation.ColorRes
 import androidx.annotation.StyleRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -26,6 +24,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import com.edts.components.R
 import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
@@ -45,7 +44,6 @@ class BottomTray : BottomSheetDialogFragment() {
     private val cachedColors = mutableMapOf<Int, Int>()
     private val cachedDrawables = mutableMapOf<String, Drawable>()
     private var pendingContentView: View? = null
-    private var keyboardHeight = 0
 
     var delegate: BottomTrayDelegate? = null
     var dragHandleVisibility: Boolean = true
@@ -127,7 +125,6 @@ class BottomTray : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRootView()
-        setupWindowInsets()
         setupViews()
         updateBackground()
         setupDragHandle()
@@ -135,6 +132,27 @@ class BottomTray : BottomSheetDialogFragment() {
         if (customAnimationsEnabled) {
             setCustomAnimations()
         }
+    }
+
+    override fun show(manager: FragmentManager, tag: String?) {
+        if (manager.findFragmentByTag(tag) != null) {
+            return
+        }
+        super.show(manager, tag)
+    }
+
+    override fun dismiss() {
+        if (isAdded && parentFragmentManager != null) {
+            super.dismiss()
+        } else {
+            dismissAllowingStateLoss()
+        }
+    }
+
+    override fun dismissAllowingStateLoss() {
+        try {
+            super.dismissAllowingStateLoss()
+        } catch (e: IllegalStateException) { }
     }
 
     override fun onDestroyView() {
@@ -208,73 +226,6 @@ class BottomTray : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setupWindowInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
-            val imeHeight = if (imeVisible) imeInsets.bottom else 0
-
-            keyboardHeight = imeHeight
-
-            if (imeVisible) {
-                binding.trayFooter.translationY = -imeHeight.toFloat()
-
-                val contentView = if (binding.trayContent.childCount > 0) binding.trayContent.getChildAt(0) else null
-                val footerHeight = binding.trayFooter.height
-
-                if (contentView is ScrollView || contentView is androidx.core.widget.NestedScrollView) {
-                    contentView.setPadding(
-                        contentView.paddingLeft,
-                        contentView.paddingTop,
-                        contentView.paddingRight,
-                        imeHeight
-                    )
-                    (contentView as? ScrollView)?.clipToPadding = false
-                    (contentView as? androidx.core.widget.NestedScrollView)?.clipToPadding = false
-                } else {
-                    binding.trayContent.setPadding(
-                        binding.trayContent.paddingLeft,
-                        binding.trayContent.paddingTop,
-                        binding.trayContent.paddingRight,
-                        imeHeight
-                    )
-                    binding.trayContent.clipToPadding = false
-                }
-
-                binding.root.postDelayed({
-                    scrollToFocusedField()
-                }, 150)
-
-                view.setPadding(systemBarsInsets.left, 0, systemBarsInsets.right, 0)
-
-            } else {
-                binding.trayFooter.translationY = 0f
-                val contentView = if (binding.trayContent.childCount > 0) binding.trayContent.getChildAt(0) else null
-
-                if (contentView is ScrollView || contentView is androidx.core.widget.NestedScrollView) {
-                    contentView.setPadding(
-                        contentView.paddingLeft,
-                        contentView.paddingTop,
-                        contentView.paddingRight,
-                        0
-                    )
-                } else {
-                    binding.trayContent.setPadding(
-                        binding.trayContent.paddingLeft,
-                        binding.trayContent.paddingTop,
-                        binding.trayContent.paddingRight,
-                        0
-                    )
-                }
-
-                view.setPadding(systemBarsInsets.left, 0, systemBarsInsets.right, systemBarsInsets.bottom)
-            }
-
-            insets
-        }
-    }
-
     private fun setupViews() {
         binding.trayTitle.text = _title
         binding.trayTitle.isVisible = !_title.isNullOrEmpty()
@@ -293,104 +244,6 @@ class BottomTray : BottomSheetDialogFragment() {
     private fun setupDragHandle() {
         if (dragHandleVisibility) {
             binding.trayDragHandle.background = getDragHandleDrawable()
-        }
-    }
-
-    private fun setupKeyboardHandling() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
-            val imeHeight = if (imeVisible) imeInsets.bottom else 0
-
-            keyboardHeight = imeHeight
-
-            if (imeVisible) {
-                binding.trayFooter.translationY = -imeHeight.toFloat()
-                val contentView = binding.trayContent.getChildAt(0)
-                val footerHeight = binding.trayFooter.height
-
-                if (contentView is ScrollView || contentView is androidx.core.widget.NestedScrollView) {
-                    contentView.setPadding(
-                        contentView.paddingLeft,
-                        contentView.paddingTop,
-                        contentView.paddingRight,
-                        imeHeight + footerHeight
-                    )
-                    (contentView as? ScrollView)?.clipToPadding = false
-                    (contentView as? androidx.core.widget.NestedScrollView)?.clipToPadding = false
-                } else {
-                    binding.trayContent.setPadding(
-                        binding.trayContent.paddingLeft,
-                        binding.trayContent.paddingTop,
-                        binding.trayContent.paddingRight,
-                        imeHeight + footerHeight
-                    )
-                    binding.trayContent.clipToPadding = false
-                }
-
-                binding.root.postDelayed({
-                    scrollToFocusedField()
-                }, 150)
-
-            } else {
-                binding.trayFooter.translationY = 0f
-                val contentView = binding.trayContent.getChildAt(0)
-
-                if (contentView is ScrollView || contentView is androidx.core.widget.NestedScrollView) {
-                    contentView.setPadding(
-                        contentView.paddingLeft,
-                        contentView.paddingTop,
-                        contentView.paddingRight,
-                        0
-                    )
-                } else {
-                    binding.trayContent.setPadding(
-                        binding.trayContent.paddingLeft,
-                        binding.trayContent.paddingTop,
-                        binding.trayContent.paddingRight,
-                        0
-                    )
-                }
-            }
-
-            insets
-        }
-    }
-
-    private fun scrollToFocusedField() {
-        val focusedView = binding.root.findFocus()
-        if (focusedView is EditText) {
-            val contentView = binding.trayContent.getChildAt(0)
-
-            when (contentView) {
-                is ScrollView -> {
-                    val location = IntArray(2)
-                    focusedView.getLocationInWindow(location)
-                    val scrollViewLocation = IntArray(2)
-                    contentView.getLocationInWindow(scrollViewLocation)
-
-                    val relativeY = location[1] - scrollViewLocation[1]
-                    val availableHeight = contentView.height - keyboardHeight
-                    val targetOffset = availableHeight / 4
-                    val targetScrollY = contentView.scrollY + relativeY - targetOffset
-
-                    contentView.smoothScrollTo(0, maxOf(0, targetScrollY))
-                }
-                is androidx.core.widget.NestedScrollView -> {
-                    val location = IntArray(2)
-                    focusedView.getLocationInWindow(location)
-                    val scrollViewLocation = IntArray(2)
-                    contentView.getLocationInWindow(scrollViewLocation)
-
-                    val relativeY = location[1] - scrollViewLocation[1]
-                    val availableHeight = contentView.height - keyboardHeight
-                    val targetOffset = availableHeight / 4
-                    val targetScrollY = contentView.scrollY + relativeY - targetOffset
-
-                    contentView.smoothScrollTo(0, maxOf(0, targetScrollY))
-                }
-            }
         }
     }
 
