@@ -5,16 +5,16 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.TypedValue
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
-import com.google.android.material.card.MaterialCardView
-import android.util.Log
 import com.edts.components.databinding.SortBtnBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
+import com.google.android.material.card.MaterialCardView
 
 class SortButton @JvmOverloads constructor(
     context: Context,
@@ -27,7 +27,7 @@ class SortButton @JvmOverloads constructor(
         true
     )
 
-    private val cornerRadiusPx = 12.toFloat() * context.resources.displayMetrics.density
+    private val cornerRadiusPx = 12f.dpToPx
 
     enum class CardState {
         REST,
@@ -39,8 +39,6 @@ class SortButton @JvmOverloads constructor(
             field = value
             updateCardBackground()
         }
-
-    private val colorCache = mutableMapOf<Int, Int>()
 
     var delegate: SortButtonDelegate? = null
 
@@ -73,46 +71,41 @@ class SortButton @JvmOverloads constructor(
         rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
     }
 
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
-            }
-        }
-    }
-
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
-        }
-    }
-
     private fun updateCardBackground() {
         when (cardState) {
             CardState.REST -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.transparent
+                    )
+                )
+                foreground = GradientDrawable().apply {
+                    cornerRadius = 12f.dpToPx
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierCardElevated,
+                            android.R.color.transparent
+                        )
+                    )
                 }
-                foreground = elevatedModifierDrawable
             }
             CardState.ON_PRESS -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+                setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.transparent
+                    )
+                )
+                foreground = GradientDrawable().apply {
+                    cornerRadius = 12f.dpToPx
+                    setColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorBackgroundModifierCardElevated,
+                            android.R.color.transparent
+                        )
+                    )
                 }
-                foreground = overlayDrawable
             }
         }
     }
@@ -129,7 +122,7 @@ class SortButton @JvmOverloads constructor(
                 Log.d(TAG, "ACTION_UP - setting REST state and scaling up")
                 cardState = CardState.REST
                 animateScaleUp()
-                handleClick()
+                performClick()
                 return true
             }
             MotionEvent.ACTION_CANCEL -> {
@@ -156,10 +149,8 @@ class SortButton @JvmOverloads constructor(
             Log.d(TAG, "  - Current scale Y: $scaleY")
             Log.d(TAG, "  - Card state: $cardState")
             Log.d(TAG, "  - Current sort icon: $sortIcon")
-            Log.d(TAG, "  - Total system clicks: $clickCount")
             Log.d(TAG, "--------------------")
 
-            super.performClick()
             delegate?.onSortButtonClick(this)
         } else {
             Log.d(TAG, "Click ignored due to debounce (too fast)")
@@ -175,7 +166,7 @@ class SortButton @JvmOverloads constructor(
     override fun performClick(): Boolean {
         Log.d(TAG, "Programmatic performClick() called")
         handleClick()
-        return true
+        return super.performClick()
     }
 
     private fun animateScaleDown() {
@@ -202,16 +193,6 @@ class SortButton @JvmOverloads constructor(
         animatorSet.start()
     }
 
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-        Log.d(TAG, "Click count reset from $previousCount to 0")
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
-    }
-
     fun simulateClick() {
         Log.d(TAG, "Simulated click triggered")
         animateScaleDown()
@@ -220,7 +201,7 @@ class SortButton @JvmOverloads constructor(
         postDelayed({
             cardState = CardState.REST
             animateScaleUp()
-            handleClick()
+            performClick()
         }, 100)
     }
 }

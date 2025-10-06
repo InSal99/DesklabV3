@@ -1,4 +1,4 @@
-package com.edts.desklabv3.features.leave.ui.laporantim
+package com.edts.desklabv3.features.leave.ui.teamreport
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -14,11 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.R
 import com.edts.components.input.search.InputSearchDelegate
 import com.edts.components.tray.BottomTray
-import com.edts.desklabv3.MainActivity
 import com.edts.desklabv3.core.util.Utils
 import com.edts.desklabv3.databinding.FragmentTeamReportLeaveViewBinding
 import com.edts.desklabv3.features.event.ui.eventdetail.EventOptionAdapter
-import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailView
 
 class TeamReportLeaveView : Fragment(), InputSearchDelegate {
 

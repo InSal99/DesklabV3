@@ -5,7 +5,7 @@
     android:layout_height="64dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvEvenCardSTitle"
         style="?attr/p1SemiBold"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvEvenCardDate"
         style="?attr/l3Regular"
         android:layout_width="wrap_content"

@@ -18,7 +18,7 @@
         android:minWidth="14dp"
         android:minHeight="14dp">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvBadge"
             style="?attr/l4Medium"
             android:layout_width="wrap_content"

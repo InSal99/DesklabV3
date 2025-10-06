@@ -175,35 +175,6 @@ class CheckBox @JvmOverloads constructor(
         currentAnimator?.start()
     }
 
-    override fun setEnabled(enabled: Boolean) {
-        super.setEnabled(enabled)
-        updateTextAppearance()
-    }
-
-    fun setErrorState(error: Boolean) {
-        if (isErrorState != error) {
-            isErrorState = error
-            refreshDrawableState()
-            updateTextAppearance()
-        }
-    }
-
-    fun isErrorState(): Boolean = isErrorState
-
-    override fun onCreateDrawableState(extraSpace: Int): IntArray {
-        val drawableState = super.onCreateDrawableState(extraSpace + 1)
-        if (isErrorState) {
-            mergeDrawableStates(drawableState, STATE_ERROR)
-        }
-        return drawableState
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        currentAnimator?.cancel()
-        currentAnimator = null
-    }
-
     private fun updateTextAppearance() {
         val textAppearanceRes = when {
             !isEnabled && isChecked -> disabledSelectedTextAppearance
@@ -223,14 +194,16 @@ class CheckBox @JvmOverloads constructor(
         }
     }
 
-    override fun performClick(): Boolean {
-        Log.d("CustomCheckBox", "checkbox clicked")
-        val result = super.performClick()
-        setErrorState(false)
-
-        checkBoxDelegate?.onCheckChanged(this, this.isChecked)
-        return result
+    fun setErrorState(error: Boolean) {
+        if (isErrorState != error) {
+            isErrorState = error
+            refreshDrawableState()
+            updateTextAppearance()
+        }
     }
+
+    fun isErrorState(): Boolean = isErrorState
+
 
     fun setCustomCheckBoxDelegate(delegate: CheckboxDelegate?) {
         this.checkBoxDelegate = delegate
@@ -249,6 +222,34 @@ class CheckBox @JvmOverloads constructor(
         disabledSelectedTextAppearance = disabledSelected
         errorTextAppearance = error
         updateTextAppearance()
+    }
+
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        updateTextAppearance()
+    }
+
+    override fun onCreateDrawableState(extraSpace: Int): IntArray {
+        val drawableState = super.onCreateDrawableState(extraSpace + 1)
+        if (isErrorState) {
+            mergeDrawableStates(drawableState, STATE_ERROR)
+        }
+        return drawableState
+    }
+
+    override fun performClick(): Boolean {
+        Log.d("CustomCheckBox", "checkbox clicked")
+        val result = super.performClick()
+        setErrorState(false)
+
+        checkBoxDelegate?.onCheckChanged(this, this.isChecked)
+        return result
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        currentAnimator?.cancel()
+        currentAnimator = null
     }
 
     companion object {

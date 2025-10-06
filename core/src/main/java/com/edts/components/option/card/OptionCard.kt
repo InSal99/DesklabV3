@@ -8,11 +8,11 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.OptionCardBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class OptionCard @JvmOverloads constructor(
@@ -57,7 +57,10 @@ class OptionCard @JvmOverloads constructor(
         isClickable = true
         isFocusable = true
 
-        val activeColor = resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.color000Opacity5)
+        val activeColor = context.resolveColorAttribute(
+            R.attr.colorBackgroundModifierOnPress,
+            android.R.color.transparent
+        )
         rippleColor = ColorStateList.valueOf(activeColor)
     }
 
@@ -74,39 +77,26 @@ class OptionCard @JvmOverloads constructor(
     }
 
     private fun setupCardAppearance(context: Context) {
-        strokeWidth = (1 * context.resources.displayMetrics.density).toInt()
+        strokeWidth = 1.dpToPx
         radius = context.resources.getDimension(R.dimen.radius_12dp)
 
         val typedValue = TypedValue()
         context.theme.resolveAttribute(R.attr.colorStrokeSubtle, typedValue, true)
         setStrokeColor(ContextCompat.getColor(context, typedValue.resourceId))
 
-        cardElevation = 2f * context.resources.displayMetrics.density
+        cardElevation = 1f.dpToPx
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = resolveColorAttribute(
-                R.attr.colorShadowNeutralAmbient,
-                R.color.colorGreen50
+            outlineAmbientShadowColor = context.resolveColorAttribute(
+                R.attr.colorForegroundPrimary,
+                android.R.color.transparent
             )
-            outlineSpotShadowColor = resolveColorAttribute(
-                R.attr.colorShadowNeutralKey,
-                R.color.colorGreen50
+            outlineSpotShadowColor = context.resolveColorAttribute(
+                R.attr.colorForegroundPrimary,
+                android.R.color.transparent
             )
         }
 
         setupClickAnimation()
-    }
-
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            ContextCompat.getColor(context, fallbackColor)
-        }
     }
 }

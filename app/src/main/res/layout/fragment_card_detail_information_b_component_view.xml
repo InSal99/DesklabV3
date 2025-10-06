@@ -30,7 +30,7 @@
                 android:src="@drawable/ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
                 style="?attr/d3SemiBold"
                 android:layout_width="match_parent"
@@ -98,6 +98,22 @@
             app:cdibTitleText="Card Title"
             app:cdibDescText="Card Content Description" />
 
+        <com.edts.components.card.detail.CardDetailInfoB
+            android:id="@+id/cdibCustomType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:cdibLeftSlotType="icon"
+            app:cdibShowIndicator="false"
+            app:cdibShowRightSlot="true"
+            app:cdibShowLeftSlot="false"
+            app:cdibShowDescription="true"
+            app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
+            app:cdibLeftSlotSrc="@drawable/ic_star"
+            app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
+            app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+            app:cdibTitleText="Card Title"
+            app:cdibDescText="Card Content Description"
+            app:cdibRightSlotType="custom"/>
     </LinearLayout>
-
 </FrameLayout>

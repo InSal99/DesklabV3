@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.edts.components.checkbox.CheckBox
+import com.edts.components.radiobutton.RadioButton
 import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentCardDetailInformationBComponentViewBinding
 
@@ -27,6 +29,7 @@ class CardDetailInformationBComponentView : Fragment(), InsetConfigurable {
         binding.btnLibCardDetailInformationBBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+        binding.cdibCustomType.setRightSlotView(CheckBox(requireContext()))
     }
 
     override fun applyBottomInset(): Boolean = false
