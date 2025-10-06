@@ -1,7 +1,9 @@
-package com.edts.components.chip
+package com.edts.components.selection
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -9,9 +11,13 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.AttrRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.SelectionDropdownFilterBinding
+import com.edts.components.selection.DropdownFilterDelegate
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class DropdownFilter @JvmOverloads constructor(
@@ -92,7 +98,7 @@ class DropdownFilter @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
                 dropdownFilterLabel = getString(R.styleable.DropdownFilter_dropdownFilterLabel)
                 dropdownFilterDesc = getString(R.styleable.DropdownFilter_dropdownFilterDesc)
@@ -128,6 +134,18 @@ class DropdownFilter @JvmOverloads constructor(
         }
     }
 
+    private fun updateWrapperWidth() {
+        layoutParams?.let { params ->
+            binding.wrapper.layoutParams = (binding.wrapper.layoutParams as ConstraintLayout.LayoutParams).apply {
+                width = if (params.width == LayoutParams.MATCH_PARENT) {
+                    0
+                } else {
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                }
+            }
+        }
+    }
+
     private fun updateLabel() {
         dropdownFilterLabel?.let {
             binding.tvDropdownFilterLabel.text = it
@@ -150,10 +168,10 @@ class DropdownFilter @JvmOverloads constructor(
         binding.ivDropdownFilter.isClickable = true
         binding.ivDropdownFilter.isFocusable = true
 
-        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
         val rippleDrawable = RippleDrawable(rippleColor, null, null)
-        rippleDrawable.radius = (10* Resources.getSystem().displayMetrics.density).toInt()
+        rippleDrawable.radius = 10f.dpToPx.toInt()
 
         binding.ivDropdownFilter.background = rippleDrawable
 
@@ -170,12 +188,6 @@ class DropdownFilter @JvmOverloads constructor(
     private fun updateDescriptionVisibility() {
         binding.tvDropdownFilterDesc.visibility =
             if (dropdownFilterShowDesc) View.VISIBLE else View.GONE
-    }
-
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
-        }
     }
 
     private fun handleClick() {

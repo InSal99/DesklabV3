@@ -1,9 +1,11 @@
 package com.edts.components.input.search
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -18,6 +20,8 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import com.edts.components.R
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 
 class InputSearch @JvmOverloads constructor(
     context: Context,
@@ -219,10 +223,10 @@ class InputSearch @JvmOverloads constructor(
             }
         }
 
-        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
         val rippleDrawable = RippleDrawable(rippleColor, null, null)
-        rippleDrawable.radius = (12* Resources.getSystem().displayMetrics.density).toInt()
+        rippleDrawable.radius = 12f.dpToPx.toInt()
 
         binding.ivRightIcon.background = rippleDrawable
     }

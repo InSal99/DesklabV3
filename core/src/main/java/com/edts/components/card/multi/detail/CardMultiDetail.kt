@@ -3,6 +3,7 @@ package com.edts.components.card.multi.detail
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -13,6 +14,8 @@ import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.CardMultiDetailBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class CardMultiDetail @JvmOverloads constructor(
@@ -141,7 +144,7 @@ class CardMultiDetail @JvmOverloads constructor(
             try {
                 val typedValue = TypedValue()
                 rippleColor = if (cmdShowRightSlot) {
-                    ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
                 } else{
                     ContextCompat.getColorStateList(context, android.R.color.transparent)
                 }
@@ -156,7 +159,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
                 val leftSlotBgColorResId = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
                 if (leftSlotBgColorResId != -1) {
-                    leftSlotBackgroundColor = resolveColorAttribute(leftSlotBgColorResId)
+                    leftSlotBackgroundColor = context.resolveColorAttribute(leftSlotBgColorResId, R.color.colorFFF)
                 } else {
                     val leftSlotBgColor = getColor(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
                     if (leftSlotBgColor != -1) {
@@ -166,7 +169,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
                 val leftSlotTintResId = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
                 if (leftSlotTintResId != -1) {
-                    leftSlotTint = resolveColorAttribute(leftSlotTintResId)
+                    leftSlotTint = context.resolveColorAttribute(leftSlotTintResId, R.color.colorFFF)
                 } else {
                     val leftSlotTintColor = getColor(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
                     if (leftSlotTintColor != -1) {
@@ -259,7 +262,7 @@ class CardMultiDetail @JvmOverloads constructor(
         Log.d(TAG, "Clickability updated: $shouldBeClickable (based on cmdShowRightSlot: $cmdShowRightSlot)")
 
         rippleColor = if (shouldBeClickable) {
-            ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+            ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
         } else{
             ContextCompat.getColorStateList(context, android.R.color.transparent)
         }
@@ -321,10 +324,10 @@ class CardMultiDetail @JvmOverloads constructor(
         binding.ivCmdRightSlot.isClickable = true
         binding.ivCmdRightSlot.isFocusable = true
 
-        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
         val rippleDrawable = RippleDrawable(rippleColor, null, null)
-        rippleDrawable.radius = (16* Resources.getSystem().displayMetrics.density).toInt()
+        rippleDrawable.radius = 16f.dpToPx.toInt()
 
         binding.ivCmdRightSlot.background = rippleDrawable
 
@@ -346,7 +349,7 @@ class CardMultiDetail @JvmOverloads constructor(
     private fun updateCmdShowRightSlot() {
         binding.ivCmdRightSlot.visibility = if (cmdShowRightSlot) View.VISIBLE else View.GONE
         rippleColor = if (cmdShowRightSlot) {
-            ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+            ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
         } else{
             ContextCompat.getColorStateList(context, android.R.color.transparent)
         }

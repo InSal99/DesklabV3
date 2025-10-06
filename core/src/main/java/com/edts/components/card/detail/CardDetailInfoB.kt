@@ -2,11 +2,13 @@ package com.edts.components.card.detail
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -19,6 +21,8 @@ import com.edts.components.card.multi.detail.CardLeftSlot
 import com.edts.components.databinding.CardDetailInfoBBinding
 import com.google.android.material.card.MaterialCardView
 import android.view.MotionEvent
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 
 class CardDetailInfoB @JvmOverloads constructor(
     context: Context,
@@ -195,11 +199,10 @@ class CardDetailInfoB @JvmOverloads constructor(
             try {
                 val typedValue = TypedValue()
                 rippleColor = if (showRightSlot) {
-                    ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
                 } else{
                     ContextCompat.getColorStateList(context, android.R.color.transparent)
                 }
-
 
                 if (context.theme.resolveAttribute(R.attr.colorStrokeUtilityUlangTahunIntense, typedValue, true)) {
                     indicatorPaint.color = ContextCompat.getColor(context, typedValue.resourceId)
@@ -362,13 +365,18 @@ class CardDetailInfoB @JvmOverloads constructor(
     }
 
     private fun updateIndicatorColor() {
-        indicatorColor?.let { color ->
-            if (color > 0) {
-                val resolvedColor = context.resolveColorAttribute(color, color)
-                indicatorPaint.color = resolvedColor
+        indicatorColor?.let { value ->
+            val typedValue = TypedValue()
+            if (context.theme.resolveAttribute(value, typedValue, true)) {
+                indicatorPaint.color = typedValue.data
             } else {
-                indicatorPaint.color = color
+                try {
+                    indicatorPaint.color = ContextCompat.getColor(context, value)
+                } catch (e: Resources.NotFoundException) {
+                    indicatorPaint.color = value
+                }
             }
+
             invalidate()
         }
     }
@@ -409,7 +417,7 @@ class CardDetailInfoB @JvmOverloads constructor(
                 binding.flCdibRightSlotContainer.visibility = View.GONE
 
                 rippleColor = if (showRightSlot) {
-                    ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
                 } else{
                     ContextCompat.getColorStateList(context, android.R.color.transparent)
                 }
@@ -417,10 +425,10 @@ class CardDetailInfoB @JvmOverloads constructor(
                 binding.ivCdibRightSlot.isClickable = true
                 binding.ivCdibRightSlot.isFocusable = true
 
-                val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
                 val rippleDrawable = RippleDrawable(rippleColor, null, null)
-                rippleDrawable.radius = (16* Resources.getSystem().displayMetrics.density).toInt()
+                rippleDrawable.radius = (16f.dpToPx).toInt()
 
                 binding.ivCdibRightSlot.background = rippleDrawable
             }
@@ -476,12 +484,6 @@ class CardDetailInfoB @JvmOverloads constructor(
             isClickable = false
             isFocusable = false
             cardState = CardState.DISABLED
-        }
-    }
-
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
         }
     }
 
