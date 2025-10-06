@@ -164,7 +164,7 @@ class InputField @JvmOverloads constructor(
             val description = typedArray.getString(R.styleable.InputField_fieldDescription)
             val hint = typedArray.getString(R.styleable.InputField_fieldHint)
             val required = typedArray.getBoolean(R.styleable.InputField_fieldRequired, false)
-            val inputTypeValue = typedArray.getInt(R.styleable.InputField_inputType, 0)
+            val inputTypeValue = typedArray.getInt(R.styleable.InputField_inputFieldType, 0)
             maxLength = typedArray.getInt(R.styleable.InputField_maxLength, 0)
             minLength = typedArray.getInt(R.styleable.InputField_minLength, 0)
             val maxLines = typedArray.getInt(R.styleable.InputField_maxLines, 4)

@@ -57,6 +57,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.edts.components.event.card.EventCard
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_24dp"
+            app:showCardBadge="false"
+            app:cardEventCategory="People Development"
+            app:cardEventDate="23 Juli 2025"
+            app:eventImageSrc="@drawable/poster2"
+            app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
+            app:cardEventType="Hybrid Event"
+            app:showCardStatus="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     </LinearLayout>
-
 </FrameLayout>

@@ -30,7 +30,7 @@
                 android:src="@drawable/ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary" />
 
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
                 android:id="@+id/tvLibraryTitle"
                 style="?attr/d3SemiBold"
                 android:layout_width="match_parent"
@@ -45,17 +45,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"
+            app:tabItemText="Label"
             app:tabItemShowBadge="false"
-            app:tabItemState="active"
-            app:tabItemText="Label" />
+            app:tabItemState="active" />
 
         <com.edts.components.tab.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
+            app:tabItemText="Label"
             app:tabItemBadgeText="1"
             app:tabItemShowBadge="true"
-            app:tabItemState="inactive"
-            app:tabItemText="Label" />
+            app:tabItemState="inactive" />
+
     </LinearLayout>
+
 </FrameLayout>

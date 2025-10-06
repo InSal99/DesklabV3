@@ -45,8 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"
+            app:eventBadgeType="invited"
             app:badgeSize="Large"
-            app:badgeType="invited"
             app:eventCardBadgeText="Diundang"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
@@ -55,8 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
+            app:eventBadgeType="registered"
             app:badgeSize="Large"
-            app:badgeType="registered"
             app:eventCardBadgeText="Terdaftar"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
@@ -65,8 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
+            app:eventBadgeType="live"
             app:badgeSize="Large"
-            app:badgeType="live"
             app:eventCardBadgeText="Berlangsung"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
@@ -75,8 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
+            app:eventBadgeType="registered"
             app:badgeSize="Small"
-            app:badgeType="registered"
             app:eventCardBadgeText="Terdaftar"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
@@ -85,8 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
+            app:eventBadgeType="live"
             app:badgeSize="Small"
-            app:badgeType="live"
             app:eventCardBadgeText="Berlangsung"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
@@ -95,8 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
+            app:eventBadgeType="attended"
             app:badgeSize="Small"
-            app:badgeType="attended"
             app:eventCardBadgeText="Hadir"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
@@ -105,8 +105,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
+            app:eventBadgeType="notattended"
             app:badgeSize="Small"
-            app:badgeType="notattended"
             app:eventCardBadgeText="Tidak Hadir"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard" />

@@ -13,8 +13,6 @@ import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.CardMultiDetailBinding
-import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class CardMultiDetail @JvmOverloads constructor(
@@ -120,7 +118,6 @@ class CardMultiDetail @JvmOverloads constructor(
     private var cardState: CardState = CardState.REST
         set(value) {
             field = value
-            updateCardBackground()
         }
 
     var delegate: CardMultiDetailDelegate? = null
@@ -143,7 +140,11 @@ class CardMultiDetail @JvmOverloads constructor(
         ).apply {
             try {
                 val typedValue = TypedValue()
-                rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+                rippleColor = if (cmdShowRightSlot) {
+                    ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                } else{
+                    ContextCompat.getColorStateList(context, android.R.color.transparent)
+                }
 
                 val leftSlotTypeValue = getInt(R.styleable.CardMultiDetail_cmdLeftSlotType, 1)
                 leftSlotType = LeftSlotType.fromValue(leftSlotTypeValue)
@@ -155,12 +156,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
                 val leftSlotBgColorResId = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
                 if (leftSlotBgColorResId != -1) {
-                    val tv = TypedValue()
-                    leftSlotBackgroundColor = if (context.theme.resolveAttribute(leftSlotBgColorResId, tv, true)) {
-                        if (tv.resourceId != 0) ContextCompat.getColor(context, tv.resourceId) else tv.data
-                    } else {
-                        ContextCompat.getColor(context, leftSlotBgColorResId)
-                    }
+                    leftSlotBackgroundColor = resolveColorAttribute(leftSlotBgColorResId)
                 } else {
                     val leftSlotBgColor = getColor(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
                     if (leftSlotBgColor != -1) {
@@ -170,12 +166,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
                 val leftSlotTintResId = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
                 if (leftSlotTintResId != -1) {
-                    val tv = TypedValue()
-                    leftSlotTint = if (context.theme.resolveAttribute(leftSlotTintResId, tv, true)) {
-                        if (tv.resourceId != 0) ContextCompat.getColor(context, tv.resourceId) else tv.data
-                    } else {
-                        ContextCompat.getColor(context, leftSlotTintResId)
-                    }
+                    leftSlotTint = resolveColorAttribute(leftSlotTintResId)
                 } else {
                     val leftSlotTintColor = getColor(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
                     if (leftSlotTintColor != -1) {
@@ -221,82 +212,14 @@ class CardMultiDetail @JvmOverloads constructor(
                 updateCmdShowRightSlot()
                 updateClickability()
                 setupCardPressState()
+
+                setOnClickListener {
+                    handleClick()
+                }
             } finally {
                 recycle()
             }
         }
-    }
-
-    // REFACTORED: Now uses resolveColorAttribute directly, with inlined workaround.
-    private fun updateCardBackground() {
-        if (!isClickable) return
-
-        val fallbackColorRes = android.R.color.transparent
-
-        val resolvedPrimary = context.resolveColorAttribute(R.attr.colorBackgroundPrimary, fallbackColorRes)
-        val colorPrimary = try {
-            ContextCompat.getColor(context, resolvedPrimary)
-        } catch (e: Exception) {
-            resolvedPrimary
-        }
-
-        when (cardState) {
-            CardState.REST -> {
-                setCardBackgroundColor(colorPrimary)
-
-                val resolvedElevated = context.resolveColorAttribute(R.attr.colorBackgroundModifierCardElevated, fallbackColorRes)
-                val colorElevated = try {
-                    ContextCompat.getColor(context, resolvedElevated)
-                } catch (e: Exception) {
-                    resolvedElevated
-                }
-
-                val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f.dpToPx
-                    setColor(colorElevated)
-                }
-                foreground = elevatedModifierDrawable
-            }
-            CardState.ON_PRESS -> {
-                setCardBackgroundColor(colorPrimary)
-
-                val resolvedOnPress = context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, fallbackColorRes)
-                val colorOnPress = try {
-                    ContextCompat.getColor(context, resolvedOnPress)
-                } catch (e: Exception) {
-                    resolvedOnPress
-                }
-
-                val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f.dpToPx
-                    setColor(colorOnPress)
-                }
-                foreground = overlayDrawable
-            }
-        }
-    }
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (!isClickable) {
-            return false
-        }
-
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
-                cardState = CardState.ON_PRESS
-            }
-            MotionEvent.ACTION_UP -> {
-                Log.d(TAG, "ACTION_UP - setting REST state")
-                cardState = CardState.REST
-                handleClick()
-            }
-            MotionEvent.ACTION_CANCEL -> {
-                Log.d(TAG, "ACTION_CANCEL - setting REST state")
-                cardState = CardState.REST
-            }
-        }
-        return super.onTouchEvent(event)
     }
 
     private fun handleClick() {
@@ -326,7 +249,6 @@ class CardMultiDetail @JvmOverloads constructor(
 
     private fun setupCardPressState() {
         updateClickability()
-        updateCardBackground()
     }
 
     private fun updateClickability() {
@@ -335,6 +257,12 @@ class CardMultiDetail @JvmOverloads constructor(
         isFocusable = shouldBeClickable
 
         Log.d(TAG, "Clickability updated: $shouldBeClickable (based on cmdShowRightSlot: $cmdShowRightSlot)")
+
+        rippleColor = if (shouldBeClickable) {
+            ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        } else{
+            ContextCompat.getColorStateList(context, android.R.color.transparent)
+        }
 
         if (!shouldBeClickable && cardState == CardState.ON_PRESS) {
             cardState = CardState.REST
@@ -390,6 +318,20 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     private fun updateRightSlotSrc() {
+        binding.ivCmdRightSlot.isClickable = true
+        binding.ivCmdRightSlot.isFocusable = true
+
+        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+
+        val rippleDrawable = RippleDrawable(rippleColor, null, null)
+        rippleDrawable.radius = (16* Resources.getSystem().displayMetrics.density).toInt()
+
+        binding.ivCmdRightSlot.background = rippleDrawable
+
+        binding.ivCmdRightSlot.setOnClickListener {
+            delegate?.onRightSlotClick(this)
+        }
+
         rightSlotSrc?.let {
             binding.ivCmdRightSlot.setImageResource(it)
         }
@@ -403,6 +345,11 @@ class CardMultiDetail @JvmOverloads constructor(
 
     private fun updateCmdShowRightSlot() {
         binding.ivCmdRightSlot.visibility = if (cmdShowRightSlot) View.VISIBLE else View.GONE
+        rippleColor = if (cmdShowRightSlot) {
+            ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        } else{
+            ContextCompat.getColorStateList(context, android.R.color.transparent)
+        }
     }
 
     fun resetClickCount() {

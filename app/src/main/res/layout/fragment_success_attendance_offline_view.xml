@@ -13,62 +13,48 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!--        <ImageView-->
-        <!--            android:id="@+id/ivIllustAttendanceOffline"-->
-        <!--            android:layout_width="80dp"-->
-        <!--            android:layout_height="80dp"-->
-        <!--            android:contentDescription="Illustrasi"-->
-        <!--            android:src="@drawable/il_check"-->
-        <!--            android:scaleType="centerCrop"-->
-        <!--            app:layout_constraintDimensionRatio="1:1"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/ivIllustAttendanceOffline"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/il_success"
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
-            app:lottie_rawRes="@raw/il_success" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitleAttendanceOffline"
-            style="?attr/d3SemiBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
-            android:ellipsize="end"
             android:maxLines="1"
+            android:ellipsize="end"
             android:text="Kehadiran Tercatat!"
             android:textColor="?attr/colorForegroundPrimary"
-            app:layout_constraintEnd_toEndOf="@+id/tvDescAttendanceOffline"
             app:layout_constraintStart_toStartOf="@+id/tvDescAttendanceOffline"
+            app:layout_constraintEnd_toEndOf="@+id/tvDescAttendanceOffline"
             app:layout_constraintTop_toBottomOf="@+id/ivIllustAttendanceOffline" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDescAttendanceOffline"
-            style="?attr/p1Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_4dp"
-            android:ellipsize="end"
             android:maxLines="1"
+            android:ellipsize="end"
             android:text="Terima kasih telah konfirmasi kehadiranmu"
             android:textColor="?attr/colorForegroundPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleAttendanceOffline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleAttendanceOffline" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.edts.components.button.Button
@@ -77,21 +63,21 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:text="Lihat Detail Event"
-        app:layout_constraintBottom_toTopOf="@+id/cvSecondaryBtnAttendanceOffline"
-        app:layout_constraintEnd_toEndOf="parent"
+        buttonCustomSize="MD"
+        app:buttonType="PRIMARY"
         app:layout_constraintStart_toStartOf="parent"
-        app:size="MD"
-        app:type="PRIMARY" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cvSecondaryBtnAttendanceOffline"/>
 
     <com.edts.components.button.Button
         android:id="@+id/cvSecondaryBtnAttendanceOffline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lihat Event Lain"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        buttonCustomSize="MD"
+        app:buttonType="SECONDARY"
         app:layout_constraintStart_toStartOf="parent"
-        app:size="MD"
-        app:type="SECONDARY" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

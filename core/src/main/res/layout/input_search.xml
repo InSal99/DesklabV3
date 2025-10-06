@@ -53,7 +53,7 @@
             app:layout_constraintStart_toEndOf="@+id/ivLeftIcon"
             app:layout_constraintEnd_toStartOf="@+id/ivRightIcon"/>
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivRightIcon"
             android:layout_width="20dp"
             android:layout_height="20dp"

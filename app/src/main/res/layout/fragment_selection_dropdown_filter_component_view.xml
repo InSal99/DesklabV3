@@ -41,7 +41,7 @@
 
         </LinearLayout>
 
-        <com.edts.components.chip.DropdownFilter
+        <com.edts.components.selection.DropdownFilter
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"
@@ -51,7 +51,7 @@
             app:dropdownFilterLabel="Label"
             app:dropdownFilterShowBadge="true" />
 
-        <com.edts.components.chip.DropdownFilter
+        <com.edts.components.selection.DropdownFilter
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
@@ -61,7 +61,7 @@
             app:dropdownFilterShowBadge="true"
             app:dropdownFilterShowDesc="false" />
 
-        <com.edts.components.chip.DropdownFilter
+        <com.edts.components.selection.DropdownFilter
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
@@ -70,6 +70,14 @@
             app:dropdownFilterShowBadge="false"
             app:dropdownFilterShowDesc="false" />
 
+        <com.edts.components.selection.DropdownFilter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:dropdownFilterBadgeText="1"
+            app:dropdownFilterDesc="Description"
+            app:dropdownFilterIcon="@drawable/ic_chevron_down"
+            app:dropdownFilterLabel="Label"
+            app:dropdownFilterShowBadge="true" />
     </LinearLayout>
-
 </ScrollView>

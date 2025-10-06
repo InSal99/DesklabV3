@@ -1,7 +1,54 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-publish")
 }
+
+group = "com.edts.components"
+version = "v0.4.0"
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.edts.components"
+                artifactId = "components"
+                version = "v0.4.0"
+
+                pom {
+                    name.set("Desklab Components Library")
+                    description.set("A UI component library designed specifically for Desklab Project Android applications.")
+                    url.set("https://github.com/InSal99/DesklabV3")
+                    licenses {
+                        license {
+                            name.set("The Apache License, Version 2.0")
+                            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id.set("InSal99")
+                            name.set("Intan Saliya Utomo")
+                            email.set("intan.saliya@sg-dsa.com")
+                        }
+                        developer {
+                            id.set("Yovita Handayiani")
+                            name.set("Intan Saliya Utomo")
+                            email.set("yovita.handayiani@sg-dsa.com")
+                        }
+                        developer {
+                            id.set("fauzanspratama")
+                            name.set("Fauzan Sukmapratama")
+                            email.set("fauzan.sukmapratama@sg-dsa.com")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 android {
     namespace = "com.edts.components"

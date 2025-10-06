@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:text="Text"
             android:enabled="false"
-            android:checked="true"
+            android:checked="false"
             android:layout_marginTop="@dimen/margin_12dp"/>
 
         <com.edts.components.checkbox.CheckBox
@@ -64,6 +64,13 @@
             android:text="Text"
             android:checked="true"
             android:enabled="false"
+            android:layout_marginTop="@dimen/margin_12dp"/>
+
+        <com.edts.components.checkbox.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            app:isCheckboxError="true"
             android:layout_marginTop="@dimen/margin_12dp"/>
 
     </LinearLayout>

@@ -46,13 +46,6 @@ class RadioButton @JvmOverloads constructor(
         }
     }
 
-    override fun performClick(): Boolean {
-        Log.d("CustomRadioButton", "radio button clicked")
-        setErrorState(false)
-        radioChangedDelegate?.onCheckChanged(this, this.isChecked)
-        return super.performClick()
-    }
-
     private fun applyCustomStyle() {
         val drawable = ContextCompat.getDrawable(context, R.drawable.ic_radio_button)
         if (drawable != null) {
@@ -75,56 +68,32 @@ class RadioButton @JvmOverloads constructor(
     }
 
     private fun animateInnerCircle(checked: Boolean) {
-        Log.d("RadioButton", "animateInnerCircle called - checked: $checked")
-
         currentAnimator?.cancel()
-
         val drawable = buttonDrawable
-        Log.d("RadioButton", "buttonDrawable: $drawable")
-        Log.d("RadioButton", "buttonDrawable type: ${drawable?.javaClass?.simpleName}")
-
         val currentDrawable = if (drawable is StateListDrawable) {
             drawable.current
         } else {
             drawable
         }
 
-        Log.d("RadioButton", "currentDrawable: $currentDrawable")
-        Log.d("RadioButton", "currentDrawable type: ${currentDrawable?.javaClass?.simpleName}")
-
         if (currentDrawable !is LayerDrawable) {
-            Log.d("RadioButton", "Current drawable is not a LayerDrawable, cannot animate")
             return
         }
-
-        Log.d("RadioButton", "LayerDrawable layers count: ${currentDrawable.numberOfLayers}")
 
         if (currentDrawable.numberOfLayers < 2) {
-            Log.d("RadioButton", "LayerDrawable has less than 2 layers")
             return
         }
 
-        val innerCircleDrawable = currentDrawable.getDrawable(1)
-        Log.d("RadioButton", "innerCircleDrawable: $innerCircleDrawable")
-        Log.d("RadioButton", "innerCircleDrawable type: ${innerCircleDrawable?.javaClass?.simpleName}")
-
-        if (innerCircleDrawable == null) {
-            Log.d("RadioButton", "Inner circle drawable is null")
-            return
-        }
+        val innerCircleDrawable = currentDrawable.getDrawable(1) ?: return
 
         val targetScale = if (checked) 1f else 0f
         val startScale = if (checked) 0f else 1f
         val originalBounds = Rect(innerCircleDrawable.bounds)
-        Log.d("RadioButton", "Original bounds: $originalBounds")
 
         val centerX = originalBounds.centerX()
         val centerY = originalBounds.centerY()
         val maxWidth = originalBounds.width()
         val maxHeight = originalBounds.height()
-
-        Log.d("RadioButton", "Animation params - centerX: $centerX, centerY: $centerY, maxWidth: $maxWidth, maxHeight: $maxHeight")
-        Log.d("RadioButton", "Scale from $startScale to $targetScale")
 
         currentAnimator = ValueAnimator.ofFloat(startScale, targetScale).apply {
             duration = 200
@@ -135,13 +104,10 @@ class RadioButton @JvmOverloads constructor(
 
                 val newWidth = (maxWidth * scale).toInt()
                 val newHeight = (maxHeight * scale).toInt()
-
                 val newLeft = centerX - newWidth / 2
                 val newTop = centerY - newHeight / 2
                 val newRight = centerX + newWidth / 2
                 val newBottom = centerY + newHeight / 2
-
-                Log.d("RadioButton", "Animation update - scale: $scale, newBounds: ($newLeft, $newTop, $newRight, $newBottom)")
 
                 innerCircleDrawable.setBounds(newLeft, newTop, newRight, newBottom)
                 invalidate()
@@ -158,55 +124,22 @@ class RadioButton @JvmOverloads constructor(
                     currentAnimator = null
                     if (!checked) {
                         innerCircleDrawable.setBounds(centerX, centerY, centerX, centerY)
-                        Log.d("RadioButton", "Animation ended - unchecked state")
                     } else {
                         innerCircleDrawable.bounds = originalBounds
                         if (innerCircleDrawable is GradientDrawable) {
                             innerCircleDrawable.setColor(ContextCompat.getColor(context, R.color.colorFFF))
                         }
-                        Log.d("RadioButton", "Animation ended - checked state")
                     }
                     invalidate()
                 }
 
                 override fun onAnimationCancel(animation: Animator) {
                     currentAnimator = null
-                    Log.d("RadioButton", "Animation cancelled")
                 }
             })
         }
 
         currentAnimator?.start()
-        Log.d("RadioButton", "Animation started")
-    }
-
-    override fun setEnabled(enabled: Boolean) {
-        super.setEnabled(enabled)
-        updateTextAppearance()
-    }
-
-    fun setErrorState(error: Boolean) {
-        if (isErrorState != error) {
-            isErrorState = error
-            refreshDrawableState()
-            updateTextAppearance()
-        }
-    }
-
-    fun isErrorState(): Boolean = isErrorState
-
-    override fun onCreateDrawableState(extraSpace: Int): IntArray {
-        val drawableState = super.onCreateDrawableState(extraSpace + 1)
-        if (isErrorState) {
-            mergeDrawableStates(drawableState, STATE_ERROR)
-        }
-        return drawableState
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        currentAnimator?.cancel()
-        currentAnimator = null
     }
 
     private fun updateTextAppearance() {
@@ -228,6 +161,16 @@ class RadioButton @JvmOverloads constructor(
         }
     }
 
+    fun setErrorState(error: Boolean) {
+        if (isErrorState != error) {
+            isErrorState = error
+            refreshDrawableState()
+            updateTextAppearance()
+        }
+    }
+
+    fun isErrorState(): Boolean = isErrorState
+
     fun setTextAppearances(
         normal: Int = R.style.RadioTextAppearance_Normal,
         selected: Int = R.style.RadioTextAppearance_Selected,
@@ -241,6 +184,31 @@ class RadioButton @JvmOverloads constructor(
         disabledSelectedTextAppearance = disabledSelected
         errorTextAppearance = error
         updateTextAppearance()
+    }
+
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        updateTextAppearance()
+    }
+
+    override fun performClick(): Boolean {
+        setErrorState(false)
+        radioChangedDelegate?.onCheckChanged(this, this.isChecked)
+        return super.performClick()
+    }
+
+    override fun onCreateDrawableState(extraSpace: Int): IntArray {
+        val drawableState = super.onCreateDrawableState(extraSpace + 1)
+        if (isErrorState) {
+            mergeDrawableStates(drawableState, STATE_ERROR)
+        }
+        return drawableState
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        currentAnimator?.cancel()
+        currentAnimator = null
     }
 
     companion object {
