@@ -21,7 +21,7 @@ A customizable `Button` component extending **MaterialButton**, supporting diffe
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:buttonType="PRIMARY"
-    buttonCustomSize="MD"
+    app:buttonCustomSize="MD"
     app:buttonState="REST"
     app:isButtonDisabled="false"
     app:isButtonDestructive="false"
