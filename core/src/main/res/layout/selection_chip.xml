@@ -9,7 +9,8 @@
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardElevation="2dp"
-    app:rippleColor="@android:color/transparent"
+    android:foreground="?attr/colorBackgroundModifierCardElevated"
+    app:rippleColor="?attr/colorBackgroundModifierOnPress"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
@@ -42,7 +43,7 @@
             app:badgeTextColor="?attr/colorForegroundInfoIntense"
             app:showText="true"/>
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivChip"
             android:layout_width="16dp"
             android:layout_height="16dp"

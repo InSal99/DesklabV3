@@ -5,7 +5,9 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -148,7 +150,7 @@ class Chip @JvmOverloads constructor(
                 chipSize = ChipSize.fromValue(chipSizeValue)
 
                 radius = 999f * resources.displayMetrics.density
-                rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+                rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
 
                 chipText = getString(R.styleable.Chip_chipText)
                 chipBadgeText = getString(R.styleable.Chip_chipBadgeText)
@@ -173,6 +175,7 @@ class Chip @JvmOverloads constructor(
                 updateChipIcon()
                 setupPressState()
                 setupIconClickListener()
+                setupChipTouchListener()
             } finally {
                 recycle()
             }
@@ -188,19 +191,26 @@ class Chip @JvmOverloads constructor(
         binding.ivChip.isClickable = true
         binding.ivChip.isFocusable = true
 
-        binding.ivChip.setOnTouchListener { view, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    view.alpha = 0.7f
-                    false
-                }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    view.alpha = 1.0f
-                    false
-                }
-                else -> false
-            }
-        }
+        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+
+        val rippleDrawable = RippleDrawable(rippleColor, null, null)
+        rippleDrawable.radius = (9* Resources.getSystem().displayMetrics.density).toInt()
+
+        binding.ivChip.background = rippleDrawable
+
+//        binding.ivChip.setOnTouchListener { view, event ->
+//            when (event.action) {
+//                MotionEvent.ACTION_DOWN -> {
+//                    view.alpha = 0.7f
+//                    false
+//                }
+//                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+//                    view.alpha = 1.0f
+//                    false
+//                }
+//                else -> false
+//            }
+//        }
     }
 
     private fun handleIconClick() {
@@ -231,6 +241,7 @@ class Chip @JvmOverloads constructor(
         if (!clickable) {
             binding.ivChip.setOnClickListener(null)
             binding.ivChip.setOnTouchListener(null)
+            binding.ivChip.background = null
         } else {
             setupIconClickListener()
         }
@@ -262,23 +273,38 @@ class Chip @JvmOverloads constructor(
         updatePressState()
     }
 
-    private fun updatePressState() {
-        when (pressState) {
-            PressState.REST -> {
-                val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 999f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupChipTouchListener() {
+        setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    pressState = PressState.ON_PRESS
                 }
-                foreground = elevatedModifierDrawable
-            }
-            PressState.ON_PRESS -> {
-                val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 999f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    pressState = PressState.REST
                 }
-                foreground = overlayDrawable
             }
+            false
         }
+    }
+
+    private fun updatePressState() {
+//        when (pressState) {
+//            PressState.REST -> {
+//                val elevatedModifierDrawable = GradientDrawable().apply {
+//                    cornerRadius = 999f * resources.displayMetrics.density
+//                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+//                }
+//                foreground = elevatedModifierDrawable
+//            }
+//            PressState.ON_PRESS -> {
+//                val overlayDrawable = GradientDrawable().apply {
+//                    cornerRadius = 999f * resources.displayMetrics.density
+//                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+//                }
+//                foreground = overlayDrawable
+//            }
+//        }
 
         if (chipState == ChipState.ACTIVE) {
             binding.chip.strokeColor = if (pressState == PressState.ON_PRESS) {
@@ -289,29 +315,29 @@ class Chip @JvmOverloads constructor(
         }
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
-                pressState = PressState.ON_PRESS
-                return true
-            }
-            MotionEvent.ACTION_UP -> {
-                Log.d(TAG, "ACTION_UP - setting REST state")
-                pressState = PressState.REST
-                if (isEnabled && isClickable) {
-                    performClick()
-                }
-                return true
-            }
-            MotionEvent.ACTION_CANCEL -> {
-                Log.d(TAG, "ACTION_CANCEL - setting REST state")
-                pressState = PressState.REST
-                return true
-            }
-        }
-        return super.onTouchEvent(event)
-    }
+//    override fun onTouchEvent(event: MotionEvent): Boolean {
+//        when (event.action) {
+//            MotionEvent.ACTION_DOWN -> {
+//                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
+//                pressState = PressState.ON_PRESS
+//                return true
+//            }
+//            MotionEvent.ACTION_UP -> {
+//                Log.d(TAG, "ACTION_UP - setting REST state")
+//                pressState = PressState.REST
+//                if (isEnabled && isClickable) {
+//                    performClick()
+//                }
+//                return true
+//            }
+//            MotionEvent.ACTION_CANCEL -> {
+//                Log.d(TAG, "ACTION_CANCEL - setting REST state")
+//                pressState = PressState.REST
+//                return true
+//            }
+//        }
+//        return super.onTouchEvent(event)
+//    }
 
     override fun performClick(): Boolean {
         val currentTime = System.currentTimeMillis()

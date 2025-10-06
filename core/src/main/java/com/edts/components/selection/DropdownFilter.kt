@@ -1,14 +1,19 @@
 package com.edts.components.selection
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.AttrRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.SelectionDropdownFilterBinding
@@ -69,7 +74,7 @@ class DropdownFilter @JvmOverloads constructor(
     private var cardState: CardState = CardState.REST
         set(value) {
             field = value
-            updateCardBackground()
+//            updateCardBackground()
         }
 
 
@@ -96,7 +101,7 @@ class DropdownFilter @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+                rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
 
                 dropdownFilterLabel = getString(R.styleable.DropdownFilter_dropdownFilterLabel)
                 dropdownFilterDesc = getString(R.styleable.DropdownFilter_dropdownFilterDesc)
@@ -120,9 +125,15 @@ class DropdownFilter @JvmOverloads constructor(
                 updateBadgeVisibility()
                 updateDescriptionVisibility()
                 setupCardPressState()
+                updateWrapperWidth()
+                setOnClickListener {
+                    handleClick()
+                }
             } finally {
                 recycle()
             }
+
+            post { updateWrapperWidth() }
         }
     }
 
@@ -145,6 +156,16 @@ class DropdownFilter @JvmOverloads constructor(
     }
 
     private fun updateIcon() {
+        binding.ivDropdownFilter.isClickable = true
+        binding.ivDropdownFilter.isFocusable = true
+
+        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+
+        val rippleDrawable = RippleDrawable(rippleColor, null, null)
+        rippleDrawable.radius = (10* Resources.getSystem().displayMetrics.density).toInt()
+
+        binding.ivDropdownFilter.background = rippleDrawable
+
         dropdownFilterIcon?.let {
             binding.ivDropdownFilter.setImageResource(it)
         }
@@ -166,45 +187,45 @@ class DropdownFilter @JvmOverloads constructor(
         }
     }
 
-    private fun updateCardBackground() {
-        when (cardState) {
-            CardState.REST -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
-                }
-                foreground = elevatedModifierDrawable
-            }
-            CardState.ON_PRESS -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
-                }
-                foreground = overlayDrawable
-            }
-        }
-    }
+//    private fun updateCardBackground() {
+//        when (cardState) {
+//            CardState.REST -> {
+//                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+//                val elevatedModifierDrawable = GradientDrawable().apply {
+//                    cornerRadius = 12f * resources.displayMetrics.density
+//                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+//                }
+//                foreground = elevatedModifierDrawable
+//            }
+//            CardState.ON_PRESS -> {
+//                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+//                val overlayDrawable = GradientDrawable().apply {
+//                    cornerRadius = 12f * resources.displayMetrics.density
+//                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+//                }
+//                foreground = overlayDrawable
+//            }
+//        }
+//    }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
-                cardState = CardState.ON_PRESS
-            }
-            MotionEvent.ACTION_UP -> {
-                Log.d(TAG, "ACTION_UP - setting REST state")
-                cardState = CardState.REST
-                handleClick()
-            }
-            MotionEvent.ACTION_CANCEL -> {
-                Log.d(TAG, "ACTION_CANCEL - setting REST state")
-                cardState = CardState.REST
-            }
-        }
-        return super.onTouchEvent(event)
-    }
+//    override fun onTouchEvent(event: MotionEvent): Boolean {
+//        when (event.action) {
+//            MotionEvent.ACTION_DOWN -> {
+//                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
+//                cardState = CardState.ON_PRESS
+//            }
+//            MotionEvent.ACTION_UP -> {
+//                Log.d(TAG, "ACTION_UP - setting REST state")
+//                cardState = CardState.REST
+//                handleClick()
+//            }
+//            MotionEvent.ACTION_CANCEL -> {
+//                Log.d(TAG, "ACTION_CANCEL - setting REST state")
+//                cardState = CardState.REST
+//            }
+//        }
+//        return super.onTouchEvent(event)
+//    }
 
     private fun handleClick() {
         val currentTime = System.currentTimeMillis()
@@ -233,7 +254,7 @@ class DropdownFilter @JvmOverloads constructor(
     private fun setupCardPressState() {
         isClickable = true
         isFocusable = true
-        updateCardBackground()
+//        updateCardBackground()
     }
 
     private fun resolveColorAttribute(colorRes: Int): Int {
@@ -253,6 +274,18 @@ class DropdownFilter @JvmOverloads constructor(
         }
     }
 
+    private fun updateWrapperWidth() {
+        layoutParams?.let { params ->
+            binding.wrapper.layoutParams = (binding.wrapper.layoutParams as ConstraintLayout.LayoutParams).apply {
+                width = if (params.width == LayoutParams.MATCH_PARENT) {
+                    0
+                } else {
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                }
+            }
+        }
+    }
+
     fun resetClickCount() {
         val previousCount = clickCount
         clickCount = 0
@@ -267,5 +300,34 @@ class DropdownFilter @JvmOverloads constructor(
         Log.d(TAG, "Programmatic click triggered")
         handleClick()
         return super.performClick()
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+
+        binding.wrapper.layoutParams = (binding.wrapper.layoutParams as ConstraintLayout.LayoutParams).apply {
+            width = if (widthMode == MeasureSpec.EXACTLY || widthMode == MeasureSpec.AT_MOST) {
+                val specSize = MeasureSpec.getSize(widthMeasureSpec)
+                if (widthMode == MeasureSpec.EXACTLY && specSize > 0) {
+                    0
+                } else {
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                }
+            } else {
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            }
+        }
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        updateWrapperWidth()
+    }
+
+    override fun setLayoutParams(params: ViewGroup.LayoutParams?) {
+        super.setLayoutParams(params)
+        updateWrapperWidth()
     }
 }

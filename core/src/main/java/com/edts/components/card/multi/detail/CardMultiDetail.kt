@@ -2,7 +2,9 @@ package com.edts.components.card.multi.detail
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -118,7 +120,7 @@ class CardMultiDetail @JvmOverloads constructor(
     private var cardState: CardState = CardState.REST
         set(value) {
             field = value
-            updateCardBackground()
+//            updateCardBackground()
         }
 
     private val colorCache = mutableMapOf<Int, Int>()
@@ -143,7 +145,11 @@ class CardMultiDetail @JvmOverloads constructor(
         ).apply {
             try {
                 val typedValue = TypedValue()
-                rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+                rippleColor = if (cmdShowRightSlot) {
+                    ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+                } else{
+                    ContextCompat.getColorStateList(context, android.R.color.transparent)
+                }
 
                 val leftSlotTypeValue = getInt(R.styleable.CardMultiDetail_cmdLeftSlotType, 1)
                 leftSlotType = LeftSlotType.fromValue(leftSlotTypeValue)
@@ -211,6 +217,10 @@ class CardMultiDetail @JvmOverloads constructor(
                 updateCmdShowRightSlot()
                 updateClickability()
                 setupCardPressState()
+
+                setOnClickListener {
+                    handleClick()
+                }
             } finally {
                 recycle()
             }
@@ -223,51 +233,51 @@ class CardMultiDetail @JvmOverloads constructor(
         }
     }
 
-    private fun updateCardBackground() {
-        if (!isClickable) return
+//    private fun updateCardBackground() {
+//        if (!isClickable) return
+//
+//        when (cardState) {
+//            CardState.REST -> {
+//                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+//                val elevatedModifierDrawable = GradientDrawable().apply {
+//                    cornerRadius = 12f * resources.displayMetrics.density
+//                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+//                }
+//                foreground = elevatedModifierDrawable
+//            }
+//            CardState.ON_PRESS -> {
+//                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+//                val overlayDrawable = GradientDrawable().apply {
+//                    cornerRadius = 12f * resources.displayMetrics.density
+//                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+//                }
+//                foreground = overlayDrawable
+//            }
+//        }
+//    }
 
-        when (cardState) {
-            CardState.REST -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
-                }
-                foreground = elevatedModifierDrawable
-            }
-            CardState.ON_PRESS -> {
-                setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-                val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 12f * resources.displayMetrics.density
-                    setColor(getCachedColor(R.attr.colorBackgroundModifierOnPress))
-                }
-                foreground = overlayDrawable
-            }
-        }
-    }
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (!isClickable) {
-            return false
-        }
-
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
-                cardState = CardState.ON_PRESS
-            }
-            MotionEvent.ACTION_UP -> {
-                Log.d(TAG, "ACTION_UP - setting REST state")
-                cardState = CardState.REST
-                handleClick()
-            }
-            MotionEvent.ACTION_CANCEL -> {
-                Log.d(TAG, "ACTION_CANCEL - setting REST state")
-                cardState = CardState.REST
-            }
-        }
-        return super.onTouchEvent(event)
-    }
+//    override fun onTouchEvent(event: MotionEvent): Boolean {
+//        if (!isClickable) {
+//            return false
+//        }
+//
+//        when (event.action) {
+//            MotionEvent.ACTION_DOWN -> {
+//                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
+//                cardState = CardState.ON_PRESS
+//            }
+//            MotionEvent.ACTION_UP -> {
+//                Log.d(TAG, "ACTION_UP - setting REST state")
+//                cardState = CardState.REST
+//                handleClick()
+//            }
+//            MotionEvent.ACTION_CANCEL -> {
+//                Log.d(TAG, "ACTION_CANCEL - setting REST state")
+//                cardState = CardState.REST
+//            }
+//        }
+//        return super.onTouchEvent(event)
+//    }
 
     private fun handleClick() {
         val currentTime = System.currentTimeMillis()
@@ -296,7 +306,7 @@ class CardMultiDetail @JvmOverloads constructor(
 
     private fun setupCardPressState() {
         updateClickability()
-        updateCardBackground()
+//        updateCardBackground()
     }
 
     private fun updateClickability() {
@@ -305,6 +315,12 @@ class CardMultiDetail @JvmOverloads constructor(
         isFocusable = shouldBeClickable
 
         Log.d(TAG, "Clickability updated: $shouldBeClickable (based on cmdShowRightSlot: $cmdShowRightSlot)")
+
+        rippleColor = if (shouldBeClickable) {
+            ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        } else{
+            ContextCompat.getColorStateList(context, android.R.color.transparent)
+        }
 
         if (!shouldBeClickable && cardState == CardState.ON_PRESS) {
             cardState = CardState.REST
@@ -360,6 +376,20 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     private fun updateRightSlotSrc() {
+        binding.ivCmdRightSlot.isClickable = true
+        binding.ivCmdRightSlot.isFocusable = true
+
+        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+
+        val rippleDrawable = RippleDrawable(rippleColor, null, null)
+        rippleDrawable.radius = (16* Resources.getSystem().displayMetrics.density).toInt()
+
+        binding.ivCmdRightSlot.background = rippleDrawable
+
+        binding.ivCmdRightSlot.setOnClickListener {
+            delegate?.onRightSlotClick(this)
+        }
+
         rightSlotSrc?.let {
             binding.ivCmdRightSlot.setImageResource(it)
         }
@@ -373,6 +403,11 @@ class CardMultiDetail @JvmOverloads constructor(
 
     private fun updateCmdShowRightSlot() {
         binding.ivCmdRightSlot.visibility = if (cmdShowRightSlot) View.VISIBLE else View.GONE
+        rippleColor = if (cmdShowRightSlot) {
+            ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        } else{
+            ContextCompat.getColorStateList(context, android.R.color.transparent)
+        }
     }
 
     private fun resolveColorAttribute(colorRes: Int): Int {
