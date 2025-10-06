@@ -6,14 +6,13 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.TabBinding
+import com.edts.components.utils.resolveColorAttribute
 
 class TabItem @JvmOverloads constructor(
     context: Context,
@@ -171,13 +170,19 @@ class TabItem @JvmOverloads constructor(
     private fun applyTabStateImmediately() {
         when (tabState) {
             TabState.ACTIVE -> {
-                val activeColor = resolveColorAttribute(R.attr.colorForegroundAccentPrimaryIntense)
+                val activeColor = context.resolveColorAttribute(
+                    R.attr.colorForegroundAccentPrimaryIntense,
+                    android.R.color.black
+                )
                 binding.tvTab.setTextColor(activeColor)
                 binding.tabIndicator.visibility = View.VISIBLE
                 binding.tabIndicator.scaleX = 1f
             }
             TabState.INACTIVE -> {
-                val inactiveColor = resolveColorAttribute(R.attr.colorForegroundTertiary)
+                val inactiveColor = context.resolveColorAttribute(
+                    R.attr.colorForegroundTertiary,
+                    android.R.color.darker_gray
+                )
                 binding.tvTab.setTextColor(inactiveColor)
                 binding.tabIndicator.visibility = View.GONE
                 binding.tabIndicator.scaleX = 0f
@@ -193,7 +198,10 @@ class TabItem @JvmOverloads constructor(
     }
 
     private fun animateToActive() {
-        val activeColor = resolveColorAttribute(R.attr.colorForegroundAccentPrimaryIntense)
+        val activeColor = context.resolveColorAttribute(
+            R.attr.colorForegroundAccentPrimaryIntense,
+            android.R.color.black
+        )
         val currentTextColor = binding.tvTab.currentTextColor
 
         val textColorAnimator = ValueAnimator.ofArgb(currentTextColor, activeColor).apply {
@@ -224,7 +232,10 @@ class TabItem @JvmOverloads constructor(
     }
 
     private fun animateToInactive() {
-        val inactiveColor = resolveColorAttribute(R.attr.colorForegroundTertiary)
+        val inactiveColor = context.resolveColorAttribute(
+            R.attr.colorForegroundTertiary,
+            android.R.color.darker_gray
+        )
         val currentTextColor = binding.tvTab.currentTextColor
 
         val textColorAnimator = ValueAnimator.ofArgb(currentTextColor, inactiveColor).apply {
@@ -250,33 +261,6 @@ class TabItem @JvmOverloads constructor(
             playTogether(textColorAnimator, indicatorAnimator)
             start()
         }
-    }
-
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
-            }
-        }
-    }
-
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-        Log.d(TAG, "Click count reset from $previousCount to 0")
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
     }
 
     override fun performClick(): Boolean {
