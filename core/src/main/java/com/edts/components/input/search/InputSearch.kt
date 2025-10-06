@@ -1,9 +1,12 @@
 package com.edts.components.input.search
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -215,6 +218,13 @@ class InputSearch @JvmOverloads constructor(
                 Log.d(TAG, "Close icon click ignored due to debounce (too fast)")
             }
         }
+
+        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+
+        val rippleDrawable = RippleDrawable(rippleColor, null, null)
+        rippleDrawable.radius = (12* Resources.getSystem().displayMetrics.density).toInt()
+
+        binding.ivRightIcon.background = rippleDrawable
     }
 
     private fun setupSearchActionListener() {
