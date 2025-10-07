@@ -2,6 +2,7 @@ package com.edts.components.card.multi.detail
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
@@ -157,9 +158,18 @@ class CardMultiDetail @JvmOverloads constructor(
                     leftSlotSrc = leftSlotSrcResId
                 }
 
-                val leftSlotBgColorResId = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
-                if (leftSlotBgColorResId != -1) {
-                    leftSlotBackgroundColor = context.resolveColorAttribute(leftSlotBgColorResId, R.color.colorFFF)
+                val leftSlotBgColorRef = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
+                if (leftSlotBgColorRef != -1) {
+                    val typedValue = TypedValue()
+                    if (context.theme.resolveAttribute(leftSlotBgColorRef, typedValue, true)) {
+                        leftSlotBackgroundColor = typedValue.data
+                    } else {
+                        try {
+                            leftSlotBackgroundColor = ContextCompat.getColor(context, leftSlotBgColorRef)
+                        } catch (e: Resources.NotFoundException) {
+                            leftSlotBackgroundColor = ContextCompat.getColor(context, R.color.colorFFF)
+                        }
+                    }
                 } else {
                     val leftSlotBgColor = getColor(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
                     if (leftSlotBgColor != -1) {
@@ -167,9 +177,18 @@ class CardMultiDetail @JvmOverloads constructor(
                     }
                 }
 
-                val leftSlotTintResId = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
-                if (leftSlotTintResId != -1) {
-                    leftSlotTint = context.resolveColorAttribute(leftSlotTintResId, R.color.colorFFF)
+                val leftSlotTintRef = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
+                if (leftSlotTintRef != -1) {
+                    val typedValue = TypedValue()
+                    if (context.theme.resolveAttribute(leftSlotTintRef, typedValue, true)) {
+                        leftSlotTint = typedValue.data
+                    } else {
+                        try {
+                            leftSlotTint = ContextCompat.getColor(context, leftSlotTintRef)
+                        } catch (e: Resources.NotFoundException) {
+                            leftSlotTint = ContextCompat.getColor(context, R.color.colorFFF)
+                        }
+                    }
                 } else {
                     val leftSlotTintColor = getColor(R.styleable.CardMultiDetail_cmdLeftSlotTint, -1)
                     if (leftSlotTintColor != -1) {
