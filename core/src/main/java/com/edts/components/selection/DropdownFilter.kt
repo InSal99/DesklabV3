@@ -178,6 +178,27 @@ class DropdownFilter @JvmOverloads constructor(
         dropdownFilterIcon?.let {
             binding.ivDropdownFilter.setImageResource(it)
         }
+
+        binding.ivDropdownFilter.setOnClickListener {
+            handleIconClick()
+        }
+    }
+
+    private fun handleIconClick() {
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - lastClickTime > clickDebounceDelay) {
+            lastClickTime = currentTime
+
+            Log.d(TAG, "DropdownFilter icon clicked!")
+            Log.d(TAG, "  - Label: ${dropdownFilterLabel ?: "No label"}")
+            Log.d(TAG, "  - Click timestamp: $currentTime")
+            Log.d(TAG, "--------------------")
+
+            delegate?.onDropdownFilterIconClick(this)
+        } else {
+            Log.d(TAG, "Icon click ignored due to debounce (too fast)")
+        }
     }
 
     private fun updateBadgeVisibility() {
