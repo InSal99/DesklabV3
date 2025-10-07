@@ -126,7 +126,8 @@ class EventCard @JvmOverloads constructor(
             R.styleable.EventCard,
             0, 0
         ).apply {
-            try {ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
+            try {
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
                 eventImageSrc = getResourceId(R.styleable.EventCard_eventImageSrc, -1)
                     .takeIf { it != -1 }
