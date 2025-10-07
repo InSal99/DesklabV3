@@ -191,11 +191,19 @@ class RadioButton @JvmOverloads constructor(
         updateTextAppearance()
     }
 
+//    override fun performClick(): Boolean {
+//        setErrorState(false)
+//        radioChangedDelegate?.onCheckChanged(this, this.isChecked)
+//        return super.performClick()
+//    }
+
+
     override fun performClick(): Boolean {
         setErrorState(false)
         radioChangedDelegate?.onCheckChanged(this, this.isChecked)
         return super.performClick()
     }
+
 
     override fun onCreateDrawableState(extraSpace: Int): IntArray {
         val drawableState = super.onCreateDrawableState(extraSpace + 1)
