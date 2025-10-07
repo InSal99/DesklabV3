@@ -2,32 +2,35 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dropdownFilter"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/radius_999dp"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardElevation="2dp"
-    app:rippleColor="@android:color/transparent"
+    android:foreground="?attr/colorBackgroundModifierCardElevated"
+    app:rippleColor="?attr/colorBackgroundModifierOnPress"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/margin_12dp"
         android:paddingVertical="@dimen/margin_4dp">
 
         <LinearLayout
             android:id="@+id/wrapper"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cvBadgeDropdownFilter"
+            android:layout_marginEnd="@dimen/margin_6dp"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="?attr/l3Medium"
                 android:id="@+id/tvDropdownFilterLabel"
                 android:layout_width="wrap_content"
@@ -40,7 +43,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tvDropdownFilterDesc"/>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="?attr/l4Regular"
                 android:id="@+id/tvDropdownFilterDesc"
                 android:layout_width="wrap_content"
@@ -59,26 +62,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:badgeText="5"
-            android:layout_marginStart="@dimen/margin_6dp"
+            android:layout_marginEnd="@dimen/margin_6dp"
             app:badgeStrokeColor="@android:color/transparent"
             app:badgeBackgroundTint="?attr/colorBackgroundInfoSubtle"
             app:badgeTextColor="?attr/colorForegroundInfoIntense"
             app:showText="true"
-            app:layout_constraintStart_toEndOf="@+id/wrapper"
+            app:layout_constraintEnd_toStartOf="@+id/ivDropdownFilter"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivDropdownFilter"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginStart="@dimen/margin_6dp"
             android:scaleType="centerCrop"
             android:contentDescription="Chip Action"
             android:src="@drawable/placeholder"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundSecondary"
-            app:layout_constraintStart_toEndOf="@+id/cvBadgeDropdownFilter"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

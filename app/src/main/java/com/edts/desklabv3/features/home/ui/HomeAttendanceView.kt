@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.utils.resolveColorAttribute
 import com.edts.desklabv3.R
 import com.edts.desklabv3.core.util.createTopShadowBackgroundCustom
-import com.edts.desklabv3.databinding.FragmentHomeDaftarRsvpViewBinding
+import com.edts.desklabv3.databinding.FragmentHomeRegistrationRsvpViewBinding
 import com.edts.desklabv3.features.home.model.ActivityItem
 import com.edts.desklabv3.features.home.model.ActivityType
 import com.edts.desklabv3.features.SpaceItemDecoration
 
 class HomeAttendanceView : Fragment() {
-    private var _binding: FragmentHomeDaftarRsvpViewBinding? = null
+    private var _binding: FragmentHomeRegistrationRsvpViewBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var chipAdapter: ChipHomeCalendarAdapter
@@ -42,7 +42,7 @@ class HomeAttendanceView : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeDaftarRsvpViewBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeRegistrationRsvpViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 

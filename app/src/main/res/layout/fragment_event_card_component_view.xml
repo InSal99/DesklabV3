@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clipChildren="false"
     android:background="?attr/colorBackgroundPrimary"
+    android:clipChildren="false"
     tools:context=".core.component.EventCardComponentView">
 
     <LinearLayout
@@ -30,7 +30,7 @@
                 android:src="@drawable/ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
                 style="?attr/d3SemiBold"
                 android:layout_width="match_parent"
@@ -49,13 +49,13 @@
             app:cardBadgeType="live"
             app:cardEventCategory="People Development"
             app:cardEventDate="23 Juli 2025"
-            app:eventImageSrc="@drawable/poster2"
             app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
             app:cardEventType="Hybrid Event"
             app:cardStatusText="Terdaftar"
             app:cardStatusType="registered"
+            app:eventImageSrc="@drawable/poster2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.edts.components.event.card.EventCard
             android:layout_width="match_parent"

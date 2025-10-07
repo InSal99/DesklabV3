@@ -9,7 +9,7 @@
     app:strokeColor="@android:color/transparent"
     app:cardElevation="@dimen/margin_0dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="?attr/l3SemiBold"
         android:id="@+id/tvEvenCardBadgeLabel"
         android:layout_width="wrap_content"

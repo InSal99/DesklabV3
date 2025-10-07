@@ -14,7 +14,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@null" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvActionLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

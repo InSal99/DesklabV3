@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class EventListInvitationTolakStartView : Fragment(), InputSearchDelegate {
+class EventListInvitationDeclineStartView : Fragment(), InputSearchDelegate {
     private var _binding: FragmentEventListDaftarRsvpViewBinding? = null
     private val binding get() = _binding!!
 
@@ -243,6 +243,6 @@ class EventListInvitationTolakStartView : Fragment(), InputSearchDelegate {
 
     companion object {
         @JvmStatic
-        fun newInstance() = EventListDaftarRSVPView()
+        fun newInstance() = EventListRegistrationRSVPView()
     }
 }

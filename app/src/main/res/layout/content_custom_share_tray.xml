@@ -15,7 +15,7 @@
         android:padding="@dimen/margin_12dp"
         android:gravity="center_vertical">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvMeetingLink"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

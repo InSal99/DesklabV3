@@ -30,7 +30,7 @@
                 android:src="@drawable/ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
                 style="?attr/d3SemiBold"
                 android:layout_width="match_parent"
@@ -70,6 +70,14 @@
             app:dropdownFilterShowBadge="false"
             app:dropdownFilterShowDesc="false" />
 
+        <com.edts.components.selection.DropdownFilter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:dropdownFilterBadgeText="1"
+            app:dropdownFilterDesc="Description"
+            app:dropdownFilterIcon="@drawable/ic_chevron_down"
+            app:dropdownFilterLabel="Label"
+            app:dropdownFilterShowBadge="true" />
     </LinearLayout>
-
 </ScrollView>

@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.edts.components.event.card.EventCardBadge
 import com.edts.components.event.card.EventCardStatus
 import com.edts.components.input.search.InputSearchDelegate
 import com.edts.desklabv3.R
@@ -21,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class EventListInvitationTolakEndView : Fragment(), InputSearchDelegate {
+class EventListInvitationDeclineEndView : Fragment(), InputSearchDelegate {
     private var _binding: FragmentEventListDaftarRsvpViewBinding? = null
     private val binding get() = _binding!!
 
@@ -239,6 +237,6 @@ class EventListInvitationTolakEndView : Fragment(), InputSearchDelegate {
 
     companion object {
         @JvmStatic
-        fun newInstance() = EventListDaftarRSVPView()
+        fun newInstance() = EventListRegistrationRSVPView()
     }
 }

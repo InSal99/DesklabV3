@@ -9,7 +9,8 @@
     app:strokeColor="?attr/colorStrokeSubtle"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:cardElevation="2dp"
-    app:rippleColor="@android:color/transparent"
+    android:foreground="?attr/colorBackgroundModifierCardElevated"
+    app:rippleColor="?attr/colorBackgroundModifierOnPress"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
@@ -39,9 +40,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlot">
 
-            <TextView
-                style="?attr/l2Medium"
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCmdTitle"
+                style="?attr/l2Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -64,7 +65,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvCmdTitle"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivCmdRightSlot"
             android:layout_width="20dp"
             android:layout_height="20dp"

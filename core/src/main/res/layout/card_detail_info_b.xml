@@ -9,7 +9,8 @@
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:cardElevation="2dp"
-    app:rippleColor="@android:color/transparent"
+    android:foreground="?attr/colorBackgroundModifierCardElevated"
+    app:rippleColor="?attr/colorBackgroundModifierOnPress"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
@@ -42,9 +43,9 @@
             app:layout_constraintStart_toEndOf="@+id/cvCardLeftSlotCdib"
             app:layout_constraintEnd_toStartOf="@+id/ivCdibRightSlot">
 
-            <TextView
-                style="?attr/l2Medium"
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCdibTitle"
+                style="?attr/l2Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -54,9 +55,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                style="?attr/l3Regular"
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCdibDescription"
+                style="?attr/l3Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_0dp"
@@ -68,7 +69,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvCdibTitle"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivCdibRightSlot"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -76,6 +77,8 @@
             android:src="@drawable/placeholder"
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
+            android:clickable="true"
+            android:focusable="true"
             app:tint="?attr/colorForegroundTertiary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

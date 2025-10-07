@@ -1,10 +1,6 @@
 package com.edts.desklabv3.features.home.ui
 
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.utils.resolveColorAttribute
 import com.edts.desklabv3.R
 import com.edts.desklabv3.core.util.createTopShadowBackgroundCustom
-import com.edts.desklabv3.databinding.FragmentHomeDaftarRsvpViewBinding
+import com.edts.desklabv3.databinding.FragmentHomeRegistrationRsvpViewBinding
+import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.home.model.ActivityItem
 import com.edts.desklabv3.features.home.model.ActivityType
-import com.edts.desklabv3.features.SpaceItemDecoration
 
-class HomeDaftarRSVPView : Fragment() {
-    private var _binding: FragmentHomeDaftarRsvpViewBinding? = null
+class HomeInvitationDeclineView : Fragment() {
+    private var _binding: FragmentHomeRegistrationRsvpViewBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var chipAdapter: ChipHomeCalendarAdapter
@@ -51,7 +47,7 @@ class HomeDaftarRSVPView : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeDaftarRsvpViewBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeRegistrationRsvpViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -67,7 +63,8 @@ class HomeDaftarRSVPView : Fragment() {
         setupGroupedActivitiesRecyclerView()
         updateEmptyStateVisibility()
 
-        binding.cvNotificationBadge.visibility = View.INVISIBLE
+        val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
+        binding.cvNotificationBadge.visibility = if (isEndFlow) View.INVISIBLE else View.VISIBLE
     }
 
     override fun onDestroyView() {
@@ -118,7 +115,6 @@ class HomeDaftarRSVPView : Fragment() {
             adapter = groupedActivitiesAdapter
             layoutManager = LinearLayoutManager(requireContext())
             isNestedScrollingEnabled = false
-
         }
     }
 
@@ -151,29 +147,27 @@ class HomeDaftarRSVPView : Fragment() {
 
     private fun handleActivityClick(activity: ActivityItem) {
         android.util.Log.d("HomeView", "Clicked: ${activity.title} - ${activity.type}")
-
-        if (activity.title == "Game Night with EDTS: Mobile Legend Online Tournament 2025") {
-            val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
-            if (!useEndList) {
-                navigateToEventList(activity)
+        val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
+        if (!isEndFlow) {
+            if (activity.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
+                val result = bundleOf(
+                    "fragment_class" to "EventDetailViewTolakUndangan",
+                    "flow_type" to "TolakUndangan"
+                )
+                requireActivity().supportFragmentManager.setFragmentResult(
+                    "navigate_fragment",
+                    result
+                )
+                android.util.Log.d("HomeView", "Fragment result sent to activity")
             }
-        } else {
-            Log.d("HomeView", "Non-event activity clicked: ${activity.title}")
         }
-    }
-
-    private fun navigateToEventList(activity: ActivityItem) {
-        val result = bundleOf("fragment_class" to "EventDetailDaftarRSVPView")
-        requireActivity()
-            .supportFragmentManager
-            .setFragmentResult("navigate_fragment", result)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(isEndFlow: Boolean = false) = HomeDaftarRSVPView().apply {
+        fun newInstance(isEndFlow: Boolean = false) = HomeInvitationDeclineView().apply {
             arguments = Bundle().apply {
-                putBoolean("use_end_list", isEndFlow)
+                putBoolean("is_end_flow", isEndFlow)
             }
         }
     }

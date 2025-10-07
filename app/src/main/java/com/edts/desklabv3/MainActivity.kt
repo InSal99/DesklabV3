@@ -5,10 +5,8 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -20,17 +18,10 @@ import androidx.transition.TransitionSet
 import com.edts.components.bottom.navigation.BottomNavigation
 import com.edts.components.bottom.navigation.BottomNavigationDelegate
 import com.edts.components.bottom.navigation.BottomNavigationItem
-import com.edts.components.checkbox.CheckBox
 import com.edts.components.header.HeaderDelegate
-import com.edts.components.radiobutton.RadioGroup
-import com.edts.components.tab.Tab
-import com.edts.components.tab.TabData
-import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.EntryPointsView
 import com.edts.desklabv3.core.util.InsetConfigurable
-import com.edts.desklabv3.core.util.createBottomShadowBackgroundCustom
-import com.edts.desklabv3.core.util.setupWithViewPager2
 import com.edts.desklabv3.core.withPushAnimation
 import com.edts.desklabv3.databinding.ActivityMainBinding
 import com.edts.desklabv3.features.event.ui.EventMenuFragment
@@ -38,16 +29,14 @@ import com.edts.desklabv3.features.event.ui.attendanceoffline.AssetQRCodeFragmen
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailRSVPView
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewAttendance
 import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewNoRSVP
-import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewTolakUndangan
+import com.edts.desklabv3.features.event.ui.eventdetail.EventDetailViewInvitationDecline
 import com.edts.desklabv3.features.event.ui.eventlist.EventListAttendanceView
-import com.edts.desklabv3.features.event.ui.eventlist.EventListDaftarRSVPView
+import com.edts.desklabv3.features.event.ui.eventlist.EventListRegistrationRSVPView
 import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationNoRSVPView
-import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakEndView
-import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationTolakStartView
-import com.edts.desklabv3.features.event.ui.invitation.EventInvitationEmptyView
-import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentNoRSVP
-import com.edts.desklabv3.features.event.ui.invitation.EventInvitationFragmentTolakUndangan
-import com.edts.desklabv3.features.event.ui.myevent.MyEventsEmptyView
+import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationDeclineEndView
+import com.edts.desklabv3.features.event.ui.eventlist.EventListInvitationDeclineStartView
+import com.edts.desklabv3.features.event.ui.invitation.EventInvitationNoRSVPView
+import com.edts.desklabv3.features.event.ui.invitation.EventInvitationDeclineView
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentAttendance
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentNoRSVP
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentRSVP
@@ -57,16 +46,16 @@ import com.edts.desklabv3.features.event.ui.success.SuccessAttendanceOnlineView
 import com.edts.desklabv3.features.event.ui.success.SuccessDenyInvitationView
 import com.edts.desklabv3.features.event.ui.success.SuccessRegistrationView
 import com.edts.desklabv3.features.home.ui.HomeAttendanceView
-import com.edts.desklabv3.features.home.ui.HomeDaftarRSVPView
+import com.edts.desklabv3.features.home.ui.HomeRegistrationRSVPView
 import com.edts.desklabv3.features.home.ui.HomeInvitationNoRSVPView
-import com.edts.desklabv3.features.home.ui.HomeInvitationTolakView
+import com.edts.desklabv3.features.home.ui.HomeInvitationDeclineView
 import com.edts.desklabv3.features.home.ui.HomeManagerView
 import com.edts.desklabv3.features.home.ui.HomeMenuFragment
 import com.edts.desklabv3.features.leave.ui.EmployeeLeaveDetailView
 import com.edts.desklabv3.features.leave.ui.EmployeeLeaveHistoryView
-import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportActivityView
-import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportLeaveView
-import com.edts.desklabv3.features.leave.ui.laporantim.TeamReportMenuFragment
+import com.edts.desklabv3.features.leave.ui.teamreport.TeamReportActivityView
+import com.edts.desklabv3.features.leave.ui.teamreport.TeamReportLeaveView
+import com.edts.desklabv3.features.leave.ui.teamreport.TeamReportMenuFragment
 
 class MainActivity : AppCompatActivity(), HeaderConfigurator {
     private lateinit var binding: ActivityMainBinding
@@ -112,28 +101,28 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             android.util.Log.d("MainActivity", "Received fragment result: $fragmentClassName, flow: $flowType")
 
             val fragment = when (fragmentClassName) {
-                "HomeDaftarRSVPView" -> HomeDaftarRSVPView()
-                "EventListDaftarRSVPView" -> EventListDaftarRSVPView()
+                "HomeDaftarRSVPView" -> HomeRegistrationRSVPView()
+                "EventListDaftarRSVPView" -> EventListRegistrationRSVPView()
                 "EventDetailDaftarRSVPView" -> EventDetailRSVPView()
                 "MyEventDaftarRSVPView" -> MyEventsFragmentRSVP()
                 "HomeInvitationNoRSVPView" -> HomeInvitationNoRSVPView()
                 "EventListInvitationNoRSVPView" -> EventListInvitationNoRSVPView()
                 "EventDetailViewNoRSVP" -> EventDetailViewNoRSVP()
-                "EventInvitationFragmentNoRSVP" -> EventInvitationFragmentNoRSVP()
+                "EventInvitationFragmentNoRSVP" -> EventInvitationNoRSVPView()
                 "MyEventsFragmentNoRSVP" -> MyEventsFragmentNoRSVP()
                 "HomeAttendanceView" -> HomeAttendanceView()
                 "SuccessAttendanceOfflineView" -> SuccessAttendanceOfflineView()
                 "SuccessAttendanceOnlineView" -> SuccessAttendanceOnlineView()
                 "EventListAttendanceView" -> EventListAttendanceView()
-                "HomeInvitationTolakView" -> HomeInvitationTolakView()
-                "EventListInvitationTolakStartView" -> EventListInvitationTolakStartView()
-                "EventInvitationFragmentTolakUndangan" -> EventInvitationFragmentTolakUndangan()
+                "HomeInvitationTolakView" -> HomeInvitationDeclineView()
+                "EventListInvitationTolakStartView" -> EventListInvitationDeclineStartView()
+                "EventInvitationFragmentTolakUndangan" -> EventInvitationDeclineView()
                 "EventDetailViewTolakUndangan" -> {
                     android.util.Log.d("MainActivity", "Creating EventDetailViewTolakUndangan")
-                    EventDetailViewTolakUndangan()
+                    EventDetailViewInvitationDecline()
                 }
                 "SuccessDenyInvitationView" -> SuccessDenyInvitationView()
-                "EventListInvitationTolakEndView" -> EventListInvitationTolakEndView()
+                "EventListInvitationTolakEndView" -> EventListInvitationDeclineEndView()
                 "AssetQRCodeFragment" -> AssetQRCodeFragment()
                 "RSVPFormView" -> RSVPFormView()
                 "EmployeeLeaveDetailView" -> EmployeeLeaveDetailView()
@@ -316,12 +305,12 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             is EventListInvitationNoRSVPView,
             is HomeInvitationNoRSVPView,
             is MyEventsFragmentNoRSVP,
-            is EventInvitationFragmentNoRSVP -> "InvitationNoRSVP"
+            is EventInvitationNoRSVPView -> "InvitationNoRSVP"
 
-            is EventListInvitationTolakStartView,
-            is EventListInvitationTolakEndView,
-            is HomeInvitationTolakView,
-            is EventInvitationFragmentTolakUndangan -> {
+            is EventListInvitationDeclineStartView,
+            is EventListInvitationDeclineEndView,
+            is HomeInvitationDeclineView,
+            is EventInvitationDeclineView -> {
                 Log.d("FLOW_DEBUG", "Matched InvitationNoRSVP: ${currentFragment?.javaClass?.simpleName}")
                 "TolakUndangan"
             }
@@ -330,8 +319,8 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             is HomeAttendanceView,
             is MyEventsFragmentAttendance -> "Attendance"
 
-            is EventListDaftarRSVPView,
-            is HomeDaftarRSVPView,
+            is EventListRegistrationRSVPView,
+            is HomeRegistrationRSVPView,
             is MyEventsFragmentRSVP -> "RegisRSVP"
 
             is HomeManagerView -> "TeamReport"
@@ -363,20 +352,20 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             is EventListInvitationNoRSVPView,
             is HomeInvitationNoRSVPView,
             is MyEventsFragmentNoRSVP,
-            is EventInvitationFragmentNoRSVP -> "InvitationNoRSVP"
+            is EventInvitationNoRSVPView -> "InvitationNoRSVP"
 
-            is EventListInvitationTolakStartView,
-            is HomeInvitationTolakView,
-            is EventInvitationFragmentTolakUndangan -> "TolakUndangan"
+            is EventListInvitationDeclineStartView,
+            is HomeInvitationDeclineView,
+            is EventInvitationDeclineView -> "TolakUndangan"
 
-            is EventListInvitationTolakEndView -> "TolakUndanganEnd"
+            is EventListInvitationDeclineEndView -> "TolakUndanganEnd"
 
             is EventListAttendanceView,
             is HomeAttendanceView,
             is MyEventsFragmentAttendance -> "Attendance"
 
-            is EventListDaftarRSVPView,
-            is HomeDaftarRSVPView,
+            is EventListRegistrationRSVPView,
+            is HomeRegistrationRSVPView,
             is MyEventsFragmentRSVP -> "RegisRSVP"
 
             is HomeManagerView -> "TeamReport"
