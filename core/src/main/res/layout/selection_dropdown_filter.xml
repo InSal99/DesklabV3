@@ -30,7 +30,7 @@
             android:layout_marginEnd="@dimen/margin_6dp"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="?attr/l3Medium"
                 android:id="@+id/tvDropdownFilterLabel"
                 android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tvDropdownFilterDesc"/>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="?attr/l4Regular"
                 android:id="@+id/tvDropdownFilterDesc"
                 android:layout_width="wrap_content"

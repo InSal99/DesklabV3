@@ -7,11 +7,11 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.LeaveCardBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class LeaveCard @JvmOverloads constructor(
@@ -64,11 +64,16 @@ class LeaveCard @JvmOverloads constructor(
         return super.performClick()
     }
 
+    // REFACTORED: Now uses the extension function directly.
     private fun setupClickAnimation() {
         isClickable = true
         isFocusable = true
 
-        val activeColor = resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.color000Opacity5)
+        val activeColor = run {
+            val fallbackColorRes = R.color.color000Opacity5
+            val resolved = context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, fallbackColorRes)
+            try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+        }
         rippleColor = ColorStateList.valueOf(activeColor)
     }
 
@@ -89,38 +94,36 @@ class LeaveCard @JvmOverloads constructor(
         }
     }
 
+    // REFACTORED: Now uses the extension function directly.
     private fun setupCardAppearance(context: Context) {
-        strokeColor = resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral30)
+        strokeColor = run {
+            val fallbackColorRes = R.color.colorNeutral30
+            val resolved = context.resolveColorAttribute(R.attr.colorStrokeSubtle, fallbackColorRes)
+            try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+        }
         strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
         radius = resources.getDimension(R.dimen.radius_12dp)
-        setCardBackgroundColor(resolveColorAttribute(R.attr.colorBackgroundPrimary, R.color.colorFFF))
+        setCardBackgroundColor(run {
+            val fallbackColorRes = R.color.colorFFF
+            val resolved = context.resolveColorAttribute(R.attr.colorBackgroundPrimary, fallbackColorRes)
+            try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+        })
 
-        cardElevation = 2f * context.resources.displayMetrics.density
+        cardElevation = 2f.dpToPx
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = resolveColorAttribute(
-                R.attr.colorShadowNeutralAmbient,
-                R.color.colorGreen50
-            )
-            outlineSpotShadowColor = resolveColorAttribute(
-                R.attr.colorShadowNeutralKey,
-                R.color.colorGreen50
-            )
+            outlineAmbientShadowColor = run {
+                val fallbackColorRes = R.color.colorGreen50
+                val resolved = context.resolveColorAttribute(R.attr.colorForegroundAccentPrimaryIntense, fallbackColorRes)
+                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+            }
+            outlineSpotShadowColor = run {
+                val fallbackColorRes = R.color.colorGreen50
+                val resolved = context.resolveColorAttribute(R.attr.colorForegroundAccentPrimaryIntense, fallbackColorRes)
+                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
+            }
         }
 
         setupClickAnimation()
-    }
-
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            ContextCompat.getColor(context, fallbackColor)
-        }
     }
 }

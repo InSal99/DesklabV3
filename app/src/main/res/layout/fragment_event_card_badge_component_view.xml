@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clipChildren="false"
     android:background="?attr/colorBackgroundPrimary"
+    android:clipChildren="false"
     tools:context=".core.component.EventCardBadgeComponentView">
 
     <LinearLayout
@@ -30,7 +30,7 @@
                 android:src="@drawable/ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
                 style="?attr/d3SemiBold"
                 android:layout_width="match_parent"
@@ -48,9 +48,8 @@
             app:eventBadgeType="invited"
             app:badgeSize="Large"
             app:eventCardBadgeText="Diundang"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -59,9 +58,8 @@
             app:eventBadgeType="registered"
             app:badgeSize="Large"
             app:eventCardBadgeText="Terdaftar"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -70,9 +68,8 @@
             app:eventBadgeType="live"
             app:badgeSize="Large"
             app:eventCardBadgeText="Berlangsung"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -81,9 +78,8 @@
             app:eventBadgeType="registered"
             app:badgeSize="Small"
             app:eventCardBadgeText="Terdaftar"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -92,9 +88,8 @@
             app:eventBadgeType="live"
             app:badgeSize="Small"
             app:eventCardBadgeText="Berlangsung"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -103,9 +98,8 @@
             app:eventBadgeType="attended"
             app:badgeSize="Small"
             app:eventCardBadgeText="Hadir"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -114,9 +108,8 @@
             app:eventBadgeType="notattended"
             app:badgeSize="Small"
             app:eventCardBadgeText="Tidak Hadir"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
 
     </LinearLayout>
 

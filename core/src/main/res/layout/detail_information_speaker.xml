@@ -14,7 +14,7 @@
         android:src="@drawable/avatar_placeholder"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CircleImageView"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvDetailName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

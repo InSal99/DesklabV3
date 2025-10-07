@@ -2,7 +2,6 @@ package com.edts.components.input.search
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
@@ -21,6 +20,8 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import com.edts.components.R
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 
 class InputSearch @JvmOverloads constructor(
     context: Context,
@@ -78,8 +79,6 @@ class InputSearch @JvmOverloads constructor(
             field = value
         }
 
-    private val colorCache = mutableMapOf<Int, Int>()
-
     var delegate: InputSearchDelegate? = null
 
     private var closeIconClickCount = 0
@@ -97,8 +96,13 @@ class InputSearch @JvmOverloads constructor(
 
     init {
         rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
-        radius = 12f * resources.displayMetrics.density
-        setCardBackgroundColor(resolveColorAttribute(R.attr.colorBackgroundPrimary))
+        radius = 12f.dpToPx
+        setCardBackgroundColor(
+            context.resolveColorAttribute(
+                R.attr.colorBackgroundPrimary,
+                android.R.color.white
+            )
+        )
 
         context.theme.obtainStyledAttributes(
             attrs,
@@ -219,10 +223,10 @@ class InputSearch @JvmOverloads constructor(
             }
         }
 
-        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
         val rippleDrawable = RippleDrawable(rippleColor, null, null)
-        rippleDrawable.radius = (12* Resources.getSystem().displayMetrics.density).toInt()
+        rippleDrawable.radius = 12f.dpToPx.toInt()
 
         binding.ivRightIcon.background = rippleDrawable
     }
@@ -262,21 +266,25 @@ class InputSearch @JvmOverloads constructor(
         imm.hideSoftInputFromWindow(binding.etSearch.windowToken, 0)
     }
 
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
-        }
-    }
-
     private fun createCardBackgroundDrawable(): Drawable {
         val elevatedModifierDrawable = GradientDrawable().apply {
-            cornerRadius = 12f * resources.displayMetrics.density
-            setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated))
+            cornerRadius = 12f.dpToPx
+            setColor(
+                context.resolveColorAttribute(
+                    R.attr.colorBackgroundModifierCardElevated,
+                    android.R.color.transparent
+                )
+            )
         }
 
         val disabledModifierDrawable = GradientDrawable().apply {
-            cornerRadius = 12f * resources.displayMetrics.density
-            setColor(getCachedColor(R.attr.colorBackgroundDisabled))
+            cornerRadius = 12f.dpToPx
+            setColor(
+                context.resolveColorAttribute(
+                    R.attr.colorBackgroundDisabled,
+                    android.R.color.darker_gray
+                )
+            )
         }
 
         return LayerDrawable(arrayOf(elevatedModifierDrawable, disabledModifierDrawable))
@@ -338,49 +346,99 @@ class InputSearch @JvmOverloads constructor(
         val card: MaterialCardView = binding.inputSearch
         when (_state) {
             State.REST -> {
-                card.setCardBackgroundColor(resolveColorAttribute(R.attr.colorBackgroundPrimary))
-                card.strokeColor = resolveColorAttribute(R.attr.colorStrokeSubtle)
+                card.setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.white
+                    )
+                )
+                card.strokeColor = context.resolveColorAttribute(
+                    R.attr.colorStrokeSubtle,
+                    android.R.color.darker_gray
+                )
                 binding.etSearch.isEnabled = true
-                binding.etSearch.setTextColor(resolveColorAttribute(R.attr.colorForegroundPrimary))
-                binding.etSearch.setHintTextColor(resolveColorAttribute(R.attr.colorForegroundPlaceholder))
+                binding.etSearch.setTextColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundPrimary,
+                        android.R.color.black
+                    )
+                )
+                binding.etSearch.setHintTextColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundPlaceholder,
+                        android.R.color.darker_gray
+                    )
+                )
             }
             State.FOCUS -> {
-                card.setCardBackgroundColor(resolveColorAttribute(R.attr.colorBackgroundPrimary))
-                card.strokeColor = resolveColorAttribute(R.attr.colorStrokeAccent)
+                card.setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.white
+                    )
+                )
+                card.strokeColor = context.resolveColorAttribute(
+                    R.attr.colorStrokeAccent,
+                    android.R.color.holo_blue_dark
+                )
                 binding.etSearch.isEnabled = true
-                binding.etSearch.setTextColor(resolveColorAttribute(R.attr.colorForegroundPrimary))
-                binding.etSearch.setHintTextColor(resolveColorAttribute(R.attr.colorForegroundPlaceholder))
+                binding.etSearch.setTextColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundPrimary,
+                        android.R.color.black
+                    )
+                )
+                binding.etSearch.setHintTextColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundPlaceholder,
+                        android.R.color.darker_gray
+                    )
+                )
             }
             State.DISABLE -> {
                 updateCardBackground()
-                card.strokeColor = resolveColorAttribute(R.attr.colorStrokeSubtle)
+                card.strokeColor = context.resolveColorAttribute(
+                    R.attr.colorStrokeSubtle,
+                    android.R.color.darker_gray
+                )
                 binding.etSearch.isEnabled = false
-                binding.etSearch.setTextColor(resolveColorAttribute(R.attr.colorForegroundDisabled))
-                binding.etSearch.setHintTextColor(resolveColorAttribute(R.attr.colorForegroundDisabled))
+                binding.etSearch.setTextColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundDisabled,
+                        android.R.color.darker_gray
+                    )
+                )
+                binding.etSearch.setHintTextColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundDisabled,
+                        android.R.color.darker_gray
+                    )
+                )
             }
             State.ERROR -> {
-                card.setCardBackgroundColor(resolveColorAttribute(R.attr.colorBackgroundPrimary))
-                card.strokeColor = resolveColorAttribute(R.attr.colorStrokeAttentionIntense)
+                card.setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundPrimary,
+                        android.R.color.white
+                    )
+                )
+                card.strokeColor = context.resolveColorAttribute(
+                    R.attr.colorStrokeAttentionIntense,
+                    android.R.color.holo_red_dark
+                )
                 binding.etSearch.isEnabled = true
-                binding.etSearch.setTextColor(resolveColorAttribute(R.attr.colorForegroundPrimary))
-                binding.etSearch.setHintTextColor(resolveColorAttribute(R.attr.colorForegroundPlaceholder))
-            }
-        }
-    }
-
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
+                binding.etSearch.setTextColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundPrimary,
+                        android.R.color.black
+                    )
+                )
+                binding.etSearch.setHintTextColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundPlaceholder,
+                        android.R.color.darker_gray
+                    )
+                )
             }
         }
     }

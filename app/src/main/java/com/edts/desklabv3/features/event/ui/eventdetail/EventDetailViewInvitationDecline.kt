@@ -31,7 +31,7 @@ import formatDateRange
 import formatTimeRange
 import setupHtmlDescription
 
-class EventDetailViewTolakUndangan : Fragment() {
+class EventDetailViewInvitationDecline : Fragment() {
 
     private var _binding: FragmentEventDetailBinding? = null
     private val binding get() = _binding!!

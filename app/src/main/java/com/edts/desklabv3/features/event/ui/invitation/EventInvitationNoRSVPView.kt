@@ -19,7 +19,7 @@ import com.edts.desklabv3.databinding.FragmentEventInvitationListBinding
 import com.edts.desklabv3.features.event.model.EventInvitation
 import com.edts.desklabv3.features.SpaceItemDecoration
 
-class EventInvitationFragmentNoRSVP : Fragment() {
+class EventInvitationNoRSVPView : Fragment() {
 
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!
