@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="textInputStyle" />
-
     <declare-styleable name="InputField">
         <attr name="fieldTitle" format="string" />
         <attr name="fieldDescription" format="string" />
