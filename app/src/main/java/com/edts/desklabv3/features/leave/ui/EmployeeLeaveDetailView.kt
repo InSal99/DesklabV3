@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.R
-import com.edts.desklabv3.core.withPushAnimation
 import com.edts.desklabv3.databinding.FragmentEmployeeLeaveDetailBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.LeaveQuota
@@ -35,18 +34,10 @@ class EmployeeLeaveDetailView : Fragment() {
             }
 
             override fun onRightButtonClicked() {
-                // TODO: Implement if needed
             }
         }
 
         binding.cvMultiDetail2.setOnClickListener{
-//            val fragment = EmployeeLeaveHistoryView()
-//            parentFragmentManager.beginTransaction()
-//                .withPushAnimation()
-//                .replace(com.edts.desklabv3.R.id.fragment_container, fragment)
-//                .addToBackStack(EmployeeLeaveDetailView::class.java.simpleName)
-//                .commit()
-
             val result = bundleOf("fragment_class" to "EmployeeLeaveHistoryView")
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
