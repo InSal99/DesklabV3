@@ -10,12 +10,10 @@ sealed class FormField {
     abstract val placeholder: String?
 }
 
-// Common properties for all fields that have options
 interface HasOptions {
     val options: List<String>
 }
 
-// Text Area (multi-line)
 data class TextAreaFormField(
     override val id: UUID = UUID.randomUUID(),
     override val question: String,
@@ -24,7 +22,6 @@ data class TextAreaFormField(
     override val placeholder: String? = null,
 ) : FormField()
 
-// Number Field
 data class NumberFormField(
     override val id: UUID = UUID.randomUUID(),
     override val question: String,
@@ -33,7 +30,6 @@ data class NumberFormField(
     override val placeholder: String? = null,
 ) : FormField()
 
-// Radio Button (single selection)
 data class RadioFormField(
     override val id: UUID = UUID.randomUUID(),
     override val question: String,
@@ -43,7 +39,6 @@ data class RadioFormField(
     override val options: List<String>
 ) : FormField(), HasOptions
 
-// Checkbox (multiple selection)
 data class CheckboxFormField(
     override val id: UUID = UUID.randomUUID(),
     override val question: String,
@@ -53,7 +48,6 @@ data class CheckboxFormField(
     override val options: List<String>,
 ) : FormField(), HasOptions
 
-// Dropdown (single selection)
 data class DropdownFormField(
     override val id: UUID = UUID.randomUUID(),
     override val question: String,

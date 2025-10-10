@@ -225,15 +225,12 @@ class EventListInvitationDeclineStartView : Fragment(), InputSearchDelegate {
     }
 
     override fun onSearchFieldClick(inputSearch: com.edts.components.input.search.InputSearch, clickCount: Int) {
-        // Handle search field click if needed
     }
 
     override fun onStateChange(inputSearch: com.edts.components.input.search.InputSearch, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
-        // Handle state changes
     }
 
     override fun onFocusChange(inputSearch: com.edts.components.input.search.InputSearch, hasFocus: Boolean, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
-        // Handle focus changes
     }
 
     override fun onDestroyView() {

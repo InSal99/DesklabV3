@@ -11,11 +11,6 @@ class EventInvitationAdapter(
     private val onCardClick: (EventInvitation) -> Unit,
     private val onButtonClick: (EventInvitation) -> Unit
 ) : RecyclerView.Adapter<EventInvitationAdapter.NotificationViewHolder>() {
-
-    /**
-     * The ViewHolder now holds a direct reference to your custom component,
-     * not a binding object.
-     */
     class NotificationViewHolder(val card: EventNotificationCard) : RecyclerView.ViewHolder(card) {
 
         fun bind(
@@ -23,15 +18,12 @@ class EventInvitationAdapter(
             onCardClick: (EventInvitation) -> Unit,
             onButtonClick: (EventInvitation) -> Unit
         ) {
-            // Bind data directly to the custom view's properties
             card.apply {
                 title = item.title
                 description = item.description
                 buttonText = item.buttonText
                 isButtonVisible = item.isButtonVisible
                 eventType = item.eventType
-
-                // Set the delegate for click events
                 delegate = object : EventNotificationCardDelegate {
                     override fun onCardClick(notificationCard: EventNotificationCard) {
                         onCardClick(item)

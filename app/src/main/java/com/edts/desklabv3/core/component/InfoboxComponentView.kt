@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.databinding.FragmentInfoboxComponentViewBinding
 
 class InfoboxComponentView : Fragment() {
-
     private var _binding: FragmentInfoboxComponentViewBinding? = null
     private val binding get() = _binding!!
 
