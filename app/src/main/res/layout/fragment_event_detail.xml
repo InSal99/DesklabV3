@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvDetailTitle"
-        app:layout_constraintDimensionRatio="1:1" />
+        app:layout_constraintDimensionRatio="1:1"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvDetailTitle"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="@id/ivDetailBack"
         app:layout_constraintStart_toEndOf="@id/ivDetailBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/ivDetailBack" />
+        app:layout_constraintBottom_toBottomOf="@id/ivDetailBack"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                     app:shapeAppearanceOverlay="@style/DetailPageImageBackground"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvDetailEventType"
@@ -83,7 +83,7 @@
                     android:text="Online Event"
                     android:textColor="?attr/colorForegroundTertiary"
                     app:layout_constraintTop_toBottomOf="@id/ivDetailEventPoster"
-                    app:layout_constraintStart_toStartOf="@id/ivDetailEventPoster" />
+                    app:layout_constraintStart_toStartOf="@id/ivDetailEventPoster"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvDetailDot"
@@ -94,7 +94,7 @@
                     android:text="·"
                     android:textColor="?attr/colorForegroundTertiary"
                     app:layout_constraintTop_toTopOf="@id/tvDetailEventType"
-                    app:layout_constraintStart_toEndOf="@id/tvDetailEventType" />
+                    app:layout_constraintStart_toEndOf="@id/tvDetailEventType"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvDetailEventCategory"
@@ -105,7 +105,7 @@
                     android:text="General Event"
                     android:textColor="?attr/colorForegroundTertiary"
                     app:layout_constraintTop_toTopOf="@id/tvDetailEventType"
-                    app:layout_constraintStart_toEndOf="@id/tvDetailDot" />
+                    app:layout_constraintStart_toEndOf="@id/tvDetailDot"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvDetailEventTitle"
@@ -117,7 +117,7 @@
                     android:textColor="?attr/colorForegroundPrimary"
                     app:layout_constraintTop_toBottomOf="@id/tvDetailEventType"
                     app:layout_constraintStart_toStartOf="@id/tvDetailEventType"
-                    app:layout_constraintEnd_toEndOf="@id/ivDetailEventPoster" />
+                    app:layout_constraintEnd_toEndOf="@id/ivDetailEventPoster"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvDetailEventSpeakerTitle"
@@ -128,7 +128,7 @@
                     android:text="@string/event_detail_speaker_title"
                     android:textColor="?attr/colorForegroundSecondary"
                     app:layout_constraintTop_toBottomOf="@id/tvDetailEventTitle"
-                    app:layout_constraintStart_toStartOf="@id/tvDetailEventTitle" />
+                    app:layout_constraintStart_toStartOf="@id/tvDetailEventTitle"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvDetailEventSpeakersInfo"
@@ -138,7 +138,7 @@
                     android:nestedScrollingEnabled="false"
                     app:layout_constraintTop_toBottomOf="@id/tvDetailEventSpeakerTitle"
                     app:layout_constraintStart_toStartOf="@id/tvDetailEventSpeakerTitle"
-                    app:layout_constraintEnd_toEndOf="@id/tvDetailEventTitle" />
+                    app:layout_constraintEnd_toEndOf="@id/tvDetailEventTitle"/>
 
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/dDetail1"
@@ -148,7 +148,7 @@
                     app:dividerColor="?attr/colorStrokeSubtle"
                     app:layout_constraintTop_toBottomOf="@id/rvDetailEventSpeakersInfo"
                     app:layout_constraintStart_toStartOf="@id/rvDetailEventSpeakersInfo"
-                    app:layout_constraintEnd_toEndOf="@id/rvDetailEventSpeakersInfo" />
+                    app:layout_constraintEnd_toEndOf="@id/rvDetailEventSpeakersInfo"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvDetailEventTimeLocation"
@@ -158,7 +158,7 @@
                     android:nestedScrollingEnabled="false"
                     app:layout_constraintTop_toBottomOf="@id/dDetail1"
                     app:layout_constraintStart_toStartOf="@id/dDetail1"
-                    app:layout_constraintEnd_toEndOf="@id/dDetail1" />
+                    app:layout_constraintEnd_toEndOf="@id/dDetail1"/>
 
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/dDetail2"
@@ -168,7 +168,7 @@
                     app:dividerColor="?attr/colorStrokeSubtle"
                     app:layout_constraintTop_toBottomOf="@id/rvDetailEventTimeLocation"
                     app:layout_constraintStart_toStartOf="@id/rvDetailEventTimeLocation"
-                    app:layout_constraintEnd_toEndOf="@id/rvDetailEventTimeLocation" />
+                    app:layout_constraintEnd_toEndOf="@id/rvDetailEventTimeLocation"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvEventDetailDescriptionTitle"
@@ -179,7 +179,7 @@
                     android:text="@string/event_detail_description_title"
                     android:textColor="?attr/colorForegroundPrimary"
                     app:layout_constraintTop_toBottomOf="@id/dDetail2"
-                    app:layout_constraintStart_toStartOf="@id/dDetail2" />
+                    app:layout_constraintStart_toStartOf="@id/dDetail2"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvEventDetailDescription"
@@ -192,8 +192,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tvEventDetailDescriptionTitle"
                     app:layout_constraintStart_toStartOf="@id/dDetail2"
                     app:layout_constraintEnd_toEndOf="@id/dDetail2"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
+                    app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -213,5 +212,5 @@
         app:primaryButtonText="Register Now"
         app:infoboxType="information"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

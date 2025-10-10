@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvHeaderTeamReportActivity"
-        app:layout_constraintBottom_toTopOf="@+id/cvBottomNavigation" />
+        app:layout_constraintBottom_toTopOf="@+id/cvBottomNavigation"/>
 
     <com.edts.components.bottom.navigation.BottomNavigation
         android:id="@+id/cvBottomNavigation"

@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Event Card: Status"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.event.card.EventCardStatus
@@ -67,7 +66,5 @@
             app:statusText="Pendaftaran ditutup"
             app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
             app:layout_constraintStart_toStartOf="parent"/>
-
     </LinearLayout>
-
 </FrameLayout>

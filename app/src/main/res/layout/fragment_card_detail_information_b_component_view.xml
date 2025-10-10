@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Card: Detail Information B"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.card.detail.CardDetailInfoB
@@ -90,7 +89,7 @@
             app:cdibLeftSlotBackgroundColor="?attr/colorBackgroundWarningIntense"
             app:cdibLeftSlotTint="?attr/colorForegroundUtilityUlangTahunIntense"
             app:cdibTitleText="Card Title"
-            app:cdibDescText="Card Content Description" />
+            app:cdibDescText="Card Content Description"/>
 
         <com.edts.components.card.detail.CardDetailInfoB
             android:layout_width="match_parent"
@@ -106,7 +105,7 @@
             app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
             app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
             app:cdibTitleText="Card Title"
-            app:cdibDescText="Card Content Description" />
+            app:cdibDescText="Card Content Description"/>
 
         <com.edts.components.card.detail.CardDetailInfoB
             android:id="@+id/cdibCustomType"
