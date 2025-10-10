@@ -2,10 +2,11 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 group = "com.edts.components"
-version = "v0.6.0"
+version = "v0.7.0"
 afterEvaluate {
     publishing {
         publications {
@@ -13,7 +14,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.edts.components"
                 artifactId = "components"
-                version = "v0.6.0"
+                version = "v0.7.0"
 
                 pom {
                     name.set("Desklab Components Library")
@@ -94,6 +95,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.library)
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
