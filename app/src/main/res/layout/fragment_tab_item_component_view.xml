@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <TextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Tab Item"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.tab.TabItem
@@ -47,7 +46,7 @@
             android:layout_marginTop="@dimen/margin_24dp"
             app:tabItemText="Label"
             app:tabItemShowBadge="false"
-            app:tabItemState="active" />
+            app:tabItemState="active"/>
 
         <com.edts.components.tab.TabItem
             android:layout_width="wrap_content"
@@ -56,8 +55,6 @@
             app:tabItemText="Label"
             app:tabItemBadgeText="1"
             app:tabItemShowBadge="true"
-            app:tabItemState="inactive" />
-
+            app:tabItemState="inactive"/>
     </LinearLayout>
-
 </FrameLayout>
