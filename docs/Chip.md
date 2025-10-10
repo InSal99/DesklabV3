@@ -138,7 +138,7 @@ val chipDelegate = object : ChipDelegate {
 
 | Method Name | Parameters | Description |
 | ----------- | ---------- | ----------- |
-| `setChipState()` | `newState: ChipState, fromUser: Boolean = false` | Sets chip state with optional user interaction logging |
+| `setChipState()` | `newState: ChipState, fromUser: Boolean = false` | Sets chip state |
 | `setActiveBackgroundColor()` | `color: Int` | Sets custom background color for active state |
 | `setIconClickable()` | `clickable: Boolean` | Enables/disables icon click functionality |
 | `resetClickCount()` | None | Resets internal click counter |
@@ -264,7 +264,6 @@ chip.setIconClickable(isRemovable)
 ## Performance Considerations
 
 - **Animation Management** — Cancels all running animations before starting new ones to prevent conflicts and ensure smooth transitions
-- **Color Caching** — Caches resolved theme colors to avoid repeated attribute lookups during animations
 - **Click Debouncing** — Built-in 300ms debounce for both chip and icon clicks prevents rapid-fire interactions
 - **State Animation Optimization** — Checks if already animating to target state to prevent unnecessary animation restarts
 

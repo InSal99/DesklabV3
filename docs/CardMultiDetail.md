@@ -294,7 +294,6 @@ fun setCardClickable(clickable: Boolean) {
 
 ## Performance Considerations
 
-- **Color Caching** — Resolves and caches theme colors to avoid repeated attribute lookups during state changes
 - **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks
 - **ViewBinding** — Uses ViewBinding for efficient view access with nested custom components
 - **Intelligent Clickability** — Automatically manages click states based on right slot visibility to prevent unnecessary touch handling

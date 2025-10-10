@@ -299,7 +299,6 @@ fun configureCard(event: Event) {
 
 ## Performance Considerations
 
-- **Color Caching** — Resolves and caches theme colors to avoid repeated attribute lookups during state changes
 - **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks and improves user experience
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 - **Nested Component Architecture** — Delegates rendering to specialized sub-components (EventCardBadge, EventCardBanner, EventCardDescription, EventCardStatus)
@@ -336,4 +335,4 @@ Each sub-component can be customized through the parent EventCard properties, wh
 
 ---
 
-> **⚠️ Note**: This component uses MaterialCardView as its base and relies on nested custom views for its sub-components. Ensure all dependent components (EventCardBadge, EventCardBanner, EventCardDescription, EventCardStatus) are properly implemented in your project. The click debounce mechanism prevents rapid successive clicks but logs all interaction attempts for debugging purposes.
+> **⚠️ Note**: This component uses MaterialCardView as its base and relies on nested custom views for its sub-components. Ensure all dependent components (EventCardBadge, EventCardBanner, EventCardDescription, EventCardStatus) are properly implemented in your project. There's also click debounce mechanism to prevents rapid successive clicks.

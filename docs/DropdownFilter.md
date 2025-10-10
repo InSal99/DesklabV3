@@ -196,7 +196,6 @@ dropdownFilter.dropdownFilterShowDesc = hasDesc
 
 ## Performance Considerations
 
-- **Color Caching** — Resolves and caches theme colors to avoid repeated attribute lookups during state changes
 - **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks and improves user experience
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 
@@ -218,4 +217,4 @@ dropdownFilter.dropdownFilterShowDesc = hasDesc
 
 ---
 
-> **⚠️ Note**: This component uses MaterialCardView as its base and inherits elevation and corner radius properties. The click debounce mechanism prevents rapid successive clicks but logs all interaction attempts for debugging purposes.
+> **⚠️ Note**: This component uses MaterialCardView as its base and inherits elevation and corner radius properties. There's also click debounce mechanism to prevents rapid successive clicks.

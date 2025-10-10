@@ -267,7 +267,6 @@ fun setCardInteractive(interactive: Boolean) {
 
 ## Performance Considerations
 
-- **Color Caching** — Resolves and caches theme colors to avoid repeated attribute lookups during state changes
 - **Custom Drawing** — Uses efficient path-based drawing for the left border indicator
 - **Layout Optimization** — Dynamically adjusts constraints based on visibility states to minimize layout passes
 - **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks
