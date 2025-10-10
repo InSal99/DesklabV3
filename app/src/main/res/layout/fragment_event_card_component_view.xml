@@ -65,7 +65,7 @@
             app:cardEventCategory="People Development"
             app:cardEventDate="23 Juli 2025"
             app:eventImageSrc="@drawable/poster2"
-            app:eventImageUrl="https://static.vecteezy.com/system/resources/thumbnails/000/217/363/small_2x/vector-colourful-landscape-illustration.jpg"
+            app:eventImageUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
             app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
             app:cardEventType="Hybrid Event"
             app:showCardStatus="false"

@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
 import androidx.core.content.ContextCompat
@@ -88,7 +87,6 @@ class MonthlyPicker @JvmOverloads constructor(
         }
     }
 
-    // REFACTORED: Now uses the extension function directly to resolve colors.
     private fun applyStyling() {
         isEnabled = (type != PickerType.DISABLED)
 
@@ -117,7 +115,6 @@ class MonthlyPicker @JvmOverloads constructor(
         background = backgroundDrawable
     }
 
-    // REFACTORED: Now uses the extension function directly to resolve colors.
     private fun createBackgroundDrawable(): Drawable {
         val fallbackColorRes = android.R.color.transparent
 
@@ -199,7 +196,6 @@ class MonthlyPicker @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        Log.d("CustomMonthlyPicker", "Monthly Picker Clicked ✅")
         if (!isEnabled) return false
         delegate?.onMonthClicked(this)
         return super.performClick()

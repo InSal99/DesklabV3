@@ -101,6 +101,20 @@
             android:layout_marginTop="@dimen/margin_16dp"
             app:cmdInfo1Text="Cuti Tahunan"
             app:cmdInfo2Text="3 Days"
+            app:cmdLeftSlotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
+            app:cmdLeftSlotType="image"
+            app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+            app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+            app:cmdShowInfo2="true"
+            app:cmdShowRightSlot="false"
+            app:cmdTitle="21 Jun - 23 Jun 2025" />
+
+        <com.edts.components.card.multi.detail.CardMultiDetail
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:cmdInfo1Text="Cuti Tahunan"
+            app:cmdInfo2Text="3 Days"
             app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
             app:cmdLeftSlotType="image"
             app:cmdRightSlotSrc="@drawable/ic_chevron_right"

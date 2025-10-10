@@ -3,15 +3,11 @@ package com.edts.components.card.multi.detail
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
-import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.CardMultiDetailBinding
@@ -48,6 +44,12 @@ class CardMultiDetail @JvmOverloads constructor(
         }
 
     var leftSlotSrc: Int? = null
+        set(value) {
+            field = value
+            updateLeftSlotSrc()
+        }
+
+    var leftSlotUrl: String? = null
         set(value) {
             field = value
             updateLeftSlotSrc()
@@ -130,10 +132,6 @@ class CardMultiDetail @JvmOverloads constructor(
     private var lastClickTime = 0L
     private val clickDebounceDelay = 300L
 
-    private companion object {
-        const val TAG = "CardMultiDetail"
-    }
-
     init {
         radius = 12f.dpToPx
 
@@ -157,6 +155,8 @@ class CardMultiDetail @JvmOverloads constructor(
                 if (leftSlotSrcResId != -1) {
                     leftSlotSrc = leftSlotSrcResId
                 }
+
+                leftSlotUrl = getString(R.styleable.CardMultiDetail_cmdLeftSlotUrl)
 
                 val leftSlotBgColorRef = getResourceId(R.styleable.CardMultiDetail_cmdLeftSlotBackgroundColor, -1)
                 if (leftSlotBgColorRef != -1) {
@@ -250,22 +250,7 @@ class CardMultiDetail @JvmOverloads constructor(
         if (currentTime - lastClickTime > clickDebounceDelay) {
             clickCount++
             lastClickTime = currentTime
-
-            Log.d(TAG, "CardMultiDetail clicked!")
-            Log.d(TAG, "  - Title: ${cmdTitle ?: "No title"}")
-            Log.d(TAG, "  - Info1: ${cmdInfo1Text ?: "No info1"}")
-            Log.d(TAG, "  - Info2: ${cmdInfo2Text ?: "No info2"}")
-            Log.d(TAG, "  - Show Info2: $cmdShowInfo2")
-            Log.d(TAG, "  - Show Left Slot: $cmdShowLeftSlot")
-            Log.d(TAG, "  - Show Right Slot: $cmdShowRightSlot")
-            Log.d(TAG, "  - Is Clickable: $isClickable")
-            Log.d(TAG, "  - Total clicks: $clickCount")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "--------------------")
-
             delegate?.onCardClick(this)
-        } else {
-            Log.d(TAG, "Click ignored due to debounce (too fast)")
         }
     }
 
@@ -277,9 +262,6 @@ class CardMultiDetail @JvmOverloads constructor(
         val shouldBeClickable = cmdShowRightSlot
         isClickable = shouldBeClickable
         isFocusable = shouldBeClickable
-
-        Log.d(TAG, "Clickability updated: $shouldBeClickable (based on cmdShowRightSlot: $cmdShowRightSlot)")
-
         rippleColor = if (shouldBeClickable) {
             ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
         } else{
@@ -299,9 +281,8 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     private fun updateLeftSlotSrc() {
-        leftSlotSrc?.let {
-            binding.cvCardLeftSlot.slotSrc = it
-        }
+        leftSlotUrl?.let { binding.cvCardLeftSlot.slotUrl = it }
+        leftSlotSrc?.let { binding.cvCardLeftSlot.slotSrc = it }
     }
 
     private fun updateLeftSlotBackgroundColor() {
@@ -377,7 +358,6 @@ class CardMultiDetail @JvmOverloads constructor(
     fun resetClickCount() {
         val previousCount = clickCount
         clickCount = 0
-        Log.d(TAG, "Click count reset from $previousCount to 0")
     }
 
     fun getClickCount(): Int {
@@ -386,11 +366,8 @@ class CardMultiDetail @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         if (!isClickable) {
-            Log.d(TAG, "Programmatic click ignored - component is not clickable")
             return false
         }
-
-        Log.d(TAG, "Programmatic click triggered")
         handleClick()
         return super.performClick()
     }

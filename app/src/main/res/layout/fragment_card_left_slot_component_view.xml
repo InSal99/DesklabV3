@@ -49,6 +49,13 @@
             app:slotSrc="@drawable/avatar_placeholder"/>
 
         <com.edts.components.card.multi.detail.CardLeftSlot
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:slotType="image"
+            app:slotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"/>
+
+        <com.edts.components.card.multi.detail.CardLeftSlot
             android:id="@+id/cvCardLeftSlot"
             android:layout_width="44dp"
             android:layout_height="44dp"

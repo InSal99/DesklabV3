@@ -54,6 +54,16 @@
         <com.edts.components.card.detail.CardDetailInfoB
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_24dp"
+            app:cdibLeftSlotType="image"
+            app:cdibLeftSlotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
+            app:cdibRightSlotSrc="@drawable/ic_chevron_right"
+            app:cdibTitleText="Card Title"
+            app:cdibDescText="Card Content Description"/>
+
+        <com.edts.components.card.detail.CardDetailInfoB
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
             app:cdibLeftSlotType="icon"
             app:cdibShowIndicator="true"

@@ -2,7 +2,6 @@ package com.edts.components.bottom.navigation
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -58,14 +57,8 @@ class BottomNavigation @JvmOverloads constructor(
                 val oldValue = field
                 field = value
                 updateActiveItemState(oldValue, value)
-            } else if (value !in 0 until itemCount.value) {
-                Log.w(TAG, "Invalid active item position: $value. Keeping current active item: $field")
             }
         }
-
-    private companion object {
-        const val TAG = "BottomNavigation"
-    }
 
     init {
         context.theme.obtainStyledAttributes(
@@ -175,13 +168,9 @@ class BottomNavigation @JvmOverloads constructor(
     }
 
     private fun updateItemVisibility() {
-        Log.d(TAG, "Updating item visibility for count: ${itemCount.value}")
-
         navigationItems.forEachIndexed { index, item ->
             val shouldBeVisible = index < itemCount.value
             item.visibility = if (shouldBeVisible) View.VISIBLE else View.GONE
-
-            Log.d(TAG, "Item $index visibility: ${if (shouldBeVisible) "VISIBLE" else "GONE"}")
         }
 
         if (activeItemPosition >= itemCount.value) {
@@ -202,14 +191,11 @@ class BottomNavigation @JvmOverloads constructor(
                 navigationItems[newPosition].navState = BottomNavigationItem.NavState.ACTIVE
             }
         }
-
-        Log.d(TAG, "Active item changed from $oldPosition to $newPosition")
     }
 
     private fun ensureActiveItemExists() {
         if (activeItemPosition !in 0 until itemCount.value && itemCount.value > 0) {
             activeItemPosition = 0
-            Log.d(TAG, "No active item found, setting first item as active")
         }
     }
 
@@ -217,7 +203,6 @@ class BottomNavigation @JvmOverloads constructor(
         return if (position in 0 until navigationItems.size && position < itemCount.value) {
             navigationItems[position]
         } else {
-            Log.w(TAG, "Invalid position: $position")
             null
         }
     }
@@ -228,11 +213,9 @@ class BottomNavigation @JvmOverloads constructor(
                 setActiveItem(position)
             } else {
                 if (position == activeItemPosition) {
-                    Log.w(TAG, "Cannot set active item to inactive. Use setActiveItem() to change active item.")
                     return
                 }
                 item.navState = state
-                Log.d(TAG, "Set item $position state to $state")
             }
         }
     }
@@ -240,30 +223,24 @@ class BottomNavigation @JvmOverloads constructor(
     fun setItemIcon(position: Int, iconResId: Int) {
         getNavigationItem(position)?.let { item ->
             item.navIcon = iconResId
-            Log.d(TAG, "Set item $position icon to $iconResId")
         }
     }
 
     fun setItemText(position: Int, text: String) {
         getNavigationItem(position)?.let { item ->
             item.navText = text
-            Log.d(TAG, "Set item $position text to $text")
         }
     }
 
     fun setItemBadge(position: Int, showBadge: Boolean) {
         getNavigationItem(position)?.let { item ->
             item.showBadge = showBadge
-            Log.d(TAG, "Set item $position badge visibility to $showBadge")
         }
     }
 
     fun setActiveItem(position: Int) {
         if (position in 0 until itemCount.value) {
             activeItemPosition = position
-            Log.d(TAG, "Set active item to position: $position")
-        } else {
-            Log.w(TAG, "Invalid active item position: $position")
         }
     }
 
@@ -275,7 +252,6 @@ class BottomNavigation @JvmOverloads constructor(
         navigationItems.forEach { item ->
             item.resetClickCount()
         }
-        Log.d(TAG, "Reset all click counts")
     }
 
     fun getTotalClickCount(): Int {
@@ -287,12 +263,6 @@ class BottomNavigation @JvmOverloads constructor(
         position: Int,
         clickCount: Int
     ) {
-        Log.d(TAG, "Navigation item clicked:")
-        Log.d(TAG, "  - Position: $position")
-        Log.d(TAG, "  - Text: ${item.navText ?: "Unknown"}")
-        Log.d(TAG, "  - Click Count: $clickCount")
-        Log.d(TAG, "  - Total Clicks: ${getTotalClickCount()}")
-
         if (position != activeItemPosition) {
             setActiveItem(position)
         }
@@ -305,24 +275,15 @@ class BottomNavigation @JvmOverloads constructor(
         newState: BottomNavigationItem.NavState,
         previousState: BottomNavigationItem.NavState
     ) {
-        Log.d(TAG, "Navigation item state changed:")
-        Log.d(TAG, "  - Position: ${item.itemPosition}")
-        Log.d(TAG, "  - Text: ${item.navText ?: "Unknown"}")
-        Log.d(TAG, "  - Previous State: $previousState")
-        Log.d(TAG, "  - New State: $newState")
-
         if (item.itemPosition == activeItemPosition && newState == BottomNavigationItem.NavState.INACTIVE) {
-            Log.w(TAG, "Cannot deactivate active item ${item.itemPosition}. Reverting to ACTIVE.")
             item.navState = BottomNavigationItem.NavState.ACTIVE
             return
         }
 
         if (newState == BottomNavigationItem.NavState.ACTIVE && item.itemPosition != activeItemPosition) {
-            Log.w(TAG, "Attempt to manually activate item ${item.itemPosition}, but active item is $activeItemPosition. Reverting.")
             item.navState = BottomNavigationItem.NavState.INACTIVE
             return
         }
-
         delegate?.onBottomNavigationItemStateChanged(item, newState, previousState)
     }
 }

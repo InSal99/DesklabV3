@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
@@ -48,7 +47,6 @@ class OptionCard @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        Log.d("OptionCard", "option card selected")
         delegate?.onClick(this)
         return super.performClick()
     }
@@ -96,7 +94,6 @@ class OptionCard @JvmOverloads constructor(
                 android.R.color.transparent
             )
         }
-
         setupClickAnimation()
     }
 }

@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.CardLeftSlotBinding
+import com.edts.components.utils.loadImageDynamic
 
 class CardLeftSlot @JvmOverloads constructor(
     context: Context,
@@ -45,6 +46,12 @@ class CardLeftSlot @JvmOverloads constructor(
             updateSlotSrc()
         }
 
+    var slotUrl: String? = null
+        set(value) {
+            field = value
+            updateSlotSrc()
+        }
+
     var slotBackgroundColor: Int? = null
         set(value) {
             field = value
@@ -71,6 +78,8 @@ class CardLeftSlot @JvmOverloads constructor(
                 if (srcResId != -1) {
                     slotSrc = srcResId
                 }
+
+                slotUrl = getString(R.styleable.CardLeftSlot_slotUrl)
 
                 val backgroundColorResId = getResourceId(R.styleable.CardLeftSlot_slotBackgroundColor, -1)
                 if (backgroundColorResId != -1) {
@@ -119,9 +128,11 @@ class CardLeftSlot @JvmOverloads constructor(
     }
 
     private fun updateSlotSrc() {
-        slotSrc?.let {
-            binding.ivCardLeftSlot.setImageResource(it)
-        }
+        binding.ivCardLeftSlot.loadImageDynamic(
+            imageUrl = slotUrl,
+            imageRes = slotSrc,
+            placeholderRes = R.drawable.avatar_placeholder
+        )
     }
 
     private fun updateSlotBackgroundColor() {

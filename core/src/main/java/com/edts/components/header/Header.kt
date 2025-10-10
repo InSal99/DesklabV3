@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +26,6 @@ class Header @JvmOverloads constructor(
     private val colorCache = mutableMapOf<Int, Int>()
 
     private companion object {
-        const val TAG = "Header"
         const val CLICK_DEBOUNCE_DELAY = 200L
     }
 
@@ -120,17 +118,11 @@ class Header @JvmOverloads constructor(
             val typedValue = TypedValue()
             if (context.theme.resolveAttribute(R.attr.d3SemiBold, typedValue, true)) {
                 binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
-                Log.d(TAG, "Applied d3SemiBold style to title")
-            } else {
-                Log.w(TAG, "d3SemiBold style not found, keeping current style")
             }
         } else {
             val typedValue = TypedValue()
             if (context.theme.resolveAttribute(R.attr.h1SemiBold, typedValue, true)) {
                 binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
-                Log.d(TAG, "Applied h1SemiBold style to title")
-            } else {
-                Log.w(TAG, "h1SemiBold style not found, keeping current style")
             }
         }
     }
@@ -183,20 +175,7 @@ class Header @JvmOverloads constructor(
         if (currentTime - lastLeftClickTime > CLICK_DEBOUNCE_DELAY) {
             leftClickCount++
             lastLeftClickTime = currentTime
-
-            Log.d(TAG, "Left button clicked!")
-            Log.d(TAG, "  - Button: Left")
-            Log.d(TAG, "  - Title: ${sectionTitleText.ifEmpty { "No title" }}")
-            Log.d(TAG, "  - Subtitle: ${sectionSubtitleText.ifEmpty { "No subtitle" }}")
-            Log.d(TAG, "  - Button Visible: $showLeftButton")
-            Log.d(TAG, "  - Total left clicks: $leftClickCount")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Action: Navigate back or left action")
-            Log.d(TAG, "--------------------")
-
             delegate?.onLeftButtonClicked()
-        } else {
-            Log.d(TAG, "Left button click ignored due to debounce (too fast)")
         }
     }
 
@@ -206,34 +185,18 @@ class Header @JvmOverloads constructor(
         if (currentTime - lastRightClickTime > CLICK_DEBOUNCE_DELAY) {
             rightClickCount++
             lastRightClickTime = currentTime
-
-            Log.d(TAG, "Right button clicked!")
-            Log.d(TAG, "  - Button: Right")
-            Log.d(TAG, "  - Title: ${sectionTitleText.ifEmpty { "No title" }}")
-            Log.d(TAG, "  - Subtitle: ${sectionSubtitleText.ifEmpty { "No subtitle" }}")
-            Log.d(TAG, "  - Button Visible: $showRightButton")
-            Log.d(TAG, "  - Button Source: ${if (rightButtonSrc != -1) rightButtonSrc else "Default"}")
-            Log.d(TAG, "  - Total right clicks: $rightClickCount")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Action: Menu or right action")
-            Log.d(TAG, "--------------------")
-
             delegate?.onRightButtonClicked()
-        } else {
-            Log.d(TAG, "Right button click ignored due to debounce (too fast)")
         }
     }
 
     fun resetLeftClickCount() {
         val previousCount = leftClickCount
         leftClickCount = 0
-        Log.d(TAG, "Left button click count reset from $previousCount to 0")
     }
 
     fun resetRightClickCount() {
         val previousCount = rightClickCount
         rightClickCount = 0
-        Log.d(TAG, "Right button click count reset from $previousCount to 0")
     }
 
     fun getLeftClickCount(): Int {
