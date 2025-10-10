@@ -51,6 +51,7 @@
             android:ellipsize="end"
             android:text="Terima kasih telah konfirmasi kehadiranmu"
             android:textColor="?attr/colorForegroundPrimary"
+            style="?attr/p1Regular"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleAttendanceOffline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

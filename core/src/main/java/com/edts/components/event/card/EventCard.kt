@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.EventCardBinding
 import com.edts.components.utils.dpToPx
+import com.edts.components.utils.loadImageDynamic
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
@@ -31,6 +32,12 @@ class EventCard @JvmOverloads constructor(
     )
 
     private val cornerRadiusPx = 8.dpToPx.toFloat()
+
+    var eventImageUrl: String? = null
+        set(value) {
+            field = value
+            updateEventImage()
+        }
 
     var eventImageSrc: Int? = null
         set(value) {
@@ -129,6 +136,7 @@ class EventCard @JvmOverloads constructor(
             try {
                 rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
+                eventImageUrl = getString(R.styleable.EventCard_eventImageUrl)
                 eventImageSrc = getResourceId(R.styleable.EventCard_eventImageSrc, -1)
                     .takeIf { it != -1 }
 
@@ -203,10 +211,18 @@ class EventCard @JvmOverloads constructor(
         isFocusable = true
     }
 
+//    private fun updateEventImage() {
+//        eventImageSrc?.let { imageRes ->
+//            binding.ivEventCard.setImageResource(imageRes)
+//        }
+//    }
+
     private fun updateEventImage() {
-        eventImageSrc?.let { imageRes ->
-            binding.ivEventCard.setImageResource(imageRes)
-        }
+        binding.ivEventCard.loadImageDynamic(
+            imageUrl = eventImageUrl,
+            imageRes = eventImageSrc,
+            placeholderRes = R.drawable.avatar_placeholder
+        )
     }
 
     private fun updateBadgeVisibility() {

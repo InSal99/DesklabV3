@@ -3,9 +3,12 @@ package com.edts.components.utils
 import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
+import android.widget.ImageView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.annotation.StyleRes
+import com.bumptech.glide.Glide
+import com.edts.components.R
 
 val Int.dpToPx: Int get() = (this * Resources.getSystem().displayMetrics.density).toInt()
 val Int.pxToDp: Int get() = (this / Resources.getSystem().displayMetrics.density).toInt()
@@ -35,4 +38,30 @@ fun Context?.resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColo
     } else {
         fallbackColor
     }
+}
+
+fun ImageView.loadImageDynamic(
+    imageUrl: String? = null,
+    imageRes: Int? = null,
+    placeholderRes: Int = R.drawable.avatar_placeholder
+) {
+    val request = when {
+        !imageUrl.isNullOrBlank() -> {
+            Glide.with(this.context)
+                .load(imageUrl)
+        }
+        imageRes != null -> {
+            Glide.with(this.context)
+                .load(imageRes)
+        }
+        else -> {
+            Glide.with(this.context)
+                .load(placeholderRes)
+        }
+    }
+
+    request
+        .placeholder(placeholderRes)
+        .centerCrop()
+        .into(this)
 }
