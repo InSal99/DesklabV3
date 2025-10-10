@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="checkbox_state_error" format="boolean" />
-
     <declare-styleable name="CustomCheckBox">
         <attr name="checkboxNormalTextAppearance" format="reference"/>
         <attr name="checkboxSelectedTextAppearance" format="reference"/>
