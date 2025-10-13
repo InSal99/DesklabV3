@@ -16,7 +16,6 @@ import com.edts.components.tray.BottomTrayDelegate
 import com.edts.desklabv3.databinding.FragmentBottomTrayComponentViewBinding
 
 class BottomTrayComponentView : Fragment() {
-
     private var _binding: FragmentBottomTrayComponentViewBinding? = null
     private val binding get() = _binding!!
 

@@ -8,7 +8,6 @@ import com.edts.components.option.card.OptionCard
 class EventOptionAdapter(
     private val onOptionClick: (Int) -> Unit
 ) : RecyclerView.Adapter<EventOptionAdapter.OptionViewHolder>() {
-
     private var options = emptyList<Pair<String, Int>>()
 
     class OptionViewHolder(private val optionCard: OptionCard) : RecyclerView.ViewHolder(optionCard) {

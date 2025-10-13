@@ -9,7 +9,6 @@ import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentEmployeeLeaveHistoryViewBinding
 
 class EmployeeLeaveHistoryView : Fragment(), InsetConfigurable {
-
     private var _binding: FragmentEmployeeLeaveHistoryViewBinding? = null
     private val binding get() = _binding!!
 
@@ -30,7 +29,6 @@ class EmployeeLeaveHistoryView : Fragment(), InsetConfigurable {
             }
 
             override fun onRightButtonClicked() {
-                // TODO: Implement if needed
             }
         }
     }

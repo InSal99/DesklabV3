@@ -36,13 +36,10 @@ class MyEventsEmptyView : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val viewModelFactory = MyEventsViewModelFactory("Semua")
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[MyEventsViewModel::class.java]
-
         setupUI()
         loadFilterChips()
-
         updateEmptyStateImage(currentSearchQuery, currentSelectedFilter)
     }
 

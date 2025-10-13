@@ -12,4 +12,3 @@ interface HeaderConfigurator {
         isVisible: Boolean = true
     )
 }
-

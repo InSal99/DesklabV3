@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
@@ -87,12 +86,10 @@ class EventModalityConfirmation @JvmOverloads constructor(
         }
 
         binding.btnModalityConfirm.setOnClickListener {
-            Log.d("EventModalityConfirmation", "Confirm Button Clicked ✅")
             delegate?.onConfirmClick(this)
         }
 
         binding.btnModalityClose.setOnClickListener {
-            Log.d("EventModalityConfirmation", "Close Button Clicked ✅")
             delegate?.onCloseClick(this)
         }
     }

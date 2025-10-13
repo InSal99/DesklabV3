@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentInputSearchComponentViewBinding
 
-
 class InputSearchComponentView : Fragment(), InsetConfigurable {
     private var _binding: FragmentInputSearchComponentViewBinding? = null
     private val binding get() = _binding!!

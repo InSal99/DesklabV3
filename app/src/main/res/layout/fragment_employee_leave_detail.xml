@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackgroundPrimaryTinted"
@@ -36,7 +35,7 @@
         app:cdibShowRightSlot="false"
         app:cdibTitleText="Raka Aditya Pratama"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cvEmployeeLeaveDetailHeader" />
+        app:layout_constraintTop_toBottomOf="@id/cvEmployeeLeaveDetailHeader"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLeaveInfoCards"
@@ -49,7 +48,7 @@
         android:paddingTop="@dimen/margin_16dp"
         android:paddingBottom="@dimen/margin_16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/cvEmployeeProfile" />
+        app:layout_constraintTop_toBottomOf="@id/cvEmployeeProfile"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvLeaveHistory"
@@ -60,7 +59,7 @@
         android:text="Riwayat Cuti"
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvLeaveInfoCards" />
+        app:layout_constraintTop_toBottomOf="@id/rvLeaveInfoCards"/>
 
     <com.edts.components.card.multi.detail.CardMultiDetail
         android:id="@+id/cvMultiDetail1"
@@ -76,7 +75,7 @@
         app:cmdLeftSlotSrc="@drawable/ic_alarm"
         app:cmdShowInfo2="false"
         app:cmdTitle="7 - 8 Jul 2025"
-        app:layout_constraintTop_toBottomOf="@id/tvLeaveHistory" />
+        app:layout_constraintTop_toBottomOf="@id/tvLeaveHistory"/>
 
     <com.edts.components.card.multi.detail.CardMultiDetail
         android:id="@+id/cvMultiDetail2"
@@ -92,7 +91,7 @@
         app:cmdRightSlotSrc="@drawable/ic_chevron_right"
         app:cmdRightSlotTint="?attr/colorForegroundTertiary"
         app:cmdTitle="21 Jun - 23 Jun 2025"
-        app:layout_constraintTop_toBottomOf="@id/cvMultiDetail1" />
+        app:layout_constraintTop_toBottomOf="@id/cvMultiDetail1"/>
 
     <com.edts.components.card.multi.detail.CardMultiDetail
         android:id="@+id/cvMultiDetail3"
@@ -108,7 +107,5 @@
         app:cmdRightSlotSrc="@drawable/ic_chevron_right"
         app:cmdRightSlotTint="?attr/colorForegroundTertiary"
         app:cmdTitle="22 Apr 2025"
-        app:layout_constraintTop_toBottomOf="@id/cvMultiDetail2" />
-
-
+        app:layout_constraintTop_toBottomOf="@id/cvMultiDetail2"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

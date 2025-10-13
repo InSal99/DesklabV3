@@ -2,16 +2,9 @@ package com.edts.components.event.card
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Paint
-import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.AttrRes
-import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.EventCardBinding
 import com.edts.components.utils.dpToPx
@@ -121,10 +114,6 @@ class EventCard @JvmOverloads constructor(
     private var lastClickTime = 0L
     private val clickDebounceDelay = 300L
 
-    private companion object {
-        const val TAG = "EventCard"
-    }
-
     init {
         radius = cornerRadiusPx
 
@@ -185,24 +174,7 @@ class EventCard @JvmOverloads constructor(
         if (currentTime - lastClickTime > clickDebounceDelay) {
             clickCount++
             lastClickTime = currentTime
-
-            Log.d(TAG, "EventCard clicked!")
-            Log.d(TAG, "  - Event Title: ${eventTitle ?: "No title"}")
-            Log.d(TAG, "  - Event Type: ${eventType ?: "No type"}")
-            Log.d(TAG, "  - Event Category: ${eventCategory ?: "No category"}")
-            Log.d(TAG, "  - Event Date: ${eventDate ?: "No date"}")
-            Log.d(TAG, "  - Badge Type: $badgeType")
-            Log.d(TAG, "  - Badge Text: ${badgeText ?: "No badge text"}")
-            Log.d(TAG, "  - Status Type: $statusType")
-            Log.d(TAG, "  - Status Text: ${statusText ?: "No status text"}")
-            Log.d(TAG, "  - Total clicks: $clickCount")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Total system clicks: $clickCount")
-            Log.d(TAG, "--------------------")
-
             eventCardDelegate?.onEventCardClick(this)
-        } else {
-            Log.d(TAG, "Click ignored due to debounce (too fast)")
         }
     }
 
@@ -210,12 +182,6 @@ class EventCard @JvmOverloads constructor(
         isClickable = true
         isFocusable = true
     }
-
-//    private fun updateEventImage() {
-//        eventImageSrc?.let { imageRes ->
-//            binding.ivEventCard.setImageResource(imageRes)
-//        }
-//    }
 
     private fun updateEventImage() {
         binding.ivEventCard.loadImageDynamic(
@@ -272,7 +238,6 @@ class EventCard @JvmOverloads constructor(
     fun resetClickCount() {
         val previousCount = clickCount
         clickCount = 0
-        Log.d(TAG, "Click count reset from $previousCount to 0")
     }
 
     fun getClickCount(): Int {
@@ -280,7 +245,6 @@ class EventCard @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        Log.d(TAG, "Programmatic click triggered")
         handleClick()
         return super.performClick()
     }

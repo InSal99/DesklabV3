@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -51,10 +50,6 @@ class SortButton @JvmOverloads constructor(
             field = value
             binding.ivFilterBTN.setImageResource(value)
         }
-
-    private companion object {
-        const val TAG = "FilterButton"
-    }
 
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.SortButton)
@@ -113,20 +108,17 @@ class SortButton @JvmOverloads constructor(
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state and scaling down")
                 animateScaleDown()
                 cardState = CardState.ON_PRESS
                 return true
             }
             MotionEvent.ACTION_UP -> {
-                Log.d(TAG, "ACTION_UP - setting REST state and scaling up")
                 cardState = CardState.REST
                 animateScaleUp()
                 performClick()
                 return true
             }
             MotionEvent.ACTION_CANCEL -> {
-                Log.d(TAG, "ACTION_CANCEL - setting REST state and scaling up")
                 cardState = CardState.REST
                 animateScaleUp()
                 return true
@@ -141,19 +133,7 @@ class SortButton @JvmOverloads constructor(
         if (currentTime - lastClickTime > clickDebounceDelay) {
             clickCount++
             lastClickTime = currentTime
-
-            Log.d(TAG, "FilterButton clicked!")
-            Log.d(TAG, "  - Total clicks: $clickCount")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Current scale X: $scaleX")
-            Log.d(TAG, "  - Current scale Y: $scaleY")
-            Log.d(TAG, "  - Card state: $cardState")
-            Log.d(TAG, "  - Current sort icon: $sortIcon")
-            Log.d(TAG, "--------------------")
-
             delegate?.onSortButtonClick(this)
-        } else {
-            Log.d(TAG, "Click ignored due to debounce (too fast)")
         }
     }
 
@@ -164,7 +144,6 @@ class SortButton @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        Log.d(TAG, "Programmatic performClick() called")
         handleClick()
         return super.performClick()
     }
@@ -194,7 +173,6 @@ class SortButton @JvmOverloads constructor(
     }
 
     fun simulateClick() {
-        Log.d(TAG, "Simulated click triggered")
         animateScaleDown()
         cardState = CardState.ON_PRESS
 

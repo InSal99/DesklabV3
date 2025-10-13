@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
@@ -87,7 +86,6 @@ class EventNotificationCard @JvmOverloads constructor(
         }
 
         binding.btnNotification.setOnClickListener {
-            Log.d("EventNotificationCard", "Confirm Button Clicked ✅")
             delegate?.onButtonClick(this)
         }
     }
@@ -116,7 +114,6 @@ class EventNotificationCard @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         super.performClick()
-        Log.d("EventNotificationCard", "CardView Clicked ✅")
         delegate?.onCardClick(this)
         return true
     }

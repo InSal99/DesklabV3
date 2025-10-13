@@ -41,7 +41,7 @@
             style="?attr/d3SemiBold"
             app:layout_constraintStart_toStartOf="@+id/tvDescAttendanceOffline"
             app:layout_constraintEnd_toEndOf="@+id/tvDescAttendanceOffline"
-            app:layout_constraintTop_toBottomOf="@+id/ivIllustAttendanceOffline" />
+            app:layout_constraintTop_toBottomOf="@+id/ivIllustAttendanceOffline"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDescAttendanceOffline"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTitleAttendanceOffline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.edts.components.button.Button
@@ -81,5 +81,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

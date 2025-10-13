@@ -10,7 +10,6 @@ import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.StateListDrawable
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -190,13 +189,6 @@ class RadioButton @JvmOverloads constructor(
         super.setEnabled(enabled)
         updateTextAppearance()
     }
-
-//    override fun performClick(): Boolean {
-//        setErrorState(false)
-//        radioChangedDelegate?.onCheckChanged(this, this.isChecked)
-//        return super.performClick()
-//    }
-
 
     override fun performClick(): Boolean {
         setErrorState(false)

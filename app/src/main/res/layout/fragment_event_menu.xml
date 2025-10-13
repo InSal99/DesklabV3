@@ -19,7 +19,7 @@
             app:tabItemBadgeText="3"
             app:tabItemShowBadge="true"
             app:tabItemState="active"
-            app:tabItemText="Daftar Event" />
+            app:tabItemText="Daftar Event"/>
 
         <com.edts.components.tab.TabItem
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
             app:tabItemBadgeText="!"
             app:tabItemShowBadge="true"
             app:tabItemState="inactive"
-            app:tabItemText="Event Saya" />
+            app:tabItemText="Event Saya"/>
 
         <com.edts.components.tab.TabItem
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             app:tabItemBadgeText="!"
             app:tabItemShowBadge="true"
             app:tabItemState="inactive"
-            app:tabItemText="Undangan" />
+            app:tabItemText="Undangan"/>
     </com.edts.components.tab.Tab>
 
     <androidx.viewpager2.widget.ViewPager2
@@ -45,6 +45,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvTabEventListDaftarRSVP"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

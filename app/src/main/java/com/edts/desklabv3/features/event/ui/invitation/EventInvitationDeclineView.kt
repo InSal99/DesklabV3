@@ -19,7 +19,6 @@ import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.EventInvitation
 
 class EventInvitationDeclineView : Fragment() {
-
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!
     private var loadingDialog: AlertDialog? = null
@@ -43,18 +42,12 @@ class EventInvitationDeclineView : Fragment() {
         val notificationAdapter = EventInvitationAdapter(
             notifications = notificationList,
             onCardClick = { notification ->
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Card clicked: ${notification.title}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
                 if(notification.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
                     val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
                     requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
                 }
             },
             onButtonClick = {
-//                showConfirmationModal()
             }
         )
 
@@ -93,7 +86,6 @@ class EventInvitationDeclineView : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-//                Toast.makeText(requireContext(), "Modal Closed.", Toast.LENGTH_SHORT).show()
             }
         )
     }

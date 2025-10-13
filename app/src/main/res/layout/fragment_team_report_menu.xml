@@ -19,7 +19,7 @@
             app:tabItemBadgeText="3"
             app:tabItemShowBadge="true"
             app:tabItemState="active"
-            app:tabItemText="Aktivitas" />
+            app:tabItemText="Aktivitas"/>
 
         <com.edts.components.tab.TabItem
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
             app:tabItemBadgeText="!"
             app:tabItemShowBadge="true"
             app:tabItemState="inactive"
-            app:tabItemText="Cuti" />
+            app:tabItemText="Cuti"/>
     </com.edts.components.tab.Tab>
 
     <androidx.viewpager2.widget.ViewPager2
@@ -37,6 +37,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvTabTeamReportActivity"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Event Card: Badge"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.event.card.EventCardBadge
@@ -49,7 +48,7 @@
             app:badgeSize="Large"
             app:eventCardBadgeText="Diundang"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -59,7 +58,7 @@
             app:badgeSize="Large"
             app:eventCardBadgeText="Terdaftar"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -69,7 +68,7 @@
             app:badgeSize="Large"
             app:eventCardBadgeText="Berlangsung"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -79,7 +78,7 @@
             app:badgeSize="Small"
             app:eventCardBadgeText="Terdaftar"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -89,7 +88,7 @@
             app:badgeSize="Small"
             app:eventCardBadgeText="Berlangsung"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -99,7 +98,7 @@
             app:badgeSize="Small"
             app:eventCardBadgeText="Hadir"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
         <com.edts.components.event.card.EventCardBadge
             android:layout_width="wrap_content"
@@ -109,8 +108,6 @@
             app:badgeSize="Small"
             app:eventCardBadgeText="Tidak Hadir"
             app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard" />
-
+            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
     </LinearLayout>
-
 </FrameLayout>

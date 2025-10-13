@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Card: Multi Detail Card"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.card.multi.detail.CardMultiDetail
@@ -54,7 +53,7 @@
             app:cmdRightSlotSrc="@drawable/ic_chevron_right"
             app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
             app:cmdShowInfo2="true"
-            app:cmdTitle="21 Jun - 23 Jun 2025" />
+            app:cmdTitle="21 Jun - 23 Jun 2025"/>
 
         <com.edts.components.card.multi.detail.CardMultiDetail
             android:layout_width="match_parent"
@@ -67,7 +66,7 @@
             app:cmdLeftSlotType="icon"
             app:cmdRightSlotSrc="@drawable/ic_chevron_right"
             app:cmdShowInfo2="false"
-            app:cmdTitle="7  - 8 Jul 2025" />
+            app:cmdTitle="7  - 8 Jul 2025"/>
 
         <com.edts.components.card.multi.detail.CardMultiDetail
             android:layout_width="match_parent"
@@ -79,7 +78,7 @@
             app:cmdLeftSlotType="image"
             app:cmdRightSlotSrc="@drawable/ic_chevron_right"
             app:cmdShowInfo2="true"
-            app:cmdTitle="21 Jun - 23 Jun 2025" />
+            app:cmdTitle="21 Jun - 23 Jun 2025"/>
 
         <com.edts.components.card.multi.detail.CardMultiDetail
             android:layout_width="match_parent"
@@ -93,7 +92,21 @@
             app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
             app:cmdShowInfo2="true"
             app:cmdShowRightSlot="false"
-            app:cmdTitle="21 Jun - 23 Jun 2025" />
+            app:cmdTitle="21 Jun - 23 Jun 2025"/>
+
+        <com.edts.components.card.multi.detail.CardMultiDetail
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:cmdInfo1Text="Cuti Tahunan"
+            app:cmdInfo2Text="3 Days"
+            app:cmdLeftSlotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
+            app:cmdLeftSlotType="image"
+            app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+            app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+            app:cmdShowInfo2="true"
+            app:cmdShowRightSlot="false"
+            app:cmdTitle="21 Jun - 23 Jun 2025"/>
 
         <com.edts.components.card.multi.detail.CardMultiDetail
             android:layout_width="match_parent"
@@ -108,8 +121,6 @@
             app:cmdShowInfo2="true"
             app:cmdShowLeftSlot="false"
             app:cmdShowRightSlot="false"
-            app:cmdTitle="21 Jun - 23 Jun 2025" />
-
+            app:cmdTitle="21 Jun - 23 Jun 2025"/>
     </LinearLayout>
-
 </FrameLayout>

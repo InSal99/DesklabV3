@@ -1,7 +1,6 @@
 package com.edts.components.modal
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import com.edts.components.R
@@ -30,7 +29,6 @@ object ModalityLoadingPopUp {
             dialog
 
         } catch (e: Exception) {
-            Log.e("ModalityLoadingDialog", "Error showing dialog", e)
             null
         }
     }

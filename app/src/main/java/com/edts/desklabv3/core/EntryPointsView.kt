@@ -41,7 +41,6 @@ import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
 
 class EntryPointsView : Fragment(), InsetConfigurable {
-
     private var _binding: FragmentEntryPointsViewBinding? = null
     private val binding get() = _binding!!
 
@@ -56,7 +55,6 @@ class EntryPointsView : Fragment(), InsetConfigurable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupButtonClickListeners()
     }
 
@@ -203,7 +201,7 @@ class EntryPointsView : Fragment(), InsetConfigurable {
         binding.btnFlow1.setOnClickListener {
             val result = bundleOf(
                 "fragment_class" to "HomeMenuFragment",
-                "flow_type" to "RegisRSVP" // Flow 1
+                "flow_type" to "RegisRSVP"
             )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
@@ -211,7 +209,7 @@ class EntryPointsView : Fragment(), InsetConfigurable {
         binding.btnFlow2.setOnClickListener {
             val result = bundleOf(
                 "fragment_class" to "HomeMenuFragment",
-                "flow_type" to "InvitationNoRSVP" // Flow 2
+                "flow_type" to "InvitationNoRSVP"
             )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
@@ -219,7 +217,7 @@ class EntryPointsView : Fragment(), InsetConfigurable {
         binding.btnFlow3.setOnClickListener {
             val result = bundleOf(
                 "fragment_class" to "HomeMenuFragment",
-                "flow_type" to "Attendance" // Flow 3
+                "flow_type" to "Attendance"
             )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }
@@ -227,7 +225,7 @@ class EntryPointsView : Fragment(), InsetConfigurable {
         binding.btnFlow4.setOnClickListener {
             val result = bundleOf(
                 "fragment_class" to "HomeMenuFragment",
-                "flow_type" to "TolakUndangan" // Flow 4
+                "flow_type" to "TolakUndangan"
             )
             parentFragmentManager.setFragmentResult("navigate_fragment", result)
         }

@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.footer.Footer
 import com.edts.components.footer.FooterDelegate
 import com.edts.components.modal.ModalityLoadingPopUp
@@ -33,7 +31,6 @@ import formatTimeRange
 import setupHtmlDescription
 
 class EventDetailViewAttendance : Fragment() {
-
     private var _binding: FragmentEventDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var timeLocationAdapter: EventTimeLocationAdapter
@@ -41,14 +38,12 @@ class EventDetailViewAttendance : Fragment() {
     private var fromSuccess: Boolean = false
     private var attendanceType: String = ""
     private var meetingLink: String = ""
-
     private var startDateTime: String = ""
     private var endDateTime: String = ""
     private var eventDescription: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
             fromSuccess = it.getBoolean("from_success", false)
             attendanceType = it.getString("attendance_type", "")
@@ -67,7 +62,6 @@ class EventDetailViewAttendance : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupBackButton()
         setEventDetails()
         setupSpeakerRecyclerView()
@@ -87,7 +81,6 @@ class EventDetailViewAttendance : Fragment() {
                 .addToBackStack("EntryPoints")
                 .commit()
         }
-
     }
 
     override fun onDestroyView() {
@@ -108,7 +101,6 @@ class EventDetailViewAttendance : Fragment() {
         binding.tvDetailEventType.text = "Hybrid Event"
         binding.tvDetailEventCategory.text = "People Development"
         binding.tvDetailEventTitle.text = "Simplifying UX Complexity: Bridging the Gap Between Design and Development"
-
         startDateTime = EVENT_START_DATETIME
         endDateTime = EVENT_END_DATETIME
         eventDescription = EVENT_DESCRIPTION_HTML
@@ -124,7 +116,6 @@ class EventDetailViewAttendance : Fragment() {
             override fun onContinueClicked() {}
             override fun onCancelClicked() {}
         }
-
         configureFooter()
     }
 
@@ -165,7 +156,6 @@ class EventDetailViewAttendance : Fragment() {
         val binding = com.edts.desklabv3.databinding.BottomTrayEventOptionsBinding.inflate(layoutInflater)
 
         val optionAdapter = EventOptionAdapter { position ->
-            Log.d("Present", "User present option $position")
             bottomTray?.dismiss()
 
             Handler(Looper.getMainLooper()).postDelayed({
@@ -228,9 +218,9 @@ class EventDetailViewAttendance : Fragment() {
         }
 
         val speakerList = listOf(
-            com.edts.desklabv3.R.drawable.image_speaker_1 to "Yovita Handayiani",
-            com.edts.desklabv3.R.drawable.image_speaker_2 to "Fauzan Sukmapratama",
-            com.edts.desklabv3.R.drawable.image_speaker_3 to "Intan Saliya Utomo"
+            R.drawable.image_speaker_1 to "Yovita Handayiani",
+            R.drawable.image_speaker_2 to "Fauzan Sukmapratama",
+            R.drawable.image_speaker_3 to "Intan Saliya Utomo"
         )
         speakerAdapter.submitList(speakerList)
     }
@@ -320,7 +310,6 @@ class EventDetailViewAttendance : Fragment() {
     companion object {
         const val EVENT_START_DATETIME = "2025-07-24 15:00:00"
         const val EVENT_END_DATETIME = "2025-07-24 17:00:00"
-
         const val EVENT_DESCRIPTION_HTML = """
             <p>Welcome to Spark Talks!</p>
             <p>Spark Talks is our new sharing session series to ignite ideas and spread knowledge across EDTS. This session is designed to create a space where trainees share fresh insights with Edtizens sparking curiosity, collaboration, and growth!</p>

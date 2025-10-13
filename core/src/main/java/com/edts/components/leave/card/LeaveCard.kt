@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -59,12 +57,10 @@ class LeaveCard @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        Log.d("LeaveCard", "leave card selected")
         leaveCardDelegate?.onClick(this)
         return super.performClick()
     }
 
-    // REFACTORED: Now uses the extension function directly.
     private fun setupClickAnimation() {
         isClickable = true
         isFocusable = true
@@ -94,7 +90,6 @@ class LeaveCard @JvmOverloads constructor(
         }
     }
 
-    // REFACTORED: Now uses the extension function directly.
     private fun setupCardAppearance(context: Context) {
         strokeColor = run {
             val fallbackColorRes = R.color.colorNeutral30
@@ -108,7 +103,6 @@ class LeaveCard @JvmOverloads constructor(
             val resolved = context.resolveColorAttribute(R.attr.colorBackgroundPrimary, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         })
-
         cardElevation = 2f.dpToPx
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -123,7 +117,6 @@ class LeaveCard @JvmOverloads constructor(
                 try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
             }
         }
-
         setupClickAnimation()
     }
 }

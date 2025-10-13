@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Monthly Picker"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.dropdown.filter.MonthlyPicker
@@ -47,7 +46,7 @@
             android:layout_marginTop="@dimen/margin_24dp"
             android:layout_weight="1"
             app:monthLabel="Jan"
-            app:pickerType="selected" />
+            app:pickerType="selected"/>
 
         <com.edts.components.dropdown.filter.MonthlyPicker
             android:layout_width="match_parent"
@@ -55,7 +54,7 @@
             android:layout_marginTop="@dimen/margin_16dp"
             android:layout_weight="1"
             app:monthLabel="Feb"
-            app:pickerType="unselected" />
+            app:pickerType="unselected"/>
 
         <com.edts.components.dropdown.filter.MonthlyPicker
             android:layout_width="match_parent"
@@ -63,8 +62,6 @@
             android:layout_marginTop="@dimen/margin_16dp"
             android:layout_weight="1"
             app:monthLabel="Mar"
-            app:pickerType="disabled" />
-
+            app:pickerType="disabled"/>
     </LinearLayout>
-
 </FrameLayout>

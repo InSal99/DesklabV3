@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Selection: Chip"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.selection.Chip
@@ -51,7 +50,7 @@
             app:chipBadgeText="3"
             app:chipShowIcon="true"
             app:chipShowBadge="true"
-            app:chipIcon="@drawable/ic_close" />
+            app:chipIcon="@drawable/ic_close"/>
 
         <com.edts.components.selection.Chip
             android:layout_width="wrap_content"
@@ -62,7 +61,7 @@
             app:chipText="Chip Label"
             app:chipShowIcon="true"
             app:chipShowBadge="false"
-            app:chipIcon="@drawable/ic_close" />
+            app:chipIcon="@drawable/ic_close"/>
 
         <com.edts.components.selection.Chip
             android:layout_width="wrap_content"
@@ -71,7 +70,7 @@
             app:chipState="inactive"
             app:chipText="Chip Label"
             app:chipShowIcon="false"
-            app:chipShowBadge="false" />
+            app:chipShowBadge="false"/>
 
         <com.edts.components.selection.Chip
             android:layout_width="wrap_content"
@@ -82,7 +81,5 @@
             app:chipShowIcon="false"
             app:chipShowBadge="false"
             app:chipActiveBackgroundColor="?attr/colorBackgroundUtilityCutiIntense"/>
-
     </LinearLayout>
-
 </FrameLayout>

@@ -24,7 +24,7 @@ private fun String.processNumberedLists(): String {
     return this.replace(Regex("<ol[^>]*>([\\s\\S]*?)</ol>")) { matchResult ->
         val listContent = matchResult.groupValues[1]
         val listItems = listContent.split(Regex("<li[^>]*>"))
-            .drop(1) // Remove empty first element
+            .drop(1)
             .mapIndexed { index, item ->
                 val cleanItem = item.replace("</li>", "").trim()
                 "${index + 1}. $cleanItem"
@@ -55,11 +55,11 @@ fun Context?.color(@ColorRes colorRes: Int) =
 
 fun FragmentTransaction.withPushAnimation(): FragmentTransaction {
     return this.setCustomAnimations(
-        R.anim.slide_in_right,   // enter
-        R.anim.slide_out_left,   // exit
-        R.anim.slide_in_left,    // popEnter
-        R.anim.slide_out_right   // popExit
-    ).setTransition(FragmentTransaction.TRANSIT_NONE) // prevent double anim
+        R.anim.slide_in_right,
+        R.anim.slide_out_left,
+        R.anim.slide_in_left,
+        R.anim.slide_out_right
+    ).setTransition(FragmentTransaction.TRANSIT_NONE)
 }
 
 val Int.px: Float get() = (this / Resources.getSystem().displayMetrics.density)

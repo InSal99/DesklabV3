@@ -28,7 +28,6 @@ class Button @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialButtonStyle
 ) : MaterialButton(context, attrs, defStyleAttr) {
-
     enum class ButtonSize(
         val heightDp: Int,
         val paddingHorizontalDp: Int,

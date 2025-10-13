@@ -312,4 +312,4 @@ private fun handleNavigation(position: Int) {
 
 ---
 
-> **⚠️ Note**: This component automatically manages active item states and prevents invalid state transitions. The component ensures only one item can be active at a time and maintains consistency across state changes. Click events are logged for debugging purposes.
+> **⚠️ Note**: This component automatically manages active item states and prevents invalid state transitions. The component ensures only one item can be active at a time and maintains consistency across state changes.
