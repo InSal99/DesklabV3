@@ -36,32 +36,42 @@
                 android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.status.badge.StatusBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:statusBadgeText="Status Badge"
-            app:statusBadgeType="approved"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.status.badge.StatusBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:statusBadgeText="Status Badge"
+                    app:statusBadgeType="approved"/>
 
-        <com.edts.components.status.badge.StatusBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:statusBadgeText="Status Badge"
-            app:statusBadgeType="waiting"/>
+                <com.edts.components.status.badge.StatusBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:statusBadgeText="Status Badge"
+                    app:statusBadgeType="waiting"/>
 
-        <com.edts.components.status.badge.StatusBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:statusBadgeText="Status Badge"
-            app:statusBadgeType="decline"/>
+                <com.edts.components.status.badge.StatusBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:statusBadgeText="Status Badge"
+                    app:statusBadgeType="decline"/>
 
-        <com.edts.components.status.badge.StatusBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:statusBadgeText="Status Badge"
-            app:statusBadgeType="cancel"/>
+                <com.edts.components.status.badge.StatusBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:statusBadgeText="Status Badge"
+                    app:statusBadgeType="cancel"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </ScrollView>

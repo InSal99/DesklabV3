@@ -41,32 +41,42 @@
                 android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.infobox.InfoBox
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="Label"
-            app:infoboxType="success"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.infobox.InfoBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="Label"
+                    app:infoboxType="success"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
 
-        <com.edts.components.infobox.InfoBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="Label"
-            app:infoboxType="error"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+                <com.edts.components.infobox.InfoBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="Label"
+                    app:infoboxType="error"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
 
-        <com.edts.components.infobox.InfoBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="Label"
-            app:infoboxType="information"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+                <com.edts.components.infobox.InfoBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="Label"
+                    app:infoboxType="information"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
 
-        <com.edts.components.infobox.InfoBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="Label"
-            app:infoboxType="general"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+                <com.edts.components.infobox.InfoBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="Label"
+                    app:infoboxType="general"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </ScrollView>

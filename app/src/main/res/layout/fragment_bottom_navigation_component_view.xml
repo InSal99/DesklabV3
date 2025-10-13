@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -19,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_32dp"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -40,91 +40,101 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.bottom.navigation.BottomNavigation
-            android:id="@+id/cvBottomNavigation"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:itemCount="five"
-            app:item1State="active"
-            app:item1Icon="@drawable/ic_navigation"
-            app:item1Text="Home"
-            app:item1ShowBadge="false"
-            app:item2State="inactive"
-            app:item2Icon="@drawable/ic_user_people"
-            app:item2Text="Karyawan"
-            app:item2ShowBadge="false"
-            app:item3State="inactive"
-            app:item3Icon="@drawable/ic_notification_horn"
-            app:item3Text="Event"
-            app:item3ShowBadge="false"
-            app:item4State="inactive"
-            app:item4Icon="@drawable/ic_user_person"
-            app:item4Text="Profil"
-            app:item4ShowBadge="false"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="@dimen/margin_16dp"
+                android:orientation="vertical">
+                <com.edts.components.bottom.navigation.BottomNavigation
+                    android:id="@+id/cvBottomNavigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:itemCount="five"
+                    app:item1State="active"
+                    app:item1Icon="@drawable/ic_navigation"
+                    app:item1Text="Home"
+                    app:item1ShowBadge="false"
+                    app:item2State="inactive"
+                    app:item2Icon="@drawable/ic_user_people"
+                    app:item2Text="Karyawan"
+                    app:item2ShowBadge="false"
+                    app:item3State="inactive"
+                    app:item3Icon="@drawable/ic_notification_horn"
+                    app:item3Text="Event"
+                    app:item3ShowBadge="false"
+                    app:item4State="inactive"
+                    app:item4Icon="@drawable/ic_user_person"
+                    app:item4Text="Profil"
+                    app:item4ShowBadge="false"/>
 
-        <com.edts.components.bottom.navigation.BottomNavigation
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:itemCount="four"
-            app:item1State="active"
-            app:item1Icon="@drawable/ic_navigation"
-            app:item1Text="Home"
-            app:item1ShowBadge="false"
-            app:item2State="inactive"
-            app:item2Icon="@drawable/ic_user_people"
-            app:item2Text="Karyawan"
-            app:item2ShowBadge="false"
-            app:item3State="inactive"
-            app:item3Icon="@drawable/ic_notification_horn"
-            app:item3Text="Event"
-            app:item3ShowBadge="false"
-            app:item4State="inactive"
-            app:item4Icon="@drawable/ic_user_person"
-            app:item4Text="Profil"
-            app:item4ShowBadge="false"/>
+                <com.edts.components.bottom.navigation.BottomNavigation
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:itemCount="four"
+                    app:item1State="active"
+                    app:item1Icon="@drawable/ic_navigation"
+                    app:item1Text="Home"
+                    app:item1ShowBadge="false"
+                    app:item2State="inactive"
+                    app:item2Icon="@drawable/ic_user_people"
+                    app:item2Text="Karyawan"
+                    app:item2ShowBadge="false"
+                    app:item3State="inactive"
+                    app:item3Icon="@drawable/ic_notification_horn"
+                    app:item3Text="Event"
+                    app:item3ShowBadge="false"
+                    app:item4State="inactive"
+                    app:item4Icon="@drawable/ic_user_person"
+                    app:item4Text="Profil"
+                    app:item4ShowBadge="false"/>
 
-        <com.edts.components.bottom.navigation.BottomNavigation
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:itemCount="three"
-            app:item1State="active"
-            app:item1Icon="@drawable/ic_navigation"
-            app:item1Text="Home"
-            app:item1ShowBadge="false"
-            app:item2State="inactive"
-            app:item2Icon="@drawable/ic_user_people"
-            app:item2Text="Karyawan"
-            app:item2ShowBadge="false"
-            app:item3State="inactive"
-            app:item3Icon="@drawable/ic_notification_horn"
-            app:item3Text="Event"
-            app:item3ShowBadge="false"/>
+                <com.edts.components.bottom.navigation.BottomNavigation
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:itemCount="three"
+                    app:item1State="active"
+                    app:item1Icon="@drawable/ic_navigation"
+                    app:item1Text="Home"
+                    app:item1ShowBadge="false"
+                    app:item2State="inactive"
+                    app:item2Icon="@drawable/ic_user_people"
+                    app:item2Text="Karyawan"
+                    app:item2ShowBadge="false"
+                    app:item3State="inactive"
+                    app:item3Icon="@drawable/ic_notification_horn"
+                    app:item3Text="Event"
+                    app:item3ShowBadge="false"/>
 
-        <com.edts.components.bottom.navigation.BottomNavigation
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:itemCount="two"
-            app:item1State="active"
-            app:item1Icon="@drawable/ic_navigation"
-            app:item1Text="Home"
-            app:item1ShowBadge="false"
-            app:item2State="inactive"
-            app:item2Icon="@drawable/ic_user_people"
-            app:item2Text="Karyawan"
-            app:item2ShowBadge="false"/>
+                <com.edts.components.bottom.navigation.BottomNavigation
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:itemCount="two"
+                    app:item1State="active"
+                    app:item1Icon="@drawable/ic_navigation"
+                    app:item1Text="Home"
+                    app:item1ShowBadge="false"
+                    app:item2State="inactive"
+                    app:item2Icon="@drawable/ic_user_people"
+                    app:item2Text="Karyawan"
+                    app:item2ShowBadge="false"/>
 
-        <com.edts.components.bottom.navigation.BottomNavigation
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:itemCount="one"
-            app:item1State="active"
-            app:item1Icon="@drawable/ic_navigation"
-            app:item1Text="Home"
-            app:item1ShowBadge="false"/>
+                <com.edts.components.bottom.navigation.BottomNavigation
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:itemCount="one"
+                    app:item1State="active"
+                    app:item1Icon="@drawable/ic_navigation"
+                    app:item1Text="Home"
+                    app:item1ShowBadge="false"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

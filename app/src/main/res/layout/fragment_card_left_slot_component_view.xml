@@ -40,28 +40,38 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.card.multi.detail.CardLeftSlot
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:slotType="image"
-            app:slotSrc="@drawable/avatar_placeholder"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.card.multi.detail.CardLeftSlot
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:slotType="image"
+                    app:slotSrc="@drawable/avatar_placeholder"/>
 
-        <com.edts.components.card.multi.detail.CardLeftSlot
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:slotType="image"
-            app:slotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"/>
+                <com.edts.components.card.multi.detail.CardLeftSlot
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:slotType="image"
+                    app:slotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"/>
 
-        <com.edts.components.card.multi.detail.CardLeftSlot
-            android:id="@+id/cvCardLeftSlot"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:slotType="icon"
-            app:slotSrc="@drawable/ic_star"
-            app:slotTint="?attr/colorForegroundWarningIntense"
-            app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"/>
+                <com.edts.components.card.multi.detail.CardLeftSlot
+                    android:id="@+id/cvCardLeftSlot"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:slotType="icon"
+                    app:slotSrc="@drawable/ic_star"
+                    app:slotTint="?attr/colorForegroundWarningIntense"
+                    app:slotBackgroundColor="?attr/colorForegroundWarningSubtle"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

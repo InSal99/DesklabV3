@@ -40,35 +40,45 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.event.card.EventCard
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:cardBadgeText="Berlangsung"
-            app:cardBadgeType="live"
-            app:cardEventCategory="People Development"
-            app:cardEventDate="23 Juli 2025"
-            app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
-            app:cardEventType="Hybrid Event"
-            app:cardStatusText="Terdaftar"
-            app:cardStatusType="registered"
-            app:eventImageSrc="@drawable/poster2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.event.card.EventCard
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:cardBadgeText="Berlangsung"
+                    app:cardBadgeType="live"
+                    app:cardEventCategory="People Development"
+                    app:cardEventDate="23 Juli 2025"
+                    app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
+                    app:cardEventType="Hybrid Event"
+                    app:cardStatusText="Terdaftar"
+                    app:cardStatusType="registered"
+                    app:eventImageSrc="@drawable/poster2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.edts.components.event.card.EventCard
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:showCardBadge="false"
-            app:cardEventCategory="People Development"
-            app:cardEventDate="23 Juli 2025"
-            app:eventImageSrc="@drawable/poster2"
-            app:eventImageUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
-            app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
-            app:cardEventType="Hybrid Event"
-            app:showCardStatus="false"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+                <com.edts.components.event.card.EventCard
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:showCardBadge="false"
+                    app:cardEventCategory="People Development"
+                    app:cardEventDate="23 Juli 2025"
+                    app:eventImageSrc="@drawable/poster2"
+                    app:eventImageUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
+                    app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
+                    app:cardEventType="Hybrid Event"
+                    app:showCardStatus="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

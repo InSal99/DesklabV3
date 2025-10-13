@@ -40,74 +40,84 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.event.card.EventCardBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:eventBadgeType="invited"
-            app:badgeSize="Large"
-            app:eventCardBadgeText="Diundang"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.event.card.EventCardBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:eventBadgeType="invited"
+                    app:badgeSize="Large"
+                    app:eventCardBadgeText="Diundang"
+                    app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+                    app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
-        <com.edts.components.event.card.EventCardBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:eventBadgeType="registered"
-            app:badgeSize="Large"
-            app:eventCardBadgeText="Terdaftar"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
+                <com.edts.components.event.card.EventCardBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:eventBadgeType="registered"
+                    app:badgeSize="Large"
+                    app:eventCardBadgeText="Terdaftar"
+                    app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+                    app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
-        <com.edts.components.event.card.EventCardBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:eventBadgeType="live"
-            app:badgeSize="Large"
-            app:eventCardBadgeText="Berlangsung"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
+                <com.edts.components.event.card.EventCardBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:eventBadgeType="live"
+                    app:badgeSize="Large"
+                    app:eventCardBadgeText="Berlangsung"
+                    app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+                    app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
-        <com.edts.components.event.card.EventCardBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:eventBadgeType="registered"
-            app:badgeSize="Small"
-            app:eventCardBadgeText="Terdaftar"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
+                <com.edts.components.event.card.EventCardBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:eventBadgeType="registered"
+                    app:badgeSize="Small"
+                    app:eventCardBadgeText="Terdaftar"
+                    app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+                    app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
-        <com.edts.components.event.card.EventCardBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:eventBadgeType="live"
-            app:badgeSize="Small"
-            app:eventCardBadgeText="Berlangsung"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
+                <com.edts.components.event.card.EventCardBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:eventBadgeType="live"
+                    app:badgeSize="Small"
+                    app:eventCardBadgeText="Berlangsung"
+                    app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+                    app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
-        <com.edts.components.event.card.EventCardBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:eventBadgeType="attended"
-            app:badgeSize="Small"
-            app:eventCardBadgeText="Hadir"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
+                <com.edts.components.event.card.EventCardBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:eventBadgeType="attended"
+                    app:badgeSize="Small"
+                    app:eventCardBadgeText="Hadir"
+                    app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+                    app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
 
-        <com.edts.components.event.card.EventCardBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:eventBadgeType="notattended"
-            app:badgeSize="Small"
-            app:eventCardBadgeText="Tidak Hadir"
-            app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
-            app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
+                <com.edts.components.event.card.EventCardBadge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:eventBadgeType="notattended"
+                    app:badgeSize="Small"
+                    app:eventCardBadgeText="Tidak Hadir"
+                    app:layout_constraintEnd_toEndOf="@+id/ivEventCard"
+                    app:layout_constraintTop_toTopOf="@+id/ivEventCard"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

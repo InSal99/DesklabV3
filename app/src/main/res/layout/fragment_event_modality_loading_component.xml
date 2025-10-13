@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:padding="@dimen/margin_16dp"
+    android:paddingHorizontal="@dimen/margin_16dp"
+    android:paddingBottom="@dimen/margin_16dp"
     android:background="?attr/colorBackgroundPrimary">
 
     <LinearLayout
@@ -37,15 +38,26 @@
             android:textColor="?attr/colorForegroundPrimary"/>
     </LinearLayout>
 
-    <com.edts.components.button.Button
-        android:id="@+id/btnEventModalityLoading"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="Click to Show Loading Pop-Up"
-        app:buttonCustomSize="MD"
-        app:buttonType="SECONDARY"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/cvComponentTitle"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <com.edts.components.button.Button
+                android:id="@+id/btnEventModalityLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_24dp"
+                android:text="Click to Show Loading Pop-Up"
+                app:buttonCustomSize="MD"
+                app:buttonType="SECONDARY"/>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

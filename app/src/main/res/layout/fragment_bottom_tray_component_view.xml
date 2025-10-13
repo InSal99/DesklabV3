@@ -36,11 +36,21 @@
                 android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.button.Button
-            android:id="@+id/btnLibBottomTrayShow"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Show Bottom Tray"
-            android:layout_marginTop="@dimen/margin_16dp"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.button.Button
+                    android:id="@+id/btnLibBottomTrayShow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Show Bottom Tray"
+                    android:layout_marginTop="@dimen/margin_16dp"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </ScrollView>

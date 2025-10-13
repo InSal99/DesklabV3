@@ -40,87 +40,97 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.card.multi.detail.CardMultiDetail
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:cmdInfo1Text="Cuti Tahunan"
-            app:cmdInfo2Text="3 Days"
-            app:cmdLeftSlotBackgroundColor="?attr/colorBackgroundInfoSubtle"
-            app:cmdLeftSlotSrc="@drawable/ic_user_person"
-            app:cmdLeftSlotTint="?attr/colorForegroundInfoIntense"
-            app:cmdLeftSlotType="icon"
-            app:cmdRightSlotSrc="@drawable/ic_chevron_right"
-            app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-            app:cmdShowInfo2="true"
-            app:cmdTitle="21 Jun - 23 Jun 2025"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.card.multi.detail.CardMultiDetail
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:cmdInfo1Text="Cuti Tahunan"
+                    app:cmdInfo2Text="3 Days"
+                    app:cmdLeftSlotBackgroundColor="?attr/colorBackgroundInfoSubtle"
+                    app:cmdLeftSlotSrc="@drawable/ic_user_person"
+                    app:cmdLeftSlotTint="?attr/colorForegroundInfoIntense"
+                    app:cmdLeftSlotType="icon"
+                    app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+                    app:cmdShowInfo2="true"
+                    app:cmdTitle="21 Jun - 23 Jun 2025"/>
 
-        <com.edts.components.card.multi.detail.CardMultiDetail
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cmdInfo1Text="Izin Sakit - Dengan Surat Dokter"
-            app:cmdLeftSlotBackgroundColor="?attr/colorBackgroundSuccessSubtle"
-            app:cmdLeftSlotSrc="@drawable/ic_user_person"
-            app:cmdLeftSlotTint="?attr/colorForegroundSuccessIntense"
-            app:cmdLeftSlotType="icon"
-            app:cmdRightSlotSrc="@drawable/ic_chevron_right"
-            app:cmdShowInfo2="false"
-            app:cmdTitle="7  - 8 Jul 2025"/>
+                <com.edts.components.card.multi.detail.CardMultiDetail
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cmdInfo1Text="Izin Sakit - Dengan Surat Dokter"
+                    app:cmdLeftSlotBackgroundColor="?attr/colorBackgroundSuccessSubtle"
+                    app:cmdLeftSlotSrc="@drawable/ic_user_person"
+                    app:cmdLeftSlotTint="?attr/colorForegroundSuccessIntense"
+                    app:cmdLeftSlotType="icon"
+                    app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cmdShowInfo2="false"
+                    app:cmdTitle="7  - 8 Jul 2025"/>
 
-        <com.edts.components.card.multi.detail.CardMultiDetail
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cmdInfo1Text="Cuti Tahunan"
-            app:cmdInfo2Text="3 Days"
-            app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
-            app:cmdLeftSlotType="image"
-            app:cmdRightSlotSrc="@drawable/ic_chevron_right"
-            app:cmdShowInfo2="true"
-            app:cmdTitle="21 Jun - 23 Jun 2025"/>
+                <com.edts.components.card.multi.detail.CardMultiDetail
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cmdInfo1Text="Cuti Tahunan"
+                    app:cmdInfo2Text="3 Days"
+                    app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
+                    app:cmdLeftSlotType="image"
+                    app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cmdShowInfo2="true"
+                    app:cmdTitle="21 Jun - 23 Jun 2025"/>
 
-        <com.edts.components.card.multi.detail.CardMultiDetail
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cmdInfo1Text="Cuti Tahunan"
-            app:cmdInfo2Text="3 Days"
-            app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
-            app:cmdLeftSlotType="image"
-            app:cmdRightSlotSrc="@drawable/ic_chevron_right"
-            app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-            app:cmdShowInfo2="true"
-            app:cmdShowRightSlot="false"
-            app:cmdTitle="21 Jun - 23 Jun 2025"/>
+                <com.edts.components.card.multi.detail.CardMultiDetail
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cmdInfo1Text="Cuti Tahunan"
+                    app:cmdInfo2Text="3 Days"
+                    app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
+                    app:cmdLeftSlotType="image"
+                    app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+                    app:cmdShowInfo2="true"
+                    app:cmdShowRightSlot="false"
+                    app:cmdTitle="21 Jun - 23 Jun 2025"/>
 
-        <com.edts.components.card.multi.detail.CardMultiDetail
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cmdInfo1Text="Cuti Tahunan"
-            app:cmdInfo2Text="3 Days"
-            app:cmdLeftSlotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
-            app:cmdLeftSlotType="image"
-            app:cmdRightSlotSrc="@drawable/ic_chevron_right"
-            app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-            app:cmdShowInfo2="true"
-            app:cmdShowRightSlot="false"
-            app:cmdTitle="21 Jun - 23 Jun 2025"/>
+                <com.edts.components.card.multi.detail.CardMultiDetail
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cmdInfo1Text="Cuti Tahunan"
+                    app:cmdInfo2Text="3 Days"
+                    app:cmdLeftSlotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
+                    app:cmdLeftSlotType="image"
+                    app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+                    app:cmdShowInfo2="true"
+                    app:cmdShowRightSlot="false"
+                    app:cmdTitle="21 Jun - 23 Jun 2025"/>
 
-        <com.edts.components.card.multi.detail.CardMultiDetail
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cmdInfo1Text="Cuti Tahunan"
-            app:cmdInfo2Text="3 Days"
-            app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
-            app:cmdLeftSlotType="image"
-            app:cmdRightSlotSrc="@drawable/ic_chevron_right"
-            app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-            app:cmdShowInfo2="true"
-            app:cmdShowLeftSlot="false"
-            app:cmdShowRightSlot="false"
-            app:cmdTitle="21 Jun - 23 Jun 2025"/>
+                <com.edts.components.card.multi.detail.CardMultiDetail
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cmdInfo1Text="Cuti Tahunan"
+                    app:cmdInfo2Text="3 Days"
+                    app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
+                    app:cmdLeftSlotType="image"
+                    app:cmdRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cmdRightSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+                    app:cmdShowInfo2="true"
+                    app:cmdShowLeftSlot="false"
+                    app:cmdShowRightSlot="false"
+                    app:cmdTitle="21 Jun - 23 Jun 2025"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

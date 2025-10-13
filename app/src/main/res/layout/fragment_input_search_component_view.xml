@@ -40,32 +40,42 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.input.search.InputSearch
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:inputSearchHint="Search Placeholder"
-            app:inputSearchState="rest"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.input.search.InputSearch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:inputSearchHint="Search Placeholder"
+                    app:inputSearchState="rest"/>
 
-        <com.edts.components.input.search.InputSearch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:inputSearchHint="Search Placeholder"
-            app:inputSearchState="error"/>
+                <com.edts.components.input.search.InputSearch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:inputSearchHint="Search Placeholder"
+                    app:inputSearchState="error"/>
 
-        <com.edts.components.input.search.InputSearch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:inputSearchHint="Search Placeholder"
-            app:inputSearchState="focus"/>
+                <com.edts.components.input.search.InputSearch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:inputSearchHint="Search Placeholder"
+                    app:inputSearchState="focus"/>
 
-        <com.edts.components.input.search.InputSearch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:inputSearchHint="Search Placeholder"
-            app:inputSearchState="disable"/>
+                <com.edts.components.input.search.InputSearch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:inputSearchHint="Search Placeholder"
+                    app:inputSearchState="disable"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

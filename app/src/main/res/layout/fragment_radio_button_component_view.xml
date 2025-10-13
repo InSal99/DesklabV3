@@ -36,39 +36,49 @@
                 android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.radiobutton.RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:layout_marginTop="@dimen/margin_16dp"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.radiobutton.RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text"
+                    android:layout_marginTop="@dimen/margin_16dp"/>
 
-        <com.edts.components.radiobutton.RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:checked="true"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+                <com.edts.components.radiobutton.RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text"
+                    android:checked="true"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
 
-        <com.edts.components.radiobutton.RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:enabled="false"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+                <com.edts.components.radiobutton.RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text"
+                    android:enabled="false"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
 
-        <com.edts.components.radiobutton.RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:checked="true"
-            android:enabled="false"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+                <com.edts.components.radiobutton.RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text"
+                    android:checked="true"
+                    android:enabled="false"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
 
-        <com.edts.components.radiobutton.RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            app:isRadioError="true"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+                <com.edts.components.radiobutton.RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text"
+                    app:isRadioError="true"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </ScrollView>

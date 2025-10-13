@@ -36,24 +36,34 @@
                 android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.leave.card.LeaveCard
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:employeeName="John Doe"
-            app:employeeImage="@drawable/avatar_placeholder"
-            app:employeeRole="General Staff"
-            app:counterText="5 Hari"
-            app:counterType="normal"
-            android:layout_marginTop="@dimen/margin_24dp"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.leave.card.LeaveCard
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:employeeName="John Doe"
+                    app:employeeImage="@drawable/avatar_placeholder"
+                    app:employeeRole="General Staff"
+                    app:counterText="5 Hari"
+                    app:counterType="normal"
+                    android:layout_marginTop="@dimen/margin_24dp"/>
 
-        <com.edts.components.leave.card.LeaveCard
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:employeeName="Jenny Dove"
-            app:employeeImage="@drawable/avatar_placeholder"
-            app:employeeRole="General Staff"
-            app:counterText="0 Hari"
-            app:counterType="critical"
-            android:layout_marginTop="@dimen/margin_12dp"/>
+                <com.edts.components.leave.card.LeaveCard
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:employeeName="Jenny Dove"
+                    app:employeeImage="@drawable/avatar_placeholder"
+                    app:employeeRole="General Staff"
+                    app:counterText="0 Hari"
+                    app:counterType="critical"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </ScrollView>

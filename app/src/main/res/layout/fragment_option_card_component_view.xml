@@ -37,11 +37,21 @@
                 android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.option.card.OptionCard
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/line_height_16"
-            app:cardText="Option"
-            app:cardIcon="@drawable/placeholder"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.option.card.OptionCard
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/line_height_16"
+                    app:cardText="Option"
+                    app:cardIcon="@drawable/placeholder"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </ScrollView>

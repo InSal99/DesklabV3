@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,61 +36,71 @@
                 android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.footer.Footer
-            android:id="@+id/footerSimple"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:footerType="CALL_TO_ACTION"
-            app:primaryButtonText="Daftar Sekarang"
-            app:footerHasStroke="true"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.footer.Footer
+                    android:id="@+id/footerSimple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:footerType="CALL_TO_ACTION"
+                    app:primaryButtonText="Daftar Sekarang"
+                    app:footerHasStroke="true"/>
 
-        <com.edts.components.footer.Footer
-            android:id="@+id/footerWithDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:footerType="CALL_TO_ACTION_DETAIL"
-            app:footerTitle="Title"
-            app:footerDescription="Description Here"
-            app:primaryButtonText="Daftar Sekarang"
-            app:footerHasStroke="true"/>
+                <com.edts.components.footer.Footer
+                    android:id="@+id/footerWithDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:footerType="CALL_TO_ACTION_DETAIL"
+                    app:footerTitle="Title"
+                    app:footerDescription="Description Here"
+                    app:primaryButtonText="Daftar Sekarang"
+                    app:footerHasStroke="true"/>
 
-        <com.edts.components.footer.Footer
-            android:id="@+id/footerDualButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:footerType="DUAL_BUTTON"
-            app:primaryButtonText="Button Label"
-            app:secondaryButtonText="Button Label"
-            app:footerHasStroke="true"/>
+                <com.edts.components.footer.Footer
+                    android:id="@+id/footerDualButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:footerType="DUAL_BUTTON"
+                    app:primaryButtonText="Button Label"
+                    app:secondaryButtonText="Button Label"
+                    app:footerHasStroke="true"/>
 
-        <com.edts.components.footer.Footer
-            android:id="@+id/footerStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:footerType="NO_ACTION"
-            app:footerTitle="Tipe Presensi"
-            app:footerDescription="Presensi Offline"
-            app:statusBadgeText="Presensi Tercatat"
-            app:statusBadgeType="approved"
-            app:footerHasStroke="true"/>
+                <com.edts.components.footer.Footer
+                    android:id="@+id/footerStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:footerType="NO_ACTION"
+                    app:footerTitle="Tipe Presensi"
+                    app:footerDescription="Presensi Offline"
+                    app:statusBadgeText="Presensi Tercatat"
+                    app:statusBadgeType="approved"
+                    app:footerHasStroke="true"/>
 
-        <com.edts.components.infoboxfooter.InfoBoxFooter
-            android:id="@+id/infoboxFooter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="This is an information message"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:infoboxType="information"
-            app:showInfoBox="true"
-            app:footerType="CALL_TO_ACTION_DETAIL"
-            app:primaryButtonText="Register Now"
-            app:primaryButtonEnabled="true"
-            app:footerTitle="Welcome"
-            app:footerHasStroke="false"
-            app:footerDescription="Please complete registration"/>
+                <com.edts.components.infoboxfooter.InfoBoxFooter
+                    android:id="@+id/infoboxFooter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="This is an information message"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:infoboxType="information"
+                    app:showInfoBox="true"
+                    app:footerType="CALL_TO_ACTION_DETAIL"
+                    app:primaryButtonText="Register Now"
+                    app:primaryButtonEnabled="true"
+                    app:footerTitle="Welcome"
+                    app:footerHasStroke="false"
+                    app:footerDescription="Please complete registration"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-</ScrollView>
+</FrameLayout>

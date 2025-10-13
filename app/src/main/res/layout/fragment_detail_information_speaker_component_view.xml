@@ -37,10 +37,20 @@
                 android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.detail.information.DetailInformationSpeaker
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:speakerName="John Doe"
-            android:layout_marginTop="@dimen/margin_16dp"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.detail.information.DetailInformationSpeaker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:speakerName="John Doe"
+                    android:layout_marginTop="@dimen/margin_16dp"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </ScrollView>
