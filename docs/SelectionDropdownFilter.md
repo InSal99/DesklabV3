@@ -1,10 +1,11 @@
 # Selection : Dropdown Filter
 
-| Feature / Variation | Preview                                                                                                                                                                       |
-| ------------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| With Badge & Description | ![Label + Description + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759226807/sdf_with_badge_description_ngzkgh.gif) |
-| With Badge Only | ![Label + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759226807/sdf_with_badge_only_sso95s.gif)                      |
-| Icon Only | ![Label + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759226806/sdf_icon_only_vcdpse.gif)                                                                                                                                                             |
+| Feature / Variation      | Preview                                                                                                                                                                   |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| With Badge & Description | ![Label + Description + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1760336494/sdf_with_badge_description_bfzi4u.gif) |
+| With Badge Only          | ![Label + Badge(1) + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1760336492/sdf_with_badge_only_j6vpr7.gif)                      |
+| Icon Only                | ![Label + Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1760336492/sdf_icon_only_ixiyaf.gif)                                       |
+| Match Parent             | ![Match Parent](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1760336493/sdf_match_parent_x5ig56.gif)                                                                                                                                                         |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |
@@ -87,9 +88,10 @@ dropdownFilter.delegate = object : DropdownFilterDelegate {
 
 ### DropdownFilterDelegate Interface
 
-| Method | Parameters | Required | Description |
-| ------ | ---------- | -------- | ----------- |
-| `onDropdownFilterClick()` | `dropdownFilter: DropdownFilter` | ✅ | Called when the filter is clicked |
+| Method | Parameters | Required | Description                                                  |
+| ------ | ---------- | -------- |--------------------------------------------------------------|
+| `onDropdownFilterClick()` | `dropdownFilter: DropdownFilter` | ✅ | Called when the filter is clicked                            |
+| `onDropdownFilterIconClick()` | `dropdownFilter: DropdownFilter` | ✅ | Called when the right icon is clicked |
 
 ```kotlin
 val delegate = object : DropdownFilterDelegate {

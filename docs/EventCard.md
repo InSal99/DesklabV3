@@ -70,6 +70,7 @@ eventCard.eventCardDelegate = object : EventCardDelegate {
 | Property Name | Type | Default | Description |
 | ------------- | ---- | ------- | ----------- |
 | `eventImageSrc` | `Int?` | `null` | Drawable resource ID for the event image |
+| `eventImageUrl` | `String?` | `null` | Url image for left slot content          |
 
 ### Badge Properties
 

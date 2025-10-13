@@ -1,12 +1,12 @@
 # Card: Detail Information B
 
-| Feature / Variation   | Preview                                                                                                                                                            |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Full Featured Image   | ![Left Slot + Title + Description + Right Slot + Indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286625/cdib_full_featured_image_dwctzc.gif)     |
-| Full Featured Icon    | ![Icon Left Slot + Title + Description + Right Slot + Indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286625/cdib_full_featured_icon_lc4vsz.gif) |
-| LeftSlot & Title      | ![Left Slot + Title + Right Slot](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286624/cdib_left_slot_title_u09fab.png)                                   |
-| Title Only            | ![Title Only](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286625/cdib_title_only_muz4dr.png)                                                                                                                                                    |
-| Custom Right Slot | ![Title Only]()                                                                                                                                                    |
+| Feature / Variation   | Preview                                                                                                                                                                                             |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Full Featured Image   | ![Left Slot + Title + Description + Right Slot Icon + Indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760330888/cdib_full_featured_image_z6qefj.gif)     |
+| Full Featured Icon    | ![Icon Left Slot + Title + Description + Right Slot Icon + Indicator](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286625/cdib_full_featured_icon_lc4vsz.gif) |
+| LeftSlot & Title      | ![Left Slot + Title + Right Slot Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286624/cdib_left_slot_title_u09fab.png)                                       |
+| Title Only            | ![Title Only](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759286625/cdib_title_only_muz4dr.png)                                                                 |
+| Custom Right Slot | ![Title + Description + Right Slot Custom](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760328290/ScreenRecording2025-10-08at09.24.17-ezgif.com-video-to-gif-converter_znxj3x.gif)                                                                                                                                                        |
 
 | **CardState** | **Visual Effect** |
 | ------------- | ----------------- |
@@ -83,14 +83,15 @@ cardDetailInfo.showRightSlot = false // Sets card to disabled state
 
 ### Left Slot Properties
 
-| Property Name | Type | Default | Description |
-| ------------- | ---- | ------- | ----------- |
-| `leftSlotType` | `LeftSlotType` | `ICON` | Type of left slot content (IMAGE/ICON) |
-| `leftSlotSrc` | `Int?` | `null` | Drawable resource for left slot content |
-| `leftSlotSize` | `Int` | `32dp` | Size of the left slot in pixels |
+| Property Name | Type | Default | Description                              |
+| ------------- | ---- | ------- |------------------------------------------|
+| `leftSlotType` | `LeftSlotType` | `ICON` | Type of left slot content (IMAGE/ICON)   |
+| `leftSlotSrc` | `Int?` | `null` | Drawable resource for left slot content  |
+| `leftSlotUrl` | `String?` | `null` | Url image for left slot content          |
+| `leftSlotSize` | `Int` | `32dp` | Size of the left slot in pixels          |
 | `leftSlotBackgroundColor` | `Int?` | `null` | Background color for left slot container |
-| `leftSlotTint` | `Int?` | `null` | Tint color for left slot icon |
-| `showLeftSlot` | `Boolean` | `true` | Controls left slot visibility |
+| `leftSlotTint` | `Int?` | `null` | Tint color for left slot icon            |
+| `showLeftSlot` | `Boolean` | `true` | Controls left slot visibility            |
 
 ### Right Slot Properties
 
@@ -119,9 +120,10 @@ cardDetailInfo.showRightSlot = false // Sets card to disabled state
 
 ### CardDetailInfoBDelegate Interface
 
-| Method | Parameters | Required | Description |
-| ------ | ---------- | -------- | ----------- |
-| `onCardClick()` | `card: CardDetailInfoB` | ✅ | Called when the card is clicked (only when interactive) |
+| Method | Parameters | Required | Description                                                        |
+| ------ | ---------- | -------- |--------------------------------------------------------------------|
+| `onCardClick()` | `card: CardDetailInfoB` | ✅ | Called when the card is clicked (only when interactive)            |
+| `onRightSlotClick()` | `card: CardDetailInfoB` | ✅ | Called when the card right slot is clicked (only when interactive) |
 
 ```kotlin
 val delegate = object : CardDetailInfoBDelegate {
