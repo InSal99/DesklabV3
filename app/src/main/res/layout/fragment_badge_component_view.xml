@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Badge"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.badge.Badge
@@ -49,7 +48,7 @@
             app:badgeStrokeColor="@android:color/transparent"
             app:badgeTextColor="?attr/colorForegroundInfoIntense"
             app:badgeText="5"
-            app:showText="true" />
+            app:showText="true"/>
 
         <com.edts.components.badge.Badge
             android:layout_width="wrap_content"
@@ -59,7 +58,7 @@
             app:badgeBackgroundTint="?attr/colorBackgroundAttentionSubtle"
             app:badgeTextColor="?attr/colorForegroundAttentionIntense"
             app:badgeText="5"
-            app:showText="true" />
+            app:showText="true"/>
 
         <com.edts.components.badge.Badge
             android:layout_width="wrap_content"
@@ -67,8 +66,6 @@
             android:layout_marginTop="@dimen/margin_16dp"
             app:badgeStrokeColor="?attr/colorStrokeWarningSubtle"
             app:badgeText="5"
-            app:showText="false" />
-
+            app:showText="false"/>
     </LinearLayout>
-
 </FrameLayout>

@@ -267,7 +267,6 @@ fun updateSearchContext(category: String) {
 ## Performance Considerations
 
 - **Click Debouncing** — Built-in 300ms debounce prevents rapid successive interactions and improves user experience
-- **Color Caching** — Theme colors are resolved once and cached to avoid repeated attribute lookups during state changes
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 - **Text Watching** — Optimized TextWatcher implementation for real-time search without excessive callbacks
 

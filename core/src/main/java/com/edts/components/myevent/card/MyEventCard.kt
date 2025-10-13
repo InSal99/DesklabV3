@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.isVisible
@@ -84,7 +83,6 @@ class MyEventCard @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         super.performClick()
-        Log.d("MyEventCard", "MyEventCard Clicked ✅")
         myEventCardDelegate?.onClick(this)
         return true
     }

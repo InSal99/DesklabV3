@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:slotSrc="@drawable/avatar_placeholder"
-            app:slotType="image" />
+            app:slotType="image"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvGreeting"
@@ -39,7 +39,7 @@
             android:text="Selamat Pagi,"
             android:textColor="?attr/colorForegroundSecondary"
             app:layout_constraintStart_toEndOf="@+id/cvUserAvatar"
-            app:layout_constraintTop_toTopOf="@+id/cvUserAvatar" />
+            app:layout_constraintTop_toTopOf="@+id/cvUserAvatar"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvUsername"
@@ -54,7 +54,7 @@
             android:textColor="?attr/colorForegroundPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/cvUserAvatar"
             app:layout_constraintStart_toEndOf="@+id/cvUserAvatar"
-            app:layout_constraintTop_toBottomOf="@+id/tvGreeting" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGreeting"/>
 
         <ImageView
             android:id="@+id/ivNotification"
@@ -67,7 +67,7 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/colorForegroundTertiary" />
+            app:tint="?attr/colorForegroundTertiary"/>
 
         <com.edts.components.badge.Badge
             android:id="@+id/cvNotificationBadge"
@@ -80,7 +80,7 @@
             app:badgeStrokeColor="?attr/colorStrokeSubtle"
             app:layout_constraintBottom_toBottomOf="@+id/ivNotification"
             app:layout_constraintStart_toStartOf="@+id/ivNotification"
-            app:showText="false" />
+            app:showText="false"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
@@ -94,7 +94,7 @@
         android:src="@drawable/wrapper_card_activity"
         app:layout_constraintDimensionRatio="328:68"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wrapperHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/wrapperHeader"/>
 
     <HorizontalScrollView
         android:id="@+id/scrollViewShortcuts"
@@ -121,7 +121,7 @@
                 android:contentDescription="Shortcut"
                 android:scaleType="centerCrop"
                 android:src="@drawable/wrapper_shortcut"
-                app:layout_constraintDimensionRatio="328:56" />
+                app:layout_constraintDimensionRatio="328:56"/>
 
             <ImageView
                 android:id="@+id/ivCardLaporanTim"
@@ -130,8 +130,7 @@
                 android:contentDescription="Card Laporan Tim"
                 android:scaleType="centerCrop"
                 android:src="@drawable/card_laporan_tim"
-                app:layout_constraintDimensionRatio="144:56" />
-
+                app:layout_constraintDimensionRatio="144:56"/>
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -160,7 +159,7 @@
             app:layout_constraintDimensionRatio="328:450"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvDivisiFilter" />
+            app:layout_constraintTop_toBottomOf="@+id/cvDivisiFilter"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSectionTitle"
@@ -173,7 +172,7 @@
             android:text="Kalender Minggu Ini"
             android:textColor="?attr/colorForegroundPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTextButton"
@@ -186,7 +185,7 @@
             android:text="Selengkapnya"
             android:textColor="?attr/colorForegroundAccentPrimaryIntense"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.edts.components.selection.DropdownFilter
             android:id="@+id/cvDivisiFilter"
@@ -201,7 +200,7 @@
             app:dropdownFilterShowDesc="false"
             app:layout_constraintBottom_toTopOf="@+id/rvActivitiesGroup"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitle"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvChip"
@@ -218,7 +217,7 @@
             app:layout_constraintBottom_toTopOf="@+id/rvActivitiesGroup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cvDivisiFilter"
-            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSectionTitle"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvActivitiesGroup"
@@ -231,6 +230,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvDivisiFilter" />
+            app:layout_constraintTop_toBottomOf="@+id/cvDivisiFilter"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

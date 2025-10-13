@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Sort Button"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.sort.button.SortButton
@@ -46,7 +45,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"/>
-
     </LinearLayout>
-
 </FrameLayout>

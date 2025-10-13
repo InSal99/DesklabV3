@@ -8,7 +8,6 @@ import com.edts.components.input.field.InputFieldDelegate
 import com.edts.components.input.field.InputFieldType
 
 class RSVPFormAdapter : RecyclerView.Adapter<RSVPFormAdapter.ViewHolder>() {
-
     private val formConfigs = mutableListOf<InputFieldConfig>()
     private val responses = mutableMapOf<String, Any?>()
     private var recyclerView: RecyclerView? = null

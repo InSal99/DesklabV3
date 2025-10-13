@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.edts.desklabv3.databinding.FragmentStatusBadgeComponentViewBinding
 
 class StatusBadgeComponentView : Fragment() {
-
     private var _binding: FragmentStatusBadgeComponentViewBinding? = null
     private val binding get() = _binding!!
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackgroundPrimary" >
+    android:background="?attr/colorBackgroundPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/margin_32dp" >
+            android:layout_marginTop="@dimen/margin_32dp">
 
             <ImageView
                 android:id="@+id/btnLibButtonBack"
@@ -25,7 +25,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -34,8 +34,7 @@
                 android:text="Button"
                 style="?attr/d3SemiBold"
                 android:textColor="?attr/colorForegroundPrimary"
-                android:layout_marginStart="@dimen/margin_12dp" />
-
+                android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
         <com.edts.components.button.Button
@@ -44,7 +43,7 @@
             android:text="Button Label"
             app:buttonType="PRIMARY"
             buttonCustomSize="XS"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -53,7 +52,7 @@
             android:text="Button Label"
             app:buttonType="PRIMARY"
             buttonCustomSize="SM"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -62,7 +61,7 @@
             android:text="Button Label"
             app:buttonType="PRIMARY"
             buttonCustomSize="MD"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -71,7 +70,7 @@
             android:text="Button Label"
             app:buttonType="PRIMARY"
             buttonCustomSize="LG"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="match_parent"
@@ -80,7 +79,7 @@
             android:text="Button Label"
             app:buttonType="PRIMARY"
             buttonCustomSize="MD"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -90,7 +89,7 @@
             app:buttonType="PRIMARY"
             buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="LEFT" />
+            app:iconPlacement="LEFT"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -100,7 +99,7 @@
             app:buttonType="PRIMARY"
             buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="RIGHT" />
+            app:iconPlacement="RIGHT"/>
 
         <com.edts.components.button.Button
             android:layout_width="match_parent"
@@ -110,7 +109,7 @@
             app:buttonType="PRIMARY"
             buttonCustomSize="MD"
             app:isButtonDestructive="true"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -121,7 +120,7 @@
             buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="LEFT" />
+            app:iconPlacement="LEFT"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -132,7 +131,7 @@
             buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="RIGHT" />
+            app:iconPlacement="RIGHT"/>
 
         <com.edts.components.button.Button
             android:layout_width="match_parent"
@@ -143,19 +142,7 @@
             buttonCustomSize="MD"
             app:isButtonDestructive="true"
             app:isButtonDisabled="true"
-            app:icon="@drawable/placeholder" />
-
-        <com.edts.components.button.Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Button Label"
-            app:buttonType="PRIMARY"
-            buttonCustomSize="MD"
-            app:isButtonDestructive="true"
-            app:isButtonDisabled="true"
-            app:icon="@drawable/placeholder"
-            app:iconPlacement="LEFT" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -167,7 +154,19 @@
             app:isButtonDestructive="true"
             app:isButtonDisabled="true"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="RIGHT" />
+            app:iconPlacement="LEFT"/>
+
+        <com.edts.components.button.Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Button Label"
+            app:buttonType="PRIMARY"
+            buttonCustomSize="MD"
+            app:isButtonDestructive="true"
+            app:isButtonDisabled="true"
+            app:icon="@drawable/placeholder"
+            app:iconPlacement="RIGHT"/>
 
         <com.edts.components.button.Button
             android:layout_width="match_parent"
@@ -176,7 +175,7 @@
             android:text="Button Label"
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -186,7 +185,7 @@
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="LEFT" />
+            app:iconPlacement="LEFT"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -196,7 +195,7 @@
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="RIGHT" />
+            app:iconPlacement="RIGHT"/>
 
         <com.edts.components.button.Button
             android:layout_width="match_parent"
@@ -206,7 +205,7 @@
             app:isButtonDestructive="true"
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -217,7 +216,7 @@
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="LEFT" />
+            app:iconPlacement="LEFT"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -228,7 +227,7 @@
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="RIGHT" />
+            app:iconPlacement="RIGHT"/>
 
         <com.edts.components.button.Button
             android:layout_width="match_parent"
@@ -239,7 +238,7 @@
             app:isButtonDisabled="true"
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
-            app:icon="@drawable/placeholder" />
+            app:icon="@drawable/placeholder"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -251,7 +250,7 @@
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="LEFT" />
+            app:iconPlacement="LEFT"/>
 
         <com.edts.components.button.Button
             android:layout_width="wrap_content"
@@ -263,8 +262,6 @@
             app:buttonType="SECONDARY"
             buttonCustomSize="MD"
             app:icon="@drawable/placeholder"
-            app:iconPlacement="RIGHT" />
-
+            app:iconPlacement="RIGHT"/>
     </LinearLayout>
-
 </ScrollView>

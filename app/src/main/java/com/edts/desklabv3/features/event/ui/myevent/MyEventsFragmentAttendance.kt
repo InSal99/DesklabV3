@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -22,7 +21,6 @@ import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModel
 import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModelFactory
 
 class MyEventsFragmentAttendance : Fragment() {
-
     private var _binding: FragmentMyEventsBinding? = null
     private val binding get() = _binding!!
 
@@ -50,9 +48,7 @@ class MyEventsFragmentAttendance : Fragment() {
     }
 
     private fun setupUI() {
-        // Setup Event List RecyclerView
         eventAdapter = MyEventAdapter { event ->
-//            Toast.makeText(requireContext(), "Clicked on: ${event.title}", Toast.LENGTH_SHORT).show()
             val useEndList = arguments?.getBoolean("use_end_list", false) ?: false
             if(!useEndList) {
                 if (event.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development") {
@@ -70,7 +66,6 @@ class MyEventsFragmentAttendance : Fragment() {
             setItemViewCacheSize(10)
         }
 
-        // Setup Filter Chips RecyclerView
         filterChipAdapter = FilterChipAdapter { chip -> viewModel.selectFilter(chip.text) }
         binding.rvFilterChips.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -80,7 +75,6 @@ class MyEventsFragmentAttendance : Fragment() {
             setItemViewCacheSize(5)
         }
 
-        // Setup Search Listener
         binding.inputSearchEvent.delegate = object : InputSearchDelegate {
             override fun onSearchTextChange(inputSearch: InputSearch, text: String, changeCount: Int) {
                 viewModel.setSearchQuery(text)
@@ -89,7 +83,6 @@ class MyEventsFragmentAttendance : Fragment() {
             override fun onFocusChange(inputSearch: InputSearch, hasFocus: Boolean, newState: InputSearch.State, previousState: InputSearch.State) {}
             override fun onSearchFieldClick(inputSearch: InputSearch, clickCount: Int) {}
             override fun onSearchSubmit(inputSearch: InputSearch, query: String, searchCount: Int) {
-                TODO("Not yet implemented")
             }
 
             override fun onStateChange(inputSearch: InputSearch, newState: InputSearch.State, oldState: InputSearch.State) {}
@@ -110,10 +103,6 @@ class MyEventsFragmentAttendance : Fragment() {
             filterChipAdapter.submitList(chips)
         }
     }
-
-    /**
-     * Creates a list of sample MyEvent objects for demonstration purposes.
-     */
     private fun createSampleMyEventData(): List<MyEvent> {
         fun createMyEvent(status: MyEventStatus, date: String, day: String, month: String, time: String, title: String, eventType: String): MyEvent {
             val (badgeText, badgeType) = when(status) {

@@ -2,7 +2,6 @@ package com.edts.desklabv3.features.leave.ui.teamreport
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.edts.desklabv3.core.util.setupWithViewPager2
 import com.edts.desklabv3.databinding.FragmentTeamReportMenuBinding
 
 class TeamReportMenuFragment : Fragment(), InsetConfigurable {
-
     private var _binding: FragmentTeamReportMenuBinding? = null
     private val binding get() = _binding!!
 
@@ -38,9 +36,7 @@ class TeamReportMenuFragment : Fragment(), InsetConfigurable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.viewPager.isSaveEnabled = false
-
         headerConfigurator?.configureHeader(
             title = "Event",
             subtitle = "Kelola Event Anda",
@@ -92,16 +88,12 @@ class TeamReportMenuFragment : Fragment(), InsetConfigurable {
             teamReportPagerAdapter = TabFragmentAdapter(requireActivity(), fragments)
             binding.viewPager.adapter = teamReportPagerAdapter
             binding.cvTabTeamReportActivity.setupWithViewPager2(binding.viewPager)
-
-//            binding.viewPager.isUserInputEnabled = false
-
             pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     currentTeamReportTab = position
                     configureTeamReportTabs(position)
                 }
             }
-
             binding.viewPager.registerOnPageChangeCallback(pageChangeCallback!!)
         }
 
@@ -119,25 +111,19 @@ class TeamReportMenuFragment : Fragment(), InsetConfigurable {
 
 
     private fun configureTeamReportTabs(selectedPosition: Int = 0) {
-        Log.d("UI_CONFIG", "Configuring team report tabs: selectedPosition=$selectedPosition")
-
         val tabDataList = mutableListOf<TabData>()
-
         tabDataList.add(TabData(
             text = "Aktivitas",
             badgeText = "",
             showBadge = false,
             state = if (selectedPosition == 0) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
         ))
-
         tabDataList.add(TabData(
             text = "Cuti",
             badgeText = "",
             showBadge = false,
             state = if (selectedPosition == 1) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE
         ))
-
         binding.cvTabTeamReportActivity.setTabs(tabDataList, selectedPosition)
     }
-
 }

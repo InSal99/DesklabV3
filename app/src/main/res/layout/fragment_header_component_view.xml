@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Header"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.header.Header
@@ -51,7 +50,7 @@
             app:showLeftButton="true"
             app:showRightButton="true"
             app:showSectionSubtitle="true"
-            app:showSectionTitle="true" />
+            app:showSectionTitle="true"/>
 
         <com.edts.components.header.Header
             android:layout_width="match_parent"
@@ -63,7 +62,7 @@
             app:showLeftButton="false"
             app:showRightButton="true"
             app:showSectionSubtitle="true"
-            app:showSectionTitle="true" />
+            app:showSectionTitle="true"/>
 
         <com.edts.components.header.Header
             android:layout_width="match_parent"
@@ -75,7 +74,7 @@
             app:showLeftButton="false"
             app:showRightButton="false"
             app:showSectionSubtitle="true"
-            app:showSectionTitle="true" />
+            app:showSectionTitle="true"/>
 
         <com.edts.components.header.Header
             android:layout_width="match_parent"
@@ -87,7 +86,7 @@
             app:showLeftButton="false"
             app:showRightButton="false"
             app:showSectionSubtitle="false"
-            app:showSectionTitle="true" />
+            app:showSectionTitle="true"/>
 
         <com.edts.components.header.Header
             android:layout_width="match_parent"
@@ -99,6 +98,6 @@
             app:showLeftButton="true"
             app:showRightButton="false"
             app:showSectionSubtitle="false"
-            app:showSectionTitle="true" />
+            app:showSectionTitle="true"/>
     </LinearLayout>
 </FrameLayout>

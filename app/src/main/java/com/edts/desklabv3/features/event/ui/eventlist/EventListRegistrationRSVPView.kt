@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class EventListRegistrationRSVPView : Fragment(), InputSearchDelegate {
-
     private var _binding: FragmentEventListDaftarRsvpViewBinding? = null
     private val binding get() = _binding!!
 
@@ -266,15 +265,12 @@ class EventListRegistrationRSVPView : Fragment(), InputSearchDelegate {
     }
 
     override fun onSearchFieldClick(inputSearch: com.edts.components.input.search.InputSearch, clickCount: Int) {
-        // Handle search field click
     }
 
     override fun onStateChange(inputSearch: com.edts.components.input.search.InputSearch, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
-        // Handle state changes
     }
 
     override fun onFocusChange(inputSearch: com.edts.components.input.search.InputSearch, hasFocus: Boolean, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
-        // Handle focus changes
     }
 
 

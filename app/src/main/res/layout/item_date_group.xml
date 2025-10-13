@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toStartOf="@+id/rvActivities"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rvActivities"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvMonth"
@@ -35,7 +35,7 @@
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintEnd_toEndOf="@+id/tvDate"
         app:layout_constraintStart_toStartOf="@+id/tvDate"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvActivities"
@@ -46,6 +46,5 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvDate"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

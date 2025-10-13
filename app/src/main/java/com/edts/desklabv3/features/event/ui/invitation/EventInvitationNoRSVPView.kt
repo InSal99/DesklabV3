@@ -20,7 +20,6 @@ import com.edts.desklabv3.features.event.model.EventInvitation
 import com.edts.desklabv3.features.SpaceItemDecoration
 
 class EventInvitationNoRSVPView : Fragment() {
-
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!
     private var loadingDialog: AlertDialog? = null
@@ -44,7 +43,6 @@ class EventInvitationNoRSVPView : Fragment() {
         val notificationAdapter = EventInvitationAdapter(
             notifications = notificationList,
             onCardClick = { notification ->
-//                Toast.makeText(requireContext(), "Card clicked: ${notification.title}", Toast.LENGTH_SHORT).show()
                 navigateToEventDetail()
             },
             onButtonClick = {

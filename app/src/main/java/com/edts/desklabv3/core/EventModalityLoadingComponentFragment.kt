@@ -54,6 +54,4 @@ class EventModalityLoadingComponentFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

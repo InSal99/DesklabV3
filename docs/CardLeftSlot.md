@@ -59,9 +59,10 @@ cardLeftSlot.slotType = CardLeftSlot.SlotType.ICON
 ### Core Properties
 
 | Property Name | Type | Default | Description |
-| ------------- | ---- | ------- | ----------- |
-| `slotType` | `SlotType` | `IMAGE` | Determines sizing and layout behavior |
-| `slotSrc` | `Int?` | `null` | Drawable resource ID for the image/icon |
+|---------------| ---- | ------- | ----------- |
+| `slotType`    | `SlotType` | `IMAGE` | Determines sizing and layout behavior |
+| `slotSrc`     | `Int?` | `null` | Drawable resource ID for the image/icon |
+| `slotUrl`     | `String?` | `null` | Url image for left slot content          |
 
 ### Styling Properties
 

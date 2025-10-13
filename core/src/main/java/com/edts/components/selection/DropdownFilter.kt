@@ -2,20 +2,13 @@ package com.edts.components.selection
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.AttrRes
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.SelectionDropdownFilterBinding
-import com.edts.components.selection.DropdownFilterDelegate
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
@@ -82,10 +75,6 @@ class DropdownFilter @JvmOverloads constructor(
     private var clickCount = 0
     private var lastClickTime = 0L
     private val clickDebounceDelay = 300L
-
-    private companion object {
-        const val TAG = "DropdownFilter"
-    }
 
     init {
         radius = 999f.dpToPx
@@ -189,15 +178,7 @@ class DropdownFilter @JvmOverloads constructor(
 
         if (currentTime - lastClickTime > clickDebounceDelay) {
             lastClickTime = currentTime
-
-            Log.d(TAG, "DropdownFilter icon clicked!")
-            Log.d(TAG, "  - Label: ${dropdownFilterLabel ?: "No label"}")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "--------------------")
-
             delegate?.onDropdownFilterIconClick(this)
-        } else {
-            Log.d(TAG, "Icon click ignored due to debounce (too fast)")
         }
     }
 
@@ -217,21 +198,7 @@ class DropdownFilter @JvmOverloads constructor(
         if (currentTime - lastClickTime > clickDebounceDelay) {
             clickCount++
             lastClickTime = currentTime
-
-            Log.d(TAG, "DropdownFilter clicked!")
-            Log.d(TAG, "  - Label: ${dropdownFilterLabel ?: "No label"}")
-            Log.d(TAG, "  - Description: ${dropdownFilterDesc ?: "No description"}")
-            Log.d(TAG, "  - Badge Text: ${dropdownFilterBadgeText ?: "No badge text"}")
-            Log.d(TAG, "  - Show Badge: $dropdownFilterShowBadge")
-            Log.d(TAG, "  - Show Description: $dropdownFilterShowDesc")
-            Log.d(TAG, "  - Total clicks: $clickCount")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Total system clicks: $clickCount")
-            Log.d(TAG, "--------------------")
-
             delegate?.onDropdownFilterClick(this)
-        } else {
-            Log.d(TAG, "Click ignored due to debounce (too fast)")
         }
     }
 
@@ -241,7 +208,6 @@ class DropdownFilter @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        Log.d(TAG, "Programmatic click triggered")
         handleClick()
         return super.performClick()
     }

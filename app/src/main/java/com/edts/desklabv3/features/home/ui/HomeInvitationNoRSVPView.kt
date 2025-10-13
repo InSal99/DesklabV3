@@ -1,7 +1,6 @@
 package com.edts.desklabv3.features.home.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -66,8 +65,6 @@ class HomeInvitationNoRSVPView : Fragment() {
 
         val isEndFlow = arguments?.getBoolean("is_end_flow", false) ?: false
         binding.cvNotificationBadge.visibility = if (isEndFlow) View.INVISIBLE else View.VISIBLE
-
-        Log.d("HomeInvitationNoRSVP", "isEndFlow: $isEndFlow, badge visibility: ${binding.cvNotificationBadge.visibility}")
     }
 
     override fun onDestroyView() {
@@ -160,7 +157,6 @@ class HomeInvitationNoRSVPView : Fragment() {
             }
 
             else -> {
-                Log.d("HomeView", "\"Clicked: ${activity.title}\"")
             }
         }
     }

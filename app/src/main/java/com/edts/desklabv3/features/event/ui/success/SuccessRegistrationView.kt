@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import com.airbnb.lottie.LottieAnimationView
-import com.airbnb.lottie.LottieDrawable
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentSuccessAttendanceOfflineViewBinding
 
@@ -57,7 +56,7 @@ class SuccessRegistrationView : Fragment() {
                         bundleOf(
                             "fragment_class" to "EventMenuFragment",
                             "flow_type" to "RegisEndRSVP",
-                            "selected_tab" to 1 // Event Saya
+                            "selected_tab" to 1
                         )
                     )
                 }
@@ -67,7 +66,7 @@ class SuccessRegistrationView : Fragment() {
                         bundleOf(
                             "fragment_class" to "EventMenuFragment",
                             "flow_type" to "InvitationENDNoRSVP",
-                            "selected_tab" to 1 // Event Saya
+                            "selected_tab" to 1
                         )
                     )
                 }
@@ -83,7 +82,7 @@ class SuccessRegistrationView : Fragment() {
                         bundleOf(
                             "fragment_class" to "EventMenuFragment",
                             "flow_type" to "RegisEndRSVP",
-                            "selected_tab" to 0 // Daftar Event
+                            "selected_tab" to 0
                         )
                     )
                 }
@@ -93,7 +92,7 @@ class SuccessRegistrationView : Fragment() {
                         bundleOf(
                             "fragment_class" to "EventMenuFragment",
                             "flow_type" to "InvitationENDNoRSVP",
-                            "selected_tab" to 0 // Daftar Event
+                            "selected_tab" to 0
                         )
                     )
                 }

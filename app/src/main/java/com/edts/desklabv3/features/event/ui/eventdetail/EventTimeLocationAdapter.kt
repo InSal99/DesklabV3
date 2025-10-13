@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.detail.information.DetailInformationA
 
 class EventTimeLocationAdapter : RecyclerView.Adapter<EventTimeLocationAdapter.TimeLocationViewHolder>() {
-
     private val items = mutableListOf<Triple<Int, String, String>>()
     private var showActionForLinkMeeting: Boolean = false
     private var meetingLink: String = ""

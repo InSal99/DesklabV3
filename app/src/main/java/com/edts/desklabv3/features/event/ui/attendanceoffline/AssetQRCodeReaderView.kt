@@ -2,7 +2,6 @@ package com.edts.desklabv3.features.event.ui.attendanceoffline
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView
 import com.edts.desklabv3.R
 import java.lang.RuntimeException
@@ -33,7 +32,6 @@ class AssetQRCodeReaderView: QRCodeReaderView {
         try {
             super.startCamera()
         } catch (e: Exception) {
-            Log.d("QRReaderView", "Error starting camera")
         }
     }
 
@@ -41,7 +39,6 @@ class AssetQRCodeReaderView: QRCodeReaderView {
         try {
             super.stopCamera()
         } catch (e: Exception) {
-            Log.d("QRReaderView", "Error stopping camera")
         }
     }
 
@@ -49,7 +46,6 @@ class AssetQRCodeReaderView: QRCodeReaderView {
         try {
             super.setTorchEnabled(enabled)
         } catch (e: RuntimeException) {
-            Log.d("QRReaderView", "Error enable Torch")
         }
     }
 }

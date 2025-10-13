@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.input.search.InputSearch
 import com.edts.desklabv3.core.DatePattern
@@ -65,7 +64,7 @@ object Utils {
         val tz = TimeZone.getTimeZone("Asia/Jakarta")
 
         val formatDateFromDB = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale("ID"))
-        formatDateFromDB.timeZone = TimeZone.getTimeZone("UTC") // Parse as UTC first
+        formatDateFromDB.timeZone = TimeZone.getTimeZone("UTC")
 
         val convertYearDate = SimpleDateFormat(pattern.toString(), Locale("ID"))
         convertYearDate.timeZone = tz

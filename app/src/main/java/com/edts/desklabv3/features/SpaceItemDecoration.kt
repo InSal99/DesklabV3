@@ -26,13 +26,9 @@ class SpaceItemDecoration(
         state: RecyclerView.State
     ) {
         val position = parent.getChildAdapterPosition(view)
-
-        // Do not add space BEFORE the first item
         if (position == 0) {
             return
         }
-
-        // Apply space based on the orientation
         when (orientation) {
             HORIZONTAL -> outRect.left = space
             VERTICAL -> outRect.top = space

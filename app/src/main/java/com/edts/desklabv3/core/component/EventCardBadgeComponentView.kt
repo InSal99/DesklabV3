@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentEventCardBadgeComponentViewBinding
 
-
 class EventCardBadgeComponentView : Fragment(), InsetConfigurable {
     private var _binding: FragmentEventCardBadgeComponentViewBinding? = null
     private val binding get() = _binding!!

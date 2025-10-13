@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Event Card"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
         <com.edts.components.event.card.EventCard
@@ -55,7 +54,7 @@
             app:cardStatusType="registered"
             app:eventImageSrc="@drawable/poster2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.edts.components.event.card.EventCard
             android:layout_width="match_parent"
@@ -65,7 +64,7 @@
             app:cardEventCategory="People Development"
             app:cardEventDate="23 Juli 2025"
             app:eventImageSrc="@drawable/poster2"
-            app:eventImageUrl="https://static.vecteezy.com/system/resources/thumbnails/000/217/363/small_2x/vector-colourful-landscape-illustration.jpg"
+            app:eventImageUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
             app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
             app:cardEventType="Hybrid Event"
             app:showCardStatus="false"

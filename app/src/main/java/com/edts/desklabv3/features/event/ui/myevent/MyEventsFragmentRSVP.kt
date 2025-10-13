@@ -21,7 +21,6 @@ import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModel
 import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModelFactory
 
 class MyEventsFragmentRSVP : Fragment() {
-
     private var _binding: FragmentMyEventsBinding? = null
     private val binding get() = _binding!!
 
@@ -49,7 +48,6 @@ class MyEventsFragmentRSVP : Fragment() {
     }
 
     private fun setupUI() {
-        // Setup Event List RecyclerView
         eventAdapter = MyEventAdapter { event ->
             Toast.makeText(requireContext(), "Clicked on: ${event.title}", Toast.LENGTH_SHORT).show()
         }
@@ -60,7 +58,6 @@ class MyEventsFragmentRSVP : Fragment() {
             setItemViewCacheSize(10)
         }
 
-        // Setup Filter Chips RecyclerView
         filterChipAdapter = FilterChipAdapter { chip -> viewModel.selectFilter(chip.text) }
         binding.rvFilterChips.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -70,7 +67,6 @@ class MyEventsFragmentRSVP : Fragment() {
             setItemViewCacheSize(5)
         }
 
-        // Setup Search Listener
         binding.inputSearchEvent.delegate = object : InputSearchDelegate {
             override fun onSearchTextChange(inputSearch: InputSearch, text: String, changeCount: Int) {
                 viewModel.setSearchQuery(text)
@@ -79,7 +75,6 @@ class MyEventsFragmentRSVP : Fragment() {
             override fun onFocusChange(inputSearch: InputSearch, hasFocus: Boolean, newState: InputSearch.State, previousState: InputSearch.State) {}
             override fun onSearchFieldClick(inputSearch: InputSearch, clickCount: Int) {}
             override fun onSearchSubmit(inputSearch: InputSearch, query: String, searchCount: Int) {
-                TODO("Not yet implemented")
             }
 
             override fun onStateChange(inputSearch: InputSearch, newState: InputSearch.State, oldState: InputSearch.State) {}
@@ -101,9 +96,6 @@ class MyEventsFragmentRSVP : Fragment() {
         }
     }
 
-    /**
-     * Creates a list of sample MyEvent objects for demonstration purposes.
-     */
     private fun createSampleMyEventData(): List<MyEvent> {
         fun createMyEvent(status: MyEventStatus, date: String, day: String, month: String, time: String, title: String, eventType: String): MyEvent {
             val (badgeText, badgeType) = when(status) {

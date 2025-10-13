@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.databinding.FragmentFooterComponentViewBinding
 
 class FooterComponentView : Fragment() {
-
     private var _binding: FragmentFooterComponentViewBinding? = null
     private val binding get() = _binding!!
 

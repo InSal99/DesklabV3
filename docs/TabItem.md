@@ -236,4 +236,4 @@ tabItem.tabState = TabItem.TabState.INACTIVE
 
 ---
 
-> **⚠️ Note**: This component automatically handles first-launch state setup without animation. For proper behavior when using with data binding or dynamic content, call `resetForBinding()` before setting initial states. The click debounce mechanism logs all interactions for debugging purposes.
+> **⚠️ Note**: This component automatically handles first-launch state setup without animation. For proper behavior when using with data binding or dynamic content, call `resetForBinding()` before setting initial states.
