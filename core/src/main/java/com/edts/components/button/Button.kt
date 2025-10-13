@@ -474,4 +474,10 @@ class Button @JvmOverloads constructor(
         }
         return super.onTouchEvent(event)
     }
+
+    override fun performClick(): Boolean {
+        val handled = super.performClick()
+        buttonDelegate?.onClick(this)
+        return handled
+    }
 }
