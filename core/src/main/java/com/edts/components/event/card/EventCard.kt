@@ -1,12 +1,16 @@
 package com.edts.components.event.card
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Paint
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.EventCardBinding
@@ -102,7 +106,6 @@ class EventCard @JvmOverloads constructor(
     private var cardState: CardState = CardState.REST
         set(value) {
             field = value
-            updateCardBackground()
         }
 
     var eventCardDelegate: EventCardDelegate? = null
@@ -124,7 +127,7 @@ class EventCard @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
                 eventImageSrc = getResourceId(R.styleable.EventCard_eventImageSrc, -1)
                     .takeIf { it != -1 }
@@ -154,6 +157,10 @@ class EventCard @JvmOverloads constructor(
                 updateStatus()
                 setupCardPressState()
                 updateStatusVisibility()
+
+                setOnClickListener {
+                    handleClick()
+                }
             } finally {
                 recycle()
             }
@@ -162,61 +169,6 @@ class EventCard @JvmOverloads constructor(
 
     private fun updateStatusVisibility() {
         binding.cvEventCardStatus.visibility = if (showStatus) View.VISIBLE else View.INVISIBLE
-    }
-
-    private fun updateCardBackground() {
-        val backgroundColor = context.resolveColorAttribute(
-            R.attr.colorBackgroundPrimary,
-            android.R.color.white
-        )
-
-        when (cardState) {
-            CardState.REST -> {
-                setCardBackgroundColor(backgroundColor)
-                val elevatedModifierDrawable = GradientDrawable().apply {
-                    cornerRadius = 12.dpToPx.toFloat()
-                    setColor(
-                        context.resolveColorAttribute(
-                            R.attr.colorBackgroundModifierCardElevated,
-                            android.R.color.transparent
-                        )
-                    )
-                }
-                foreground = elevatedModifierDrawable
-            }
-            CardState.ON_PRESS -> {
-                setCardBackgroundColor(backgroundColor)
-                val overlayDrawable = GradientDrawable().apply {
-                    cornerRadius = 12.dpToPx.toFloat()
-                    setColor(
-                        context.resolveColorAttribute(
-                            R.attr.colorBackgroundModifierOnPress,
-                            android.R.color.black
-                        )
-                    )
-                }
-                foreground = overlayDrawable
-            }
-        }
-    }
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                Log.d(TAG, "ACTION_DOWN - setting ON_PRESS state")
-                cardState = CardState.ON_PRESS
-            }
-            MotionEvent.ACTION_UP -> {
-                Log.d(TAG, "ACTION_UP - setting REST state")
-                cardState = CardState.REST
-                performClick()
-            }
-            MotionEvent.ACTION_CANCEL -> {
-                Log.d(TAG, "ACTION_CANCEL - setting REST state")
-                cardState = CardState.REST
-            }
-        }
-        return super.onTouchEvent(event)
     }
 
     private fun handleClick() {
@@ -237,6 +189,7 @@ class EventCard @JvmOverloads constructor(
             Log.d(TAG, "  - Status Text: ${statusText ?: "No status text"}")
             Log.d(TAG, "  - Total clicks: $clickCount")
             Log.d(TAG, "  - Click timestamp: $currentTime")
+            Log.d(TAG, "  - Total system clicks: $clickCount")
             Log.d(TAG, "--------------------")
 
             eventCardDelegate?.onEventCardClick(this)
@@ -248,7 +201,6 @@ class EventCard @JvmOverloads constructor(
     private fun setupCardPressState() {
         isClickable = true
         isFocusable = true
-        updateCardBackground()
     }
 
     private fun updateEventImage() {
@@ -258,43 +210,61 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun updateBadgeVisibility() {
-        binding.cvEventCardBadge.visibility = if (showBadge) View.VISIBLE else View.GONE
+        binding.cvEventCardBadge?.visibility = if (showBadge) View.VISIBLE else View.GONE
     }
 
     private fun updateBadge() {
-        binding.cvEventCardBadge.badgeType = badgeType
-        badgeText?.let { text ->
-            binding.cvEventCardBadge.badgeText = text
+        binding.cvEventCardBadge?.let { badge ->
+            badge.badgeType = badgeType
+            badgeText?.let { text ->
+                badge.badgeText = text
+            }
         }
     }
 
     private fun updateBanner() {
-        eventType?.let { type ->
-            binding.cvEventCardBanner.eventType = type
-        }
-        eventCategory?.let { category ->
-            binding.cvEventCardBanner.eventCategory = category
+        binding.cvEventCardBanner?.let { banner ->
+            eventType?.let { type ->
+                banner.eventType = type
+            }
+            eventCategory?.let { category ->
+                banner.eventCategory = category
+            }
         }
     }
 
     private fun updateDescription() {
-        eventTitle?.let { title ->
-            binding.cvEventCardDescription.eventTitle = title
-        }
-        eventDate?.let { date ->
-            binding.cvEventCardDescription.eventDate = date
+        binding.cvEventCardDescription?.let { description ->
+            eventTitle?.let { title ->
+                description.eventTitle = title
+            }
+            eventDate?.let { date ->
+                description.eventDate = date
+            }
         }
     }
 
     private fun updateStatus() {
-        binding.cvEventCardStatus.statusType = statusType
-        statusText?.let { text ->
-            binding.cvEventCardStatus.statusText = text
+        binding.cvEventCardStatus?.let { status ->
+            status.statusType = statusType
+            statusText?.let { text ->
+                status.statusText = text
+            }
         }
     }
 
+    fun resetClickCount() {
+        val previousCount = clickCount
+        clickCount = 0
+        Log.d(TAG, "Click count reset from $previousCount to 0")
+    }
+
+    fun getClickCount(): Int {
+        return clickCount
+    }
+
     override fun performClick(): Boolean {
-        Log.d(TAG, "Click event triggered")
+        Log.d(TAG, "Programmatic click triggered")
         handleClick()
         return super.performClick()
     }

@@ -48,7 +48,7 @@
             app:fieldTitle="Name"
             app:fieldEnabled="true"
             app:supportingText="Some supporting text"
-            app:inputType="textInput"
+            app:inputFieldType="textInput"
             app:maxLength="50" />
 
         <com.edts.components.input.field.InputField
@@ -62,7 +62,7 @@
             app:fieldEnabled="true"
             app:errorText="Some error"
             app:supportingText="Some supporting text"
-            app:inputType="textInput"
+            app:inputFieldType="textInput"
             app:maxLength="50" />
 
         <com.edts.components.input.field.InputField
@@ -75,7 +75,7 @@
             app:fieldTitle="Name"
             app:fieldEnabled="false"
             app:supportingText="Some supporting text"
-            app:inputType="textInput"
+            app:inputFieldType="textInput"
             app:maxLength="50" />
 
         <com.edts.components.input.field.InputField
@@ -88,7 +88,7 @@
             app:fieldTitle="Age"
             app:fieldEnabled="true"
             app:supportingText="Some supporting text"
-            app:inputType="numberInput"
+            app:inputFieldType="numberInput"
             app:maxLength="50" />
 
         <com.edts.components.input.field.InputField
@@ -102,7 +102,7 @@
             app:fieldEnabled="true"
             app:errorText="Some error"
             app:supportingText="Some supporting text"
-            app:inputType="numberInput"
+            app:inputFieldType="numberInput"
             app:maxLength="50" />
 
         <com.edts.components.input.field.InputField
@@ -115,7 +115,7 @@
             app:fieldTitle="Age"
             app:fieldEnabled="false"
             app:supportingText="Some supporting text"
-            app:inputType="numberInput"
+            app:inputFieldType="numberInput"
             app:maxLength="50" />
 
         <com.edts.components.input.field.InputField
@@ -126,7 +126,7 @@
             app:fieldHint="Enter description here"
             app:fieldTitle="Description"
             app:fieldEnabled="true"
-            app:inputType="textArea"
+            app:inputFieldType="textArea"
             app:supportingText="Some supporting text"
             app:maxLength="200"
             app:maxLines="5"
@@ -141,7 +141,7 @@
             app:fieldTitle="Description"
             app:fieldEnabled="true"
             app:errorText="Some error"
-            app:inputType="textArea"
+            app:inputFieldType="textArea"
             app:supportingText="Some supporting text"
             app:maxLength="200"
             app:maxLines="5"
@@ -155,7 +155,7 @@
             app:fieldHint="Enter description here"
             app:fieldTitle="Description"
             app:fieldEnabled="false"
-            app:inputType="textArea"
+            app:inputFieldType="textArea"
             app:maxLength="200"
             app:maxLines="5"
             app:minLines="3"
@@ -170,7 +170,7 @@
             app:fieldRequired="true"
             app:fieldEnabled="true"
             app:fieldTitle="Country"
-            app:inputType="dropdown"
+            app:inputFieldType="dropdown"
             app:options="@array/countries"
             app:supportingText="Some supporting text"/>
 
@@ -184,7 +184,7 @@
             app:fieldEnabled="true"
             app:errorText="Some error"
             app:fieldTitle="Country"
-            app:inputType="dropdown"
+            app:inputFieldType="dropdown"
             app:options="@array/countries"
             app:supportingText="Some supporting text"/>
 
@@ -197,7 +197,7 @@
             app:fieldRequired="true"
             app:fieldEnabled="false"
             app:fieldTitle="Country"
-            app:inputType="dropdown"
+            app:inputFieldType="dropdown"
             app:options="@array/countries"
             app:supportingText="Some supporting text"/>
 
@@ -209,7 +209,7 @@
             app:fieldDescription="Some description"
             app:fieldEnabled="true"
             app:fieldTitle="Gender"
-            app:inputType="radioGroup"
+            app:inputFieldType="radioGroup"
             app:options="@array/gender_options"
             app:supportingText="Some supporting text"/>
 
@@ -222,7 +222,7 @@
             app:fieldDescription="Some description"
             app:fieldEnabled="true"
             app:fieldTitle="Gender"
-            app:inputType="radioGroup"
+            app:inputFieldType="radioGroup"
             app:options="@array/gender_options"
             app:supportingText="Some supporting text"/>
 
@@ -234,7 +234,7 @@
             app:fieldDescription="Some description"
             app:fieldEnabled="false"
             app:fieldTitle="Gender"
-            app:inputType="radioGroup"
+            app:inputFieldType="radioGroup"
             app:options="@array/gender_options"
             app:supportingText="Some supporting text"/>
 
@@ -245,7 +245,7 @@
             app:fieldDescription="Select all that apply"
             app:fieldTitle="Interests"
             app:fieldEnabled="true"
-            app:inputType="checkboxGroup"
+            app:inputFieldType="checkboxGroup"
             app:options="@array/interests"
             app:supportingText="Some supporting text"/>
 
@@ -256,7 +256,7 @@
             app:fieldDescription="Select all that apply"
             app:fieldTitle="Interests"
             app:errorText="Some error"
-            app:inputType="checkboxGroup"
+            app:inputFieldType="checkboxGroup"
             app:options="@array/interests"
             app:supportingText="Some supporting text"/>
 
@@ -267,7 +267,7 @@
             app:fieldDescription="Select all that apply"
             app:fieldTitle="Interests"
             app:fieldEnabled="false"
-            app:inputType="checkboxGroup"
+            app:inputFieldType="checkboxGroup"
             app:options="@array/interests"
             app:supportingText="Some supporting text"/>
 

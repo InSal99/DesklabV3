@@ -11,7 +11,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivLeftBtn"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -66,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvSectionTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivRightBtn"
         android:layout_width="24dp"
         android:layout_height="24dp"

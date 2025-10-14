@@ -9,7 +9,8 @@
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:cardElevation="2dp"
-    app:rippleColor="@android:color/transparent"
+    android:foreground="?attr/colorBackgroundModifierCardElevated"
+    app:rippleColor="?attr/colorBackgroundModifierOnPress"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
 
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12dp"
             android:layout_marginEnd="@dimen/margin_8dp"
-            app:badgeType="live"
+            app:eventBadgeType="live"
             app:badgeSize="Large"
             app:eventCardBadgeText="Berlangsung"
             app:layout_constraintTop_toTopOf="@+id/ivEventCard"

@@ -49,4 +49,13 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/cvComponentTitle"/>
 
+    <com.edts.components.notification.EventNotificationCard
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24dp"
+        app:notificationEventCategory="employee_benefit"
+        app:layout_constraintTop_toBottomOf="@id/rvEventInvitation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

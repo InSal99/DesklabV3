@@ -1,23 +1,27 @@
 package com.edts.components.input.search
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
-import android.text.Editable
-import android.text.TextWatcher
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
-import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
+import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
-import com.edts.components.R
 import com.edts.components.databinding.InputSearchBinding
+import com.google.android.material.card.MaterialCardView
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.inputmethod.InputMethodManager
+import com.edts.components.R
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
-import com.google.android.material.card.MaterialCardView
 
 class InputSearch @JvmOverloads constructor(
     context: Context,
@@ -180,6 +184,7 @@ class InputSearch @JvmOverloads constructor(
                 Log.d(TAG, "  - New text: '$text'")
                 Log.d(TAG, "  - Text length: ${text.length}")
                 Log.d(TAG, "  - Change count: $searchTextChangeCount")
+                Log.d(TAG, "  - Total text changes: $searchTextChangeCount")
 
                 delegate?.onSearchTextChange(this@InputSearch, text, searchTextChangeCount)
 
@@ -201,6 +206,7 @@ class InputSearch @JvmOverloads constructor(
                 Log.d(TAG, "Close icon clicked:")
                 Log.d(TAG, "  - Text before clear: '$textBeforeClear'")
                 Log.d(TAG, "  - Close icon click count: $closeIconClickCount")
+                Log.d(TAG, "  - Total close icon clicks: $closeIconClickCount")
                 Log.d(TAG, "  - Click timestamp: $currentTime")
 
                 binding.etSearch.text?.clear()
@@ -216,6 +222,13 @@ class InputSearch @JvmOverloads constructor(
                 Log.d(TAG, "Close icon click ignored due to debounce (too fast)")
             }
         }
+
+        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
+
+        val rippleDrawable = RippleDrawable(rippleColor, null, null)
+        rippleDrawable.radius = 12f.dpToPx.toInt()
+
+        binding.ivRightIcon.background = rippleDrawable
     }
 
     private fun setupSearchActionListener() {
@@ -231,6 +244,7 @@ class InputSearch @JvmOverloads constructor(
                 Log.d(TAG, "  - Query: '$query'")
                 Log.d(TAG, "  - Query length: ${query.length}")
                 Log.d(TAG, "  - Search submit count: $searchSubmitCount")
+                Log.d(TAG, "  - Total searches: $searchSubmitCount")
                 Log.d(TAG, "  - Action ID: $actionId")
 
                 binding.etSearch.clearFocus()
@@ -250,13 +264,6 @@ class InputSearch @JvmOverloads constructor(
     private fun hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.etSearch.windowToken, 0)
-    }
-
-    private fun showKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        binding.etSearch.post {
-            imm.showSoftInput(binding.etSearch, InputMethodManager.SHOW_IMPLICIT)
-        }
     }
 
     private fun createCardBackgroundDrawable(): Drawable {
@@ -296,7 +303,7 @@ class InputSearch @JvmOverloads constructor(
             MotionEvent.ACTION_UP -> {
                 Log.d(TAG, "Search field touch UP")
                 cardState = CardState.REST
-                performClick()
+                handleSearchFieldClick()
             }
             MotionEvent.ACTION_CANCEL -> {
                 Log.d(TAG, "Search field touch CANCEL")
@@ -317,22 +324,17 @@ class InputSearch @JvmOverloads constructor(
             Log.d(TAG, "  - Current text: '${binding.etSearch.text}'")
             Log.d(TAG, "  - Current state: $_state")
             Log.d(TAG, "  - Field click count: $searchFieldClickCount")
+            Log.d(TAG, "  - Total field clicks: $searchFieldClickCount")
             Log.d(TAG, "  - Click timestamp: $currentTime")
 
             binding.etSearch.requestFocus()
-            showKeyboard()
             delegate?.onSearchFieldClick(this, searchFieldClickCount)
 
-            Log.d(TAG, "  - Focus requested and keyboard shown")
+            Log.d(TAG, "  - Focus requested")
             Log.d(TAG, "--------------------")
         } else {
             Log.d(TAG, "Search field click ignored due to debounce (too fast)")
         }
-    }
-
-    override fun performClick(): Boolean {
-        handleSearchFieldClick()
-        return super.performClick()
     }
 
     private fun setupCardPressState() {

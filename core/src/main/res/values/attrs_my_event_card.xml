@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MyEventCard">
-        <attr name="myEventType" format="string" />
+        <attr name="myEventLocation" format="enum">
+            <enum name="offline" value="0" />
+            <enum name="online" value="1" />
+            <enum name="hybrid" value="2" />
+        </attr>
         <attr name="myEventTitle" format="string" />
         <attr name="myEventTime" format="string" />
         <attr name="month" />
         <attr name="date" />
         <attr name="day" />
-        <attr name="badgeText" />
-        <attr name="badgeType" />
-        <attr name="badgeSize" />
+        <attr name="myEventType" format="enum">
+            <enum name="live" value="0" />
+            <enum name="registered" value="1" />
+            <enum name="attended" value="2" />
+            <enum name="notattended" value="3" />
+        </attr>
         <attr name="myEventBadgeVisible" format="boolean" />
     </declare-styleable>
 </resources>

@@ -41,47 +41,47 @@
 
         </LinearLayout>
 
-        <com.edts.components.chip.Chip
+        <com.edts.components.selection.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_24dp"
-            app:chipBadgeText="3"
-            app:chipIcon="@drawable/ic_close"
-            app:chipShowBadge="true"
-            app:chipShowIcon="true"
+            app:chipState="inactive"
+            app:chipText="Chip Label"
             app:chipSize="small"
-            app:chipState="inactive"
-            app:chipText="Chip Label" />
-
-        <com.edts.components.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:chipIcon="@drawable/ic_close"
-            app:chipShowBadge="false"
+            app:chipBadgeText="3"
             app:chipShowIcon="true"
+            app:chipShowBadge="true"
+            app:chipIcon="@drawable/ic_close" />
+
+        <com.edts.components.selection.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:chipState="inactive"
             app:chipSize="medium"
-            app:chipState="inactive"
-            app:chipText="Chip Label" />
+            app:chipText="Chip Label"
+            app:chipShowIcon="true"
+            app:chipShowBadge="false"
+            app:chipIcon="@drawable/ic_close" />
 
-        <com.edts.components.chip.Chip
+        <com.edts.components.selection.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
-            app:chipShowBadge="false"
-            app:chipShowIcon="false"
             app:chipState="inactive"
-            app:chipText="Chip Label" />
+            app:chipText="Chip Label"
+            app:chipShowIcon="false"
+            app:chipShowBadge="false" />
 
-        <com.edts.components.chip.Chip
+        <com.edts.components.selection.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
-            app:chipActiveBackgroundColor="?attr/colorBackgroundUtilityCutiIntense"
-            app:chipShowBadge="false"
-            app:chipShowIcon="false"
             app:chipState="inactive"
-            app:chipText="Chip Label" />
+            app:chipText="Chip Label"
+            app:chipShowIcon="false"
+            app:chipShowBadge="false"
+            app:chipActiveBackgroundColor="?attr/colorBackgroundUtilityCutiIntense"/>
 
     </LinearLayout>
 

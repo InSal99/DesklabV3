@@ -10,20 +10,33 @@ import com.edts.desklabv3.R
 import com.edts.desklabv3.core.component.BadgeComponentView
 import com.edts.desklabv3.core.component.BottomNavigationComponentView
 import com.edts.desklabv3.core.component.BottomNavigationItemComponentView
+import com.edts.desklabv3.core.component.BottomTrayComponentView
+import com.edts.desklabv3.core.component.ButtonComponentView
 import com.edts.desklabv3.core.component.CardDetailInformationBComponentView
 import com.edts.desklabv3.core.component.CardLeftSlotComponentView
 import com.edts.desklabv3.core.component.CardMultiDetailCardComponentView
+import com.edts.desklabv3.core.component.CheckboxComponentView
+import com.edts.desklabv3.core.component.DetailInformationAComponentView
+import com.edts.desklabv3.core.component.DetailInformationSpeakerComponentView
 import com.edts.desklabv3.core.component.EventCardBadgeComponentView
 import com.edts.desklabv3.core.component.EventCardComponentView
 import com.edts.desklabv3.core.component.EventCardStatusComponentView
+import com.edts.desklabv3.core.component.FooterComponentView
 import com.edts.desklabv3.core.component.HeaderComponentView
+import com.edts.desklabv3.core.component.InfoboxComponentView
+import com.edts.desklabv3.core.component.InputFieldComponentView
 import com.edts.desklabv3.core.component.InputSearchComponentView
+import com.edts.desklabv3.core.component.LeaveCardComponentView
 import com.edts.desklabv3.core.component.MonthlyPickerComponentView
+import com.edts.desklabv3.core.component.OptionCardComponentView
+import com.edts.desklabv3.core.component.RadioButtonComponentView
 import com.edts.desklabv3.core.component.SelectionChipComponentView
 import com.edts.desklabv3.core.component.SelectionDropdownFilterComponentView
 import com.edts.desklabv3.core.component.SortButtonComponentView
+import com.edts.desklabv3.core.component.StatusBadgeComponentView
 import com.edts.desklabv3.core.component.TabComponentView
 import com.edts.desklabv3.core.component.TabItemComponentView
+import com.edts.desklabv3.core.component.ToastComponentView
 import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentEntryPointsViewBinding
 
@@ -181,6 +194,10 @@ class EntryPointsView : Fragment(), InsetConfigurable {
 
         binding.btnLibMonthlyPicker.setOnClickListener {
             navigateToFragment(MonthlyPickerComponentView())
+        }
+
+        binding.btnLibLeaveCard.setOnClickListener {
+            navigateToFragment(LeaveCardComponentView())
         }
 
         binding.btnFlow1.setOnClickListener {

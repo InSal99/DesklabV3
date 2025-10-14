@@ -85,14 +85,14 @@
             android:layout_height="wrap_content"
             app:text="This is an information message"
             android:layout_marginTop="@dimen/margin_12dp"
-            app:variant="information"
+            app:infoboxType="information"
             app:showInfoBox="true"
             app:footerType="CALL_TO_ACTION_DETAIL"
             app:primaryButtonText="Register Now"
             app:primaryButtonEnabled="true"
             app:footerTitle="Welcome"
             app:footerHasStroke="false"
-            app:footerDescription="Please complete your registration" />
+            app:footerDescription="Please complete registration" />
 
     </LinearLayout>
 

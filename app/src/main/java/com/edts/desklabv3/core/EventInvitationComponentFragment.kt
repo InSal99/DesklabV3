@@ -67,17 +67,17 @@ class EventInvitationComponentFragment : Fragment() {
             EventInvitation(
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = EventNotificationCard.EventType.GENERAL_EVENT
+                eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT
             ),
             EventInvitation(
                 title = "EDTS Town-Hall 2025: Power of Change",
                 description = "Anda diundang pada Jumat, 25 Juli 2025, pukul 10:00 – 12:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
+                eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT
             ),
             EventInvitation(
                 title = "EDTS Town-Hall 2025: Power of Change",
                 description = "Anda diundang pada Jumat, 25 Juli 2025, pukul 10:00 – 12:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = EventNotificationCard.EventType.EMPLOYEE_BENEFIT
+                eventCategory = EventNotificationCard.EventCategory.EMPLOYEE_BENEFIT
             )
         )
     }

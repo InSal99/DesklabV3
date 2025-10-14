@@ -3,6 +3,7 @@ package com.edts.desklabv3.features.event.ui.invitation
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,8 +44,7 @@ class EventInvitationNoRSVPView : Fragment() {
 
         val notificationAdapter = EventInvitationAdapter(
             notifications = notificationList,
-            onCardClick = { notification ->
-//                Toast.makeText(requireContext(), "Card clicked: ${notification.title}", Toast.LENGTH_SHORT).show()
+            onCardClick = {
                 navigateToEventDetail()
             },
             onButtonClick = {
@@ -75,7 +75,7 @@ class EventInvitationNoRSVPView : Fragment() {
             EventInvitation(
                 title = "EDTS Town-Hall 2025: The Power of Change",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = EventNotificationCard.EventType.GENERAL_EVENT
+                eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT // Updated property
             )
         )
     }
@@ -91,7 +91,7 @@ class EventInvitationNoRSVPView : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-                Toast.makeText(requireContext(), "Modal Closed.", Toast.LENGTH_SHORT).show()
+                // No Action
             }
         )
     }
