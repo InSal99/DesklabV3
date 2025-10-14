@@ -2,8 +2,8 @@
 
 | Feature / Variation     | Preview                                                                                                                                  |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| Small with Badge & Icon | ![Chip Label + Badge(3) + Close Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759227714/sc_small_with_badge_icon_tleoib.gif) |
-| Medium with Icon Only   | ![Chip Label + Close Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759227715/sc_medium_with_icon_only_tgsxd6.gif)            |
+| Small with Badge & Icon | ![Chip Label + Badge(3) + Close Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1760336353/sc_small_with_badge_icon_v2cdlv.gif) |
+| Medium with Icon Only   | ![Chip Label + Close Icon](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1760336353/sc_medium_with_icon_only_wrwehb.gif)            |
 | Text Only               | ![Chip Label](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759227714/sc_text_only_zhinm8.gif)                                     |
 | Custom Active Color     | ![Chip Label with custom active color](https://res.cloudinary.com/dacnnk5j4/image/upload/w_300,c_scale,q_auto,f_auto/v1759227714/sc_custom_active_color_wudlql.gif)                                                                                                 |
 
@@ -138,7 +138,7 @@ val chipDelegate = object : ChipDelegate {
 
 | Method Name | Parameters | Description |
 | ----------- | ---------- | ----------- |
-| `setChipState()` | `newState: ChipState, fromUser: Boolean = false` | Sets chip state with optional user interaction logging |
+| `setChipState()` | `newState: ChipState, fromUser: Boolean = false` | Sets chip state |
 | `setActiveBackgroundColor()` | `color: Int` | Sets custom background color for active state |
 | `setIconClickable()` | `clickable: Boolean` | Enables/disables icon click functionality |
 | `resetClickCount()` | None | Resets internal click counter |
@@ -264,7 +264,6 @@ chip.setIconClickable(isRemovable)
 ## Performance Considerations
 
 - **Animation Management** — Cancels all running animations before starting new ones to prevent conflicts and ensure smooth transitions
-- **Color Caching** — Caches resolved theme colors to avoid repeated attribute lookups during animations
 - **Click Debouncing** — Built-in 300ms debounce for both chip and icon clicks prevents rapid-fire interactions
 - **State Animation Optimization** — Checks if already animating to target state to prevent unnecessary animation restarts
 

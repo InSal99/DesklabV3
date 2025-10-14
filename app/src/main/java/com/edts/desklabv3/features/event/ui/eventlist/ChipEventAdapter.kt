@@ -14,7 +14,6 @@ class EventChipAdapter(
     private var selectedPosition: Int = 0,
     private val onChipClick: (position: Int, chipText: String) -> Unit
 ) : RecyclerView.Adapter<EventChipAdapter.EventChipViewHolder>() {
-
     init {
         if (selectedPosition < 0 || selectedPosition >= chipTexts.size) {
             selectedPosition = 0
@@ -88,11 +87,6 @@ class EventChipAdapter(
                 chipState = if (isSelected) Chip.ChipState.ACTIVE else Chip.ChipState.INACTIVE
 
                 setOnClickListener {
-//                    if (!isSelected && position != selectedPosition) {
-//                        updateSelectedPosition(position)
-//                        onChipClick(position, chipText)
-//                    }
-
                     val currentTime = System.currentTimeMillis()
                     if (currentTime - lastClickTime < 300) return@setOnClickListener
                     lastClickTime = currentTime

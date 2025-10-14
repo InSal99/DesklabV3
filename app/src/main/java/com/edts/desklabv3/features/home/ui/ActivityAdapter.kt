@@ -14,7 +14,6 @@ class ActivityAdapter(
     private var activities: List<ActivityItem>,
     private val onItemClick: (ActivityItem) -> Unit = {}
 ) : RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityViewHolder {
         val binding = ItemActivityBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -31,7 +30,6 @@ class ActivityAdapter(
     override fun getItemCount(): Int = activities.size
 
     inner class ActivityViewHolder(private val binding: ItemActivityBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(activity: ActivityItem) {
             binding.cardActivity.apply {
                 titleText = activity.title

@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvFilterChips"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:visibility="visible" />
+            tools:visibility="visible"/>
 
         <com.edts.components.input.search.InputSearch
             android:id="@+id/inputSearchEvent"
@@ -37,7 +37,7 @@
             app:inputSearchHint="Cari Event"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFilterChips"
@@ -50,7 +50,7 @@
             android:paddingBottom="@dimen/margin_16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/inputSearchEvent"
-            tools:itemCount="5" />
+            tools:itemCount="5"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMyEvent"
@@ -62,6 +62,6 @@
             android:paddingBottom="@dimen/margin_16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/rvFilterChips"
-            tools:itemCount="5" />
+            tools:itemCount="5"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

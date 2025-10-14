@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.databinding.FragmentOptionCardComponentViewBinding
 
 class OptionCardComponentView : Fragment() {
-
     private var _binding: FragmentOptionCardComponentViewBinding? = null
     private val binding get() = _binding!!
 

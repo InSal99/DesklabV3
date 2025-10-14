@@ -5,20 +5,15 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import com.edts.components.R
 import com.edts.components.databinding.SelectionChipBinding
-import com.edts.components.selection.ChipDelegate
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
@@ -123,10 +118,6 @@ class Chip @JvmOverloads constructor(
     private var iconTintAnimator: ValueAnimator? = null
     private var badgeStrokeAnimator: ValueAnimator? = null
 
-    private companion object {
-        const val TAG = "Chip"
-    }
-
     var delegate: ChipDelegate? = null
 
     private var clickCount = 0
@@ -205,18 +196,7 @@ class Chip @JvmOverloads constructor(
         if (currentTime - lastIconClickTime > clickDebounceDelay) {
             iconClickCount++
             lastIconClickTime = currentTime
-
-            Log.d(TAG, "Icon clicked!")
-            Log.d(TAG, "  - Chip Text: ${chipText ?: "No text"}")
-            Log.d(TAG, "  - Chip State: $chipState")
-            Log.d(TAG, "  - Icon visible: ${chipShowIcon}")
-            Log.d(TAG, "  - Total icon clicks: $iconClickCount")
-            Log.d(TAG, "  - Icon click timestamp: $currentTime")
-            Log.d(TAG, "--------------------")
-
             delegate?.onChipIconClick(this)
-        } else {
-            Log.d(TAG, "Icon click ignored due to debounce (too fast)")
         }
     }
 
@@ -236,7 +216,6 @@ class Chip @JvmOverloads constructor(
     fun resetIconClickCount() {
         val previousCount = iconClickCount
         iconClickCount = 0
-        Log.d(TAG, "Icon '${chipText ?: "Unknown"}' click count reset from $previousCount to 0")
     }
 
     fun getIconClickCount(): Int {
@@ -284,28 +263,10 @@ class Chip @JvmOverloads constructor(
         if (currentTime - lastClickTime > clickDebounceDelay) {
             clickCount++
             lastClickTime = currentTime
-
-            Log.d(TAG, "Chip clicked!")
-            Log.d(TAG, "  - Text: ${chipText ?: "No text"}")
-            Log.d(TAG, "  - Current State: $chipState")
-            Log.d(TAG, "  - Size: $chipSize")
-            Log.d(TAG, "  - Show Icon: $chipShowIcon")
-            Log.d(TAG, "  - Show Badge: $chipShowBadge")
-            Log.d(TAG, "  - Badge Text: ${chipBadgeText ?: "No badge text"}")
-            Log.d(TAG, "  - Total clicks: $clickCount")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-            Log.d(TAG, "  - Total system clicks: $clickCount")
-
             toggleChipState()
-
-            Log.d(TAG, "  - New State: $chipState")
-            Log.d(TAG, "--------------------")
-
             delegate?.onChipClick(this, chipState)
-
             return super.performClick()
         } else {
-            Log.d(TAG, "Chip click ignored due to debounce (too fast)")
             return false
         }
     }
@@ -316,7 +277,6 @@ class Chip @JvmOverloads constructor(
             ChipState.ACTIVE -> ChipState.INACTIVE
             ChipState.INACTIVE -> ChipState.ACTIVE
         }
-        Log.d(TAG, "Chip state toggled: $previousState -> $chipState")
     }
 
     private fun updateChipSize() {
@@ -606,7 +566,6 @@ class Chip @JvmOverloads constructor(
     fun resetClickCount() {
         val previousCount = clickCount
         clickCount = 0
-        Log.d(TAG, "Chip '${chipText ?: "Unknown"}' click count reset from $previousCount to 0")
     }
 
     fun getClickCount(): Int {
@@ -620,13 +579,6 @@ class Chip @JvmOverloads constructor(
 
             if (fromUser) {
                 clickCount++
-                Log.d(TAG, "Chip state changed programmatically by user:")
-                Log.d(TAG, "  - Text: ${chipText ?: "No text"}")
-                Log.d(TAG, "  - Previous State: $previousState")
-                Log.d(TAG, "  - New State: $newState")
-                Log.d(TAG, "  - Total clicks: $clickCount")
-                Log.d(TAG, "--------------------")
-
                 delegate?.onChipClick(this, newState)
             }
         }

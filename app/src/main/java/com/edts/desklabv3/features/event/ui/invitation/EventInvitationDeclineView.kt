@@ -19,7 +19,6 @@ import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.EventInvitation
 
 class EventInvitationDeclineView : Fragment() {
-
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!
     private var loadingDialog: AlertDialog? = null
@@ -49,7 +48,6 @@ class EventInvitationDeclineView : Fragment() {
                 }
             },
             onButtonClick = {
-                // No action
             }
         )
 
@@ -88,7 +86,6 @@ class EventInvitationDeclineView : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-                // No action
             }
         )
     }

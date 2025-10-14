@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackgroundPrimary" >
+    android:background="?attr/colorBackgroundPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_marginHorizontal="@dimen/margin_16dp">
+        android:gravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/margin_32dp" >
+            android:layout_marginTop="@dimen/margin_32dp"
+            android:layout_marginHorizontal="@dimen/margin_16dp">
 
             <ImageView
                 android:id="@+id/btnLibInputFieldBack"
@@ -25,7 +25,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -34,243 +34,251 @@
                 android:text="Input Field"
                 style="?attr/d3SemiBold"
                 android:textColor="?attr/colorForegroundPrimary"
-                android:layout_marginStart="@dimen/margin_12dp" />
-
+                android:layout_marginStart="@dimen/margin_12dp"/>
         </LinearLayout>
 
-        <com.edts.components.input.field.InputField
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:fieldHint="Enter your full name"
-            app:fieldRequired="true"
-            app:fieldDescription="This is description"
-            app:fieldTitle="Name"
-            app:fieldEnabled="true"
-            app:supportingText="Some supporting text"
-            app:inputFieldType="textInput"
-            app:maxLength="50" />
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="@dimen/margin_16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:fieldHint="Enter your full name"
+                    app:fieldRequired="true"
+                    app:fieldDescription="This is description"
+                    app:fieldTitle="Name"
+                    app:fieldEnabled="true"
+                    app:supportingText="Some supporting text"
+                    app:inputFieldType="textInput"
+                    app:maxLength="50"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldHint="Enter your full name"
-            app:fieldRequired="true"
-            app:fieldDescription="This is description"
-            app:fieldTitle="Name"
-            app:fieldEnabled="true"
-            app:errorText="Some error"
-            app:supportingText="Some supporting text"
-            app:inputFieldType="textInput"
-            app:maxLength="50" />
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldHint="Enter your full name"
+                    app:fieldRequired="true"
+                    app:fieldDescription="This is description"
+                    app:fieldTitle="Name"
+                    app:fieldEnabled="true"
+                    app:errorText="Some error"
+                    app:supportingText="Some supporting text"
+                    app:inputFieldType="textInput"
+                    app:maxLength="50"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldHint="Enter your full name"
-            app:fieldRequired="true"
-            app:fieldDescription="This is description"
-            app:fieldTitle="Name"
-            app:fieldEnabled="false"
-            app:supportingText="Some supporting text"
-            app:inputFieldType="textInput"
-            app:maxLength="50" />
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldHint="Enter your full name"
+                    app:fieldRequired="true"
+                    app:fieldDescription="This is description"
+                    app:fieldTitle="Name"
+                    app:fieldEnabled="false"
+                    app:supportingText="Some supporting text"
+                    app:inputFieldType="textInput"
+                    app:maxLength="50"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20dp"
-            app:fieldHint="Enter your age"
-            app:fieldRequired="true"
-            app:fieldDescription="This is description"
-            app:fieldTitle="Age"
-            app:fieldEnabled="true"
-            app:supportingText="Some supporting text"
-            app:inputFieldType="numberInput"
-            app:maxLength="50" />
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20dp"
+                    app:fieldHint="Enter your age"
+                    app:fieldRequired="true"
+                    app:fieldDescription="This is description"
+                    app:fieldTitle="Age"
+                    app:fieldEnabled="true"
+                    app:supportingText="Some supporting text"
+                    app:inputFieldType="numberInput"
+                    app:maxLength="50"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldHint="Enter yourage"
-            app:fieldRequired="true"
-            app:fieldDescription="This is description"
-            app:fieldTitle="Age"
-            app:fieldEnabled="true"
-            app:errorText="Some error"
-            app:supportingText="Some supporting text"
-            app:inputFieldType="numberInput"
-            app:maxLength="50" />
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldHint="Enter yourage"
+                    app:fieldRequired="true"
+                    app:fieldDescription="This is description"
+                    app:fieldTitle="Age"
+                    app:fieldEnabled="true"
+                    app:errorText="Some error"
+                    app:supportingText="Some supporting text"
+                    app:inputFieldType="numberInput"
+                    app:maxLength="50"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldHint="Enter your age"
-            app:fieldRequired="true"
-            app:fieldDescription="This is description"
-            app:fieldTitle="Age"
-            app:fieldEnabled="false"
-            app:supportingText="Some supporting text"
-            app:inputFieldType="numberInput"
-            app:maxLength="50" />
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldHint="Enter your age"
+                    app:fieldRequired="true"
+                    app:fieldDescription="This is description"
+                    app:fieldTitle="Age"
+                    app:fieldEnabled="false"
+                    app:supportingText="Some supporting text"
+                    app:inputFieldType="numberInput"
+                    app:maxLength="50"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20dp"
-            app:fieldDescription="Provide a brief description"
-            app:fieldHint="Enter description here"
-            app:fieldTitle="Description"
-            app:fieldEnabled="true"
-            app:inputFieldType="textArea"
-            app:supportingText="Some supporting text"
-            app:maxLength="200"
-            app:maxLines="5"
-            app:minLines="3" />
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20dp"
+                    app:fieldDescription="Provide a brief description"
+                    app:fieldHint="Enter description here"
+                    app:fieldTitle="Description"
+                    app:fieldEnabled="true"
+                    app:inputFieldType="textArea"
+                    app:supportingText="Some supporting text"
+                    app:maxLength="200"
+                    app:maxLines="5"
+                    app:minLines="3"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldDescription="Provide a brief description"
-            app:fieldHint="Enter description here"
-            app:fieldTitle="Description"
-            app:fieldEnabled="true"
-            app:errorText="Some error"
-            app:inputFieldType="textArea"
-            app:supportingText="Some supporting text"
-            app:maxLength="200"
-            app:maxLines="5"
-            app:minLines="3" />
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldDescription="Provide a brief description"
+                    app:fieldHint="Enter description here"
+                    app:fieldTitle="Description"
+                    app:fieldEnabled="true"
+                    app:errorText="Some error"
+                    app:inputFieldType="textArea"
+                    app:supportingText="Some supporting text"
+                    app:maxLength="200"
+                    app:maxLines="5"
+                    app:minLines="3"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldDescription="Provide a brief description"
-            app:fieldHint="Enter description here"
-            app:fieldTitle="Description"
-            app:fieldEnabled="false"
-            app:inputFieldType="textArea"
-            app:maxLength="200"
-            app:maxLines="5"
-            app:minLines="3"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldDescription="Provide a brief description"
+                    app:fieldHint="Enter description here"
+                    app:fieldTitle="Description"
+                    app:fieldEnabled="false"
+                    app:inputFieldType="textArea"
+                    app:maxLength="200"
+                    app:maxLines="5"
+                    app:minLines="3"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20dp"
-            app:fieldHint="Select your country"
-            app:fieldDescription="Some description"
-            app:fieldRequired="true"
-            app:fieldEnabled="true"
-            app:fieldTitle="Country"
-            app:inputFieldType="dropdown"
-            app:options="@array/countries"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20dp"
+                    app:fieldHint="Select your country"
+                    app:fieldDescription="Some description"
+                    app:fieldRequired="true"
+                    app:fieldEnabled="true"
+                    app:fieldTitle="Country"
+                    app:inputFieldType="dropdown"
+                    app:options="@array/countries"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldHint="Select your country"
-            app:fieldDescription="Some description"
-            app:fieldRequired="true"
-            app:fieldEnabled="true"
-            app:errorText="Some error"
-            app:fieldTitle="Country"
-            app:inputFieldType="dropdown"
-            app:options="@array/countries"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldHint="Select your country"
+                    app:fieldDescription="Some description"
+                    app:fieldRequired="true"
+                    app:fieldEnabled="true"
+                    app:errorText="Some error"
+                    app:fieldTitle="Country"
+                    app:inputFieldType="dropdown"
+                    app:options="@array/countries"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldHint="Select your country"
-            app:fieldDescription="Some description"
-            app:fieldRequired="true"
-            app:fieldEnabled="false"
-            app:fieldTitle="Country"
-            app:inputFieldType="dropdown"
-            app:options="@array/countries"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldHint="Select your country"
+                    app:fieldDescription="Some description"
+                    app:fieldRequired="true"
+                    app:fieldEnabled="false"
+                    app:fieldTitle="Country"
+                    app:inputFieldType="dropdown"
+                    app:options="@array/countries"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20dp"
-            app:fieldRequired="true"
-            app:fieldDescription="Some description"
-            app:fieldEnabled="true"
-            app:fieldTitle="Gender"
-            app:inputFieldType="radioGroup"
-            app:options="@array/gender_options"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20dp"
+                    app:fieldRequired="true"
+                    app:fieldDescription="Some description"
+                    app:fieldEnabled="true"
+                    app:fieldTitle="Gender"
+                    app:inputFieldType="radioGroup"
+                    app:options="@array/gender_options"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldRequired="true"
-            app:errorText="Some Error"
-            app:fieldDescription="Some description"
-            app:fieldEnabled="true"
-            app:fieldTitle="Gender"
-            app:inputFieldType="radioGroup"
-            app:options="@array/gender_options"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldRequired="true"
+                    app:errorText="Some Error"
+                    app:fieldDescription="Some description"
+                    app:fieldEnabled="true"
+                    app:fieldTitle="Gender"
+                    app:inputFieldType="radioGroup"
+                    app:options="@array/gender_options"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldRequired="true"
-            app:fieldDescription="Some description"
-            app:fieldEnabled="false"
-            app:fieldTitle="Gender"
-            app:inputFieldType="radioGroup"
-            app:options="@array/gender_options"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldRequired="true"
+                    app:fieldDescription="Some description"
+                    app:fieldEnabled="false"
+                    app:fieldTitle="Gender"
+                    app:inputFieldType="radioGroup"
+                    app:options="@array/gender_options"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20dp"
-            app:fieldDescription="Select all that apply"
-            app:fieldTitle="Interests"
-            app:fieldEnabled="true"
-            app:inputFieldType="checkboxGroup"
-            app:options="@array/interests"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20dp"
+                    app:fieldDescription="Select all that apply"
+                    app:fieldTitle="Interests"
+                    app:fieldEnabled="true"
+                    app:inputFieldType="checkboxGroup"
+                    app:options="@array/interests"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldDescription="Select all that apply"
-            app:fieldTitle="Interests"
-            app:errorText="Some error"
-            app:inputFieldType="checkboxGroup"
-            app:options="@array/interests"
-            app:supportingText="Some supporting text"/>
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldDescription="Select all that apply"
+                    app:fieldTitle="Interests"
+                    app:errorText="Some error"
+                    app:inputFieldType="checkboxGroup"
+                    app:options="@array/interests"
+                    app:supportingText="Some supporting text"/>
 
-        <com.edts.components.input.field.InputField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_12dp"
-            app:fieldDescription="Select all that apply"
-            app:fieldTitle="Interests"
-            app:fieldEnabled="false"
-            app:inputFieldType="checkboxGroup"
-            app:options="@array/interests"
-            app:supportingText="Some supporting text"/>
-
+                <com.edts.components.input.field.InputField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    app:fieldDescription="Select all that apply"
+                    app:fieldTitle="Interests"
+                    app:fieldEnabled="false"
+                    app:inputFieldType="checkboxGroup"
+                    app:options="@array/interests"
+                    app:supportingText="Some supporting text"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-
-</ScrollView>
+</FrameLayout>

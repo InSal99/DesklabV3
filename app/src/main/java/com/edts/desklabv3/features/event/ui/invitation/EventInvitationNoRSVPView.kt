@@ -3,7 +3,6 @@ package com.edts.desklabv3.features.event.ui.invitation
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,6 @@ import com.edts.desklabv3.features.event.model.EventInvitation
 import com.edts.desklabv3.features.SpaceItemDecoration
 
 class EventInvitationNoRSVPView : Fragment() {
-
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!
     private var loadingDialog: AlertDialog? = null
@@ -91,7 +89,6 @@ class EventInvitationNoRSVPView : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-                // No Action
             }
         )
     }

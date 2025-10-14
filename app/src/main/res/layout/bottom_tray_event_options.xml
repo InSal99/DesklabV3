@@ -11,5 +11,4 @@
         android:nestedScrollingEnabled="false"
         android:overScrollMode="never"
         android:layout_marginHorizontal="@dimen/margin_16dp"/>
-
 </LinearLayout>

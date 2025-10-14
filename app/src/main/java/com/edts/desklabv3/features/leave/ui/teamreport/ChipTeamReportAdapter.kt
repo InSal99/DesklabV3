@@ -84,10 +84,6 @@ class ChipTeamReportAdapter(
                 chipState = if (isSelected) Chip.ChipState.ACTIVE else Chip.ChipState.INACTIVE
 
                 setOnClickListener {
-//                    if (!isSelected && position != selectedPosition) {
-//                        updateSelectedPosition(position)
-//                        onChipClick(position, chipText)
-//                    }
                     val currentTime = System.currentTimeMillis()
                     if (currentTime - lastClickTime < 300) return@setOnClickListener
                     lastClickTime = currentTime

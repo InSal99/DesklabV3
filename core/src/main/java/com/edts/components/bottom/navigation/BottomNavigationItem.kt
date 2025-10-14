@@ -6,7 +6,6 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -74,7 +73,6 @@ class BottomNavigationItem @JvmOverloads constructor(
     var clickCount: Int = 0
         private set(value) {
             field = value
-            Log.d(TAG, "Item '${navText ?: "Unknown"}' click count updated: $value")
         }
 
     private companion object {
@@ -83,7 +81,6 @@ class BottomNavigationItem @JvmOverloads constructor(
         const val INDICATOR_ANIMATION_DURATION = 200L
         const val BOUNCE_SCALE_FACTOR = 1.15f
         const val BOUNCE_OVERSHOOT_TENSION = 1.2f
-        const val TAG = "BottomNavigationItem"
     }
 
     init {
@@ -124,47 +121,22 @@ class BottomNavigationItem @JvmOverloads constructor(
 
     private fun handleItemClick() {
         clickCount++
-
-        Log.d(TAG, "Bottom navigation item clicked:")
-        Log.d(TAG, "  - Text: ${navText ?: "Unknown"}")
-        Log.d(TAG, "  - Position: $itemPosition")
-        Log.d(TAG, "  - Current State: $navState")
-        Log.d(TAG, "  - Click Count: $clickCount")
-        Log.d(TAG, "  - Total System Clicks: $clickCount")
-
         animateIconBounce()
 
-        val previousState = navState
-
         if (delegate != null) {
-            Log.d(TAG, "  - Has delegate, notifying parent component")
             delegate?.onBottomNavigationItemClicked(this, itemPosition, clickCount)
         } else {
             val newState = if (navState == NavState.ACTIVE) NavState.INACTIVE else NavState.ACTIVE
-            Log.d(TAG, "  - Standalone mode, changing state to: $newState")
             navState = newState
         }
-
-        Log.d(TAG, "  - Final State: $navState")
-        Log.d(TAG, "--------------------")
-    }
-
-    fun performClick(fromUser: Boolean = false) {
-        if (fromUser) {
-            Log.d(TAG, "Programmatic click triggered for item: ${navText ?: "Unknown"}")
-        }
-        handleItemClick()
     }
 
     fun resetClickCount() {
         val oldCount = clickCount
         clickCount = 0
-        Log.d(TAG, "Click count reset for item '${navText ?: "Unknown"}': $oldCount -> 0")
     }
 
     private fun animateIconBounce() {
-        Log.d(TAG, "Starting bounce animation for icon in item: ${navText ?: "Unknown"}")
-
         val currentScaleX = binding.ivBottomNavigation.scaleX
         val currentScaleY = binding.ivBottomNavigation.scaleY
 
@@ -211,11 +183,6 @@ class BottomNavigationItem @JvmOverloads constructor(
         }
 
         bounceAnimator.start()
-
-        Log.d(TAG, "Bounce animation started with:")
-        Log.d(TAG, "  - Scale factor: $BOUNCE_SCALE_FACTOR")
-        Log.d(TAG, "  - Duration: ${BOUNCE_ANIMATION_DURATION}ms")
-        Log.d(TAG, "  - Overshoot tension: $BOUNCE_OVERSHOOT_TENSION")
     }
 
     private fun updateNavState(animated: Boolean = true) {

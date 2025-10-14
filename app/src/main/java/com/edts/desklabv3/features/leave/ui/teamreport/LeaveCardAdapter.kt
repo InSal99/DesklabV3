@@ -10,7 +10,6 @@ class LeaveCardAdapter(
     private var employees: List<Employee>,
     private val onEmployeeClick: (Employee) -> Unit = {}
 ) : RecyclerView.Adapter<LeaveCardAdapter.LeaveCardViewHolder>() {
-
     class LeaveCardViewHolder(private val binding: ItemLeaveCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(employee: Employee, onEmployeeClick: (Employee) -> Unit) {
             binding.leaveCard.apply {

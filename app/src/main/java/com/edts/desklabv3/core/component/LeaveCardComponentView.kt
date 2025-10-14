@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.databinding.FragmentLeaveCardComponentViewBinding
 
 class LeaveCardComponentView : Fragment() {
-
     private var _binding: FragmentLeaveCardComponentViewBinding? = null
     private val binding get() = _binding!!
 

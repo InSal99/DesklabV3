@@ -10,7 +10,6 @@ import com.edts.components.modal.ModalityConfirmationPopUp
 import com.edts.desklabv3.databinding.FragmentEventModalityConfirmationComponentBinding
 
 class EventModalityConfirmationComponentFragment : Fragment() {
-
     private var _binding: FragmentEventModalityConfirmationComponentBinding? = null
     private val binding get() = _binding!!
 

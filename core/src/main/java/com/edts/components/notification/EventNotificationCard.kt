@@ -3,13 +3,11 @@ package com.edts.components.notification
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.isVisible
 import com.edts.components.R
 import com.edts.components.databinding.EventNotificationCardBinding
-// Import the new helper functions
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView

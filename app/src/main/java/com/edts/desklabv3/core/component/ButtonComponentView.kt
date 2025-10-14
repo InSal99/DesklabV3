@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.edts.desklabv3.databinding.FragmentButtonComponentViewBinding
 
 class ButtonComponentView : Fragment() {
-
     private var _binding: FragmentButtonComponentViewBinding? = null
     private val binding get() = _binding!!
 

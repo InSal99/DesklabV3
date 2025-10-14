@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -19,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_32dp"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_chevron_left"
-                app:tint="?attr/colorForegroundSecondary" />
+                app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvLibraryTitle"
@@ -37,38 +37,46 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:text="Badge"
-                android:textColor="?attr/colorForegroundPrimary" />
-
+                android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.badge.Badge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:badgeBackgroundTint="?attr/colorBackgroundInfoSubtle"
-            app:badgeStrokeColor="@android:color/transparent"
-            app:badgeTextColor="?attr/colorForegroundInfoIntense"
-            app:badgeText="5"
-            app:showText="true" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="@dimen/margin_16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.badge.Badge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:badgeBackgroundTint="?attr/colorBackgroundInfoSubtle"
+                    app:badgeStrokeColor="@android:color/transparent"
+                    app:badgeTextColor="?attr/colorForegroundInfoIntense"
+                    app:badgeText="5"
+                    app:showText="true"/>
 
-        <com.edts.components.badge.Badge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:badgeStrokeColor="?attr/colorStrokeAttentionIntense"
-            app:badgeBackgroundTint="?attr/colorBackgroundAttentionSubtle"
-            app:badgeTextColor="?attr/colorForegroundAttentionIntense"
-            app:badgeText="5"
-            app:showText="true" />
+                <com.edts.components.badge.Badge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:badgeStrokeColor="?attr/colorStrokeAttentionIntense"
+                    app:badgeBackgroundTint="?attr/colorBackgroundAttentionSubtle"
+                    app:badgeTextColor="?attr/colorForegroundAttentionIntense"
+                    app:badgeText="5"
+                    app:showText="true"/>
 
-        <com.edts.components.badge.Badge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:badgeStrokeColor="?attr/colorStrokeWarningSubtle"
-            app:badgeText="5"
-            app:showText="false" />
-
+                <com.edts.components.badge.Badge
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:badgeStrokeColor="?attr/colorStrokeWarningSubtle"
+                    app:badgeText="5"
+                    app:showText="false"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-
 </FrameLayout>

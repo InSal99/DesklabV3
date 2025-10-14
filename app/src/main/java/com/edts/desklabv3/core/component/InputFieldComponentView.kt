@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.databinding.FragmentInputFieldComponentViewBinding
 
 class InputFieldComponentView : Fragment() {
-
     private var _binding: FragmentInputFieldComponentViewBinding? = null
     private val binding get() = _binding!!
 

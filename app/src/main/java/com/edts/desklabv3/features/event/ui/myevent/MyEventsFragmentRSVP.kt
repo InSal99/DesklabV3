@@ -22,7 +22,6 @@ import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModel
 import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModelFactory
 
 class MyEventsFragmentRSVP : Fragment() {
-
     private var _binding: FragmentMyEventsBinding? = null
     private val binding get() = _binding!!
 
@@ -50,7 +49,6 @@ class MyEventsFragmentRSVP : Fragment() {
     }
 
     private fun setupUI() {
-        // Setup Event List RecyclerView
         eventAdapter = MyEventAdapter { event ->
             Toast.makeText(requireContext(), "Clicked on: ${event.title}", Toast.LENGTH_SHORT).show()
         }
@@ -61,7 +59,6 @@ class MyEventsFragmentRSVP : Fragment() {
             setItemViewCacheSize(10)
         }
 
-        // Setup Filter Chips RecyclerView
         filterChipAdapter = FilterChipAdapter { chip -> viewModel.selectFilter(chip.text) }
         binding.rvFilterChips.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -71,7 +68,6 @@ class MyEventsFragmentRSVP : Fragment() {
             setItemViewCacheSize(5)
         }
 
-        // Setup Search Listener
         binding.inputSearchEvent.delegate = object : InputSearchDelegate {
             override fun onSearchTextChange(inputSearch: InputSearch, text: String, changeCount: Int) {
                 viewModel.setSearchQuery(text)

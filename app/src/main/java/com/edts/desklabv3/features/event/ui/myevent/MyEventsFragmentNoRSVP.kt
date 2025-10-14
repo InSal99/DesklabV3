@@ -22,7 +22,6 @@ import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModel
 import com.edts.desklabv3.features.event.viewmodel.MyEventsViewModelFactory
 
 class MyEventsFragmentNoRSVP : Fragment() {
-
     private var _binding: FragmentMyEventsBinding? = null
     private val binding get() = _binding!!
 
@@ -50,7 +49,6 @@ class MyEventsFragmentNoRSVP : Fragment() {
     }
 
     private fun setupUI() {
-        // Setup Event List RecyclerView
         eventAdapter = MyEventAdapter { event ->
             Toast.makeText(requireContext(), "Clicked on: ${event.title}", Toast.LENGTH_SHORT).show()
         }
@@ -61,7 +59,6 @@ class MyEventsFragmentNoRSVP : Fragment() {
             setItemViewCacheSize(10)
         }
 
-        // Setup Filter Chips RecyclerView
         filterChipAdapter = FilterChipAdapter { chip -> viewModel.selectFilter(chip.text) }
         binding.rvFilterChips.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -71,7 +68,6 @@ class MyEventsFragmentNoRSVP : Fragment() {
             setItemViewCacheSize(5)
         }
 
-        // Setup Search Listener
         binding.inputSearchEvent.delegate = object : InputSearchDelegate {
             override fun onSearchTextChange(inputSearch: InputSearch, text: String, changeCount: Int) {
                 viewModel.setSearchQuery(text)
@@ -109,7 +105,6 @@ class MyEventsFragmentNoRSVP : Fragment() {
             title: String,
             eventLocation: MyEventCard.MyEventLocation
         ): MyEvent {
-            // Map status to MyEventType
             val myEventType = when(status) {
                 MyEventStatus.BERLANGSUNG -> MyEventCard.MyEventType.LIVE
                 MyEventStatus.TERDAFTAR -> MyEventCard.MyEventType.REGISTERED
@@ -117,7 +112,6 @@ class MyEventsFragmentNoRSVP : Fragment() {
                 MyEventStatus.TIDAK_HADIR -> MyEventCard.MyEventType.NOTATTENDED
             }
 
-            // Map status to badge configuration
             val (badgeText, badgeType) = when(status) {
                 MyEventStatus.BERLANGSUNG -> "Berlangsung" to EventCardBadge.BadgeType.LIVE
                 MyEventStatus.TERDAFTAR -> "Terdaftar" to EventCardBadge.BadgeType.REGISTERED

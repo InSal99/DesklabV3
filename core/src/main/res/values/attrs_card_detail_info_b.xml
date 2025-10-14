@@ -10,6 +10,7 @@
             <enum name="custom" value="1" />
         </attr>
         <attr name="cdibLeftSlotSrc" format="reference" />
+        <attr name="cdibLeftSlotUrl" format="string" />
         <attr name="cdibLeftSlotSize" format="dimension" />
         <attr name="cdibLeftSlotBackgroundColor" format="reference|color" />
         <attr name="cdibLeftSlotTint" format="reference|color" />

@@ -11,7 +11,6 @@ class EventInvitationAdapter(
     private val onCardClick: (EventInvitation) -> Unit,
     private val onButtonClick: (EventInvitation) -> Unit
 ) : RecyclerView.Adapter<EventInvitationAdapter.NotificationViewHolder>() {
-
     class NotificationViewHolder(val card: EventNotificationCard) : RecyclerView.ViewHolder(card) {
 
         fun bind(
@@ -19,14 +18,12 @@ class EventInvitationAdapter(
             onCardClick: (EventInvitation) -> Unit,
             onButtonClick: (EventInvitation) -> Unit
         ) {
-
             card.apply {
                 title = item.title
                 description = item.description
                 buttonText = item.buttonText
                 isButtonVisible = item.isButtonVisible
                 eventCategory = item.eventCategory
-
                 eventNotificationCardDelegate = object : EventNotificationCardDelegate {
                     override fun onCardClick(notificationCard: EventNotificationCard) {
                         onCardClick(item)

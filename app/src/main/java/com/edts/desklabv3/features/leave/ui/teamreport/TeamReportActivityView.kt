@@ -4,7 +4,6 @@ import EmployeeActivityAdapter
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -76,7 +75,6 @@ class TeamReportActivityView : Fragment() {
         updateFilterDisplay()
 
         binding.cvFilterHorizontal.setOnClickListener {
-            Log.d("TeamReportView", "Filter clicked")
             setupBottomTray()
         }
     }

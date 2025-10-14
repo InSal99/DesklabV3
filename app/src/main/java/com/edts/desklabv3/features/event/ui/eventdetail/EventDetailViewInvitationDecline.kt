@@ -32,7 +32,6 @@ import formatTimeRange
 import setupHtmlDescription
 
 class EventDetailViewInvitationDecline : Fragment() {
-
     private var _binding: FragmentEventDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var timeLocationAdapter: EventTimeLocationAdapter
@@ -240,10 +239,8 @@ class EventDetailViewInvitationDecline : Fragment() {
             ).apply {
                 setSupportingText("Minimum 10 karakter")
             }
-
             configure(config, "other_reason")
         }
-
         trayContentContainer?.addView(inputField)
     }
 
@@ -351,7 +348,6 @@ class EventDetailViewInvitationDecline : Fragment() {
     companion object {
         const val EVENT_START_DATETIME = "2025-07-24 15:00:00"
         const val EVENT_END_DATETIME = "2025-07-24 17:00:00"
-
         const val EVENT_DESCRIPTION_HTML = """
             <p>Welcome to Spark Talks!</p>
             <p>Spark Talks is our new sharing session series to ignite ideas and spread knowledge across EDTS. This session is designed to create a space where trainees share fresh insights with Edtizens sparking curiosity, collaboration, and growth!</p>
