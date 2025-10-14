@@ -43,25 +43,20 @@ class EventInvitationDeclineView : Fragment() {
         val notificationAdapter = EventInvitationAdapter(
             notifications = notificationList,
             onCardClick = { notification ->
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Card clicked: ${notification.title}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
                 if(notification.title == "Simplifying UX Complexity: Bridging the Gap Between Design and Development"){
                     val result = bundleOf("fragment_class" to "EventDetailViewTolakUndangan")
                     requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
                 }
             },
             onButtonClick = {
-//                showConfirmationModal()
+                // No action
             }
         )
 
         val itemDecoration = SpaceItemDecoration(
             requireContext(),
             R.dimen.margin_8dp,
-            SpaceItemDecoration.Companion.VERTICAL
+            SpaceItemDecoration.VERTICAL
         )
 
         binding.rvEventInvitation.apply {
@@ -77,7 +72,7 @@ class EventInvitationDeclineView : Fragment() {
             EventInvitation(
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Kamis, 24 Juli 2025, pukul 13:00 – 15:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
+                eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT
             )
         )
     }
@@ -93,7 +88,7 @@ class EventInvitationDeclineView : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-//                Toast.makeText(requireContext(), "Modal Closed.", Toast.LENGTH_SHORT).show()
+                // No action
             }
         )
     }

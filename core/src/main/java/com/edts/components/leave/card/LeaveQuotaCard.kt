@@ -1,20 +1,20 @@
 package com.edts.components.leave.card
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
 import com.edts.components.databinding.LeaveQuotaCardBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.color.MaterialColors
 
 class LeaveQuotaCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
+    defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
     private val binding: LeaveQuotaCardBinding =
         LeaveQuotaCardBinding.inflate(LayoutInflater.from(context), this, true)
@@ -45,31 +45,36 @@ class LeaveQuotaCard @JvmOverloads constructor(
 
     init {
         setupCardAppearance()
-        parseAttributes(attrs)
+        applyStyledAttributes(attrs)
     }
 
-    private fun parseAttributes(attrs: AttributeSet?) {
-        attrs?.let {
-            context.withStyledAttributes(it, R.styleable.LeaveQuotaCard, 0, 0) {
-                title = getString(R.styleable.LeaveQuotaCard_leaveQuotaTitle)
-                leaveQuota = getInt(R.styleable.LeaveQuotaCard_leaveQuota, 0)
-                expiredDate = getString(R.styleable.LeaveQuotaCard_expiredDate)
-                leaveUsed = getInt(R.styleable.LeaveQuotaCard_leaveUsed, 0)
-            }
+    private fun applyStyledAttributes(attrs: AttributeSet?) {
+        context.withStyledAttributes(attrs, R.styleable.LeaveQuotaCard, 0, 0) {
+            title = getString(R.styleable.LeaveQuotaCard_leaveQuotaTitle)
+            leaveQuota = getInt(R.styleable.LeaveQuotaCard_leaveQuota, 0)
+            expiredDate = getString(R.styleable.LeaveQuotaCard_expiredDate)
+            leaveUsed = getInt(R.styleable.LeaveQuotaCard_leaveUsed, 0)
         }
     }
 
     private fun setupCardAppearance() {
-        strokeColor = MaterialColors.getColor(this, R.attr.colorStrokeSubtle)
-        radius = resources.getDimension(R.dimen.radius_8dp)
-        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        cardElevation = resources.getDimension(R.dimen.dimen_1dp)
+        val strokeSubtleColor = context.resolveColorAttribute(
+            R.attr.colorStrokeSubtle,
+            R.color.colorNeutral30
+        )
+        val cornerRadius = 8f.dpToPx
+        val strokeWidth = 1.dpToPx
+        val elevation = 1f.dpToPx
+
+        this.radius = cornerRadius
+        this.cardElevation = elevation
+        this.strokeColor = strokeSubtleColor
+        this.strokeWidth = strokeWidth
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val shadowColor = MaterialColors.getColor(
-                context,
+            val shadowColor = context.resolveColorAttribute(
                 R.attr.colorForegroundPrimary,
-                Color.BLACK
+                R.color.color000
             )
             outlineAmbientShadowColor = shadowColor
             outlineSpotShadowColor = shadowColor
