@@ -54,7 +54,7 @@ class EventInvitationDeclineView : Fragment() {
         val itemDecoration = SpaceItemDecoration(
             requireContext(),
             R.dimen.margin_8dp,
-            SpaceItemDecoration.Companion.VERTICAL
+            SpaceItemDecoration.VERTICAL
         )
 
         binding.rvEventInvitation.apply {
@@ -70,7 +70,7 @@ class EventInvitationDeclineView : Fragment() {
             EventInvitation(
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Kamis, 24 Juli 2025, pukul 13:00 – 15:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
+                eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT
             )
         )
     }

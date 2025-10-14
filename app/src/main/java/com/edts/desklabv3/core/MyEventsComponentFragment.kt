@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.R
 import com.edts.components.event.card.EventCardBadge
+import com.edts.components.myevent.card.MyEventCard
 import com.edts.desklabv3.databinding.FragmentMyEventsComponentBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.MyEvent
@@ -62,12 +63,29 @@ class MyEventsComponentFragment : Fragment() {
     }
 
     private fun createSampleEventData(): List<MyEvent> {
-        fun createMyEvent(status: MyEventStatus, date: String, day: String, month: String, time: String, title: String, eventType: String): MyEvent {
+        fun createMyEvent(
+            status: MyEventStatus,
+            date: String,
+            day: String,
+            month: String,
+            time: String,
+            title: String,
+            eventLocation: MyEventCard.MyEventLocation
+        ): MyEvent {
+            // Map status to MyEventType
+            val myEventType = when(status) {
+                MyEventStatus.BERLANGSUNG -> MyEventCard.MyEventType.LIVE
+                MyEventStatus.TERDAFTAR -> MyEventCard.MyEventType.REGISTERED
+                MyEventStatus.HADIR -> MyEventCard.MyEventType.ATTENDED
+                MyEventStatus.TIDAK_HADIR -> MyEventCard.MyEventType.NOTATTENDED
+            }
+
+            // Map status to badge configuration
             val (badgeText, badgeType) = when(status) {
                 MyEventStatus.BERLANGSUNG -> "Berlangsung" to EventCardBadge.BadgeType.LIVE
                 MyEventStatus.TERDAFTAR -> "Terdaftar" to EventCardBadge.BadgeType.REGISTERED
-                MyEventStatus.HADIR -> "Hadir" to EventCardBadge.BadgeType.REGISTERED
-                MyEventStatus.TIDAK_HADIR -> "Tidak Hadir" to EventCardBadge.BadgeType.LIVE
+                MyEventStatus.HADIR -> "Hadir" to EventCardBadge.BadgeType.ATTENDED
+                MyEventStatus.TIDAK_HADIR -> "Tidak Hadir" to EventCardBadge.BadgeType.NOTATTENDED
             }
 
             return MyEvent(
@@ -77,9 +95,12 @@ class MyEventsComponentFragment : Fragment() {
                 month = month,
                 time = time,
                 title = title,
-                eventType = eventType,
+                myEventType = myEventType,
+                myEventLocation = eventLocation,
                 badgeText = badgeText,
-                badgeType = badgeType
+                badgeType = badgeType,
+                isBadgeVisible = true,
+                badgeSize = EventCardBadge.BadgeSize.SMALL
             )
         }
 
@@ -91,7 +112,7 @@ class MyEventsComponentFragment : Fragment() {
                 month = "SEP",
                 time = "18:00 - 20:00 WIB",
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
-                eventType = "Hybrid Event"
+                eventLocation = MyEventCard.MyEventLocation.HYBRID
             ),
             createMyEvent(
                 status = MyEventStatus.TERDAFTAR,
@@ -100,7 +121,7 @@ class MyEventsComponentFragment : Fragment() {
                 month = "SEP",
                 time = "10:00 - 12:00 WIB",
                 title = "IT Security Awareness: Stay Ahead of Threats, Stay Secure",
-                eventType = "Online Event"
+                eventLocation = MyEventCard.MyEventLocation.ONLINE
             ),
             createMyEvent(
                 status = MyEventStatus.HADIR,
@@ -109,7 +130,7 @@ class MyEventsComponentFragment : Fragment() {
                 month = "SEP",
                 time = "09:00 - 17:00 WIB",
                 title = "Game Night with EDTS: Mobile Legend Online Tournament 2025",
-                eventType = "Offline Event"
+                eventLocation = MyEventCard.MyEventLocation.OFFLINE
             ),
             createMyEvent(
                 status = MyEventStatus.TIDAK_HADIR,
@@ -118,7 +139,7 @@ class MyEventsComponentFragment : Fragment() {
                 month = "OCT",
                 time = "13:00 - 15:00 WIB",
                 title = "EDTS Town-Hall 2025: Power of Navigating Changes",
-                eventType = "Hybrid Event"
+                eventLocation = MyEventCard.MyEventLocation.HYBRID
             )
         )
     }
