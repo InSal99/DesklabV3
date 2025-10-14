@@ -262,7 +262,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
                 description = "Dengan melanjutkan, Anda akan terdaftar sebagai peserta. Lanjutkan pendaftaran?",
                 confirmButtonLabel = "Ya, Lanjutkan",
                 closeButtonLabel = "Tidak",
-                isDismissible = true,
                 onConfirm = {
                     submitForm(responses)
                 },
