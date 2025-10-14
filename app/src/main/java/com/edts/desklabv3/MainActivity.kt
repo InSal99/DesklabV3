@@ -218,40 +218,40 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
         isVisible: Boolean
     ) {
         val header = binding.cvHeaderTeamReportActivity
-        val delay = if (isVisible) 0L else 100L
+        header.removeCallbacks(null)
 
-        header.postDelayed({
-            val transitionSet = TransitionSet().apply {
-                if (isVisible) {
-                    addTransition(Slide(Gravity.TOP).apply { duration = 125 })
-                } else {
-                    addTransition(Fade(Fade.OUT).apply { duration = 150 })
-                }
-            }
-            TransitionManager.beginDelayedTransition(header, transitionSet)
-            header.visibility = if (isVisible) View.VISIBLE else View.GONE
+        if (isVisible) {
+            title?.let { header.sectionTitleText = it }
+            subtitle?.let { header.sectionSubtitleText = it }
 
-            if (isVisible) {
-                title?.let { header.sectionTitleText = it }
-                subtitle?.let { header.sectionSubtitleText = it }
+            header.showLeftButton = showLeftButton
+            header.showRightButton = showRightButton
+            rightButtonIconRes?.let { header.rightButtonSrc = it }
 
-                header.showLeftButton = showLeftButton
-                header.showRightButton = showRightButton
-                rightButtonIconRes?.let { header.rightButtonSrc = it }
-
-                header.delegate = object : HeaderDelegate {
-                    override fun onLeftButtonClicked() {
-                        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
-                        if (currentFragment is TeamReportActivityView || currentFragment is TeamReportMenuFragment) {
-                            supportFragmentManager.popBackStack()
-                        } else {
-                            onLeftClick?.invoke()
-                        }
+            header.delegate = object : HeaderDelegate {
+                override fun onLeftButtonClicked() {
+                    val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+                    if (currentFragment is TeamReportActivityView || currentFragment is TeamReportMenuFragment) {
+                        supportFragmentManager.popBackStack()
+                    } else {
+                        onLeftClick?.invoke()
                     }
-                    override fun onRightButtonClicked() { onRightClick?.invoke() }
                 }
+                override fun onRightButtonClicked() { onRightClick?.invoke() }
             }
-        }, delay)
+
+            val transitionSet = TransitionSet().apply {
+                addTransition(Fade(Fade.IN).apply { duration = 150 })
+            }
+            TransitionManager.beginDelayedTransition(header.parent as ViewGroup, transitionSet)
+            header.visibility = View.VISIBLE
+        } else {
+            val transitionSet = TransitionSet().apply {
+                addTransition(Fade(Fade.OUT).apply { duration = 150 })
+            }
+            TransitionManager.beginDelayedTransition(header.parent as ViewGroup, transitionSet)
+            header.visibility = View.GONE
+        }
     }
 
     private fun setupBottomNavigation() {
@@ -487,12 +487,19 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                 )
             }
 
+            is EventDetailRSVPView,
+            is EventDetailViewAttendance,
+            is EventDetailViewNoRSVP,
+            is EventDetailViewInvitationDecline -> {
+                configureBottomNavigation(showBadge = false, showBottomNavigation = false)
+                configureHeader(isVisible = false)
+            }
+
             else -> {
                 configureBottomNavigation(showBadge = false, showBottomNavigation = false)
                 configureHeader(isVisible = false)
             }
         }
-
     }
 
     private fun createEmptyFragment(): Fragment {

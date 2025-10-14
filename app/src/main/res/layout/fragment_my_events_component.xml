@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:padding="@dimen/margin_16dp"
+    android:paddingHorizontal="@dimen/margin_16dp"
+    android:paddingBottom="@dimen/margin_16dp"
     android:background="?attr/colorBackgroundPrimary">
 
     <LinearLayout
@@ -40,10 +41,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMyEvent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:nestedScrollingEnabled="false"
-        android:isScrollContainer="false"
+        android:layout_height="0dp"
+        android:nestedScrollingEnabled="true"
+        android:isScrollContainer="true"
         android:layout_marginTop="@dimen/margin_16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/cvComponentTitle"/>
+        app:layout_constraintTop_toBottomOf="@id/cvComponentTitle"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

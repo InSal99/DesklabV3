@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:padding="@dimen/margin_16dp"
+    android:paddingHorizontal="@dimen/margin_16dp"
+    android:paddingBottom="@dimen/margin_16dp"
     android:background="?attr/colorBackgroundPrimary">
 
     <LinearLayout
@@ -40,11 +41,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEventInvitation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:layout_marginTop="@dimen/margin_16dp"
-        android:nestedScrollingEnabled="false"
+        android:nestedScrollingEnabled="true"
+        android:isScrollContainer="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/cvComponentTitle"/>
+        app:layout_constraintTop_toBottomOf="@id/cvComponentTitle"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

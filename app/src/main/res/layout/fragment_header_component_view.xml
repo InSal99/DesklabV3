@@ -40,64 +40,75 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.header.Header
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:rightButtonSrc="@drawable/ic_star"
-            app:sectionSubtitleText="Manage your account preferences"
-            app:sectionTitleText="Profile Settings"
-            app:showLeftButton="true"
-            app:showRightButton="true"
-            app:showSectionSubtitle="true"
-            app:showSectionTitle="true"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.header.Header
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    app:rightButtonSrc="@drawable/ic_star"
+                    app:sectionSubtitleText="Manage your account preferences"
+                    app:sectionTitleText="Profile Settings"
+                    app:showLeftButton="true"
+                    app:showRightButton="true"
+                    app:showSectionSubtitle="true"
+                    app:showSectionTitle="true"/>
 
-        <com.edts.components.header.Header
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:rightButtonSrc="@drawable/ic_star"
-            app:sectionSubtitleText="Manage your account preferences"
-            app:sectionTitleText="Profile Settings"
-            app:showLeftButton="false"
-            app:showRightButton="true"
-            app:showSectionSubtitle="true"
-            app:showSectionTitle="true"/>
+                <com.edts.components.header.Header
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:rightButtonSrc="@drawable/ic_star"
+                    app:sectionSubtitleText="Manage your account preferences"
+                    app:sectionTitleText="Profile Settings"
+                    app:showLeftButton="false"
+                    app:showRightButton="true"
+                    app:showSectionSubtitle="true"
+                    app:showSectionTitle="true"/>
 
-        <com.edts.components.header.Header
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:rightButtonSrc="@drawable/ic_star"
-            app:sectionSubtitleText="Manage your account preferences"
-            app:sectionTitleText="Profile Settings"
-            app:showLeftButton="false"
-            app:showRightButton="false"
-            app:showSectionSubtitle="true"
-            app:showSectionTitle="true"/>
+                <com.edts.components.header.Header
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:rightButtonSrc="@drawable/ic_star"
+                    app:sectionSubtitleText="Manage your account preferences"
+                    app:sectionTitleText="Profile Settings"
+                    app:showLeftButton="false"
+                    app:showRightButton="false"
+                    app:showSectionSubtitle="true"
+                    app:showSectionTitle="true"/>
 
-        <com.edts.components.header.Header
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:rightButtonSrc="@drawable/ic_star"
-            app:sectionSubtitleText="Manage your account preferences"
-            app:sectionTitleText="Profile Settings"
-            app:showLeftButton="false"
-            app:showRightButton="false"
-            app:showSectionSubtitle="false"
-            app:showSectionTitle="true"/>
+                <com.edts.components.header.Header
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:rightButtonSrc="@drawable/ic_star"
+                    app:sectionSubtitleText="Manage your account preferences"
+                    app:sectionTitleText="Profile Settings"
+                    app:showLeftButton="false"
+                    app:showRightButton="false"
+                    app:showSectionSubtitle="false"
+                    app:showSectionTitle="true"/>
 
-        <com.edts.components.header.Header
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:rightButtonSrc="@drawable/ic_star"
-            app:sectionSubtitleText="Manage your account preferences"
-            app:sectionTitleText="Profile Settings"
-            app:showLeftButton="true"
-            app:showRightButton="false"
-            app:showSectionSubtitle="false"
-            app:showSectionTitle="true"/>
+                <com.edts.components.header.Header
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:rightButtonSrc="@drawable/ic_star"
+                    app:sectionSubtitleText="Manage your account preferences"
+                    app:sectionTitleText="Profile Settings"
+                    app:showLeftButton="true"
+                    app:showRightButton="false"
+                    app:showSectionSubtitle="false"
+                    app:showSectionTitle="true"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

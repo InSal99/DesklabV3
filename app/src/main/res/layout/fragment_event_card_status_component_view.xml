@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -19,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_32dp"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -40,31 +40,42 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.event.card.EventCardStatus
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:statusType="rsvp"
-            app:statusText="Reservasi sekarang!"
-            app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
-            app:layout_constraintStart_toStartOf="parent"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="@dimen/margin_16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.event.card.EventCardStatus
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:statusType="rsvp"
+                    app:statusText="Reservasi sekarang!"
+                    app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
-        <com.edts.components.event.card.EventCardStatus
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:statusType="registered"
-            app:statusText="Catat Kehadiran"
-            app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
-            app:layout_constraintStart_toStartOf="parent"/>
+                <com.edts.components.event.card.EventCardStatus
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:statusType="registered"
+                    app:statusText="Catat Kehadiran"
+                    app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
-        <com.edts.components.event.card.EventCardStatus
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:statusType="unregistered"
-            app:statusText="Pendaftaran ditutup"
-            app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
-            app:layout_constraintStart_toStartOf="parent"/>
+                <com.edts.components.event.card.EventCardStatus
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:statusType="unregistered"
+                    app:statusText="Pendaftaran ditutup"
+                    app:layout_constraintTop_toBottomOf="@+id/cvEventCardDescription"
+                    app:layout_constraintStart_toStartOf="parent"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

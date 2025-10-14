@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -19,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_32dp"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -40,89 +40,100 @@
                 android:textColor="?attr/colorForegroundPrimary"/>
         </LinearLayout>
 
-        <com.edts.components.card.detail.CardDetailInfoB
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:cdibLeftSlotType="image"
-            app:cdibLeftSlotSrc="@drawable/avatar_placeholder"
-            app:cdibRightSlotSrc="@drawable/ic_chevron_right"
-            app:cdibTitleText="Card Title"
-            app:cdibDescText="Card Content Description"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="@dimen/margin_16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.edts.components.card.detail.CardDetailInfoB
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cdibLeftSlotType="image"
+                    app:cdibLeftSlotSrc="@drawable/avatar_placeholder"
+                    app:cdibRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cdibTitleText="Card Title"
+                    app:cdibDescText="Card Content Description"/>
 
-        <com.edts.components.card.detail.CardDetailInfoB
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:cdibLeftSlotType="image"
-            app:cdibLeftSlotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
-            app:cdibRightSlotSrc="@drawable/ic_chevron_right"
-            app:cdibTitleText="Card Title"
-            app:cdibDescText="Card Content Description"/>
+                <com.edts.components.card.detail.CardDetailInfoB
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cdibLeftSlotType="image"
+                    app:cdibLeftSlotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
+                    app:cdibRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cdibTitleText="Card Title"
+                    app:cdibDescText="Card Content Description"/>
 
-        <com.edts.components.card.detail.CardDetailInfoB
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cdibLeftSlotType="icon"
-            app:cdibShowIndicator="true"
-            app:cdibIndicatorColor="?attr/colorBackgroundAttentionIntense"
-            app:cdibLeftSlotSrc="@drawable/ic_star"
-            app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-            app:cdibLeftSlotTint="?attr/colorBackgroundAttentionIntense"
-            app:cdibTitleText="Card Title"
-            app:cdibDescText="Card Content Description"
-            app:cdibRightSlotSrc="@drawable/ic_chevron_right"/>
+                <com.edts.components.card.detail.CardDetailInfoB
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cdibLeftSlotType="icon"
+                    app:cdibShowIndicator="true"
+                    app:cdibIndicatorColor="?attr/colorBackgroundAttentionIntense"
+                    app:cdibLeftSlotSrc="@drawable/ic_star"
+                    app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
+                    app:cdibLeftSlotTint="?attr/colorBackgroundAttentionIntense"
+                    app:cdibTitleText="Card Title"
+                    app:cdibDescText="Card Content Description"
+                    app:cdibRightSlotSrc="@drawable/ic_chevron_right"/>
 
-        <com.edts.components.card.detail.CardDetailInfoB
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cdibLeftSlotSize="44dp"
-            app:cdibLeftSlotType="image"
-            app:cdibShowIndicator="false"
-            app:cdibShowRightSlot="false"
-            app:cdibShowLeftSlot="true"
-            app:cdibShowDescription="false"
-            app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-            app:cdibLeftSlotSrc="@drawable/ic_star"
-            app:cdibLeftSlotBackgroundColor="?attr/colorBackgroundWarningIntense"
-            app:cdibLeftSlotTint="?attr/colorForegroundUtilityUlangTahunIntense"
-            app:cdibTitleText="Card Title"
-            app:cdibDescText="Card Content Description"/>
+                <com.edts.components.card.detail.CardDetailInfoB
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cdibLeftSlotSize="44dp"
+                    app:cdibLeftSlotType="image"
+                    app:cdibShowIndicator="false"
+                    app:cdibShowRightSlot="false"
+                    app:cdibShowLeftSlot="true"
+                    app:cdibShowDescription="false"
+                    app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
+                    app:cdibLeftSlotSrc="@drawable/ic_star"
+                    app:cdibLeftSlotBackgroundColor="?attr/colorBackgroundWarningIntense"
+                    app:cdibLeftSlotTint="?attr/colorForegroundUtilityUlangTahunIntense"
+                    app:cdibTitleText="Card Title"
+                    app:cdibDescText="Card Content Description"/>
 
-        <com.edts.components.card.detail.CardDetailInfoB
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cdibLeftSlotType="icon"
-            app:cdibShowIndicator="false"
-            app:cdibShowRightSlot="false"
-            app:cdibShowLeftSlot="false"
-            app:cdibShowDescription="false"
-            app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-            app:cdibLeftSlotSrc="@drawable/ic_star"
-            app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-            app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-            app:cdibTitleText="Card Title"
-            app:cdibDescText="Card Content Description"/>
+                <com.edts.components.card.detail.CardDetailInfoB
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cdibLeftSlotType="icon"
+                    app:cdibShowIndicator="false"
+                    app:cdibShowRightSlot="false"
+                    app:cdibShowLeftSlot="false"
+                    app:cdibShowDescription="false"
+                    app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
+                    app:cdibLeftSlotSrc="@drawable/ic_star"
+                    app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
+                    app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+                    app:cdibTitleText="Card Title"
+                    app:cdibDescText="Card Content Description"/>
 
-        <com.edts.components.card.detail.CardDetailInfoB
-            android:id="@+id/cdibCustomType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            app:cdibLeftSlotType="icon"
-            app:cdibShowIndicator="false"
-            app:cdibShowRightSlot="true"
-            app:cdibShowLeftSlot="false"
-            app:cdibShowDescription="true"
-            app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-            app:cdibLeftSlotSrc="@drawable/ic_star"
-            app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
-            app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
-            app:cdibTitleText="Card Title"
-            app:cdibDescText="Card Content Description"
-            app:cdibRightSlotType="custom"/>
+                <com.edts.components.card.detail.CardDetailInfoB
+                    android:id="@+id/cdibCustomType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:cdibLeftSlotType="icon"
+                    app:cdibShowIndicator="false"
+                    app:cdibShowRightSlot="true"
+                    app:cdibShowLeftSlot="false"
+                    app:cdibShowDescription="true"
+                    app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
+                    app:cdibLeftSlotSrc="@drawable/ic_star"
+                    app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
+                    app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
+                    app:cdibTitleText="Card Title"
+                    app:cdibDescText="Card Content Description"
+                    app:cdibRightSlotType="custom"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>
