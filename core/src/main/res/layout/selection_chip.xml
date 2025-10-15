@@ -4,7 +4,7 @@
     android:id="@+id/chip"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/radius_999dp"
+    app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
