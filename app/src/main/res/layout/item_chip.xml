@@ -7,4 +7,4 @@
     android:layout_height="wrap_content"
     app:chipSize="medium"
     app:chipShowIcon="false"
-    app:chipShowBadge="false" />
+    app:chipShowBadge="false"/>

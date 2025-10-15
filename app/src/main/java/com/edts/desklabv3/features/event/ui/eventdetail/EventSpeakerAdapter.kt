@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edts.components.databinding.DetailInformationSpeakerBinding
 
 class EventSpeakerAdapter : RecyclerView.Adapter<EventSpeakerAdapter.SpeakerViewHolder>() {
-
     private val speakers = mutableListOf<Pair<Int, String>>()
 
     inner class SpeakerViewHolder(private val binding: DetailInformationSpeakerBinding) :

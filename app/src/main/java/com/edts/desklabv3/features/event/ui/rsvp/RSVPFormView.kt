@@ -28,7 +28,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class RSVPFormView : Fragment(), FooterDelegate {
-
     private lateinit var binding: FragmentRsvpFormViewBinding
     private lateinit var adapter: RSVPFormAdapter
     private val formConfigs = mutableListOf<InputFieldConfig>()
@@ -217,7 +216,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
     }
 
     private fun updateSubmitButtonState(responses: Map<String, Any?>) {
-//        val isValid = validateForm(responses)
         binding.eventRsvpFooter.setPrimaryButtonEnabled(true)
     }
 
@@ -264,7 +262,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
                 description = "Dengan melanjutkan, Anda akan terdaftar sebagai peserta. Lanjutkan pendaftaran?",
                 confirmButtonLabel = "Ya, Lanjutkan",
                 closeButtonLabel = "Tidak",
-                isDismissible = true,
                 onConfirm = {
                     submitForm(responses)
                 },
@@ -330,7 +327,6 @@ class RSVPFormView : Fragment(), FooterDelegate {
         }
 
         Toast.success(requireContext(), message)
-
         disableFormFields()
     }
 

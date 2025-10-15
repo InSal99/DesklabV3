@@ -2,7 +2,6 @@ package com.edts.desklabv3.features.home.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentHomeMenuBinding
 
 class HomeMenuFragment : Fragment() {
-
     private var _binding: FragmentHomeMenuBinding? = null
     private val binding get() = _binding!!
 
@@ -46,17 +44,12 @@ class HomeMenuFragment : Fragment() {
         }
 
         loadFragment(fragment)
-
-        Log.d("UI_CONFIG", "Home Menu Flow $flowType")
     }
 
     private fun loadFragment(fragment: Fragment) {
-        Log.d("HomeMenuFragment", "Loading fragment: ${fragment::class.java.simpleName}")
-//        fragment.arguments = arguments
         childFragmentManager.beginTransaction()
             .replace(R.id.home_fragment_container, fragment)
             .commit()
-        Log.d("HomeMenuFragment", "Fragment transaction committed")
     }
 
     override fun onAttach(context: Context) {

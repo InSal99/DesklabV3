@@ -131,7 +131,7 @@ val delegate = object : BottomNavigationDelegate {
 | Method Name | Parameters | Description |
 | ----------- | ---------- | ----------- |
 | `performClick()` | `fromUser: Boolean = false` | Programmatically triggers click with optional user flag |
-| `resetClickCount()` | None | Resets click counter to zero with logging |
+| `resetClickCount()` | None | Resets click counter to zero |
 
 ## Usage Examples
 
@@ -239,7 +239,7 @@ controller.updateBadge(2, true) // Show badge on favorites
 
 - **Color Animation Caching** — Uses ValueAnimator for smooth color transitions without repeated color resolution
 - **Animation Coordination** — AnimatorSet efficiently manages multiple simultaneous property animations
-- **Click Tracking** — Lightweight click counting with debug logging for analytics integration
+- **Click Tracking** — Lightweight click counting
 - **State Management** — Optimized state changes with conditional animation triggers
 
 ## Animation Details
@@ -276,4 +276,4 @@ private companion object {
 
 ---
 
-> **⚠️ Note**: This component includes comprehensive animation support with bounce feedback, smooth state transitions, and color animations. The delegate pattern allows for centralized navigation management while maintaining individual item state. Click tracking and logging are built-in for analytics integration.
+> **⚠️ Note**: This component includes comprehensive animation support with bounce feedback, smooth state transitions, and color animations. The delegate pattern allows for centralized navigation management while maintaining individual item state.

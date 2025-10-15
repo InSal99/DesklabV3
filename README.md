@@ -83,10 +83,10 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 
 ### Selection Components
 
-| Component | Status | Documentation |
-|-----------|--------|---------------|
-| **Dropdown Filter** | ✅ Complete | [View Docs](docs/DropdownFilter.md) |
-| **Chip** | ✅ Complete | [View Docs](docs/Chip.md) |
+| Component | Status | Documentation                                |
+|-----------|--------|----------------------------------------------|
+| **Dropdown Filter** | ✅ Complete | [View Docs](docs/SelectionDropdownFilter.md) |
+| **Chip** | ✅ Complete | [View Docs](docs/SelectionChip.md)           |
 
 ### Container Components
 

@@ -9,7 +9,6 @@ import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.StateListDrawable
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -85,13 +84,9 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun animateCheckMark(checked: Boolean) {
-        Log.d("CheckBox", "animateCheckMark called - checked: $checked")
-
         currentAnimator?.cancel()
 
         val drawable = buttonDrawable
-        Log.d("CheckBox", "buttonDrawable: $drawable")
-
         val currentDrawable = if (drawable is StateListDrawable) {
             drawable.current
         } else {
@@ -99,13 +94,11 @@ class CheckBox @JvmOverloads constructor(
         }
 
         if (currentDrawable !is LayerDrawable || currentDrawable.numberOfLayers < 2) {
-            Log.d("CheckBox", "Cannot animate - not a proper LayerDrawable")
             return
         }
 
         val checkMarkDrawable = currentDrawable.getDrawable(1)
         if (checkMarkDrawable == null) {
-            Log.d("CheckBox", "Check mark drawable is null")
             return
         }
 
@@ -238,7 +231,6 @@ class CheckBox @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        Log.d("CustomCheckBox", "checkbox clicked")
         val result = super.performClick()
         setErrorState(false)
 

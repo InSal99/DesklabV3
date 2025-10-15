@@ -11,7 +11,6 @@ import com.edts.desklabv3.features.event.model.MyEvent
 class MyEventAdapter(
     private val onItemClick: (MyEvent) -> Unit
 ) : ListAdapter<MyEvent, MyEventAdapter.EventViewHolder>(MyEventDiffCallback()) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val myEventCard = MyEventCard(parent.context).apply {
             layoutParams = RecyclerView.LayoutParams(
@@ -30,7 +29,8 @@ class MyEventAdapter(
         RecyclerView.ViewHolder(myEventCard) {
         fun bind(event: MyEvent, onItemClick: (MyEvent) -> Unit) {
             myEventCard.apply {
-                eventType = event.eventType
+                myEventType = event.myEventType
+                eventLocation = event.myEventLocation
                 eventTitle = event.title
                 eventTime = event.time
                 setCalendarData(month = event.month, date = event.date, day = event.day)

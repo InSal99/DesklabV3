@@ -28,7 +28,6 @@ class Button @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialButtonStyle
 ) : MaterialButton(context, attrs, defStyleAttr) {
-
     enum class ButtonSize(
         val heightDp: Int,
         val paddingHorizontalDp: Int,
@@ -468,11 +467,14 @@ class Button @JvmOverloads constructor(
 
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 animateScaleUp()
-                if (event.action == MotionEvent.ACTION_UP) {
-                    performClick()
-                }
             }
         }
         return super.onTouchEvent(event)
+    }
+
+    override fun performClick(): Boolean {
+        val handled = super.performClick()
+        buttonDelegate?.onClick(this)
+        return handled
     }
 }

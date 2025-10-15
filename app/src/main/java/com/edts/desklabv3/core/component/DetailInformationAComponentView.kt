@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.databinding.FragmentDetailInformationAComponentViewBinding
 
 class DetailInformationAComponentView : Fragment() {
-
     private var _binding: FragmentDetailInformationAComponentViewBinding? = null
     private val binding get() = _binding!!
 

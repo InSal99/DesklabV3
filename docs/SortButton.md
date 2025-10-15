@@ -185,7 +185,6 @@ sortButton.resetClickCount()
 
 ## Performance Considerations
 
-- **Color Caching** — Resolves and caches theme colors to avoid repeated attribute lookups during state transitions
 - **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks and rapid succession issues
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 - **Animation Optimization** — Uses ObjectAnimator with hardware acceleration for smooth 60fps animations
@@ -225,36 +224,4 @@ sortButton.simulateClick()
 // - Programmatic action triggers
 ```
 
-### Click Analytics
-
-```kotlin
-binding.sortButton.apply {
-    delegate = object : SortButtonDelegate {
-        override fun onSortButtonClick(sortButton: SortButton) {
-            // Log detailed click information
-            Log.d("Analytics", """
-                Sort button clicked:
-                - Click count: ${sortButton.getClickCount()}
-                - Current icon: ${sortButton.sortIcon}
-                - Scale X: ${sortButton.scaleX}
-                - Scale Y: ${sortButton.scaleY}
-            """.trimIndent())
-        }
-    }
-}
-```
-
-### State Debugging
-
-```kotlin
-// The component provides extensive logging for debugging
-// Check Logcat with tag "FilterButton" to see:
-// - Touch event sequences
-// - Click debouncing behavior
-// - Animation state transitions
-// - Click count tracking
-```
-
----
-
-> **⚠️ Note**: This component uses MaterialCardView as its base and features smooth scale animations using ObjectAnimator. The built-in debouncing mechanism ensures reliable click handling, while extensive logging aids in debugging and analytics integration.
+> **⚠️ Note**: This component uses MaterialCardView as its base and features smooth scale animations using ObjectAnimator. The built-in debouncing mechanism ensures reliable click handling.

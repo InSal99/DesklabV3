@@ -19,7 +19,6 @@ class NumberSpan(
     private val wantColor: Boolean = color != 0,
     private val maxNumberInList: Int = 99
 ) : LeadingMarginSpan, ParcelableSpan {
-
     companion object {
         @JvmField
         val CREATOR: Parcelable.Creator<NumberSpan> = object : Parcelable.Creator<NumberSpan> {

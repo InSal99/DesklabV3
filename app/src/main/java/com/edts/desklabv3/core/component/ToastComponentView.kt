@@ -9,7 +9,6 @@ import com.edts.components.toast.Toast
 import com.edts.desklabv3.databinding.FragmentToastComponentViewBinding
 
 class ToastComponentView : Fragment() {
-
     private var _binding: FragmentToastComponentViewBinding? = null
     private val binding get() = _binding!!
 

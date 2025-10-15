@@ -1,7 +1,6 @@
 package com.edts.desklabv3
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -61,8 +60,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
     private lateinit var binding: ActivityMainBinding
     private var currentFlow: String? = null
         set(value) {
-            Log.d("FLOW_CHANGE", "currentFlow changed from $field to $value")
-            Log.d("FLOW_CHANGE", "Stack trace: ${Thread.currentThread().stackTrace.take(5).joinToString("\n")}")
             field = value
         }
     private var isNavigatingBackFromDetail: Boolean = false
@@ -98,8 +95,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             val fragmentClassName = bundle.getString("fragment_class")
             val flowType = bundle.getString("flow_type", "")
 
-            android.util.Log.d("MainActivity", "Received fragment result: $fragmentClassName, flow: $flowType")
-
             val fragment = when (fragmentClassName) {
                 "HomeDaftarRSVPView" -> HomeRegistrationRSVPView()
                 "EventListDaftarRSVPView" -> EventListRegistrationRSVPView()
@@ -118,7 +113,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                 "EventListInvitationTolakStartView" -> EventListInvitationDeclineStartView()
                 "EventInvitationFragmentTolakUndangan" -> EventInvitationDeclineView()
                 "EventDetailViewTolakUndangan" -> {
-                    android.util.Log.d("MainActivity", "Creating EventDetailViewTolakUndangan")
                     EventDetailViewInvitationDecline()
                 }
                 "SuccessDenyInvitationView" -> SuccessDenyInvitationView()
@@ -196,8 +190,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                     val previousFragmentName = if (backStackEntryCount > 1) {
                         supportFragmentManager.getBackStackEntryAt(backStackEntryCount - 2).name
                     } else null
-
-                    // Check if we came from a detail view
                     if (topEntry.name == "EmployeeLeaveDetailView" || topEntry.name == "EmployeeLeaveHistoryView" ||
                         previousFragmentName == "EmployeeLeaveDetailView" || previousFragmentName == "EmployeeLeaveHistoryView") {
                         isNavigatingBackFromDetail = true
@@ -226,40 +218,40 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
         isVisible: Boolean
     ) {
         val header = binding.cvHeaderTeamReportActivity
-        val delay = if (isVisible) 0L else 100L
+        header.removeCallbacks(null)
 
-        header.postDelayed({
-            val transitionSet = TransitionSet().apply {
-                if (isVisible) {
-                    addTransition(Slide(Gravity.TOP).apply { duration = 125 })
-                } else {
-                    addTransition(Fade(Fade.OUT).apply { duration = 150 })
-                }
-            }
-            TransitionManager.beginDelayedTransition(header, transitionSet)
-            header.visibility = if (isVisible) View.VISIBLE else View.GONE
+        if (isVisible) {
+            title?.let { header.sectionTitleText = it }
+            subtitle?.let { header.sectionSubtitleText = it }
 
-            if (isVisible) {
-                title?.let { header.sectionTitleText = it }
-                subtitle?.let { header.sectionSubtitleText = it }
+            header.showLeftButton = showLeftButton
+            header.showRightButton = showRightButton
+            rightButtonIconRes?.let { header.rightButtonSrc = it }
 
-                header.showLeftButton = showLeftButton
-                header.showRightButton = showRightButton
-                rightButtonIconRes?.let { header.rightButtonSrc = it }
-
-                header.delegate = object : HeaderDelegate {
-                    override fun onLeftButtonClicked() {
-                        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
-                        if (currentFragment is TeamReportActivityView || currentFragment is TeamReportMenuFragment) {
-                            supportFragmentManager.popBackStack()
-                        } else {
-                            onLeftClick?.invoke()
-                        }
+            header.delegate = object : HeaderDelegate {
+                override fun onLeftButtonClicked() {
+                    val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+                    if (currentFragment is TeamReportActivityView || currentFragment is TeamReportMenuFragment) {
+                        supportFragmentManager.popBackStack()
+                    } else {
+                        onLeftClick?.invoke()
                     }
-                    override fun onRightButtonClicked() { onRightClick?.invoke() }
                 }
+                override fun onRightButtonClicked() { onRightClick?.invoke() }
             }
-        }, delay)
+
+            val transitionSet = TransitionSet().apply {
+                addTransition(Fade(Fade.IN).apply { duration = 150 })
+            }
+            TransitionManager.beginDelayedTransition(header.parent as ViewGroup, transitionSet)
+            header.visibility = View.VISIBLE
+        } else {
+            val transitionSet = TransitionSet().apply {
+                addTransition(Fade(Fade.OUT).apply { duration = 150 })
+            }
+            TransitionManager.beginDelayedTransition(header.parent as ViewGroup, transitionSet)
+            header.visibility = View.GONE
+        }
     }
 
     private fun setupBottomNavigation() {
@@ -278,7 +270,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                 newState: BottomNavigationItem.NavState,
                 oldState: BottomNavigationItem.NavState
             ) {
-                Log.d("BottomNav", "State changed for ${item.navText}: $oldState -> $newState")
             }
         }
 
@@ -300,7 +291,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
 
     private fun navigateToEventList() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
-        // Try to detect flow from the current fragment first
         val flowType = when (currentFragment) {
             is EventListInvitationNoRSVPView,
             is HomeInvitationNoRSVPView,
@@ -311,7 +301,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             is EventListInvitationDeclineEndView,
             is HomeInvitationDeclineView,
             is EventInvitationDeclineView -> {
-                Log.d("FLOW_DEBUG", "Matched InvitationNoRSVP: ${currentFragment?.javaClass?.simpleName}")
                 "TolakUndangan"
             }
 
@@ -326,8 +315,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             is HomeManagerView -> "TeamReport"
             else -> currentFlow ?: "None"
         }
-
-        Log.d("FLOW_DEBUG", "No match found for: ${flowType}")
 
         currentFlow = flowType
         val tag = "EventMenu_$flowType"
@@ -409,7 +396,6 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
             val flowType = fragment.arguments?.getString("flow_type")
             if (!flowType.isNullOrEmpty()) {
                 currentFlow = flowType
-                Log.d("FLOW_TRACK", "currentFlow set to $currentFlow from HomeMenuFragment")
             }
         }
 
@@ -420,12 +406,8 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
 
     private fun configureUIForFragment(fragment: Fragment) {
         if (!fragment.isAdded || fragment.isDetached || fragment.isRemoving) {
-            Log.w("UI_CONFIG", "Fragment not ready for UI configuration: ${fragment::class.java.simpleName}")
             return
         }
-
-        Log.d("UI_CONFIG", "Configuring UI for: ${fragment::class.java.simpleName}")
-
         when (fragment) {
             is TeamReportActivityView, is TeamReportLeaveView -> {
                 configureBottomNavigation(showBadge = false, showBottomNavigation = false)
@@ -505,12 +487,19 @@ class MainActivity : AppCompatActivity(), HeaderConfigurator {
                 )
             }
 
+            is EventDetailRSVPView,
+            is EventDetailViewAttendance,
+            is EventDetailViewNoRSVP,
+            is EventDetailViewInvitationDecline -> {
+                configureBottomNavigation(showBadge = false, showBottomNavigation = false)
+                configureHeader(isVisible = false)
+            }
+
             else -> {
                 configureBottomNavigation(showBadge = false, showBottomNavigation = false)
                 configureHeader(isVisible = false)
             }
         }
-
     }
 
     private fun createEmptyFragment(): Fragment {

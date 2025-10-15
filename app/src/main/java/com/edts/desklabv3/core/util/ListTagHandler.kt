@@ -10,13 +10,6 @@ import android.widget.TextView
 import org.xml.sax.XMLReader
 import java.util.Stack
 
-/**
- * TagHandler that handles <myul>, <myol>, <myli> (we renamed ul/ol/li to these).
- * Adds
- *  - bullet + tab for unordered lists
- *  - "N. " numbering for ordered lists
- * And applies a LeadingMarginSpan so each list item has an indentation of at least `indentDp`.
- */
 class ListTagHandler(
     private val textView: TextView,
     private val bulletIndentDp: Int = 14,

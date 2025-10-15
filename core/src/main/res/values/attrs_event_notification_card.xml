@@ -5,6 +5,10 @@
         <attr name="notificationDescription" format="string" />
         <attr name="notificationButtonVisible" format="boolean" />
         <attr name="notificationButtonText" format="string" />
-        <attr name="notificationEventType" format="string" />
+        <attr name="notificationEventCategory" format="enum">
+            <enum name="general_event" value="0" />
+            <enum name="people_development" value="1" />
+            <enum name="employee_benefit" value="2" />
+        </attr>
     </declare-styleable>
 </resources>

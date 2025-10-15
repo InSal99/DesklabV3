@@ -20,7 +20,6 @@ import com.edts.desklabv3.features.event.model.EventInvitation
 import com.edts.desklabv3.features.SpaceItemDecoration
 
 class EventInvitationNoRSVPView : Fragment() {
-
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!
     private var loadingDialog: AlertDialog? = null
@@ -43,8 +42,7 @@ class EventInvitationNoRSVPView : Fragment() {
 
         val notificationAdapter = EventInvitationAdapter(
             notifications = notificationList,
-            onCardClick = { notification ->
-//                Toast.makeText(requireContext(), "Card clicked: ${notification.title}", Toast.LENGTH_SHORT).show()
+            onCardClick = {
                 navigateToEventDetail()
             },
             onButtonClick = {
@@ -75,7 +73,7 @@ class EventInvitationNoRSVPView : Fragment() {
             EventInvitation(
                 title = "EDTS Town-Hall 2025: The Power of Change",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventType = EventNotificationCard.EventType.GENERAL_EVENT
+                eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT // Updated property
             )
         )
     }
@@ -91,7 +89,6 @@ class EventInvitationNoRSVPView : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-                Toast.makeText(requireContext(), "Modal Closed.", Toast.LENGTH_SHORT).show()
             }
         )
     }

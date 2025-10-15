@@ -13,8 +13,6 @@ import android.graphics.RectF
 import android.graphics.Region
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import com.edts.components.R
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
@@ -35,7 +33,7 @@ fun Context.createTopShadowBackgroundCustom(
 
         private val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.FILL
-            color = resolveColorAttribute(com.edts.components.R.attr.colorStrokeSubtle, com.edts.components.R.color.colorNeutral30)        // stroke color (change as needed)
+            color = resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral30)
         }
 
         override fun draw(canvas: Canvas) {
@@ -67,8 +65,8 @@ fun Context.createTopShadowBackgroundCustom(
                 0f, shadowRect.bottom,
                 intArrayOf(
                     Color.TRANSPARENT,
-                    resolveColorAttribute(com.edts.components.R.attr.colorShadowTintedKey, R.color.colorPrimaryOpacity20),
-                    resolveColorAttribute(com.edts.components.R.attr.colorShadowTintedKey, R.color.colorPrimaryOpacity20)
+                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorPrimaryOpacity20),
+                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorPrimaryOpacity20)
                 ),
                 floatArrayOf(0f, 0.05f, 1f),
                 Shader.TileMode.CLAMP

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.edts.components.checkbox.CheckBox
-import com.edts.components.radiobutton.RadioButton
 import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentCardDetailInformationBComponentViewBinding
 

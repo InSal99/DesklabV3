@@ -7,12 +7,7 @@ import com.edts.desklabv3.features.event.model.FilterChip
 import com.edts.desklabv3.features.event.model.MyEvent
 import com.edts.desklabv3.features.event.model.MyEventStatus
 
-/**
- * Manages UI state for the MyEvents screen, including event lists and filter chip states.
- * @param defaultFilter The text of the chip that should be selected by default (e.g., "Semua").
- */
 class MyEventsViewModel(private val defaultFilter: String) : ViewModel() {
-
     private var allEvents: List<MyEvent> = emptyList()
 
     private val _filteredEvents = MutableLiveData<List<MyEvent>>()
@@ -27,7 +22,6 @@ class MyEventsViewModel(private val defaultFilter: String) : ViewModel() {
     private var currentSearchQuery: String = ""
 
     init {
-        // Use the constructor parameter to set the default selected chip
         _filterChips.value = listOf(
             FilterChip("Semua", isSelected = "Semua" == defaultFilter),
             FilterChip("Berlangsung", isSelected = "Berlangsung" == defaultFilter),
@@ -36,43 +30,24 @@ class MyEventsViewModel(private val defaultFilter: String) : ViewModel() {
             FilterChip("Tidak Hadir", isSelected = "Tidak Hadir" == defaultFilter)
         )
     }
-
-    /**
-     * Loads the master list of events and applies the initial filters.
-     */
     fun loadEvents(events: List<MyEvent>) {
         allEvents = events
         applyFiltersAndSearch()
     }
-
-    /**
-     * Updates the search query and re-applies filters.
-     */
     fun setSearchQuery(query: String) {
         currentSearchQuery = query
         applyFiltersAndSearch()
     }
-
-    /**
-     * Updates the selected filter chip and re-applies filters.
-     * A new list is created to ensure LiveData observers are triggered.
-     */
     fun selectFilter(chipText: String) {
         val currentChips = _filterChips.value ?: return
         val selectedChip = currentChips.find { it.isSelected }?.text
 
-        // Avoid reprocessing if the same chip is clicked again.
         if (selectedChip == chipText) return
 
         val newChips = currentChips.map { it.copy(isSelected = it.text == chipText) }
         _filterChips.value = newChips
         applyFiltersAndSearch()
     }
-
-    /**
-     * Applies the current search query and filter to the master event list
-     * and updates all relevant LiveData objects.
-     */
     private fun applyFiltersAndSearch() {
         val activeFilter = _filterChips.value?.find { it.isSelected }?.text ?: defaultFilter
 
@@ -90,7 +65,6 @@ class MyEventsViewModel(private val defaultFilter: String) : ViewModel() {
         } else {
             filteredByStatus
         }
-
         _filteredEvents.value = finalResults
         _showEmptyState.value = finalResults.isEmpty()
     }

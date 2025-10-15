@@ -24,7 +24,7 @@
             android:textSize="14sp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="some text" />
+            android:text="some text"/>
 
         <ImageView
             android:id="@+id/btnCopy"
@@ -35,14 +35,14 @@
             app:tint="?attr/colorForegroundSecondary"
             android:padding="@dimen/margin_4dp"
             android:scaleType="fitCenter"
-            android:contentDescription="Copy Link" />
+            android:contentDescription="Copy Link"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginVertical="@dimen/margin_12dp"
-        android:background="@color/color000Opacity5" />
+        android:background="@color/color000Opacity5"/>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -54,6 +54,6 @@
             android:id="@+id/actionRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"/>
     </HorizontalScrollView>
 </LinearLayout>

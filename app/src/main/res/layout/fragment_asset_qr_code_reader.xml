@@ -9,14 +9,14 @@
     <com.edts.desklabv3.features.event.ui.attendanceoffline.AssetQRCodeReaderView
         android:id="@+id/qrCodeReaderView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
     <View
         android:id="@+id/vUp"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:background="#80000000"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <View
         android:id="@+id/vBottom"
@@ -24,7 +24,7 @@
         android:layout_height="0dp"
         android:background="#80000000"
         app:layout_constraintTop_toBottomOf="@id/vLeft"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <View
         android:id="@+id/vLeft"
@@ -33,7 +33,7 @@
         android:background="#80000000"
         app:layout_constraintBottom_toTopOf="@id/vBottom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vUp" />
+        app:layout_constraintTop_toBottomOf="@id/vUp"/>
 
     <View
         android:id="@+id/vRight"
@@ -42,7 +42,7 @@
         android:background="#80000000"
         app:layout_constraintBottom_toTopOf="@id/vBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vUp" />
+        app:layout_constraintTop_toBottomOf="@id/vUp"/>
 
     <FrameLayout
         android:id="@+id/flScan"
@@ -57,7 +57,7 @@
             android:id="@+id/vScan"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorFFF" />
+            android:background="@color/colorFFF"/>
     </FrameLayout>
 
     <ImageView
@@ -68,7 +68,7 @@
         android:layout_marginTop="-2dp"
         android:src="@drawable/scanner_frame_top_left"
         app:layout_constraintStart_toEndOf="@id/vLeft"
-        app:layout_constraintTop_toTopOf="@id/vLeft" />
+        app:layout_constraintTop_toTopOf="@id/vLeft"/>
 
     <ImageView
         android:id="@+id/ivFrameTopRight"
@@ -78,7 +78,7 @@
         android:layout_marginEnd="-2dp"
         android:src="@drawable/scanner_frame_top_right"
         app:layout_constraintEnd_toStartOf="@id/vRight"
-        app:layout_constraintTop_toTopOf="@id/vRight" />
+        app:layout_constraintTop_toTopOf="@id/vRight"/>
 
     <ImageView
         android:id="@+id/ivFrameBottomLeft"
@@ -88,7 +88,7 @@
         android:layout_marginBottom="-2dp"
         android:src="@drawable/scanner_frame_bottom_left"
         app:layout_constraintBottom_toBottomOf="@id/ivFrameBottomRight"
-        app:layout_constraintStart_toStartOf="@id/ivFrameTopLeft" />
+        app:layout_constraintStart_toStartOf="@id/ivFrameTopLeft"/>
 
     <ImageView
         android:id="@+id/ivFrameBottomRight"
@@ -98,7 +98,7 @@
         android:layout_marginBottom="-2dp"
         android:src="@drawable/scanner_frame_bottom_right"
         app:layout_constraintBottom_toTopOf="@id/vBottom"
-        app:layout_constraintEnd_toStartOf="@id/vRight" />
+        app:layout_constraintEnd_toStartOf="@id/vRight"/>
 
     <com.google.android.material.textview.MaterialTextView
         style="?attr/p1Medium"
@@ -110,7 +110,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@id/vRight"
         app:layout_constraintStart_toEndOf="@id/vLeft"
-        app:layout_constraintTop_toTopOf="@id/vBottom" />
+        app:layout_constraintTop_toTopOf="@id/vBottom"/>
 
     <ImageView
         android:id="@+id/ivScanQRBack"
@@ -126,7 +126,7 @@
         app:layout_constraintEnd_toStartOf="@id/tvScanQRTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="?attr/colorForegroundPrimaryInverse" />
+        app:tint="?attr/colorForegroundPrimaryInverse"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvScanQRTitle"
@@ -139,7 +139,7 @@
         app:layout_constraintBottom_toBottomOf="@id/ivScanQRBack"
         app:layout_constraintEnd_toStartOf="@id/ivScanQRFlash"
         app:layout_constraintStart_toEndOf="@id/ivScanQRBack"
-        app:layout_constraintTop_toTopOf="@id/ivScanQRBack" />
+        app:layout_constraintTop_toTopOf="@id/ivScanQRBack"/>
 
     <ImageView
         android:id="@+id/ivScanQRFlash"
@@ -154,13 +154,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvScanQRTitle"
         app:layout_constraintTop_toTopOf="@id/ivScanQRBack"
-        app:tint="?attr/colorForegroundPrimaryInverse" />
+        app:tint="?attr/colorForegroundPrimaryInverse"/>
 
     <FrameLayout
         android:id="@+id/flBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

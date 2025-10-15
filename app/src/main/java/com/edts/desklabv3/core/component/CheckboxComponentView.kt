@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.databinding.FragmentCheckboxComponentViewBinding
 
 class CheckboxComponentView : Fragment() {
-
     private var _binding: FragmentCheckboxComponentViewBinding? = null
     private val binding get() = _binding!!
 

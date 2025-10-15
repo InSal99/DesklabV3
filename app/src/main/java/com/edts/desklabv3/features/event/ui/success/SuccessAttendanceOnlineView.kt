@@ -21,7 +21,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import com.airbnb.lottie.LottieAnimationView
-import com.airbnb.lottie.LottieDrawable
 import com.edts.components.toast.Toast
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.R

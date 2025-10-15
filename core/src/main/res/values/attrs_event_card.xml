@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="EventCard">
         <attr name="eventImageSrc" format="reference" />
+        <attr name="eventImageUrl" format="string" />
         <attr name="showCardBadge" format="boolean" />
         <attr name="cardBadgeType" format="enum">
             <enum name="live" value="0" />
