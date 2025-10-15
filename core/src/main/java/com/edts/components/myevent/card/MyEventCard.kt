@@ -77,7 +77,6 @@ class MyEventCard @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         super.performClick()
-        Log.d("MyEventCard", "MyEventCard Clicked ✅")
         myEventCardDelegate?.onClick(this)
         return true
     }
