@@ -469,7 +469,7 @@ class Button @JvmOverloads constructor(
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 animateScaleUp()
                 if (event.action == MotionEvent.ACTION_UP) {
-                    performClick()
+//                    performClick()
                 }
             }
         }

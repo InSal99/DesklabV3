@@ -48,8 +48,11 @@ class EventInvitationDeclineView : Fragment() {
                     requireActivity().supportFragmentManager.setFragmentResult("navigate_fragment", result)
                 }
             },
-            onButtonClick = {
-                // No action
+            onPrimaryButtonClick = {
+                // Handle primary button click if needed
+            },
+            onSecondaryButtonClick = {
+                // Handle secondary button click if needed
             }
         )
 
@@ -72,7 +75,8 @@ class EventInvitationDeclineView : Fragment() {
             EventInvitation(
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Kamis, 24 Juli 2025, pukul 13:00 – 15:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT
+                eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT,
+                isSecondaryButtonVisible = false
             )
         )
     }

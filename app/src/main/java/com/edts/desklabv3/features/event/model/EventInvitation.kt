@@ -7,7 +7,10 @@ data class EventInvitation(
     val id: String = UUID.randomUUID().toString(),
     val title: String,
     val description: String,
-    val buttonText: String = "Terima Undangan",
-    val isButtonVisible: Boolean = true,
+    val primaryButtonText: String = "Terima Undangan",
+    val secondaryButtonText: String = "Tolak",
+    val isPrimaryButtonVisible: Boolean = true,
+    val isSecondaryButtonVisible: Boolean = false,
+    val isBadgeVisible: Boolean = false,
     val eventCategory: EventNotificationCard.EventCategory
 )

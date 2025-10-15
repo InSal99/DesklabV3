@@ -3,11 +3,9 @@ package com.edts.desklabv3.features.event.ui.invitation
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -17,8 +15,8 @@ import com.edts.components.modal.ModalityConfirmationPopUp
 import com.edts.components.modal.ModalityLoadingPopUp
 import com.edts.components.notification.EventNotificationCard
 import com.edts.desklabv3.databinding.FragmentEventInvitationListBinding
-import com.edts.desklabv3.features.event.model.EventInvitation
 import com.edts.desklabv3.features.SpaceItemDecoration
+import com.edts.desklabv3.features.event.model.EventInvitation
 
 class EventInvitationNoRSVPView : Fragment() {
 
@@ -47,8 +45,11 @@ class EventInvitationNoRSVPView : Fragment() {
             onCardClick = {
                 navigateToEventDetail()
             },
-            onButtonClick = {
+            onPrimaryButtonClick = {
                 showConfirmationModal()
+            },
+            onSecondaryButtonClick = {
+                showRejectionConfirmation()
             }
         )
 
@@ -75,7 +76,8 @@ class EventInvitationNoRSVPView : Fragment() {
             EventInvitation(
                 title = "EDTS Town-Hall 2025: The Power of Change",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT // Updated property
+                eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT,
+                isSecondaryButtonVisible = false
             )
         )
     }
@@ -96,6 +98,22 @@ class EventInvitationNoRSVPView : Fragment() {
         )
     }
 
+    private fun showRejectionConfirmation() {
+        ModalityConfirmationPopUp.show(
+            context = requireContext(),
+            title = "Tolak Undangan",
+            description = "Apakah kamu yakin menolak undangan ini?",
+            confirmButtonLabel = "Ya, Tolak",
+            closeButtonLabel = "Batal",
+            onConfirm = {
+                startRejectionBackgroundTask()
+            },
+            onClose = {
+                // No Action
+            }
+        )
+    }
+
     private fun startFakeBackgroundTask() {
         loadingDialog = ModalityLoadingPopUp.show(
             context = requireContext(),
@@ -106,6 +124,18 @@ class EventInvitationNoRSVPView : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             loadingDialog?.dismiss()
             navigateToSuccessScreen()
+        }, 3000)
+    }
+
+    private fun startRejectionBackgroundTask() {
+        loadingDialog = ModalityLoadingPopUp.show(
+            context = requireContext(),
+            title = "Menolak undangan ...",
+            isCancelable = false
+        )
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            loadingDialog?.dismiss()
         }, 3000)
     }
 

@@ -9,7 +9,8 @@ import com.edts.desklabv3.features.event.model.EventInvitation
 class EventInvitationAdapter(
     private val notifications: List<EventInvitation>,
     private val onCardClick: (EventInvitation) -> Unit,
-    private val onButtonClick: (EventInvitation) -> Unit
+    private val onPrimaryButtonClick: (EventInvitation) -> Unit,
+    private val onSecondaryButtonClick: (EventInvitation) -> Unit
 ) : RecyclerView.Adapter<EventInvitationAdapter.NotificationViewHolder>() {
 
     class NotificationViewHolder(val card: EventNotificationCard) : RecyclerView.ViewHolder(card) {
@@ -17,23 +18,31 @@ class EventInvitationAdapter(
         fun bind(
             item: EventInvitation,
             onCardClick: (EventInvitation) -> Unit,
-            onButtonClick: (EventInvitation) -> Unit
+            onPrimaryButtonClick: (EventInvitation) -> Unit,
+            onSecondaryButtonClick: (EventInvitation) -> Unit
         ) {
 
             card.apply {
-                title = item.title
-                description = item.description
-                buttonText = item.buttonText
-                isButtonVisible = item.isButtonVisible
-                eventCategory = item.eventCategory
+                notificationTitle = item.title
+                notificationDescription = item.description
+                primaryButtonText = item.primaryButtonText
+                secondaryButtonText = item.secondaryButtonText
+                isPrimaryButtonVisible = item.isPrimaryButtonVisible
+                isSecondaryButtonVisible = item.isSecondaryButtonVisible
+                notificationCategory = item.eventCategory
+                isBadgeVisible = item.isBadgeVisible
 
                 eventNotificationCardDelegate = object : EventNotificationCardDelegate {
                     override fun onCardClick(notificationCard: EventNotificationCard) {
                         onCardClick(item)
                     }
 
-                    override fun onButtonClick(notificationCard: EventNotificationCard) {
-                        onButtonClick(item)
+                    override fun onPrimaryButtonClick(notificationCard: EventNotificationCard) {
+                        onPrimaryButtonClick(item)
+                    }
+
+                    override fun onSecondaryButtonClick(notificationCard: EventNotificationCard) {
+                        onSecondaryButtonClick(item)
                     }
                 }
             }
@@ -52,7 +61,12 @@ class EventInvitationAdapter(
     }
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        holder.bind(notifications[position], onCardClick, onButtonClick)
+        holder.bind(
+            notifications[position],
+            onCardClick,
+            onPrimaryButtonClick,
+            onSecondaryButtonClick
+        )
     }
 
     override fun getItemCount(): Int = notifications.size

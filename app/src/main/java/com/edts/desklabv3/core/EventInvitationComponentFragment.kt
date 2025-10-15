@@ -44,8 +44,11 @@ class EventInvitationComponentFragment : Fragment() {
             onCardClick = { notification ->
                 Toast.makeText(requireContext(), "Card clicked: ${notification.title}", Toast.LENGTH_SHORT).show()
             },
-            onButtonClick = { notification ->
-                Toast.makeText(requireContext(), "Button clicked for: ${notification.title}", Toast.LENGTH_SHORT).show()
+            onPrimaryButtonClick = { notification ->
+                Toast.makeText(requireContext(), "Primary button clicked for: ${notification.title}", Toast.LENGTH_SHORT).show()
+            },
+            onSecondaryButtonClick = { notification ->
+                Toast.makeText(requireContext(), "Secondary button clicked for: ${notification.title}", Toast.LENGTH_SHORT).show()
             }
         )
 
@@ -75,9 +78,33 @@ class EventInvitationComponentFragment : Fragment() {
                 eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT
             ),
             EventInvitation(
-                title = "EDTS Town-Hall 2025: Power of Change",
-                description = "Anda diundang pada Jumat, 25 Juli 2025, pukul 10:00 – 12:00 WIB. Segera konfirmasi kehadiran Anda.",
+                title = "Employee Benefits Update 2025",
+                description = "Anda diundang pada Senin, 28 Juli 2025, pukul 14:00 – 16:00 WIB. Segera konfirmasi kehadiran Anda.",
                 eventCategory = EventNotificationCard.EventCategory.EMPLOYEE_BENEFIT
+            ),
+            EventInvitation(
+                title = "Persetujuan Pengubahan Aktivitas",
+                description = "Angga Kho Meidy telah menyetujui pengubahan aktivitas Anda untuk pekan 1 (1 Jan 2025 - 7 Jan 2025)",
+                eventCategory = EventNotificationCard.EventCategory.ACTIVITY,
+                isPrimaryButtonVisible = false
+            ),
+            EventInvitation(
+                title = "Persetujuan Cuti",
+                description = "Anga Kho Meidy telah menyetujui permintaan cuti Anda untuk tanggal 31 Agu 2024 - 2 Jan 2025",
+                eventCategory = EventNotificationCard.EventCategory.LEAVE,
+                isPrimaryButtonVisible = false
+            ),
+            EventInvitation(
+                title = "Persetujuan Kerja Khusus",
+                description = "Anga Kho Meidy telah menyetujui permintaan kerja khusus Anda untuk tanggal 31 Agu 2024 - 2 Jan 2025",
+                eventCategory = EventNotificationCard.EventCategory.SPECIAL_WORK,
+                isPrimaryButtonVisible = false
+            ),
+            EventInvitation(
+                title = "Pemberitahuan Delegasi",
+                description = "Muhammad Dzaky Waly Andarwa telah memilih Anda sebagai delegasi untuk tanggal 31 Agu 2024",
+                eventCategory = EventNotificationCard.EventCategory.DELEGATION,
+                isPrimaryButtonVisible = false
             )
         )
     }

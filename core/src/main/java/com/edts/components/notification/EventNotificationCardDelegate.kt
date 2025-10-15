@@ -1,6 +1,7 @@
 package com.edts.components.notification
 
 interface EventNotificationCardDelegate {
-    fun onButtonClick(notificationCard: EventNotificationCard)
-    fun onCardClick(notificationCard: EventNotificationCard)
+    fun onCardClick(card: EventNotificationCard)
+    fun onPrimaryButtonClick(card: EventNotificationCard)
+    fun onSecondaryButtonClick(card: EventNotificationCard)
 }
