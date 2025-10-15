@@ -17,7 +17,6 @@ class EventNotificationCard @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     private val binding: EventNotificationCardBinding =
         EventNotificationCardBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -60,14 +59,12 @@ class EventNotificationCard @JvmOverloads constructor(
         isFocusable = true
 
         binding.btnNotification.setOnClickListener {
-            Log.d("EventNotificationCard", "Confirm Button Clicked ✅")
             eventNotificationCardDelegate?.onButtonClick(this)
         }
     }
 
     override fun performClick(): Boolean {
         super.performClick()
-        Log.d("EventNotificationCard", "CardView Clicked ✅")
         eventNotificationCardDelegate?.onCardClick(this)
         return true
     }
