@@ -81,19 +81,16 @@ class EventNotificationCard @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         super.performClick()
-        Log.d("EventNotificationCard", "CardView Clicked ✅")
         eventNotificationCardDelegate?.onCardClick(this)
         return true
     }
 
     private fun setupClickListeners() {
         binding.btnNotification.setOnClickListener {
-            Log.d("EventNotificationCard", "Primary Button Clicked ✅")
             eventNotificationCardDelegate?.onPrimaryButtonClick(this)
         }
 
         binding.btnNegativeNotification.setOnClickListener {
-            Log.d("EventNotificationCard", "Secondary Button Clicked ✅")
             eventNotificationCardDelegate?.onSecondaryButtonClick(this)
         }
     }
