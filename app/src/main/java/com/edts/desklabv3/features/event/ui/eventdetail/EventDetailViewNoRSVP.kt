@@ -27,6 +27,7 @@ class EventDetailViewNoRSVP : Fragment() {
     private lateinit var timeLocationAdapter: EventTimeLocationAdapter
     private var bottomTray: BottomTray? = null
     private var loadingDialog: AlertDialog? = null
+    private var isConfirming = false
 
     private var startDateTime: String = ""
     private var endDateTime: String = ""
@@ -83,8 +84,18 @@ class EventDetailViewNoRSVP : Fragment() {
         eventDescription = EVENT_DESCRIPTION_HTML
     }
 
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        bottomTray?.dismiss()
+//        bottomTray = null
+//        _binding = null
+//    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        isConfirming = false
+        loadingDialog?.dismiss()
+        loadingDialog = null
         bottomTray?.dismiss()
         bottomTray = null
         _binding = null
@@ -139,29 +150,49 @@ class EventDetailViewNoRSVP : Fragment() {
     }
 
     private fun showConfirmationModal() {
+        if (isConfirming || !isAdded || context == null) return
+        isConfirming = true
+        val safeContext = requireContext()
+
         ModalityConfirmationPopUp.show(
-            context = requireContext(),
+            context = safeContext,
             title = "Konfirmasi Undangan",
             description = "Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?",
             confirmButtonLabel = "Ya, Lanjutkan",
             closeButtonLabel = "Tutup",
             onConfirm = {
-                startFakeBackgroundTask()
+                if (isAdded) {
+                    startFakeBackgroundTask()
+                }
+                isConfirming = false
             },
-            onClose = { }
+            onClose = {
+                isConfirming = false
+            }
         )
     }
 
     private fun startFakeBackgroundTask() {
+        if (!isAdded || context == null) {
+            isConfirming = false
+            return
+        }
+
+        val safeContext = requireContext()
+
         loadingDialog = ModalityLoadingPopUp.show(
-            context = requireContext(),
+            context = safeContext,
             title = "Tunggu sebentar ...",
             isCancelable = false
         )
 
         Handler(Looper.getMainLooper()).postDelayed({
-            loadingDialog?.dismiss()
-            navigateToSuccessScreen()
+            if (isAdded && context != null) {
+                loadingDialog?.dismiss()
+                navigateToSuccessScreen()
+            }
+            loadingDialog = null
+            isConfirming = false
         }, 3000)
     }
 
