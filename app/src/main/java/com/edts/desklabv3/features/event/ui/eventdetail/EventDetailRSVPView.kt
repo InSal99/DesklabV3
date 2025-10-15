@@ -13,14 +13,11 @@ import com.edts.components.infobox.InfoBox
 import com.edts.components.tray.BottomTray
 import com.edts.desklabv3.R
 import com.edts.desklabv3.databinding.FragmentEventDetailBinding
-import com.edts.desklabv3.features.event.ui.rsvp.RSVPFormView
-import com.edts.desklabv3.features.home.model.ActivityItem
 import formatDateRange
 import formatTimeRange
 import setupHtmlDescription
 
 class EventDetailRSVPView : Fragment() {
-
     private var _binding: FragmentEventDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var timeLocationAdapter: EventTimeLocationAdapter
@@ -143,7 +140,6 @@ class EventDetailRSVPView : Fragment() {
     companion object {
         const val EVENT_START_DATETIME = "2025-07-23 15:00:00"
         const val EVENT_END_DATETIME = "2025-07-23 17:00:00"
-
         const val EVENT_DESCRIPTION_HTML = """
             <p>HALO EDTIZENS! 🔥</p>
             <p>Siap-siap, medan pertempuran Land of Dawn akan segera memanas! Saatnya menunjukkan siapa yang benar-benar penguasa lantai 40 & 42 dalam dunia Mobile Legends!</p>

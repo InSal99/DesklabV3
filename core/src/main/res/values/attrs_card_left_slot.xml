@@ -6,6 +6,7 @@
             <enum name="icon" value="1" />
         </attr>
         <attr name="slotSrc" format="reference" />
+        <attr name="slotUrl" format="string" />
         <attr name="slotBackgroundColor" format="color|reference" />
         <attr name="slotTint" format="color|reference" />
     </declare-styleable>

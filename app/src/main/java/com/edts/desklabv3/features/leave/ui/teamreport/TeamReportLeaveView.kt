@@ -4,7 +4,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ import com.edts.desklabv3.databinding.FragmentTeamReportLeaveViewBinding
 import com.edts.desklabv3.features.event.ui.eventdetail.EventOptionAdapter
 
 class TeamReportLeaveView : Fragment(), InputSearchDelegate {
-
     private var _binding: FragmentTeamReportLeaveViewBinding? = null
     private val binding get() = _binding!!
 
@@ -89,16 +87,6 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     private fun navigateToEmployeeDetail() {
-//        val fragment = EmployeeLeaveDetailView()
-//        parentFragmentManager.beginTransaction()
-//            .replace(com.edts.desklabv3.R.id.fragment_container, fragment)
-//            .addToBackStack(EmployeeLeaveDetailView::class.java.simpleName)
-//            .commit()
-
-//        (activity as? MainActivity)?.saveCurrentTeamReportTab()
-
-//        val result = bundleOf("fragment_class" to "EmployeeLeaveDetailView")
-
         val result = bundleOf(
             "fragment_class" to "EmployeeLeaveDetailView",
             "source_fragment" to "TeamReportLeaveView"
@@ -122,7 +110,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             SortType.NAME_ASCENDING, SortType.LEAVE_COUNT_ASCENDING ->
                 com.edts.desklabv3.R.drawable.ic_sort_ascending
             SortType.NAME_DESCENDING, SortType.LEAVE_COUNT_DESCENDING ->
-                com.edts.components.R.drawable.ic_sort
+                R.drawable.ic_sort
         }
 
         binding.cvSortBtn.sortIcon = iconRes
@@ -168,7 +156,6 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         val bindingTray = com.edts.desklabv3.databinding.BottomTrayEventOptionsBinding.inflate(layoutInflater)
 
         val optionAdapter = EventOptionAdapter { position ->
-            Log.d("Sorting", "User selected sort option $position")
             bottomTray?.dismiss()
 
             Handler(Looper.getMainLooper()).postDelayed({
@@ -218,13 +205,11 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     private fun sortByNameAscending() {
         val sortedEmployees = filteredEmployees.sortedBy { it.employeeName }
         updateEmployeeList(sortedEmployees)
-        Log.d("Sorting", "Applied name ascending sort - Icon should be ic_sort_ascending")
     }
 
     private fun sortByNameDescending() {
         val sortedEmployees = filteredEmployees.sortedByDescending { it.employeeName }
         updateEmployeeList(sortedEmployees)
-        Log.d("Sorting", "Applied name descending sort - Icon should be ic_sort")
     }
 
     private fun sortByLeaveCountDescending() {
@@ -232,7 +217,6 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             employee.counterDays
         }
         updateEmployeeList(sortedEmployees)
-        Log.d("Sorting", "Applied leave count descending sort - Icon should be ic_sort")
     }
 
     private fun sortByLeaveCountAscending() {
@@ -240,7 +224,6 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             employee.counterDays
         }
         updateEmployeeList(sortedEmployees)
-        Log.d("Sorting", "Applied leave count ascending sort - Icon should be ic_sort_ascending")
     }
 
     private fun updateEmployeeList(sortedEmployees: List<Employee>) {
@@ -319,15 +302,12 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
     }
 
     override fun onSearchFieldClick(inputSearch: com.edts.components.input.search.InputSearch, clickCount: Int) {
-        // Handle search field click
     }
 
     override fun onStateChange(inputSearch: com.edts.components.input.search.InputSearch, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
-        // Handle state changes
     }
 
     override fun onFocusChange(inputSearch: com.edts.components.input.search.InputSearch, hasFocus: Boolean, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
-        // Handle focus changes
     }
 
     override fun onDestroyView() {

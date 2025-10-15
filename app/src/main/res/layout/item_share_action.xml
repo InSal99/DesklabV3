@@ -12,7 +12,7 @@
         android:layout_height="48dp"
         android:scaleType="centerInside"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@null" />
+        android:contentDescription="@null"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvActionLabel"
@@ -23,5 +23,5 @@
         android:maxLines="2"
         android:textSize="12sp"
         android:layout_marginTop="@dimen/margin_4dp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"/>
 </LinearLayout>

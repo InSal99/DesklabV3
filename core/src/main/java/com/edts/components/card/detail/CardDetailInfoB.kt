@@ -7,20 +7,16 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
-import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.card.multi.detail.CardLeftSlot
 import com.edts.components.databinding.CardDetailInfoBBinding
 import com.google.android.material.card.MaterialCardView
-import android.view.MotionEvent
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
 
@@ -137,6 +133,12 @@ class CardDetailInfoB @JvmOverloads constructor(
             updateLeftSlotSrc()
         }
 
+    var leftSlotUrl: String? = null
+        set(value) {
+            field = value
+            updateLeftSlotSrc()
+        }
+
     var leftSlotSize: Int = 32.dpToPx
         set(value) {
             field = value
@@ -232,6 +234,8 @@ class CardDetailInfoB @JvmOverloads constructor(
                     leftSlotSrc = leftSlotSrcRes
                 }
 
+                leftSlotUrl = getString(com.edts.components.R.styleable.CardDetailInfoB_cdibLeftSlotUrl)
+
                 val leftSlotSizeValue = getDimensionPixelSize(R.styleable.CardDetailInfoB_cdibLeftSlotSize, -1)
                 if (leftSlotSizeValue != -1) {
                     leftSlotSize = leftSlotSizeValue
@@ -300,7 +304,6 @@ class CardDetailInfoB @JvmOverloads constructor(
 
                 binding.ivCdibRightSlot.setOnClickListener {
                     delegate?.onRightSlotClick(this@CardDetailInfoB)
-                    Log.d("CardClick", "Right slot clicked!")
                 }
             } finally {
                 recycle()
@@ -376,7 +379,6 @@ class CardDetailInfoB @JvmOverloads constructor(
                     indicatorPaint.color = value
                 }
             }
-
             invalidate()
         }
     }
@@ -405,7 +407,6 @@ class CardDetailInfoB @JvmOverloads constructor(
             contentLayoutParams.topToTop = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.PARENT_ID
             contentLayoutParams.bottomToBottom = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.PARENT_ID
         }
-
         binding.tvCdibTitle.layoutParams = titleLayoutParams
         binding.cdibContent.layoutParams = contentLayoutParams
     }
@@ -471,7 +472,6 @@ class CardDetailInfoB @JvmOverloads constructor(
                 binding.cdibContent.paddingBottom
             )
         }
-
         binding.cdibContent.layoutParams = contentLayoutParams
     }
 
@@ -489,7 +489,6 @@ class CardDetailInfoB @JvmOverloads constructor(
 
     private fun handleClick() {
         if (!isCardInteractive) {
-            Log.d("CardClick", "Click ignored - card is not interactive")
             return
         }
 
@@ -498,20 +497,13 @@ class CardDetailInfoB @JvmOverloads constructor(
         if (currentTime - lastClickTime > clickDebounceDelay) {
             clickCount++
             lastClickTime = currentTime
-
-            Log.d("CardClick", "Card clicked! Total clicks: $clickCount")
-            Log.d("CardClick", "Click timestamp: $currentTime")
-
             delegate?.onCardClick(this)
-        } else {
-            Log.d("CardClick", "Click ignored due to debounce (too fast)")
         }
     }
 
     fun resetClickCount() {
         val previousCount = clickCount
         clickCount = 0
-        Log.d("CardClick", "Click count reset from $previousCount to 0")
     }
 
     fun getClickCount(): Int {
@@ -530,9 +522,8 @@ class CardDetailInfoB @JvmOverloads constructor(
     }
 
     private fun updateLeftSlotSrc() {
-        leftSlotSrc?.let {
-            binding.cvCardLeftSlotCdib.slotSrc = it
-        }
+        leftSlotUrl?.let { binding.cvCardLeftSlotCdib.slotUrl = it }
+        leftSlotSrc?.let { binding.cvCardLeftSlotCdib.slotSrc = it }
     }
 
     private fun updateLeftSlotSize() {

@@ -15,7 +15,6 @@ import com.edts.desklabv3.features.event.model.EventInvitation
 import com.edts.desklabv3.features.event.ui.invitation.EventInvitationAdapter
 
 class EventInvitationComponentFragment : Fragment() {
-
     private var _binding: FragmentEventInvitationComponentBinding? = null
     private val binding get() = _binding!!
 

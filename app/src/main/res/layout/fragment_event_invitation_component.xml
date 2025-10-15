@@ -34,19 +34,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_12dp"
             android:text="Event Invitation Card"
-            android:textColor="?attr/colorForegroundPrimary" />
-
+            android:textColor="?attr/colorForegroundPrimary"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEventInvitation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:layout_marginTop="@dimen/margin_16dp"
-        android:nestedScrollingEnabled="false"
+        android:nestedScrollingEnabled="true"
+        android:isScrollContainer="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/cvComponentTitle"/>
+        app:layout_constraintTop_toBottomOf="@id/cvComponentTitle"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

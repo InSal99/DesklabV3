@@ -17,7 +17,6 @@ import com.edts.desklabv3.features.event.model.MyEventStatus
 import com.edts.desklabv3.features.event.ui.myevent.MyEventAdapter
 
 class MyEventsComponentFragment : Fragment() {
-
     private var _binding: FragmentMyEventsComponentBinding? = null
     private val binding get() = _binding!!
 

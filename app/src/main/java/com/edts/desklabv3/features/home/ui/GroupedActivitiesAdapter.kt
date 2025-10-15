@@ -16,7 +16,6 @@ class GroupedActivitiesAdapter(
     private var dateGroups: List<DateGroupItem>,
     private val onActivityClick: (ActivityItem) -> Unit = {}
 ) : RecyclerView.Adapter<GroupedActivitiesAdapter.DateGroupViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateGroupViewHolder {
         val binding = ItemDateGroupBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -68,7 +67,7 @@ class GroupedActivitiesAdapter(
         fun groupActivitiesByDate(activities: List<ActivityItem>): List<DateGroupItem> {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
-            val monthFormat = SimpleDateFormat("MMM", Locale("id", "ID")) // Indonesian month names
+            val monthFormat = SimpleDateFormat("MMM", Locale("id", "ID"))
 
             return activities
                 .groupBy { it.date }
@@ -87,7 +86,7 @@ class GroupedActivitiesAdapter(
                     } catch (e: Exception) {
                         DateGroupItem(
                             date = dateString,
-                            dayOfMonth = dateString.substring(8, 10), // Assuming yyyy-MM-dd format
+                            dayOfMonth = dateString.substring(8, 10),
                             monthName = getMonthName(dateString.substring(5, 7)),
                             activities = activitiesForDate
                         )

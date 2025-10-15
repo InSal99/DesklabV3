@@ -19,7 +19,6 @@ import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.EventInvitation
 
 class EventInvitationNoRSVPView : Fragment() {
-
     private var _binding: FragmentEventInvitationListBinding? = null
     private val binding get() = _binding!!
     private var loadingDialog: AlertDialog? = null
@@ -93,7 +92,6 @@ class EventInvitationNoRSVPView : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-                // No Action
             }
         )
     }

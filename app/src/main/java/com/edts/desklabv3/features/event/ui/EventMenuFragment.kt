@@ -2,7 +2,6 @@ package com.edts.desklabv3.features.event.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,10 +26,8 @@ import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentNoRSVP
 import com.edts.desklabv3.features.event.ui.myevent.MyEventsFragmentRSVP
 
 class EventMenuFragment : Fragment() {
-
     private var _binding: FragmentEventMenuBinding? = null
     private val binding get() = _binding!!
-    private val pagerAdapters = mutableMapOf<String, TabFragmentAdapter>()
 
     private var headerConfigurator: HeaderConfigurator? = null
 
@@ -65,8 +62,6 @@ class EventMenuFragment : Fragment() {
             "TolakUndanganEnd" -> setupFlow4EndViewPager(selectedTab)
             else -> Fragment()
         }
-
-        Log.d("UI_CONFIG", "Event Menu Flow $flowType")
     }
 
     private fun setupFlow2EndViewPager(selectedPosition: Int = 0) {

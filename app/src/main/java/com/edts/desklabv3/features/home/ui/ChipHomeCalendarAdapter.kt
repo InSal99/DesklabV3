@@ -14,7 +14,6 @@ class ChipHomeCalendarAdapter(
     private var selectedPosition: Int = 0,
     private val onChipClick: (position: Int, chipText: String) -> Unit
 ) : RecyclerView.Adapter<ChipHomeCalendarAdapter.ChipViewHolder>() {
-
     init {
         if (selectedPosition < 0 || selectedPosition >= chipTexts.size) {
             selectedPosition = 0
@@ -82,28 +81,6 @@ class ChipHomeCalendarAdapter(
             }
         }
     }
-
-//    inner class ChipViewHolder(private val binding: ItemChipBinding) : RecyclerView.ViewHolder(binding.root) {
-//
-//        fun bind(chipText: String, isSelected: Boolean, position: Int) {
-//            binding.chip.apply {
-//                this.chipText = chipText
-//
-//                val backgroundColor = getChipBackgroundColor(chipText, context)
-//                setActiveBackgroundColor(backgroundColor)
-//
-//                chipState = if (isSelected) Chip.ChipState.ACTIVE else Chip.ChipState.INACTIVE
-//
-//                setOnClickListener {
-//                    if (!isSelected && position != selectedPosition) {
-//                        updateSelectedPosition(position)
-//                        onChipClick(position, chipText)
-//                    }
-//                }
-//                isClickable = !isSelected
-//            }
-//        }
-//    }
 
     inner class ChipViewHolder(private val binding: ItemChipBinding) : RecyclerView.ViewHolder(binding.root) {
         private var lastClickTime = 0L

@@ -6,6 +6,7 @@
             <enum name="icon" value="1" />
         </attr>
         <attr name="cmdLeftSlotSrc" format="reference" />
+        <attr name="cmdLeftSlotUrl" format="string" />
         <attr name="cmdLeftSlotBackgroundColor" format="reference|color" />
         <attr name="cmdLeftSlotTint" format="reference|color" />
         <attr name="cmdShowLeftSlot" format="boolean" />

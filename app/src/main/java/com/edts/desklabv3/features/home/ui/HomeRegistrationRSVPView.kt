@@ -1,7 +1,6 @@
 package com.edts.desklabv3.features.home.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -154,8 +153,6 @@ class HomeRegistrationRSVPView : Fragment() {
             if (!useEndList) {
                 navigateToEventList(activity)
             }
-        } else {
-            Log.d("HomeView", "Non-event activity clicked: ${activity.title}")
         }
     }
 

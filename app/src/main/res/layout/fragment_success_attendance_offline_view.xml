@@ -38,9 +38,10 @@
             android:ellipsize="end"
             android:text="Kehadiran Tercatat!"
             android:textColor="?attr/colorForegroundPrimary"
+            style="?attr/d3SemiBold"
             app:layout_constraintStart_toStartOf="@+id/tvDescAttendanceOffline"
             app:layout_constraintEnd_toEndOf="@+id/tvDescAttendanceOffline"
-            app:layout_constraintTop_toBottomOf="@+id/ivIllustAttendanceOffline" />
+            app:layout_constraintTop_toBottomOf="@+id/ivIllustAttendanceOffline"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDescAttendanceOffline"
@@ -51,10 +52,11 @@
             android:ellipsize="end"
             android:text="Terima kasih telah konfirmasi kehadiranmu"
             android:textColor="?attr/colorForegroundPrimary"
+            style="?attr/p1Regular"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleAttendanceOffline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.edts.components.button.Button
@@ -63,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:text="Lihat Detail Event"
-        buttonCustomSize="MD"
+        app:buttonCustomSize="MD"
         app:buttonType="PRIMARY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,10 +76,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lihat Event Lain"
-        buttonCustomSize="MD"
+        app:buttonCustomSize="MD"
         app:buttonType="SECONDARY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

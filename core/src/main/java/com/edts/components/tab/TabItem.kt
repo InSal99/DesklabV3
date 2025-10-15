@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -72,7 +71,6 @@ class TabItem @JvmOverloads constructor(
     private companion object {
         const val ANIMATION_DURATION = 150L
         const val INDICATOR_ANIMATION_DURATION = 200L
-        const val TAG = "Tab"
     }
 
     var delegate: TabDelegate? = null
@@ -120,26 +118,12 @@ class TabItem @JvmOverloads constructor(
 
             val previousState = tabState
 
-            Log.d(TAG, "Tab clicked!")
-            Log.d(TAG, "  - Tab Text: ${tabText ?: "No text"}")
-            Log.d(TAG, "  - Badge Text: ${badgeText ?: "No badge text"}")
-            Log.d(TAG, "  - Show Badge: $showBadge")
-            Log.d(TAG, "  - Current State: $previousState")
-            Log.d(TAG, "  - Total clicks: $clickCount")
-            Log.d(TAG, "  - Click timestamp: $currentTime")
-
             if (delegate != null) {
-                Log.d(TAG, "  - Has delegate, notifying parent component")
                 delegate?.onTabClick(this, previousState, previousState)
             } else {
                 val newState = if (tabState == TabState.ACTIVE) TabState.INACTIVE else TabState.ACTIVE
-                Log.d(TAG, "  - Standalone TabItem, changing state to: $newState")
                 tabState = newState
             }
-
-            Log.d(TAG, "--------------------")
-        } else {
-            Log.d(TAG, "Click ignored due to debounce (too fast)")
         }
     }
 
@@ -264,7 +248,6 @@ class TabItem @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        Log.d(TAG, "Programmatic click triggered")
         handleTabClick()
         return super.performClick()
     }
@@ -274,11 +257,6 @@ class TabItem @JvmOverloads constructor(
         tabState = state
 
         if (triggerDelegate && previousState != state) {
-            Log.d(TAG, "Tab state changed programmatically:")
-            Log.d(TAG, "  - Tab Text: ${tabText ?: "No text"}")
-            Log.d(TAG, "  - Previous State: $previousState")
-            Log.d(TAG, "  - New State: $state")
-
             delegate?.onTabClick(this, state, previousState)
         }
     }

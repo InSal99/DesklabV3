@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.edts.desklabv3.databinding.FragmentRadioButtonComponentViewBinding
 
 class RadioButtonComponentView : Fragment() {
-
     private var _binding: FragmentRadioButtonComponentViewBinding? = null
     private val binding get() = _binding!!
 

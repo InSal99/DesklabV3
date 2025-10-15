@@ -83,6 +83,7 @@ cardMultiDetail.leftSlotType = CardMultiDetail.LeftSlotType.IMAGE
 | ------------- | ---- | ------- | ----------- |
 | `leftSlotType` | `LeftSlotType` | `ICON` | Type of content in left slot (icon or image) |
 | `leftSlotSrc` | `Int?` | `null` | Drawable resource ID for left slot content |
+| `leftSlotUrl` | `String?` | `null` | Url image for left slot content          |
 | `leftSlotBackgroundColor` | `Int?` | `null` | Background color for icon type left slot |
 | `leftSlotTint` | `Int?` | `null` | Tint color applied to icon type left slot |
 | `cmdShowLeftSlot` | `Boolean` | `true` | Controls left slot visibility |
@@ -109,6 +110,7 @@ cardMultiDetail.leftSlotType = CardMultiDetail.LeftSlotType.IMAGE
 | Method | Parameters | Required | Description |
 | ------ | ---------- | -------- | ----------- |
 | `onCardClick()` | `card: CardMultiDetail` | ✅ | Called when the card is clicked (only if clickable) |
+| `onRightSlotClick()` | `card: CardMultiDetail` | ✅ | Called when the card right slot is clicked (only when interactive) |
 
 ```kotlin
 val delegate = object : CardMultiDetailDelegate {
@@ -294,7 +296,6 @@ fun setCardClickable(clickable: Boolean) {
 
 ## Performance Considerations
 
-- **Color Caching** — Resolves and caches theme colors to avoid repeated attribute lookups during state changes
 - **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks
 - **ViewBinding** — Uses ViewBinding for efficient view access with nested custom components
 - **Intelligent Clickability** — Automatically manages click states based on right slot visibility to prevent unnecessary touch handling

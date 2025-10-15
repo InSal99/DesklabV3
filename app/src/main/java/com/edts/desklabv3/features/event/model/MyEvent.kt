@@ -4,10 +4,6 @@ import com.edts.components.event.card.EventCardBadge
 import com.edts.components.myevent.card.MyEventCard
 import java.util.UUID
 
-/**
- * Data class for an event, now holding presentation-specific data
- * that the adapter will use.
- */
 data class MyEvent(
     val id: String = UUID.randomUUID().toString(),
     val status: MyEventStatus,

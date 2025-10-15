@@ -3,7 +3,6 @@ package com.edts.components.myevent.card
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.isVisible
@@ -19,7 +18,6 @@ class MyEventCard @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-
     var myEventCardDelegate: MyEventCardDelegate? = null
 
     var eventTitle: String? = null
@@ -57,7 +55,6 @@ class MyEventCard @JvmOverloads constructor(
         isClickable = true
         isFocusable = true
     }
-
 
     fun setCalendarData(month: String, date: String, day: String) {
         binding.customCalendarCard.setCalendarData(month, date, day)
@@ -152,7 +149,6 @@ class MyEventCard @JvmOverloads constructor(
             )
         }
     }
-
 
     enum class MyEventType(val value: Int) {
         LIVE(0),

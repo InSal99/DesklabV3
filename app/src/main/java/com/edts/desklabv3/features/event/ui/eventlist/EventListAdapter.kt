@@ -15,7 +15,6 @@ class EventListAdapter(
     private var events: List<EventSample>,
     private val onEventClick: (EventSample) -> Unit
 ) : RecyclerView.Adapter<EventListAdapter.EventViewHolder>() {
-
     private val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale("id", "ID"))
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -65,7 +64,6 @@ class EventListAdapter(
     }
 
     inner class EventViewHolder(private val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(event: EventSample) {
             binding.eventCard.apply {
                 eventTitle = event.eventTitle

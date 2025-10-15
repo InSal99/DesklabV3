@@ -10,7 +10,6 @@ import com.edts.desklabv3.features.event.model.FilterChip
 class FilterChipAdapter(
     private val onChipClicked: (FilterChip) -> Unit
 ) : ListAdapter<FilterChip, FilterChipAdapter.ChipViewHolder>(FilterChipDiffCallback()) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChipViewHolder {
         val chip = Chip(parent.context).apply {
             chipShowIcon = false
@@ -30,14 +29,6 @@ class FilterChipAdapter(
         fun bind(chipData: FilterChip, onChipClicked: (FilterChip) -> Unit) {
             chipView.chipText = chipData.text
             chipView.chipState = if (chipData.isSelected) Chip.ChipState.ACTIVE else Chip.ChipState.INACTIVE
-
-//            if (chipData.isSelected) {
-//                itemView.setOnClickListener(null)
-//                itemView.isClickable = false
-//            } else {
-//                itemView.setOnClickListener { onChipClicked(chipData) }
-//                itemView.isClickable = true
-//            }
 
             if (chipData.isSelected) {
                 itemView.setOnClickListener(null)

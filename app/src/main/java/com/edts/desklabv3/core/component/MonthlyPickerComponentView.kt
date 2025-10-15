@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edts.desklabv3.R
 import com.edts.desklabv3.core.util.InsetConfigurable
-import com.edts.desklabv3.databinding.FragmentBadgeComponentViewBinding
 import com.edts.desklabv3.databinding.FragmentMonthlyPickerComponentViewBinding
 
 class MonthlyPickerComponentView : Fragment(), InsetConfigurable {
