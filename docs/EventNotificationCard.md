@@ -1,35 +1,34 @@
 # Event Notification Card
 
-The `EventNotificationCard` is a dedicated UI component designed to notify an employee about an invitation to an event. It presents information in a structured and easily scannable format, ensuring the user can quickly understand the notification's context. The card consists of several key elements: an icon, an event type label, a title, a detailed description, and an optional call-to-action button.
+`EventNotificationCard` is a dedicated UI component designed to notify employees about event invitations. It presents event information in a structured and easily scannable format, allowing users to quickly understand the notification context and take action. The card features an icon, event category label, title, detailed description, and an action button.
 
 ## Visual Anatomy
-The component is a self-contained card with a clean layout, suitable for display in lists or feeds.
 
 ![Event Notification Card](https://res.cloudinary.com/fauzanspratama/image/upload/v1759290714/Event_Notification_Card_pscvuc.png)
 
 | Element | Description |
 | :------ | :---------- |
-| **Icon** | Circular icon indicating event type with subtle background |
-| **Event Type** | Badge showing event category (GENERAL EVENT, PEOPLE DEVELOPMENT, etc.) |
-| **Title** | Primary event name using `l2SemiBold` typography |
-| **Description** | Detailed event information using `p2Regular` typography |
-| **Action Button** | Interactive button for accepting invitations or other actions |
+| **Notification Icon** | Circular icon with event symbol and subtle background |
+| **Event Category** | Category label (GENERAL EVENT, PEOPLE DEVELOPMENT, EMPLOYEE BENEFIT) |
+| **Title** | Primary event name using appropriate typography |
+| **Description** | Detailed event invitation description |
+| **Action Button** | Interactive button for accepting invitations |
 
 ## Key Features
-- **Multiple Event Types**: Supports GENERAL_EVENT, PEOPLE_DEVELOPMENT, and EMPLOYEE_BENEFIT with automatic styling
+- **Multiple Event Categories**: Supports GENERAL_EVENT, PEOPLE_DEVELOPMENT, and EMPLOYEE_BENEFIT with automatic styling
 - **Dual Interaction**: Separate delegates for card clicks and button clicks
-- **Flexible Visibility**: Configurable button visibility and text
+- **Flexible Content**: Configurable title, description, button text, and visibility
 - **Material Design**: Card-based layout with proper elevation and shadows
-- **Custom Icon Support**: Embedded EventNotificationIcon component with circular background
 - **Theme Integration**: Uses app theme colors and typography
+- **RecyclerView Ready**: Optimized for use in lists and feeds
 
-## Event Types
+## Event Categories
 
-| Event Type | Use Case Description |
-| :--- | :--- |
-| **GENERAL_EVENT** | Company-wide events, town halls, social gatherings, announcements, and general corporate communications |
-| **PEOPLE_DEVELOPMENT** | Training sessions, workshops, skill development programs, leadership training, and professional growth activities |
-| **EMPLOYEE_BENEFIT** | Benefit announcements, healthcare programs, wellness initiatives, insurance updates, and employee welfare programs |
+| Category | Display Text | Use Case |
+| :--- | :--- | :--- |
+| **GENERAL_EVENT** | "GENERAL EVENT" | Company-wide events, town halls, social gatherings, announcements |
+| **PEOPLE_DEVELOPMENT** | "PEOPLE DEVELOPMENT" | Training sessions, workshops, skill development programs |
+| **EMPLOYEE_BENEFIT** | "EMPLOYEE BENEFIT" | Benefit announcements, wellness programs, employee welfare initiatives |
 
 ## XML Implementation
 
@@ -39,34 +38,21 @@ The component is a self-contained card with a clean layout, suitable for display
     android:id="@+id/eventNotification"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:notificationTitle="EDTS Town-Hall 2025: Power of Change"
+    app:notificationTitle="Simplifying UX Complexity: Bridging the Gap Between Design and Development"
     app:notificationDescription="Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda."
     app:notificationButtonText="Terima Undangan"
     app:notificationButtonVisible="true"
-    app:notificationEventType="GENERAL_EVENT" />
+    app:notificationEventCategory="general_event" />
 ```
 
-#### XML Attributes
+### XML Attributes
 | Attribute | Format | Description |
 | :-------- | :----- | :---------- |
 | `notificationTitle` | `string` | Primary event title text |
-| `notificationDescription` | `string` | Detailed event description |
-| `notificationButtonText` | `string` | Action button label text |
-| `notificationButtonVisible` | `boolean` | Show/hide action button |
-| `notificationEventType` | `string` | Event type: GENERAL_EVENT, PEOPLE_DEVELOPMENT, EMPLOYEE_BENEFIT |
-
-### Icon Component Usage
-```xml
-<com.edts.components.notification.EventNotificationIcon
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:notificationIcon="@drawable/ic_custom_event" />
-```
-
-#### Icon XML Attributes
-| Attribute | Format | Description |
-| :-------- | :----- | :---------- |
-| `notificationIcon` | `reference` | Drawable resource for the icon |
+| `notificationDescription` | `string` | Detailed event description and invitation details |
+| `notificationButtonText` | `string` | Action button label text (default: "Terima Undangan") |
+| `notificationButtonVisible` | `boolean` | Show/hide action button (default: true) |
+| `notificationEventCategory` | `enum` | Event category: general_event, people_development, employee_benefit |
 
 ## Kotlin Implementation
 
@@ -76,66 +62,115 @@ val notificationCard = findViewById<EventNotificationCard>(R.id.eventNotificatio
 
 // Set content dynamically
 notificationCard.apply {
-    title = "Team Building Workshop"
-    description = "Join us for team activities and bonding exercises next Friday"
-    buttonText = "Confirm Attendance"
+    title = "EDTS Town-Hall 2025: Power of Change"
+    description = "Anda diundang pada Jumat, 25 Juli 2025, pukul 10:00 – 12:00 WIB. Segera konfirmasi kehadiran Anda."
+    buttonText = "Terima Undangan"
     isButtonVisible = true
-    eventType = EventNotificationCard.EventType.PEOPLE_DEVELOPMENT
+    eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT
 }
-```
-
-### Event Type Management
-```kotlin
-// Set event type with automatic UI updates
-notificationCard.eventType = EventNotificationCard.EventType.EMPLOYEE_BENEFIT
-
-// Or from string
-notificationCard.eventType = EventNotificationCard.EventType.fromString("GENERAL_EVENT")
 ```
 
 ### Event Handling with Delegate
 ```kotlin
-notificationCard.delegate = object : EventNotificationCardDelegate {
+notificationCard.eventNotificationCardDelegate = object : EventNotificationCardDelegate {
     override fun onButtonClick(notificationCard: EventNotificationCard) {
-        // Handle button tap (accept invitation, etc.)
-        showConfirmationDialog()
+        // Handle button tap (accept invitation)
+        Toast.makeText(context, "Button clicked for: ${notificationCard.title}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCardClick(notificationCard: EventNotificationCard) {
-        // Handle entire card tap (view details, etc.)
-        navigateToEventDetails()
+        // Handle entire card tap (view event details)
+        Toast.makeText(context, "Card clicked: ${notificationCard.title}", Toast.LENGTH_SHORT).show()
     }
 }
 ```
 
-### View Binding Implementation
+### RecyclerView Adapter Implementation
 ```kotlin
-private lateinit var binding: ActivityMainBinding
+class EventInvitationAdapter(
+    private val notifications: List<EventInvitation>,
+    private val onCardClick: (EventInvitation) -> Unit,
+    private val onButtonClick: (EventInvitation) -> Unit
+) : RecyclerView.Adapter<EventInvitationAdapter.NotificationViewHolder>() {
 
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityMainBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-    
-    setupNotificationCard()
-}
-
-private fun setupNotificationCard() {
-    binding.eventNotification.apply {
-        title = "Annual Company Party"
-        description = "Celebrate our achievements together at the grand ballroom"
-        buttonText = "RSVP Now"
-        eventType = EventNotificationCard.EventType.GENERAL_EVENT
+    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
+        val notification = notifications[position]
         
-        delegate = object : EventNotificationCardDelegate {
-            override fun onButtonClick(notificationCard: EventNotificationCard) {
-                handleRsvp(notificationCard.title)
-            }
+        holder.card.apply {
+            title = notification.title
+            description = notification.description
+            buttonText = notification.buttonText
+            isButtonVisible = notification.isButtonVisible
+            eventCategory = notification.eventCategory
 
-            override fun onCardClick(notificationCard: EventNotificationCard) {
-                showEventDetails(notificationCard.title)
+            eventNotificationCardDelegate = object : EventNotificationCardDelegate {
+                override fun onCardClick(notificationCard: EventNotificationCard) {
+                    onCardClick(notification)
+                }
+
+                override fun onButtonClick(notificationCard: EventNotificationCard) {
+                    onButtonClick(notification)
+                }
             }
         }
+    }
+
+    override fun onViewRecycled(holder: NotificationViewHolder) {
+        holder.card.eventNotificationCardDelegate = null
+        super.onViewRecycled(holder)
+    }
+}
+```
+
+### Data Model Integration
+```kotlin
+// Creating EventInvitation data
+val eventInvitation = EventInvitation(
+    title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
+    description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
+    buttonText = "Terima Undangan",
+    isButtonVisible = true,
+    eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT
+)
+```
+
+### Fragment Implementation Example
+```kotlin
+class EventInvitationComponentFragment : Fragment() {
+
+    private fun setupRecyclerView() {
+        val notificationList = createSampleData()
+
+        val notificationAdapter = EventInvitationAdapter(
+            notifications = notificationList,
+            onCardClick = { notification ->
+                Toast.makeText(requireContext(), "Card clicked: ${notification.title}", Toast.LENGTH_SHORT).show()
+            },
+            onButtonClick = { notification ->
+                Toast.makeText(requireContext(), "Button clicked for: ${notification.title}", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        binding.rvEventInvitation.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            addItemDecoration(SpaceItemDecoration(requireContext(), R.dimen.margin_8dp, SpaceItemDecoration.VERTICAL))
+            adapter = notificationAdapter
+        }
+    }
+
+    private fun createSampleData(): List<EventInvitation> {
+        return listOf(
+            EventInvitation(
+                title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
+                description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
+                eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT
+            ),
+            EventInvitation(
+                title = "EDTS Town-Hall 2025: Power of Change",
+                description = "Anda diundang pada Jumat, 25 Juli 2025, pukul 10:00 – 12:00 WIB. Segera konfirmasi kehadiran Anda.",
+                eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT
+            )
+        )
     }
 }
 ```
@@ -143,51 +178,49 @@ private fun setupNotificationCard() {
 ## Do's and Don'ts
 
 ### ✅ Do's
-- Use for event invitations and announcements
-- Provide clear, concise titles and descriptions
-- Set appropriate event types for consistent styling
+- Use for event invitations and announcement notifications
+- Provide clear, descriptive titles and detailed invitation descriptions
+- Set appropriate event categories for consistent styling
 - Handle both card and button interactions meaningfully
-- Use actionable button text ("RSVP", "Confirm", "Learn More")
+- Use "Terima Undangan" as default button text for consistency
 - Test with different content lengths for proper layout
+- Clear delegate references in RecyclerView onViewRecycled
 
 ### ❌ Don'ts
 - Use for non-event notifications
-- Override the event type styling unnecessarily
-- Use vague button labels like "Click Here"
+- Override the event category styling unnecessarily
+- Use vague button labels - stick to "Terima Undangan" for invitations
 - Ignore accessibility for screen readers
 - Forget to handle configuration changes
-- Use excessively long titles that truncate
+- Use excessively long titles that truncate improperly
+- Leave delegate references set when views are recycled
 
-## Performance Considerations
-
-### RecyclerView Usage
+### ViewHolder Pattern
 ```kotlin
-class NotificationAdapter : RecyclerView.Adapter<NotificationViewHolder>() {
-    
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        val notification = getItem(position)
-        
-        holder.binding.eventNotification.apply {
-            title = notification.title
-            description = notification.description
-            buttonText = notification.buttonText
-            eventType = notification.eventType
-            
-            delegate = object : EventNotificationCardDelegate {
-                override fun onButtonClick(notificationCard: EventNotificationCard) {
-                    onButtonClicked(holder.bindingAdapterPosition)
+class NotificationViewHolder(val card: EventNotificationCard) : RecyclerView.ViewHolder(card) {
+
+    fun bind(
+        item: EventInvitation,
+        onCardClick: (EventInvitation) -> Unit,
+        onButtonClick: (EventInvitation) -> Unit
+    ) {
+        card.apply {
+            title = item.title
+            description = item.description
+            buttonText = item.buttonText
+            isButtonVisible = item.isButtonVisible
+            eventCategory = item.eventCategory
+
+            eventNotificationCardDelegate = object : EventNotificationCardDelegate {
+                override fun onCardClick(notificationCard: EventNotificationCard) {
+                    onCardClick(item)
                 }
 
-                override fun onCardClick(notificationCard: EventNotificationCard) {
-                    onCardClicked(holder.bindingAdapterPosition)
+                override fun onButtonClick(notificationCard: EventNotificationCard) {
+                    onButtonClick(item)
                 }
             }
         }
-    }
-    
-    override fun onViewRecycled(holder: NotificationViewHolder) {
-        holder.binding.eventNotification.delegate = null
-        super.onViewRecycled(holder)
     }
 }
 ```
@@ -197,32 +230,27 @@ class NotificationAdapter : RecyclerView.Adapter<NotificationViewHolder>() {
 The component implements Material Design with:
 
 - **Card Layout**: 
-  - 12dp corner radius
+  - 12dp corner radius for modern appearance
   - 1dp elevation with dynamic shadows
   - Subtle stroke border using `colorStrokeSubtle`
-  - 12dp padding for content spacing
+  - Proper padding for content spacing
 
-- **Typography**:
-  - Title: `l2SemiBold` for prominence
-  - Description: `p2Regular` for readability
-  - Event Type: `l4Medium` with all caps for badge-like appearance
+- **Typography Hierarchy**:
+  - Event Category: Appropriate styling for category label
+  - Title: Primary event name with emphasis
+  - Description: Detailed invitation information
 
 - **Icon System**:
-  - Circular `MaterialCardView` container
-  - 12dp icon size with 4dp margin
-  - Tertiary background color
-  - Subtle stroke border
+  - Uses `ic_notification_event` drawable for all event types
+  - Circular background with proper styling
 
 - **Button Integration**:
-  - Uses app's button component with `PRIMARY` type
-  - `MD` size for balanced proportions
-  - Automatic ripple and interaction states
+  - Primary action button for accepting invitations
+  - Configurable text and visibility
 
 - **Color Scheme**:
-  - Title: `colorForegroundPrimary`
-  - Description: `colorForegroundSecondary` 
-  - Event Type: `colorForegroundTertiary`
-  - Icons: Theme-based tinting
+  - Uses theme attributes: `colorBackgroundPrimary`, `colorForegroundPrimary`, etc.
+  - Consistent with app design system
 
 ### Custom Styling
 ```xml

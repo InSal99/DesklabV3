@@ -13,6 +13,7 @@ import com.edts.components.R
 import com.edts.components.event.card.EventCardBadge
 import com.edts.components.input.search.InputSearch
 import com.edts.components.input.search.InputSearchDelegate
+import com.edts.components.myevent.card.MyEventCard
 import com.edts.desklabv3.databinding.FragmentMyEventsBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.MyEvent
@@ -74,9 +75,7 @@ class MyEventsFragmentRSVP : Fragment() {
             override fun onCloseIconClick(inputSearch: InputSearch, clickCount: Int) {}
             override fun onFocusChange(inputSearch: InputSearch, hasFocus: Boolean, newState: InputSearch.State, previousState: InputSearch.State) {}
             override fun onSearchFieldClick(inputSearch: InputSearch, clickCount: Int) {}
-            override fun onSearchSubmit(inputSearch: InputSearch, query: String, searchCount: Int) {
-            }
-
+            override fun onSearchSubmit(inputSearch: InputSearch, query: String, searchCount: Int) {}
             override fun onStateChange(inputSearch: InputSearch, newState: InputSearch.State, oldState: InputSearch.State) {}
         }
     }
@@ -97,13 +96,31 @@ class MyEventsFragmentRSVP : Fragment() {
     }
 
     private fun createSampleMyEventData(): List<MyEvent> {
-        fun createMyEvent(status: MyEventStatus, date: String, day: String, month: String, time: String, title: String, eventType: String): MyEvent {
+        fun createMyEvent(
+            status: MyEventStatus,
+            date: String,
+            day: String,
+            month: String,
+            time: String,
+            title: String,
+            eventLocation: MyEventCard.MyEventLocation
+        ): MyEvent {
+            // Map status to MyEventType
+            val myEventType = when(status) {
+                MyEventStatus.BERLANGSUNG -> MyEventCard.MyEventType.LIVE
+                MyEventStatus.TERDAFTAR -> MyEventCard.MyEventType.REGISTERED
+                MyEventStatus.HADIR -> MyEventCard.MyEventType.ATTENDED
+                MyEventStatus.TIDAK_HADIR -> MyEventCard.MyEventType.NOTATTENDED
+            }
+
+            // Map status to badge configuration
             val (badgeText, badgeType) = when(status) {
                 MyEventStatus.BERLANGSUNG -> "Berlangsung" to EventCardBadge.BadgeType.LIVE
                 MyEventStatus.TERDAFTAR -> "Terdaftar" to EventCardBadge.BadgeType.REGISTERED
-                MyEventStatus.HADIR -> "Hadir" to EventCardBadge.BadgeType.REGISTERED
-                MyEventStatus.TIDAK_HADIR -> "Tidak Hadir" to EventCardBadge.BadgeType.LIVE
+                MyEventStatus.HADIR -> "Hadir" to EventCardBadge.BadgeType.ATTENDED
+                MyEventStatus.TIDAK_HADIR -> "Tidak Hadir" to EventCardBadge.BadgeType.NOTATTENDED
             }
+
             return MyEvent(
                 status = status,
                 date = date,
@@ -111,9 +128,12 @@ class MyEventsFragmentRSVP : Fragment() {
                 month = month,
                 time = time,
                 title = title,
-                eventType = eventType,
+                myEventType = myEventType,
+                myEventLocation = eventLocation,
                 badgeText = badgeText,
-                badgeType = badgeType
+                badgeType = badgeType,
+                isBadgeVisible = true,
+                badgeSize = EventCardBadge.BadgeSize.SMALL
             )
         }
 
@@ -125,7 +145,7 @@ class MyEventsFragmentRSVP : Fragment() {
                 month = "JUL",
                 time = "18:00 - 20:00 WIB",
                 title = "Game Night with EDTS: Mobile Legend Online Tournament 2025",
-                eventType = "Online Event"
+                eventLocation = MyEventCard.MyEventLocation.ONLINE
             )
         )
     }

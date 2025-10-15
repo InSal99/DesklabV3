@@ -2,22 +2,24 @@ package com.edts.components.dropdown.filter
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import androidx.core.content.withStyledAttributes
 import androidx.core.view.isVisible
 import com.edts.components.R
 import com.edts.components.databinding.DropdownFilterHorizontalBinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.color.MaterialColors
 
 class DropdownFilterHorizontal @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
+    defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
-    private val binding: DropdownFilterHorizontalBinding
+    private val binding: DropdownFilterHorizontalBinding =
+        DropdownFilterHorizontalBinding.inflate(LayoutInflater.from(context), this, true)
 
     var dropdownFilterHorizontalDelegate: DropdownFilterHorizontalDelegate? = null
 
@@ -35,35 +37,32 @@ class DropdownFilterHorizontal @JvmOverloads constructor(
         }
 
     init {
-        binding = DropdownFilterHorizontalBinding.inflate(LayoutInflater.from(context), this, true)
-
         setupCardAppearance()
-
+        applyStyledAttributes(attrs)
         isClickable = true
         isFocusable = true
+    }
 
-        attrs?.let {
-            val typedArray = context.obtainStyledAttributes(
-                it,
-                R.styleable.DropdownFilterHorizontal,
-                defStyleAttr,
-                0
-            )
-            try {
-                title = typedArray.getString(R.styleable.DropdownFilterHorizontal_dropdownTitle)
-                description = typedArray.getString(R.styleable.DropdownFilterHorizontal_dropdownDescription)
-            } finally {
-                typedArray.recycle()
-            }
+    private fun applyStyledAttributes(attrs: AttributeSet?) {
+        context.withStyledAttributes(attrs, R.styleable.DropdownFilterHorizontal, 0, 0) {
+            title = getString(R.styleable.DropdownFilterHorizontal_dropdownTitle)
+            description = getString(R.styleable.DropdownFilterHorizontal_dropdownDescription)
         }
     }
 
     private fun setupCardAppearance() {
-        val strokeSubtleColor = MaterialColors.getColor(this, R.attr.colorStrokeSubtle)
-        val rippleColor = MaterialColors.getColor(this, R.attr.colorBackgroundModifierOnPress)
-        val cornerRadius = resources.getDimension(R.dimen.radius_999dp)
-        val strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        val elevation = resources.getDimension(R.dimen.dimen_1dp)
+        val strokeSubtleColor = context.resolveColorAttribute(
+            R.attr.colorStrokeSubtle,
+            R.color.colorNeutral30
+        )
+        val rippleColor = context.resolveColorAttribute(
+            R.attr.colorBackgroundModifierOnPress,
+            R.color.colorNeutral20
+        )
+
+        val cornerRadius = 999f.dpToPx
+        val strokeWidth = 1.dpToPx
+        val elevation = 1f.dpToPx
 
         this.radius = cornerRadius
         this.cardElevation = elevation
@@ -72,10 +71,9 @@ class DropdownFilterHorizontal @JvmOverloads constructor(
         this.rippleColor = ColorStateList.valueOf(rippleColor)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val shadowColor = MaterialColors.getColor(
-                context,
+            val shadowColor = context.resolveColorAttribute(
                 R.attr.colorForegroundPrimary,
-                Color.BLACK
+                R.color.color000
             )
             outlineAmbientShadowColor = shadowColor
             outlineSpotShadowColor = shadowColor

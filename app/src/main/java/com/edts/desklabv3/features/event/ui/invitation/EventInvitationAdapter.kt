@@ -23,8 +23,8 @@ class EventInvitationAdapter(
                 description = item.description
                 buttonText = item.buttonText
                 isButtonVisible = item.isButtonVisible
-                eventType = item.eventType
-                delegate = object : EventNotificationCardDelegate {
+                eventCategory = item.eventCategory
+                eventNotificationCardDelegate = object : EventNotificationCardDelegate {
                     override fun onCardClick(notificationCard: EventNotificationCard) {
                         onCardClick(item)
                     }

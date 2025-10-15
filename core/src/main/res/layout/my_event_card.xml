@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/margin_12dp">
 
+
     <com.edts.components.myevent.card.EventCalendarCard
         android:id="@+id/customCalendarCard"
         android:layout_width="56dp"
@@ -24,12 +25,12 @@
         app:eventBadgeType="registered"
         app:badgeSize="Small"
         app:eventCardBadgeText="Terdaftar"
-        app:layout_constraintBottom_toBottomOf="@id/tvEventType"
+        app:layout_constraintBottom_toBottomOf="@id/tvEventLocation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvEventType"/>
+        app:layout_constraintTop_toTopOf="@id/tvEventLocation"/>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvEventType"
+        android:id="@+id/tvEventLocation"
         style="?attr/l3Regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,8 +50,8 @@
         android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintBottom_toTopOf="@id/tvEventTime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvEventType"
-        app:layout_constraintTop_toBottomOf="@id/tvEventType"
+        app:layout_constraintStart_toStartOf="@id/tvEventLocation"
+        app:layout_constraintTop_toBottomOf="@id/tvEventLocation"
         tools:text="Simplifying UX Complexity: Bridging the Gap Between Design and Development"/>
 
     <com.google.android.material.textview.MaterialTextView

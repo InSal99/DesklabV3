@@ -29,7 +29,8 @@ class MyEventAdapter(
         RecyclerView.ViewHolder(myEventCard) {
         fun bind(event: MyEvent, onItemClick: (MyEvent) -> Unit) {
             myEventCard.apply {
-                eventType = event.eventType
+                myEventType = event.myEventType
+                eventLocation = event.myEventLocation
                 eventTitle = event.title
                 eventTime = event.time
                 setCalendarData(month = event.month, date = event.date, day = event.day)
