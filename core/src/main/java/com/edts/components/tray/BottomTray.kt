@@ -28,6 +28,7 @@ import androidx.fragment.app.FragmentManager
 import com.edts.components.R
 import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
+import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -118,6 +119,18 @@ class BottomTray : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = BottomTrayBinding.inflate(inflater, container, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(
+                systemBars.left,
+                0,
+                systemBars.right,
+                systemBars.bottom
+            )
+            insets
+        }
+
         return binding.root
     }
 
@@ -213,6 +226,8 @@ class BottomTray : BottomSheetDialogFragment() {
                     peekHeight = snapPoints.first()
                 }
                 addBottomSheetCallback(bottomSheetCallback)
+                state = BottomSheetBehavior.STATE_EXPANDED
+                skipCollapsed = true
             }
         }
     }
@@ -251,7 +266,7 @@ class BottomTray : BottomSheetDialogFragment() {
         if (_binding == null) return
         val background = getBackgroundDrawable(hasShadow, hasStroke)
         binding.root.background = background
-        val padding = if (hasShadow) (8 * resources.displayMetrics.density).toInt() else 0
+        val padding = if (hasShadow) (8.dpToPx) else 0
         binding.root.setPadding(0, padding, 0, 0)
         binding.root.apply {
             clipToOutline = false
