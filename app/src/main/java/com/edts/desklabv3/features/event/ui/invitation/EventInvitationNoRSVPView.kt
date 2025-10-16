@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.R
 import com.edts.components.modal.ModalityConfirmationPopUp
 import com.edts.components.modal.ModalityLoadingPopUp
-import com.edts.components.notification.EventNotificationCard
+import com.edts.components.notification.NotificationCard
 import com.edts.desklabv3.databinding.FragmentEventInvitationListBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.EventInvitation
@@ -75,7 +75,7 @@ class EventInvitationNoRSVPView : Fragment() {
             EventInvitation(
                 title = "EDTS Town-Hall 2025: The Power of Change",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT,
+                eventCategory = NotificationCard.EventCategory.GENERAL_EVENT,
                 isSecondaryButtonVisible = false
             )
         )

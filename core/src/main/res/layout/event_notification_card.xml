@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/margin_12dp">
 
-    <com.edts.components.notification.EventNotificationIcon
+    <com.edts.components.notification.NotificationIcon
         android:id="@+id/notificationIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

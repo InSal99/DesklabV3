@@ -12,7 +12,7 @@ import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
-class EventNotificationCard @JvmOverloads constructor(
+class NotificationCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -21,7 +21,7 @@ class EventNotificationCard @JvmOverloads constructor(
     private val binding: EventNotificationCardBinding =
         EventNotificationCardBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var eventNotificationCardDelegate: EventNotificationCardDelegate? = null
+    var notificationCardDelegate: NotificationCardDelegate? = null
 
     var notificationTitle: String? = null
         set(value) {
@@ -81,17 +81,17 @@ class EventNotificationCard @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         super.performClick()
-        eventNotificationCardDelegate?.onCardClick(this)
+        notificationCardDelegate?.onCardClick(this)
         return true
     }
 
     private fun setupClickListeners() {
         binding.btnNotification.setOnClickListener {
-            eventNotificationCardDelegate?.onPrimaryButtonClick(this)
+            notificationCardDelegate?.onPrimaryButtonClick(this)
         }
 
         binding.btnNegativeNotification.setOnClickListener {
-            eventNotificationCardDelegate?.onSecondaryButtonClick(this)
+            notificationCardDelegate?.onSecondaryButtonClick(this)
         }
     }
 

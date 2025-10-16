@@ -1,6 +1,6 @@
 package com.edts.desklabv3.features.event.model
 
-import com.edts.components.notification.EventNotificationCard
+import com.edts.components.notification.NotificationCard
 import java.util.UUID
 
 data class EventInvitation(
@@ -12,5 +12,5 @@ data class EventInvitation(
     val isPrimaryButtonVisible: Boolean = true,
     val isSecondaryButtonVisible: Boolean = false,
     val isBadgeVisible: Boolean = false,
-    val eventCategory: EventNotificationCard.EventCategory
+    val eventCategory: NotificationCard.EventCategory
 )

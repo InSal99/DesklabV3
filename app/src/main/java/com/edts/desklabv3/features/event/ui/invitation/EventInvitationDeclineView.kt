@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.R
 import com.edts.components.modal.ModalityConfirmationPopUp
 import com.edts.components.modal.ModalityLoadingPopUp
-import com.edts.components.notification.EventNotificationCard
+import com.edts.components.notification.NotificationCard
 import com.edts.desklabv3.databinding.FragmentEventInvitationListBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.EventInvitation
@@ -75,7 +75,7 @@ class EventInvitationDeclineView : Fragment() {
             EventInvitation(
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Kamis, 24 Juli 2025, pukul 13:00 – 15:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT,
+                eventCategory = NotificationCard.EventCategory.PEOPLE_DEVELOPMENT,
                 isSecondaryButtonVisible = false
             )
         )

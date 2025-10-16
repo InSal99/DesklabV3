@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edts.components.R
-import com.edts.components.notification.EventNotificationCard
+import com.edts.components.notification.NotificationCard
 import com.edts.desklabv3.databinding.FragmentEventInvitationComponentBinding
 import com.edts.desklabv3.features.SpaceItemDecoration
 import com.edts.desklabv3.features.event.model.EventInvitation
@@ -69,40 +69,40 @@ class EventInvitationComponentFragment : Fragment() {
             EventInvitation(
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = EventNotificationCard.EventCategory.GENERAL_EVENT
+                eventCategory = NotificationCard.EventCategory.GENERAL_EVENT
             ),
             EventInvitation(
                 title = "EDTS Town-Hall 2025: Power of Change",
                 description = "Anda diundang pada Jumat, 25 Juli 2025, pukul 10:00 – 12:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = EventNotificationCard.EventCategory.PEOPLE_DEVELOPMENT
+                eventCategory = NotificationCard.EventCategory.PEOPLE_DEVELOPMENT
             ),
             EventInvitation(
                 title = "Employee Benefits Update 2025",
                 description = "Anda diundang pada Senin, 28 Juli 2025, pukul 14:00 – 16:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = EventNotificationCard.EventCategory.EMPLOYEE_BENEFIT
+                eventCategory = NotificationCard.EventCategory.EMPLOYEE_BENEFIT
             ),
             EventInvitation(
                 title = "Persetujuan Pengubahan Aktivitas",
                 description = "Angga Kho Meidy telah menyetujui pengubahan aktivitas Anda untuk pekan 1 (1 Jan 2025 - 7 Jan 2025)",
-                eventCategory = EventNotificationCard.EventCategory.ACTIVITY,
+                eventCategory = NotificationCard.EventCategory.ACTIVITY,
                 isPrimaryButtonVisible = false
             ),
             EventInvitation(
                 title = "Persetujuan Cuti",
                 description = "Anga Kho Meidy telah menyetujui permintaan cuti Anda untuk tanggal 31 Agu 2024 - 2 Jan 2025",
-                eventCategory = EventNotificationCard.EventCategory.LEAVE,
+                eventCategory = NotificationCard.EventCategory.LEAVE,
                 isPrimaryButtonVisible = false
             ),
             EventInvitation(
                 title = "Persetujuan Kerja Khusus",
                 description = "Anga Kho Meidy telah menyetujui permintaan kerja khusus Anda untuk tanggal 31 Agu 2024 - 2 Jan 2025",
-                eventCategory = EventNotificationCard.EventCategory.SPECIAL_WORK,
+                eventCategory = NotificationCard.EventCategory.SPECIAL_WORK,
                 isPrimaryButtonVisible = false
             ),
             EventInvitation(
                 title = "Pemberitahuan Delegasi",
                 description = "Muhammad Dzaky Waly Andarwa telah memilih Anda sebagai delegasi untuk tanggal 31 Agu 2024",
-                eventCategory = EventNotificationCard.EventCategory.DELEGATION,
+                eventCategory = NotificationCard.EventCategory.DELEGATION,
                 isPrimaryButtonVisible = false
             )
         )

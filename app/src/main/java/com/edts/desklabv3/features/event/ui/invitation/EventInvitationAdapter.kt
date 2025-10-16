@@ -2,8 +2,8 @@ package com.edts.desklabv3.features.event.ui.invitation
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.edts.components.notification.EventNotificationCard
-import com.edts.components.notification.EventNotificationCardDelegate
+import com.edts.components.notification.NotificationCard
+import com.edts.components.notification.NotificationCardDelegate
 import com.edts.desklabv3.features.event.model.EventInvitation
 
 class EventInvitationAdapter(
@@ -13,7 +13,7 @@ class EventInvitationAdapter(
     private val onSecondaryButtonClick: (EventInvitation) -> Unit
 ) : RecyclerView.Adapter<EventInvitationAdapter.NotificationViewHolder>() {
 
-    class NotificationViewHolder(val card: EventNotificationCard) : RecyclerView.ViewHolder(card) {
+    class NotificationViewHolder(val card: NotificationCard) : RecyclerView.ViewHolder(card) {
 
         fun bind(
             item: EventInvitation,
@@ -32,16 +32,16 @@ class EventInvitationAdapter(
                 notificationCategory = item.eventCategory
                 isBadgeVisible = item.isBadgeVisible
 
-                eventNotificationCardDelegate = object : EventNotificationCardDelegate {
-                    override fun onCardClick(notificationCard: EventNotificationCard) {
+                notificationCardDelegate = object : NotificationCardDelegate {
+                    override fun onCardClick(notificationCard: NotificationCard) {
                         onCardClick(item)
                     }
 
-                    override fun onPrimaryButtonClick(notificationCard: EventNotificationCard) {
+                    override fun onPrimaryButtonClick(notificationCard: NotificationCard) {
                         onPrimaryButtonClick(item)
                     }
 
-                    override fun onSecondaryButtonClick(notificationCard: EventNotificationCard) {
+                    override fun onSecondaryButtonClick(notificationCard: NotificationCard) {
                         onSecondaryButtonClick(item)
                     }
                 }
@@ -50,7 +50,7 @@ class EventInvitationAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
-        val card = EventNotificationCard(parent.context)
+        val card = NotificationCard(parent.context)
 
         card.layoutParams = RecyclerView.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
