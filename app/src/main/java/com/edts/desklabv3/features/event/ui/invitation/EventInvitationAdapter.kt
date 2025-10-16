@@ -29,7 +29,7 @@ class EventInvitationAdapter(
                 secondaryButtonText = item.secondaryButtonText
                 isPrimaryButtonVisible = item.isPrimaryButtonVisible
                 isSecondaryButtonVisible = item.isSecondaryButtonVisible
-                notificationCategory = item.eventCategory
+                notificationCategory = item.notificationCategory
                 isBadgeVisible = item.isBadgeVisible
 
                 notificationCardDelegate = object : NotificationCardDelegate {

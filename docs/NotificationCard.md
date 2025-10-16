@@ -1,6 +1,6 @@
-# Event Notification Card
+# Notification Card
 
-`NotificationCard` is a comprehensive UI component designed to notify employees about various types of events and notifications. It presents information in a structured and easily scannable format, allowing users to quickly understand the notification context and take appropriate actions. The card features an icon, event category label, title, detailed description, and configurable action buttons.
+`NotificationCard` is a comprehensive UI component designed to notify employees about various types of events and system notifications. It presents information in a structured and easily scannable format, allowing users to quickly understand the notification context and take appropriate actions. The card features a category-specific icon, event category label, title, detailed description, and configurable action buttons.
 
 ## Visual Anatomy
 
@@ -8,8 +8,8 @@
 
 | Element | Description |
 | :------ | :---------- |
-| **Notification Icon** | Circular icon with event-specific symbol and subtle background |
-| **Event Category** | Category label (GENERAL EVENT, PEOPLE DEVELOPMENT, EMPLOYEE BENEFIT, etc.) |
+| **Notification Icon** | Circular icon with category-specific symbol and subtle background |
+| **Notification Category** | Category label (GENERAL EVENT, PEOPLE DEVELOPMENT, EMPLOYEE BENEFIT, etc.) |
 | **Title** | Primary notification title using appropriate typography |
 | **Description** | Detailed notification description |
 | **Primary Button** | Main interactive button (e.g., "Terima Undangan") |
@@ -17,15 +17,16 @@
 | **Notification Badge** | Visibility indicator for new notifications |
 
 ## Key Features
-- **Multiple Event Categories**: Supports 7 event types with automatic styling and icons
-- **Dual Button Support**: Configurable primary and secondary buttons
-- **Flexible Interaction**: Separate delegates for card clicks and button clicks
+- **Multiple Notification Categories**: Supports 7 notification types with automatic styling and icons
+- **Dual Button Support**: Configurable primary and secondary buttons with independent visibility
+- **Flexible Interaction**: Separate delegates for card clicks, primary button, and secondary button clicks
 - **Material Design**: Card-based layout with proper elevation and shadows
 - **Theme Integration**: Uses app theme colors and typography
 - **RecyclerView Ready**: Optimized for use in lists and feeds
 - **Customizable Visibility**: Control button and badge visibility independently
+- **Accessibility**: Built with accessibility best practices
 
-## Event Categories
+## Notification Categories
 
 | Category | Display Text | Icon | Use Case |
 | :--- | :--- | :--- | :--- |
@@ -33,9 +34,9 @@
 | **PEOPLE_DEVELOPMENT** | "PEOPLE DEVELOPMENT" | `ic_notification_event` | Training sessions, workshops, skill development |
 | **EMPLOYEE_BENEFIT** | "EMPLOYEE BENEFIT" | `ic_notification_event` | Benefit announcements, wellness programs |
 | **ACTIVITY** | "AKTIVITAS" | `ic_notification_activity` | Activity approvals and updates |
-| **LEAVE** | "CUTI" | `ic_notification_leave` | Leave request approvals |
-| **SPECIAL_WORK** | "KERJA KHUSUS" | `ic_notification_special_work` | Special work approvals |
-| **DELEGATION** | "DELEGASI" | `ic_notification_delegation` | Delegation notifications |
+| **LEAVE** | "CUTI" | `ic_notification_leave` | Leave request approvals and notifications |
+| **SPECIAL_WORK** | "KERJA KHUSUS" | `ic_notification_special_work` | Special work approvals and notifications |
+| **DELEGATION** | "DELEGASI" | `ic_notification_delegation` | Delegation assignments and notifications |
 
 ## XML Implementation
 
@@ -56,16 +57,16 @@
 ```
 
 ### XML Attributes
-| Attribute | Format | Description |
-| :-------- | :----- | :---------- |
-| `notificationTitle` | `string` | Primary notification title text |
-| `notificationDescription` | `string` | Detailed notification description |
-| `notificationPrimaryButtonText` | `string` | Primary button label (default: "Terima Undangan") |
-| `notificationSecondaryButtonText` | `string` | Secondary button label (default: "Tolak") |
-| `showNotificationPrimaryButton` | `boolean` | Show/hide primary button (default: true) |
-| `showNotificationSecondaryButton` | `boolean` | Show/hide secondary button (default: false) |
-| `notificationBadgeVisible` | `boolean` | Show/hide notification badge (default: true) |
-| `notificationCategory` | `enum` | Event category: general_event, people_development, employee_benefit, activity, leave, special_work, delegation |
+| Attribute | Format | Default | Description |
+| :-------- | :----- | :------ | :---------- |
+| `notificationTitle` | `string` | `null` | Primary notification title text |
+| `notificationDescription` | `string` | `null` | Detailed notification description |
+| `notificationPrimaryButtonText` | `string` | "Terima Undangan" | Primary button label text |
+| `notificationSecondaryButtonText` | `string` | "Tolak" | Secondary button label text |
+| `showNotificationPrimaryButton` | `boolean` | `true` | Show/hide primary button |
+| `showNotificationSecondaryButton` | `boolean` | `false` | Show/hide secondary button |
+| `notificationBadgeVisible` | `boolean` | `true` | Show/hide notification badge |
+| `notificationCategory` | `enum` | `general_event` | Notification category: general_event, people_development, employee_benefit, activity, leave, special_work, delegation |
 
 ## Kotlin Implementation
 
@@ -82,7 +83,7 @@ notificationCard.apply {
     isPrimaryButtonVisible = true
     isSecondaryButtonVisible = true
     isBadgeVisible = true
-    notificationCategory = NotificationCard.EventCategory.PEOPLE_DEVELOPMENT
+    notificationCategory = NotificationCard.NotificationCategory.PEOPLE_DEVELOPMENT
 }
 ```
 
@@ -148,6 +149,8 @@ class EventInvitationAdapter(
         holder.card.notificationCardDelegate = null
         super.onViewRecycled(holder)
     }
+
+    inner class NotificationViewHolder(val card: NotificationCard) : RecyclerView.ViewHolder(card)
 }
 ```
 
@@ -162,7 +165,7 @@ val eventInvitation = EventInvitation(
     isPrimaryButtonVisible = true,
     isSecondaryButtonVisible = true,
     isBadgeVisible = true,
-    eventCategory = NotificationCard.EventCategory.GENERAL_EVENT
+    eventCategory = NotificationCard.NotificationCategory.GENERAL_EVENT
 )
 ```
 
@@ -198,16 +201,31 @@ class EventInvitationComponentFragment : Fragment() {
             EventInvitation(
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = NotificationCard.EventCategory.GENERAL_EVENT
+                eventCategory = NotificationCard.NotificationCategory.GENERAL_EVENT
             ),
             EventInvitation(
                 title = "Persetujuan Cuti",
                 description = "Anga Kho Meidy telah menyetujui permintaan cuti Anda untuk tanggal 31 Agu 2024 - 2 Jan 2025",
-                eventCategory = NotificationCard.EventCategory.LEAVE,
-                isPrimaryButtonVisible = false
+                eventCategory = NotificationCard.NotificationCategory.LEAVE,
+                isPrimaryButtonVisible = false,
+                isSecondaryButtonVisible = false
             )
         )
     }
+}
+```
+
+## Button Visibility Logic
+
+The component implements intelligent button visibility:
+
+- **Primary Button**: Controlled by `isPrimaryButtonVisible`
+- **Secondary Button**: Only visible when both `isPrimaryButtonVisible` AND `isSecondaryButtonVisible` are `true`
+
+```kotlin
+private fun updateButtonVisibility() {
+    binding.btnNotification.isVisible = isPrimaryButtonVisible
+    binding.btnNegativeNotification.isVisible = isPrimaryButtonVisible && isSecondaryButtonVisible
 }
 ```
 
@@ -216,59 +234,23 @@ class EventInvitationComponentFragment : Fragment() {
 ### ✅ Do's
 - Use for various notification types including events, approvals, and delegations
 - Provide clear, descriptive titles and detailed descriptions
-- Set appropriate event categories for consistent styling and icons
+- Set appropriate notification categories for consistent styling and icons
 - Handle card, primary button, and secondary button interactions meaningfully
 - Use "Terima Undangan" as default primary button text for event invitations
 - Use "Tolak" as default secondary button text for rejection actions
 - Test with different content lengths for proper layout
-- Clear delegate references in RecyclerView onViewRecycled
+- Clear delegate references in RecyclerView's `onViewRecycled()`
+- Use proper Indonesian terminology for category labels
 
 ### ❌ Don'ts
 - Use for non-notification purposes
-- Override the event category styling unnecessarily
+- Override the notification category styling unnecessarily
 - Use vague button labels - stick to established defaults
 - Ignore accessibility for screen readers
 - Forget to handle configuration changes
 - Use excessively long titles that truncate improperly
 - Leave delegate references set when views are recycled
-
-### ViewHolder Pattern
-```kotlin
-class NotificationViewHolder(val card: NotificationCard) : RecyclerView.ViewHolder(card) {
-
-    fun bind(
-        item: EventInvitation,
-        onCardClick: (EventInvitation) -> Unit,
-        onPrimaryButtonClick: (EventInvitation) -> Unit,
-        onSecondaryButtonClick: (EventInvitation) -> Unit
-    ) {
-        card.apply {
-            notificationTitle = item.title
-            notificationDescription = item.description
-            primaryButtonText = item.primaryButtonText
-            secondaryButtonText = item.secondaryButtonText
-            isPrimaryButtonVisible = item.isPrimaryButtonVisible
-            isSecondaryButtonVisible = item.isSecondaryButtonVisible
-            isBadgeVisible = item.isBadgeVisible
-            notificationCategory = item.eventCategory
-
-            notificationCardDelegate = object : NotificationCardDelegate {
-                override fun onCardClick(notificationCard: NotificationCard) {
-                    onCardClick(item)
-                }
-
-                override fun onPrimaryButtonClick(notificationCard: NotificationCard) {
-                    onPrimaryButtonClick(item)
-                }
-
-                override fun onSecondaryButtonClick(notificationCard: NotificationCard) {
-                    onSecondaryButtonClick(item)
-                }
-            }
-        }
-    }
-}
-```
+- Use English labels for Indonesian-specific categories
 
 ## Material Design Styling
 
@@ -281,22 +263,24 @@ The component implements Material Design with:
   - Proper padding for content spacing
 
 - **Typography Hierarchy**:
-  - Event Category: Appropriate styling for category label
+  - Notification Category: Appropriate styling for category label
   - Title: Primary notification title with emphasis
   - Description: Detailed notification information
 
 - **Icon System**:
-  - Different icons for each event category
+  - Different icons for each notification category
   - Circular background with proper styling
+  - Automatic icon selection based on category
 
 - **Button Integration**:
   - Primary action button for main actions
   - Secondary button for alternative actions
-  - Configurable text and visibility
+  - Configurable text and independent visibility control
 
 - **Color Scheme**:
   - Uses theme attributes: `colorBackgroundPrimary`, `colorForegroundPrimary`, etc.
   - Consistent with app design system
+  - Proper shadow colors for API level 28+
 
 ### Custom Styling
 ```xml
@@ -318,7 +302,21 @@ interface NotificationCardDelegate {
 }
 ```
 
+## Performance Considerations
+
+- **View Recycling**: Always set `notificationCardDelegate = null` in `onViewRecycled()` to prevent memory leaks
+- **Attribute Processing**: Uses `withStyledAttributes` for efficient XML attribute parsing
+- **View Inflation**: Binding is initialized once in constructor for optimal performance
+- **Configuration Changes**: Properly handles configuration changes through saved state
+
+## Accessibility
+
+- Implements `performClick()` for proper accessibility support
+- Uses semantic properties for screen readers
+- Maintains proper focus states and clickable regions
+- Supports talkback for all interactive elements
+
 ---
 
 >[!Note]
->This component is designed for comprehensive notification systems within Desklab apps. It works well in lists, detail screens, and as standalone notification items. The triple delegate pattern allows for flexible interaction handling based on your app's navigation patterns and user workflows.
+>This component is designed for comprehensive notification systems within Desklab apps. It works well in lists, detail screens, and as standalone notification items. The triple delegate pattern allows for flexible interaction handling based on your app's navigation patterns and user workflows. The component automatically handles category-specific styling and icon selection, making it easy to maintain consistency across different notification types.

@@ -75,7 +75,7 @@ class EventInvitationNoRSVPView : Fragment() {
             EventInvitation(
                 title = "EDTS Town-Hall 2025: The Power of Change",
                 description = "Anda diundang pada Rabu, 23 Juli 2025, pukul 15:00 – 17:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = NotificationCard.EventCategory.GENERAL_EVENT,
+                notificationCategory = NotificationCard.NotificationCategory.GENERAL_EVENT,
                 isSecondaryButtonVisible = false
             )
         )

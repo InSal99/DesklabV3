@@ -12,5 +12,5 @@ data class EventInvitation(
     val isPrimaryButtonVisible: Boolean = true,
     val isSecondaryButtonVisible: Boolean = false,
     val isBadgeVisible: Boolean = false,
-    val eventCategory: NotificationCard.EventCategory
+    val notificationCategory: NotificationCard.NotificationCategory
 )

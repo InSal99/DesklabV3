@@ -77,7 +77,7 @@ Replace `latest-version` with the version number shown in the JitPack badge abov
 | **Event Card**           | ✅ Complete | [View Docs](docs/EventCard.md) |
 | **Event Card: Badge**    | ✅ Complete | [View Docs](docs/EventCardBadge.md) |
 | **Event Card: Status**   | ✅ Complete | [View Docs](docs/EventCardStatus.md) |
-| **Event Notification Card** | ✅ Complete | [View Docs](docs/EventNotificationCard.md) |
+| **Event Notification Card** | ✅ Complete | [View Docs](docs/NotificationCard.md) |
 | **My Event Card**        | ✅ Complete | [View Docs](docs/MyEventCard.md) |
 | **Leave Card**           | ✅ Complete | [View Docs](docs/LeaveCard.md) |
 

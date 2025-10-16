@@ -75,7 +75,7 @@ class EventInvitationDeclineView : Fragment() {
             EventInvitation(
                 title = "Simplifying UX Complexity: Bridging the Gap Between Design and Development",
                 description = "Anda diundang pada Kamis, 24 Juli 2025, pukul 13:00 – 15:00 WIB. Segera konfirmasi kehadiran Anda.",
-                eventCategory = NotificationCard.EventCategory.PEOPLE_DEVELOPMENT,
+                notificationCategory = NotificationCard.NotificationCategory.PEOPLE_DEVELOPMENT,
                 isSecondaryButtonVisible = false
             )
         )

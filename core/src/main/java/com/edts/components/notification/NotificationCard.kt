@@ -59,7 +59,7 @@ class NotificationCard @JvmOverloads constructor(
             updateButtonVisibility()
         }
 
-    var notificationCategory: EventCategory = EventCategory.GENERAL_EVENT
+    var notificationCategory: NotificationCategory = NotificationCategory.GENERAL_EVENT
         set(value) {
             field = value
             updateEventCategoryUI()
@@ -120,7 +120,7 @@ class NotificationCard @JvmOverloads constructor(
                 R.styleable.EventNotificationCard_notificationBadgeVisible,
                 true
             )
-            notificationCategory = EventCategory.fromValue(eventCategoryValue)
+            notificationCategory = NotificationCategory.fromValue(eventCategoryValue)
         }
     }
 
@@ -156,27 +156,27 @@ class NotificationCard @JvmOverloads constructor(
     private fun updateEventCategoryUI() {
         binding.tvNotificationType.text = notificationCategory.displayText
         when (notificationCategory) {
-            EventCategory.GENERAL_EVENT,
-            EventCategory.PEOPLE_DEVELOPMENT,
-            EventCategory.EMPLOYEE_BENEFIT -> {
+            NotificationCategory.GENERAL_EVENT,
+            NotificationCategory.PEOPLE_DEVELOPMENT,
+            NotificationCategory.EMPLOYEE_BENEFIT -> {
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_event)
             }
-            EventCategory.ACTIVITY -> {
+            NotificationCategory.ACTIVITY -> {
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_activity)
             }
-            EventCategory.LEAVE -> {
+            NotificationCategory.LEAVE -> {
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_leave)
             }
-            EventCategory.SPECIAL_WORK -> {
+            NotificationCategory.SPECIAL_WORK -> {
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_special_work)
             }
-            EventCategory.DELEGATION -> {
+            NotificationCategory.DELEGATION -> {
                 binding.notificationIcon.setIcon(R.drawable.ic_notification_delegation)
             }
         }
     }
 
-    enum class EventCategory(val value: Int, val displayText: String) {
+    enum class NotificationCategory(val value: Int, val displayText: String) {
         GENERAL_EVENT(0, "GENERAL EVENT"),
         PEOPLE_DEVELOPMENT(1, "PEOPLE DEVELOPMENT"),
         EMPLOYEE_BENEFIT(2, "EMPLOYEE BENEFIT"),
@@ -186,7 +186,7 @@ class NotificationCard @JvmOverloads constructor(
         DELEGATION(6, "DELEGASI");
 
         companion object {
-            fun fromValue(value: Int): EventCategory {
+            fun fromValue(value: Int): NotificationCategory {
                 return values().find { it.value == value } ?: GENERAL_EVENT
             }
         }
