@@ -138,14 +138,6 @@ val slotType = CardMultiDetail.LeftSlotType.fromValue(0) // ICON
 val slotType = CardMultiDetail.LeftSlotType.IMAGE
 ```
 
-## Methods Reference
-
-| Method Name | Parameters | Description |
-| ----------- | ---------- | ----------- |
-| `resetClickCount()` | None | Resets internal click counter to zero |
-| `getClickCount()` | None | Returns current click count for debugging |
-| `performClick()` | None | Programmatically triggers a click event (if clickable) |
-
 ## Usage Examples
 
 ```kotlin
@@ -296,7 +288,6 @@ fun setCardClickable(clickable: Boolean) {
 
 ## Performance Considerations
 
-- **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks
 - **ViewBinding** — Uses ViewBinding for efficient view access with nested custom components
 - **Intelligent Clickability** — Automatically manages click states based on right slot visibility to prevent unnecessary touch handling
 

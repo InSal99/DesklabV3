@@ -14,7 +14,7 @@
 
 ## Overview
 
-*A highly customizable selection chip component with smooth state animations, optional badge and icon support, and comprehensive click handling. Features automatic state toggling, custom background colors, and separate icon click handling.*
+*A highly customizable selection chip component with smooth state animations, optional badge and icon support. Features automatic state toggling, custom background colors, and separate icon click handling.*
 
 ## Basic Usage
 
@@ -141,10 +141,6 @@ val chipDelegate = object : ChipDelegate {
 | `setChipState()` | `newState: ChipState, fromUser: Boolean = false` | Sets chip state |
 | `setActiveBackgroundColor()` | `color: Int` | Sets custom background color for active state |
 | `setIconClickable()` | `clickable: Boolean` | Enables/disables icon click functionality |
-| `resetClickCount()` | None | Resets internal click counter |
-| `resetIconClickCount()` | None | Resets icon click counter |
-| `getClickCount()` | None | Returns current click count |
-| `getIconClickCount()` | None | Returns current icon click count |
 
 ## Usage Examples
 
@@ -264,7 +260,6 @@ chip.setIconClickable(isRemovable)
 ## Performance Considerations
 
 - **Animation Management** — Cancels all running animations before starting new ones to prevent conflicts and ensure smooth transitions
-- **Click Debouncing** — Built-in 300ms debounce for both chip and icon clicks prevents rapid-fire interactions
 - **State Animation Optimization** — Checks if already animating to target state to prevent unnecessary animation restarts
 
 ## Animation Details
@@ -285,7 +280,6 @@ chip.setIconClickable(isRemovable)
 | Use consistent icon styles across related chips | Mix different icon families in the same group |
 | Implement both onChipClick and onChipIconClick for full functionality | Ignore icon-specific interactions |
 | Update badge text dynamically to reflect current counts | Leave stale badge numbers |
-| Use debounced clicks for better UX | Handle rapid successive clicks manually |
 | Cancel animations when appropriate (onDetachedFromWindow) | Let animations run indefinitely |
 
 ---

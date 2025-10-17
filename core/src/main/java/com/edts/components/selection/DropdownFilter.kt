@@ -72,10 +72,6 @@ class DropdownFilter @JvmOverloads constructor(
 
     var delegate: DropdownFilterDelegate? = null
 
-    private var clickCount = 0
-    private var lastClickTime = 0L
-    private val clickDebounceDelay = 300L
-
     init {
         radius = 999f.dpToPx
         isClickable = true
@@ -174,12 +170,7 @@ class DropdownFilter @JvmOverloads constructor(
     }
 
     private fun handleIconClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastClickTime > clickDebounceDelay) {
-            lastClickTime = currentTime
-            delegate?.onDropdownFilterIconClick(this)
-        }
+        delegate?.onDropdownFilterIconClick(this)
     }
 
     private fun updateBadgeVisibility() {
@@ -193,22 +184,11 @@ class DropdownFilter @JvmOverloads constructor(
     }
 
     private fun handleClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastClickTime > clickDebounceDelay) {
-            clickCount++
-            lastClickTime = currentTime
-            delegate?.onDropdownFilterClick(this)
-        }
+        delegate?.onDropdownFilterClick(this)
     }
 
     private fun setupCardPressState() {
         isClickable = true
         isFocusable = true
-    }
-
-    override fun performClick(): Boolean {
-        handleClick()
-        return super.performClick()
     }
 }

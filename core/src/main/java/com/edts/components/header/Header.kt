@@ -25,16 +25,7 @@ class Header @JvmOverloads constructor(
 
     private val colorCache = mutableMapOf<Int, Int>()
 
-    private companion object {
-        const val CLICK_DEBOUNCE_DELAY = 200L
-    }
-
     var delegate: HeaderDelegate? = null
-
-    private var leftClickCount = 0
-    private var rightClickCount = 0
-    private var lastLeftClickTime = 0L
-    private var lastRightClickTime = 0L
 
     var showLeftButton: Boolean = true
         set(value) {
@@ -170,40 +161,10 @@ class Header @JvmOverloads constructor(
     }
 
     private fun handleLeftButtonClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastLeftClickTime > CLICK_DEBOUNCE_DELAY) {
-            leftClickCount++
-            lastLeftClickTime = currentTime
-            delegate?.onLeftButtonClicked()
-        }
+        delegate?.onLeftButtonClicked()
     }
 
     private fun handleRightButtonClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastRightClickTime > CLICK_DEBOUNCE_DELAY) {
-            rightClickCount++
-            lastRightClickTime = currentTime
-            delegate?.onRightButtonClicked()
-        }
-    }
-
-    fun resetLeftClickCount() {
-        val previousCount = leftClickCount
-        leftClickCount = 0
-    }
-
-    fun resetRightClickCount() {
-        val previousCount = rightClickCount
-        rightClickCount = 0
-    }
-
-    fun getLeftClickCount(): Int {
-        return leftClickCount
-    }
-
-    fun getRightClickCount(): Int {
-        return rightClickCount
+        delegate?.onRightButtonClicked()
     }
 }

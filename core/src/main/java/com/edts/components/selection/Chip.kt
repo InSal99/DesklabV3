@@ -120,13 +120,6 @@ class Chip @JvmOverloads constructor(
 
     var delegate: ChipDelegate? = null
 
-    private var clickCount = 0
-    private var lastClickTime = 0L
-    private val clickDebounceDelay = 300L
-
-    private var iconClickCount = 0
-    private var lastIconClickTime = 0L
-
     init {
         context.theme.obtainStyledAttributes(
             attrs,
@@ -191,13 +184,7 @@ class Chip @JvmOverloads constructor(
     }
 
     private fun handleIconClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastIconClickTime > clickDebounceDelay) {
-            iconClickCount++
-            lastIconClickTime = currentTime
-            delegate?.onChipIconClick(this)
-        }
+        delegate?.onChipIconClick(this)
     }
 
     fun setIconClickable(clickable: Boolean) {
@@ -211,15 +198,6 @@ class Chip @JvmOverloads constructor(
         } else {
             setupIconClickListener()
         }
-    }
-
-    fun resetIconClickCount() {
-        val previousCount = iconClickCount
-        iconClickCount = 0
-    }
-
-    fun getIconClickCount(): Int {
-        return iconClickCount
     }
 
     private fun getActiveBackgroundColor(): Int {
@@ -258,17 +236,9 @@ class Chip @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastClickTime > clickDebounceDelay) {
-            clickCount++
-            lastClickTime = currentTime
-            toggleChipState()
-            delegate?.onChipClick(this, chipState)
-            return super.performClick()
-        } else {
-            return false
-        }
+        toggleChipState()
+        delegate?.onChipClick(this, chipState)
+        return super.performClick()
     }
 
     private fun toggleChipState() {
@@ -563,22 +533,12 @@ class Chip @JvmOverloads constructor(
         cancelAllAnimations()
     }
 
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
-    }
-
     fun setChipState(newState: ChipState, fromUser: Boolean = false) {
         if (chipState != newState) {
             val previousState = chipState
             chipState = newState
 
             if (fromUser) {
-                clickCount++
                 delegate?.onChipClick(this, newState)
             }
         }

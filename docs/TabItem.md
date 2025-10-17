@@ -129,10 +129,7 @@ val delegate = object : TabDelegate {
 | Method Name | Parameters | Description |
 | ----------- | ---------- | ----------- |
 | `setTabState()` | `state: TabState`, `triggerDelegate: Boolean = false` | Sets tab state with optional delegate trigger |
-| `resetClickCount()` | None | Resets internal click counter to zero |
-| `getClickCount()` | None | Returns current click count for debugging |
 | `resetForBinding()` | None | Resets first launch flag for proper binding behavior |
-| `performClick()` | None | Programmatically triggers a click event |
 
 ## Usage Examples
 
@@ -211,7 +208,6 @@ tabItem.tabState = TabItem.TabState.INACTIVE
 ## Performance Considerations
 
 - **Animation Optimization** — Uses AnimatorSet for coordinated text color and indicator animations
-- **Click Debouncing** — Built-in 200ms debounce prevents rapid successive clicks
 - **Color Resolution Caching** — Efficiently resolves theme colors for state changes
 - **ViewBinding** — Uses ViewBinding for type-safe view access
 

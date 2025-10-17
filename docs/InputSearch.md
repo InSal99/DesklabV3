@@ -16,7 +16,7 @@
 
 ## Overview
 
-*A comprehensive search input component with multiple visual states, real-time text monitoring, keyboard handling, and clear functionality. Features debounced interactions and extensive event delegation for search workflows.*
+*A comprehensive search input component with multiple visual states, real-time text monitoring, keyboard handling, and clear functionality.*
 
 ## Basic Usage
 
@@ -38,17 +38,17 @@ val inputSearch = binding.inputSearch
 
 // Set up delegate for comprehensive event handling
 inputSearch.delegate = object : InputSearchDelegate {
-    override fun onSearchTextChange(inputSearch: InputSearch, text: String, changeCount: Int) {
+    override fun onSearchTextChange(inputSearch: InputSearch, text: String) {
         // Handle real-time search text changes
         performLiveSearch(text)
     }
     
-    override fun onSearchSubmit(inputSearch: InputSearch, query: String, searchCount: Int) {
+    override fun onSearchSubmit(inputSearch: InputSearch, query: String) {
         // Handle search submission (Enter key or search action)
         executeSearch(query)
     }
     
-    override fun onCloseIconClick(inputSearch: InputSearch, clickCount: Int) {
+    override fun onCloseIconClick(inputSearch: InputSearch) {
         // Handle clear button clicks
         clearSearchResults()
     }
@@ -58,7 +58,7 @@ inputSearch.delegate = object : InputSearchDelegate {
         if (hasFocus) showSearchSuggestions() else hideSearchSuggestions()
     }
     
-    override fun onSearchFieldClick(inputSearch: InputSearch, clickCount: Int) {
+    override fun onSearchFieldClick(inputSearch: InputSearch) {
         // Handle search field clicks
         logSearchFieldInteraction()
     }
@@ -114,21 +114,21 @@ inputSearch.state = InputSearch.State.FOCUS
 
 | Method | Parameters | Required | Description |
 | ------ | ---------- | -------- | ----------- |
-| `onSearchTextChange()` | `inputSearch: InputSearch, text: String, changeCount: Int` | ✅ | Called on every text change |
-| `onSearchSubmit()` | `inputSearch: InputSearch, query: String, searchCount: Int` | ✅ | Called when search is submitted |
-| `onCloseIconClick()` | `inputSearch: InputSearch, clickCount: Int` | ✅ | Called when clear button is clicked |
+| `onSearchTextChange()` | `inputSearch: InputSearch, text: String` | ✅ | Called on every text change |
+| `onSearchSubmit()` | `inputSearch: InputSearch, query: String` | ✅ | Called when search is submitted |
+| `onCloseIconClick()` | `inputSearch: InputSearch` | ✅ | Called when clear button is clicked |
 | `onFocusChange()` | `inputSearch: InputSearch, hasFocus: Boolean, newState: State, previousState: State` | ✅ | Called on focus state changes |
-| `onSearchFieldClick()` | `inputSearch: InputSearch, clickCount: Int` | ✅ | Called when search field is clicked |
+| `onSearchFieldClick()` | `inputSearch: InputSearch` | ✅ | Called when search field is clicked |
 | `onStateChange()` | `inputSearch: InputSearch, newState: State, oldState: State` | ✅ | Called on programmatic state changes |
 
 ```kotlin
 val searchDelegate = object : InputSearchDelegate {
-    override fun onSearchTextChange(inputSearch: InputSearch, text: String, changeCount: Int) {
+    override fun onSearchTextChange(inputSearch: InputSearch, text: String) {
         // Real-time search implementation
         searchViewModel.updateQuery(text)
     }
     
-    override fun onSearchSubmit(inputSearch: InputSearch, query: String, searchCount: Int) {
+    override fun onSearchSubmit(inputSearch: InputSearch, query: String) {
         // Final search execution
         searchViewModel.executeSearch(query)
     }
@@ -145,15 +145,6 @@ val searchDelegate = object : InputSearchDelegate {
 | `getText()` | None | Get current search text |
 | `clearText()` | None | Clear search text |
 | `clearFocus()` | None | Remove focus and hide keyboard |
-| `getCloseIconClickCount()` | None | Get close icon click count for analytics |
-| `getSearchFieldClickCount()` | None | Get search field click count |
-| `getSearchTextChangeCount()` | None | Get text change count |
-| `getSearchSubmitCount()` | None | Get search submission count |
-| `resetCloseIconClickCount()` | None | Reset close icon click counter |
-| `resetSearchFieldClickCount()` | None | Reset search field click counter |
-| `resetSearchTextChangeCount()` | None | Reset text change counter |
-| `resetSearchSubmitCount()` | None | Reset search submit counter |
-| `resetAllCounts()` | None | Reset all interaction counters |
 
 ## Usage Examples
 
@@ -180,10 +171,6 @@ fun enableSearch() {
 binding.searchInput.setText("Product name")
 val currentQuery = binding.searchInput.getText()
 binding.searchInput.clearText()
-
-// Analytics and debugging
-val totalInteractions = binding.searchInput.getSearchTextChangeCount()
-binding.searchInput.resetAllCounts()
 ```
 
 ## Customization Examples
@@ -225,7 +212,7 @@ binding.searchInput.resetAllCounts()
 ```kotlin
 // Search with validation
 binding.searchInput.delegate = object : InputSearchDelegate {
-    override fun onSearchTextChange(inputSearch: InputSearch, text: String, changeCount: Int) {
+    override fun onSearchTextChange(inputSearch: InputSearch, text: String) {
         if (text.length > 100) {
             inputSearch.state = InputSearch.State.ERROR
             showError("Query too long")
@@ -235,7 +222,7 @@ binding.searchInput.delegate = object : InputSearchDelegate {
         }
     }
     
-    override fun onSearchSubmit(inputSearch: InputSearch, query: String, searchCount: Int) {
+    override fun onSearchSubmit(inputSearch: InputSearch, query: String) {
         if (query.isBlank()) {
             inputSearch.state = InputSearch.State.ERROR
             return
@@ -249,10 +236,9 @@ binding.searchInput.delegate = object : InputSearchDelegate {
         }
     }
     
-    override fun onCloseIconClick(inputSearch: InputSearch, clickCount: Int) {
+    override fun onCloseIconClick(inputSearch: InputSearch) {
         clearSearchResults()
         hideKeyboard()
-        analytics.track("search_cleared", mapOf("click_count" to clickCount))
     }
     
     // ... other implementations
@@ -266,7 +252,6 @@ fun updateSearchContext(category: String) {
 
 ## Performance Considerations
 
-- **Click Debouncing** — Built-in 300ms debounce prevents rapid successive interactions and improves user experience
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 - **Text Watching** — Optimized TextWatcher implementation for real-time search without excessive callbacks
 
@@ -275,13 +260,11 @@ fun updateSearchContext(category: String) {
 | ✅ Do | ❌ Don't |
 | ----- | ------- |
 | Implement comprehensive InputSearchDelegate for full functionality | Leave delegate methods empty without proper handling |
-| Use debounced search for live search to avoid excessive API calls | Trigger search on every character without delay |
 | Clear focus and hide keyboard after search submission | Leave keyboard open after search completion |
 | Handle all state transitions appropriately | Ignore state changes or validation requirements |
 | Use error state for validation feedback | Show errors through external UI only |
-| Reset counters periodically for accurate analytics | Let interaction counters grow indefinitely |
 | Test keyboard interactions across different devices | Assume keyboard behavior is consistent |
 
 ---
 
-> **⚠️ Note**: This component manages keyboard visibility automatically and includes comprehensive interaction tracking for analytics. The close icon appears only when text is present, and all interactions are debounced to prevent accidental rapid-fire events. State management preserves previous states for proper focus restoration.
+> **⚠️ Note**: This component manages keyboard visibility automatically. The close icon appears only when text is present. State management preserves previous states for proper focus restoration.

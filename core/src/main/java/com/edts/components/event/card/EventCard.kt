@@ -110,10 +110,6 @@ class EventCard @JvmOverloads constructor(
 
     var eventCardDelegate: EventCardDelegate? = null
 
-    private var clickCount = 0
-    private var lastClickTime = 0L
-    private val clickDebounceDelay = 300L
-
     init {
         radius = cornerRadiusPx
 
@@ -169,13 +165,7 @@ class EventCard @JvmOverloads constructor(
     }
 
     private fun handleClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastClickTime > clickDebounceDelay) {
-            clickCount++
-            lastClickTime = currentTime
-            eventCardDelegate?.onEventCardClick(this)
-        }
+        eventCardDelegate?.onEventCardClick(this)
     }
 
     private fun setupCardPressState() {
@@ -233,19 +223,5 @@ class EventCard @JvmOverloads constructor(
                 status.statusText = text
             }
         }
-    }
-
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
-    }
-
-    override fun performClick(): Boolean {
-        handleClick()
-        return super.performClick()
     }
 }

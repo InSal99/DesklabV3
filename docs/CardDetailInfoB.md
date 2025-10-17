@@ -16,7 +16,7 @@
 
 ## Overview
 
-*A comprehensive detail information card component with customizable left slot (image/icon), title, optional description, optional right slot (image/custom view), and optional left border indicator. Features adaptive layout, press state animations, and click handling.*
+*A comprehensive detail information card component with customizable left slot (image/icon), title, optional description, optional right slot (image/custom view), and optional left border indicator. Features adaptive layout, and press state animations.*
 
 ## Basic Usage
 
@@ -153,8 +153,6 @@ val delegate = object : CardDetailInfoBDelegate {
 | Method Name | Parameters | Description |
 | ----------- | ---------- | ----------- |
 | `setRightSlotView()` | `view: View` | Sets a custom view for the right slot and switches to CUSTOM type |
-| `resetClickCount()` | None | Resets internal click counter to zero |
-| `getClickCount()` | None | Returns current click count for debugging |
 
 ## Usage Examples
 
@@ -272,7 +270,6 @@ fun setCardInteractive(interactive: Boolean) {
 
 - **Custom Drawing** — Uses efficient path-based drawing for the left border indicator
 - **Layout Optimization** — Dynamically adjusts constraints based on visibility states to minimize layout passes
-- **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 
 ## Animation Details
@@ -289,7 +286,6 @@ fun setCardInteractive(interactive: Boolean) {
 | Use consistent left slot sizes within the same list | Mix different slot sizes randomly |
 | Provide meaningful titles and descriptions | Use placeholder text in production |
 | Set appropriate indicator colors for different states | Use the same indicator color for all cards |
-| Handle click events when showRightSlot is true | Expect clicks when card is non-interactive |
 | Test visibility combinations thoroughly | Assume all combinations work without testing |
 | Use theme colors for consistent styling | Hardcode color values |
 

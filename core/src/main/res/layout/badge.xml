@@ -7,7 +7,7 @@
     android:minWidth="14dp"
     android:minHeight="14dp"
     android:backgroundTint="?attr/colorBackgroundAttentionIntense"
-    app:cardCornerRadius="@dimen/radius_999dp"
+    app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
     app:cardElevation="0dp"
     app:strokeColor="?attr/colorStrokeInteractive"
     app:strokeWidth="@dimen/stroke_weight_1dp">

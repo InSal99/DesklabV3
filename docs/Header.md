@@ -124,15 +124,6 @@ val delegate = object : HeaderDelegate {
 }
 ```
 
-## Methods Reference
-
-| Method Name | Parameters | Description |
-| ----------- | ---------- | ----------- |
-| `resetLeftClickCount()` | None | Resets left button click counter to zero |
-| `resetRightClickCount()` | None | Resets right button click counter to zero |
-| `getLeftClickCount()` | None | Returns left button click count for debugging |
-| `getRightClickCount()` | None | Returns right button click count for debugging |
-
 ## Usage Examples
 
 ```kotlin
@@ -272,7 +263,6 @@ if (isTopLevelScreen) {
 
 ## Performance Considerations
 
-- **Click Debouncing** — Built-in 200ms debounce prevents accidental double-clicks on both buttons
 - **Smart Text Styling** — Automatically resolves and applies theme text styles based on visibility configuration
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 - **Lazy Style Updates** — Text appearance only updates when visibility properties change

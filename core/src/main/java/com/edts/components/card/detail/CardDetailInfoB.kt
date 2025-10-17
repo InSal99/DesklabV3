@@ -183,10 +183,6 @@ class CardDetailInfoB @JvmOverloads constructor(
 
     var delegate: CardDetailInfoBDelegate? = null
 
-    private var clickCount = 0
-    private var lastClickTime = 0L
-    private val clickDebounceDelay = 300L
-
     private val isCardInteractive: Boolean
         get() = showRightSlot
 
@@ -436,9 +432,10 @@ class CardDetailInfoB @JvmOverloads constructor(
             RightSlotType.CUSTOM -> {
                 binding.ivCdibRightSlot.visibility = View.GONE
                 binding.flCdibRightSlotContainer.visibility = if (showRightSlot) View.VISIBLE else View.GONE
-                rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
             }
         }
+        updateCardInteractivity()
     }
 
     private fun updateLeftSlotVisibility() {
@@ -476,7 +473,8 @@ class CardDetailInfoB @JvmOverloads constructor(
     }
 
     private fun updateCardInteractivity() {
-        if (isCardInteractive) {
+        val shouldBeInteractive = isCardInteractive
+        if (shouldBeInteractive) {
             isClickable = true
             isFocusable = true
             cardState = CardState.REST
@@ -491,23 +489,7 @@ class CardDetailInfoB @JvmOverloads constructor(
         if (!isCardInteractive) {
             return
         }
-
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastClickTime > clickDebounceDelay) {
-            clickCount++
-            lastClickTime = currentTime
-            delegate?.onCardClick(this)
-        }
-    }
-
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
+        delegate?.onCardClick(this)
     }
 
     private fun setupCardPressState() {

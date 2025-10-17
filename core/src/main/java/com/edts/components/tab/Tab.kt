@@ -97,11 +97,12 @@ class Tab @JvmOverloads constructor(
         val oldPos = selectedPosition
         selectedPosition = position
 
-        tabAdapter.updateSelectedPosition(position)
-
         tabDataList = tabDataList.mapIndexed { index, tab ->
             tab.copy(state = if (index == position) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE)
         }.toMutableList()
+
+        // CHANGE: Use updateSelectedPosition instead of updateTabs to preserve animation
+        tabAdapter.updateSelectedPosition(position)
 
         if (notifyListener) {
             onTabClickListener?.onTabClick(position, tabDataList[position].text)
