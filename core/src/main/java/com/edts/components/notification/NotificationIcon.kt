@@ -8,7 +8,7 @@ import com.edts.components.R
 import com.edts.components.databinding.EventNotificationIconBinding
 import androidx.core.content.withStyledAttributes
 
-class EventNotificationIcon @JvmOverloads constructor(
+class NotificationIcon @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
