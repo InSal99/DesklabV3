@@ -6,8 +6,7 @@
     android:clipChildren="false"
     android:clipToPadding="false"
     android:paddingHorizontal="@dimen/margin_16dp"
-    android:paddingBottom="@dimen/margin_16dp"
-    android:background="?attr/colorBackgroundPrimary">
+    android:paddingBottom="@dimen/margin_16dp">
 
     <LinearLayout
         android:id="@+id/cvComponentTitle"

@@ -155,6 +155,7 @@ class EventDetailViewInvitationDecline : Fragment() {
                     footer.setSecondaryButtonText("Batalkan")
                     footer.setPrimaryButtonEnabled(true)
                     footer.setSecondaryButtonEnabled(true)
+                    footer.setStroke(true)
 
                     footer.delegate = object : FooterDelegate {
                         override fun onPrimaryButtonClicked(footerType: Footer.FooterType) {
@@ -259,18 +260,31 @@ class EventDetailViewInvitationDecline : Fragment() {
                 if (inputField?.isValid() == true) {
                     showConfirmationDialog()
                 } else {
-                    Toast.error(requireContext(), "Harap isi alasan minimal 10 karakter")
+                    (bottomTray?.dialog?.findViewById<ViewGroup>(android.R.id.content)
+                        ?: requireActivity().findViewById(android.R.id.content)
+                            )?.let { parent ->
+                            Toast(requireContext()).apply {
+                                setToast(Toast.Type.ERROR, "Harap isi alasan minimal 10 karakter")
+                                showIn(parent)
+                            }
+                        }
                 }
             }
             selectedOption != null -> {
                 showConfirmationDialog()
             }
             else -> {
-                Toast.error(requireContext(), "Harap pilih alasan")
+                (bottomTray?.dialog?.findViewById<ViewGroup>(android.R.id.content)
+                    ?: requireActivity().findViewById(android.R.id.content)
+                        )?.let { parent ->
+                        Toast(requireContext()).apply {
+                            setToast(Toast.Type.ERROR, "Harap pilih alasan")
+                            showIn(parent)
+                        }
+                    }
             }
         }
     }
-
 
     private fun showConfirmationDialog() {
         ModalityConfirmationPopUp.show(
