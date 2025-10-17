@@ -75,10 +75,6 @@ class TabItem @JvmOverloads constructor(
 
     var delegate: TabDelegate? = null
 
-    private var clickCount = 0
-    private var lastClickTime = 0L
-    private val clickDebounceDelay = 200L
-
     init {
         context.theme.obtainStyledAttributes(
             attrs,
@@ -110,20 +106,13 @@ class TabItem @JvmOverloads constructor(
     }
 
     private fun handleTabClick() {
-        val currentTime = System.currentTimeMillis()
+        val previousState = tabState
 
-        if (currentTime - lastClickTime > clickDebounceDelay) {
-            clickCount++
-            lastClickTime = currentTime
-
-            val previousState = tabState
-
-            if (delegate != null) {
-                delegate?.onTabClick(this, previousState, previousState)
-            } else {
-                val newState = if (tabState == TabState.ACTIVE) TabState.INACTIVE else TabState.ACTIVE
-                tabState = newState
-            }
+        if (delegate != null) {
+            delegate?.onTabClick(this, previousState, previousState)
+        } else {
+            val newState = if (tabState == TabState.ACTIVE) TabState.INACTIVE else TabState.ACTIVE
+            tabState = newState
         }
     }
 
@@ -245,11 +234,6 @@ class TabItem @JvmOverloads constructor(
             playTogether(textColorAnimator, indicatorAnimator)
             start()
         }
-    }
-
-    override fun performClick(): Boolean {
-        handleTabClick()
-        return super.performClick()
     }
 
     fun setTabState(state: TabState, triggerDelegate: Boolean = false) {

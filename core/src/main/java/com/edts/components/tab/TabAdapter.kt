@@ -8,6 +8,18 @@ class TabAdapter(
     private var selectedPosition: Int,
     private val onClick: (Int, String) -> Unit
 ) : RecyclerView.Adapter<TabAdapter.TabViewHolder>() {
+    private var recyclerView: RecyclerView? = null
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        this.recyclerView = null
+    }
+
     inner class TabViewHolder(val tabItem: TabItem) : RecyclerView.ViewHolder(tabItem)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TabViewHolder {
@@ -20,6 +32,8 @@ class TabAdapter(
         val isActive = position == selectedPosition
 
         holder.tabItem.apply {
+            resetForBinding()
+
             tabText = data.text
             badgeText = data.badgeText
             showBadge = data.showBadge
@@ -50,7 +64,12 @@ class TabAdapter(
         val oldPos = selectedPosition
         selectedPosition = position
 
-        notifyItemChanged(oldPos)
-        notifyItemChanged(position)
+        recyclerView?.let { rv ->
+            val oldViewHolder = rv.findViewHolderForAdapterPosition(oldPos) as? TabViewHolder
+            oldViewHolder?.tabItem?.tabState = TabItem.TabState.INACTIVE
+
+            val newViewHolder = rv.findViewHolderForAdapterPosition(position) as? TabViewHolder
+            newViewHolder?.tabItem?.tabState = TabItem.TabState.ACTIVE
+        }
     }
 }
