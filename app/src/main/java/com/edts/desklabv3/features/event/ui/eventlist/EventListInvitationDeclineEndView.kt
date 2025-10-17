@@ -202,23 +202,23 @@ class EventListInvitationDeclineEndView : Fragment(), InputSearchDelegate {
     private fun handleEventClick(event: EventSample) {
     }
 
-    override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String, changeCount: Int) {
+    override fun onSearchTextChange(inputSearch: com.edts.components.input.search.InputSearch, text: String) {
         currentSearchQuery = text
         applyFilters()
     }
 
-    override fun onSearchSubmit(inputSearch: com.edts.components.input.search.InputSearch, query: String, submitCount: Int) {
+    override fun onSearchSubmit(inputSearch: com.edts.components.input.search.InputSearch, query: String) {
         currentSearchQuery = query
         applyFilters()
         Utils.closeSearchInput(requireContext(), binding.cvSearchEvent, binding.root)
     }
 
-    override fun onCloseIconClick(inputSearch: com.edts.components.input.search.InputSearch, clickCount: Int) {
+    override fun onCloseIconClick(inputSearch: com.edts.components.input.search.InputSearch) {
         currentSearchQuery = ""
         applyFilters()
     }
 
-    override fun onSearchFieldClick(inputSearch: com.edts.components.input.search.InputSearch, clickCount: Int) {
+    override fun onSearchFieldClick(inputSearch: com.edts.components.input.search.InputSearch) {
     }
 
     override fun onStateChange(inputSearch: com.edts.components.input.search.InputSearch, newState: com.edts.components.input.search.InputSearch.State, oldState: com.edts.components.input.search.InputSearch.State) {
