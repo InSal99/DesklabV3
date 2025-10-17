@@ -1,17 +1,17 @@
 package com.edts.components.dropdown.filter
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
-import android.view.MotionEvent
-import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
+import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
@@ -21,16 +21,11 @@ class MonthlyPicker @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
+
     enum class PickerType {
         UNSELECTED,
         SELECTED,
         DISABLED
-    }
-
-    enum class InteractionState {
-        REST,
-        ON_PRESS,
-        ON_FOCUS
     }
 
     private val monthLabelView: MaterialTextView
@@ -47,22 +42,14 @@ class MonthlyPicker @JvmOverloads constructor(
         set(value) {
             if (field != value) {
                 field = value
-                applyStyling()
-            }
-        }
-
-    private var interactionState: InteractionState = InteractionState.REST
-        set(value) {
-            if (field != value) {
-                field = value
-                applyStyling()
+                updateStyling()
             }
         }
 
     init {
-        strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        focusStrokeWidth = strokeWidth * 2
-        defaultCornerRadius = resources.getDimension(R.dimen.radius_12dp)
+        strokeWidth = 1.dpToPx
+        focusStrokeWidth = 2.dpToPx
+        defaultCornerRadius = 12f.dpToPx
 
         monthLabelView = createMonthLabelView()
         addView(monthLabelView)
@@ -71,139 +58,16 @@ class MonthlyPicker @JvmOverloads constructor(
         setupComponent()
     }
 
-
-
     private fun parseAttributes(attrs: AttributeSet?) {
-        attrs?.let {
-            context.withStyledAttributes(it, R.styleable.MonthlyPicker, 0, 0) {
-                monthLabel = getString(R.styleable.MonthlyPicker_monthLabel) ?: ""
-                val typeInt = getInt(R.styleable.MonthlyPicker_pickerType, 0)
-                type = when (typeInt) {
-                    1 -> PickerType.SELECTED
-                    2 -> PickerType.DISABLED
-                    else -> PickerType.UNSELECTED
-                }
+        context.withStyledAttributes(attrs, R.styleable.MonthlyPicker, 0, 0) {
+            monthLabel = getString(R.styleable.MonthlyPicker_monthLabel) ?: ""
+            val typeInt = getInt(R.styleable.MonthlyPicker_pickerType, 0)
+            type = when (typeInt) {
+                1 -> PickerType.SELECTED
+                2 -> PickerType.DISABLED
+                else -> PickerType.UNSELECTED
             }
         }
-    }
-
-    private fun applyStyling() {
-        isEnabled = (type != PickerType.DISABLED)
-
-        val fallbackColorRes = android.R.color.transparent
-
-        val textColor = when (type) {
-            PickerType.UNSELECTED -> {
-                val resolved = context.resolveColorAttribute(R.attr.colorForegroundPrimary, fallbackColorRes)
-                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
-            }
-            PickerType.SELECTED -> {
-                val resolved = context.resolveColorAttribute(R.attr.colorForegroundPrimaryInverse, fallbackColorRes)
-                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
-            }
-            PickerType.DISABLED -> {
-                val resolved = context.resolveColorAttribute(R.attr.colorForegroundDisabled, fallbackColorRes)
-                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
-            }
-        }
-        monthLabelView.setTextColor(textColor)
-
-        val styleKey = "${type}_${interactionState}_${radius}"
-        val backgroundDrawable = drawableCache[styleKey] ?: createBackgroundDrawable().also {
-            drawableCache[styleKey] = it
-        }
-        background = backgroundDrawable
-    }
-
-    private fun createBackgroundDrawable(): Drawable {
-        val fallbackColorRes = android.R.color.transparent
-
-        val (backgroundColor, strokeColor) = when (type) {
-            PickerType.UNSELECTED -> Pair(
-                Color.TRANSPARENT,
-                run {
-                    val resolved = context.resolveColorAttribute(R.attr.colorStrokeSubtle, fallbackColorRes)
-                    try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
-                }
-            )
-            PickerType.SELECTED -> Pair(
-                run {
-                    val resolved = context.resolveColorAttribute(R.attr.colorBackgroundAccentPrimaryIntense, fallbackColorRes)
-                    try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
-                },
-                run {
-                    val resolved = context.resolveColorAttribute(R.attr.colorStrokeInteractive, fallbackColorRes)
-                    try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
-                }
-            )
-            PickerType.DISABLED -> Pair(
-                Color.TRANSPARENT,
-                run {
-                    val resolved = context.resolveColorAttribute(R.attr.colorStrokeDisabled, fallbackColorRes)
-                    try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
-                }
-            )
-        }
-
-        val currentStrokeWidth = if (interactionState == InteractionState.ON_FOCUS) focusStrokeWidth else strokeWidth
-
-        val baseDrawable = GradientDrawable().apply {
-            cornerRadius = this@MonthlyPicker.radius
-            setColor(backgroundColor)
-            setStroke(currentStrokeWidth, strokeColor)
-        }
-
-        if (interactionState == InteractionState.ON_PRESS && type != PickerType.DISABLED) {
-            val modifierColor = run {
-                val resolved = context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, fallbackColorRes)
-                try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
-            }
-            val modifierDrawable = GradientDrawable().apply {
-                cornerRadius = this@MonthlyPicker.radius
-                setColor(modifierColor)
-            }
-            return LayerDrawable(arrayOf(baseDrawable, modifierDrawable))
-        }
-
-        return baseDrawable
-    }
-
-    override fun onFocusChanged(gainFocus: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
-        super.onFocusChanged(gainFocus, direction, previouslyFocusedRect)
-        interactionState = if (gainFocus) InteractionState.ON_FOCUS else InteractionState.REST
-    }
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (!isEnabled) return super.onTouchEvent(event)
-
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                interactionState = InteractionState.ON_PRESS
-                return true
-            }
-            MotionEvent.ACTION_UP -> {
-                type = if (type == PickerType.SELECTED) PickerType.UNSELECTED else PickerType.SELECTED
-                interactionState = if (isFocused) InteractionState.ON_FOCUS else InteractionState.REST
-                performClick()
-                return true
-            }
-            MotionEvent.ACTION_CANCEL -> {
-                interactionState = if (isFocused) InteractionState.ON_FOCUS else InteractionState.REST
-                return true
-            }
-        }
-        return super.onTouchEvent(event)
-    }
-
-    override fun performClick(): Boolean {
-        if (!isEnabled) return false
-        delegate?.onMonthClicked(this)
-        return super.performClick()
-    }
-
-    fun setMonthLabel(label: String) {
-        this.monthLabel = label
-        monthLabelView.text = label
     }
 
     private fun setupComponent() {
@@ -211,19 +75,141 @@ class MonthlyPicker @JvmOverloads constructor(
         radius = defaultCornerRadius
         isClickable = true
         isFocusable = true
+
+        setupRippleEffect()
+
+        setOnClickListener {
+            handleClick()
+        }
+
         setMonthLabel(monthLabel)
-        applyStyling()
+        updateStyling()
+    }
+
+    private fun setupRippleEffect() {
+        val rippleColor = context.resolveColorAttribute(
+            R.attr.colorBackgroundModifierOnPress,
+            R.color.color000Opacity5
+        )
+        this.rippleColor = ColorStateList.valueOf(rippleColor)
+    }
+
+    private fun handleClick() {
+        if (type == PickerType.DISABLED) return
+
+        type = if (type == PickerType.SELECTED) {
+            PickerType.UNSELECTED
+        } else {
+            PickerType.SELECTED
+        }
+
+        delegate?.onMonthClicked(this)
+    }
+
+    private fun updateStyling() {
+        isEnabled = true
+        isClickable = true
+        isFocusable = (type != PickerType.DISABLED)
+
+        updateTextColor()
+        updateBackground()
+    }
+
+    private fun updateTextColor() {
+        val textColor = when (type) {
+            PickerType.UNSELECTED -> context.resolveColorAttribute(
+                R.attr.colorForegroundPrimary,
+                R.color.color000
+            )
+            PickerType.SELECTED -> context.resolveColorAttribute(
+                R.attr.colorForegroundPrimaryInverse,
+                R.color.colorFFF
+            )
+            PickerType.DISABLED -> context.resolveColorAttribute(
+                R.attr.colorForegroundDisabled,
+                R.color.color000Opacity20
+            )
+        }
+        monthLabelView.setTextColor(textColor)
+    }
+
+    private fun updateBackground() {
+        val styleKey = "${type}_${isPressed}_${isFocused}_${radius}"
+        val backgroundDrawable = drawableCache[styleKey] ?: createBackgroundDrawable().also {
+            drawableCache[styleKey] = it
+        }
+        background = backgroundDrawable
+    }
+
+    private fun createBackgroundDrawable(): Drawable {
+        val (backgroundColor, strokeColor) = when (type) {
+            PickerType.UNSELECTED -> Pair(
+                Color.TRANSPARENT,
+                context.resolveColorAttribute(
+                    R.attr.colorStrokeSubtle,
+                    R.color.colorNeutral30
+                )
+            )
+            PickerType.SELECTED -> Pair(
+                context.resolveColorAttribute(
+                    R.attr.colorBackgroundAccentPrimaryIntense,
+                    R.color.colorPrimary30
+                ),
+                context.resolveColorAttribute(
+                    R.attr.colorStrokeInteractive,
+                    R.color.colorOpacityWhite20
+                )
+            )
+            PickerType.DISABLED -> Pair(
+                Color.TRANSPARENT,
+                context.resolveColorAttribute(
+                    R.attr.colorStrokeDisabled,
+                    R.color.color000Opacity12
+                )
+            )
+        }
+
+        val currentStrokeWidth = if (isFocused && type != PickerType.DISABLED) {
+            focusStrokeWidth
+        } else {
+            strokeWidth
+        }
+
+        val baseDrawable = GradientDrawable().apply {
+            cornerRadius = this@MonthlyPicker.radius
+            setColor(backgroundColor)
+            setStroke(currentStrokeWidth, strokeColor)
+        }
+
+        return baseDrawable
+    }
+
+    override fun drawableStateChanged() {
+        super.drawableStateChanged()
+        updateBackground()
+    }
+
+    override fun performClick(): Boolean {
+        super.performClick()
+        return true
+    }
+
+    fun setMonthLabel(label: String) {
+        this.monthLabel = label
+        monthLabelView.text = label
     }
 
     private fun createMonthLabelView(): MaterialTextView {
-        val style = R.style.TextMedium_Label2
         return MaterialTextView(context, null, 0).apply {
-            layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
+            layoutParams = LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT
+            ).apply {
                 gravity = Gravity.CENTER
             }
-            setTextAppearance(style)
+            setTextAppearance(R.style.TextMedium_Label2)
             textAlignment = TEXT_ALIGNMENT_CENTER
-            val verticalPadding = resources.getDimensionPixelSize(R.dimen.margin_12dp)
+            val verticalPadding = 12.dpToPx
             setPadding(0, verticalPadding, 0, verticalPadding)
         }
     }
