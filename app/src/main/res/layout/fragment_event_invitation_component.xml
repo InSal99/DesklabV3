@@ -5,9 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:paddingHorizontal="@dimen/margin_16dp"
-    android:paddingBottom="@dimen/margin_16dp"
-    android:background="?attr/colorBackgroundPrimary">
+    android:padding="@dimen/margin_16dp"
+    android:background="?attr/colorBackgroundPrimary" >
 
     <LinearLayout
         android:id="@+id/cvComponentTitle"
@@ -26,7 +25,7 @@
             android:layout_height="24dp"
             android:scaleType="center"
             android:src="@drawable/ic_chevron_left"
-            app:tint="?attr/colorForegroundSecondary"/>
+            app:tint="?attr/colorForegroundSecondary" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvLibraryTitle"
@@ -51,12 +50,4 @@
         app:layout_constraintTop_toBottomOf="@id/cvComponentTitle"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <com.edts.components.notification.EventNotificationCard
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_24dp"
-        app:notificationEventCategory="employee_benefit"
-        app:layout_constraintTop_toBottomOf="@id/rvEventInvitation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

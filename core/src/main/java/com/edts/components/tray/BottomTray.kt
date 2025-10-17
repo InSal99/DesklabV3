@@ -13,14 +13,12 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.StyleRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
@@ -28,6 +26,7 @@ import androidx.fragment.app.FragmentManager
 import com.edts.components.R
 import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
+import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -118,6 +117,18 @@ class BottomTray : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = BottomTrayBinding.inflate(inflater, container, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(
+                systemBars.left,
+                0,
+                systemBars.right,
+                systemBars.bottom
+            )
+            insets
+        }
+
         return binding.root
     }
 
@@ -162,10 +173,8 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun setupEdgeToEdge(dialog: BottomSheetDialog) {
         dialog.window?.let { window ->
-            WindowCompat.setDecorFitsSystemWindows(window, false)
             window.statusBarColor = Color.TRANSPARENT
-            window.navigationBarColor = Color.TRANSPARENT
-            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+            window.navigationBarColor = Color.WHITE
             WindowInsetsControllerCompat(window, window.decorView).apply {
                 isAppearanceLightNavigationBars = true
                 isAppearanceLightStatusBars = true
@@ -196,11 +205,6 @@ class BottomTray : BottomSheetDialogFragment() {
             clipToOutline = false
             setWillNotDraw(false)
             setBackgroundColor(Color.TRANSPARENT)
-            ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
-                val sysBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                view.setPadding(sysBars.left, 0, sysBars.right, 0)
-                insets
-            }
         }
     }
 
@@ -213,6 +217,8 @@ class BottomTray : BottomSheetDialogFragment() {
                     peekHeight = snapPoints.first()
                 }
                 addBottomSheetCallback(bottomSheetCallback)
+                state = BottomSheetBehavior.STATE_EXPANDED
+                skipCollapsed = true
             }
         }
     }
@@ -251,7 +257,7 @@ class BottomTray : BottomSheetDialogFragment() {
         if (_binding == null) return
         val background = getBackgroundDrawable(hasShadow, hasStroke)
         binding.root.background = background
-        val padding = if (hasShadow) (8 * resources.displayMetrics.density).toInt() else 0
+        val padding = if (hasShadow) (8.dpToPx) else 0
         binding.root.setPadding(0, padding, 0, 0)
         binding.root.apply {
             clipToOutline = false
