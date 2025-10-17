@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/margin_12dp">
 
-    <com.edts.components.notification.EventNotificationIcon
+    <com.edts.components.notification.NotificationIcon
         android:id="@+id/notificationIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,6 +25,16 @@
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintBottom_toBottomOf="@+id/notificationIcon"
         app:layout_constraintStart_toEndOf="@+id/notificationIcon"
+        app:layout_constraintTop_toTopOf="@+id/notificationIcon"/>
+
+    <com.edts.components.badge.Badge
+        android:id="@+id/notificationBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:showText="false"
+        app:badgeBackgroundTint="?attr/colorForegroundAttentionIntense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/notificationIcon"
         app:layout_constraintTop_toTopOf="@+id/notificationIcon"/>
 
     <com.google.android.material.textview.MaterialTextView
@@ -62,5 +72,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNotificationDescription"
-        tools:text="Terima Undangan"/>
+        tools:text="Positive Button"/>
+
+    <com.edts.components.button.Button
+        android:id="@+id/btnNegativeNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        android:layout_weight="1"
+        buttonCustomSize="MD"
+        app:buttonType="SECONDARY"
+        app:layout_constraintEnd_toStartOf="@id/btnNotification"
+        app:layout_constraintBottom_toBottomOf="@id/btnNotification"
+        app:layout_constraintTop_toTopOf="@id/btnNotification"
+        tools:text="Negative Button"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

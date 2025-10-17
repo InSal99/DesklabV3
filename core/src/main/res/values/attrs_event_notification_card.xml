@@ -3,12 +3,25 @@
     <declare-styleable name="EventNotificationCard">
         <attr name="notificationTitle" format="string" />
         <attr name="notificationDescription" format="string" />
-        <attr name="notificationButtonVisible" format="boolean" />
-        <attr name="notificationButtonText" format="string" />
-        <attr name="notificationEventCategory" format="enum">
+
+        <!-- Primary Button -->
+        <attr name="notificationPrimaryButtonText" format="string" />
+        <attr name="showNotificationPrimaryButton" format="boolean" />
+
+        <!-- Secondary Button -->
+        <attr name="notificationSecondaryButtonText" format="string" />
+        <attr name="showNotificationSecondaryButton" format="boolean" />
+
+        <!-- Other Attributes -->
+        <attr name="notificationBadgeVisible" format="boolean" />
+        <attr name="notificationCategory" format="enum">
             <enum name="general_event" value="0" />
             <enum name="people_development" value="1" />
             <enum name="employee_benefit" value="2" />
+            <enum name="activity" value="3" />
+            <enum name="leave" value="4" />
+            <enum name="special_work" value="5" />
+            <enum name="delegation" value="6" />
         </attr>
     </declare-styleable>
 </resources>

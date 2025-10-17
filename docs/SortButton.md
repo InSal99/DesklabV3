@@ -11,7 +11,7 @@
 
 ## Overview
 
-*An interactive sort/filter button component with smooth scale animations and press state feedback. Features customizable icon, click debouncing, and delegate pattern for event handling.*
+*An interactive sort/filter button component with smooth scale animations and press state feedback. Features customizable icon and delegate pattern for event handling.*
 
 ## Basic Usage
 
@@ -71,7 +71,6 @@ sortButton.delegate = object : SortButtonDelegate {
 
 | Property Name | Type | Default | Description |
 | ------------- | ---- | ------- | ----------- |
-| `clickDebounceDelay` | `Long` | `300ms` | Minimum time between registered clicks |
 | `scaleX` | `Float` | `1.0f` | Horizontal scale factor (animated) |
 | `scaleY` | `Float` | `1.0f` | Vertical scale factor (animated) |
 
@@ -81,7 +80,7 @@ sortButton.delegate = object : SortButtonDelegate {
 
 | Method | Parameters | Required | Description |
 | ------ | ---------- | -------- | ----------- |
-| `onSortButtonClick()` | `sortButton: SortButton` | ✅ | Called when the button is clicked after debounce |
+| `onSortButtonClick()` | `sortButton: SortButton` | ✅ | Called when the button is clicked |
 
 ```kotlin
 val delegate = object : SortButtonDelegate {
@@ -91,15 +90,6 @@ val delegate = object : SortButtonDelegate {
     }
 }
 ```
-
-## Methods Reference
-
-| Method Name | Parameters | Description |
-| ----------- | ---------- | ----------- |
-| `resetClickCount()` | None | Resets internal click counter to zero |
-| `getClickCount()` | None | Returns current click count for debugging |
-| `performClick()` | None | Programmatically triggers a click event |
-| `simulateClick()` | None | Simulates a full click with animations (press + release) |
 
 ## Usage Examples
 
@@ -123,17 +113,6 @@ binding.filterButton.apply {
         override fun onSortButtonClick(sortButton: SortButton) {
             openFilterDialog()
         }
-    }
-}
-
-// Programmatic click simulation
-binding.sortButton.simulateClick()
-
-// Track click analytics
-binding.sortButton.delegate = object : SortButtonDelegate {
-    override fun onSortButtonClick(sortButton: SortButton) {
-        val clickCount = sortButton.getClickCount()
-        analytics.logEvent("sort_button_clicked", bundleOf("count" to clickCount))
     }
 }
 ```
@@ -178,14 +157,10 @@ sortButton.delegate = when (currentSortMode) {
     SortMode.DESCENDING -> descendingDelegate
     else -> defaultDelegate
 }
-
-// Reset statistics
-sortButton.resetClickCount()
 ```
 
 ## Performance Considerations
 
-- **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks and rapid succession issues
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 - **Animation Optimization** — Uses ObjectAnimator with hardware acceleration for smooth 60fps animations
 
@@ -205,23 +180,5 @@ sortButton.resetClickCount()
 | Implement SortButtonDelegate for all instances | Rely solely on click listeners |
 | Test animations on lower-end devices | Assume animations perform uniformly |
 | Use consistent button placement in layouts | Randomly position sort buttons |
-| Reset click count after completing actions | Let click count accumulate indefinitely |
-| Use simulateClick() for testing and automation | Override touch event handling manually |
 
-## Advanced Features
-
-### Simulated Clicks
-
-The `simulateClick()` method provides a full animated click experience programmatically:
-
-```kotlin
-// Trigger a complete click cycle with animations
-sortButton.simulateClick()
-
-// Useful for:
-// - UI testing and automation
-// - Tutorial/onboarding flows
-// - Programmatic action triggers
-```
-
-> **⚠️ Note**: This component uses MaterialCardView as its base and features smooth scale animations using ObjectAnimator. The built-in debouncing mechanism ensures reliable click handling.
+> **⚠️ Note**: This component uses MaterialCardView as its base and features smooth scale animations using ObjectAnimator.
