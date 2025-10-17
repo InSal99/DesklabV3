@@ -73,15 +73,6 @@ class InputSearch @JvmOverloads constructor(
 
     var delegate: InputSearchDelegate? = null
 
-    private var closeIconClickCount = 0
-    private var searchFieldClickCount = 0
-    private var searchTextChangeCount = 0
-    private var searchSubmitCount = 0
-
-    private var lastCloseClickTime = 0L
-    private var lastFieldClickTime = 0L
-    private val clickDebounceDelay = 300L
-
     init {
         rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
         radius = 12f.dpToPx
@@ -153,8 +144,7 @@ class InputSearch @JvmOverloads constructor(
 
             override fun afterTextChanged(s: Editable?) {
                 val text = s?.toString() ?: ""
-                searchTextChangeCount++
-                delegate?.onSearchTextChange(this@InputSearch, text, searchTextChangeCount)
+                delegate?.onSearchTextChange(this@InputSearch, text)
                 updateRightIconVisibility()
             }
         })
@@ -162,16 +152,10 @@ class InputSearch @JvmOverloads constructor(
 
     private fun setupCloseIconListener() {
         binding.ivRightIcon.setOnClickListener {
-            val currentTime = System.currentTimeMillis()
-
-            if (currentTime - lastCloseClickTime > clickDebounceDelay) {
-                closeIconClickCount++
-                lastCloseClickTime = currentTime
-                binding.etSearch.text?.clear()
-                binding.etSearch.clearFocus()
-                hideKeyboard()
-                delegate?.onCloseIconClick(this, closeIconClickCount)
-            }
+            binding.etSearch.text?.clear()
+            binding.etSearch.clearFocus()
+            hideKeyboard()
+            delegate?.onCloseIconClick(this)
         }
 
         val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
@@ -188,10 +172,9 @@ class InputSearch @JvmOverloads constructor(
                 actionId == EditorInfo.IME_ACTION_DONE ||
                 actionId == EditorInfo.IME_ACTION_GO) {
                 val query = binding.etSearch.text?.toString() ?: ""
-                searchSubmitCount++
                 binding.etSearch.clearFocus()
                 hideKeyboard()
-                delegate?.onSearchSubmit(this, query, searchSubmitCount)
+                delegate?.onSearchSubmit(this, query)
                 true
             } else {
                 false
@@ -249,14 +232,8 @@ class InputSearch @JvmOverloads constructor(
     }
 
     private fun handleSearchFieldClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastFieldClickTime > clickDebounceDelay) {
-            searchFieldClickCount++
-            lastFieldClickTime = currentTime
-            binding.etSearch.requestFocus()
-            delegate?.onSearchFieldClick(this, searchFieldClickCount)
-        }
+        binding.etSearch.requestFocus()
+        delegate?.onSearchFieldClick(this)
     }
 
     private fun setupCardPressState() {
@@ -380,37 +357,5 @@ class InputSearch @JvmOverloads constructor(
     override fun clearFocus() {
         binding.etSearch.clearFocus()
         hideKeyboard()
-    }
-
-    fun getCloseIconClickCount(): Int = closeIconClickCount
-    fun getSearchFieldClickCount(): Int = searchFieldClickCount
-    fun getSearchTextChangeCount(): Int = searchTextChangeCount
-    fun getSearchSubmitCount(): Int = searchSubmitCount
-
-    fun resetCloseIconClickCount() {
-        val oldCount = closeIconClickCount
-        closeIconClickCount = 0
-    }
-
-    fun resetSearchFieldClickCount() {
-        val oldCount = searchFieldClickCount
-        searchFieldClickCount = 0
-    }
-
-    fun resetSearchTextChangeCount() {
-        val oldCount = searchTextChangeCount
-        searchTextChangeCount = 0
-    }
-
-    fun resetSearchSubmitCount() {
-        val oldCount = searchSubmitCount
-        searchSubmitCount = 0
-    }
-
-    fun resetAllCounts() {
-        closeIconClickCount = 0
-        searchFieldClickCount = 0
-        searchTextChangeCount = 0
-        searchSubmitCount = 0
     }
 }

@@ -14,7 +14,7 @@
 
 ## Overview
 
-*A customizable dropdown filter component that displays a label, optional description, optional badge, and dropdown icon. Features press state animations and click handling with debounce functionality.*
+*A customizable dropdown filter component that displays a label, optional description, optional badge, and dropdown icon. Features press state animations.*
 
 ## Basic Usage
 
@@ -101,14 +101,6 @@ val delegate = object : DropdownFilterDelegate {
     }
 }
 ```
-
-## Methods Reference
-
-| Method Name | Parameters | Description |
-| ----------- | ---------- | ----------- |
-| `resetClickCount()` | None | Resets internal click counter to zero |
-| `getClickCount()` | None | Returns current click count for debugging |
-| `performClick()` | None | Programmatically triggers a click event |
 
 ## Usage Examples
 
@@ -198,7 +190,6 @@ dropdownFilter.dropdownFilterShowDesc = hasDesc
 
 ## Performance Considerations
 
-- **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks and improves user experience
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 
 ## Animation Details
@@ -219,4 +210,4 @@ dropdownFilter.dropdownFilterShowDesc = hasDesc
 
 ---
 
-> **⚠️ Note**: This component uses MaterialCardView as its base and inherits elevation and corner radius properties. There's also click debounce mechanism to prevents rapid successive clicks.
+> **⚠️ Note**: This component uses MaterialCardView as its base and inherits elevation and corner radius properties.

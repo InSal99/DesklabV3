@@ -128,10 +128,6 @@ class CardMultiDetail @JvmOverloads constructor(
 
     var delegate: CardMultiDetailDelegate? = null
 
-    private var clickCount = 0
-    private var lastClickTime = 0L
-    private val clickDebounceDelay = 300L
-
     init {
         radius = 12f.dpToPx
 
@@ -234,10 +230,6 @@ class CardMultiDetail @JvmOverloads constructor(
                 updateCmdShowRightSlot()
                 updateClickability()
                 setupCardPressState()
-
-                setOnClickListener {
-                    handleClick()
-                }
             } finally {
                 recycle()
             }
@@ -245,13 +237,7 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     private fun handleClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastClickTime > clickDebounceDelay) {
-            clickCount++
-            lastClickTime = currentTime
-            delegate?.onCardClick(this)
-        }
+        delegate?.onCardClick(this)
     }
 
     private fun setupCardPressState() {
@@ -262,6 +248,15 @@ class CardMultiDetail @JvmOverloads constructor(
         val shouldBeClickable = cmdShowRightSlot
         isClickable = shouldBeClickable
         isFocusable = shouldBeClickable
+
+        if (shouldBeClickable) {
+            setOnClickListener {
+                handleClick()
+            }
+        } else {
+            setOnClickListener(null)
+        }
+
         rippleColor = if (shouldBeClickable) {
             ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
         } else{
@@ -321,18 +316,23 @@ class CardMultiDetail @JvmOverloads constructor(
     }
 
     private fun updateRightSlotSrc() {
-        binding.ivCmdRightSlot.isClickable = true
-        binding.ivCmdRightSlot.isFocusable = true
+        binding.ivCmdRightSlot.isClickable = cmdShowRightSlot
+        binding.ivCmdRightSlot.isFocusable = cmdShowRightSlot
 
-        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
+        if (cmdShowRightSlot) {
+            val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
 
-        val rippleDrawable = RippleDrawable(rippleColor, null, null)
-        rippleDrawable.radius = 16f.dpToPx.toInt()
+            val rippleDrawable = RippleDrawable(rippleColor, null, null)
+            rippleDrawable.radius = 16f.dpToPx.toInt()
 
-        binding.ivCmdRightSlot.background = rippleDrawable
+            binding.ivCmdRightSlot.background = rippleDrawable
 
-        binding.ivCmdRightSlot.setOnClickListener {
-            delegate?.onRightSlotClick(this)
+            binding.ivCmdRightSlot.setOnClickListener {
+                delegate?.onRightSlotClick(this)
+            }
+        } else {
+            binding.ivCmdRightSlot.background = null
+            binding.ivCmdRightSlot.setOnClickListener(null)
         }
 
         rightSlotSrc?.let {
@@ -353,22 +353,6 @@ class CardMultiDetail @JvmOverloads constructor(
         } else{
             ContextCompat.getColorStateList(context, android.R.color.transparent)
         }
-    }
-
-    fun resetClickCount() {
-        val previousCount = clickCount
-        clickCount = 0
-    }
-
-    fun getClickCount(): Int {
-        return clickCount
-    }
-
-    override fun performClick(): Boolean {
-        if (!isClickable) {
-            return false
-        }
-        handleClick()
-        return super.performClick()
+        updateClickability()
     }
 }
