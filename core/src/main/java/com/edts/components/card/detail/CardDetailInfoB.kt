@@ -432,7 +432,7 @@ class CardDetailInfoB @JvmOverloads constructor(
             RightSlotType.CUSTOM -> {
                 binding.ivCdibRightSlot.visibility = View.GONE
                 binding.flCdibRightSlotContainer.visibility = if (showRightSlot) View.VISIBLE else View.GONE
-                rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
             }
         }
         updateCardInteractivity()
@@ -473,7 +473,7 @@ class CardDetailInfoB @JvmOverloads constructor(
     }
 
     private fun updateCardInteractivity() {
-        val shouldBeInteractive = isCardInteractive && rightSlotType == RightSlotType.IMAGE
+        val shouldBeInteractive = isCardInteractive
         if (shouldBeInteractive) {
             isClickable = true
             isFocusable = true
