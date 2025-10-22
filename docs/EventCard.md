@@ -12,7 +12,7 @@
 
 ## Overview
 
-*A comprehensive event card component that displays event information including an image, badge indicator, event type banner, title, date, and registration status. Features press state animations and click handling with debounce functionality.*
+*A comprehensive event card component that displays event information including an image, badge indicator, event type banner, title, date, and registration status.*
 
 ## Basic Usage
 
@@ -141,14 +141,6 @@ Registration status indicators:
 - `RSVP` - User need to filled RSVP Form
 - `REGISTERED` - User is registered for the event
 - `UNREGISTERED` - User has not registered
-
-## Methods Reference
-
-| Method Name | Parameters | Description |
-| ----------- | ---------- | ----------- |
-| `resetClickCount()` | None | Resets internal click counter to zero |
-| `getClickCount()` | None | Returns current click count for debugging |
-| `performClick()` | None | Programmatically triggers a click event |
 
 ## Usage Examples
 
@@ -300,7 +292,6 @@ fun configureCard(event: Event) {
 
 ## Performance Considerations
 
-- **Click Debouncing** — Built-in 300ms debounce prevents accidental double-clicks and improves user experience
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 - **Nested Component Architecture** — Delegates rendering to specialized sub-components (EventCardBadge, EventCardBanner, EventCardDescription, EventCardStatus)
 
@@ -336,4 +327,4 @@ Each sub-component can be customized through the parent EventCard properties, wh
 
 ---
 
-> **⚠️ Note**: This component uses MaterialCardView as its base and relies on nested custom views for its sub-components. Ensure all dependent components (EventCardBadge, EventCardBanner, EventCardDescription, EventCardStatus) are properly implemented in your project. There's also click debounce mechanism to prevents rapid successive clicks.
+> **⚠️ Note**: This component uses MaterialCardView as its base and relies on nested custom views for its sub-components. Ensure all dependent components (EventCardBadge, EventCardBanner, EventCardDescription, EventCardStatus) are properly implemented in your project.

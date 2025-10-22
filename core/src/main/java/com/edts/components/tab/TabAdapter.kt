@@ -64,12 +64,28 @@ class TabAdapter(
         val oldPos = selectedPosition
         selectedPosition = position
 
+        // Update adapter's data list
+        tabDataList = tabDataList.mapIndexed { index, tab ->
+            tab.copy(state = if (index == position) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE)
+        }.toMutableList()
+
         recyclerView?.let { rv ->
             val oldViewHolder = rv.findViewHolderForAdapterPosition(oldPos) as? TabViewHolder
-            oldViewHolder?.tabItem?.tabState = TabItem.TabState.INACTIVE
-
             val newViewHolder = rv.findViewHolderForAdapterPosition(position) as? TabViewHolder
-            newViewHolder?.tabItem?.tabState = TabItem.TabState.ACTIVE
+
+            // If ViewHolder exists (on screen), animate it
+            if (oldViewHolder != null) {
+                oldViewHolder.tabItem.tabState = TabItem.TabState.INACTIVE
+            } else {
+                // If off-screen, notify to rebind when it comes back
+                notifyItemChanged(oldPos)
+            }
+
+            if (newViewHolder != null) {
+                newViewHolder.tabItem.tabState = TabItem.TabState.ACTIVE
+            } else {
+                notifyItemChanged(position)
+            }
         }
     }
 }

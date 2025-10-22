@@ -41,10 +41,6 @@ class SortButton @JvmOverloads constructor(
 
     var delegate: SortButtonDelegate? = null
 
-    private var clickCount = 0
-    private var lastClickTime = 0L
-    private val clickDebounceDelay = 300L
-
     var sortIcon: Int = R.drawable.ic_sort
         set(value) {
             field = value
@@ -115,7 +111,7 @@ class SortButton @JvmOverloads constructor(
             MotionEvent.ACTION_UP -> {
                 cardState = CardState.REST
                 animateScaleUp()
-                performClick()
+                handleClick()
                 return true
             }
             MotionEvent.ACTION_CANCEL -> {
@@ -128,24 +124,13 @@ class SortButton @JvmOverloads constructor(
     }
 
     private fun handleClick() {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastClickTime > clickDebounceDelay) {
-            clickCount++
-            lastClickTime = currentTime
-            delegate?.onSortButtonClick(this)
-        }
+        delegate?.onSortButtonClick(this)
     }
 
     private fun setupCardPressState() {
         isClickable = true
         isFocusable = true
         updateCardBackground()
-    }
-
-    override fun performClick(): Boolean {
-        handleClick()
-        return super.performClick()
     }
 
     private fun animateScaleDown() {
@@ -170,16 +155,5 @@ class SortButton @JvmOverloads constructor(
             interpolator = AccelerateDecelerateInterpolator()
         }
         animatorSet.start()
-    }
-
-    fun simulateClick() {
-        animateScaleDown()
-        cardState = CardState.ON_PRESS
-
-        postDelayed({
-            cardState = CardState.REST
-            animateScaleUp()
-            performClick()
-        }, 100)
     }
 }
