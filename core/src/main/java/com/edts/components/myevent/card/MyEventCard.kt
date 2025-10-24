@@ -18,6 +18,7 @@ class MyEventCard @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
+
     var myEventCardDelegate: MyEventCardDelegate? = null
 
     var eventTitle: String? = null
@@ -44,16 +45,19 @@ class MyEventCard @JvmOverloads constructor(
             updateBadgeFromEventType()
         }
 
-
     private val binding: MyEventCardBinding =
         MyEventCardBinding.inflate(LayoutInflater.from(context), this, true)
-
 
     init {
         setupCardAppearance()
         applyStyledAttributes(attrs)
-        isClickable = true
-        isFocusable = true
+        setupClickListener()
+    }
+
+    private fun setupClickListener() {
+        setOnClickListener {
+            myEventCardDelegate?.onClick(this)
+        }
     }
 
     fun setCalendarData(month: String, date: String, day: String) {
@@ -73,14 +77,6 @@ class MyEventCard @JvmOverloads constructor(
             this.isVisible = isVisible
         }
     }
-
-
-    override fun performClick(): Boolean {
-        super.performClick()
-        myEventCardDelegate?.onClick(this)
-        return true
-    }
-
 
     private fun applyStyledAttributes(attrs: AttributeSet?) {
         context.withStyledAttributes(attrs, R.styleable.MyEventCard, 0, 0) {
