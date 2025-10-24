@@ -39,8 +39,13 @@ class DropdownFilterHorizontal @JvmOverloads constructor(
     init {
         setupCardAppearance()
         applyStyledAttributes(attrs)
-        isClickable = true
-        isFocusable = true
+        setupClickListener()
+    }
+
+    private fun setupClickListener() {
+        setOnClickListener {
+            dropdownFilterHorizontalDelegate?.onClick(this)
+        }
     }
 
     private fun applyStyledAttributes(attrs: AttributeSet?) {
@@ -78,11 +83,5 @@ class DropdownFilterHorizontal @JvmOverloads constructor(
             outlineAmbientShadowColor = shadowColor
             outlineSpotShadowColor = shadowColor
         }
-    }
-
-    override fun performClick(): Boolean {
-        super.performClick()
-        dropdownFilterHorizontalDelegate?.onClick(this)
-        return true
     }
 }
