@@ -126,7 +126,7 @@ class Footer @JvmOverloads constructor(
                     setDescriptionVisibility(showDescription)
                     primaryButton = binding.btnFooterCTAPrimary.apply {
                         setLabel(primaryButtonText)
-                        isEnabled = primaryButtonEnabled
+                        setButtonDisabled(!primaryButtonEnabled)
                     }
                 }
             }
@@ -136,7 +136,7 @@ class Footer @JvmOverloads constructor(
                     binding.tvFooterCTADescDescription.text = footerDescription
                     primaryButton = binding.btnFooterCTADescPrimary.apply {
                         setLabel(primaryButtonText)
-                        isEnabled = primaryButtonEnabled
+                        setButtonDisabled(!primaryButtonEnabled)
                     }
                 }
             }
@@ -148,11 +148,11 @@ class Footer @JvmOverloads constructor(
                     setDescriptionVisibility(showDescription)
                     secondaryButton = binding.btnFooterDualButtonSecondary.apply {
                         setLabel(secondaryButtonText)
-                        isEnabled = secondaryButtonEnabled
+                        setButtonDisabled(!secondaryButtonEnabled)
                     }
                     primaryButton = binding.btnFooterDualButtonPrimary.apply {
                         setLabel(primaryButtonText)
-                        isEnabled = primaryButtonEnabled
+                        setButtonDisabled(!primaryButtonEnabled)
                     }
                 }
             }
@@ -268,12 +268,12 @@ class Footer @JvmOverloads constructor(
 
     fun setPrimaryButtonEnabled(enabled: Boolean) {
         primaryButtonEnabled = enabled
-        primaryButton?.isEnabled = enabled
+        primaryButton?.setButtonDisabled(!enabled)
     }
 
     fun setSecondaryButtonEnabled(enabled: Boolean) {
         secondaryButtonEnabled = enabled
-        secondaryButton?.isEnabled = enabled
+        secondaryButton?.setButtonDisabled(!enabled)
     }
 
     fun setDescriptionVisibility(showDescription: Boolean) {
