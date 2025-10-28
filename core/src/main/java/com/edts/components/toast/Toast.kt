@@ -13,6 +13,7 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
+import androidx.appcompat.view.ContextThemeWrapper
 import com.edts.components.R
 import com.edts.components.databinding.LayoutToastViewBinding
 import com.edts.components.utils.resolveColorAttribute
@@ -38,7 +39,9 @@ class Toast @JvmOverloads constructor(
     }
 
     init {
-        binding = LayoutToastViewBinding.inflate(LayoutInflater.from(context), this, true)
+        val themedContext = ContextThemeWrapper(context, R.style.Theme_Desklab_Kit)
+        binding = LayoutToastViewBinding.inflate(LayoutInflater.from(themedContext), this, true)
+
         setupToast()
         applyAttrs(attrs)
         applyToastStyle()
