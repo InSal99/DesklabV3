@@ -646,16 +646,15 @@
     </style>
 
     <!-- Modality Dialog -->
-    <style name="Theme.App.Dialog.Confirmation" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="alertDialogStyle">@style/Style.App.Dialog.Confirmation</item>
+    <style name="Theme.DesklabV3.Alert.Dialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/Widget.DesklabV3.Alert.Dialog</item>
     </style>
 
-    <style name="Style.App.Dialog.Confirmation" parent="MaterialAlertDialog.MaterialComponents">
-        <item name="backgroundTint">?attr/colorBackgroundPrimary</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.App.Dialog.Custom</item>
+    <style name="Widget.DesklabV3.Alert.Dialog" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAppearance.DesklabV3.Alert.Dialog</item>
     </style>
 
-    <style name="ShapeAppearance.App.Dialog.Custom" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="ShapeAppearance.DesklabV3.Alert.Dialog" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
