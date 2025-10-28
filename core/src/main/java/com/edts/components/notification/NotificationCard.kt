@@ -1,6 +1,7 @@
 package com.edts.components.notification
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -75,17 +76,13 @@ class NotificationCard @JvmOverloads constructor(
         setupCardAppearance()
         applyStyledAttributes(attrs)
         setupClickListeners()
-        isClickable = true
-        isFocusable = true
-    }
-
-    override fun performClick(): Boolean {
-        super.performClick()
-        notificationCardDelegate?.onCardClick(this)
-        return true
     }
 
     private fun setupClickListeners() {
+        setOnClickListener {
+            notificationCardDelegate?.onCardClick(this)
+        }
+
         binding.btnNotification.setOnClickListener {
             notificationCardDelegate?.onPrimaryButtonClick(this)
         }
@@ -129,6 +126,12 @@ class NotificationCard @JvmOverloads constructor(
             R.attr.colorStrokeSubtle,
             R.color.colorNeutral30
         )
+
+        val rippleColor = context.resolveColorAttribute(
+            R.attr.colorBackgroundModifierOnPress,
+            R.color.colorNeutral20
+        )
+
         val cornerRadius = 12f.dpToPx
         val elevation = 1f.dpToPx
         val strokeWidth = 1.dpToPx
@@ -137,6 +140,7 @@ class NotificationCard @JvmOverloads constructor(
         cardElevation = elevation
         this.strokeColor = strokeSubtleColor
         this.strokeWidth = strokeWidth
+        this.rippleColor = ColorStateList.valueOf(rippleColor)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val shadowColor = context.resolveColorAttribute(
