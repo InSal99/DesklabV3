@@ -19,7 +19,7 @@ object ModalityConfirmationPopUp {
     ) {
         try {
             val binding = EventModalityConfirmationBinding.inflate(LayoutInflater.from(context))
-            val builder = MaterialAlertDialogBuilder(context, R.style.Theme_App_Dialog_Confirmation)
+            val builder = MaterialAlertDialogBuilder(context, R.style.Theme_DesklabV3_Alert_Dialog)
 
             builder.setView(binding.root)
             val dialog = builder.create()

@@ -15,7 +15,7 @@ object ModalityLoadingPopUp {
     ): AlertDialog? {
         return try {
             val binding = EventModalityLoadingBinding.inflate(LayoutInflater.from(context))
-            val builder = MaterialAlertDialogBuilder(context, R.style.Theme_App_Dialog_Confirmation)
+            val builder = MaterialAlertDialogBuilder(context, R.style.Theme_DesklabV3_Alert_Dialog)
 
             builder.setView(binding.root)
             binding.tvModalTitle.text = title

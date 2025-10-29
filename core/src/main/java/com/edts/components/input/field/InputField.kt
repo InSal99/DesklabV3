@@ -553,8 +553,11 @@ class InputField @JvmOverloads constructor(
                     clearError()
                 }
 
+                if (!text.isNullOrBlank() && currentErrorText != null) {
+                    clearError()
+                }
+
                 notifyValidationChange()
-                clearError()
             }
 
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)

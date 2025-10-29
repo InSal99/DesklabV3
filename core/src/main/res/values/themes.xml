@@ -26,7 +26,7 @@
         <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
 
         <!-- Modality Dialog -->
-        <item name="materialAlertDialogTheme">@style/Theme.App.Dialog.Confirmation</item>
+        <item name="materialAlertDialogTheme">@style/Theme.DesklabV3.Alert.Dialog</item>
 
         <!-- Background Colors -->
         <item name="colorBackgroundPrimary">@color/colorFFF</item>
