@@ -1,6 +1,7 @@
 package com.edts.components.modal
 
 import android.content.Context
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import com.edts.components.R
 import com.edts.components.databinding.EventModalityConfirmationBinding
@@ -18,8 +19,9 @@ object ModalityConfirmationPopUp {
         onClose: () -> Unit
     ) {
         try {
-            val binding = EventModalityConfirmationBinding.inflate(LayoutInflater.from(context))
-            val builder = MaterialAlertDialogBuilder(context, R.style.Theme_DesklabV3_Alert_Dialog)
+            val themedContext = ContextThemeWrapper(context, R.style.Theme_Desklab_Kit)
+            val binding = EventModalityConfirmationBinding.inflate(LayoutInflater.from(themedContext))
+            val builder = MaterialAlertDialogBuilder(themedContext)
 
             builder.setView(binding.root)
             val dialog = builder.create()

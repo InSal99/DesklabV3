@@ -1,9 +1,11 @@
 package com.edts.components.modal
 
 import android.content.Context
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import com.edts.components.R
+import com.edts.components.databinding.EventModalityConfirmationBinding
 import com.edts.components.databinding.EventModalityLoadingBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -14,8 +16,9 @@ object ModalityLoadingPopUp {
         isCancelable: Boolean = false
     ): AlertDialog? {
         return try {
-            val binding = EventModalityLoadingBinding.inflate(LayoutInflater.from(context))
-            val builder = MaterialAlertDialogBuilder(context, R.style.Theme_DesklabV3_Alert_Dialog)
+            val themedContext = ContextThemeWrapper(context, R.style.Theme_Desklab_Kit)
+            val binding = EventModalityLoadingBinding.inflate(LayoutInflater.from(themedContext))
+            val builder = MaterialAlertDialogBuilder(themedContext)
 
             builder.setView(binding.root)
             binding.tvModalTitle.text = title
