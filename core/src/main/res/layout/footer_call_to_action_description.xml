@@ -10,12 +10,12 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTADescTitle"
-        style="?attr/l2Medium"
+        style="@style/TextMedium.Label2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_10dp"
         android:text="Title"
-        android:textColor="?attr/colorForegroundPrimary"
+        android:textColor="@color/color000"
         android:maxLines="1"
         android:ellipsize="end"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,13 +24,13 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTADescDescription"
-        style="?attr/l3Regular"
+        style="@style/TextRegular.Label3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginEnd="@dimen/margin_10dp"
         android:text="Description"
-        android:textColor="?attr/colorForegroundSecondary"
+        android:textColor="@color/colorNeutral60"
         android:maxLines="1"
         android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/tvFooterCTADescTitle"

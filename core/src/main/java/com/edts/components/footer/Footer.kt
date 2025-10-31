@@ -13,7 +13,7 @@ import com.edts.components.databinding.FooterCallToActionDescriptionBinding
 import com.edts.components.databinding.FooterDualButtonBinding
 import com.edts.components.databinding.FooterNoActionBinding
 import com.edts.components.status.badge.StatusBadge
-import com.edts.components.utils.resolveColorAttribute
+import com.edts.components.utils.color
 
 class Footer @JvmOverloads constructor(
     context: Context,
@@ -84,7 +84,7 @@ class Footer @JvmOverloads constructor(
                     LayoutParams.MATCH_PARENT,
                     context.resources.getDimensionPixelSize(R.dimen.dimen_1dp)
                 )
-                setBackgroundColor(context.resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral30))
+                setBackgroundColor(context.color(R.color.colorNeutral30))
             }
             addView(topStrokeView)
         }
