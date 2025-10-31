@@ -283,7 +283,7 @@ class BottomTray : BottomSheetDialogFragment() {
             .setTopLeftCorner(CornerFamily.ROUNDED, cornerRadius)
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
-        val bgColor = requireContext().resolveColorAttribute(R.attr.colorBackgroundPrimary, R.color.colorFFF)
+        val bgColor = requireActivity().resolveColorAttribute(R.attr.colorBackgroundPrimary, R.color.colorFFF)
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
             if (hasShadow) {
@@ -292,14 +292,14 @@ class BottomTray : BottomSheetDialogFragment() {
                     TypedValue.COMPLEX_UNIT_DIP, 8f, requireContext().resources.displayMetrics
                 )
                 shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
-                val shadowColor = requireContext().resolveColorAttribute(R.attr.colorShadowNeutralKey, R.color.colorNeutral70Opacity20)
+                val shadowColor = requireActivity().resolveColorAttribute(R.attr.colorShadowNeutralKey, R.color.colorNeutral70Opacity20)
                 setShadowColor(shadowColor)
             }
         }
         if (!hasStroke) {
             return backgroundDrawable
         }
-        val strokeColor = requireContext().resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral70Opacity20)
+        val strokeColor = requireActivity().resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral70Opacity20)
         val strokeWidth = resources.getDimension(R.dimen.stroke_weight_1dp)
         val strokeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(Color.TRANSPARENT)
@@ -325,7 +325,7 @@ class BottomTray : BottomSheetDialogFragment() {
             .build()
         return MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(
-                requireContext().resolveColorAttribute(R.attr.colorForegroundTertiary, R.color.colorNeutral50)
+                requireActivity().resolveColorAttribute(R.attr.colorForegroundTertiary, R.color.colorNeutral50)
             )
         }
     }
