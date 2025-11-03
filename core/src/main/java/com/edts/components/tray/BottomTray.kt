@@ -152,12 +152,22 @@ class BottomTray : BottomSheetDialogFragment() {
         super.show(manager, tag)
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.let { delegate?.onShow(it) }
+    }
+
     override fun dismiss() {
         if (isAdded && parentFragmentManager != null) {
             super.dismiss()
         } else {
             dismissAllowingStateLoss()
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        delegate?.onDismiss(dialog)
+        super.onDismiss(dialog)
     }
 
     override fun dismissAllowingStateLoss() {
