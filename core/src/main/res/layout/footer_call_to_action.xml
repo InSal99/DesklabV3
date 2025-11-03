@@ -8,14 +8,14 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTATitle"
-        style="?attr/l2Regular"
+        style="@style/TextRegular.Label2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_18dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Peserta Terdaftar"
-        android:textColor="?attr/colorForegroundSecondary"
+        android:textColor="@color/colorNeutral60"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTASupportText1"
@@ -23,7 +23,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTASupportText1"
-        style="?attr/h2SemiBold"
+        style="@style/TextSemiBold.Heading2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_8dp"
@@ -31,7 +31,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="1"
-        android:textColor="?attr/colorForegroundPrimary"
+        android:textColor="@color/color000"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintStart_toEndOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTATextDivider"
@@ -39,27 +39,27 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTATextDivider"
-        style="?attr/h2SemiBold"
+        style="@style/TextSemiBold.Heading2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_4dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="/"
-        android:textColor="?attr/colorForegroundPlaceholder"
+        android:textColor="@color/colorNeutral40"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTASupportText2"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvFooterCTASupportText2"
-        style="?attr/h2SemiBold"
+        style="@style/TextSemiBold.Heading2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="1"
-        android:textColor="?attr/colorForegroundPrimary"
+        android:textColor="@color/color000"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>
