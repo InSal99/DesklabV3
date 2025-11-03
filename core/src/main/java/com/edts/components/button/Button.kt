@@ -19,7 +19,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
 import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttr
 import com.edts.components.utils.resolveColorAttribute
+import com.edts.components.utils.resolveStyleAttr
 import com.edts.components.utils.resolveStyleAttribute
 import com.google.android.material.button.MaterialButton
 
@@ -96,7 +98,8 @@ class Button @JvmOverloads constructor(
             R.attr.colorForegroundAccentPrimaryIntense to R.color.colorPrimary30
         )
         colorAttrs.forEach { (attr, fallback) ->
-            colorCache[attr] = context.resolveColorAttribute(attr, fallback)
+//            colorCache[attr] = context.resolveColorAttribute(attr, fallback)
+            colorCache[attr] = context.resolveColorAttr(attr, fallback)
         }
     }
 
@@ -347,7 +350,8 @@ class Button @JvmOverloads constructor(
     }
 
     private fun getCachedColor(@AttrRes attrRes: Int): Int {
-        return colorCache[attrRes] ?: context.resolveColorAttribute(attrRes, android.R.color.transparent)
+//        return colorCache[attrRes] ?: context.resolveColorAttribute(attrRes, android.R.color.transparent)
+        return colorCache[attrRes] ?: context.resolveColorAttr(attrRes, android.R.color.transparent)
     }
 
     private fun getTextStyleForButtonSize(size: ButtonSize): Int {
@@ -357,7 +361,8 @@ class Button @JvmOverloads constructor(
             ButtonSize.MD -> R.attr.l2Medium
             ButtonSize.LG -> R.attr.l1Medium
         }
-        return context.resolveStyleAttribute(attrRes, R.style.TextMedium_Label2)
+//        return context.resolveStyleAttribute(attrRes, R.style.TextMedium_Label2)
+        return context.resolveStyleAttr(attrRes, R.style.TextMedium_Label2)
     }
 
     private fun animateScaleDown() {
