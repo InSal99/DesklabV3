@@ -28,7 +28,6 @@ import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
 import com.edts.components.utils.color
 import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
