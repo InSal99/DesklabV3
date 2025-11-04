@@ -2,11 +2,13 @@ package com.edts.components.utils
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Color
 import android.util.TypedValue
 import android.widget.ImageView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.annotation.StyleRes
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.edts.components.R
 
@@ -39,6 +41,32 @@ fun Context?.resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColo
         fallbackColor
     }
 }
+
+fun Context?.resolveColorAttr(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
+    val typedValue = TypedValue()
+    return if (this?.theme?.resolveAttribute(attrRes, typedValue, true) == true) {
+        if (typedValue.type == TypedValue.TYPE_REFERENCE) {
+            ContextCompat.getColor(this, typedValue.resourceId)
+        } else {
+            typedValue.data
+        }
+    } else {
+        this?.let { ContextCompat.getColor(it, fallbackColor) } ?: Color.TRANSPARENT
+    }
+}
+
+fun Context?.resolveStyleAttr(
+    @AttrRes attributeId: Int,
+    @StyleRes fallbackStyle: Int
+): Int {
+    val typedValue = TypedValue()
+    return if (this?.theme?.resolveAttribute(attributeId, typedValue, true) == true) {
+        typedValue.resourceId
+    } else {
+        fallbackStyle
+    }
+}
+
 
 fun ImageView.loadImageDynamic(
     imageUrl: String? = null,
