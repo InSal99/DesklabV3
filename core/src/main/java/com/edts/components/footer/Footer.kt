@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.button.Button
 import com.edts.components.databinding.FooterCallToActionBinding
@@ -13,7 +12,7 @@ import com.edts.components.databinding.FooterCallToActionDescriptionBinding
 import com.edts.components.databinding.FooterDualButtonBinding
 import com.edts.components.databinding.FooterNoActionBinding
 import com.edts.components.status.badge.StatusBadge
-import com.edts.components.utils.color
+import com.edts.components.utils.resolveColorAttr
 
 class Footer @JvmOverloads constructor(
     context: Context,
@@ -47,7 +46,7 @@ class Footer @JvmOverloads constructor(
 
     init {
         orientation = VERTICAL
-        setBackgroundColor(ContextCompat.getColor(context, R.color.colorFFF))
+        setBackgroundColor(context.resolveColorAttr(R.attr.colorBackgroundPrimary, R.color.colorFFF))
         parseAttributes(attrs)
         setupView()
     }
@@ -84,7 +83,7 @@ class Footer @JvmOverloads constructor(
                     LayoutParams.MATCH_PARENT,
                     context.resources.getDimensionPixelSize(R.dimen.dimen_1dp)
                 )
-                setBackgroundColor(context.color(R.color.colorNeutral30))
+                setBackgroundColor(context.resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutral30))
             }
             addView(topStrokeView)
         }

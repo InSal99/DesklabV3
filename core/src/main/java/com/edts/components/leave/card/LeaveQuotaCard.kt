@@ -8,7 +8,7 @@ import androidx.core.content.withStyledAttributes
 import com.edts.components.R
 import com.edts.components.databinding.LeaveQuotaCardBinding
 import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.card.MaterialCardView
 
 class LeaveQuotaCard @JvmOverloads constructor(
@@ -58,7 +58,7 @@ class LeaveQuotaCard @JvmOverloads constructor(
     }
 
     private fun setupCardAppearance() {
-        val strokeSubtleColor = context.resolveColorAttribute(
+        val strokeSubtleColor = context.resolveColorAttr(
             R.attr.colorStrokeSubtle,
             R.color.colorNeutral30
         )
@@ -72,7 +72,7 @@ class LeaveQuotaCard @JvmOverloads constructor(
         this.strokeWidth = strokeWidth
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val shadowColor = context.resolveColorAttribute(
+            val shadowColor = context.resolveColorAttr(
                 R.attr.colorForegroundPrimary,
                 R.color.color000
             )
