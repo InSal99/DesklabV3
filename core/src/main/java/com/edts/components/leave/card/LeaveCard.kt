@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.LeaveCardBinding
 import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.card.MaterialCardView
 
 class LeaveCard @JvmOverloads constructor(
@@ -67,7 +67,7 @@ class LeaveCard @JvmOverloads constructor(
 
         val activeColor = run {
             val fallbackColorRes = R.color.color000Opacity5
-            val resolved = context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, fallbackColorRes)
+            val resolved = context.resolveColorAttr(R.attr.colorBackgroundModifierOnPress, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         }
         rippleColor = ColorStateList.valueOf(activeColor)
@@ -93,14 +93,14 @@ class LeaveCard @JvmOverloads constructor(
     private fun setupCardAppearance(context: Context) {
         strokeColor = run {
             val fallbackColorRes = R.color.colorNeutral30
-            val resolved = context.resolveColorAttribute(R.attr.colorStrokeSubtle, fallbackColorRes)
+            val resolved = context.resolveColorAttr(R.attr.colorStrokeSubtle, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         }
         strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
         radius = resources.getDimension(R.dimen.radius_12dp)
         setCardBackgroundColor(run {
             val fallbackColorRes = R.color.colorFFF
-            val resolved = context.resolveColorAttribute(R.attr.colorBackgroundPrimary, fallbackColorRes)
+            val resolved = context.resolveColorAttr(R.attr.colorBackgroundPrimary, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         })
         cardElevation = 2f.dpToPx
@@ -108,12 +108,12 @@ class LeaveCard @JvmOverloads constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             outlineAmbientShadowColor = run {
                 val fallbackColorRes = R.color.colorGreen50
-                val resolved = context.resolveColorAttribute(R.attr.colorForegroundAccentPrimaryIntense, fallbackColorRes)
+                val resolved = context.resolveColorAttr(R.attr.colorForegroundAccentPrimaryIntense, fallbackColorRes)
                 try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
             }
             outlineSpotShadowColor = run {
                 val fallbackColorRes = R.color.colorGreen50
-                val resolved = context.resolveColorAttribute(R.attr.colorForegroundAccentPrimaryIntense, fallbackColorRes)
+                val resolved = context.resolveColorAttr(R.attr.colorForegroundAccentPrimaryIntense, fallbackColorRes)
                 try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
             }
         }

@@ -38,6 +38,7 @@ import com.edts.components.radiobutton.RadioGroup
 import com.edts.components.radiobutton.RadioGroupDelegate
 import com.edts.components.tray.BottomTray
 import com.edts.components.tray.BottomTrayDelegate
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputLayout
 
@@ -148,7 +149,7 @@ class InputField @JvmOverloads constructor(
     private fun getCachedColor(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
         val key = attrRes
         return colorCache.getOrPut(key) {
-            resolveColorAttribute(attrRes, fallbackColor)
+            context.resolveColorAttr(attrRes, fallbackColor)
         }
     }
 
@@ -1092,19 +1093,6 @@ class InputField @JvmOverloads constructor(
 
     private fun notifyValidationChange() {
         delegate?.onValidationChange(fieldId, isValid())
-    }
-
-    private fun resolveColorAttribute(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            if (typedValue.type == TypedValue.TYPE_REFERENCE) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            ContextCompat.getColor(context, fallbackColor)
-        }
     }
 
     fun configure(config: InputFieldConfig, id: String = "") {

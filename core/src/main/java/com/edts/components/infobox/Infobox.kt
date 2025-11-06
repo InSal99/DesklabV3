@@ -13,7 +13,7 @@ import com.edts.components.databinding.InfoboxBinding
 import com.google.android.material.card.MaterialCardView
 import com.edts.components.R
 import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.shape.CornerFamily
 
 class InfoBox @JvmOverloads constructor(
@@ -69,12 +69,12 @@ class InfoBox @JvmOverloads constructor(
             GradientDrawable.Orientation.TOP_BOTTOM,
             intArrayOf(
                 Color.TRANSPARENT,
-                context.resolveColorAttribute(R.attr.colorShadowTintedAmbient, Color.TRANSPARENT),
-                context.resolveColorAttribute(R.attr.colorShadowTintedKey, Color.TRANSPARENT),
-                context.resolveColorAttribute(R.attr.colorShadowTintedKey, Color.TRANSPARENT),
-                context.resolveColorAttribute(R.attr.colorShadowTintedKey, Color.TRANSPARENT),
-                context.resolveColorAttribute(R.attr.colorShadowTintedKey, Color.TRANSPARENT),
-                context.resolveColorAttribute(R.attr.colorShadowTintedKey, Color.TRANSPARENT)
+                context.resolveColorAttr(R.attr.colorShadowTintedAmbient, Color.TRANSPARENT),
+                context.resolveColorAttr(R.attr.colorShadowTintedKey, Color.TRANSPARENT),
+                context.resolveColorAttr(R.attr.colorShadowTintedKey, Color.TRANSPARENT),
+                context.resolveColorAttr(R.attr.colorShadowTintedKey, Color.TRANSPARENT),
+                context.resolveColorAttr(R.attr.colorShadowTintedKey, Color.TRANSPARENT),
+                context.resolveColorAttr(R.attr.colorShadowTintedKey, Color.TRANSPARENT)
             )
         ).apply {
             cornerRadii = floatArrayOf(
@@ -122,28 +122,28 @@ class InfoBox @JvmOverloads constructor(
 
         when (variant) {
             InfoBoxVariant.INFORMATION -> {
-                gradientDrawable?.setColor(context.resolveColorAttribute(R.attr.colorBackgroundInfoSubtle, Color.TRANSPARENT))
-                binding.tvInfoText.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundInfoIntense, Color.BLACK))
+                gradientDrawable?.setColor(context.resolveColorAttr(R.attr.colorBackgroundInfoSubtle, Color.TRANSPARENT))
+                binding.tvInfoText.setTextColor(context.resolveColorAttr(R.attr.colorForegroundInfoIntense, Color.BLACK))
                 binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_information)
-                binding.ivInfoIcon.setColorFilter(context.resolveColorAttribute(R.attr.colorForegroundInfoIntense, Color.BLACK))
+                binding.ivInfoIcon.setColorFilter(context.resolveColorAttr(R.attr.colorForegroundInfoIntense, Color.BLACK))
             }
             InfoBoxVariant.SUCCESS -> {
-                gradientDrawable?.setColor(context.resolveColorAttribute(R.attr.colorBackgroundSuccessSubtle, Color.TRANSPARENT))
-                binding.tvInfoText.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundSuccessIntense, Color.BLACK))
+                gradientDrawable?.setColor(context.resolveColorAttr(R.attr.colorBackgroundSuccessSubtle, Color.TRANSPARENT))
+                binding.tvInfoText.setTextColor(context.resolveColorAttr(R.attr.colorForegroundSuccessIntense, Color.BLACK))
                 binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_success)
-                binding.ivInfoIcon.setColorFilter(context.resolveColorAttribute(R.attr.colorForegroundSuccessIntense, Color.BLACK))
+                binding.ivInfoIcon.setColorFilter(context.resolveColorAttr(R.attr.colorForegroundSuccessIntense, Color.BLACK))
             }
             InfoBoxVariant.ERROR -> {
-                gradientDrawable?.setColor(context.resolveColorAttribute(R.attr.colorBackgroundAttentionSubtle, Color.TRANSPARENT))
-                binding.tvInfoText.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundAttentionIntense, Color.BLACK))
+                gradientDrawable?.setColor(context.resolveColorAttr(R.attr.colorBackgroundAttentionSubtle, Color.TRANSPARENT))
+                binding.tvInfoText.setTextColor(context.resolveColorAttr(R.attr.colorForegroundAttentionIntense, Color.BLACK))
                 binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_error)
-                binding.ivInfoIcon.setColorFilter(context.resolveColorAttribute(R.attr.colorForegroundAttentionIntense, Color.BLACK))
+                binding.ivInfoIcon.setColorFilter(context.resolveColorAttr(R.attr.colorForegroundAttentionIntense, Color.BLACK))
             }
             InfoBoxVariant.GENERAL -> {
-                gradientDrawable?.setColor(context.resolveColorAttribute(R.attr.colorBackgroundSecondary, Color.TRANSPARENT))
-                binding.tvInfoText.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundPrimary, Color.BLACK))
+                gradientDrawable?.setColor(context.resolveColorAttr(R.attr.colorBackgroundSecondary, Color.TRANSPARENT))
+                binding.tvInfoText.setTextColor(context.resolveColorAttr(R.attr.colorForegroundPrimary, Color.BLACK))
                 binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.placeholder)
-                binding.ivInfoIcon.setColorFilter(context.resolveColorAttribute(R.attr.colorForegroundTertiary, Color.BLACK))
+                binding.ivInfoIcon.setColorFilter(context.resolveColorAttr(R.attr.colorForegroundTertiary, Color.BLACK))
             }
         }
 

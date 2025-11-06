@@ -5,13 +5,11 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
-import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.OptionCardBinding
 import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.card.MaterialCardView
 
 class OptionCard @JvmOverloads constructor(
@@ -55,7 +53,7 @@ class OptionCard @JvmOverloads constructor(
         isClickable = true
         isFocusable = true
 
-        val activeColor = context.resolveColorAttribute(
+        val activeColor = context.resolveColorAttr(
             R.attr.colorBackgroundModifierOnPress,
             android.R.color.transparent
         )
@@ -77,19 +75,15 @@ class OptionCard @JvmOverloads constructor(
     private fun setupCardAppearance(context: Context) {
         strokeWidth = 1.dpToPx
         radius = context.resources.getDimension(R.dimen.radius_12dp)
-
-        val typedValue = TypedValue()
-        context.theme.resolveAttribute(R.attr.colorStrokeSubtle, typedValue, true)
-        setStrokeColor(ContextCompat.getColor(context, typedValue.resourceId))
-
+        strokeColor = context.resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutral30)
         cardElevation = 1f.dpToPx
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = context.resolveColorAttribute(
+            outlineAmbientShadowColor = context.resolveColorAttr(
                 R.attr.colorForegroundPrimary,
                 android.R.color.transparent
             )
-            outlineSpotShadowColor = context.resolveColorAttribute(
+            outlineSpotShadowColor = context.resolveColorAttr(
                 R.attr.colorForegroundPrimary,
                 android.R.color.transparent
             )

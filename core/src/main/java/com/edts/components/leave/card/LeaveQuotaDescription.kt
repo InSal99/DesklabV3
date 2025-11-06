@@ -1,15 +1,13 @@
 package com.edts.components.leave.card
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
-import androidx.annotation.AttrRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
 import com.edts.components.databinding.LeaveQuotaDescriptionBinding
+import com.edts.components.utils.resolveColorAttr
 import java.util.regex.Pattern
 
 class LeaveQuotaDescription @JvmOverloads constructor(
@@ -38,8 +36,8 @@ class LeaveQuotaDescription @JvmOverloads constructor(
     init {
         binding = LeaveQuotaDescriptionBinding.inflate(LayoutInflater.from(context), this)
 
-        defaultTextColor = resolveColorAttr(R.attr.colorForegroundPrimary)
-        attentionTextColor = resolveColorAttr(R.attr.colorForegroundAttentionIntense)
+        defaultTextColor = context.resolveColorAttr(R.attr.colorForegroundPrimary, R.color.color000)
+        attentionTextColor = context.resolveColorAttr(R.attr.colorForegroundAttentionIntense, R.color.color000)
 
         binding.tvLeaveQuota.setTextColor(defaultTextColor)
 
@@ -74,15 +72,6 @@ class LeaveQuotaDescription @JvmOverloads constructor(
             binding.tvLeaveQuota.setTextColor(color)
         } ?: run {
             binding.tvLeaveQuota.setTextColor(defaultTextColor)
-        }
-    }
-
-    private fun resolveColorAttr(@AttrRes attrRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attrRes, typedValue, true)) {
-            typedValue.data
-        } else {
-            Color.BLACK
         }
     }
 }
