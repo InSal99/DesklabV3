@@ -23,10 +23,10 @@ class StatusBadge @JvmOverloads constructor(
         val textColorAttr: Int,
         val iconRes: Int
     ) {
-        APPROVED(R.attr.colorBackgroundSuccessSubtle, R.attr.colorForegroundSuccessIntense, R.drawable.ic_success),
-        DECLINE(R.attr.colorBackgroundAttentionSubtle, R.attr.colorForegroundAttentionIntense, R.drawable.ic_error),
-        WAITING(R.attr.colorBackgroundInfoSubtle, R.attr.colorForegroundInfoIntense, R.drawable.ic_alarm),
-        CANCEL(R.attr.colorBackgroundTertiary, R.attr.colorForegroundSecondary, R.drawable.ic_close);
+        APPROVED(R.color.colorGreen10, R.color.colorGreen50, R.drawable.ic_success),
+        DECLINE(R.color.colorRed10, R.color.colorRed50, R.drawable.ic_error),
+        WAITING(R.color.colorBlue10, R.color.colorBlue50, R.drawable.ic_alarm),
+        CANCEL(R.color.colorNeutral20, R.color.colorNeutral60, R.drawable.ic_close);
     }
 
     var chipType: ChipType = ChipType.APPROVED
