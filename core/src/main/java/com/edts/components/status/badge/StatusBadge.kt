@@ -19,8 +19,8 @@ class StatusBadge @JvmOverloads constructor(
     defStyleAttr: Int = android.R.attr.textViewStyle
 ) : MaterialTextView(ContextThemeWrapper(context, R.style.Theme_Desklab_Kit), attrs, defStyleAttr) {
     enum class ChipType(
-        val backgroundColorAttr: Int,
-        val textColorAttr: Int,
+        val backgroundColorRes: Int,
+        val textColorRes: Int,
         val iconRes: Int
     ) {
         APPROVED(R.color.colorGreen10, R.color.colorGreen50, R.drawable.ic_success),
@@ -69,8 +69,8 @@ class StatusBadge @JvmOverloads constructor(
     }
 
     private fun applyChipStyle() {
-        val backgroundColor = getColorFromAttr(chipType.backgroundColorAttr)
-        val textColor = getColorFromAttr(chipType.textColorAttr)
+        val backgroundColor = ContextCompat.getColor(context, chipType.backgroundColorRes)
+        val textColor = ContextCompat.getColor(context, chipType.textColorRes)
         val strokeColor = getColorFromAttr(R.attr.colorStrokeInteractive)
 
         val background = ContextCompat.getDrawable(context, R.drawable.bg_status_badge)?.mutate() as? GradientDrawable
