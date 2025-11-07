@@ -6,15 +6,18 @@ import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.LayoutInflater
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import com.edts.components.R
+import com.edts.components.databinding.LayoutToastViewBinding
 import com.google.android.material.textview.MaterialTextView
 
 class StatusBadge @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = android.R.attr.textViewStyle
-) : MaterialTextView(context, attrs, defStyleAttr) {
+) : MaterialTextView(ContextThemeWrapper(context, R.style.Theme_Desklab_Kit), attrs, defStyleAttr) {
     enum class ChipType(
         val backgroundColorAttr: Int,
         val textColorAttr: Int,
