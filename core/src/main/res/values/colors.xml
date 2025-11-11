@@ -126,4 +126,15 @@
     <color name="colorWhite">#FFFFFF</color> //?
     <color name="white">#FFFFFFFF</color> //?
     <color name="colorRipple">#1f000000</color> //?
+
+    <!-- utilities color [TEMPORARY] -->
+    <color name="colorUtilGreen10">#F3FCF3</color>
+    <color name="colorUtilGreen50">#2C8E2C</color>
+    <color name="colorUtilRed10">#FFF5F6</color>
+    <color name="colorUtilRed50">#93152E</color>
+    <color name="colorUtilBlue10">#F0F7FF</color>
+    <color name="colorUtilBlue50">#2967A2</color>
+    <color name="colorUtilNeutral20">#EFF3F6</color>
+    <color name="colorUtilNeutral60">#535A6B</color>
+
 </resources>
