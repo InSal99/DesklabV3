@@ -6,11 +6,9 @@ import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
-import android.view.LayoutInflater
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import com.edts.components.R
-import com.edts.components.databinding.LayoutToastViewBinding
 import com.google.android.material.textview.MaterialTextView
 
 class StatusBadge @JvmOverloads constructor(
@@ -23,10 +21,10 @@ class StatusBadge @JvmOverloads constructor(
         val textColorRes: Int,
         val iconRes: Int
     ) {
-        APPROVED(R.color.colorGreen10, R.color.colorGreen50, R.drawable.ic_success),
-        DECLINE(R.color.colorRed10, R.color.colorRed50, R.drawable.ic_error),
-        WAITING(R.color.colorBlue10, R.color.colorBlue50, R.drawable.ic_alarm),
-        CANCEL(R.color.colorNeutral20, R.color.colorNeutral60, R.drawable.ic_close);
+        APPROVED(R.color.colorUtilGreen10, R.color.colorUtilGreen50, R.drawable.ic_success),
+        DECLINE(R.color.colorUtilRed10, R.color.colorUtilRed50, R.drawable.ic_error),
+        WAITING(R.color.colorUtilBlue10, R.color.colorUtilBlue50, R.drawable.ic_alarm),
+        CANCEL(R.color.colorUtilNeutral20, R.color.colorUtilNeutral60, R.drawable.ic_times_bold);
     }
 
     var chipType: ChipType = ChipType.APPROVED
