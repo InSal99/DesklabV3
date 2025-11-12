@@ -33,10 +33,16 @@ class LeaveCard @JvmOverloads constructor(
             binding.lEmployeeInfo.employeeRole = value
         }
 
-    var employeeImage: Int?
-        get() = binding.lEmployeeInfo.employeeImage
+    var employeeImage: Int? = null
         set(value) {
-            binding.lEmployeeInfo.employeeImage = value
+            field = value
+            updateImageSrc()
+        }
+
+    var employeeImageUrl: String? = null
+        set(value) {
+            field = value
+            updateImageSrc()
         }
 
     var counterText: CharSequence?
@@ -80,6 +86,7 @@ class LeaveCard @JvmOverloads constructor(
             employeeName = typedArray.getString(R.styleable.LeaveCard_employeeName)
             employeeRole = typedArray.getString(R.styleable.LeaveCard_employeeRole)
             employeeImage = typedArray.getResourceId(R.styleable.LeaveCard_employeeImage, R.drawable.placeholder)
+            employeeImageUrl = typedArray.getString(R.styleable.LeaveCard_employeeImageUrl)
 
             counterText = typedArray.getString(R.styleable.LeaveCard_counterText)
 
@@ -118,5 +125,10 @@ class LeaveCard @JvmOverloads constructor(
             }
         }
         setupClickAnimation()
+    }
+
+    private fun updateImageSrc() {
+        employeeImageUrl?.let { binding.lEmployeeInfo.employeeImageUrl = it }
+        employeeImage?.let { binding.lEmployeeInfo.employeeImage = it }
     }
 }
