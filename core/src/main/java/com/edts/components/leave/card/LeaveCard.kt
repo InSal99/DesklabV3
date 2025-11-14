@@ -63,8 +63,9 @@ class LeaveCard @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
+        val handled = super.performClick()
         leaveCardDelegate?.onClick(this)
-        return super.performClick()
+        return handled
     }
 
     private fun setupClickAnimation() {
