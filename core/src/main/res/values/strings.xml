@@ -21,9 +21,9 @@
     <string name="card_right_slot_image_content_view">Card Action</string>
     <string name="card_multi_detail_title">Card Title</string>
     <string name="leave_description_title">Saldo Cuti Tahunan</string>
-    <string name="leave_balance_format">%d hari</string>
+    <string name="leave_balance_format">%s hari</string>
     <string name="leave_expiry_format">Kedaluwarsa: %s</string>
-    <string name="leave_used_format">Cuti Terpakai: %d Hari</string>
+    <string name="leave_used_format">Cuti Terpakai: %s Hari</string>
     <string name="chip_image_view_content_description">Chip Close Action</string>
 
     <!--Dummy Data-->
