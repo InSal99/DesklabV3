@@ -47,9 +47,9 @@ class EmployeeLeaveDetailView : Fragment() {
 
     private fun setupLeaveQuotaRecyclerView() {
         val leaveQuotaData = listOf(
-            LeaveQuota("Cuti Tahun Ini", 5, "15/10/2025", 1),
-            LeaveQuota("Cuti Tahun Sebelumnya", 8, "15/10/2025", 2),
-            LeaveQuota("Cuti Progresif", 3, "15/10/2025", 0)
+            LeaveQuota("Cuti Tahun Ini", "5", "15/10/2025", "1"),
+            LeaveQuota("Cuti Tahun Sebelumnya", "8", "15/10/2025", "2"),
+            LeaveQuota("Cuti Progresif", "3", "15/10/2025", "0")
         )
 
         val adapter = EmployeeLeaveQuotaAdapter(leaveQuotaData)
