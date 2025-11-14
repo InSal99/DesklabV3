@@ -18,7 +18,7 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.LayoutToastViewBinding
-import com.edts.components.utils.resolveColorAttribute
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.card.MaterialCardView
 
 class Toast @JvmOverloads constructor(
@@ -73,8 +73,8 @@ class Toast @JvmOverloads constructor(
         strokeColor = ContextCompat.getColor(context, R.color.colorOpacityWhite20)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.colorGreen50)
-            outlineSpotShadowColor = ContextCompat.getColor(context, R.color.colorGreen50)
+            outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.color000Opacity5)
+            outlineSpotShadowColor = ContextCompat.getColor(context, R.color.color000Opacity10)
         }
     }
 

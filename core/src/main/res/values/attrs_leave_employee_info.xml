@@ -4,5 +4,6 @@
         <attr name="employeeName" format="string" />
         <attr name="employeeRole" format="string" />
         <attr name="employeeImage" format="reference" />
+        <attr name="employeeImageUrl" format="string"  />
     </declare-styleable>
 </resources>

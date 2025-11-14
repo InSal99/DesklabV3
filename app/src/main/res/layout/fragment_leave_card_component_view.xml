@@ -60,6 +60,7 @@
                     android:layout_height="wrap_content"
                     app:employeeName="Jenny Dove"
                     app:employeeImage="@drawable/avatar_placeholder"
+                    app:employeeImageUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
                     app:employeeRole="General Staff"
                     app:counterText="0 Hari"
                     app:counterType="critical"

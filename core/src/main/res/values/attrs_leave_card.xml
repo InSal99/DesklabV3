@@ -4,6 +4,7 @@
         <attr name="employeeName" />
         <attr name="employeeRole" />
         <attr name="employeeImage" />
+        <attr name="employeeImageUrl"/>
         <attr name="counterText" />
         <attr name="counterType" />
     </declare-styleable>

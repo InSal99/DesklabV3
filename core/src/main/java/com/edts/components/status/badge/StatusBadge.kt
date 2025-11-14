@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.google.android.material.textview.MaterialTextView
@@ -14,16 +15,16 @@ class StatusBadge @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = android.R.attr.textViewStyle
-) : MaterialTextView(context, attrs, defStyleAttr) {
+) : MaterialTextView(ContextThemeWrapper(context, R.style.Theme_Desklab_Kit), attrs, defStyleAttr) {
     enum class ChipType(
-        val backgroundColorAttr: Int,
-        val textColorAttr: Int,
+        val backgroundColorRes: Int,
+        val textColorRes: Int,
         val iconRes: Int
     ) {
-        APPROVED(R.attr.colorBackgroundSuccessSubtle, R.attr.colorForegroundSuccessIntense, R.drawable.ic_success),
-        DECLINE(R.attr.colorBackgroundAttentionSubtle, R.attr.colorForegroundAttentionIntense, R.drawable.ic_error),
-        WAITING(R.attr.colorBackgroundInfoSubtle, R.attr.colorForegroundInfoIntense, R.drawable.ic_alarm),
-        CANCEL(R.attr.colorBackgroundTertiary, R.attr.colorForegroundSecondary, R.drawable.ic_close);
+        APPROVED(R.color.colorUtilGreen10, R.color.colorUtilGreen50, R.drawable.ic_success),
+        DECLINE(R.color.colorUtilRed10, R.color.colorUtilRed50, R.drawable.ic_error),
+        WAITING(R.color.colorUtilBlue10, R.color.colorUtilBlue50, R.drawable.ic_alarm),
+        CANCEL(R.color.colorUtilNeutral20, R.color.colorUtilNeutral60, R.drawable.ic_times_bold);
     }
 
     var chipType: ChipType = ChipType.APPROVED
@@ -66,8 +67,8 @@ class StatusBadge @JvmOverloads constructor(
     }
 
     private fun applyChipStyle() {
-        val backgroundColor = getColorFromAttr(chipType.backgroundColorAttr)
-        val textColor = getColorFromAttr(chipType.textColorAttr)
+        val backgroundColor = ContextCompat.getColor(context, chipType.backgroundColorRes)
+        val textColor = ContextCompat.getColor(context, chipType.textColorRes)
         val strokeColor = getColorFromAttr(R.attr.colorStrokeInteractive)
 
         val background = ContextCompat.getDrawable(context, R.drawable.bg_status_badge)?.mutate() as? GradientDrawable
