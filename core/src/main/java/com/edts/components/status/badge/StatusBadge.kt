@@ -24,7 +24,7 @@ class StatusBadge @JvmOverloads constructor(
         APPROVED(R.color.colorUtilGreen10, R.color.colorUtilGreen50, R.drawable.ic_success),
         DECLINE(R.color.colorUtilRed10, R.color.colorUtilRed50, R.drawable.ic_error),
         WAITING(R.color.colorUtilBlue10, R.color.colorUtilBlue50, R.drawable.ic_alarm),
-        CANCEL(R.color.colorUtilNeutral20, R.color.colorUtilNeutral60, R.drawable.ic_times_bold);
+        CANCEL(R.color.colorUtilNeutral20, R.color.colorUtilNeutral60, R.drawable.ic_error);
     }
 
     var chipType: ChipType = ChipType.APPROVED
