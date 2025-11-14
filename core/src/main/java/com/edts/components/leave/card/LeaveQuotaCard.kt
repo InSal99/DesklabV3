@@ -25,7 +25,7 @@ class LeaveQuotaCard @JvmOverloads constructor(
             binding.tvLeaveQuotaTitle.text = value
         }
 
-    var leaveQuota: Int = 0
+    var leaveQuota: String? = null
         set(value) {
             field = value
             binding.tvLeaveQuota.text = context.getString(R.string.leave_balance_format, value)
@@ -37,7 +37,7 @@ class LeaveQuotaCard @JvmOverloads constructor(
             binding.tvExpiredDate.text = context.getString(R.string.leave_expiry_format, value)
         }
 
-    var leaveUsed: Int = 0
+    var leaveUsed: String? = null
         set(value) {
             field = value
             binding.tvLeaveUsed.text = context.getString(R.string.leave_used_format, value)
@@ -51,9 +51,9 @@ class LeaveQuotaCard @JvmOverloads constructor(
     private fun applyStyledAttributes(attrs: AttributeSet?) {
         context.withStyledAttributes(attrs, R.styleable.LeaveQuotaCard, 0, 0) {
             title = getString(R.styleable.LeaveQuotaCard_leaveQuotaTitle)
-            leaveQuota = getInt(R.styleable.LeaveQuotaCard_leaveQuota, 0)
+            leaveQuota = getString(R.styleable.LeaveQuotaCard_leaveQuota)
             expiredDate = getString(R.styleable.LeaveQuotaCard_expiredDate)
-            leaveUsed = getInt(R.styleable.LeaveQuotaCard_leaveUsed, 0)
+            leaveUsed = getString(R.styleable.LeaveQuotaCard_leaveUsed)
         }
     }
 
