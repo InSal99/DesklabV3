@@ -242,6 +242,7 @@ class InputField @JvmOverloads constructor(
     private fun updateSupportingTextDisplay() {
         when (currentConfig?.type) {
             is InputFieldType.TextInput,
+            is InputFieldType.NumberInput,
             is InputFieldType.TextArea -> {
                 val tagMap = textInputEditText?.tag as? MutableMap<String, TextView>
                 val supportingTextView = tagMap?.get("supportingText")
@@ -252,6 +253,9 @@ class InputField @JvmOverloads constructor(
                 } else {
                     supportingTextView?.visibility = View.GONE
                 }
+
+                val bottomRowContainer = (currentInputComponent as? LinearLayout)?.getChildAt(1) as? LinearLayout
+                (bottomRowContainer?.tag as? (() -> Unit))?.invoke()
             }
             else -> {
             }
@@ -424,9 +428,8 @@ class InputField @JvmOverloads constructor(
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    topMargin = padding4dp
-                }
+                )
+                visibility = View.GONE
             }
 
             val leftContainer = LinearLayout(context).apply {
@@ -477,6 +480,16 @@ class InputField @JvmOverloads constructor(
                 }
             }
 
+            val updateBottomRowVisibility = {
+                val hasError = errorTextForCounter.visibility == View.VISIBLE
+                val hasSupporting = supportingTextView.visibility == View.VISIBLE
+                val hasText = (editText.text?.length ?: 0) > 0
+
+                val shouldShow = hasError || hasSupporting || (counterText != null && hasText)
+
+                bottomRowContainer.visibility = if (shouldShow) View.VISIBLE else View.GONE
+            }
+
             if (counterText != null) {
                 updateCounter()
                 editText.doAfterTextChanged { updateCounter() }
@@ -489,12 +502,17 @@ class InputField @JvmOverloads constructor(
             }
             editText.tag = tagMap
 
+            bottomRowContainer.tag = updateBottomRowVisibility
+
             bottomRowContainer.addView(leftContainer)
             counterText?.let { bottomRowContainer.addView(it) }
 
             outerContainer.addView(container)
             outerContainer.addView(bottomRowContainer)
             container.addView(editText)
+
+            updateBottomRowVisibility()
+
             return outerContainer
         }
 
@@ -576,9 +594,8 @@ class InputField @JvmOverloads constructor(
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    topMargin = padding4dp
-                }
+                )
+                visibility = View.GONE
             }
 
             val leftContainer = LinearLayout(context).apply {
@@ -629,6 +646,16 @@ class InputField @JvmOverloads constructor(
                 }
             }
 
+            val updateBottomRowVisibility = {
+                val hasError = errorTextForCounter.visibility == View.VISIBLE
+                val hasSupporting = supportingTextView.visibility == View.VISIBLE
+                val hasText = (editText.text?.length ?: 0) > 0
+
+                val shouldShow = hasError || hasSupporting || (counterText != null && hasText)
+
+                bottomRowContainer.visibility = if (shouldShow) View.VISIBLE else View.GONE
+            }
+
             if (counterText != null) {
                 updateCounter()
                 editText.doAfterTextChanged { updateCounter() }
@@ -641,12 +668,17 @@ class InputField @JvmOverloads constructor(
             }
             editText.tag = tagMap
 
+            bottomRowContainer.tag = updateBottomRowVisibility
+
             bottomRowContainer.addView(leftContainer)
             counterText?.let { bottomRowContainer.addView(it) }
 
             outerContainer.addView(container)
             outerContainer.addView(bottomRowContainer)
             container.addView(editText)
+
+            updateBottomRowVisibility()
+
             return outerContainer
         }
 
@@ -729,9 +761,8 @@ class InputField @JvmOverloads constructor(
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    topMargin = padding4dp
-                }
+                )
+                visibility = View.GONE
             }
 
             val leftContainer = LinearLayout(context).apply {
@@ -782,6 +813,16 @@ class InputField @JvmOverloads constructor(
                 }
             }
 
+            val updateBottomRowVisibility = {
+                val hasError = errorTextForCounter.visibility == View.VISIBLE
+                val hasSupporting = supportingTextView.visibility == View.VISIBLE
+                val hasText = (editText.text?.length ?: 0) > 0
+
+                val shouldShow = hasError || hasSupporting || (counterText != null && hasText)
+
+                bottomRowContainer.visibility = if (shouldShow) View.VISIBLE else View.GONE
+            }
+
             if (counterText != null) {
                 updateCounter()
                 editText.doAfterTextChanged { updateCounter() }
@@ -794,12 +835,17 @@ class InputField @JvmOverloads constructor(
             }
             editText.tag = tagMap
 
+            bottomRowContainer.tag = updateBottomRowVisibility
+
             bottomRowContainer.addView(leftContainer)
             counterText?.let { bottomRowContainer.addView(it) }
 
             outerContainer.addView(container)
             outerContainer.addView(bottomRowContainer)
             container.addView(editText)
+
+            updateBottomRowVisibility()
+
             return outerContainer
         }
 
@@ -1152,6 +1198,8 @@ class InputField @JvmOverloads constructor(
                         }
 
                         textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
+                        val bottomRowContainer = (currentInputComponent as? LinearLayout)?.getChildAt(1) as? LinearLayout
+                        (bottomRowContainer?.tag as? (() -> Unit))?.invoke()
                     } else {
                         val textInputLayout = currentInputComponent as? TextInputLayout
                         if (textInputLayout != null) {
@@ -1217,6 +1265,9 @@ class InputField @JvmOverloads constructor(
         inlineErrorText?.visibility = View.GONE
         counterText?.setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutral50))
         updateSupportingTextDisplay()
+
+        val bottomRowContainer = (currentInputComponent as? LinearLayout)?.getChildAt(1) as? LinearLayout
+        (bottomRowContainer?.tag as? (() -> Unit))?.invoke()
 
         when (currentConfig?.type) {
             is InputFieldType.TextInput,
