@@ -136,8 +136,7 @@
     <color name="colorUtilBlue50">#2967A2</color>
     <color name="colorUtilNeutral20">#EFF3F6</color>
     <color name="colorUtilNeutral60">#535A6B</color>
-    
-    <color name="colorModifierElevated">@color/colorFFF</color>
-    <color name="colorModifierSurface">@color/colorFFF</color>
 
+    <color name="colorModifierElevated">#1B1D25</color>
+    <color name="colorModifierSurface">#14161F</color>
 </resources>
