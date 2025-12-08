@@ -5,9 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
@@ -89,7 +87,7 @@ class MonthlyPicker @JvmOverloads constructor(
     private fun setupRippleEffect() {
         val rippleColor = context.resolveColorAttribute(
             R.attr.colorBackgroundModifierOnPress,
-            R.color.color000Opacity5
+            R.color.colorNeutralGrayDarkA5
         )
         this.rippleColor = ColorStateList.valueOf(rippleColor)
     }
@@ -119,15 +117,15 @@ class MonthlyPicker @JvmOverloads constructor(
         val textColor = when (type) {
             PickerType.UNSELECTED -> context.resolveColorAttribute(
                 R.attr.colorForegroundPrimary,
-                R.color.color000
+                R.color.colorNeutralBlack
             )
             PickerType.SELECTED -> context.resolveColorAttribute(
                 R.attr.colorForegroundPrimaryInverse,
-                R.color.colorFFF
+                R.color.colorNeutralWhite
             )
             PickerType.DISABLED -> context.resolveColorAttribute(
                 R.attr.colorForegroundDisabled,
-                R.color.color000Opacity20
+                R.color.colorNeutralGrayDarkA20
             )
         }
         monthLabelView.setTextColor(textColor)
@@ -147,24 +145,24 @@ class MonthlyPicker @JvmOverloads constructor(
                 Color.TRANSPARENT,
                 context.resolveColorAttribute(
                     R.attr.colorStrokeSubtle,
-                    R.color.colorNeutral30
+                    R.color.colorNeutralGrayLight30
                 )
             )
             PickerType.SELECTED -> Pair(
                 context.resolveColorAttribute(
                     R.attr.colorBackgroundAccentPrimaryIntense,
-                    R.color.colorPrimary30
+                    R.color.colorBrandPrimary30
                 ),
                 context.resolveColorAttribute(
                     R.attr.colorStrokeInteractive,
-                    R.color.colorOpacityWhite20
+                    R.color.colorNeutralGrayLightA20
                 )
             )
             PickerType.DISABLED -> Pair(
                 Color.TRANSPARENT,
                 context.resolveColorAttribute(
                     R.attr.colorStrokeDisabled,
-                    R.color.color000Opacity12
+                    R.color.colorNeutralGrayDarkA12
                 )
             )
         }

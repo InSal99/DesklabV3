@@ -78,22 +78,22 @@ class Button @JvmOverloads constructor(
 
     private fun preloadColors() {
         val colorAttrs = arrayOf(
-            R.attr.colorBackgroundDisabled to R.color.color000Opacity5,
-            R.attr.colorStrokeDisabled to R.color.color000Opacity10,
-            R.attr.colorForegroundDisabled to R.color.color000Opacity20,
+            R.attr.colorBackgroundDisabled to R.color.colorNeutralGrayDarkA5,
+            R.attr.colorStrokeDisabled to R.color.colorNeutralGrayDarkA10,
+            R.attr.colorForegroundDisabled to R.color.colorNeutralGrayDarkA20,
             R.attr.colorBackgroundAttentionIntense to R.color.colorRed30,
-            R.attr.colorStrokeInteractive to R.color.colorOpacityWhite20,
-            R.attr.colorForegroundWhite to R.color.colorFFF,
-            R.attr.colorBackgroundModifierOnPressIntense to R.color.color000Opacity12,
+            R.attr.colorStrokeInteractive to R.color.colorNeutralGrayLightA20,
+            R.attr.colorForegroundWhite to R.color.colorNeutralWhite,
+            R.attr.colorBackgroundModifierOnPressIntense to R.color.colorNeutralGrayDarkA12,
             R.attr.colorBackgroundAttentionSubtle to R.color.colorRed10,
             R.attr.colorStrokeAttentionIntense to R.color.colorRed50,
             R.attr.colorForegroundAttentionIntense to R.color.colorRed40,
-            R.attr.colorBackgroundModifierOnPress to R.color.color000Opacity5,
-            R.attr.colorBackgroundAccentPrimaryIntense to R.color.colorPrimary30,
-            R.attr.colorStrokeFocus to R.color.colorPrimary50,
-            R.attr.colorBackgroundPrimary to R.color.colorFFF,
-            R.attr.colorStrokeAccent to R.color.colorPrimary30,
-            R.attr.colorForegroundAccentPrimaryIntense to R.color.colorPrimary30
+            R.attr.colorBackgroundModifierOnPress to R.color.colorNeutralGrayDarkA5,
+            R.attr.colorBackgroundAccentPrimaryIntense to R.color.colorBrandPrimary30,
+            R.attr.colorStrokeFocus to R.color.colorBrandPrimary50,
+            R.attr.colorBackgroundPrimary to R.color.colorNeutralWhite,
+            R.attr.colorStrokeAccent to R.color.colorBrandPrimary30,
+            R.attr.colorForegroundAccentPrimaryIntense to R.color.colorBrandPrimary30
         )
         colorAttrs.forEach { (attr, fallback) ->
             colorCache[attr] = context.resolveColorAttr(attr, fallback)

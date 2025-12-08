@@ -14,11 +14,9 @@ import android.graphics.Region
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import com.edts.components.R
-import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
 
 fun Context.createTopShadowBackgroundCustom(
-    fillColor: Int = resolveColorAttribute(android.R.attr.colorBackground, R.color.colorFFF),
+    fillColor: Int = resolveColorAttribute(android.R.attr.colorBackground, R.color.colorNeutralWhite),
     shadowOffsetDp: Int = 4
 ): Drawable {
     val shadowOffsetPx = shadowOffsetDp.dpToPx.toFloat()
@@ -33,7 +31,7 @@ fun Context.createTopShadowBackgroundCustom(
 
         private val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.FILL
-            color = resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutral30)
+            color = resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLight30)
         }
 
         override fun draw(canvas: Canvas) {
@@ -65,8 +63,8 @@ fun Context.createTopShadowBackgroundCustom(
                 0f, shadowRect.bottom,
                 intArrayOf(
                     Color.TRANSPARENT,
-                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorPrimaryOpacity20),
-                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorPrimaryOpacity20)
+                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorBrandPrimaryA20),
+                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorBrandPrimaryA20)
                 ),
                 floatArrayOf(0f, 0.05f, 1f),
                 Shader.TileMode.CLAMP
@@ -124,7 +122,7 @@ fun Context.createTopShadowBackgroundCustom(
 }
 
 fun Context.createBottomShadowBackgroundCustom(
-    fillColor: Int = resolveColorAttribute(android.R.attr.colorBackground, R.color.colorFFF),
+    fillColor: Int = resolveColorAttribute(android.R.attr.colorBackground, R.color.colorNeutralWhite),
     shadowOffsetDp: Int = 8,
 ): Drawable {
     val shadowOffsetPx = shadowOffsetDp.dpToPx.toFloat()
@@ -159,9 +157,9 @@ fun Context.createBottomShadowBackgroundCustom(
                 0f, shadowRect.top,
                 0f, shadowRect.bottom,
                 intArrayOf(
-                    resolveColorAttribute(R.attr.colorShadowNeutralKey, R.color.color000Opacity20),
-                    resolveColorAttribute(R.attr.colorShadowNeutralAmbient, R.color.color000Opacity10),
-                    resolveColorAttribute(R.attr.colorBackgroundPrimaryTinted, R.color.colorPrimary10)
+                    resolveColorAttribute(R.attr.colorShadowNeutralKey, R.color.colorNeutralGrayDarkA20),
+                    resolveColorAttribute(R.attr.colorShadowNeutralAmbient, R.color.colorNeutralGrayDarkA10),
+                    resolveColorAttribute(R.attr.colorBackgroundPrimaryTinted, R.color.colorBrandPrimary10)
                 ),
                 floatArrayOf(0f, 0.2f, 1f),
                 Shader.TileMode.CLAMP

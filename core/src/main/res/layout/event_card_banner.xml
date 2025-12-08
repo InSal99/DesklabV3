@@ -4,7 +4,7 @@
     android:id="@+id/EventCardBanner"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorNeutralGrayBlue10"
+    android:background="@color/colorGrayBlue10"
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_4dp">
 
