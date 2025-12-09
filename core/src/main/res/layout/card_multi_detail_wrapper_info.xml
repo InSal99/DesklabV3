@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/ivDivider"
-        android:layout_width="4dp"
-        android:layout_height="4dp"
+        android:layout_width="2dp"
+        android:layout_height="2dp"
         app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="@dimen/margin_6dp"
         android:background="@drawable/circle_shape"

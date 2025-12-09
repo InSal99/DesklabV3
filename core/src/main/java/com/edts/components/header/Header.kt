@@ -31,7 +31,6 @@ class Header @JvmOverloads constructor(
         set(value) {
             field = value
             binding.ivLeftBtn.visibility = if (value) View.VISIBLE else View.GONE
-            updateTitleStyle()
         }
 
     var sectionTitleText: String = ""
@@ -103,18 +102,9 @@ class Header @JvmOverloads constructor(
     }
 
     private fun updateTitleStyle() {
-        val shouldUseLargerStyle = !showLeftButton && !showSectionSubtitle
-
-        if (shouldUseLargerStyle) {
-            val typedValue = TypedValue()
-            if (context.theme.resolveAttribute(R.attr.d3SemiBold, typedValue, true)) {
-                binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
-            }
-        } else {
-            val typedValue = TypedValue()
-            if (context.theme.resolveAttribute(R.attr.h1SemiBold, typedValue, true)) {
-                binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
-            }
+        val typedValue = TypedValue()
+        if (context.theme.resolveAttribute(R.attr.h1SemiBold, typedValue, true)) {
+            binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
         }
     }
 
