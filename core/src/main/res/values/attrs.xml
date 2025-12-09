@@ -9,6 +9,8 @@
     <attr name="colorBackgroundTertiary" format="color|reference"/>
     <attr name="colorBackgroundOverlay" format="color|reference"/>
     <attr name="colorBackgroundDisabled" format="color|reference"/>
+    <attr name="colorBackgroundElevated" format="color|reference"/>
+    <attr name="colorBackgroundSurface" format="color|reference"/>
 
     <!-- accent background color attrs-->
     <attr name="colorBackgroundAccentPrimarySubtle" format="color|reference"/>
@@ -112,6 +114,10 @@
     <!-- ulang tahun -->
     <attr name="colorForegroundUtilityUlangTahunSubtle" format="color|reference" />
     <attr name="colorForegroundUtilityUlangTahunIntense" format="color|reference" />
+
+    <!-- event -->
+    <attr name="colorForegroundUtilityEventSubtle" format="color|reference" />
+    <attr name="colorForegroundUtilityEventIntense" format="color|reference" />
 
     <!-- stroke color attrs -->
     <attr name="colorStrokeSubtle" format="color|reference" />

@@ -37,6 +37,7 @@
         <item name="colorBackgroundTertiary">@color/colorNeutralGrayLight20</item>
         <item name="colorBackgroundOverlay">@color/colorNeutralGrayDarkA50</item>
         <item name="colorBackgroundDisabled">@color/colorNeutralGrayDarkA5</item>
+        <item name="colorBackgroundSurface">@color/colorNeutralWhite</item>
 
         <!-- Accent Background Colors -->
         <item name="colorBackgroundAccentPrimarySubtle">@color/colorBrandPrimary10</item>
@@ -101,10 +102,8 @@
         <item name="colorForegroundBlack">@color/colorNeutralBlack</item>
 
         <!-- Modifier Foreground Colors -->
-        <item name="colorForegroundModifierCardElevated">?attr/colorBackgroundModifierCardElevated
-        </item>
-        <item name="colorForegroundModifierCardSurface">?attr/colorBackgroundModifierCardSurface
-        </item>
+        <item name="colorForegroundModifierCardElevated">?attr/colorBackgroundModifierCardElevated</item>
+        <item name="colorForegroundModifierCardSurface">?attr/colorBackgroundModifierCardSurface</item>
 
         <!-- Accent Foreground Colors -->
         <item name="colorForegroundAccentPrimarySubtle">@color/colorBrandPrimary10</item>
@@ -120,7 +119,7 @@
 
         <!-- Warning Foreground Colors -->
         <item name="colorForegroundWarningSubtle">@color/colorOrange10</item>
-        <item name="colorForegroundWarningIntense">@color/colorOrange50</item>
+        <item name="colorForegroundWarningIntense">@color/colorOrange40</item>
 
         <!-- Attention Foreground Colors -->
         <item name="colorForegroundAttentionSubtle">@color/colorRed10</item>
@@ -143,6 +142,10 @@
         <item name="colorForegroundUtilityUlangTahunSubtle">@color/colorGreen10</item>
         <item name="colorForegroundUtilityUlangTahunIntense">@color/colorGreen40</item>
 
+        <!-- event -->
+        <item name="colorForegroundUtilityEventSubtle">@color/colorOrange10</item>
+        <item name="colorForegroundUtilityEventIntense">@color/colorOrange40</item>
+
         <!-- Basic Stroke Colors -->
         <item name="colorStrokeSubtle">@color/colorNeutralGrayLight30</item>
         <item name="colorStrokeInteractive">@color/colorNeutralGrayLightA20</item>
@@ -154,19 +157,19 @@
 
         <!-- Semantic Stroke Colors -->
         <!-- Info -->
-        <item name="colorStrokeInfoSubtle">@color/colorBlue10</item>
+        <item name="colorStrokeInfoSubtle">@color/colorBlueA30</item>
         <item name="colorStrokeInfoIntense">@color/colorBlue50</item>
 
         <!-- Success -->
-        <item name="colorStrokeSuccessSubtle">@color/colorGreen10</item>
+        <item name="colorStrokeSuccessSubtle">@color/colorGreenA30</item>
         <item name="colorStrokeSuccessIntense">@color/colorGreen50</item>
 
         <!-- Warning -->
-        <item name="colorStrokeWarningSubtle">@color/colorOrange10</item>
+        <item name="colorStrokeWarningSubtle">@color/colorOrangeA30</item>
         <item name="colorStrokeWarningIntense">@color/colorOrange50</item>
 
         <!-- Attention -->
-        <item name="colorStrokeAttentionSubtle">@color/colorRed10</item>
+        <item name="colorStrokeAttentionSubtle">@color/colorRedA30</item>
         <item name="colorStrokeAttentionIntense">@color/colorRed50</item>
 
         <!-- Utility Stroke Colors -->
