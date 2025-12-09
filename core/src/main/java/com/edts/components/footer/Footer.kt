@@ -46,7 +46,7 @@ class Footer @JvmOverloads constructor(
 
     init {
         orientation = VERTICAL
-        setBackgroundColor(context.resolveColorAttr(R.attr.colorBackgroundPrimary, R.color.colorFFF))
+        setBackgroundColor(context.resolveColorAttr(R.attr.colorBackgroundPrimary, R.color.colorNeutralWhite))
         parseAttributes(attrs)
         setupView()
     }
@@ -83,7 +83,7 @@ class Footer @JvmOverloads constructor(
                     LayoutParams.MATCH_PARENT,
                     context.resources.getDimensionPixelSize(R.dimen.dimen_1dp)
                 )
-                setBackgroundColor(context.resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutral30))
+                setBackgroundColor(context.resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLight30))
             }
             addView(topStrokeView)
         }

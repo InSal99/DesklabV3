@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:background="?attr/colorBackgroundPrimary"
+    android:background="?attr/colorForegroundSecondary"
     tools:context=".core.component.HeaderComponentView">
 
     <LinearLayout
@@ -59,7 +59,9 @@
                     app:showLeftButton="true"
                     app:showRightButton="true"
                     app:showSectionSubtitle="true"
-                    app:showSectionTitle="true"/>
+                    app:showSectionTitle="true"
+                    app:showBackgroundColor="true"
+                    app:showShadow="true"/>
 
                 <com.edts.components.header.Header
                     android:layout_width="match_parent"

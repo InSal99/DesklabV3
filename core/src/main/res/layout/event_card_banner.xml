@@ -4,7 +4,7 @@
     android:id="@+id/EventCardBanner"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorNeutralGrayBlue10"
+    android:background="@color/colorGrayBlue10"
     android:paddingHorizontal="@dimen/margin_12dp"
     android:paddingVertical="@dimen/margin_4dp">
 
@@ -20,16 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        style="?attr/l3Medium"
-        android:id="@+id/tvEvenCardDivider"
+    <ImageView
+        android:id="@+id/ivEvenCardDivider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="@dimen/margin_4dp"
-        android:text="@string/event_card_divider"
+        android:background="@drawable/divider_dot"
+        android:contentDescription="@string/card_multi_detail_wrapper_info_divider"
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintStart_toEndOf="@+id/tvEvenCardType"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/tvEvenCardType"
+        app:layout_constraintBottom_toBottomOf="@+id/tvEvenCardType"/>
 
     <com.google.android.material.textview.MaterialTextView
         style="?attr/l3Medium"
@@ -41,6 +43,6 @@
         android:ellipsize="end"
         android:text="@string/event_card_banner_category"
         android:textColor="?attr/colorForegroundTertiary"
-        app:layout_constraintStart_toEndOf="@+id/tvEvenCardDivider"
+        app:layout_constraintStart_toEndOf="@+id/ivEvenCardDivider"
         app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
