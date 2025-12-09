@@ -248,16 +248,6 @@ class BottomNavigation @JvmOverloads constructor(
         return activeItemPosition
     }
 
-    fun resetAllClickCounts() {
-        navigationItems.forEach { item ->
-            item.resetClickCount()
-        }
-    }
-
-    fun getTotalClickCount(): Int {
-        return navigationItems.sumOf { it.clickCount }
-    }
-
     override fun onBottomNavigationItemClicked(
         item: BottomNavigationItem,
         position: Int,
