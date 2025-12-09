@@ -50,7 +50,7 @@ class HomeAttendanceView : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.clContentLayout.background = requireContext().createTopShadowBackgroundCustom(
-            fillColor = requireContext().resolveColorAttribute(android.R.attr.colorBackground, com.edts.components.R.color.colorFFF),
+            fillColor = requireContext().resolveColorAttribute(android.R.attr.colorBackground, com.edts.components.R.color.colorNeutralWhite),
             shadowOffsetDp = 12
         )
 
