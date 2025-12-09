@@ -2,22 +2,22 @@
     <!-- Text Base style -->
     <style name="TextRegular">
         <item name="fontFamily">@font/inter_regular</item>
-        <item name="android:textColor">@color/colorNeutral70</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight70</item>
     </style>
 
     <style name="TextMedium">
         <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textColor">@color/colorNeutral70</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight70</item>
     </style>
 
     <style name="TextSemiBold">
         <item name="fontFamily">@font/inter_semibold</item>
-        <item name="android:textColor">@color/colorNeutral70</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight70</item>
     </style>
 
     <style name="TextBold">
         <item name="fontFamily">@font/inter_bold</item>
-        <item name="android:textColor">@color/colorNeutral70</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight70</item>
     </style>
 
     <style name="TextNavbar">
@@ -45,15 +45,15 @@
     </style>
 
     <style name="DesklabText.Body">
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <style name="DesklabText.Highlight">
-        <item name="android:textColor">@color/colorNeutral40</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight40</item>
     </style>
 
     <style name="DesklabText.Subtitle">
-        <item name="android:textColor">@color/colorNeutral40</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight40</item>
     </style>
 
     <style name="DesklabText.OverLine">
@@ -62,11 +62,11 @@
 
     <style name="DesklabText.Caption">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <style name="DesklabText.Link">
-        <item name="android:textColor">@color/colorPrimary20</item>
+        <item name="android:textColor">@color/colorBrandPrimary20</item>
     </style>
 
     <style name="DesklabText.Link.Small">
@@ -76,19 +76,19 @@
     <style name="DesklabText.DialogTitle">
         <item name="android:textSize">@dimen/text_size_16sp</item>
         <item name="android:fontFamily">@font/rubik_medium</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <style name="DesklabText.MainMenuCaption">
         <item name="android:textSize">@dimen/text_size_10sp</item>
         <item name="android:fontFamily">@font/rubik_medium</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
     </style>
 
     <style name="DesklabText.Version">
         <item name="android:textSize">@dimen/text_size_12sp</item>
         <item name="android:fontFamily">@font/rubik_medium</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
     </style>
 
     <!-- Event Popular Style -->
@@ -118,7 +118,7 @@
 
     <style name="DesklabText.EventDetailCaption">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <style name="DesklabText.EventDetailBody">
@@ -134,7 +134,7 @@
 
     <style name="DesklabText.LeaveListTitle">
         <item name="android:fontFamily">@font/rubik_medium</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <style name="DesklabText.LeaveType">
@@ -151,7 +151,7 @@
     <style name="DesklabText.LeaveStatus">
         <item name="android:fontFamily">@font/rubik_medium</item>
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
     </style>
 
     <style name="DesklabText.FileName">
@@ -169,18 +169,18 @@
     <style name="DesklabText.EventListSubTitle">
         <item name="android:fontFamily">@font/rubik_medium</item>
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <style name="DesklabText.EventListCaption">
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <!-- Event Review Style -->
     <style name="DesklabText.EventReviewDate">
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="android:textColor">@color/colorNeutral40</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight40</item>
     </style>
 
     <!-- Create Event Style -->
@@ -197,18 +197,18 @@
 
     <style name="DesklabText.ContactListTitle">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <!-- Profile Style -->
     <style name="DesklabText.ProfileTitle">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
     </style>
 
     <style name="DesklabText.ProfileName">
         <item name="android:fontFamily">@font/rubik_medium</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
     </style>
 
     <style name="DesklabText.ProfileCompany">
@@ -231,25 +231,25 @@
     <!-- Update style -->
     <style name="DesklabText.UpdateChecking">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <!-- Calendar style -->
     <style name="DesklabText.CalendarHeader">
         <item name="android:textSize">@dimen/text_size_18sp</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
     </style>
 
     <style name="DesklabText.CalendarToday">
         <item name="android:textSize">@dimen/text_size_12sp</item>
         <item name="android:fontFamily">@font/rubik_medium</item>
-        <item name="android:textColor">@color/colorPrimary30</item>
+        <item name="android:textColor">@color/colorBrandPrimary30</item>
     </style>
 
     <style name="DesklabText.CalendarEvent">
         <item name="android:textSize">@dimen/text_size_12sp</item>
         <item name="android:fontFamily">@font/rubik_medium</item>
-        <item name="android:textColor">@color/colorNeutral50</item>
+        <item name="android:textColor">@color/colorNeutralGrayLight50</item>
     </style>
 
     <!-- Button Style -->
@@ -264,14 +264,14 @@
     <style name="DesklabText.MaterialButtonPositive" parent="Widget.MaterialComponents.Button">
         <item name="android:fontFamily">@font/rubik_medium</item>
         <item name="textAllCaps">true</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
         <item name="android:background">@drawable/btn_positive_rounded</item>
     </style>
 
     <style name="DesklabText.ButtonNegative" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:textAppearance">@style/TextSemiBold.Label2</item>
         <item name="textAllCaps">false</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/bg_radius_full_white_grey</item>
     </style>
@@ -286,14 +286,14 @@
     <style name="DesklabText.ButtonPositiveDisabled">
         <item name="android:fontFamily">@font/rubik_medium</item>
         <item name="textAllCaps">true</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
         <item name="android:background">@drawable/bg_positive_negative</item>
     </style>
 
     <style name="DesklabText.ButtonDisable" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:fontFamily">@font/rubik_medium</item>
         <item name="textAllCaps">true</item>
-        <item name="android:textColor">@color/colorFFF</item>
+        <item name="android:textColor">@color/colorNeutralWhite</item>
         <item name="android:background">@drawable/btn_disabled_rounded</item>
     </style>
 
@@ -307,7 +307,7 @@
     <style name="DesklabText.ButtonBorderless" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:fontFamily">@font/rubik_medium</item>
         <item name="textAllCaps">true</item>
-        <item name="android:textColor">@color/colorPrimary20</item>
+        <item name="android:textColor">@color/colorBrandPrimary20</item>
         <item name="android:background">@drawable/btn_borderless_rounded</item>
     </style>
 
@@ -608,7 +608,7 @@
     </style>
 
     <style name="RadioButtonTextAppearance" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">@color/color000</item>
+        <item name="android:textColor">@color/colorNeutralBlack</item>
         <item name="android:textSize">14sp</item>
     </style>
 

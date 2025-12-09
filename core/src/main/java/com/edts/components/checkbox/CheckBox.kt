@@ -122,8 +122,8 @@ class CheckBox @JvmOverloads constructor(
                     checkMarkDrawable.setTint(ContextCompat.getColor(context, android.R.color.transparent))
                 } else {
                     val tintColor = when {
-                        !isEnabled -> ContextCompat.getColor(context, R.color.color000Opacity20)
-                        else -> ContextCompat.getColor(context, R.color.colorFFF)
+                        !isEnabled -> ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA20)
+                        else -> ContextCompat.getColor(context, R.color.colorNeutralWhite)
                     }
                     checkMarkDrawable.setTint(tintColor)
 
@@ -151,8 +151,8 @@ class CheckBox @JvmOverloads constructor(
                     } else {
                         checkMarkDrawable.bounds = originalBounds
                         val tintColor = when {
-                            !isEnabled -> ContextCompat.getColor(context, R.color.color000Opacity20)
-                            else -> ContextCompat.getColor(context, R.color.colorFFF)
+                            !isEnabled -> ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA20)
+                            else -> ContextCompat.getColor(context, R.color.colorNeutralWhite)
                         }
                         checkMarkDrawable.setTint(tintColor)
                     }

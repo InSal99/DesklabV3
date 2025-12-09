@@ -57,7 +57,7 @@
             android:id="@+id/vScan"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorFFF"/>
+            android:background="@color/colorNeutralWhite"/>
     </FrameLayout>
 
     <ImageView
