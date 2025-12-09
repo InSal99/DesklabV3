@@ -8,5 +8,8 @@
         <attr name="showSectionSubtitle" format="boolean" />
         <attr name="showRightButton" format="boolean" />
         <attr name="rightButtonSrc" format="reference" />
+        <attr name="showShadow" format="boolean" />
+        <attr name="showBackgroundColor" format="boolean" />
+        <attr name="showTab" format="boolean" />
     </declare-styleable>
 </resources>
