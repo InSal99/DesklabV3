@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.graphics.drawable.RippleDrawable
+import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.HeaderBinding
@@ -31,7 +33,6 @@ class Header @JvmOverloads constructor(
         set(value) {
             field = value
             binding.ivLeftBtn.visibility = if (value) View.VISIBLE else View.GONE
-            updateTitleStyle()
         }
 
     var sectionTitleText: String = ""
@@ -73,6 +74,24 @@ class Header @JvmOverloads constructor(
             }
         }
 
+    var showShadow: Boolean = false
+        set(value) {
+            field = value
+            applyShadowState()
+        }
+
+    var showBackgroundColor: Boolean = false
+        set(value) {
+            field = value
+            applyBackgroundState()
+        }
+
+    var showTab: Boolean = false
+        set(value) {
+            field = value
+            applyTabState()
+        }
+
     init {
         setupClickListeners()
 
@@ -88,6 +107,9 @@ class Header @JvmOverloads constructor(
                 sectionSubtitleText = getString(R.styleable.Header_sectionSubtitleText) ?: ""
                 showSectionSubtitle = getBoolean(R.styleable.Header_showSectionSubtitle, true)
                 showRightButton = getBoolean(R.styleable.Header_showRightButton, true)
+                showShadow = getBoolean(R.styleable.Header_showShadow, false)
+                showBackgroundColor = getBoolean(R.styleable.Header_showBackgroundColor, false)
+                showTab = getBoolean(R.styleable.Header_showTab, false)
 
                 val rightButtonDrawableRes = getResourceId(R.styleable.Header_rightButtonSrc, -1)
 
@@ -96,25 +118,42 @@ class Header @JvmOverloads constructor(
                 }
 
                 updateTitleStyle()
+                applyShadowState()
+                applyBackgroundState()
+                applyTabState()
             } finally {
                 recycle()
             }
         }
     }
 
-    private fun updateTitleStyle() {
-        val shouldUseLargerStyle = !showLeftButton && !showSectionSubtitle
+    private fun applyTabState() {
+        binding.cvTabEventList.visibility =
+            if (showTab) View.VISIBLE else View.GONE
+    }
 
-        if (shouldUseLargerStyle) {
-            val typedValue = TypedValue()
-            if (context.theme.resolveAttribute(R.attr.d3SemiBold, typedValue, true)) {
-                binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
-            }
+    private fun applyShadowState() {
+        if (showShadow) {
+            binding.Header.outlineAmbientShadowColor = getCachedColor(R.attr.colorShadowTintedAmbient)
+            binding.Header.outlineSpotShadowColor = getCachedColor(R.attr.colorShadowTintedKey)
         } else {
-            val typedValue = TypedValue()
-            if (context.theme.resolveAttribute(R.attr.h1SemiBold, typedValue, true)) {
-                binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
-            }
+            binding.Header.outlineAmbientShadowColor = android.graphics.Color.TRANSPARENT
+            binding.Header.outlineSpotShadowColor = android.graphics.Color.TRANSPARENT
+        }
+    }
+
+    private fun applyBackgroundState() {
+        if (showBackgroundColor) {
+            binding.Header.setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+        } else {
+            binding.Header.setCardBackgroundColor(android.graphics.Color.TRANSPARENT)
+        }
+    }
+
+    private fun updateTitleStyle() {
+        val typedValue = TypedValue()
+        if (context.theme.resolveAttribute(R.attr.h1SemiBold, typedValue, true)) {
+            binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
         }
     }
 

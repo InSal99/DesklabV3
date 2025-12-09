@@ -20,10 +20,10 @@
 
     <ImageView
         android:id="@+id/tvDotSpacer"
-        android:layout_width="3dp"
-        android:layout_height="3dp"
-        android:layout_marginStart="@dimen/margin_8dp"
-        android:background="@drawable/circle_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_6dp"
+        android:background="@drawable/divider_dot"
         android:contentDescription="@string/card_multi_detail_wrapper_info_divider"
         app:layout_constraintBottom_toBottomOf="@+id/tvTitleLabel"
         app:layout_constraintStart_toEndOf="@+id/tvTitleLabel"
@@ -35,7 +35,7 @@
         style="?attr/l3Regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginStart="@dimen/margin_6dp"
         android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintBottom_toBottomOf="@+id/tvDotSpacer"
         app:layout_constraintStart_toEndOf="@+id/tvDotSpacer"
