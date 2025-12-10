@@ -121,7 +121,7 @@ class EventCardBadge @JvmOverloads constructor(
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, typedValue.resourceId)
 
-                context.theme.resolveAttribute(R.attr.colorForegroundTertiary, textColorTypedValue, true)
+                context.theme.resolveAttribute(R.attr.colorForegroundSecondary, textColorTypedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
 
             }
@@ -130,7 +130,7 @@ class EventCardBadge @JvmOverloads constructor(
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, typedValue.resourceId)
 
-                context.theme.resolveAttribute(R.attr.colorForegroundTertiary, textColorTypedValue, true)
+                context.theme.resolveAttribute(R.attr.colorForegroundSecondary, textColorTypedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
             }
         }
