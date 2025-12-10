@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.HeaderBinding
+import com.edts.components.utils.resolveColorAttr
 
 class Header @JvmOverloads constructor(
     context: Context,
@@ -134,11 +135,21 @@ class Header @JvmOverloads constructor(
 
     private fun applyShadowState() {
         if (showShadow) {
-            binding.Header.outlineAmbientShadowColor = getCachedColor(R.attr.colorShadowTintedAmbient)
-            binding.Header.outlineSpotShadowColor = getCachedColor(R.attr.colorShadowTintedKey)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                outlineAmbientShadowColor = context.resolveColorAttr(
+                    R.attr.colorShadowTintedAmbient,
+                    R.color.colorBrandPrimaryA10
+                )
+                outlineSpotShadowColor = context.resolveColorAttr(
+                    R.attr.colorShadowTintedKey,
+                    R.color.colorBrandPrimaryA20
+                )
+            }
         } else {
-            binding.Header.outlineAmbientShadowColor = android.graphics.Color.TRANSPARENT
-            binding.Header.outlineSpotShadowColor = android.graphics.Color.TRANSPARENT
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                binding.Header.outlineAmbientShadowColor = android.graphics.Color.TRANSPARENT
+                binding.Header.outlineSpotShadowColor = android.graphics.Color.TRANSPARENT
+            }
         }
     }
 
