@@ -9,9 +9,9 @@
     app:strokeColor="@android:color/transparent"
     app:cardElevation="2dp"
     app:rippleColor="@android:color/transparent"
-    app:cardBackgroundColor="@android:color/transparent"
-    android:outlineAmbientShadowColor="@android:color/transparent"
-    android:outlineSpotShadowColor="@android:color/transparent">
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    app:cardBackgroundColor="@android:color/transparent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
