@@ -197,7 +197,7 @@ class CardDetailInfoB @JvmOverloads constructor(
             try {
                 val typedValue = TypedValue()
                 rippleColor = if (showRightSlot) {
-                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
+                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
                 } else{
                     ContextCompat.getColorStateList(context, android.R.color.transparent)
                 }
@@ -414,7 +414,7 @@ class CardDetailInfoB @JvmOverloads constructor(
                 binding.flCdibRightSlotContainer.visibility = View.GONE
 
                 rippleColor = if (showRightSlot) {
-                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
+                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
                 } else{
                     ContextCompat.getColorStateList(context, android.R.color.transparent)
                 }
@@ -422,7 +422,7 @@ class CardDetailInfoB @JvmOverloads constructor(
                 binding.ivCdibRightSlot.isClickable = true
                 binding.ivCdibRightSlot.isFocusable = true
 
-                val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
+                val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
 
                 val rippleDrawable = RippleDrawable(rippleColor, null, null)
                 rippleDrawable.radius = (16f.dpToPx).toInt()
@@ -432,7 +432,7 @@ class CardDetailInfoB @JvmOverloads constructor(
             RightSlotType.CUSTOM -> {
                 binding.ivCdibRightSlot.visibility = View.GONE
                 binding.flCdibRightSlotContainer.visibility = if (showRightSlot) View.VISIBLE else View.GONE
-                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutral70Opacity20))
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
             }
         }
         updateCardInteractivity()

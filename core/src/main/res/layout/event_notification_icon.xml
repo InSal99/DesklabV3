@@ -16,5 +16,5 @@
         android:layout_margin="@dimen/margin_4dp"
         android:contentDescription="Notification Icon"
         android:src="@drawable/ic_notification_event"
-        app:tint="?attr/colorForegroundTertiary" />
+        app:tint="?attr/colorForegroundSecondary" />
 </com.google.android.material.card.MaterialCardView>

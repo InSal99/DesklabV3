@@ -99,7 +99,7 @@ class MyEventCard @JvmOverloads constructor(
     private fun setupCardAppearance() {
         val strokeSubtleColor = context.resolveColorAttribute(
             R.attr.colorStrokeSubtle,
-            R.color.colorNeutral30
+            R.color.colorNeutralGrayLight30
         )
         val cornerRadius = 8f.dpToPx
         val strokeWidth = 1.dpToPx
@@ -111,12 +111,14 @@ class MyEventCard @JvmOverloads constructor(
         this.strokeWidth = strokeWidth
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val shadowColor = context.resolveColorAttribute(
-                R.attr.colorForegroundPrimary,
-                R.color.color000
+            outlineAmbientShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralAmbient,
+                R.color.colorNeutralGrayDarkA5
             )
-            outlineAmbientShadowColor = shadowColor
-            outlineSpotShadowColor = shadowColor
+            outlineSpotShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralKey,
+                R.color.colorNeutralGrayDarkA10
+            )
         }
     }
 

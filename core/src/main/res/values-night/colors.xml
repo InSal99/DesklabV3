@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- color neutral -->
+    <color name="colorNeutralWhite">#FFFFFF</color>
+    <color name="colorNeutralBlack">#0F111A</color>
+
+    <!-- color neutral gray light -->
+    <color name="colorNeutralGrayLight10">#F8FBFC</color>
+    <color name="colorNeutralGrayLight20">#EFF3F6</color>
+    <color name="colorNeutralGrayLight30">#DCDEE3</color>
+    <color name="colorNeutralGrayLight40">#A2A4B0</color>
+    <color name="colorNeutralGrayLight50">#787C89</color>
+    <color name="colorNeutralGrayLight60">#535A6B</color>
+    <color name="colorNeutralGrayLight70">#232836</color>
+
+    <!-- color neutral gray light alpha -->
+    <color name="colorNeutralGrayLightA2">#05FFFFFF</color>
+    <color name="colorNeutralGrayLightA5">#0DFFFFFF</color>
+    <color name="colorNeutralGrayLightA10">#1AFFFFFF</color>
+    <color name="colorNeutralGrayLightA12">#1FFFFFFF</color>
+    <color name="colorNeutralGrayLightA20">#33FFFFFF</color>
+    <color name="colorNeutralGrayLightA30">#4DFFFFFF</color>
+    <color name="colorNeutralGrayLightA50">#80FFFFFF</color>
+    <color name="colorNeutralGrayLightA65">#A6FFFFFF</color>
+
+    <!-- color neutral gray dark -->
+    <color name="colorNeutralGrayDark10">#787C89</color>
+    <color name="colorNeutralGrayDark20">#6A7385</color>
+    <color name="colorNeutralGrayDark30">#535A6B</color>
+    <color name="colorNeutralGrayDark40">#3A4050</color>
+    <color name="colorNeutralGrayDark50">#252A36</color>
+    <color name="colorNeutralGrayDark60">#1C212B</color>
+    <color name="colorNeutralGrayDark70">#151823</color>
+
+    <!-- color neutral gray dark alpha -->
+    <color name="colorNeutralGrayDarkA2">#050F111A</color>
+    <color name="colorNeutralGrayDarkA5">#0D0F111A</color>
+    <color name="colorNeutralGrayDarkA10">#1A0F111A</color>
+    <color name="colorNeutralGrayDarkA12">#1F0F111A</color>
+    <color name="colorNeutralGrayDarkA20">#330F111A</color>
+    <color name="colorNeutralGrayDarkA30">#4D0F111A</color>
+    <color name="colorNeutralGrayDarkA50">#800F111A</color>
+    <color name="colorNeutralGrayDarkA65">#A60F111A</color>
+
+    <!-- color brand primary -->
+    <color name="colorBrandPrimary10">#112636</color>
+    <color name="colorBrandPrimary20">#1A3754</color>
+    <color name="colorBrandPrimary30">#3889B5</color>
+    <color name="colorBrandPrimary40">#4CA0D3</color>
+    <color name="colorBrandPrimary50">#5CBDF0</color>
+
+    <!-- color brand primary alpha -->
+    <color name="colorBrandPrimaryA2">#053889B5</color>
+    <color name="colorBrandPrimaryA5">#0D3889B5</color>
+    <color name="colorBrandPrimaryA10">#1A3889B5</color>
+    <color name="colorBrandPrimaryA20">#333889B5</color>
+    <color name="colorBrandPrimaryA30">#4D3889B5</color>
+
+    <!-- color brand secondary -->
+    <color name="colorBrandSecondary10">#122A2D</color>
+    <color name="colorBrandSecondary20">#1B3F43</color>
+    <color name="colorBrandSecondary30">#236166</color>
+    <color name="colorBrandSecondary40">#2F8188</color>
+    <color name="colorBrandSecondary50">#3DB1C2</color>
+
+    <!-- color brand secondary alpha -->
+    <color name="colorBrandSecondaryA2">#05236166</color>
+    <color name="colorBrandSecondaryA5">#0D236166</color>
+    <color name="colorBrandSecondaryA10">#1A236166</color>
+    <color name="colorBrandSecondaryA20">#33236166</color>
+    <color name="colorBrandSecondaryA30">#4D236166</color>
+
+    <!-- color gray blue -->
+    <color name="colorGrayBlue10">#12181F</color>
+    <color name="colorGrayBlue20">#1A2430</color>
+    <color name="colorGrayBlue30">#243445</color>
+    <color name="colorGrayBlue40">#385168</color>
+    <color name="colorGrayBlue50">#4F6A8A</color>
+
+    <!-- color gray blue alpha -->
+    <color name="colorGrayBlueA2">#054F6A8A</color>
+    <color name="colorGrayBlueA5">#0D4F6A8A</color>
+    <color name="colorGrayBlueA10">#1A4F6A8A</color>
+    <color name="colorGrayBlueA20">#334F6A8A</color>
+    <color name="colorGrayBlueA30">#4D4F6A8A</color>
+
+    <!-- color red -->
+    <color name="colorRed10">#3B161A</color>
+    <color name="colorRed20">#571F26</color>
+    <color name="colorRed30">#7F2533</color>
+    <color name="colorRed40">#C22637</color>
+    <color name="colorRed50">#F14C4C</color>
+
+    <!-- color red alpha -->
+    <color name="colorRedA2">#05F14C4C</color>
+    <color name="colorRedA5">#0DF14C4C</color>
+    <color name="colorRedA10">#1AF14C4C</color>
+    <color name="colorRedA20">#33F14C4C</color>
+    <color name="colorRedA30">#4DF14C4C</color>
+
+    <!-- color blue -->
+    <color name="colorBlue10">#11283D</color>
+    <color name="colorBlue20">#1A3754</color>
+    <color name="colorBlue30">#2D5E85</color>
+    <color name="colorBlue40">#2781C2</color>
+    <color name="colorBlue50">#5DA9E0</color>
+
+    <!-- color blue alpha -->
+    <color name="colorBlueA2">#055DA9E0</color>
+    <color name="colorBlueA5">#0D5DA9E0</color>
+    <color name="colorBlueA10">#1A5DA9E0</color>
+    <color name="colorBlueA20">#335DA9E0</color>
+    <color name="colorBlueA30">#4D5DA9E0</color>
+
+    <!-- color green -->
+    <color name="colorGreen10">#1A2A19</color>
+    <color name="colorGreen20">#234922</color>
+    <color name="colorGreen30">#326931</color>
+    <color name="colorGreen40">#397B38</color>
+    <color name="colorGreen50">#4CAD4C</color>
+
+    <!-- color green alpha -->
+    <color name="colorGreenA2">#054CAD4C</color>
+    <color name="colorGreenA5">#0D4CAD4C</color>
+    <color name="colorGreenA10">#1A4CAD4C</color>
+    <color name="colorGreenA20">#334CAD4C</color>
+    <color name="colorGreenA30">#4D4CAD4C</color>
+
+    <!-- color yellow -->
+    <color name="colorYellow10">#2F2407</color>
+    <color name="colorYellow20">#4B3A0B</color>
+    <color name="colorYellow30">#6E5614</color>
+    <color name="colorYellow40">#A67B23</color>
+    <color name="colorYellow50">#E3AA44</color>
+
+    <!-- color yellow alpha -->
+    <color name="colorYellowA2">#05E3AA44</color>
+    <color name="colorYellowA5">#0DE3AA44</color>
+    <color name="colorYellowA10">#1AE3AA44</color>
+    <color name="colorYellowA20">#33E3AA44</color>
+    <color name="colorYellowA30">#4DE3AA44</color>
+
+    <!-- color orange -->
+    <color name="colorOrange10">#351F13</color>
+    <color name="colorOrange20">#552A0E</color>
+    <color name="colorOrange30">#9D5B34</color>
+    <color name="colorOrange40">#F57F31</color>
+    <color name="colorOrange50">#FF9347</color>
+
+    <!-- color orange alpha -->
+    <color name="colorOrangeA2">#05FF9347</color>
+    <color name="colorOrangeA5">#0DFF9347</color>
+    <color name="colorOrangeA10">#1AFF9347</color>
+    <color name="colorOrangeA20">#33FF9347</color>
+    <color name="colorOrangeA30">#4DFF9347</color>
+
+    <!-- color modifier -->
+    <color name="colorModifierElevated">#1B1D25</color>
+    <color name="colorModifierSurface">#14161F</color>
+
+    <!-- color support -->
+    <color name="colorOpacity">#CC151823</color>
+    <color name="colorNotification">#D8D8D8</color>
+
+    <color name="colorBlack70">#151823</color>
+    <color name="colorBlack30">#DCDEE3</color> //?
+    <color name="colorBlack50">#70727D</color> //?
+    <color name="colorWhite">#FFFFFF</color> //?
+    <color name="white">#FFFFFFFF</color> //?
+    <color name="colorRipple">#1f000000</color> //?
+
+    <!-- utilities color [TEMPORARY] -->
+    <color name="colorUtilGreen10">#1A2A19</color>
+    <color name="colorUtilGreen50">#4CAD4C</color>
+    <color name="colorUtilRed10">#3B161A</color>
+    <color name="colorUtilRed50">#F14C4C</color>
+    <color name="colorUtilBlue10">#11283D</color>
+    <color name="colorUtilBlue50">#5DA9E0</color>
+    <color name="colorUtilGrayLight20">#6A7385</color>
+    <color name="colorUtilGrayLight60">#1C212B</color>
+
+</resources>

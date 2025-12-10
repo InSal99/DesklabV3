@@ -12,6 +12,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat
 import com.edts.components.R
+import com.edts.components.utils.resolveColorAttr
 
 class CheckBox @JvmOverloads constructor(
     context: Context,
@@ -122,8 +123,10 @@ class CheckBox @JvmOverloads constructor(
                     checkMarkDrawable.setTint(ContextCompat.getColor(context, android.R.color.transparent))
                 } else {
                     val tintColor = when {
-                        !isEnabled -> ContextCompat.getColor(context, R.color.color000Opacity20)
-                        else -> ContextCompat.getColor(context, R.color.colorFFF)
+                        !isEnabled -> context.resolveColorAttr(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayDarkA20)
+//                            ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA20)
+                        else -> context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
+//                            ContextCompat.getColor(context, R.color.colorNeutralWhite)
                     }
                     checkMarkDrawable.setTint(tintColor)
 
@@ -151,8 +154,10 @@ class CheckBox @JvmOverloads constructor(
                     } else {
                         checkMarkDrawable.bounds = originalBounds
                         val tintColor = when {
-                            !isEnabled -> ContextCompat.getColor(context, R.color.color000Opacity20)
-                            else -> ContextCompat.getColor(context, R.color.colorFFF)
+                            !isEnabled -> context.resolveColorAttr(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayDarkA20)
+                            else -> context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
+//                            !isEnabled -> ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA20)
+//                            else -> ContextCompat.getColor(context, R.color.colorNeutralWhite)
                         }
                         checkMarkDrawable.setTint(tintColor)
                     }

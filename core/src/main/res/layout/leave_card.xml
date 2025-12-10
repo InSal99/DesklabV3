@@ -6,7 +6,7 @@
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_12dp"
-    app:rippleColor="@color/colorNeutral70Opacity20"
+    app:rippleColor="@color/colorNeutralGrayLightA20"
     app:cardBackgroundColor="?attr/colorBackgroundPrimary">
 
     <LinearLayout

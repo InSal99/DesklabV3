@@ -73,7 +73,7 @@ class LeaveCard @JvmOverloads constructor(
         isFocusable = true
 
         val activeColor = run {
-            val fallbackColorRes = R.color.color000Opacity5
+            val fallbackColorRes = R.color.colorNeutralGrayDarkA5
             val resolved = context.resolveColorAttr(R.attr.colorBackgroundModifierOnPress, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         }
@@ -100,14 +100,14 @@ class LeaveCard @JvmOverloads constructor(
 
     private fun setupCardAppearance(context: Context) {
         strokeColor = run {
-            val fallbackColorRes = R.color.colorNeutral30
+            val fallbackColorRes = R.color.colorNeutralGrayLight30
             val resolved = context.resolveColorAttr(R.attr.colorStrokeSubtle, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         }
         strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
         radius = resources.getDimension(R.dimen.radius_12dp)
         setCardBackgroundColor(run {
-            val fallbackColorRes = R.color.colorFFF
+            val fallbackColorRes = R.color.colorNeutralWhite
             val resolved = context.resolveColorAttr(R.attr.colorBackgroundPrimary, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         })

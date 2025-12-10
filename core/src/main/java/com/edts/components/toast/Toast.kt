@@ -11,14 +11,12 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
-import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.LayoutToastViewBinding
-import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.card.MaterialCardView
 
 class Toast @JvmOverloads constructor(
@@ -37,7 +35,7 @@ class Toast @JvmOverloads constructor(
         SUCCESS(R.drawable.ic_success, R.color.colorGreen50),
         ERROR(R.drawable.ic_attention, R.color.colorRed40),
         INFO(R.drawable.ic_information, R.color.colorBlue50),
-        GENERAL(R.drawable.placeholder, R.color.color000)
+        GENERAL(R.drawable.placeholder, R.color.colorNeutralBlack)
     }
 
     init {
@@ -70,11 +68,11 @@ class Toast @JvmOverloads constructor(
         radius = context.resources.getDimensionPixelSize(R.dimen.radius_12dp).toFloat()
         cardElevation = 2f * context.resources.displayMetrics.density
         strokeWidth = context.resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        strokeColor = ContextCompat.getColor(context, R.color.colorOpacityWhite20)
+        strokeColor = ContextCompat.getColor(context, R.color.colorNeutralGrayLightA20)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.color000Opacity5)
-            outlineSpotShadowColor = ContextCompat.getColor(context, R.color.color000Opacity10)
+            outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA5)
+            outlineSpotShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA10)
         }
     }
 

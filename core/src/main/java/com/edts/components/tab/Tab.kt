@@ -101,7 +101,6 @@ class Tab @JvmOverloads constructor(
             tab.copy(state = if (index == position) TabItem.TabState.ACTIVE else TabItem.TabState.INACTIVE)
         }.toMutableList()
 
-        // CHANGE: Use updateSelectedPosition instead of updateTabs to preserve animation
         tabAdapter.updateSelectedPosition(position)
 
         if (notifyListener) {
