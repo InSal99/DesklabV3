@@ -72,12 +72,14 @@ class LeaveQuotaCard @JvmOverloads constructor(
         this.strokeWidth = strokeWidth
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val shadowColor = context.resolveColorAttr(
-                R.attr.colorForegroundPrimary,
-                R.color.colorNeutralBlack
+            outlineAmbientShadowColor = context.resolveColorAttr(
+                R.attr.colorShadowTintedAmbient,
+                R.color.colorBrandPrimaryA10
             )
-            outlineAmbientShadowColor = shadowColor
-            outlineSpotShadowColor = shadowColor
+            outlineSpotShadowColor = context.resolveColorAttr(
+                R.attr.colorShadowTintedKey,
+                R.color.colorBrandPrimaryA20
+            )
         }
     }
 }
