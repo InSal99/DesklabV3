@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.edts.components.tab.TabData
+import com.edts.components.tab.TabItem
+import com.edts.components.toast.Toast
 import com.edts.desklabv3.core.util.InsetConfigurable
 import com.edts.desklabv3.databinding.FragmentHeaderComponentViewBinding
 
@@ -27,6 +30,26 @@ class HeaderComponentView : Fragment(), InsetConfigurable {
         binding.btnLibHeaderBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+
+
+        binding.headerWithTab.tabView.setTabs(
+            listOf(
+                TabData("Item 1", "1", true, TabItem.TabState.ACTIVE),
+                TabData("Item 2", "2", true, TabItem.TabState.INACTIVE),
+                TabData("Item 3", "3", true, TabItem.TabState.INACTIVE),
+                TabData("Item 4", "", false, TabItem.TabState.INACTIVE),
+                TabData("Item 5", "", false, TabItem.TabState.INACTIVE),
+                TabData("Item 6", "", false, TabItem.TabState.INACTIVE),
+                TabData("Item 7", "", false, TabItem.TabState.INACTIVE),
+                TabData("Item 8", "", false, TabItem.TabState.INACTIVE),
+            ),
+            selected = 0
+        )
+
+//        binding.headerWithTab.tabView.setOnTabClickListener { pos, text ->
+//            Toast.info(requireContext(), "Tab Item Click")
+//        }
+
     }
 
     override fun applyBottomInset(): Boolean = false

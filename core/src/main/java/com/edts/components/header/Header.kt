@@ -15,6 +15,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.HeaderBinding
+import com.edts.components.tab.Tab
 import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.card.MaterialCardView
 
@@ -92,6 +93,9 @@ class Header @JvmOverloads constructor(
             field = value
             applyTabState()
         }
+
+    val tabView: Tab
+        get() = binding.cvTabEventList
 
     init {
         setupClickListeners()

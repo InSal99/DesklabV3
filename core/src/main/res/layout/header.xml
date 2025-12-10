@@ -106,26 +106,26 @@
             <com.edts.components.tab.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:tabItemBadgeText="3"
+                app:tabItemBadgeText="1"
                 app:tabItemShowBadge="true"
                 app:tabItemState="active"
-                app:tabItemText="Daftar Event"/>
+                app:tabItemText="Item 1"/>
 
             <com.edts.components.tab.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:tabItemBadgeText="!"
+                app:tabItemBadgeText="2"
                 app:tabItemShowBadge="true"
                 app:tabItemState="inactive"
-                app:tabItemText="Event Saya"/>
+                app:tabItemText="Item 2"/>
 
             <com.edts.components.tab.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:tabItemBadgeText="!"
+                app:tabItemBadgeText="3"
                 app:tabItemShowBadge="true"
                 app:tabItemState="inactive"
-                app:tabItemText="Undangan"/>
+                app:tabItemText="Item 3"/>
         </com.edts.components.tab.Tab>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
