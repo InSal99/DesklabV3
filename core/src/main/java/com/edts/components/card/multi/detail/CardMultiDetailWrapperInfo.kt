@@ -75,6 +75,7 @@ class CardMultiDetailWrapperInfo @JvmOverloads constructor(
         binding.tvInfo2.visibility = if (showInfo2) View.VISIBLE else View.GONE
         binding.ivDivider.visibility = if (showInfo2) View.VISIBLE else View.GONE
         updateInfo1Constraints()
+        updateInfo1Width()
     }
 
     private fun updateInfo1Constraints() {
@@ -89,5 +90,19 @@ class CardMultiDetailWrapperInfo @JvmOverloads constructor(
         }
 
         binding.tvInfo1.layoutParams = info1LayoutParams
+    }
+
+    private fun updateInfo1Width() {
+        binding.tvInfo1.post {
+            if (showInfo2) {
+                val info2Width = binding.tvInfo2.measuredWidth
+                val dividerWidth = (14f * resources.displayMetrics.density).toInt()
+
+                binding.tvInfo1.maxWidth = binding.cardMultiDetailWrapperInfo.width -
+                        info2Width - dividerWidth
+            } else {
+                binding.tvInfo1.maxWidth = binding.cardMultiDetailWrapperInfo.width
+            }
+        }
     }
 }

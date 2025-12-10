@@ -111,12 +111,14 @@ class MyEventCard @JvmOverloads constructor(
         this.strokeWidth = strokeWidth
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val shadowColor = context.resolveColorAttribute(
-                R.attr.colorForegroundPrimary,
-                R.color.colorNeutralBlack
+            outlineAmbientShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralAmbient,
+                R.color.colorNeutralGrayDarkA5
             )
-            outlineAmbientShadowColor = shadowColor
-            outlineSpotShadowColor = shadowColor
+            outlineSpotShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralKey,
+                R.color.colorNeutralGrayDarkA10
+            )
         }
     }
 

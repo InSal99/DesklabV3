@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:background="?attr/colorForegroundSecondary"
+    android:background="?attr/colorBackgroundPrimary"
     tools:context=".core.component.HeaderComponentView">
 
     <LinearLayout
@@ -46,6 +46,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
                 android:clipToPadding="false"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -61,7 +62,24 @@
                     app:showSectionSubtitle="true"
                     app:showSectionTitle="true"
                     app:showBackgroundColor="true"
-                    app:showShadow="true"/>
+                    app:showShadow="false"
+                    app:showTab="false"/>
+
+                <com.edts.components.header.Header
+                    android:id="@+id/headerWithTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    app:rightButtonSrc="@drawable/ic_star"
+                    app:sectionSubtitleText="Manage your account preferences"
+                    app:sectionTitleText="Profile Settings"
+                    app:showLeftButton="false"
+                    app:showRightButton="false"
+                    app:showSectionSubtitle="false"
+                    app:showSectionTitle="true"
+                    app:showBackgroundColor="true"
+                    app:showShadow="true"
+                    app:showTab="true"/>
 
                 <com.edts.components.header.Header
                     android:layout_width="match_parent"

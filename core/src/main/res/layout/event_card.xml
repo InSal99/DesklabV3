@@ -6,10 +6,9 @@
     android:layout_height="wrap_content"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_8dp"
-    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
+    app:cardBackgroundColor="?attr/colorBackgroundElevated"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:cardElevation="2dp"
-    android:foreground="?attr/colorBackgroundModifierCardElevated"
     app:rippleColor="?attr/colorBackgroundModifierOnPress"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
