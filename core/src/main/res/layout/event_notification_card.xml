@@ -22,7 +22,7 @@
         android:layout_marginStart="@dimen/margin_6dp"
         android:text="General Event"
         android:textAllCaps="true"
-        android:textColor="?attr/colorForegroundTertiary"
+        android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintBottom_toBottomOf="@+id/notificationIcon"
         app:layout_constraintStart_toEndOf="@+id/notificationIcon"
         app:layout_constraintTop_toTopOf="@+id/notificationIcon"/>
