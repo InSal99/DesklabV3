@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.edts.components.tab.Tab
 import com.edts.components.tab.TabData
 import com.edts.components.tab.TabItem
 import com.edts.components.toast.Toast
@@ -46,9 +47,15 @@ class HeaderComponentView : Fragment(), InsetConfigurable {
             selected = 0
         )
 
-//        binding.headerWithTab.tabView.setOnTabClickListener { pos, text ->
-//            Toast.info(requireContext(), "Tab Item Click")
-//        }
+        binding.headerWithTab.tabView.setOnTabClickListener(
+            object : Tab.OnTabClickListener {
+                override fun onTabClick(position: Int, tabText: String) {
+                    Toast.info(requireContext(), "Tab Item Click")
+                }
+            }
+        )
+
+
 
     }
 
