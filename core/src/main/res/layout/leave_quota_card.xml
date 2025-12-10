@@ -11,14 +11,14 @@
         style="?attr/l4Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="?attr/colorForegroundPrimary"
+        android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Cuti Tahun Ini"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvLeaveQuota"
-        style="?attr/h2Bold"
+        style="?attr/h2SemiBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8dp"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_2dp"
-        android:textColor="?attr/colorForegroundTertiary"
+        android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toStartOf="@id/tvLeaveQuota"
         app:layout_constraintTop_toBottomOf="@id/tvLeaveQuota"
         tools:text="Kedaluwarsa: 01/08/2026"/>
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_2dp"
-        android:textColor="?attr/colorForegroundTertiary"
+        android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toStartOf="@id/tvExpiredDate"
         app:layout_constraintTop_toBottomOf="@id/tvExpiredDate"
         tools:text="Cuti Terpakai: 1 Hari"/>
