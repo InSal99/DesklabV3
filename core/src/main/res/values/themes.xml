@@ -37,6 +37,7 @@
         <item name="colorBackgroundTertiary">@color/colorNeutralGrayLight20</item>
         <item name="colorBackgroundOverlay">@color/colorNeutralGrayDarkA50</item>
         <item name="colorBackgroundDisabled">@color/colorNeutralGrayDarkA5</item>
+        <item name="colorBackgroundElevated">@color/colorNeutralWhite</item>
         <item name="colorBackgroundSurface">@color/colorNeutralWhite</item>
 
         <!-- Accent Background Colors -->

@@ -3,25 +3,27 @@ package com.edts.components.header
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
+import android.graphics.Color
 import android.graphics.drawable.RippleDrawable
 import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.FrameLayout
 import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.HeaderBinding
+import com.edts.components.tab.Tab
+import com.edts.components.utils.resolveColorAttr
+import com.google.android.material.card.MaterialCardView
 
 class Header @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+) : MaterialCardView(context, attrs, defStyleAttr) {
     private val binding: HeaderBinding =
         HeaderBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -92,6 +94,9 @@ class Header @JvmOverloads constructor(
             applyTabState()
         }
 
+    val tabView: Tab
+        get() = binding.cvTabEventList
+
     init {
         setupClickListeners()
 
@@ -101,6 +106,10 @@ class Header @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
+                clipChildren = false
+                clipToPadding = false
+                clipToOutline = false
+
                 showLeftButton = getBoolean(R.styleable.Header_showLeftButton, true)
                 sectionTitleText = getString(R.styleable.Header_sectionTitleText) ?: ""
                 showSectionTitle = getBoolean(R.styleable.Header_showSectionTitle, true)
@@ -134,11 +143,23 @@ class Header @JvmOverloads constructor(
 
     private fun applyShadowState() {
         if (showShadow) {
-            binding.Header.outlineAmbientShadowColor = getCachedColor(R.attr.colorShadowTintedAmbient)
-            binding.Header.outlineSpotShadowColor = getCachedColor(R.attr.colorShadowTintedKey)
+            binding.Header.cardElevation = (2 * Resources.getSystem().displayMetrics.density) // 2dp
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                outlineAmbientShadowColor = context.resolveColorAttr(
+                    R.attr.colorShadowTintedAmbient,
+                    R.color.colorBrandPrimaryA10
+                )
+                outlineSpotShadowColor = context.resolveColorAttr(
+                    R.attr.colorShadowTintedKey,
+                    R.color.colorBrandPrimaryA20
+                )
+            }
         } else {
-            binding.Header.outlineAmbientShadowColor = android.graphics.Color.TRANSPARENT
-            binding.Header.outlineSpotShadowColor = android.graphics.Color.TRANSPARENT
+            binding.Header.cardElevation = 0f
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                outlineAmbientShadowColor = Color.TRANSPARENT
+                outlineSpotShadowColor = Color.TRANSPARENT
+            }
         }
     }
 

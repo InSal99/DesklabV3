@@ -16,7 +16,8 @@
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivDivider"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ImageView
         android:id="@+id/ivDivider"
@@ -29,8 +30,8 @@
         android:contentDescription="@string/card_multi_detail_wrapper_info_divider"
         app:layout_constraintStart_toEndOf="@+id/tvInfo1"
         app:layout_constraintEnd_toStartOf="@+id/tvInfo2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/tvInfo1"
+        app:layout_constraintBottom_toBottomOf="@+id/tvInfo1"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvInfo2"
@@ -39,9 +40,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_6dp"
         android:maxLines="1"
-        android:ellipsize="end"
         android:text="@string/card_multi_detail_wrapper_info_02"
         android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintStart_toEndOf="@+id/ivDivider"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

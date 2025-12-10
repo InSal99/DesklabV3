@@ -166,6 +166,14 @@ class Chip @JvmOverloads constructor(
         }
     }
 
+    private fun isUsingDefaultActiveBg(): Boolean {
+        val defaultColor = context.resolveColorAttribute(
+            R.attr.colorBackgroundPrimaryInverse,
+            R.color.colorNeutralBlack
+        )
+        return getActiveBackgroundColor() == defaultColor
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun setupIconClickListener() {
         binding.ivChip.setOnClickListener { view ->
@@ -299,7 +307,16 @@ class Chip @JvmOverloads constructor(
                 } else {
                     context.resolveColorAttribute(R.attr.colorStrokeInteractive, R.color.colorNeutralGrayLightA20)
                 }
-                binding.tvChip.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundPrimaryInverse, R.color.colorNeutralWhite))
+                if (!isUsingDefaultActiveBg()) {
+                    binding.tvChip.setTextColor(
+                        context.resolveColorAttribute(
+                            R.attr.colorForegroundWhite,
+                            R.color.colorWhite
+                        )
+                    )
+                } else {
+                    binding.tvChip.setTextColor(context.resolveColorAttribute(R.attr.colorForegroundPrimaryInverse, R.color.colorNeutralWhite))
+                }
                 ImageViewCompat.setImageTintList(
                     binding.ivChip,
                     ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorForegroundPrimaryInverse, R.color.colorNeutralWhite))
@@ -383,9 +400,21 @@ class Chip @JvmOverloads constructor(
                     animationDuration,
                     onAnimationComplete
                 )
+                val targetTextColor =
+                    if (isUsingDefaultActiveBg()) {
+                        context.resolveColorAttribute(
+                            R.attr.colorForegroundPrimaryInverse,
+                            R.color.colorNeutralWhite
+                        )
+                    } else {
+                        context.resolveColorAttribute(
+                            R.attr.colorForegroundWhite,
+                            R.color.colorWhite
+                        )
+                    }
                 animateTextColor(
                     context.resolveColorAttribute(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack),
-                    context.resolveColorAttribute(R.attr.colorForegroundPrimaryInverse, R.color.colorNeutralWhite),
+                    targetTextColor,
                     animationDuration,
                     onAnimationComplete
                 )
