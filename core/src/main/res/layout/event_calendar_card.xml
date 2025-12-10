@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textColor="?attr/colorForegroundTertiary"
+            android:textColor="?attr/colorForegroundSecondary"
             tools:text="JUL"/>
 
         <com.google.android.material.textview.MaterialTextView
@@ -44,7 +44,7 @@
             android:background="?attr/colorBackgroundTertiary"
             android:paddingVertical="@dimen/margin_4dp"
             android:textAlignment="center"
-            android:textColor="?attr/colorForegroundTertiary"
+            android:textColor="?attr/colorForegroundSecondary"
             tools:text="Rab"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
