@@ -2,8 +2,9 @@
     android:width="12dp"
     android:height="12dp"
     android:viewportWidth="12"
-    android:viewportHeight="12">
+    android:viewportHeight="12"
+    android:tint="@color/checkbox_check_tint">
   <path
       android:pathData="M2.197,6.54C1.954,6.309 1.954,5.922 2.197,5.691C2.423,5.476 2.777,5.476 3.003,5.691L4.786,7.385L8.997,3.383C9.223,3.168 9.577,3.168 9.803,3.383C10.046,3.614 10.046,4.001 9.803,4.232L5.345,8.469C5.032,8.766 4.54,8.766 4.227,8.469L2.197,6.54Z"
-      android:fillColor="#ffffff"/>
+      android:fillColor="@android:color/white"/>
 </vector>
