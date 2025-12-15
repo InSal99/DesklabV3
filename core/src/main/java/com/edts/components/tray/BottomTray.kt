@@ -28,6 +28,7 @@ import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
 import com.edts.components.utils.color
 import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -184,7 +185,7 @@ class BottomTray : BottomSheetDialogFragment() {
     private fun setupEdgeToEdge(dialog: BottomSheetDialog) {
         dialog.window?.let { window ->
             window.statusBarColor = Color.TRANSPARENT
-            window.navigationBarColor = Color.WHITE
+            window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
             WindowInsetsControllerCompat(window, window.decorView).apply {
                 isAppearanceLightNavigationBars = true
                 isAppearanceLightStatusBars = true
@@ -293,7 +294,9 @@ class BottomTray : BottomSheetDialogFragment() {
             .setTopLeftCorner(CornerFamily.ROUNDED, cornerRadius)
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
-        val bgColor = requireContext().color(R.color.colorNeutralWhite)
+
+        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.colorNeutralWhite)
+//        val bgColor = requireContext().color(R.color.colorNeutralWhite)
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
             if (hasShadow) {
@@ -302,14 +305,16 @@ class BottomTray : BottomSheetDialogFragment() {
                     TypedValue.COMPLEX_UNIT_DIP, 8f, requireContext().resources.displayMetrics
                 )
                 shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
-                val shadowColor = requireContext().color(R.color.colorNeutralGrayLightA20)
+                val shadowColor = requireContext().resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.colorNeutralGrayDarkA10)
+//                val shadowColor = requireContext().color(R.color.colorNeutralGrayDarkA10)
                 setShadowColor(shadowColor)
             }
         }
         if (!hasStroke) {
             return backgroundDrawable
         }
-        val strokeColor = requireContext().color(R.color.colorNeutralGrayLightA20)
+        val strokeColor = requireContext().resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLightA30)
+//        val strokeColor = requireContext().color(R.color.colorNeutralGrayLightA30)
         val strokeWidth = resources.getDimension(R.dimen.stroke_weight_1dp)
         val strokeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(Color.TRANSPARENT)
@@ -335,7 +340,8 @@ class BottomTray : BottomSheetDialogFragment() {
             .build()
         return MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(
-                requireContext().color(R.color.colorNeutralGrayLight50)
+                requireContext().resolveColorAttr(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLightA50)
+//                requireContext().color(R.color.colorNeutralGrayLight50)
             )
         }
     }
@@ -353,7 +359,8 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun applyTitleColor() {
         titleTextColor?.let { color ->
-            binding.trayTitle.setTextColor(ContextCompat.getColor(requireContext(), color))
+            binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
+//            binding.trayTitle.setTextColor(ContextCompat.getColor(requireContext(), color))
         }
     }
 

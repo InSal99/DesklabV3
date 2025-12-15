@@ -5,8 +5,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import androidx.core.view.marginLeft
 import com.edts.components.R
 import com.edts.components.databinding.CardMultiDetailWrapperInfoBinding
+import com.edts.components.utils.dpToPx
 
 class CardMultiDetailWrapperInfo @JvmOverloads constructor(
     context: Context,
@@ -94,14 +96,22 @@ class CardMultiDetailWrapperInfo @JvmOverloads constructor(
 
     private fun updateInfo1Width() {
         binding.tvInfo1.post {
-            if (showInfo2) {
-                val info2Width = binding.tvInfo2.measuredWidth
-                val dividerWidth = (14f * resources.displayMetrics.density).toInt()
+            val wrapperWidth = binding.cardMultiDetailWrapperInfo.measuredWidth
+            val info1Width = binding.tvInfo1.measuredWidth
+            val info2Width = binding.tvInfo2.measuredWidth
+            val dividerWidth = binding.ivDivider.measuredWidth
+            val dividerMargin = (12f * resources.displayMetrics.density).toInt()
+            val contentWidth = info1Width + info2Width + dividerWidth + dividerMargin
 
-                binding.tvInfo1.maxWidth = binding.cardMultiDetailWrapperInfo.width -
-                        info2Width - dividerWidth
+            if (showInfo2) {
+                if (wrapperWidth > contentWidth){
+                    binding.tvInfo1.maxWidth = info1Width
+                }
+                if (wrapperWidth < contentWidth){
+                    binding.tvInfo1.maxWidth = wrapperWidth - info2Width - dividerWidth - dividerMargin
+                }
             } else {
-                binding.tvInfo1.maxWidth = binding.cardMultiDetailWrapperInfo.width
+                binding.tvInfo1.maxWidth = wrapperWidth
             }
         }
     }
