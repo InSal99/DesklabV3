@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="CheckBoxTextAppearance.Normal" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">?attr/colorForegroundBlack</item>
+        <item name="android:textColor">?attr/colorForegroundPrimary</item>
         <item name="android:fontFamily">@font/inter_regular</item>
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="CheckBoxTextAppearance.Selected" parent="CheckBoxTextAppearance.Normal">
-        <item name="android:textColor">?attr/colorForegroundBlack</item>
+        <item name="android:textColor">?attr/colorForegroundPrimary</item>
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
