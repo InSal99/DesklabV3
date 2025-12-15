@@ -294,8 +294,9 @@ class BottomTray : BottomSheetDialogFragment() {
             .setTopLeftCorner(CornerFamily.ROUNDED, cornerRadius)
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
-//        val bgColor = requireContext().color(context.resolveColorAttr(R.attr.colorBackgroundSurface, R.color.colorNeutralWhite)
-        val bgColor = requireContext().color(R.color.colorNeutralWhite)
+
+        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.colorNeutralWhite)
+//        val bgColor = requireContext().color(R.color.colorNeutralWhite)
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
             if (hasShadow) {
@@ -304,14 +305,16 @@ class BottomTray : BottomSheetDialogFragment() {
                     TypedValue.COMPLEX_UNIT_DIP, 8f, requireContext().resources.displayMetrics
                 )
                 shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
-                val shadowColor = requireContext().color(R.color.colorNeutralGrayLightA20)
+                val shadowColor = requireContext().resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.colorNeutralGrayDarkA10)
+//                val shadowColor = requireContext().color(R.color.colorNeutralGrayLightA20)
                 setShadowColor(shadowColor)
             }
         }
         if (!hasStroke) {
             return backgroundDrawable
         }
-        val strokeColor = requireContext().color(R.color.colorNeutralGrayLightA20)
+        val strokeColor = requireContext().resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLightA30)
+//        val strokeColor = requireContext().color(R.color.colorNeutralGrayLightA20)
         val strokeWidth = resources.getDimension(R.dimen.stroke_weight_1dp)
         val strokeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(Color.TRANSPARENT)
@@ -337,7 +340,8 @@ class BottomTray : BottomSheetDialogFragment() {
             .build()
         return MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(
-                requireContext().color(R.color.colorNeutralGrayLight50)
+                requireContext().resolveColorAttr(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLightA50)
+//                requireContext().color(R.color.colorNeutralGrayLight50)
             )
         }
     }
