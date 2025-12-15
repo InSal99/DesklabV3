@@ -120,7 +120,7 @@ class InputField @JvmOverloads constructor(
 
         errorTextView = TextView(context).apply {
             setTextAppearance(R.style.TextRegular_Label4)
-            setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+            setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
             setPadding(0, padding4dp, 0, 0)
             visibility = View.GONE
         }
@@ -295,7 +295,7 @@ class InputField @JvmOverloads constructor(
                 titleTextView.text = if (isFieldRequired) {
                     val spannableTitle = SpannableString("$title *")
                     spannableTitle.setSpan(
-                        ForegroundColorSpan(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50)),
+                        ForegroundColorSpan(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40)),
                         title.length + 1,
                         spannableTitle.length,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -448,7 +448,7 @@ class InputField @JvmOverloads constructor(
 
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
                 visibility = View.GONE
             }
 
@@ -612,7 +612,7 @@ class InputField @JvmOverloads constructor(
 
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
                 visibility = View.GONE
             }
 
@@ -777,7 +777,7 @@ class InputField @JvmOverloads constructor(
 
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
                 visibility = View.GONE
             }
 
@@ -1192,7 +1192,7 @@ class InputField @JvmOverloads constructor(
                         supportingTextView?.visibility = View.GONE
 
                         if (errorText.contains("Minimum") || errorText.contains("Maximum")) {
-                            counterText?.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+                            counterText?.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
                         }
 
                         textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
@@ -1208,7 +1208,7 @@ class InputField @JvmOverloads constructor(
                         } else {
                             errorTextView.text = errorText
                             errorTextView.visibility = View.VISIBLE
-                            errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+                            errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
 
                             textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
                         }
@@ -1222,20 +1222,20 @@ class InputField @JvmOverloads constructor(
                     } else {
                         errorTextView.text = errorText
                         errorTextView.visibility = View.VISIBLE
-                        errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+                        errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
                         dropdownContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
                     }
                 }
                 is InputFieldType.RadioGroup -> {
                     errorTextView.text = errorText
                     errorTextView.visibility = View.VISIBLE
-                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
                     (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(true)
                 }
                 is InputFieldType.CheckboxGroup -> {
                     errorTextView.text = errorText
                     errorTextView.visibility = View.VISIBLE
-                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50))
+                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
 
                     (currentInputComponent as? ViewGroup)?.let { container ->
                         for (i in 0 until container.childCount) {
