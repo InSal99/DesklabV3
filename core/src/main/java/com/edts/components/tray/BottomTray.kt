@@ -94,7 +94,7 @@ class BottomTray : BottomSheetDialogFragment() {
             }
         }
     @ColorRes
-    var titleTextColor: Int? = context.resolveColorAttr(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack)
+    var titleTextColor: Int? = R.color.colorNeutralBlack
         set(value) {
             field = value
             if (_binding != null) {
@@ -306,7 +306,7 @@ class BottomTray : BottomSheetDialogFragment() {
                 )
                 shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
                 val shadowColor = requireContext().resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.colorNeutralGrayDarkA10)
-//                val shadowColor = requireContext().color(R.color.colorNeutralGrayLightA20)
+//                val shadowColor = requireContext().color(R.color.colorNeutralGrayDarkA10)
                 setShadowColor(shadowColor)
             }
         }
@@ -314,7 +314,7 @@ class BottomTray : BottomSheetDialogFragment() {
             return backgroundDrawable
         }
         val strokeColor = requireContext().resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLightA30)
-//        val strokeColor = requireContext().color(R.color.colorNeutralGrayLightA20)
+//        val strokeColor = requireContext().color(R.color.colorNeutralGrayLightA30)
         val strokeWidth = resources.getDimension(R.dimen.stroke_weight_1dp)
         val strokeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(Color.TRANSPARENT)
@@ -359,7 +359,8 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun applyTitleColor() {
         titleTextColor?.let { color ->
-            binding.trayTitle.setTextColor(ContextCompat.getColor(requireContext(), color))
+            binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
+//            binding.trayTitle.setTextColor(ContextCompat.getColor(requireContext(), color))
         }
     }
 
