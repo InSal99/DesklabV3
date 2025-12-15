@@ -28,6 +28,7 @@ import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
 import com.edts.components.utils.color
 import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -93,7 +94,7 @@ class BottomTray : BottomSheetDialogFragment() {
             }
         }
     @ColorRes
-    var titleTextColor: Int? = R.color.colorNeutralBlack
+    var titleTextColor: Int? = context.resolveColorAttr(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack)
         set(value) {
             field = value
             if (_binding != null) {
@@ -184,7 +185,7 @@ class BottomTray : BottomSheetDialogFragment() {
     private fun setupEdgeToEdge(dialog: BottomSheetDialog) {
         dialog.window?.let { window ->
             window.statusBarColor = Color.TRANSPARENT
-            window.navigationBarColor = Color.WHITE
+            window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
             WindowInsetsControllerCompat(window, window.decorView).apply {
                 isAppearanceLightNavigationBars = true
                 isAppearanceLightStatusBars = true
@@ -293,6 +294,7 @@ class BottomTray : BottomSheetDialogFragment() {
             .setTopLeftCorner(CornerFamily.ROUNDED, cornerRadius)
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
+//        val bgColor = requireContext().color(context.resolveColorAttr(R.attr.colorBackgroundSurface, R.color.colorNeutralWhite)
         val bgColor = requireContext().color(R.color.colorNeutralWhite)
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
