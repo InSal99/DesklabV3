@@ -61,8 +61,8 @@ class InputField @JvmOverloads constructor(
     private var currentInputComponent: View? = null
     private var currentConfig: InputFieldConfig? = null
 
-    private var requiredColor: Int = R.color.colorRed30
-    private var errorColor: Int = R.color.colorRed50
+    private var requiredColor: Int = R.color.colorRed40
+    private var errorColor: Int = R.color.colorRed40
 
     private var isFieldEnabled: Boolean = true
     private var currentErrorText: String? = null
@@ -184,12 +184,12 @@ class InputField @JvmOverloads constructor(
 
             requiredColor = getCachedColor(
                 typedArray.getResourceId(R.styleable.InputField_requiredColor, -1),
-                R.color.colorRed30
+                R.color.colorRed40
             )
 
             errorColor = getCachedColor(
                 typedArray.getResourceId(R.styleable.InputField_errorColor, -1),
-                R.color.colorRed50
+                R.color.colorRed40
             )
 
             val titleTextAppearance = typedArray.getResourceId(R.styleable.InputField_titleTextAppearance, -1)
