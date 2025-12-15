@@ -177,7 +177,10 @@
     <color name="colorUtilRed40">#C22637</color>
     <color name="colorUtilBlue10">#F0F7FF</color>
     <color name="colorUtilBlue50">#2967A2</color>
+    <color name="colorUtilNeutralBlack">#0F111A</color>
+    <color name="colorUtilGrayLight10">#F8FBFC</color>
     <color name="colorUtilGrayLight20">#EFF3F6</color>
+    <color name="colorUtilGrayLight50">#787C89</color>
     <color name="colorUtilGrayLight60">#535A6B</color>
     <color name="colorUtilNeutralGrayLightA20">#33FFFFFF</color>
 

@@ -116,7 +116,6 @@ class RadioButton @JvmOverloads constructor(
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator) {
                     if (checked && innerCircleDrawable is GradientDrawable) {
-//                        innerCircleDrawable.setColor(ContextCompat.getColor(context, R.color.colorNeutralWhite))
                         innerCircleDrawable.setColor(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite))
                     }
                 }
@@ -128,7 +127,6 @@ class RadioButton @JvmOverloads constructor(
                     } else {
                         innerCircleDrawable.bounds = originalBounds
                         if (innerCircleDrawable is GradientDrawable) {
-//                            innerCircleDrawable.setColor(ContextCompat.getColor(context, R.color.colorNeutralWhite))
                             innerCircleDrawable.setColor(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite))
                         }
                     }
