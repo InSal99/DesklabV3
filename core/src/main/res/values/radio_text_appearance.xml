@@ -8,22 +8,22 @@
     </style>
 
     <style name="RadioTextAppearance.Normal" parent="RadioTextAppearance">
-        <item name="android:textColor">@color/colorNeutralBlack</item>
+        <item name="android:textColor">?attr/colorForegroundPrimary</item>
         <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="RadioTextAppearance.Selected" parent="RadioTextAppearance">
-        <item name="android:textColor">@color/colorNeutralBlack</item>
+        <item name="android:textColor">?attr/colorForegroundPrimary</item>
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
     <style name="RadioTextAppearance.Disabled" parent="RadioTextAppearance">
-        <item name="android:textColor">@color/colorNeutralGrayLight30</item>
+        <item name="android:textColor">?attr/colorForegroundDisabled</item>
         <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="RadioTextAppearance.DisabledSelected" parent="RadioTextAppearance">
-        <item name="android:textColor">@color/colorNeutralGrayLight30</item>
+        <item name="android:textColor">?attr/colorForegroundDisabled</item>
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 </resources>
