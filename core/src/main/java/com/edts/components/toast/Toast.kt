@@ -17,6 +17,7 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.LayoutToastViewBinding
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.card.MaterialCardView
 
 class Toast @JvmOverloads constructor(
@@ -31,11 +32,11 @@ class Toast @JvmOverloads constructor(
 
     var onToastClickListener: (() -> Unit)? = null
 
-    enum class Type(@DrawableRes val iconRes: Int, @ColorRes val colorRes: Int) {
-        SUCCESS(R.drawable.ic_success, R.color.colorGreen50),
-        ERROR(R.drawable.ic_attention, R.color.colorRed40),
-        INFO(R.drawable.ic_information, R.color.colorBlue50),
-        GENERAL(R.drawable.placeholder, R.color.colorNeutralBlack)
+    enum class Type(@DrawableRes val iconRes: Int, val ColorAttr: Int, @ColorRes val colorRes: Int) {
+        SUCCESS(R.drawable.ic_success, R.attr.colorBackgroundSuccessIntense, R.color.colorGreen50),
+        ERROR(R.drawable.ic_attention, R.attr.colorBackgroundAttentionIntense, R.color.colorRed40),
+        INFO(R.drawable.ic_information, R.attr.colorBackgroundInfoIntense, R.color.colorBlue50),
+        GENERAL(R.drawable.placeholder, R.attr.colorBackgroundPrimaryInverse, R.color.colorNeutralBlack)
     }
 
     init {
@@ -68,16 +69,20 @@ class Toast @JvmOverloads constructor(
         radius = context.resources.getDimensionPixelSize(R.dimen.radius_12dp).toFloat()
         cardElevation = 2f * context.resources.displayMetrics.density
         strokeWidth = context.resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        strokeColor = ContextCompat.getColor(context, R.color.colorNeutralGrayLightA20)
+        strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.colorNeutralGrayLightA20)
+//        strokeColor = ContextCompat.getColor(context, R.color.colorNeutralGrayLightA20)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA5)
-            outlineSpotShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA10)
+            outlineAmbientShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralAmbient, R.color.colorNeutralGrayDarkA5)
+            outlineSpotShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.colorNeutralGrayDarkA10)
+//            outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA5)
+//            outlineSpotShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA10)
         }
     }
 
     private fun applyToastStyle() {
-        setCardBackgroundColor(ContextCompat.getColor(context, toastType.colorRes))
+        setCardBackgroundColor(context.resolveColorAttr(toastType.ColorAttr, toastType.colorRes))
+//        setCardBackgroundColor(ContextCompat.getColor(context, toastType.colorRes))
         binding.ivIcon.setImageResource(toastIcon ?: toastType.iconRes)
         binding.tvMessage.text = toastMessage
     }

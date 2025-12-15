@@ -174,10 +174,11 @@
     <color name="colorUtilGreen10">#F3FCF3</color>
     <color name="colorUtilGreen50">#2C8E2C</color>
     <color name="colorUtilRed10">#FFF5F6</color>
-    <color name="colorUtilRed50">#93152E</color>
+    <color name="colorUtilRed40">#C22637</color>
     <color name="colorUtilBlue10">#F0F7FF</color>
     <color name="colorUtilBlue50">#2967A2</color>
     <color name="colorUtilGrayLight20">#EFF3F6</color>
     <color name="colorUtilGrayLight60">#535A6B</color>
+    <color name="colorUtilNeutralGrayLightA20">#33FFFFFF</color>
 
 </resources>
