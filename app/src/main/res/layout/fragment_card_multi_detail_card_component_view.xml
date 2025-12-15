@@ -68,14 +68,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16dp"
-                    app:cmdInfo1Text="Izin Sakit (Dengan Surat Dokter)"
+                    app:cmdInfo1Text="Izin Sakit (Dengan Surat Dokter) kanckjnaskcnasnckaskcnkjasnkcnjkasnjcnasnkanckjasnckjnkasj"
                     app:cmdLeftSlotBackgroundColor="?attr/colorBackgroundSuccessSubtle"
                     app:cmdLeftSlotSrc="@drawable/ic_user_person"
                     app:cmdLeftSlotTint="?attr/colorForegroundSuccessIntense"
                     app:cmdLeftSlotType="icon"
                     app:cmdRightSlotSrc="@drawable/ic_chevron_right"
                     app:cmdShowInfo2="true"
-                    app:cmdInfo2Text="3 Hari"
+                    app:cmdInfo2Text="399 Hari"
                     app:cmdTitle="7  - 8 Jul 2025"/>
 
                 <com.edts.components.card.multi.detail.CardMultiDetail
@@ -122,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16dp"
-                    app:cmdInfo1Text="Cuti Tahunan"
+                    app:cmdInfo1Text="Cuti Tahunan ksdjcnkjdsncka"
                     app:cmdInfo2Text="3 Hari"
                     app:cmdLeftSlotSrc="@drawable/avatar_placeholder"
                     app:cmdLeftSlotType="image"

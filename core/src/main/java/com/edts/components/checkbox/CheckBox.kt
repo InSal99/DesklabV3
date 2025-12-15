@@ -98,7 +98,7 @@ class CheckBox @JvmOverloads constructor(
             return
         }
 
-        val checkMarkDrawable = currentDrawable.getDrawable(1)
+        val checkMarkDrawable = currentDrawable.getDrawable(1)?.mutate()
         if (checkMarkDrawable == null) {
             return
         }
@@ -112,6 +112,12 @@ class CheckBox @JvmOverloads constructor(
         val targetScale = if (checked) 1f else 0f
         val startScale = if (checked) 0f else 1f
 
+        val tintColor = when {
+            !isEnabled && checked -> context.resolveColorAttr(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayDarkA20)
+            checked -> context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
+            else -> ContextCompat.getColor(context, android.R.color.transparent)
+        }
+
         currentAnimator = ValueAnimator.ofFloat(startScale, targetScale).apply {
             duration = 200
             interpolator = android.view.animation.DecelerateInterpolator()
@@ -122,12 +128,6 @@ class CheckBox @JvmOverloads constructor(
                 if (scale == 0f) {
                     checkMarkDrawable.setTint(ContextCompat.getColor(context, android.R.color.transparent))
                 } else {
-                    val tintColor = when {
-                        !isEnabled -> context.resolveColorAttr(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayDarkA20)
-//                            ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA20)
-                        else -> context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
-//                            ContextCompat.getColor(context, R.color.colorNeutralWhite)
-                    }
                     checkMarkDrawable.setTint(tintColor)
 
                     val newWidth = (maxWidth * scale).toInt()
@@ -153,12 +153,6 @@ class CheckBox @JvmOverloads constructor(
                         checkMarkDrawable.setTint(ContextCompat.getColor(context, android.R.color.transparent))
                     } else {
                         checkMarkDrawable.bounds = originalBounds
-                        val tintColor = when {
-                            !isEnabled -> context.resolveColorAttr(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayDarkA20)
-                            else -> context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
-//                            !isEnabled -> ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA20)
-//                            else -> ContextCompat.getColor(context, R.color.colorNeutralWhite)
-                        }
                         checkMarkDrawable.setTint(tintColor)
                     }
                     invalidate()

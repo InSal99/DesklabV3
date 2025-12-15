@@ -17,11 +17,13 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvInfoText"
-        style="?attr/l3Medium"
+        style="?attr/p2Medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:text="Tersisa 35 dari 40 slot reservasi!"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textColor="?attr/colorForegroundTertiary"/>
 </LinearLayout>

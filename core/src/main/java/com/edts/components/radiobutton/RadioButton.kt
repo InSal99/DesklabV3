@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import com.edts.components.R
 import androidx.core.content.withStyledAttributes
+import com.edts.components.utils.resolveColorAttr
 
 class RadioButton @JvmOverloads constructor(
     context: Context,
@@ -115,7 +116,8 @@ class RadioButton @JvmOverloads constructor(
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator) {
                     if (checked && innerCircleDrawable is GradientDrawable) {
-                        innerCircleDrawable.setColor(ContextCompat.getColor(context, R.color.colorNeutralWhite))
+//                        innerCircleDrawable.setColor(ContextCompat.getColor(context, R.color.colorNeutralWhite))
+                        innerCircleDrawable.setColor(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite))
                     }
                 }
 
@@ -126,7 +128,8 @@ class RadioButton @JvmOverloads constructor(
                     } else {
                         innerCircleDrawable.bounds = originalBounds
                         if (innerCircleDrawable is GradientDrawable) {
-                            innerCircleDrawable.setColor(ContextCompat.getColor(context, R.color.colorNeutralWhite))
+//                            innerCircleDrawable.setColor(ContextCompat.getColor(context, R.color.colorNeutralWhite))
+                            innerCircleDrawable.setColor(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite))
                         }
                     }
                     invalidate()

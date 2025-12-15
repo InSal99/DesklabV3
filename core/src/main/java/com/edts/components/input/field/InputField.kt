@@ -26,6 +26,9 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
+import androidx.core.view.get
+import androidx.core.view.marginTop
+import androidx.core.view.setPadding
 import androidx.core.widget.doAfterTextChanged
 import com.edts.components.R
 import com.edts.components.checkbox.CheckBox
@@ -36,6 +39,7 @@ import com.edts.components.radiobutton.RadioGroup
 import com.edts.components.radiobutton.RadioGroupDelegate
 import com.edts.components.tray.BottomTray
 import com.edts.components.tray.BottomTrayDelegate
+import com.edts.components.utils.pxToDp
 import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputLayout
@@ -57,8 +61,8 @@ class InputField @JvmOverloads constructor(
     private var currentInputComponent: View? = null
     private var currentConfig: InputFieldConfig? = null
 
-    private var requiredColor: Int = R.color.colorRed30
-    private var errorColor: Int = R.color.colorRed50
+    private var requiredColor: Int = R.color.colorRed40
+    private var errorColor: Int = R.color.colorRed40
 
     private var isFieldEnabled: Boolean = true
     private var currentErrorText: String? = null
@@ -119,7 +123,6 @@ class InputField @JvmOverloads constructor(
             setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
             setPadding(0, padding4dp, 0, 0)
             visibility = View.GONE
-            textSize = 12f
         }
 
         inputContainer = FrameLayout(context)
@@ -181,12 +184,12 @@ class InputField @JvmOverloads constructor(
 
             requiredColor = getCachedColor(
                 typedArray.getResourceId(R.styleable.InputField_requiredColor, -1),
-                R.color.colorRed30
+                R.color.colorRed40
             )
 
             errorColor = getCachedColor(
                 typedArray.getResourceId(R.styleable.InputField_errorColor, -1),
-                R.color.colorRed50
+                R.color.colorRed40
             )
 
             val titleTextAppearance = typedArray.getResourceId(R.styleable.InputField_titleTextAppearance, -1)
@@ -247,7 +250,12 @@ class InputField @JvmOverloads constructor(
 
                 if (supportingTextView != null && !supportingText.isNullOrEmpty()) {
                     supportingTextView.text = supportingText
-                    supportingTextView.visibility = View.VISIBLE
+                    val color = when {
+                        !isFieldEnabled -> getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40)
+                        !currentErrorText.isNullOrEmpty() -> getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50)
+                        else -> getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLight50)
+                    }
+                    supportingTextView.setTextColor(color)
                 } else {
                     supportingTextView?.visibility = View.GONE
                 }
@@ -358,7 +366,7 @@ class InputField @JvmOverloads constructor(
             background = getCachedDrawable("rounded_normal") { createRoundedBackground() }
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(padding12dp, (2 * density).toInt(), padding12dp, (2 * density).toInt())
+            setPadding(padding12dp, (2.pxToDp).toInt(), padding12dp, (2.pxToDp).toInt())
             minimumHeight = minHeight48dp
             isFocusable = false
             isClickable = false
@@ -371,7 +379,6 @@ class InputField @JvmOverloads constructor(
             setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
             setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
             background = null
-            textSize = 16f
 
             inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_NORMAL
             imeOptions = EditorInfo.IME_ACTION_NEXT
@@ -426,7 +433,9 @@ class InputField @JvmOverloads constructor(
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                )
+                ).apply {
+                    topMargin = padding4dp
+                }
                 visibility = View.GONE
             }
 
@@ -440,14 +449,12 @@ class InputField @JvmOverloads constructor(
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
                 setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
-                textSize = 12f
                 visibility = View.GONE
             }
 
             val supportingTextView = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
                 setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
-                textSize = 12f
                 text = supportingText
                 visibility = if (supportingText.isNullOrEmpty()) View.GONE else View.VISIBLE
             }
@@ -459,7 +466,6 @@ class InputField @JvmOverloads constructor(
                 TextView(context).apply {
                     setTextAppearance(R.style.TextRegular_Label4)
                     setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
-                    textSize = 12f
                     gravity = Gravity.END
 
                     layoutParams = LinearLayout.LayoutParams(
@@ -536,7 +542,6 @@ class InputField @JvmOverloads constructor(
             setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
             setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
             background = null
-            textSize = 16f
 
             inputType = android.text.InputType.TYPE_CLASS_NUMBER or
                     android.text.InputType.TYPE_NUMBER_VARIATION_NORMAL
@@ -592,7 +597,9 @@ class InputField @JvmOverloads constructor(
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                )
+                ).apply {
+                    topMargin = padding4dp
+                }
                 visibility = View.GONE
             }
 
@@ -606,14 +613,12 @@ class InputField @JvmOverloads constructor(
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
                 setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
-                textSize = 12f
                 visibility = View.GONE
             }
 
             val supportingTextView = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
                 setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
-                textSize = 12f
                 text = supportingText
                 visibility = if (supportingText.isNullOrEmpty()) View.GONE else View.VISIBLE
             }
@@ -625,7 +630,6 @@ class InputField @JvmOverloads constructor(
                 TextView(context).apply {
                     setTextAppearance(R.style.TextRegular_Label4)
                     setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
-                    textSize = 12f
                     gravity = Gravity.END
 
                     layoutParams = LinearLayout.LayoutParams(
@@ -702,7 +706,6 @@ class InputField @JvmOverloads constructor(
             setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
             setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
             background = null
-            textSize = 16f
             gravity = Gravity.TOP
 
             inputType = android.text.InputType.TYPE_CLASS_TEXT or
@@ -759,7 +762,9 @@ class InputField @JvmOverloads constructor(
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                )
+                ).apply {
+                    topMargin = padding4dp
+                }
                 visibility = View.GONE
             }
 
@@ -773,14 +778,12 @@ class InputField @JvmOverloads constructor(
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
                 setTextColor(getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
-                textSize = 12f
                 visibility = View.GONE
             }
 
             val supportingTextView = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
                 setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLight50))
-                textSize = 12f
                 text = supportingText
                 visibility = if (supportingText.isNullOrEmpty()) View.GONE else View.VISIBLE
             }
@@ -792,7 +795,6 @@ class InputField @JvmOverloads constructor(
                 TextView(context).apply {
                     setTextAppearance(R.style.TextRegular_Label4)
                     setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLight50))
-                    textSize = 12f
                     gravity = Gravity.END
 
                     layoutParams = LinearLayout.LayoutParams(
@@ -912,7 +914,6 @@ class InputField @JvmOverloads constructor(
             setTextAppearance(R.style.TextRegular_Paragraph1)
             setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
             gravity = Gravity.CENTER_VERTICAL
-            textSize = 16f
 
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         }
@@ -998,12 +999,12 @@ class InputField @JvmOverloads constructor(
                 (context as androidx.fragment.app.FragmentActivity).supportFragmentManager
             }
             else -> {
-                var ctx = context
-                while (ctx is ContextWrapper) {
-                    if (ctx is androidx.fragment.app.FragmentActivity) {
-                        return ctx.supportFragmentManager
+                var contextTemp = context
+                while (contextTemp is ContextWrapper) {
+                    if (contextTemp is androidx.fragment.app.FragmentActivity) {
+                        return contextTemp.supportFragmentManager
                     }
-                    ctx = ctx.baseContext
+                    contextTemp = contextTemp.baseContext
                 }
                 throw IllegalStateException("Cannot find FragmentManager. Make sure InputField is used in a FragmentActivity context.")
             }
@@ -1184,7 +1185,6 @@ class InputField @JvmOverloads constructor(
                     val inlineErrorText = tagMap?.get("errorText")
                     val counterText = tagMap?.get("counterText")
                     val supportingTextView = tagMap?.get("supportingText")
-
                     if (inlineErrorText != null) {
                         inlineErrorText.text = errorText
                         inlineErrorText.visibility = View.VISIBLE
@@ -1198,6 +1198,8 @@ class InputField @JvmOverloads constructor(
                         textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
                         val bottomRowContainer = (currentInputComponent as? LinearLayout)?.getChildAt(1) as? LinearLayout
                         (bottomRowContainer?.tag as? (() -> Unit))?.invoke()
+
+                        updateSupportingTextDisplay()
                     } else {
                         val textInputLayout = currentInputComponent as? TextInputLayout
                         if (textInputLayout != null) {
@@ -1473,6 +1475,7 @@ class InputField @JvmOverloads constructor(
                     textInputLayout?.isEnabled = enabled
                     textInputLayout?.editText?.isEnabled = enabled
                 }
+                updateSupportingTextDisplay()
             }
             is InputFieldType.Dropdown -> {
                 val textInputLayout = currentInputComponent as? TextInputLayout

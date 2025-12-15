@@ -6,25 +6,27 @@ import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import com.edts.components.R
+import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.textview.MaterialTextView
 
 class StatusBadge @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = android.R.attr.textViewStyle
-) : MaterialTextView(ContextThemeWrapper(context, R.style.Theme_Desklab_Kit), attrs, defStyleAttr) {
+) : MaterialTextView(context, attrs, defStyleAttr) {
     enum class ChipType(
+        val backgroundColorAttr: Int,
         val backgroundColorRes: Int,
+        val textColorAttr: Int,
         val textColorRes: Int,
         val iconRes: Int
     ) {
-        APPROVED(R.color.colorUtilGreen10, R.color.colorUtilGreen50, R.drawable.ic_success),
-        DECLINE(R.color.colorUtilRed10, R.color.colorUtilRed50, R.drawable.ic_error),
-        WAITING(R.color.colorUtilBlue10, R.color.colorUtilBlue50, R.drawable.ic_alarm),
-        CANCEL(R.color.colorUtilGrayLight20, R.color.colorUtilGrayLight60, R.drawable.ic_error);
+        APPROVED(R.attr.colorBackgroundSuccessSubtle, R.color.colorUtilGreen10, R.attr.colorForegroundSuccessIntense, R.color.colorUtilGreen50, R.drawable.ic_success),
+        DECLINE(R.attr.colorBackgroundTertiary, R.color.colorUtilGrayLight20, R.attr.colorForegroundSecondary, R.color.colorUtilGrayLight60, R.drawable.ic_error),
+        WAITING(R.attr.colorBackgroundInfoSubtle, R.color.colorUtilBlue10, R.attr.colorForegroundInfoIntense, R.color.colorUtilBlue50, R.drawable.ic_alarm),
+        CANCEL(R.attr.colorBackgroundAttentionSubtle, R.color.colorUtilRed10, R.attr.colorForegroundAttentionIntense, R.color.colorUtilRed40, R.drawable.ic_error);
     }
 
     var chipType: ChipType = ChipType.APPROVED
@@ -67,9 +69,12 @@ class StatusBadge @JvmOverloads constructor(
     }
 
     private fun applyChipStyle() {
-        val backgroundColor = ContextCompat.getColor(context, chipType.backgroundColorRes)
-        val textColor = ContextCompat.getColor(context, chipType.textColorRes)
-        val strokeColor = getColorFromAttr(R.attr.colorStrokeInteractive)
+        val backgroundColor = context.resolveColorAttr(chipType.backgroundColorAttr, chipType.backgroundColorRes)
+        val textColor = context.resolveColorAttr(chipType.textColorAttr, chipType.textColorRes)
+        val strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.colorUtilNeutralGrayLightA20)
+//        val backgroundColor = ContextCompat.getColor(context, chipType.backgroundColorRes)
+//        val textColor = ContextCompat.getColor(context, chipType.textColorRes)
+//        val strokeColor = getColorFromAttr(R.attr.colorStrokeInteractive)
 
         val background = ContextCompat.getDrawable(context, R.drawable.bg_status_badge)?.mutate() as? GradientDrawable
         background?.setColor(backgroundColor)
@@ -83,12 +88,12 @@ class StatusBadge @JvmOverloads constructor(
         compoundDrawableTintList = ColorStateList.valueOf(textColor)
     }
 
-    private fun getColorFromAttr(attr: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(attr, typedValue, true)) {
-            typedValue.data
-        } else {
-            R.attr.colorForegroundTertiary
-        }
-    }
+//    private fun getColorFromAttr(attr: Int): Int {
+//        val typedValue = TypedValue()
+//        return if (context.theme.resolveAttribute(attr, typedValue, true)) {
+//            typedValue.data
+//        } else {
+//            R.attr.colorForegroundTertiary
+//        }
+//    }
 }
