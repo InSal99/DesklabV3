@@ -15,7 +15,6 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Peserta Terdaftar"
-        android:textColor="?attr/colorForegroundSecondary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTASupportText1"
@@ -31,7 +30,6 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="1"
-        android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintStart_toEndOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTATextDivider"
@@ -46,7 +44,6 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="/"
-        android:textColor="?attr/colorForegroundTertiary"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toStartOf="@id/tvFooterCTASupportText2"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>
@@ -59,7 +56,6 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="1"
-        android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintTop_toTopOf="@id/tvFooterCTATitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tvFooterCTATitle"/>

@@ -113,6 +113,44 @@ class Footer @JvmOverloads constructor(
 
         bindDataToViews()
         setupClickListeners()
+        applyForegroundColors()
+    }
+
+    private fun applyForegroundColors() {
+        val colorForegroundPrimary = context.resolveColorAttr(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack)
+        val colorForegroundSecondary = context.resolveColorAttr(R.attr.colorForegroundSecondary, R.color.kitColorNeutralGrayLight60)
+        val colorForegroundTertiary = context.resolveColorAttr(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50)
+
+        when (footerType) {
+            FooterType.CALL_TO_ACTION -> {
+                ctaBinding?.let { binding ->
+                    binding.tvFooterCTATitle.setTextColor(colorForegroundSecondary)
+                    binding.tvFooterCTASupportText1.setTextColor(colorForegroundPrimary)
+                    binding.tvFooterCTATextDivider.setTextColor(colorForegroundTertiary)
+                    binding.tvFooterCTASupportText2.setTextColor(colorForegroundPrimary)
+                }
+            }
+            FooterType.CALL_TO_ACTION_DETAIL -> {
+                ctaDescBinding?.let { binding ->
+                    binding.tvFooterCTADescTitle.setTextColor(colorForegroundPrimary)
+                    binding.tvFooterCTADescDescription.setTextColor(colorForegroundSecondary)
+                }
+            }
+            FooterType.DUAL_BUTTON -> {
+                dualButtonBinding?.let { binding ->
+                    binding.tvFooterDualButtonTitle.setTextColor(colorForegroundSecondary)
+                    binding.tvFooterDualButtonSupportText1.setTextColor(colorForegroundPrimary)
+                    binding.tvFooterDualButtonTextDivider.setTextColor(colorForegroundTertiary)
+                    binding.tvFooterDualButtonSupportText2.setTextColor(colorForegroundPrimary)
+                }
+            }
+            FooterType.NO_ACTION -> {
+                noActionBinding?.let { binding ->
+                    binding.tvFooterNoActionTitle.setTextColor(colorForegroundSecondary)
+                    binding.tvFooterNoActionDescription.setTextColor(colorForegroundPrimary)
+                }
+            }
+        }
     }
 
     private fun bindDataToViews() {
@@ -230,6 +268,7 @@ class Footer @JvmOverloads constructor(
         if (footerType != type) {
             footerType = type
             setupView()
+            applyForegroundColors()
         }
     }
 
