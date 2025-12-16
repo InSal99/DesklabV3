@@ -18,7 +18,7 @@
         android:maxLines="1"
         android:paddingHorizontal="@dimen/margin_4dp"
         android:text="@string/option_card_title"
-        android:textColor="@color/colorNeutralBlack"/>
+        android:textColor="?attr/colorForegroundPrimary"/>
 
     <ImageView
         android:id="@+id/ivOptionAction"
