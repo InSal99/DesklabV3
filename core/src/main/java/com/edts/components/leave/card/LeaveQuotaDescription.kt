@@ -37,7 +37,7 @@ class LeaveQuotaDescription @JvmOverloads constructor(
         binding = LeaveQuotaDescriptionBinding.inflate(LayoutInflater.from(context), this)
 
         defaultTextColor = context.resolveColorAttr(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack)
-        attentionTextColor = context.resolveColorAttr(R.attr.colorForegroundAttentionIntense, R.color.kitColorNeutralBlack)
+        attentionTextColor = context.resolveColorAttr(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40)
 
         binding.tvLeaveQuota.setTextColor(defaultTextColor)
 
