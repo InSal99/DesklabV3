@@ -60,7 +60,7 @@ class LeaveQuotaCard @JvmOverloads constructor(
     private fun setupCardAppearance() {
         val strokeSubtleColor = context.resolveColorAttr(
             R.attr.colorStrokeSubtle,
-            R.color.colorNeutralGrayLight30
+            R.color.kitColorNeutralGrayLight30
         )
         val cornerRadius = 8f.dpToPx
         val strokeWidth = 1.dpToPx
@@ -74,11 +74,11 @@ class LeaveQuotaCard @JvmOverloads constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             outlineAmbientShadowColor = context.resolveColorAttr(
                 R.attr.colorShadowTintedAmbient,
-                R.color.colorBrandPrimaryA10
+                R.color.kitColorBrandPrimaryA10
             )
             outlineSpotShadowColor = context.resolveColorAttr(
                 R.attr.colorShadowTintedKey,
-                R.color.colorBrandPrimaryA20
+                R.color.kitColorBrandPrimaryA20
             )
         }
     }

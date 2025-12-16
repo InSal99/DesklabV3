@@ -16,7 +16,7 @@ import android.graphics.drawable.Drawable
 import com.edts.components.R
 
 fun Context.createTopShadowBackgroundCustom(
-    fillColor: Int = resolveColorAttribute(android.R.attr.colorBackground, R.color.colorNeutralWhite),
+    fillColor: Int = resolveColorAttribute(android.R.attr.colorBackground, R.color.kitColorNeutralWhite),
     shadowOffsetDp: Int = 4
 ): Drawable {
     val shadowOffsetPx = shadowOffsetDp.dpToPx.toFloat()
@@ -31,7 +31,7 @@ fun Context.createTopShadowBackgroundCustom(
 
         private val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.FILL
-            color = resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLight30)
+            color = resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30)
         }
 
         override fun draw(canvas: Canvas) {
@@ -63,8 +63,8 @@ fun Context.createTopShadowBackgroundCustom(
                 0f, shadowRect.bottom,
                 intArrayOf(
                     Color.TRANSPARENT,
-                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorBrandPrimaryA20),
-                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.colorBrandPrimaryA20)
+                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.kitColorBrandPrimaryA20),
+                    resolveColorAttribute(R.attr.colorShadowTintedKey, R.color.kitColorBrandPrimaryA20)
                 ),
                 floatArrayOf(0f, 0.05f, 1f),
                 Shader.TileMode.CLAMP
@@ -122,7 +122,7 @@ fun Context.createTopShadowBackgroundCustom(
 }
 
 fun Context.createBottomShadowBackgroundCustom(
-    fillColor: Int = resolveColorAttribute(android.R.attr.colorBackground, R.color.colorNeutralWhite),
+    fillColor: Int = resolveColorAttribute(android.R.attr.colorBackground, R.color.kitColorNeutralWhite),
     shadowOffsetDp: Int = 8,
 ): Drawable {
     val shadowOffsetPx = shadowOffsetDp.dpToPx.toFloat()
@@ -157,9 +157,9 @@ fun Context.createBottomShadowBackgroundCustom(
                 0f, shadowRect.top,
                 0f, shadowRect.bottom,
                 intArrayOf(
-                    resolveColorAttribute(R.attr.colorShadowNeutralKey, R.color.colorNeutralGrayDarkA20),
-                    resolveColorAttribute(R.attr.colorShadowNeutralAmbient, R.color.colorNeutralGrayDarkA10),
-                    resolveColorAttribute(R.attr.colorBackgroundPrimaryTinted, R.color.colorBrandPrimary10)
+                    resolveColorAttribute(R.attr.colorShadowNeutralKey, R.color.kitColorNeutralGrayDarkA20),
+                    resolveColorAttribute(R.attr.colorShadowNeutralAmbient, R.color.kitColorNeutralGrayDarkA10),
+                    resolveColorAttribute(R.attr.colorBackgroundPrimaryTinted, R.color.kitColorBrandPrimary10)
                 ),
                 floatArrayOf(0f, 0.2f, 1f),
                 Shader.TileMode.CLAMP

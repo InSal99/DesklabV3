@@ -17,7 +17,6 @@ import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.StyleRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -26,7 +25,6 @@ import androidx.fragment.app.FragmentManager
 import com.edts.components.R
 import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
-import com.edts.components.utils.color
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -94,7 +92,7 @@ class BottomTray : BottomSheetDialogFragment() {
             }
         }
     @ColorRes
-    var titleTextColor: Int? = R.color.colorNeutralBlack
+    var titleTextColor: Int? = R.color.kitColorNeutralBlack
         set(value) {
             field = value
             if (_binding != null) {
@@ -185,7 +183,7 @@ class BottomTray : BottomSheetDialogFragment() {
     private fun setupEdgeToEdge(dialog: BottomSheetDialog) {
         dialog.window?.let { window ->
             window.statusBarColor = Color.TRANSPARENT
-            window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
+            window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
             WindowInsetsControllerCompat(window, window.decorView).apply {
                 isAppearanceLightNavigationBars = true
                 isAppearanceLightStatusBars = true
@@ -295,7 +293,7 @@ class BottomTray : BottomSheetDialogFragment() {
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
 
-        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.colorNeutralWhite)
+        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
 //        val bgColor = requireContext().color(R.color.colorNeutralWhite)
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
@@ -305,7 +303,7 @@ class BottomTray : BottomSheetDialogFragment() {
                     TypedValue.COMPLEX_UNIT_DIP, 8f, requireContext().resources.displayMetrics
                 )
                 shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
-                val shadowColor = requireContext().resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.colorNeutralGrayDarkA10)
+                val shadowColor = requireContext().resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.kitColorNeutralGrayDarkA10)
 //                val shadowColor = requireContext().color(R.color.colorNeutralGrayDarkA10)
                 setShadowColor(shadowColor)
             }
@@ -313,7 +311,7 @@ class BottomTray : BottomSheetDialogFragment() {
         if (!hasStroke) {
             return backgroundDrawable
         }
-        val strokeColor = requireContext().resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLightA30)
+        val strokeColor = requireContext().resolveColorAttr(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLightA30)
 //        val strokeColor = requireContext().color(R.color.colorNeutralGrayLightA30)
         val strokeWidth = resources.getDimension(R.dimen.stroke_weight_1dp)
         val strokeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
@@ -340,7 +338,7 @@ class BottomTray : BottomSheetDialogFragment() {
             .build()
         return MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(
-                requireContext().resolveColorAttr(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLightA50)
+                requireContext().resolveColorAttr(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLightA50)
 //                requireContext().color(R.color.colorNeutralGrayLight50)
             )
         }

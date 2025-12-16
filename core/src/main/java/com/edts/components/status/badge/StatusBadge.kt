@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.Gravity
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -23,10 +22,10 @@ class StatusBadge @JvmOverloads constructor(
         val textColorRes: Int,
         val iconRes: Int
     ) {
-        APPROVED(R.attr.colorBackgroundSuccessSubtle, R.color.colorUtilGreen10, R.attr.colorForegroundSuccessIntense, R.color.colorUtilGreen50, R.drawable.ic_success),
-        DECLINE(R.attr.colorBackgroundTertiary, R.color.colorUtilGrayLight20, R.attr.colorForegroundSecondary, R.color.colorUtilGrayLight60, R.drawable.ic_error),
-        WAITING(R.attr.colorBackgroundInfoSubtle, R.color.colorUtilBlue10, R.attr.colorForegroundInfoIntense, R.color.colorUtilBlue50, R.drawable.ic_alarm),
-        CANCEL(R.attr.colorBackgroundAttentionSubtle, R.color.colorUtilRed10, R.attr.colorForegroundAttentionIntense, R.color.colorUtilRed40, R.drawable.ic_error);
+        APPROVED(R.attr.colorBackgroundSuccessSubtle, R.color.kitColorGreen10, R.attr.colorForegroundSuccessIntense, R.color.kitColorGreen50, R.drawable.ic_success),
+        DECLINE(R.attr.colorBackgroundTertiary, R.color.kitColorNeutralGrayLight20, R.attr.colorForegroundSecondary, R.color.kitColorNeutralGrayLight60, R.drawable.ic_error),
+        WAITING(R.attr.colorBackgroundInfoSubtle, R.color.kitColorBlue10, R.attr.colorForegroundInfoIntense, R.color.kitColorBlue50, R.drawable.ic_alarm),
+        CANCEL(R.attr.colorBackgroundAttentionSubtle, R.color.kitColorRed10, R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40, R.drawable.ic_error);
     }
 
     var chipType: ChipType = ChipType.APPROVED
@@ -71,7 +70,7 @@ class StatusBadge @JvmOverloads constructor(
     private fun applyChipStyle() {
         val backgroundColor = context.resolveColorAttr(chipType.backgroundColorAttr, chipType.backgroundColorRes)
         val textColor = context.resolveColorAttr(chipType.textColorAttr, chipType.textColorRes)
-        val strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.colorUtilNeutralGrayLightA20)
+        val strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.kitColorNeutralGrayLightA20)
 //        val backgroundColor = ContextCompat.getColor(context, chipType.backgroundColorRes)
 //        val textColor = ContextCompat.getColor(context, chipType.textColorRes)
 //        val strokeColor = getColorFromAttr(R.attr.colorStrokeInteractive)
