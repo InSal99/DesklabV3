@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorNeutralWhite"
+    android:background="?attr/colorBackgroundSurface"
     android:padding="@dimen/margin_16dp">
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        app:indicatorColor="@color/colorBrandPrimary30"
+        app:indicatorColor="?attr/colorForegroundAccentPrimaryIntense"
         app:indicatorSize="44dp"
         app:layout_constraintVertical_chainStyle="packed"
-        app:trackColor="@color/colorNeutralGrayLight20"
+        app:trackColor="?attr/colorStrokeSubtle"
         app:trackCornerRadius="@dimen/radius_999dp"
         app:layout_constraintBottom_toTopOf="@+id/tvModalTitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textAlignment="center"
-        android:textColor="@color/colorNeutralBlack"
+        android:textColor="?attr/colorForegroundPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
