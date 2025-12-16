@@ -68,7 +68,7 @@ class SortButton @JvmOverloads constructor(
                 setCardBackgroundColor(
                     context.resolveColorAttribute(
                         R.attr.colorBackgroundPrimary,
-                        android.R.color.transparent
+                        R.color.kitColorNeutralWhite
                     )
                 )
                 foreground = GradientDrawable().apply {
@@ -76,7 +76,7 @@ class SortButton @JvmOverloads constructor(
                     setColor(
                         context.resolveColorAttribute(
                             R.attr.colorBackgroundModifierCardElevated,
-                            android.R.color.transparent
+                            R.color.kitColorNeutralGrayLightA5
                         )
                     )
                 }
@@ -85,7 +85,7 @@ class SortButton @JvmOverloads constructor(
                 setCardBackgroundColor(
                     context.resolveColorAttribute(
                         R.attr.colorBackgroundPrimary,
-                        android.R.color.transparent
+                        R.color.kitColorNeutralWhite
                     )
                 )
                 foreground = GradientDrawable().apply {
@@ -93,7 +93,7 @@ class SortButton @JvmOverloads constructor(
                     setColor(
                         context.resolveColorAttribute(
                             R.attr.colorBackgroundModifierCardElevated,
-                            android.R.color.transparent
+                            R.color.kitColorNeutralGrayLightA5
                         )
                     )
                 }

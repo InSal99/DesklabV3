@@ -81,11 +81,11 @@ class OptionCard @JvmOverloads constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             outlineAmbientShadowColor = context.resolveColorAttr(
                 R.attr.colorForegroundPrimary,
-                android.R.color.transparent
+                R.color.kitColorNeutralBlack
             )
             outlineSpotShadowColor = context.resolveColorAttr(
                 R.attr.colorForegroundPrimary,
-                android.R.color.transparent
+                R.color.kitColorNeutralBlack
             )
         }
         setupClickAnimation()
