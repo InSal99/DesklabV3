@@ -134,7 +134,7 @@ class Chip @JvmOverloads constructor(
                 chipSize = ChipSize.fromValue(chipSizeValue)
 
                 radius = 999.dpToPx.toFloat()
-                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayLightA20))
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
 
                 chipText = getString(R.styleable.Chip_chipText)
                 chipBadgeText = getString(R.styleable.Chip_chipBadgeText)
@@ -183,7 +183,7 @@ class Chip @JvmOverloads constructor(
         binding.ivChip.isClickable = true
         binding.ivChip.isFocusable = true
 
-        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayLightA20))
+        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
 
         val rippleDrawable = RippleDrawable(rippleColor, null, null)
         rippleDrawable.radius = 9f.dpToPx.toInt()
