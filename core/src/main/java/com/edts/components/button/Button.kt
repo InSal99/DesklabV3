@@ -79,9 +79,9 @@ class Button @JvmOverloads constructor(
     private fun preloadColors() {
         val colorAttrs = arrayOf(
             R.attr.colorBackgroundDisabled to R.color.kitColorNeutralGrayDarkA5,
-            R.attr.colorStrokeDisabled to R.color.kitColorNeutralGrayDarkA10,
+            R.attr.colorStrokeDisabled to R.color.kitColorNeutralGrayDarkA12,
             R.attr.colorForegroundDisabled to R.color.kitColorNeutralGrayDarkA20,
-            R.attr.colorBackgroundAttentionIntense to R.color.kitColorRed30,
+            R.attr.colorBackgroundAttentionIntense to R.color.kitColorRed40,
             R.attr.colorStrokeInteractive to R.color.kitColorNeutralGrayLightA20,
             R.attr.colorForegroundWhite to R.color.kitColorNeutralWhite,
             R.attr.colorBackgroundModifierOnPressIntense to R.color.kitColorNeutralGrayDarkA12,

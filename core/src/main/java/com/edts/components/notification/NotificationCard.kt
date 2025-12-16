@@ -129,7 +129,7 @@ class NotificationCard @JvmOverloads constructor(
 
         val rippleColor = context.resolveColorAttribute(
             R.attr.colorBackgroundModifierOnPress,
-            R.color.kitColorNeutralGrayLight20
+            R.color.kitColorNeutralGrayDarkA5
         )
 
         val cornerRadius = 12f.dpToPx
