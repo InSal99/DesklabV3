@@ -115,13 +115,13 @@ class LeaveCard @JvmOverloads constructor(
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             outlineAmbientShadowColor = run {
-                val fallbackColorRes = R.color.kitColorGreen50
-                val resolved = context.resolveColorAttr(R.attr.colorForegroundAccentPrimaryIntense, fallbackColorRes)
+                val fallbackColorRes = R.color.kitColorBrandPrimaryA10
+                val resolved = context.resolveColorAttr(R.attr.colorShadowTintedAmbient, fallbackColorRes)
                 try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
             }
             outlineSpotShadowColor = run {
-                val fallbackColorRes = R.color.kitColorGreen50
-                val resolved = context.resolveColorAttr(R.attr.colorForegroundAccentPrimaryIntense, fallbackColorRes)
+                val fallbackColorRes = R.color.kitColorBrandPrimaryA20
+                val resolved = context.resolveColorAttr(R.attr.colorShadowTintedKey, fallbackColorRes)
                 try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
             }
         }
