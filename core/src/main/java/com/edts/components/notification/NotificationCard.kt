@@ -124,12 +124,12 @@ class NotificationCard @JvmOverloads constructor(
     private fun setupCardAppearance() {
         val strokeSubtleColor = context.resolveColorAttribute(
             R.attr.colorStrokeSubtle,
-            R.color.colorNeutralGrayLight30
+            R.color.kitColorNeutralGrayLight30
         )
 
         val rippleColor = context.resolveColorAttribute(
             R.attr.colorBackgroundModifierOnPress,
-            R.color.colorNeutralGrayLight20
+            R.color.kitColorNeutralGrayDarkA5
         )
 
         val cornerRadius = 12f.dpToPx
@@ -145,7 +145,7 @@ class NotificationCard @JvmOverloads constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val shadowColor = context.resolveColorAttribute(
                 R.attr.colorForegroundPrimary,
-                R.color.colorNeutralBlack
+                R.color.kitColorNeutralBlack
             )
             outlineAmbientShadowColor = shadowColor
             outlineSpotShadowColor = shadowColor

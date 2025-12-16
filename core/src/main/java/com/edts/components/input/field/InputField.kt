@@ -26,9 +26,6 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
-import androidx.core.view.get
-import androidx.core.view.marginTop
-import androidx.core.view.setPadding
 import androidx.core.widget.doAfterTextChanged
 import com.edts.components.R
 import com.edts.components.checkbox.CheckBox
@@ -61,8 +58,8 @@ class InputField @JvmOverloads constructor(
     private var currentInputComponent: View? = null
     private var currentConfig: InputFieldConfig? = null
 
-    private var requiredColor: Int = R.color.colorRed40
-    private var errorColor: Int = R.color.colorRed40
+    private var requiredColor: Int = R.color.kitColorRed40
+    private var errorColor: Int = R.color.kitColorRed40
 
     private var isFieldEnabled: Boolean = true
     private var currentErrorText: String? = null
@@ -107,20 +104,20 @@ class InputField @JvmOverloads constructor(
 
         titleTextView = TextView(context).apply {
             setTextAppearance(R.style.TextMedium_Label2)
-            setTextColor(getCachedColor(R.attr.colorForegroundSecondary, R.color.colorNeutralGrayLight60))
+            setTextColor(getCachedColor(R.attr.colorForegroundSecondary, R.color.kitColorNeutralGrayLight60))
             setPadding(0, 0, 0, padding4dp)
         }
 
         descriptionTextView = TextView(context).apply {
             setTextAppearance(R.style.TextRegular_Label4)
-            setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
+            setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             setPadding(0, 0, 0, padding8dp)
             visibility = View.GONE
         }
 
         errorTextView = TextView(context).apply {
             setTextAppearance(R.style.TextRegular_Label4)
-            setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+            setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
             setPadding(0, padding4dp, 0, 0)
             visibility = View.GONE
         }
@@ -136,15 +133,15 @@ class InputField @JvmOverloads constructor(
     }
 
     private fun cacheCommonColors() {
-        getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack)
-        getCachedColor(R.attr.colorForegroundSecondary, R.color.colorNeutralGrayLight60)
-        getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40)
-        getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLight50)
-        getCachedColor(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayLight30)
-        getCachedColor(R.attr.colorBackgroundPrimary, R.color.colorNeutralWhite)
-        getCachedColor(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLight30)
-        getCachedColor(R.attr.colorStrokeAccent, R.color.colorBrandPrimary30)
-        getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50)
+        getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack)
+        getCachedColor(R.attr.colorForegroundSecondary, R.color.kitColorNeutralGrayLight60)
+        getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40)
+        getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50)
+        getCachedColor(R.attr.colorForegroundDisabled, R.color.kitColorNeutralGrayLight20)
+        getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite)
+        getCachedColor(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30)
+        getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30)
+        getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.kitColorRed50)
     }
 
     private fun getCachedColor(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
@@ -184,12 +181,12 @@ class InputField @JvmOverloads constructor(
 
             requiredColor = getCachedColor(
                 typedArray.getResourceId(R.styleable.InputField_requiredColor, -1),
-                R.color.colorRed40
+                R.color.kitColorRed40
             )
 
             errorColor = getCachedColor(
                 typedArray.getResourceId(R.styleable.InputField_errorColor, -1),
-                R.color.colorRed40
+                R.color.kitColorRed40
             )
 
             val titleTextAppearance = typedArray.getResourceId(R.styleable.InputField_titleTextAppearance, -1)
@@ -251,9 +248,9 @@ class InputField @JvmOverloads constructor(
                 if (supportingTextView != null && !supportingText.isNullOrEmpty()) {
                     supportingTextView.text = supportingText
                     val color = when {
-                        !isFieldEnabled -> getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40)
-                        !currentErrorText.isNullOrEmpty() -> getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed50)
-                        else -> getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLight50)
+                        !isFieldEnabled -> getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40)
+                        !currentErrorText.isNullOrEmpty() -> getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40)
+                        else -> getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50)
                     }
                     supportingTextView.setTextColor(color)
                 } else {
@@ -295,7 +292,7 @@ class InputField @JvmOverloads constructor(
                 titleTextView.text = if (isFieldRequired) {
                     val spannableTitle = SpannableString("$title *")
                     spannableTitle.setSpan(
-                        ForegroundColorSpan(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40)),
+                        ForegroundColorSpan(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40)),
                         title.length + 1,
                         spannableTitle.length,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -317,10 +314,10 @@ class InputField @JvmOverloads constructor(
 
     private fun updateTextInputColors(editText: EditText, enabled: Boolean) {
         if (enabled) {
-            editText.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
-            editText.setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
+            editText.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
+            editText.setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
         } else {
-            val disabledColor = getCachedColor(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayLight30)
+            val disabledColor = getCachedColor(R.attr.colorForegroundDisabled, R.color.kitColorNeutralGrayLight20)
             editText.setTextColor(disabledColor)
             editText.setHintTextColor(disabledColor)
         }
@@ -328,10 +325,10 @@ class InputField @JvmOverloads constructor(
 
     private fun updateDropdownColors(container: LinearLayout, textView: TextView, enabled: Boolean) {
         if (enabled) {
-            textView.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
+            textView.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
             container.background = getCachedDrawable("rounded_normal") { createRoundedBackground() }
         } else {
-            textView.setTextColor(getCachedColor(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayLight30))
+            textView.setTextColor(getCachedColor(R.attr.colorForegroundDisabled, R.color.kitColorNeutralGrayLight20))
             container.background = getCachedDrawable("rounded_disabled") { createDisabledBackground() }
         }
     }
@@ -376,8 +373,8 @@ class InputField @JvmOverloads constructor(
         val editText = EditText(context).apply {
             hint = config.hint
             setTextAppearance(R.style.TextRegular_Paragraph1)
-            setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
-            setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
+            setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
+            setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             background = null
 
             inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_NORMAL
@@ -448,13 +445,13 @@ class InputField @JvmOverloads constructor(
 
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
                 visibility = View.GONE
             }
 
             val supportingTextView = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
+                setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
                 text = supportingText
                 visibility = if (supportingText.isNullOrEmpty()) View.GONE else View.VISIBLE
             }
@@ -465,7 +462,7 @@ class InputField @JvmOverloads constructor(
             val counterText = if (maxLength > 0) {
                 TextView(context).apply {
                     setTextAppearance(R.style.TextRegular_Label4)
-                    setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
+                    setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
                     gravity = Gravity.END
 
                     layoutParams = LinearLayout.LayoutParams(
@@ -539,8 +536,8 @@ class InputField @JvmOverloads constructor(
         val editText = EditText(context).apply {
             hint = config.hint
             setTextAppearance(R.style.TextRegular_Paragraph1)
-            setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
-            setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
+            setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
+            setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             background = null
 
             inputType = android.text.InputType.TYPE_CLASS_NUMBER or
@@ -612,13 +609,13 @@ class InputField @JvmOverloads constructor(
 
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
                 visibility = View.GONE
             }
 
             val supportingTextView = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
+                setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
                 text = supportingText
                 visibility = if (supportingText.isNullOrEmpty()) View.GONE else View.VISIBLE
             }
@@ -629,7 +626,7 @@ class InputField @JvmOverloads constructor(
             val counterText = if (maxLength > 0) {
                 TextView(context).apply {
                     setTextAppearance(R.style.TextRegular_Label4)
-                    setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
+                    setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
                     gravity = Gravity.END
 
                     layoutParams = LinearLayout.LayoutParams(
@@ -703,8 +700,8 @@ class InputField @JvmOverloads constructor(
         val editText = EditText(context).apply {
             hint = config.hint
             setTextAppearance(R.style.TextRegular_Paragraph1)
-            setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
-            setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
+            setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
+            setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             background = null
             gravity = Gravity.TOP
 
@@ -777,13 +774,13 @@ class InputField @JvmOverloads constructor(
 
             val errorTextForCounter = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+                setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
                 visibility = View.GONE
             }
 
             val supportingTextView = TextView(context).apply {
                 setTextAppearance(R.style.TextRegular_Label4)
-                setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLight50))
+                setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
                 text = supportingText
                 visibility = if (supportingText.isNullOrEmpty()) View.GONE else View.VISIBLE
             }
@@ -794,7 +791,7 @@ class InputField @JvmOverloads constructor(
             val counterText = if (maxLength > 0) {
                 TextView(context).apply {
                     setTextAppearance(R.style.TextRegular_Label4)
-                    setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLight50))
+                    setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
                     gravity = Gravity.END
 
                     layoutParams = LinearLayout.LayoutParams(
@@ -857,8 +854,8 @@ class InputField @JvmOverloads constructor(
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
-        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.colorNeutralWhite))
-        shape.setStroke(strokeWidth2dp, getCachedColor(R.attr.colorStrokeAccent, R.color.colorBrandPrimary30))
+        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+        shape.setStroke(strokeWidth2dp, getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30))
         return shape
     }
 
@@ -866,14 +863,14 @@ class InputField @JvmOverloads constructor(
         val baseShape = GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
             this.cornerRadius = this@InputField.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundDisabled, R.color.colorNeutralGrayDarkA5))
-            setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLight30))
+            setColor(getCachedColor(R.attr.colorBackgroundDisabled, R.color.kitColorNeutralGrayDarkA5))
+            setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30))
         }
 
         val overlayShape = GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
             this.cornerRadius = this@InputField.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated, R.color.colorNeutralGrayLightA5))
+            setColor(getCachedColor(R.attr.colorBackgroundModifierCardElevated, R.color.kitColorNeutralGrayLightA5))
         }
 
         return LayerDrawable(arrayOf(baseShape, overlayShape))
@@ -892,8 +889,8 @@ class InputField @JvmOverloads constructor(
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
-        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.colorNeutralWhite))
-        shape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.colorRed50))
+        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+        shape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.kitColorRed50))
         return shape
     }
 
@@ -912,7 +909,7 @@ class InputField @JvmOverloads constructor(
         val textView = TextView(context).apply {
             text = config.hint ?: "Select option"
             setTextAppearance(R.style.TextRegular_Paragraph1)
-            setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight40))
+            setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             gravity = Gravity.CENTER_VERTICAL
 
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
@@ -921,7 +918,7 @@ class InputField @JvmOverloads constructor(
 
         val iconView = ImageView(context).apply {
             setImageResource(R.drawable.ic_chevron_down)
-            setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.colorNeutralGrayLight50))
+            setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
             scaleType = ImageView.ScaleType.CENTER
 
             layoutParams = FrameLayout.LayoutParams(
@@ -942,7 +939,7 @@ class InputField @JvmOverloads constructor(
 
             showOptionDrawer(config.options) { selectedOption ->
                 textView.text = selectedOption
-                textView.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
+                textView.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
 
                 notifyValueChange(selectedOption)
                 notifyValidationChange()
@@ -957,14 +954,14 @@ class InputField @JvmOverloads constructor(
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
-        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.colorNeutralWhite))
-        shape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLight30))
+        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+        shape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30))
 
         val focusedShape = GradientDrawable()
         focusedShape.shape = GradientDrawable.RECTANGLE
         focusedShape.cornerRadius = cornerRadius
-        focusedShape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.colorNeutralWhite))
-        focusedShape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeAccent, R.color.colorBrandPrimary30))
+        focusedShape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+        focusedShape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30))
 
         val stateListDrawable = StateListDrawable()
         stateListDrawable.addState(intArrayOf(android.R.attr.state_focused), focusedShape)
@@ -1192,7 +1189,7 @@ class InputField @JvmOverloads constructor(
                         supportingTextView?.visibility = View.GONE
 
                         if (errorText.contains("Minimum") || errorText.contains("Maximum")) {
-                            counterText?.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+                            counterText?.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
                         }
 
                         textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
@@ -1208,7 +1205,7 @@ class InputField @JvmOverloads constructor(
                         } else {
                             errorTextView.text = errorText
                             errorTextView.visibility = View.VISIBLE
-                            errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+                            errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
 
                             textInputContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
                         }
@@ -1222,20 +1219,20 @@ class InputField @JvmOverloads constructor(
                     } else {
                         errorTextView.text = errorText
                         errorTextView.visibility = View.VISIBLE
-                        errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+                        errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
                         dropdownContainer?.background = getCachedDrawable("rounded_error") { createErrorBackground() }
                     }
                 }
                 is InputFieldType.RadioGroup -> {
                     errorTextView.text = errorText
                     errorTextView.visibility = View.VISIBLE
-                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
                     (currentInputComponent as? RadioGroup)?.setErrorStateOnAll(true)
                 }
                 is InputFieldType.CheckboxGroup -> {
                     errorTextView.text = errorText
                     errorTextView.visibility = View.VISIBLE
-                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.colorRed40))
+                    errorTextView.setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
 
                     (currentInputComponent as? ViewGroup)?.let { container ->
                         for (i in 0 until container.childCount) {
@@ -1263,7 +1260,7 @@ class InputField @JvmOverloads constructor(
         val supportingTextView = tagMap?.get("supportingText")
 
         inlineErrorText?.visibility = View.GONE
-        counterText?.setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.colorNeutralGrayLight50))
+        counterText?.setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
         updateSupportingTextDisplay()
 
         val bottomRowContainer = (currentInputComponent as? LinearLayout)?.getChildAt(1) as? LinearLayout
@@ -1374,7 +1371,7 @@ class InputField @JvmOverloads constructor(
                     dropdownTextView?.let { textView ->
                         if (value != null) {
                             textView.text = value.toString()
-                            textView.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.colorNeutralBlack))
+                            textView.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
                         }
                     }
                 }

@@ -119,7 +119,7 @@ class EventCard @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
 
                 eventImageUrl = getString(R.styleable.EventCard_eventImageUrl)
                 eventImageSrc = getResourceId(R.styleable.EventCard_eventImageSrc, -1)

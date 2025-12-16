@@ -2,216 +2,193 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Desklab.Kit" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/colorBrandPrimary30</item>
-        <item name="colorPrimaryVariant">@color/colorBrandPrimary50</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/colorBrandSecondary30</item>
-        <item name="colorSecondaryVariant">@color/colorBrandSecondary50</item>
-        <item name="colorOnSecondary">@color/colorBlack70</item>
-
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/colorNeutralWhite</item>
-        <item name="android:windowLightStatusBar">true</item>
-
-        <!-- Customize your theme here. -->
+        <!-- Font -->
         <item name="android:fontFamily">@font/inter_medium</item>
         <item name="fontFamily">@font/inter_medium</item>
-
-        <!-- Calendar -->
-        <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
-        <item name="materialCalendarFullscreenTheme">
-            @style/ThemeOverlay.MaterialComponents.MaterialCalendar
-        </item>
-        <item name="android:windowFullscreen">false</item>
-        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar
-        </item>
 
         <!-- Modality Dialog -->
         <item name="materialAlertDialogTheme">@style/Theme.DesklabV3.Alert.Dialog</item>
 
         <!-- Background Colors -->
-        <item name="colorBackgroundPrimary">@color/colorNeutralBlack</item>
-        <item name="colorBackgroundPrimaryTinted">@color/colorGrayBlue10</item>
-        <item name="colorBackgroundPrimaryInverse">@color/colorNeutralWhite</item>
-        <item name="colorBackgroundSecondary">@color/colorNeutralGrayDark10</item>
-        <item name="colorBackgroundSecondaryTinted">@color/colorGrayBlue20</item>
-        <item name="colorBackgroundTertiary">@color/colorNeutralGrayDark60</item>
-        <item name="colorBackgroundOverlay">@color/colorNeutralGrayDarkA65</item>
-        <item name="colorBackgroundDisabled">@color/colorNeutralGrayLightA5</item>
-        <item name="colorBackgroundElevated">@color/colorModifierElevated</item>
-        <item name="colorBackgroundSurface">@color/colorModifierSurface</item>
+        <item name="colorBackgroundPrimary">@color/kitColorNeutralBlack</item>
+        <item name="colorBackgroundPrimaryTinted">@color/kitColorGrayBlue10</item>
+        <item name="colorBackgroundPrimaryInverse">@color/kitColorNeutralWhite</item>
+        <item name="colorBackgroundSecondary">@color/kitColorNeutralGrayDark10</item>
+        <item name="colorBackgroundSecondaryTinted">@color/kitColorGrayBlue20</item>
+        <item name="colorBackgroundTertiary">@color/kitColorNeutralGrayDark60</item>
+        <item name="colorBackgroundOverlay">@color/kitColorNeutralGrayDarkA65</item>
+        <item name="colorBackgroundDisabled">@color/kitColorNeutralGrayLightA5</item>
+        <item name="colorBackgroundElevated">@color/kitColorModifierElevated</item>
+        <item name="colorBackgroundSurface">@color/kitColorModifierSurface</item>
 
         <!-- Accent Background Colors -->
-        <item name="colorBackgroundAccentPrimarySubtle">@color/colorBrandPrimary10</item>
-        <item name="colorBackgroundAccentPrimaryIntense">@color/colorBrandPrimary30</item>
-        <item name="colorBackgroundAccentSecondary">@color/colorBrandSecondary30</item>
-        <item name="colorBackgroundAccentDisabled">@color/colorBrandPrimaryA5</item>
+        <item name="colorBackgroundAccentPrimarySubtle">@color/kitColorBrandPrimary10</item>
+        <item name="colorBackgroundAccentPrimaryIntense">@color/kitColorBrandPrimary30</item>
+        <item name="colorBackgroundAccentSecondary">@color/kitColorBrandSecondary30</item>
+        <item name="colorBackgroundAccentDisabled">@color/kitColorBrandPrimaryA5</item>
 
         <!-- Modifier Background Colors -->
-        <item name="colorBackgroundModifierCardElevated">@color/colorNeutralGrayLightA5</item>
-        <item name="colorBackgroundModifierCardElevatedInverse">@color/colorNeutralGrayDarkA5</item>
-        <item name="colorBackgroundModifierCardSurface">@color/colorNeutralGrayLightA2</item>
-        <item name="colorBackgroundModifierOnHover">@color/colorNeutralGrayLightA5</item>
-        <item name="colorBackgroundModifierOnPress">@color/colorNeutralGrayLightA10</item>
-        <item name="colorBackgroundModifierOnPressIntense">@color/colorNeutralGrayLightA20</item>
+        <item name="colorBackgroundModifierCardElevated">@color/kitColorNeutralGrayLightA5</item>
+        <item name="colorBackgroundModifierCardElevatedInverse">@color/kitColorNeutralGrayDarkA5</item>
+        <item name="colorBackgroundModifierCardSurface">@color/kitColorNeutralGrayLightA2</item>
+        <item name="colorBackgroundModifierOnHover">@color/kitColorNeutralGrayLightA5</item>
+        <item name="colorBackgroundModifierOnPress">@color/kitColorNeutralGrayLightA10</item>
+        <item name="colorBackgroundModifierOnPressIntense">@color/kitColorNeutralGrayLightA20</item>
 
         <!-- Info Background Colors -->
-        <item name="colorBackgroundInfoSubtle">@color/colorBlue10</item>
-        <item name="colorBackgroundInfoIntense">@color/colorBlue40</item>
+        <item name="colorBackgroundInfoSubtle">@color/kitColorBlue10</item>
+        <item name="colorBackgroundInfoIntense">@color/kitColorBlue40</item>
 
         <!-- Success Background Colors -->
-        <item name="colorBackgroundSuccessSubtle">@color/colorGreen10</item>
-        <item name="colorBackgroundSuccessIntense">@color/colorGreen50</item>
+        <item name="colorBackgroundSuccessSubtle">@color/kitColorGreen10</item>
+        <item name="colorBackgroundSuccessIntense">@color/kitColorGreen50</item>
 
         <!-- Warning Background Colors -->
-        <item name="colorBackgroundWarningSubtle">@color/colorOrange10</item>
-        <item name="colorBackgroundWarningIntense">@color/colorOrange40</item>
+        <item name="colorBackgroundWarningSubtle">@color/kitColorOrange10</item>
+        <item name="colorBackgroundWarningIntense">@color/kitColorOrange40</item>
 
         <!-- Attention Background Colors -->
-        <item name="colorBackgroundAttentionSubtle">@color/colorRed10</item>
-        <item name="colorBackgroundAttentionIntense">@color/colorRed40</item>
+        <item name="colorBackgroundAttentionSubtle">@color/kitColorRed10</item>
+        <item name="colorBackgroundAttentionIntense">@color/kitColorRed40</item>
 
         <!-- Utility Background Colors -->
         <!-- libur -->
-        <item name="colorBackgroundUtilityLiburSubtle">@color/colorRed10</item>
-        <item name="colorBackgroundUtilityLiburIntense">@color/colorRed40</item>
+        <item name="colorBackgroundUtilityLiburSubtle">@color/kitColorRed10</item>
+        <item name="colorBackgroundUtilityLiburIntense">@color/kitColorRed40</item>
 
         <!-- cuti -->
-        <item name="colorBackgroundUtilityCutiSubtle">@color/colorBrandPrimary10</item>
-        <item name="colorBackgroundUtilityCutiIntense">@color/colorBrandPrimary30</item>
+        <item name="colorBackgroundUtilityCutiSubtle">@color/kitColorBrandPrimary10</item>
+        <item name="colorBackgroundUtilityCutiIntense">@color/kitColorBrandPrimary30</item>
 
         <!-- kerja khusus -->
-        <item name="colorBackgroundUtilityKerjaKhususSubtle">@color/colorBrandSecondary10</item>
-        <item name="colorBackgroundUtilityKerjaKhususIntense">@color/colorBrandSecondary30</item>
+        <item name="colorBackgroundUtilityKerjaKhususSubtle">@color/kitColorBrandSecondary10</item>
+        <item name="colorBackgroundUtilityKerjaKhususIntense">@color/kitColorBrandSecondary30</item>
 
         <!-- ulang tahun -->
-        <item name="colorBackgroundUtilityUlangTahunSubtle">@color/colorGreen10</item>
-        <item name="colorBackgroundUtilityUlangTahunIntense">@color/colorGreen40</item>
+        <item name="colorBackgroundUtilityUlangTahunSubtle">@color/kitColorGreen10</item>
+        <item name="colorBackgroundUtilityUlangTahunIntense">@color/kitColorGreen40</item>
 
         <!-- event -->
-        <item name="colorBackgroundUtilityEventSubtle">@color/colorOrange10</item>
-        <item name="colorBackgroundUtilityEventIntense">@color/colorOrange40</item>
+        <item name="colorBackgroundUtilityEventSubtle">@color/kitColorOrange10</item>
+        <item name="colorBackgroundUtilityEventIntense">@color/kitColorOrange40</item>
 
         <!-- Basic Foreground Colors -->
-        <item name="colorForegroundPrimary">@color/colorNeutralWhite</item>
-        <item name="colorForegroundPrimaryInverse">@color/colorNeutralBlack</item>
-        <item name="colorForegroundSecondary">@color/colorNeutralGrayDark20</item>
-        <item name="colorForegroundTertiary">@color/colorNeutralGrayDark30</item>
-        <item name="colorForegroundPlaceholder">@color/colorNeutralGrayDark40</item>
-        <item name="colorForegroundDisabled">@color/colorNeutralGrayLightA10</item>
+        <item name="colorForegroundPrimary">@color/kitColorNeutralWhite</item>
+        <item name="colorForegroundPrimaryInverse">@color/kitColorNeutralBlack</item>
+        <item name="colorForegroundSecondary">@color/kitColorNeutralGrayDark20</item>
+        <item name="colorForegroundTertiary">@color/kitColorNeutralGrayDark30</item>
+        <item name="colorForegroundPlaceholder">@color/kitColorNeutralGrayDark40</item>
+        <item name="colorForegroundDisabled">@color/kitColorNeutralGrayLightA10</item>
         <item name="colorForegroundOverlay">?attr/colorBackgroundOverlay</item>
-        <item name="colorForegroundWhite">@color/colorNeutralWhite</item>
-        <item name="colorForegroundBlack">@color/colorNeutralBlack</item>
+        <item name="colorForegroundWhite">@color/kitColorNeutralWhite</item>
+        <item name="colorForegroundBlack">@color/kitColorNeutralBlack</item>
 
         <!-- Modifier Foreground Colors -->
         <item name="colorForegroundModifierCardElevated">?attr/colorBackgroundModifierCardElevated</item>
         <item name="colorForegroundModifierCardSurface">?attr/colorBackgroundModifierCardSurface</item>
 
         <!-- Accent Foreground Colors -->
-        <item name="colorForegroundAccentPrimarySubtle">@color/colorBrandPrimary10</item>
-        <item name="colorForegroundAccentPrimaryIntense">@color/colorBrandPrimary30</item>
+        <item name="colorForegroundAccentPrimarySubtle">@color/kitColorBrandPrimary10</item>
+        <item name="colorForegroundAccentPrimaryIntense">@color/kitColorBrandPrimary30</item>
 
         <!-- Info Foreground Colors -->
-        <item name="colorForegroundInfoSubtle">@color/colorBlue10</item>
-        <item name="colorForegroundInfoIntense">@color/colorBlue50</item>
+        <item name="colorForegroundInfoSubtle">@color/kitColorBlue10</item>
+        <item name="colorForegroundInfoIntense">@color/kitColorBlue50</item>
 
         <!-- Success Foreground Colors -->
-        <item name="colorForegroundSuccessSubtle">@color/colorGreen10</item>
-        <item name="colorForegroundSuccessIntense">@color/colorGreen50</item>
+        <item name="colorForegroundSuccessSubtle">@color/kitColorGreen10</item>
+        <item name="colorForegroundSuccessIntense">@color/kitColorGreen50</item>
 
         <!-- Warning Foreground Colors -->
-        <item name="colorForegroundWarningSubtle">@color/colorOrange10</item>
-        <item name="colorForegroundWarningIntense">@color/colorOrange50</item>
+        <item name="colorForegroundWarningSubtle">@color/kitColorOrange10</item>
+        <item name="colorForegroundWarningIntense">@color/kitColorOrange50</item>
 
         <!-- Attention Foreground Colors -->
-        <item name="colorForegroundAttentionSubtle">@color/colorRed10</item>
-        <item name="colorForegroundAttentionIntense">@color/colorRed50</item>
+        <item name="colorForegroundAttentionSubtle">@color/kitColorRed10</item>
+        <item name="colorForegroundAttentionIntense">@color/kitColorRed50</item>
 
         <!-- Utility Foreground Colors -->
         <!-- libur -->
-        <item name="colorForegroundUtilityLiburSubtle">@color/colorRed10</item>
-        <item name="colorForegroundUtilityLiburIntense">@color/colorRed40</item>
+        <item name="colorForegroundUtilityLiburSubtle">@color/kitColorRed10</item>
+        <item name="colorForegroundUtilityLiburIntense">@color/kitColorRed40</item>
 
         <!-- cuti -->
-        <item name="colorForegroundUtilityCutiSubtle">@color/colorBrandPrimary10</item>
-        <item name="colorForegroundUtilityCutiIntense">@color/colorBrandPrimary30</item>
+        <item name="colorForegroundUtilityCutiSubtle">@color/kitColorBrandPrimary10</item>
+        <item name="colorForegroundUtilityCutiIntense">@color/kitColorBrandPrimary30</item>
 
         <!-- kerja-khusus -->
-        <item name="colorForegroundUtilityKerjaKhususSubtle">@color/colorBrandSecondary10</item>
-        <item name="colorForegroundUtilityKerjaKhususIntense">@color/colorBrandSecondary30</item>
+        <item name="colorForegroundUtilityKerjaKhususSubtle">@color/kitColorBrandSecondary10</item>
+        <item name="colorForegroundUtilityKerjaKhususIntense">@color/kitColorBrandSecondary30</item>
 
         <!-- ulang-tahun -->
-        <item name="colorForegroundUtilityUlangTahunSubtle">@color/colorGreen10</item>
-        <item name="colorForegroundUtilityUlangTahunIntense">@color/colorGreen40</item>
+        <item name="colorForegroundUtilityUlangTahunSubtle">@color/kitColorGreen10</item>
+        <item name="colorForegroundUtilityUlangTahunIntense">@color/kitColorGreen40</item>
 
         <!-- event -->
-        <item name="colorForegroundUtilityEventSubtle">@color/colorOrange10</item>
-        <item name="colorForegroundUtilityEventIntense">@color/colorOrange40</item>
+        <item name="colorForegroundUtilityEventSubtle">@color/kitColorOrange10</item>
+        <item name="colorForegroundUtilityEventIntense">@color/kitColorOrange40</item>
 
         <!-- Basic Stroke Colors -->
-        <item name="colorStrokeSubtle">@color/colorNeutralGrayDark50</item>
-        <item name="colorStrokeInteractive">@color/colorNeutralGrayDarkA20</item>
-        <item name="colorStrokeIntense">@color/colorNeutralGrayDark40</item>
-        <item name="colorStrokeFocus">@color/colorBrandPrimary50</item>
-        <item name="colorStrokeAccent">@color/colorBrandPrimary30</item>
-        <item name="colorStrokeDisabled">@color/colorNeutralGrayLightA10</item>
+        <item name="colorStrokeSubtle">@color/kitColorNeutralGrayDark50</item>
+        <item name="colorStrokeInteractive">@color/kitColorNeutralGrayDarkA20</item>
+        <item name="colorStrokeIntense">@color/kitColorNeutralGrayDark40</item>
+        <item name="colorStrokeFocus">@color/kitColorBrandPrimary50</item>
+        <item name="colorStrokeAccent">@color/kitColorBrandPrimary30</item>
+        <item name="colorStrokeDisabled">@color/kitColorNeutralGrayLightA10</item>
         <item name="colorStrokeCutout">?attr/colorBackgroundPrimary</item>
 
         <!-- Semantic Stroke Colors -->
         <!-- Info -->
-        <item name="colorStrokeInfoSubtle">@color/colorBlue10</item>
-        <item name="colorStrokeInfoIntense">@color/colorBlue50</item>
+        <item name="colorStrokeInfoSubtle">@color/kitColorBlue10</item>
+        <item name="colorStrokeInfoIntense">@color/kitColorBlue50</item>
 
         <!-- Success -->
-        <item name="colorStrokeSuccessSubtle">@color/colorGreen10</item>
-        <item name="colorStrokeSuccessIntense">@color/colorGreen50</item>
+        <item name="colorStrokeSuccessSubtle">@color/kitColorGreen10</item>
+        <item name="colorStrokeSuccessIntense">@color/kitColorGreen50</item>
 
         <!-- Warning -->
-        <item name="colorStrokeWarningSubtle">@color/colorOrange10</item>
-        <item name="colorStrokeWarningIntense">@color/colorOrange40</item>
+        <item name="colorStrokeWarningSubtle">@color/kitColorOrange10</item>
+        <item name="colorStrokeWarningIntense">@color/kitColorOrange40</item>
 
         <!-- Attention -->
-        <item name="colorStrokeAttentionSubtle">@color/colorRed10</item>
-        <item name="colorStrokeAttentionIntense">@color/colorRed50</item>
+        <item name="colorStrokeAttentionSubtle">@color/kitColorRed10</item>
+        <item name="colorStrokeAttentionIntense">@color/kitColorRed50</item>
 
         <!-- Utility Stroke Colors -->
         <!-- libur -->
-        <item name="colorStrokeUtilityLiburSubtle">@color/colorRed10</item>
-        <item name="colorStrokeUtilityLiburIntense">@color/colorRed40</item>
+        <item name="colorStrokeUtilityLiburSubtle">@color/kitColorRed10</item>
+        <item name="colorStrokeUtilityLiburIntense">@color/kitColorRed40</item>
 
         <!-- cuti -->
-        <item name="colorStrokeUtilityCutiSubtle">@color/colorBrandPrimary10</item>
-        <item name="colorStrokeUtilityCutiIntense">@color/colorBrandPrimary30</item>
+        <item name="colorStrokeUtilityCutiSubtle">@color/kitColorBrandPrimary10</item>
+        <item name="colorStrokeUtilityCutiIntense">@color/kitColorBrandPrimary30</item>
 
         <!-- kerja khusus -->
-        <item name="colorStrokeUtilityKerjaKhususSubtle">@color/colorBrandSecondary10</item>
-        <item name="colorStrokeUtilityKerjaKhususIntense">@color/colorBrandSecondary30</item>
+        <item name="colorStrokeUtilityKerjaKhususSubtle">@color/kitColorBrandSecondary10</item>
+        <item name="colorStrokeUtilityKerjaKhususIntense">@color/kitColorBrandSecondary30</item>
 
         <!-- ulang tahun -->
-        <item name="colorStrokeUtilityUlangTahunSubtle">@color/colorGreen10</item>
-        <item name="colorStrokeUtilityUlangTahunIntense">@color/colorGreen40</item>
+        <item name="colorStrokeUtilityUlangTahunSubtle">@color/kitColorGreen10</item>
+        <item name="colorStrokeUtilityUlangTahunIntense">@color/kitColorGreen40</item>
 
         <!-- event -->
-        <item name="colorStrokeUtilityEventSubtle">@color/colorOrange10</item>
-        <item name="colorStrokeUtilityEventIntense">@color/colorOrange40</item>
+        <item name="colorStrokeUtilityEventSubtle">@color/kitColorOrange10</item>
+        <item name="colorStrokeUtilityEventIntense">@color/kitColorOrange40</item>
 
         <!-- Shadow Colors -->
         <!-- Neutral -->
-        <item name="colorShadowNeutralKey">@color/colorNeutralBlack</item>
-        <item name="colorShadowNeutralAmbient">@color/colorNeutralGrayDarkA65</item>
+        <item name="colorShadowNeutralKey">@color/kitColorNeutralBlack</item>
+        <item name="colorShadowNeutralAmbient">@color/kitColorNeutralGrayDarkA65</item>
 
         <!-- Tinted -->
-        <item name="colorShadowTintedKey">@color/colorGrayBlue10</item>
-        <item name="colorShadowTintedAmbient">@color/colorBrandPrimaryA2</item>
+        <item name="colorShadowTintedKey">@color/kitColorGrayBlue10</item>
+        <item name="colorShadowTintedAmbient">@color/kitColorBrandPrimaryA2</item>
 
         <!-- Illustration Colors -->
-        <item name="colorIllustrationBg">@color/colorBrandPrimaryA10</item>
-        <item name="colorIllustrationIcon">@color/colorBrandPrimary50</item>
-        <item name="colorIllustrationRippleIntense">@color/colorBrandPrimaryA20</item>
-        <item name="colorIllustrationRippleSubtle">@color/colorBrandPrimaryA2</item>
+        <item name="colorIllustrationBg">@color/kitColorBrandPrimaryA10</item>
+        <item name="colorIllustrationIcon">@color/kitColorBrandPrimary50</item>
+        <item name="colorIllustrationRippleIntense">@color/kitColorBrandPrimaryA20</item>
+        <item name="colorIllustrationRippleSubtle">@color/kitColorBrandPrimaryA2</item>
 
         <!-- Display -->
         <item name="d1SemiBold">@style/TextSemiBold.Display1</item>

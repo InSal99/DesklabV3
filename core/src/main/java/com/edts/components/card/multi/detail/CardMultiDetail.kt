@@ -139,7 +139,7 @@ class CardMultiDetail @JvmOverloads constructor(
             try {
                 val typedValue = TypedValue()
                 rippleColor = if (cmdShowRightSlot) {
-                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
+                    ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
                 } else{
                     ContextCompat.getColorStateList(context, android.R.color.transparent)
                 }
@@ -163,7 +163,7 @@ class CardMultiDetail @JvmOverloads constructor(
                         try {
                             leftSlotBackgroundColor = ContextCompat.getColor(context, leftSlotBgColorRef)
                         } catch (e: Resources.NotFoundException) {
-                            leftSlotBackgroundColor = ContextCompat.getColor(context, R.color.colorNeutralWhite)
+                            leftSlotBackgroundColor = ContextCompat.getColor(context, R.color.kitColorNeutralWhite)
                         }
                     }
                 } else {
@@ -182,7 +182,7 @@ class CardMultiDetail @JvmOverloads constructor(
                         try {
                             leftSlotTint = ContextCompat.getColor(context, leftSlotTintRef)
                         } catch (e: Resources.NotFoundException) {
-                            leftSlotTint = ContextCompat.getColor(context, R.color.colorNeutralWhite)
+                            leftSlotTint = ContextCompat.getColor(context, R.color.kitColorNeutralWhite)
                         }
                     }
                 } else {
@@ -258,7 +258,7 @@ class CardMultiDetail @JvmOverloads constructor(
         }
 
         rippleColor = if (shouldBeClickable) {
-            ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
+            ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
         } else{
             ContextCompat.getColorStateList(context, android.R.color.transparent)
         }
@@ -320,7 +320,7 @@ class CardMultiDetail @JvmOverloads constructor(
         binding.ivCmdRightSlot.isFocusable = cmdShowRightSlot
 
         if (cmdShowRightSlot) {
-            val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
+            val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
 
             val rippleDrawable = RippleDrawable(rippleColor, null, null)
             rippleDrawable.radius = 16f.dpToPx.toInt()
@@ -349,7 +349,7 @@ class CardMultiDetail @JvmOverloads constructor(
     private fun updateCmdShowRightSlot() {
         binding.ivCmdRightSlot.visibility = if (cmdShowRightSlot) View.VISIBLE else View.GONE
         rippleColor = if (cmdShowRightSlot) {
-            ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
+            ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayLightA20))
         } else{
             ContextCompat.getColorStateList(context, android.R.color.transparent)
         }

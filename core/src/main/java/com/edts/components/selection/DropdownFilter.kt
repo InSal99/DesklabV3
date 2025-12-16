@@ -83,7 +83,7 @@ class DropdownFilter @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
+                rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
 
                 dropdownFilterLabel = getString(R.styleable.DropdownFilter_dropdownFilterLabel)
                 dropdownFilterDesc = getString(R.styleable.DropdownFilter_dropdownFilterDesc)
@@ -153,7 +153,7 @@ class DropdownFilter @JvmOverloads constructor(
         binding.ivDropdownFilter.isClickable = true
         binding.ivDropdownFilter.isFocusable = true
 
-        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.colorNeutralGrayLightA20))
+        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
 
         val rippleDrawable = RippleDrawable(rippleColor, null, null)
         rippleDrawable.radius = 10f.dpToPx.toInt()

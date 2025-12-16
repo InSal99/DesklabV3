@@ -55,7 +55,7 @@ class OptionCard @JvmOverloads constructor(
 
         val activeColor = context.resolveColorAttr(
             R.attr.colorBackgroundModifierOnPress,
-            android.R.color.transparent
+            R.color.kitColorNeutralGrayDarkA5
         )
         rippleColor = ColorStateList.valueOf(activeColor)
     }
@@ -75,17 +75,17 @@ class OptionCard @JvmOverloads constructor(
     private fun setupCardAppearance(context: Context) {
         strokeWidth = 1.dpToPx
         radius = context.resources.getDimension(R.dimen.radius_12dp)
-        strokeColor = context.resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLight30)
+        strokeColor = context.resolveColorAttr(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30)
         cardElevation = 1f.dpToPx
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             outlineAmbientShadowColor = context.resolveColorAttr(
                 R.attr.colorForegroundPrimary,
-                android.R.color.transparent
+                R.color.kitColorNeutralBlack
             )
             outlineSpotShadowColor = context.resolveColorAttr(
                 R.attr.colorForegroundPrimary,
-                android.R.color.transparent
+                R.color.kitColorNeutralBlack
             )
         }
         setupClickAnimation()

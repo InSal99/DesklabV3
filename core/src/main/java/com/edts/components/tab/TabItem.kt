@@ -145,7 +145,7 @@ class TabItem @JvmOverloads constructor(
             TabState.ACTIVE -> {
                 val activeColor = context.resolveColorAttribute(
                     R.attr.colorForegroundAccentPrimaryIntense,
-                    android.R.color.black
+                    R.color.kitColorBrandPrimary30
                 )
                 binding.tvTab.setTextColor(activeColor)
                 binding.tabIndicator.visibility = View.VISIBLE
@@ -154,7 +154,7 @@ class TabItem @JvmOverloads constructor(
             TabState.INACTIVE -> {
                 val inactiveColor = context.resolveColorAttribute(
                     R.attr.colorForegroundTertiary,
-                    android.R.color.darker_gray
+                    R.color.kitColorNeutralGrayLight50
                 )
                 binding.tvTab.setTextColor(inactiveColor)
                 binding.tabIndicator.visibility = View.GONE
@@ -173,7 +173,7 @@ class TabItem @JvmOverloads constructor(
     private fun animateToActive() {
         val activeColor = context.resolveColorAttribute(
             R.attr.colorForegroundAccentPrimaryIntense,
-            android.R.color.black
+            R.color.kitColorBrandPrimary30
         )
         val currentTextColor = binding.tvTab.currentTextColor
 
@@ -207,7 +207,7 @@ class TabItem @JvmOverloads constructor(
     private fun animateToInactive() {
         val inactiveColor = context.resolveColorAttribute(
             R.attr.colorForegroundTertiary,
-            android.R.color.darker_gray
+            R.color.kitColorNeutralGrayLight50
         )
         val currentTextColor = binding.tvTab.currentTextColor
 
