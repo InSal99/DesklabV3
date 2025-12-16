@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="RadioTextAppearance" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textColor">@color/colorNeutralBlack</item>
+        <item name="android:textColor">@color/kitColorNeutralBlack</item>
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/inter_regular</item>
         <item name="android:includeFontPadding">false</item>

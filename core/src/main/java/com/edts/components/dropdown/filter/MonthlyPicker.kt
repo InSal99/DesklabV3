@@ -87,7 +87,7 @@ class MonthlyPicker @JvmOverloads constructor(
     private fun setupRippleEffect() {
         val rippleColor = context.resolveColorAttribute(
             R.attr.colorBackgroundModifierOnPress,
-            R.color.colorNeutralGrayDarkA5
+            R.color.kitColorNeutralGrayDarkA5
         )
         this.rippleColor = ColorStateList.valueOf(rippleColor)
     }
@@ -117,15 +117,15 @@ class MonthlyPicker @JvmOverloads constructor(
         val textColor = when (type) {
             PickerType.UNSELECTED -> context.resolveColorAttribute(
                 R.attr.colorForegroundPrimary,
-                R.color.colorNeutralBlack
+                R.color.kitColorNeutralBlack
             )
             PickerType.SELECTED -> context.resolveColorAttribute(
                 R.attr.colorForegroundPrimaryInverse,
-                R.color.colorNeutralWhite
+                R.color.kitColorNeutralWhite
             )
             PickerType.DISABLED -> context.resolveColorAttribute(
                 R.attr.colorForegroundDisabled,
-                R.color.colorNeutralGrayDarkA20
+                R.color.kitColorNeutralGrayDarkA20
             )
         }
         monthLabelView.setTextColor(textColor)
@@ -145,24 +145,24 @@ class MonthlyPicker @JvmOverloads constructor(
                 Color.TRANSPARENT,
                 context.resolveColorAttribute(
                     R.attr.colorStrokeSubtle,
-                    R.color.colorNeutralGrayLight30
+                    R.color.kitColorNeutralGrayLight30
                 )
             )
             PickerType.SELECTED -> Pair(
                 context.resolveColorAttribute(
                     R.attr.colorBackgroundAccentPrimaryIntense,
-                    R.color.colorBrandPrimary30
+                    R.color.kitColorBrandPrimary30
                 ),
                 context.resolveColorAttribute(
                     R.attr.colorStrokeInteractive,
-                    R.color.colorNeutralGrayLightA20
+                    R.color.kitColorNeutralGrayLightA20
                 )
             )
             PickerType.DISABLED -> Pair(
                 Color.TRANSPARENT,
                 context.resolveColorAttribute(
                     R.attr.colorStrokeDisabled,
-                    R.color.colorNeutralGrayDarkA12
+                    R.color.kitColorNeutralGrayDarkA12
                 )
             )
         }

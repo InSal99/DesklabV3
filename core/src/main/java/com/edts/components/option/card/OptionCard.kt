@@ -75,7 +75,7 @@ class OptionCard @JvmOverloads constructor(
     private fun setupCardAppearance(context: Context) {
         strokeWidth = 1.dpToPx
         radius = context.resources.getDimension(R.dimen.radius_12dp)
-        strokeColor = context.resolveColorAttr(R.attr.colorStrokeSubtle, R.color.colorNeutralGrayLight30)
+        strokeColor = context.resolveColorAttr(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30)
         cardElevation = 1f.dpToPx
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
