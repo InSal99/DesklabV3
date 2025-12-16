@@ -55,7 +55,7 @@ class OptionCard @JvmOverloads constructor(
 
         val activeColor = context.resolveColorAttr(
             R.attr.colorBackgroundModifierOnPress,
-            android.R.color.transparent
+            R.color.kitColorNeutralGrayDarkA5
         )
         rippleColor = ColorStateList.valueOf(activeColor)
     }

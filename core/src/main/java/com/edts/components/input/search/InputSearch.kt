@@ -158,7 +158,7 @@ class InputSearch @JvmOverloads constructor(
             delegate?.onCloseIconClick(this)
         }
 
-        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayLightA20))
+        val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
 
         val rippleDrawable = RippleDrawable(rippleColor, null, null)
         rippleDrawable.radius = 12f.dpToPx.toInt()
