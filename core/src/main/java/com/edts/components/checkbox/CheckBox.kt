@@ -113,8 +113,8 @@ class CheckBox @JvmOverloads constructor(
         val startScale = if (checked) 0f else 1f
 
         val tintColor = when {
-            !isEnabled && checked -> context.resolveColorAttr(R.attr.colorForegroundDisabled, R.color.colorNeutralGrayDarkA20)
-            checked -> context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.colorNeutralWhite)
+            !isEnabled && checked -> context.resolveColorAttr(R.attr.colorForegroundDisabled, R.color.kitColorNeutralGrayDarkA20)
+            checked -> context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
             else -> ContextCompat.getColor(context, android.R.color.transparent)
         }
 

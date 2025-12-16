@@ -228,7 +228,7 @@ class TeamReportActivityView : Fragment() {
                 @Suppress("DEPRECATION")
                 setTextAppearance(context, com.edts.components.R.style.TextMedium_Label1)
             }
-            setTextColor(ContextCompat.getColor(requireContext(), com.edts.components.R.color.colorNeutralBlack))
+            setTextColor(ContextCompat.getColor(requireContext(), com.edts.components.R.color.kitColorNeutralBlack))
             layoutParams = LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -256,7 +256,7 @@ class TeamReportActivityView : Fragment() {
                 setImageResource(R.drawable.ic_chevron_left)
                 val colorResId = requireContext().resolveColorAttribute(
                     com.edts.components.R.attr.colorForegroundTertiary,
-                    com.edts.components.R.color.colorNeutralGrayLight50
+                    com.edts.components.R.color.kitColorNeutralGrayLight50
                 )
                 imageTintList = ColorStateList.valueOf(colorResId)
                 background = null
@@ -279,7 +279,7 @@ class TeamReportActivityView : Fragment() {
                 setImageResource(R.drawable.ic_chevron_right)
                 val colorResId = requireContext().resolveColorAttribute(
                     com.edts.components.R.attr.colorForegroundTertiary,
-                    com.edts.components.R.color.colorNeutralGrayLight50
+                    com.edts.components.R.color.kitColorNeutralGrayLight50
                 )
                 imageTintList = ColorStateList.valueOf(colorResId)
                 background = null

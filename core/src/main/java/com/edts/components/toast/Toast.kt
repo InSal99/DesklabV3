@@ -14,7 +14,6 @@ import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.view.ContextThemeWrapper
-import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.LayoutToastViewBinding
 import com.edts.components.utils.resolveColorAttr
@@ -33,10 +32,10 @@ class Toast @JvmOverloads constructor(
     var onToastClickListener: (() -> Unit)? = null
 
     enum class Type(@DrawableRes val iconRes: Int, val ColorAttr: Int, @ColorRes val colorRes: Int) {
-        SUCCESS(R.drawable.ic_success, R.attr.colorBackgroundSuccessIntense, R.color.colorGreen50),
-        ERROR(R.drawable.ic_attention, R.attr.colorBackgroundAttentionIntense, R.color.colorRed40),
-        INFO(R.drawable.ic_information, R.attr.colorBackgroundInfoIntense, R.color.colorBlue50),
-        GENERAL(R.drawable.placeholder, R.attr.colorBackgroundPrimaryInverse, R.color.colorNeutralBlack)
+        SUCCESS(R.drawable.ic_success, R.attr.colorBackgroundSuccessIntense, R.color.kitColorGreen50),
+        ERROR(R.drawable.ic_attention, R.attr.colorBackgroundAttentionIntense, R.color.kitColorRed40),
+        INFO(R.drawable.ic_information, R.attr.colorBackgroundInfoIntense, R.color.kitColorBlue50),
+        GENERAL(R.drawable.placeholder, R.attr.colorBackgroundPrimaryInverse, R.color.kitColorNeutralBlack)
     }
 
     init {
@@ -69,12 +68,12 @@ class Toast @JvmOverloads constructor(
         radius = context.resources.getDimensionPixelSize(R.dimen.radius_12dp).toFloat()
         cardElevation = 2f * context.resources.displayMetrics.density
         strokeWidth = context.resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.colorNeutralGrayLightA20)
+        strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.kitColorNeutralGrayLightA20)
 //        strokeColor = ContextCompat.getColor(context, R.color.colorNeutralGrayLightA20)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralAmbient, R.color.colorNeutralGrayDarkA5)
-            outlineSpotShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.colorNeutralGrayDarkA10)
+            outlineAmbientShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralAmbient, R.color.kitColorNeutralGrayDarkA5)
+            outlineSpotShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.kitColorNeutralGrayDarkA10)
 //            outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA5)
 //            outlineSpotShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA10)
         }

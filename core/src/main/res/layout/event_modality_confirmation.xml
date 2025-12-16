@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorNeutralWhite">
+    android:background="@color/kitColorNeutralWhite">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvModalityTitle"
@@ -15,7 +15,7 @@
         android:layout_marginHorizontal="@dimen/margin_16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/colorNeutralBlack"
+        android:textColor="@color/kitColorNeutralBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Konfirmasi Undangan"/>
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_16dp"
         android:layout_marginTop="@dimen/margin_8dp"
-        android:textColor="@color/colorNeutralGrayLight60"
+        android:textColor="@color/kitColorNeutralGrayLight60"
         app:layout_constraintStart_toStartOf="@+id/tvModalityTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvModalityTitle"
         tools:text="Apakah kamu yakin terima undangan dan akan menghadiri event ini nanti?"/>

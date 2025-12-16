@@ -57,7 +57,7 @@
             android:id="@+id/vScan"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorNeutralWhite"/>
+            android:background="@color/kitColorNeutralWhite"/>
     </FrameLayout>
 
     <ImageView
@@ -107,7 +107,7 @@
         android:layout_marginTop="@dimen/margin_22dp"
         android:gravity="center"
         android:text="@string/offline_attendance_instruction"
-        android:textColor="@color/white"
+        android:textColor="@color/kitColorNeutralWhite"
         app:layout_constraintEnd_toStartOf="@id/vRight"
         app:layout_constraintStart_toEndOf="@id/vLeft"
         app:layout_constraintTop_toTopOf="@id/vBottom"/>
