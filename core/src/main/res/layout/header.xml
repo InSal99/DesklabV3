@@ -11,6 +11,7 @@
     app:rippleColor="@android:color/transparent"
     android:clipToPadding="false"
     android:clipChildren="false"
+    android:background="@android:color/transparent"
     app:cardBackgroundColor="@android:color/transparent">
     <LinearLayout
         android:layout_width="match_parent"

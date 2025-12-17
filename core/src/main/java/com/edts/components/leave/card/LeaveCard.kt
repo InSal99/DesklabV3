@@ -108,7 +108,7 @@ class LeaveCard @JvmOverloads constructor(
         radius = resources.getDimension(R.dimen.radius_12dp)
         setCardBackgroundColor(run {
             val fallbackColorRes = R.color.kitColorNeutralWhite
-            val resolved = context.resolveColorAttr(R.attr.colorBackgroundPrimary, fallbackColorRes)
+            val resolved = context.resolveColorAttr(R.attr.colorBackgroundElevated, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         })
         cardElevation = 2f.dpToPx

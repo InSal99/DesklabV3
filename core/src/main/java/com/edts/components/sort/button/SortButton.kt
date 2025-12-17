@@ -36,7 +36,6 @@ class SortButton @JvmOverloads constructor(
     private var cardState: CardState = CardState.REST
         set(value) {
             field = value
-            updateCardBackground()
         }
 
     var delegate: SortButtonDelegate? = null
@@ -60,45 +59,6 @@ class SortButton @JvmOverloads constructor(
         setupCardPressState()
         radius = cornerRadiusPx
         rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
-    }
-
-    private fun updateCardBackground() {
-        when (cardState) {
-            CardState.REST -> {
-                setCardBackgroundColor(
-                    context.resolveColorAttribute(
-                        R.attr.colorBackgroundPrimary,
-                        R.color.kitColorNeutralWhite
-                    )
-                )
-                foreground = GradientDrawable().apply {
-                    cornerRadius = 12f.dpToPx
-                    setColor(
-                        context.resolveColorAttribute(
-                            R.attr.colorBackgroundModifierCardElevated,
-                            R.color.kitColorNeutralGrayLightA5
-                        )
-                    )
-                }
-            }
-            CardState.ON_PRESS -> {
-                setCardBackgroundColor(
-                    context.resolveColorAttribute(
-                        R.attr.colorBackgroundPrimary,
-                        R.color.kitColorNeutralWhite
-                    )
-                )
-                foreground = GradientDrawable().apply {
-                    cornerRadius = 12f.dpToPx
-                    setColor(
-                        context.resolveColorAttribute(
-                            R.attr.colorBackgroundModifierCardElevated,
-                            R.color.kitColorNeutralGrayLightA5
-                        )
-                    )
-                }
-            }
-        }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -130,7 +90,6 @@ class SortButton @JvmOverloads constructor(
     private fun setupCardPressState() {
         isClickable = true
         isFocusable = true
-        updateCardBackground()
     }
 
     private fun animateScaleDown() {
