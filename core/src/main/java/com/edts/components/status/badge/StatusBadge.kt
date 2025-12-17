@@ -72,9 +72,6 @@ class StatusBadge @JvmOverloads constructor(
         val backgroundColor = context.resolveColorAttr(chipType.backgroundColorAttr, chipType.backgroundColorRes)
         val textColor = context.resolveColorAttr(chipType.textColorAttr, chipType.textColorRes)
         val strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.kitColorNeutralGrayLightA20)
-//        val backgroundColor = ContextCompat.getColor(context, chipType.backgroundColorRes)
-//        val textColor = ContextCompat.getColor(context, chipType.textColorRes)
-//        val strokeColor = getColorFromAttr(R.attr.colorStrokeInteractive)
 
         val background = ContextCompat.getDrawable(context, R.drawable.kit_bg_status_badge)?.mutate() as? GradientDrawable
         background?.setColor(backgroundColor)
@@ -83,21 +80,10 @@ class StatusBadge @JvmOverloads constructor(
         this.background = background
         setTextColor(textColor)
 
-//        val icon = ContextCompat.getDrawable(context, chipType.iconRes)
-
         val iconSize = 16.pxToDp
         val icon = ContextCompat.getDrawable(context, chipType.iconRes)?.mutate()
         icon?.setBounds(0, 0, iconSize, iconSize)
         setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null)
         compoundDrawableTintList = ColorStateList.valueOf(textColor)
     }
-
-//    private fun getColorFromAttr(attr: Int): Int {
-//        val typedValue = TypedValue()
-//        return if (context.theme.resolveAttribute(attr, typedValue, true)) {
-//            typedValue.data
-//        } else {
-//            R.attr.colorForegroundTertiary
-//        }
-//    }
 }
