@@ -11,6 +11,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.edts.components.R
@@ -165,8 +166,8 @@ class Header @JvmOverloads constructor(
 
     private fun applyBackgroundState() {
         if (showBackgroundColor) {
-            setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
-            binding.Header.setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
+            setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+            binding.Header.setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         } else {
             setCardBackgroundColor(android.graphics.Color.TRANSPARENT)
             binding.Header.setCardBackgroundColor(android.graphics.Color.TRANSPARENT)
@@ -193,34 +194,41 @@ class Header @JvmOverloads constructor(
     }
 
     private fun createRippleDrawable(): RippleDrawable {
-        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress))
+        val rippleColor = ColorStateList.valueOf(getCachedColor(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
         return RippleDrawable(rippleColor, null, null).apply {
             radius = (16 * Resources.getSystem().displayMetrics.density).toInt()
         }
     }
 
-    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-        return colorCache.getOrPut(colorAttr) {
-            resolveColorAttribute(colorAttr)
+//    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
+//        return colorCache.getOrPut(colorAttr) {
+//            resolveColorAttribute(colorAttr)
+//        }
+//    }
+
+    private fun getCachedColor(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
+        val key = attrRes
+        return colorCache.getOrPut(key) {
+            context.resolveColorAttr(attrRes, fallbackColor)
         }
     }
 
-    private fun resolveColorAttribute(colorRes: Int): Int {
-        val typedValue = TypedValue()
-        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-            if (typedValue.resourceId != 0) {
-                ContextCompat.getColor(context, typedValue.resourceId)
-            } else {
-                typedValue.data
-            }
-        } else {
-            try {
-                ContextCompat.getColor(context, colorRes)
-            } catch (e: Exception) {
-                colorRes
-            }
-        }
-    }
+//    private fun resolveColorAttribute(colorRes: Int): Int {
+//        val typedValue = TypedValue()
+//        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
+//            if (typedValue.resourceId != 0) {
+//                ContextCompat.getColor(context, typedValue.resourceId)
+//            } else {
+//                typedValue.data
+//            }
+//        } else {
+//            try {
+//                ContextCompat.getColor(context, colorRes)
+//            } catch (e: Exception) {
+//                colorRes
+//            }
+//        }
+//    }
 
     private fun handleLeftButtonClick() {
         delegate?.onLeftButtonClicked()
