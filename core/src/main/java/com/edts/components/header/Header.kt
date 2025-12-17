@@ -144,7 +144,7 @@ class Header @JvmOverloads constructor(
 
     private fun applyShadowState() {
         if (showShadow) {
-            binding.Header.cardElevation = (2 * Resources.getSystem().displayMetrics.density) // 2dp
+            binding.Header.cardElevation = (2 * Resources.getSystem().displayMetrics.density)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 outlineAmbientShadowColor = context.resolveColorAttr(
                     R.attr.colorShadowTintedAmbient,
@@ -200,35 +200,12 @@ class Header @JvmOverloads constructor(
         }
     }
 
-//    private fun getCachedColor(@AttrRes colorAttr: Int): Int {
-//        return colorCache.getOrPut(colorAttr) {
-//            resolveColorAttribute(colorAttr)
-//        }
-//    }
-
     private fun getCachedColor(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
         val key = attrRes
         return colorCache.getOrPut(key) {
             context.resolveColorAttr(attrRes, fallbackColor)
         }
     }
-
-//    private fun resolveColorAttribute(colorRes: Int): Int {
-//        val typedValue = TypedValue()
-//        return if (context.theme.resolveAttribute(colorRes, typedValue, true)) {
-//            if (typedValue.resourceId != 0) {
-//                ContextCompat.getColor(context, typedValue.resourceId)
-//            } else {
-//                typedValue.data
-//            }
-//        } else {
-//            try {
-//                ContextCompat.getColor(context, colorRes)
-//            } catch (e: Exception) {
-//                colorRes
-//            }
-//        }
-//    }
 
     private fun handleLeftButtonClick() {
         delegate?.onLeftButtonClicked()

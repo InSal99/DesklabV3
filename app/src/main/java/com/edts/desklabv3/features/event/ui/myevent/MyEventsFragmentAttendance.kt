@@ -112,7 +112,6 @@ class MyEventsFragmentAttendance : Fragment() {
             title: String,
             eventLocation: MyEventCard.MyEventLocation
         ): MyEvent {
-            // Map status to MyEventType
             val myEventType = when(status) {
                 MyEventStatus.BERLANGSUNG -> MyEventCard.MyEventType.LIVE
                 MyEventStatus.TERDAFTAR -> MyEventCard.MyEventType.REGISTERED
@@ -120,7 +119,6 @@ class MyEventsFragmentAttendance : Fragment() {
                 MyEventStatus.TIDAK_HADIR -> MyEventCard.MyEventType.NOTATTENDED
             }
 
-            // Map status to badge configuration
             val (badgeText, badgeType) = when(status) {
                 MyEventStatus.BERLANGSUNG -> "Berlangsung" to EventCardBadge.BadgeType.LIVE
                 MyEventStatus.TERDAFTAR -> "Terdaftar" to EventCardBadge.BadgeType.REGISTERED
