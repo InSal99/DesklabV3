@@ -14,6 +14,7 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
@@ -195,22 +196,22 @@ class Button @JvmOverloads constructor(
     private fun createDisabledDrawable(): Drawable {
         return GradientDrawable().apply {
             cornerRadius = this@Button.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundDisabled))
-            setStroke(strokeWidth, getCachedColor(R.attr.colorStrokeDisabled))
+            setColor(getCachedColor(R.attr.colorBackgroundDisabled, R.color.kitColorNeutralGrayDarkA5))
+            setStroke(strokeWidth, getCachedColor(R.attr.colorStrokeDisabled, R.color.kitColorNeutralGrayDarkA12))
         }
     }
 
     private fun createNormalPrimaryDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
             cornerRadius = this@Button.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundAccentPrimaryIntense))
-            val strokeColor = getCachedColor(R.attr.colorStrokeInteractive)
+            setColor(getCachedColor(R.attr.colorBackgroundAccentPrimaryIntense, R.color.kitColorBrandPrimary30))
+            val strokeColor = getCachedColor(R.attr.colorStrokeInteractive, R.color.kitColorNeutralGrayLightA20)
             val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
 
         val rippleColor = ColorStateList.valueOf(
-            getCachedColor(R.attr.colorBackgroundModifierOnPressIntense)
+            getCachedColor(R.attr.colorBackgroundModifierOnPressIntense, R.color.kitColorNeutralGrayDarkA12)
         )
 
         val mask = GradientDrawable().apply {
@@ -224,14 +225,14 @@ class Button @JvmOverloads constructor(
     private fun createNormalSecondaryDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
             cornerRadius = this@Button.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundPrimary))
-            val strokeColor = getCachedColor(R.attr.colorStrokeAccent)
+            setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+            val strokeColor = getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30)
             val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
 
         val rippleColor = ColorStateList.valueOf(
-            getCachedColor(R.attr.colorBackgroundModifierOnPress)
+            getCachedColor(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5)
         )
 
         val mask = GradientDrawable().apply {
@@ -245,14 +246,14 @@ class Button @JvmOverloads constructor(
     private fun createDestructivePrimaryDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
             cornerRadius = this@Button.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundAttentionIntense))
-            val strokeColor = getCachedColor(R.attr.colorStrokeInteractive)
+            setColor(getCachedColor(R.attr.colorBackgroundAttentionIntense, R.color.kitColorRed40))
+            val strokeColor = getCachedColor(R.attr.colorStrokeInteractive, R.color.kitColorNeutralGrayLightA20)
             val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 3 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
 
         val rippleColor = ColorStateList.valueOf(
-            getCachedColor(R.attr.colorBackgroundModifierOnPressIntense)
+            getCachedColor(R.attr.colorBackgroundModifierOnPressIntense, R.color.kitColorNeutralGrayDarkA12)
         )
 
         val mask = GradientDrawable().apply {
@@ -266,14 +267,14 @@ class Button @JvmOverloads constructor(
     private fun createDestructiveSecondaryDrawable(): Drawable {
         val baseDrawable = GradientDrawable().apply {
             cornerRadius = this@Button.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundAttentionSubtle))
-            val strokeColor = getCachedColor(R.attr.colorStrokeAttentionIntense)
+            setColor(getCachedColor(R.attr.colorBackgroundAttentionSubtle, R.color.kitColorRed10))
+            val strokeColor = getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.kitColorRed50)
             val strokeWidth = if (buttonState == ButtonState.ON_FOCUS) 4 else this@Button.strokeWidth
             setStroke(strokeWidth, strokeColor)
         }
 
         val rippleColor = ColorStateList.valueOf(
-            getCachedColor(R.attr.colorBackgroundModifierOnPress)
+            getCachedColor(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5)
         )
 
         val mask = GradientDrawable().apply {
@@ -286,15 +287,15 @@ class Button @JvmOverloads constructor(
 
     private fun getTextColorForCurrentState(): Int {
         return when {
-            isButtonDisabled -> getCachedColor(R.attr.colorForegroundDisabled)
+            isButtonDisabled -> getCachedColor(R.attr.colorForegroundDisabled, R.color.kitColorNeutralGrayDarkA20)
             isButtonDestructive -> when (buttonType) {
-                ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite)
-                ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAttentionIntense)
+                ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
+                ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40)
             }
 
             else -> when (buttonType) {
-                ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite)
-                ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAccentPrimaryIntense)
+                ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
+                ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAccentPrimaryIntense, R.color.kitColorBrandPrimary30)
             }
         }
     }
@@ -333,21 +334,21 @@ class Button @JvmOverloads constructor(
 
     private fun getIconColor(): Int {
         return when {
-            isButtonDisabled -> getCachedColor(R.attr.colorForegroundDisabled)
+            isButtonDisabled -> getCachedColor(R.attr.colorForegroundDisabled, R.color.kitColorNeutralGrayDarkA20)
             isButtonDestructive -> when (buttonType) {
-                ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite)
-                ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAttentionIntense)
+                ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
+                ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40)
             }
 
             else -> when (buttonType) {
-                ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite)
-                ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAccentPrimaryIntense)
+                ButtonType.PRIMARY -> getCachedColor(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
+                ButtonType.SECONDARY -> getCachedColor(R.attr.colorForegroundAccentPrimaryIntense, R.color.kitColorBrandPrimary30)
             }
         }
     }
 
-    private fun getCachedColor(@AttrRes attrRes: Int): Int {
-        return colorCache[attrRes] ?: context.resolveColorAttr(attrRes, android.R.color.transparent)
+    private fun getCachedColor(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
+        return colorCache[attrRes] ?: context.resolveColorAttr(attrRes, fallbackColor)
     }
 
     private fun getTextStyleForButtonSize(size: ButtonSize): Int {

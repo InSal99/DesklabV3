@@ -163,19 +163,19 @@ class NotificationCard @JvmOverloads constructor(
             NotificationCategory.GENERAL_EVENT,
             NotificationCategory.PEOPLE_DEVELOPMENT,
             NotificationCategory.EMPLOYEE_BENEFIT -> {
-                binding.notificationIcon.setIcon(R.drawable.ic_notification_event)
+                binding.notificationIcon.setIcon(R.drawable.kit_ic_notification_event)
             }
             NotificationCategory.ACTIVITY -> {
-                binding.notificationIcon.setIcon(R.drawable.ic_notification_activity)
+                binding.notificationIcon.setIcon(R.drawable.kit_ic_notification_activity)
             }
             NotificationCategory.LEAVE -> {
-                binding.notificationIcon.setIcon(R.drawable.ic_notification_leave)
+                binding.notificationIcon.setIcon(R.drawable.kit_ic_notification_leave)
             }
             NotificationCategory.SPECIAL_WORK -> {
-                binding.notificationIcon.setIcon(R.drawable.ic_notification_special_work)
+                binding.notificationIcon.setIcon(R.drawable.kit_ic_notification_special_work)
             }
             NotificationCategory.DELEGATION -> {
-                binding.notificationIcon.setIcon(R.drawable.ic_notification_delegation)
+                binding.notificationIcon.setIcon(R.drawable.kit_ic_notification_delegation)
             }
         }
     }

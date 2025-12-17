@@ -13,7 +13,7 @@
         <item name="colorBackgroundPrimary">@color/kitColorNeutralBlack</item>
         <item name="colorBackgroundPrimaryTinted">@color/kitColorGrayBlue10</item>
         <item name="colorBackgroundPrimaryInverse">@color/kitColorNeutralWhite</item>
-        <item name="colorBackgroundSecondary">@color/kitColorNeutralGrayDark10</item>
+        <item name="colorBackgroundSecondary">@color/kitColorNeutralGrayDark70</item>
         <item name="colorBackgroundSecondaryTinted">@color/kitColorGrayBlue20</item>
         <item name="colorBackgroundTertiary">@color/kitColorNeutralGrayDark60</item>
         <item name="colorBackgroundOverlay">@color/kitColorNeutralGrayDarkA65</item>

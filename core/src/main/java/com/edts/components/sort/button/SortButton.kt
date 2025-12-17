@@ -3,7 +3,6 @@ package com.edts.components.sort.button
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -12,7 +11,6 @@ import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.SortBtnBinding
 import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class SortButton @JvmOverloads constructor(
@@ -36,12 +34,11 @@ class SortButton @JvmOverloads constructor(
     private var cardState: CardState = CardState.REST
         set(value) {
             field = value
-            updateCardBackground()
         }
 
     var delegate: SortButtonDelegate? = null
 
-    var sortIcon: Int = R.drawable.ic_sort
+    var sortIcon: Int = R.drawable.kit_ic_sort
         set(value) {
             field = value
             binding.ivFilterBTN.setImageResource(value)
@@ -51,7 +48,7 @@ class SortButton @JvmOverloads constructor(
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.SortButton)
 
         try {
-            val iconResId = typedArray.getResourceId(R.styleable.SortButton_sortIcon, R.drawable.ic_sort)
+            val iconResId = typedArray.getResourceId(R.styleable.SortButton_sortIcon, R.drawable.kit_ic_sort)
             sortIcon = iconResId
         } finally {
             typedArray.recycle()
@@ -60,45 +57,6 @@ class SortButton @JvmOverloads constructor(
         setupCardPressState()
         radius = cornerRadiusPx
         rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
-    }
-
-    private fun updateCardBackground() {
-        when (cardState) {
-            CardState.REST -> {
-                setCardBackgroundColor(
-                    context.resolveColorAttribute(
-                        R.attr.colorBackgroundPrimary,
-                        R.color.kitColorNeutralWhite
-                    )
-                )
-                foreground = GradientDrawable().apply {
-                    cornerRadius = 12f.dpToPx
-                    setColor(
-                        context.resolveColorAttribute(
-                            R.attr.colorBackgroundModifierCardElevated,
-                            R.color.kitColorNeutralGrayLightA5
-                        )
-                    )
-                }
-            }
-            CardState.ON_PRESS -> {
-                setCardBackgroundColor(
-                    context.resolveColorAttribute(
-                        R.attr.colorBackgroundPrimary,
-                        R.color.kitColorNeutralWhite
-                    )
-                )
-                foreground = GradientDrawable().apply {
-                    cornerRadius = 12f.dpToPx
-                    setColor(
-                        context.resolveColorAttribute(
-                            R.attr.colorBackgroundModifierCardElevated,
-                            R.color.kitColorNeutralGrayLightA5
-                        )
-                    )
-                }
-            }
-        }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -130,7 +88,6 @@ class SortButton @JvmOverloads constructor(
     private fun setupCardPressState() {
         isClickable = true
         isFocusable = true
-        updateCardBackground()
     }
 
     private fun animateScaleDown() {

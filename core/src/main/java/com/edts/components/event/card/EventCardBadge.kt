@@ -96,7 +96,7 @@ class EventCardBadge @JvmOverloads constructor(
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, typedValue.resourceId)
 
-                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
+                context.theme.resolveAttribute(R.attr.colorForegroundWhite, textColorTypedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
             }
             BadgeType.INVITED -> {
@@ -104,7 +104,7 @@ class EventCardBadge @JvmOverloads constructor(
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, typedValue.resourceId)
 
-                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
+                context.theme.resolveAttribute(R.attr.colorForegroundWhite, textColorTypedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
             }
             BadgeType.REGISTERED -> {
@@ -112,7 +112,7 @@ class EventCardBadge @JvmOverloads constructor(
                 binding.EventCardBadge.backgroundTintList =
                     ContextCompat.getColorStateList(context, typedValue.resourceId)
 
-                context.theme.resolveAttribute(R.attr.colorForegroundPrimaryInverse, textColorTypedValue, true)
+                context.theme.resolveAttribute(R.attr.colorForegroundWhite, textColorTypedValue, true)
                 binding.tvEvenCardBadgeLabel.setTextColor(ContextCompat.getColor(context, textColorTypedValue.resourceId))
             }
 

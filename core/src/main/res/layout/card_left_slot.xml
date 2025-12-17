@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/card_left_slot_image_content_description"
-            android:src="@drawable/avatar_placeholder"
+            android:src="@drawable/kit_im_avatar_placeholder"
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"

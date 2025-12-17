@@ -86,7 +86,7 @@ class LeaveCard @JvmOverloads constructor(
         try {
             employeeName = typedArray.getString(R.styleable.LeaveCard_employeeName)
             employeeRole = typedArray.getString(R.styleable.LeaveCard_employeeRole)
-            employeeImage = typedArray.getResourceId(R.styleable.LeaveCard_employeeImage, R.drawable.placeholder)
+            employeeImage = typedArray.getResourceId(R.styleable.LeaveCard_employeeImage, R.drawable.kit_ic_placeholder)
             employeeImageUrl = typedArray.getString(R.styleable.LeaveCard_employeeImageUrl)
 
             counterText = typedArray.getString(R.styleable.LeaveCard_counterText)
@@ -108,7 +108,7 @@ class LeaveCard @JvmOverloads constructor(
         radius = resources.getDimension(R.dimen.radius_12dp)
         setCardBackgroundColor(run {
             val fallbackColorRes = R.color.kitColorNeutralWhite
-            val resolved = context.resolveColorAttr(R.attr.colorBackgroundPrimary, fallbackColorRes)
+            val resolved = context.resolveColorAttr(R.attr.colorBackgroundElevated, fallbackColorRes)
             try { ContextCompat.getColor(context, resolved) } catch (e: Exception) { resolved }
         })
         cardElevation = 2f.dpToPx

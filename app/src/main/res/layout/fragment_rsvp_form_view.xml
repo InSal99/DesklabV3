@@ -16,7 +16,7 @@
         android:layout_marginEnd="@dimen/radius_8dp"
         android:layout_marginBottom="@dimen/margin_18dp"
         android:scaleType="center"
-        android:src="@drawable/ic_chevron_left"
+        android:src="@drawable/kit_ic_chevron_left"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/tvRsvpTitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_18dp"
-        android:background="@drawable/bg_bottom_sheet"
+        android:background="@drawable/kit_bg_bottom_sheet"
         app:layout_constraintBottom_toTopOf="@id/eventRsvpFooter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvRsvpTitle">

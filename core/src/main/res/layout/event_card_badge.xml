@@ -19,7 +19,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:text="@string/event_card_badge_label"
-        android:textColor="?attr/colorForegroundPrimaryInverse"
+        android:textColor="?attr/colorForegroundWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 </com.google.android.material.card.MaterialCardView>

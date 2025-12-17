@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import androidx.core.content.ContextCompat
 import com.edts.components.R
+import com.edts.components.utils.pxToDp
 import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.textview.MaterialTextView
 
@@ -22,10 +23,10 @@ class StatusBadge @JvmOverloads constructor(
         val textColorRes: Int,
         val iconRes: Int
     ) {
-        APPROVED(R.attr.colorBackgroundSuccessSubtle, R.color.kitColorGreen10, R.attr.colorForegroundSuccessIntense, R.color.kitColorGreen50, R.drawable.ic_success),
-        DECLINE(R.attr.colorBackgroundTertiary, R.color.kitColorNeutralGrayLight20, R.attr.colorForegroundSecondary, R.color.kitColorNeutralGrayLight60, R.drawable.ic_error),
-        WAITING(R.attr.colorBackgroundInfoSubtle, R.color.kitColorBlue10, R.attr.colorForegroundInfoIntense, R.color.kitColorBlue50, R.drawable.ic_alarm),
-        CANCEL(R.attr.colorBackgroundAttentionSubtle, R.color.kitColorRed10, R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40, R.drawable.ic_error);
+        APPROVED(R.attr.colorBackgroundSuccessSubtle, R.color.kitColorGreen10, R.attr.colorForegroundSuccessIntense, R.color.kitColorGreen50, R.drawable.kit_ic_success),
+        DECLINE(R.attr.colorBackgroundTertiary, R.color.kitColorNeutralGrayLight20, R.attr.colorForegroundSecondary, R.color.kitColorNeutralGrayLight60, R.drawable.kit_ic_error),
+        WAITING(R.attr.colorBackgroundInfoSubtle, R.color.kitColorBlue10, R.attr.colorForegroundInfoIntense, R.color.kitColorBlue50, R.drawable.kit_ic_alarm),
+        CANCEL(R.attr.colorBackgroundAttentionSubtle, R.color.kitColorRed10, R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40, R.drawable.kit_ic_error);
     }
 
     var chipType: ChipType = ChipType.APPROVED
@@ -75,14 +76,18 @@ class StatusBadge @JvmOverloads constructor(
 //        val textColor = ContextCompat.getColor(context, chipType.textColorRes)
 //        val strokeColor = getColorFromAttr(R.attr.colorStrokeInteractive)
 
-        val background = ContextCompat.getDrawable(context, R.drawable.bg_status_badge)?.mutate() as? GradientDrawable
+        val background = ContextCompat.getDrawable(context, R.drawable.kit_bg_status_badge)?.mutate() as? GradientDrawable
         background?.setColor(backgroundColor)
         background?.setStroke(resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp), strokeColor)
 
         this.background = background
         setTextColor(textColor)
 
-        val icon = ContextCompat.getDrawable(context, chipType.iconRes)
+//        val icon = ContextCompat.getDrawable(context, chipType.iconRes)
+
+        val iconSize = 16.pxToDp
+        val icon = ContextCompat.getDrawable(context, chipType.iconRes)?.mutate()
+        icon?.setBounds(0, 0, iconSize, iconSize)
         setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null)
         compoundDrawableTintList = ColorStateList.valueOf(textColor)
     }

@@ -3,7 +3,7 @@
     <item android:drawable="@color/kitColorNeutralWhite"/>
     <item>
         <bitmap
-            android:src="@drawable/splash_screen_logo"
+            android:src="@drawable/kit_splash_screen_logo"
             android:gravity="center"/>
     </item>
 </layer-list>

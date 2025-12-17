@@ -10,7 +10,7 @@
         android:id="@+id/ivInfoIcon"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/placeholder"
+        android:src="@drawable/kit_ic_placeholder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvInfoTitle"
         app:layout_constraintBottom_toBottomOf="@id/tvDetailDescription"

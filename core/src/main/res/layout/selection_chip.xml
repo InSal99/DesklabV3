@@ -5,11 +5,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
-    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardElevation="2dp"
-    android:foreground="?attr/colorBackgroundModifierCardElevated"
     app:rippleColor="?attr/colorBackgroundModifierOnPress"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">
@@ -50,7 +48,7 @@
             android:scaleType="centerCrop"
             android:layout_marginStart="@dimen/margin_2dp"
             android:contentDescription="@string/chip_image_view_content_description"
-            android:src="@drawable/ic_close"
+            android:src="@drawable/kit_ic_close"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundSecondary"/>
     </LinearLayout>

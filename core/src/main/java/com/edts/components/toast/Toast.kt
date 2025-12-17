@@ -2,6 +2,7 @@ package com.edts.components.toast
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.ColorStateList
 import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
@@ -32,10 +33,10 @@ class Toast @JvmOverloads constructor(
     var onToastClickListener: (() -> Unit)? = null
 
     enum class Type(@DrawableRes val iconRes: Int, val ColorAttr: Int, @ColorRes val colorRes: Int) {
-        SUCCESS(R.drawable.ic_success, R.attr.colorBackgroundSuccessIntense, R.color.kitColorGreen50),
-        ERROR(R.drawable.ic_attention, R.attr.colorBackgroundAttentionIntense, R.color.kitColorRed40),
-        INFO(R.drawable.ic_information, R.attr.colorBackgroundInfoIntense, R.color.kitColorBlue50),
-        GENERAL(R.drawable.placeholder, R.attr.colorBackgroundPrimaryInverse, R.color.kitColorNeutralBlack)
+        SUCCESS(R.drawable.kit_ic_success, R.attr.colorBackgroundSuccessIntense, R.color.kitColorGreen50),
+        ERROR(R.drawable.kit_ic_attention, R.attr.colorBackgroundAttentionIntense, R.color.kitColorRed40),
+        INFO(R.drawable.kit_ic_information, R.attr.colorBackgroundInfoIntense, R.color.kitColorBlue50),
+        GENERAL(R.drawable.kit_ic_placeholder, R.attr.colorBackgroundPrimaryInverse, R.color.kitColorNeutralBlack)
     }
 
     init {
@@ -81,6 +82,13 @@ class Toast @JvmOverloads constructor(
 
     private fun applyToastStyle() {
         setCardBackgroundColor(context.resolveColorAttr(toastType.ColorAttr, toastType.colorRes))
+        if(toastType == Type.GENERAL){
+            binding.ivIcon.imageTintList = ColorStateList.valueOf(context.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
+            binding.tvMessage.setTextColor(context.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
+        }else{
+            binding.ivIcon.imageTintList = ColorStateList.valueOf(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
+            binding.tvMessage.setTextColor(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
+        }
 //        setCardBackgroundColor(ContextCompat.getColor(context, toastType.colorRes))
         binding.ivIcon.setImageResource(toastIcon ?: toastType.iconRes)
         binding.tvMessage.text = toastMessage

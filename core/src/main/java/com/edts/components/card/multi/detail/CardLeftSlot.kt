@@ -131,7 +131,7 @@ class CardLeftSlot @JvmOverloads constructor(
         binding.ivCardLeftSlot.loadImageDynamic(
             imageUrl = slotUrl,
             imageRes = slotSrc,
-            placeholderRes = R.drawable.avatar_placeholder
+            placeholderRes = R.drawable.kit_im_avatar_placeholder
         )
     }
 

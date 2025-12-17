@@ -242,7 +242,7 @@
     </style>
 
     <style name="SplashTheme" parent="NoActionBar">
-        <item name="android:windowBackground">@drawable/app_launch</item>
+        <item name="android:windowBackground">@drawable/kit_app_launch</item>
     </style>
 
     <!-- Search view style -->
@@ -256,14 +256,7 @@
     </style>
 
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/bg_bottom_sheet</item>
-    </style>
-
-    <!-- Rating bar style -->
-    <style name="CustomRatingBar" parent="Widget.AppCompat.RatingBar">
-        <item name="android:progressDrawable">@drawable/custom_rating_bar</item>
-        <item name="android:minHeight">24dp</item>
-        <item name="android:maxHeight">30dp</item>
+        <item name="android:background">@drawable/kit_bg_bottom_sheet</item>
     </style>
 
     <!-- Circular ImageView -->

@@ -7,7 +7,7 @@
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_12dp"
     app:rippleColor="?attr/colorBackgroundModifierOnPress"
-    app:cardBackgroundColor="?attr/colorBackgroundPrimary">
+    app:cardBackgroundColor="?attr/colorBackgroundElevated">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             app:employeeName="Employee Name"
             app:employeeRole="Employee Role"
-            app:employeeImage="@drawable/avatar_placeholder"/>
+            app:employeeImage="@drawable/kit_im_avatar_placeholder"/>
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/lDivider"

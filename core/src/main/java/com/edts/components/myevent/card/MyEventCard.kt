@@ -10,6 +10,7 @@ import com.edts.components.R
 import com.edts.components.databinding.MyEventCardBinding
 import com.edts.components.event.card.EventCardBadge
 import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttr
 import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
@@ -97,6 +98,7 @@ class MyEventCard @JvmOverloads constructor(
     }
 
     private fun setupCardAppearance() {
+        setCardBackgroundColor(context.resolveColorAttr(R.attr.colorBackgroundElevated, R.color.kitColorModifierElevated))
         val strokeSubtleColor = context.resolveColorAttribute(
             R.attr.colorStrokeSubtle,
             R.color.kitColorNeutralGrayLight30
