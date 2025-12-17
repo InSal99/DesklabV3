@@ -177,7 +177,7 @@ class EventCard @JvmOverloads constructor(
         binding.ivEventCard.loadImageDynamic(
             imageUrl = eventImageUrl,
             imageRes = eventImageSrc,
-            placeholderRes = R.drawable.avatar_placeholder
+            placeholderRes = R.drawable.kit_im_avatar_placeholder
         )
     }
 

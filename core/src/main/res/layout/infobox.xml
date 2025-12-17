@@ -12,7 +12,7 @@
         android:id="@+id/ivInfoIcon"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/placeholder"
+        android:src="@drawable/kit_ic_placeholder"
         app:tint="?attr/colorForegroundTertiary"/>
 
     <com.google.android.material.textview.MaterialTextView

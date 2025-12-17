@@ -24,7 +24,7 @@
             android:contentDescription="@string/filter_button_iv_content_description"
             android:layout_margin="@dimen/margin_8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_sort"
+            android:src="@drawable/kit_ic_sort"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"

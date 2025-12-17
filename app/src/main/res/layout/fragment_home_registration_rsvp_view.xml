@@ -25,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:slotSrc="@drawable/avatar_placeholder"
+            app:slotSrc="@drawable/kit_im_avatar_placeholder"
             app:slotType="image"/>
 
         <com.google.android.material.textview.MaterialTextView
@@ -194,7 +194,7 @@
             android:layout_marginStart="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_12dp"
             android:layout_marginBottom="@dimen/margin_16dp"
-            app:dropdownFilterIcon="@drawable/ic_chevron_down"
+            app:dropdownFilterIcon="@drawable/kit_ic_chevron_down"
             app:dropdownFilterLabel="Divisi"
             app:dropdownFilterShowBadge="false"
             app:dropdownFilterShowDesc="false"

@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tvName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:slotSrc="@drawable/avatar_placeholder"
+        app:slotSrc="@drawable/kit_im_avatar_placeholder"
         app:slotType="image" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -48,7 +48,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/margin_8dp"
         android:contentDescription="Action Button"
-        android:src="@drawable/ic_chevron_right"
+        android:src="@drawable/kit_ic_chevron_right"
         app:layout_constraintBottom_toBottomOf="@id/tvRole"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"

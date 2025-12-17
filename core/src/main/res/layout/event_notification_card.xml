@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:notificationIcon="@drawable/ic_notification_event"/>
+        app:notificationIcon="@drawable/kit_ic_notification_event"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvNotificationType"

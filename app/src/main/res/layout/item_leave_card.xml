@@ -4,7 +4,7 @@
     android:id="@+id/leaveCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:employeeImage="@drawable/avatar_placeholder"
+    app:employeeImage="@drawable/kit_im_avatar_placeholder"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"/>

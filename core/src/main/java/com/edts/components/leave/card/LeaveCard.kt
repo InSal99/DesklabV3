@@ -86,7 +86,7 @@ class LeaveCard @JvmOverloads constructor(
         try {
             employeeName = typedArray.getString(R.styleable.LeaveCard_employeeName)
             employeeRole = typedArray.getString(R.styleable.LeaveCard_employeeRole)
-            employeeImage = typedArray.getResourceId(R.styleable.LeaveCard_employeeImage, R.drawable.placeholder)
+            employeeImage = typedArray.getResourceId(R.styleable.LeaveCard_employeeImage, R.drawable.kit_ic_placeholder)
             employeeImageUrl = typedArray.getString(R.styleable.LeaveCard_employeeImageUrl)
 
             counterText = typedArray.getString(R.styleable.LeaveCard_counterText)

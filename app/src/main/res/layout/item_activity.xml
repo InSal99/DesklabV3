@@ -9,6 +9,6 @@
     app:cdibLeftSlotType="image"
     app:cdibShowIndicator="true"
     app:cdibShowRightSlot="true"
-    app:cdibRightSlotSrc="@drawable/ic_chevron_right"
+    app:cdibRightSlotSrc="@drawable/kit_ic_chevron_right"
     app:cdibShowLeftSlot="false"
     app:cdibShowDescription="true"/>

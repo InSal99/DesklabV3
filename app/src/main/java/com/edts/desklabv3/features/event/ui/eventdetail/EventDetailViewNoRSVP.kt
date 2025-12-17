@@ -74,7 +74,7 @@ class EventDetailViewNoRSVP : Fragment() {
     }
 
     private fun setEventDetails() {
-        binding.ivDetailEventPoster.setImageResource(com.edts.components.R.drawable.poster3)
+        binding.ivDetailEventPoster.setImageResource(com.edts.components.R.drawable.kit_im_poster3)
         binding.tvDetailEventType.text = "Hybrid Event"
         binding.tvDetailEventCategory.text = "General Event"
         binding.tvDetailEventTitle.text = "EDTS Town-Hall 2025: Power of Change"

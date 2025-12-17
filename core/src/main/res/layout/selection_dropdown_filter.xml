@@ -76,7 +76,7 @@
             android:layout_height="16dp"
             android:scaleType="centerCrop"
             android:contentDescription="Chip Action"
-            android:src="@drawable/placeholder"
+            android:src="@drawable/kit_ic_placeholder"
             app:layout_constraintDimensionRatio="1:1"
             app:tint="?attr/colorForegroundSecondary"
             app:layout_constraintEnd_toEndOf="parent"
