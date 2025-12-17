@@ -70,13 +70,10 @@ class Toast @JvmOverloads constructor(
         cardElevation = 2f * context.resources.displayMetrics.density
         strokeWidth = context.resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
         strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.kitColorNeutralGrayLightA20)
-//        strokeColor = ContextCompat.getColor(context, R.color.colorNeutralGrayLightA20)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             outlineAmbientShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralAmbient, R.color.kitColorNeutralGrayDarkA5)
             outlineSpotShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.kitColorNeutralGrayDarkA10)
-//            outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA5)
-//            outlineSpotShadowColor = ContextCompat.getColor(context, R.color.colorNeutralGrayDarkA10)
         }
     }
 
@@ -89,7 +86,6 @@ class Toast @JvmOverloads constructor(
             binding.ivIcon.imageTintList = ColorStateList.valueOf(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
             binding.tvMessage.setTextColor(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
         }
-//        setCardBackgroundColor(ContextCompat.getColor(context, toastType.colorRes))
         binding.ivIcon.setImageResource(toastIcon ?: toastType.iconRes)
         binding.tvMessage.text = toastMessage
     }

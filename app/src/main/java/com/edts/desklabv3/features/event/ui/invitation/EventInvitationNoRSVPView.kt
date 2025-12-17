@@ -107,7 +107,6 @@ class EventInvitationNoRSVPView : Fragment() {
                 startRejectionBackgroundTask()
             },
             onClose = {
-                // No Action
             }
         )
     }
