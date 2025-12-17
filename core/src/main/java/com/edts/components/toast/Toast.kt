@@ -2,6 +2,7 @@ package com.edts.components.toast
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.ColorStateList
 import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
@@ -81,6 +82,13 @@ class Toast @JvmOverloads constructor(
 
     private fun applyToastStyle() {
         setCardBackgroundColor(context.resolveColorAttr(toastType.ColorAttr, toastType.colorRes))
+        if(toastType == Type.GENERAL){
+            binding.ivIcon.imageTintList = ColorStateList.valueOf(context.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
+            binding.tvMessage.setTextColor(context.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
+        }else{
+            binding.ivIcon.imageTintList = ColorStateList.valueOf(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
+            binding.tvMessage.setTextColor(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
+        }
 //        setCardBackgroundColor(ContextCompat.getColor(context, toastType.colorRes))
         binding.ivIcon.setImageResource(toastIcon ?: toastType.iconRes)
         binding.tvMessage.text = toastMessage

@@ -6,6 +6,7 @@
     android:layout_marginHorizontal="@dimen/margin_12dp"
     android:layout_marginVertical="@dimen/margin_8dp"
     android:gravity="center_vertical"
+    android:background="?attr/colorBackgroundElevated"
     android:orientation="horizontal">
 
     <com.google.android.material.textview.MaterialTextView

@@ -165,8 +165,10 @@ class Header @JvmOverloads constructor(
 
     private fun applyBackgroundState() {
         if (showBackgroundColor) {
+            setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
             binding.Header.setCardBackgroundColor(getCachedColor(R.attr.colorBackgroundPrimary))
         } else {
+            setCardBackgroundColor(android.graphics.Color.TRANSPARENT)
             binding.Header.setCardBackgroundColor(android.graphics.Color.TRANSPARENT)
         }
     }

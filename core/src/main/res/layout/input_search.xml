@@ -7,7 +7,7 @@
     app:cardCornerRadius="@dimen/radius_12dp"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:strokeColor="?attr/colorStrokeSubtle"
-    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
+    app:cardBackgroundColor="?attr/colorBackgroundElevated"
     app:cardElevation="2dp"
     app:rippleColor="@android:color/transparent"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
