@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentManager
 import com.edts.components.R
 import com.edts.components.databinding.BottomTrayBinding
 import com.edts.components.footer.Footer
+import com.edts.components.utils.color
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttr
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -166,9 +167,16 @@ class BottomTray : BottomSheetDialogFragment() {
             setupDragHandle()
             applyTitleColor()
 
+//            (dialog as? BottomSheetDialog)?.window?.let { window ->
+//                window.navigationBarColor = context.resolveColorAttr(
+//                    R.attr.colorForegroundWhite,
+//                    R.color.kitColorNeutralWhite
+//                )
+//            }
+
             (dialog as? BottomSheetDialog)?.window?.let { window ->
                 window.navigationBarColor = context.resolveColorAttr(
-                    R.attr.colorForegroundWhite,
+                    R.attr.colorBackgroundPrimary,
                     R.color.kitColorNeutralWhite
                 )
             }
