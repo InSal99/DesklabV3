@@ -3,6 +3,7 @@ package com.edts.components.tray
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.InsetDrawable
@@ -144,6 +145,36 @@ class BottomTray : BottomSheetDialogFragment() {
         }
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        handleThemeChange()
+//        cachedDrawables.clear()
+//
+//        if (_binding != null) {
+//            updateBackground()
+//            setupDragHandle()
+//            applyTitleColor()
+//        }
+    }
+
+    private fun handleThemeChange() {
+        cachedDrawables.clear()
+        cachedColors.clear()
+
+        if (_binding != null) {
+            updateBackground()
+            setupDragHandle()
+            applyTitleColor()
+
+            (dialog as? BottomSheetDialog)?.window?.let { window ->
+                window.navigationBarColor = context.resolveColorAttr(
+                    R.attr.colorForegroundWhite,
+                    R.color.kitColorNeutralWhite
+                )
+            }
+        }
+    }
+
     override fun show(manager: FragmentManager, tag: String?) {
         if (manager.findFragmentByTag(tag) != null) {
             return
@@ -182,11 +213,11 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun setupEdgeToEdge(dialog: BottomSheetDialog) {
         dialog.window?.let { window ->
-            window.statusBarColor = Color.TRANSPARENT
+//            window.statusBarColor = Color.TRANSPARENT
             window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
             WindowInsetsControllerCompat(window, window.decorView).apply {
-                isAppearanceLightNavigationBars = true
-                isAppearanceLightStatusBars = true
+//                isAppearanceLightNavigationBars = true
+//                isAppearanceLightStatusBars = true
             }
         }
     }
@@ -258,13 +289,14 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun setupDragHandle() {
         if (dragHandleVisibility) {
-            binding.trayDragHandle.background = getDragHandleDrawable()
+            binding.trayDragHandle.background = createDragHandleDrawable()
         }
     }
 
     private fun updateBackground() {
         if (_binding == null) return
-        val background = getBackgroundDrawable(hasShadow, hasStroke)
+//        val background = getBackgroundDrawable(hasShadow, hasStroke)
+        val background = createBackgroundDrawable(hasShadow, hasStroke)
         binding.root.background = background
         val padding = if (hasShadow) (8.dpToPx) else 0
         binding.root.setPadding(0, padding, 0, 0)
