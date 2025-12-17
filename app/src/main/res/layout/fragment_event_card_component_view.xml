@@ -27,7 +27,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_chevron_left"
+                android:src="@drawable/kit_ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -61,7 +61,7 @@
                     app:cardEventType="Hybrid Event"
                     app:cardStatusText="Terdaftar"
                     app:cardStatusType="registered"
-                    app:eventImageSrc="@drawable/poster2"
+                    app:eventImageSrc="@drawable/kit_im_poster2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
@@ -72,7 +72,7 @@
                     app:showCardBadge="false"
                     app:cardEventCategory="People Development"
                     app:cardEventDate="23 Juli 2025"
-                    app:eventImageSrc="@drawable/poster2"
+                    app:eventImageSrc="@drawable/kit_im_poster2"
                     app:eventImageUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
                     app:cardEventTitle="EDTS Town-Hall 2025: Power of Change"
                     app:cardEventType="Hybrid Event"

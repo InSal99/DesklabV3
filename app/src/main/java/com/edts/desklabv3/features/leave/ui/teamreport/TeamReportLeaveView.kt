@@ -110,7 +110,7 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
             SortType.NAME_ASCENDING, SortType.LEAVE_COUNT_ASCENDING ->
                 com.edts.desklabv3.R.drawable.ic_sort_ascending
             SortType.NAME_DESCENDING, SortType.LEAVE_COUNT_DESCENDING ->
-                R.drawable.ic_sort
+                R.drawable.kit_ic_sort
         }
 
         binding.cvSortBtn.sortIcon = iconRes
@@ -169,10 +169,10 @@ class TeamReportLeaveView : Fragment(), InputSearchDelegate {
         }
 
         val options = listOf(
-            "Nama A –> Z" to R.drawable.ic_chevron_right,
-            "Nama Z –> A" to R.drawable.ic_chevron_right,
-            "Sisa Cuti Terbanyak –> Tersedikit" to R.drawable.ic_chevron_right,
-            "Sisa Cuti Tersedikit –> Terbanyak" to R.drawable.ic_chevron_right
+            "Nama A –> Z" to R.drawable.kit_ic_chevron_right,
+            "Nama Z –> A" to R.drawable.kit_ic_chevron_right,
+            "Sisa Cuti Terbanyak –> Tersedikit" to R.drawable.kit_ic_chevron_right,
+            "Sisa Cuti Tersedikit –> Terbanyak" to R.drawable.kit_ic_chevron_right
         )
 
         optionAdapter.submitList(options)

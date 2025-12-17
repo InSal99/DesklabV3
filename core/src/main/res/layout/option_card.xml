@@ -25,6 +25,6 @@
         android:id="@+id/ivOptionAction"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/ic_chevron_right"
+        android:src="@drawable/kit_ic_chevron_right"
         app:tint="?attr/colorForegroundTertiary"/>
 </LinearLayout>

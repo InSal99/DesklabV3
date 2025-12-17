@@ -27,7 +27,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_chevron_left"
+                android:src="@drawable/kit_ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     app:dropdownFilterBadgeText="1"
                     app:dropdownFilterDesc="Description"
-                    app:dropdownFilterIcon="@drawable/ic_chevron_down"
+                    app:dropdownFilterIcon="@drawable/kit_ic_chevron_down"
                     app:dropdownFilterLabel="Label"
                     app:dropdownFilterShowBadge="true"/>
 
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16dp"
                     app:dropdownFilterBadgeText="1"
-                    app:dropdownFilterIcon="@drawable/ic_chevron_down"
+                    app:dropdownFilterIcon="@drawable/kit_ic_chevron_down"
                     app:dropdownFilterLabel="Label"
                     app:dropdownFilterShowBadge="true"
                     app:dropdownFilterShowDesc="false"/>
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16dp"
-                    app:dropdownFilterIcon="@drawable/ic_chevron_down"
+                    app:dropdownFilterIcon="@drawable/kit_ic_chevron_down"
                     app:dropdownFilterLabel="Label"
                     app:dropdownFilterShowBadge="false"
                     app:dropdownFilterShowDesc="false"/>
@@ -84,7 +84,7 @@
                     android:layout_marginTop="@dimen/margin_16dp"
                     app:dropdownFilterBadgeText="1"
                     app:dropdownFilterDesc="Description"
-                    app:dropdownFilterIcon="@drawable/ic_chevron_down"
+                    app:dropdownFilterIcon="@drawable/kit_ic_chevron_down"
                     app:dropdownFilterLabel="Label"
                     app:dropdownFilterShowBadge="true"/>
             </LinearLayout>

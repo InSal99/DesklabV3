@@ -24,7 +24,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="2:1"
             android:contentDescription="@string/event_card_iv_content_description"
-            android:src="@drawable/poster3"
+            android:src="@drawable/kit_im_poster3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

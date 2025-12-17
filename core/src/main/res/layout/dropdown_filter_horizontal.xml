@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_6dp"
-        android:background="@drawable/divider_dot"
+        android:background="@drawable/kit_divider_dot"
         android:contentDescription="@string/card_multi_detail_wrapper_info_divider"
         app:layout_constraintBottom_toBottomOf="@+id/tvTitleLabel"
         app:layout_constraintStart_toEndOf="@+id/tvTitleLabel"
@@ -47,7 +47,7 @@
         android:id="@+id/ivChevronDown"
         android:layout_width="@dimen/margin_16dp"
         android:layout_height="@dimen/margin_16dp"
-        android:src="@drawable/ic_chevron_down"
+        android:src="@drawable/kit_ic_chevron_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

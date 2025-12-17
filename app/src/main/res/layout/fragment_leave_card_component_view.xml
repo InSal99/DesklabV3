@@ -23,7 +23,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_chevron_left"
+                android:src="@drawable/kit_ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary"/>
 
             <TextView
@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:employeeName="John Doe"
-                    app:employeeImage="@drawable/avatar_placeholder"
+                    app:employeeImage="@drawable/kit_im_avatar_placeholder"
                     app:employeeRole="General Staff"
                     app:counterText="5 Hari"
                     app:counterType="normal"/>
@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:employeeName="Jenny Dove"
-                    app:employeeImage="@drawable/avatar_placeholder"
+                    app:employeeImage="@drawable/kit_im_avatar_placeholder"
                     app:employeeImageUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
                     app:employeeRole="General Staff"
                     app:counterText="0 Hari"

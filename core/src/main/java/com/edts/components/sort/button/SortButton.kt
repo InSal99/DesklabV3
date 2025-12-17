@@ -3,7 +3,6 @@ package com.edts.components.sort.button
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -12,7 +11,6 @@ import androidx.core.content.ContextCompat
 import com.edts.components.R
 import com.edts.components.databinding.SortBtnBinding
 import com.edts.components.utils.dpToPx
-import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class SortButton @JvmOverloads constructor(
@@ -40,7 +38,7 @@ class SortButton @JvmOverloads constructor(
 
     var delegate: SortButtonDelegate? = null
 
-    var sortIcon: Int = R.drawable.ic_sort
+    var sortIcon: Int = R.drawable.kit_ic_sort
         set(value) {
             field = value
             binding.ivFilterBTN.setImageResource(value)
@@ -50,7 +48,7 @@ class SortButton @JvmOverloads constructor(
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.SortButton)
 
         try {
-            val iconResId = typedArray.getResourceId(R.styleable.SortButton_sortIcon, R.drawable.ic_sort)
+            val iconResId = typedArray.getResourceId(R.styleable.SortButton_sortIcon, R.drawable.kit_ic_sort)
             sortIcon = iconResId
         } finally {
             typedArray.recycle()

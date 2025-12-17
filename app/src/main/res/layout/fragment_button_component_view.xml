@@ -24,7 +24,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_chevron_left"
+                android:src="@drawable/kit_ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -53,7 +53,7 @@
                     android:text="Button Label"
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="XS"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
                     android:text="Button Label"
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="SM"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
                     android:text="Button Label"
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                     android:text="Button Label"
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="LG"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                     android:text="Button Label"
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
                     android:text="Button Label"
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="LEFT"/>
 
                 <com.edts.components.button.Button
@@ -108,7 +108,7 @@
                     android:text="Button Label"
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="RIGHT"/>
 
                 <com.edts.components.button.Button
@@ -119,7 +119,7 @@
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="MD"
                     app:isButtonDestructive="true"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="MD"
                     app:isButtonDestructive="true"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="LEFT"/>
 
                 <com.edts.components.button.Button
@@ -140,7 +140,7 @@
                     app:buttonType="PRIMARY"
                     app:buttonCustomSize="MD"
                     app:isButtonDestructive="true"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="RIGHT"/>
 
                 <com.edts.components.button.Button
@@ -152,7 +152,7 @@
                     app:buttonCustomSize="MD"
                     app:isButtonDestructive="true"
                     app:isButtonDisabled="true"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                     app:buttonCustomSize="MD"
                     app:isButtonDestructive="true"
                     app:isButtonDisabled="true"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="LEFT"/>
 
                 <com.edts.components.button.Button
@@ -175,7 +175,7 @@
                     app:buttonCustomSize="MD"
                     app:isButtonDestructive="true"
                     app:isButtonDisabled="true"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="RIGHT"/>
 
                 <com.edts.components.button.Button
@@ -185,7 +185,7 @@
                     android:text="Button Label"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -194,7 +194,7 @@
                     android:text="Button Label"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="LEFT"/>
 
                 <com.edts.components.button.Button
@@ -204,7 +204,7 @@
                     android:text="Button Label"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="RIGHT"/>
 
                 <com.edts.components.button.Button
@@ -215,7 +215,7 @@
                     app:isButtonDestructive="true"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -225,7 +225,7 @@
                     app:isButtonDestructive="true"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="LEFT"/>
 
                 <com.edts.components.button.Button
@@ -236,7 +236,7 @@
                     app:isButtonDestructive="true"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="RIGHT"/>
 
                 <com.edts.components.button.Button
@@ -248,7 +248,7 @@
                     app:isButtonDisabled="true"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"/>
+                    app:icon="@drawable/kit_ic_placeholder"/>
 
                 <com.edts.components.button.Button
                     android:layout_width="wrap_content"
@@ -259,7 +259,7 @@
                     app:isButtonDisabled="true"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="LEFT"/>
 
                 <com.edts.components.button.Button
@@ -271,7 +271,7 @@
                     app:isButtonDisabled="true"
                     app:buttonType="SECONDARY"
                     app:buttonCustomSize="MD"
-                    app:icon="@drawable/placeholder"
+                    app:icon="@drawable/kit_ic_placeholder"
                     app:iconPlacement="RIGHT"/>
             </LinearLayout>
         </ScrollView>

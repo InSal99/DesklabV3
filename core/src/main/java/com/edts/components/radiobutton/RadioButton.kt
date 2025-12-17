@@ -47,7 +47,7 @@ class RadioButton @JvmOverloads constructor(
     }
 
     private fun applyCustomStyle() {
-        val drawable = ContextCompat.getDrawable(context, R.drawable.ic_radio_button)
+        val drawable = ContextCompat.getDrawable(context, R.drawable.kit_ic_radio_button)
         if (drawable != null) {
             buttonDrawable = drawable
         }

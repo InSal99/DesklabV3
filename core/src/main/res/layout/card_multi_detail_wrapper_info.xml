@@ -25,7 +25,7 @@
         android:layout_height="2dp"
         app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="@dimen/margin_6dp"
-        android:background="@drawable/divider_dot"
+        android:background="@drawable/kit_divider_dot"
         android:backgroundTint="?attr/colorForegroundPlaceholder"
         android:contentDescription="@string/card_multi_detail_wrapper_info_divider"
         app:layout_constraintStart_toEndOf="@+id/tvInfo1"
