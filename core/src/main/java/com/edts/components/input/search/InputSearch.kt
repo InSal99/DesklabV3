@@ -188,16 +188,6 @@ class InputSearch @JvmOverloads constructor(
     }
 
     private fun createCardBackgroundDrawable(): Drawable {
-        val elevatedModifierDrawable = GradientDrawable().apply {
-            cornerRadius = 12f.dpToPx
-            setColor(
-                context.resolveColorAttribute(
-                    R.attr.colorBackgroundModifierCardElevated,
-                    android.R.color.transparent
-                )
-            )
-        }
-
         val disabledModifierDrawable = GradientDrawable().apply {
             cornerRadius = 12f.dpToPx
             setColor(
@@ -208,7 +198,7 @@ class InputSearch @JvmOverloads constructor(
             )
         }
 
-        return LayerDrawable(arrayOf(elevatedModifierDrawable, disabledModifierDrawable))
+        return LayerDrawable(arrayOf(disabledModifierDrawable))
     }
 
     private fun updateCardBackground() {

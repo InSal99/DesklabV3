@@ -288,7 +288,7 @@ class Chip @JvmOverloads constructor(
             ChipState.INACTIVE -> {
                 binding.chip.setCardBackgroundColor(
                     ColorStateList.valueOf(
-                        context.resolveColorAttribute(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite)
+                        context.resolveColorAttribute(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite)
                     )
                 )
                 binding.chip.strokeColor = context.resolveColorAttribute(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30)
@@ -349,7 +349,7 @@ class Chip @JvmOverloads constructor(
             ChipState.INACTIVE -> {
                 animateBackgroundColor(
                     getActiveBackgroundColor(),
-                    context.resolveColorAttribute(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite),
+                    context.resolveColorAttribute(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite),
                     animationDuration,
                     onAnimationComplete
                 )

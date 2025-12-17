@@ -5,11 +5,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
-    app:cardBackgroundColor="?attr/colorBackgroundPrimary"
     app:strokeColor="?attr/colorStrokeSubtle"
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardElevation="2dp"
-    android:foreground="?attr/colorBackgroundModifierCardElevated"
     app:rippleColor="?attr/colorBackgroundModifierOnPress"
     android:outlineAmbientShadowColor="?attr/colorBackgroundAttentionIntense"
     android:outlineSpotShadowColor="?attr/colorShadowNeutralKey">

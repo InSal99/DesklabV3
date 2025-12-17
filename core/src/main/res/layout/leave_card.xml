@@ -7,7 +7,7 @@
     app:strokeWidth="@dimen/stroke_weight_1dp"
     app:cardCornerRadius="@dimen/radius_12dp"
     app:rippleColor="?attr/colorBackgroundModifierOnPress"
-    app:cardBackgroundColor="?attr/colorBackgroundPrimary">
+    app:cardBackgroundColor="?attr/colorBackgroundElevated">
 
     <LinearLayout
         android:layout_width="match_parent"
