@@ -84,13 +84,6 @@ class EventDetailViewNoRSVP : Fragment() {
         eventDescription = EVENT_DESCRIPTION_HTML
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        bottomTray?.dismiss()
-//        bottomTray = null
-//        _binding = null
-//    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         isConfirming = false

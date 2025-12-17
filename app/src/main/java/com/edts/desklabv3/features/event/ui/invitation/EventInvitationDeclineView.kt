@@ -49,10 +49,8 @@ class EventInvitationDeclineView : Fragment() {
                 }
             },
             onPrimaryButtonClick = {
-                // Handle primary button click if needed
             },
             onSecondaryButtonClick = {
-                // Handle secondary button click if needed
             }
         )
 
@@ -92,7 +90,6 @@ class EventInvitationDeclineView : Fragment() {
                 startFakeBackgroundTask()
             },
             onClose = {
-                // No action
             }
         )
     }

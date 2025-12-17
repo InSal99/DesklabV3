@@ -294,7 +294,6 @@ class BottomTray : BottomSheetDialogFragment() {
             .build()
 
         val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
-//        val bgColor = requireContext().color(R.color.colorNeutralWhite)
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
             if (hasShadow) {
@@ -304,7 +303,6 @@ class BottomTray : BottomSheetDialogFragment() {
                 )
                 shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
                 val shadowColor = requireContext().resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.kitColorNeutralGrayDarkA10)
-//                val shadowColor = requireContext().color(R.color.colorNeutralGrayDarkA10)
                 setShadowColor(shadowColor)
             }
         }
@@ -312,7 +310,6 @@ class BottomTray : BottomSheetDialogFragment() {
             return backgroundDrawable
         }
         val strokeColor = requireContext().resolveColorAttr(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLightA30)
-//        val strokeColor = requireContext().color(R.color.colorNeutralGrayLightA30)
         val strokeWidth = resources.getDimension(R.dimen.stroke_weight_1dp)
         val strokeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(Color.TRANSPARENT)
@@ -339,7 +336,6 @@ class BottomTray : BottomSheetDialogFragment() {
         return MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(
                 requireContext().resolveColorAttr(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLightA50)
-//                requireContext().color(R.color.colorNeutralGrayLight50)
             )
         }
     }
@@ -358,13 +354,11 @@ class BottomTray : BottomSheetDialogFragment() {
     private fun applyTitleColor() {
         titleTextColor?.let { color ->
             binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
-//            binding.trayTitle.setTextColor(ContextCompat.getColor(requireContext(), color))
         }
     }
 
     private fun setCustomAnimations() {
     }
-
     private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             delegate?.onStateChanged(bottomSheet, newState)
