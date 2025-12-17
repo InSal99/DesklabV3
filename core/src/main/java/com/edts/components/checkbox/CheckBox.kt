@@ -64,7 +64,7 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun applyCustomStyle() {
-        val drawable = ContextCompat.getDrawable(context, R.drawable.ic_checkbox_states)
+        val drawable = ContextCompat.getDrawable(context, R.drawable.kit_ic_checkbox_states)
         if (drawable != null) {
             buttonDrawable = drawable
         }

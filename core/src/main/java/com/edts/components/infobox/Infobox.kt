@@ -123,25 +123,25 @@ class InfoBox @JvmOverloads constructor(
             InfoBoxVariant.INFORMATION -> {
                 gradientDrawable?.setColor(context.resolveColorAttr(R.attr.colorBackgroundInfoSubtle, R.color.kitColorBlue10))
                 binding.tvInfoText.setTextColor(context.resolveColorAttr(R.attr.colorForegroundInfoIntense, R.color.kitColorBlue50))
-                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_information)
+                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.kit_ic_information)
                 binding.ivInfoIcon.setColorFilter(context.resolveColorAttr(R.attr.colorForegroundInfoIntense, R.color.kitColorBlue50))
             }
             InfoBoxVariant.SUCCESS -> {
                 gradientDrawable?.setColor(context.resolveColorAttr(R.attr.colorBackgroundSuccessSubtle, R.color.kitColorGreen10))
                 binding.tvInfoText.setTextColor(context.resolveColorAttr(R.attr.colorForegroundSuccessIntense, R.color.kitColorGreen50))
-                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_success)
+                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.kit_ic_success)
                 binding.ivInfoIcon.setColorFilter(context.resolveColorAttr(R.attr.colorForegroundSuccessIntense, R.color.kitColorGreen50))
             }
             InfoBoxVariant.ERROR -> {
                 gradientDrawable?.setColor(context.resolveColorAttr(R.attr.colorBackgroundAttentionSubtle, R.color.kitColorRed10))
                 binding.tvInfoText.setTextColor(context.resolveColorAttr(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
-                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.ic_error)
+                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.kit_ic_error)
                 binding.ivInfoIcon.setColorFilter(context.resolveColorAttr(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
             }
             InfoBoxVariant.GENERAL -> {
                 gradientDrawable?.setColor(context.resolveColorAttr(R.attr.colorBackgroundSecondary, R.color.kitColorNeutralGrayLight10))
                 binding.tvInfoText.setTextColor(context.resolveColorAttr(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
-                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.placeholder)
+                binding.ivInfoIcon.setImageResource(iconSRC ?: R.drawable.kit_ic_placeholder)
                 binding.ivInfoIcon.setColorFilter(context.resolveColorAttr(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
             }
         }

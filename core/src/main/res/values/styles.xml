@@ -283,7 +283,7 @@
     </style>
 
     <style name="CustomRadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
-        <item name="android:button">@drawable/ic_radio_button</item>
+        <item name="android:button">@drawable/kit_ic_radio_button</item>
         <item name="android:textAppearance">@style/RadioTextAppearance</item>
     </style>
 

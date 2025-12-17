@@ -30,7 +30,7 @@ class DetailInformationSpeaker @JvmOverloads constructor(
             0
         ).apply {
             try {
-                val imageRes = getResourceId(R.styleable.DetailInformationSpeaker_speakerImage, R.drawable.avatar_placeholder)
+                val imageRes = getResourceId(R.styleable.DetailInformationSpeaker_speakerImage, R.drawable.kit_im_avatar_placeholder)
                 setImageResource(imageRes)
 
                 val name = getString(R.styleable.DetailInformationSpeaker_speakerName) ?: ""

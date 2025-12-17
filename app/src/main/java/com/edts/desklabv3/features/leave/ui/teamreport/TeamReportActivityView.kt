@@ -253,7 +253,7 @@ class TeamReportActivityView : Fragment() {
             )
 
             val prevButton = ImageButton(requireContext()).apply {
-                setImageResource(R.drawable.ic_chevron_left)
+                setImageResource(com.edts.components.R.drawable.kit_ic_chevron_left)
                 val colorResId = requireContext().resolveColorAttribute(
                     com.edts.components.R.attr.colorForegroundTertiary,
                     com.edts.components.R.color.kitColorNeutralGrayLight50
@@ -276,7 +276,7 @@ class TeamReportActivityView : Fragment() {
             }
 
             val nextButton = ImageButton(requireContext()).apply {
-                setImageResource(R.drawable.ic_chevron_right)
+                setImageResource(com.edts.components.R.drawable.kit_ic_chevron_right)
                 val colorResId = requireContext().resolveColorAttribute(
                     com.edts.components.R.attr.colorForegroundTertiary,
                     com.edts.components.R.color.kitColorNeutralGrayLight50

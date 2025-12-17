@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="@+id/cvSearchKaryawan"
         app:layout_constraintBottom_toBottomOf="@+id/cvSearchKaryawan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:sortIcon="@drawable/ic_sort"/>
+        app:sortIcon="@drawable/kit_ic_sort"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLeaveCards"

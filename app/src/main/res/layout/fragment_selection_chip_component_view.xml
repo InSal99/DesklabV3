@@ -27,7 +27,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_chevron_left"
+                android:src="@drawable/kit_ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -59,7 +59,7 @@
                     app:chipBadgeText="3"
                     app:chipShowIcon="true"
                     app:chipShowBadge="true"
-                    app:chipIcon="@drawable/ic_close"/>
+                    app:chipIcon="@drawable/kit_ic_close"/>
 
                 <com.edts.components.selection.Chip
                     android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                     app:chipText="Chip Label"
                     app:chipShowIcon="true"
                     app:chipShowBadge="false"
-                    app:chipIcon="@drawable/ic_close"/>
+                    app:chipIcon="@drawable/kit_ic_close"/>
 
                 <com.edts.components.selection.Chip
                     android:layout_width="wrap_content"

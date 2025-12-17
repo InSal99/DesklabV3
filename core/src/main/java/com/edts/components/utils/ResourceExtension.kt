@@ -71,7 +71,7 @@ fun Context?.resolveStyleAttr(
 fun ImageView.loadImageDynamic(
     imageUrl: String? = null,
     imageRes: Int? = null,
-    placeholderRes: Int = R.drawable.avatar_placeholder
+    placeholderRes: Int = R.drawable.kit_im_avatar_placeholder
 ) {
     val request = when {
         !imageUrl.isNullOrBlank() -> {

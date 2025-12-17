@@ -24,7 +24,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_chevron_left"
+                android:src="@drawable/kit_ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -52,14 +52,14 @@
                     android:layout_height="wrap_content"
                     app:infoTitle="Title"
                     app:infoDescription="Description"
-                    app:infoIcon="@drawable/placeholder" />
+                    app:infoIcon="@drawable/kit_ic_placeholder" />
 
                 <com.edts.components.detail.information.DetailInformationA
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:infoTitle="Title"
                     app:infoDescription="Description"
-                    app:infoIcon="@drawable/placeholder"
+                    app:infoIcon="@drawable/kit_ic_placeholder"
                     app:hasAction="true"
                     android:layout_marginTop="@dimen/margin_12dp"/>
             </LinearLayout>

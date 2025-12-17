@@ -15,7 +15,7 @@
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginEnd="@dimen/margin_8dp"
-        android:src="@drawable/placeholder"
+        android:src="@drawable/kit_ic_placeholder"
         app:tint="?attr/colorForegroundWhite"
         tools:ignore="ContentDescription" />
 

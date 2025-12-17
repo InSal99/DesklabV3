@@ -121,7 +121,7 @@
         android:layout_marginEnd="@dimen/radius_8dp"
         android:layout_marginBottom="@dimen/margin_18dp"
         android:scaleType="center"
-        android:src="@drawable/ic_chevron_left"
+        android:src="@drawable/kit_ic_chevron_left"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/tvScanQRTitle"
         app:layout_constraintStart_toStartOf="parent"

@@ -92,7 +92,7 @@ class EventDetailViewInvitationDecline : Fragment() {
     }
 
     private fun setEventDetails() {
-        binding.ivDetailEventPoster.setImageResource(com.edts.components.R.drawable.poster1)
+        binding.ivDetailEventPoster.setImageResource(com.edts.components.R.drawable.kit_im_poster1)
         binding.tvDetailEventType.text = "Hybrid Event"
         binding.tvDetailEventCategory.text = "People Development"
         binding.tvDetailEventTitle.text = "Simplifying UX Complexity: Bridging the Gap Between Design and Development"

@@ -27,7 +27,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_chevron_left"
+                android:src="@drawable/kit_ic_chevron_left"
                 app:tint="?attr/colorForegroundSecondary"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -54,8 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cdibLeftSlotType="image"
-                    app:cdibLeftSlotSrc="@drawable/avatar_placeholder"
-                    app:cdibRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cdibLeftSlotSrc="@drawable/kit_im_avatar_placeholder"
+                    app:cdibRightSlotSrc="@drawable/kit_ic_chevron_right"
                     app:cdibTitleText="Card Title"
                     app:cdibDescText="Card Content Description"/>
 
@@ -65,7 +65,7 @@
                     android:layout_marginTop="@dimen/margin_16dp"
                     app:cdibLeftSlotType="image"
                     app:cdibLeftSlotUrl="https://career.ub.ac.id/wp-content/uploads/2024/09/EDTS.png"
-                    app:cdibRightSlotSrc="@drawable/ic_chevron_right"
+                    app:cdibRightSlotSrc="@drawable/kit_ic_chevron_right"
                     app:cdibTitleText="Card Title"
                     app:cdibDescText="Card Content Description"/>
 
@@ -76,12 +76,12 @@
                     app:cdibLeftSlotType="icon"
                     app:cdibShowIndicator="true"
                     app:cdibIndicatorColor="?attr/colorBackgroundAttentionIntense"
-                    app:cdibLeftSlotSrc="@drawable/ic_star"
+                    app:cdibLeftSlotSrc="@drawable/kit_ic_star"
                     app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
                     app:cdibLeftSlotTint="?attr/colorBackgroundAttentionIntense"
                     app:cdibTitleText="Card Title"
                     app:cdibDescText="Card Content Description"
-                    app:cdibRightSlotSrc="@drawable/ic_chevron_right"/>
+                    app:cdibRightSlotSrc="@drawable/kit_ic_chevron_right"/>
 
                 <com.edts.components.card.detail.CardDetailInfoB
                     android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                     app:cdibShowLeftSlot="true"
                     app:cdibShowDescription="false"
                     app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-                    app:cdibLeftSlotSrc="@drawable/ic_star"
+                    app:cdibLeftSlotSrc="@drawable/kit_ic_star"
                     app:cdibLeftSlotBackgroundColor="?attr/colorBackgroundWarningIntense"
                     app:cdibLeftSlotTint="?attr/colorForegroundUtilityUlangTahunIntense"
                     app:cdibTitleText="Card Title"
@@ -110,7 +110,7 @@
                     app:cdibShowLeftSlot="false"
                     app:cdibShowDescription="false"
                     app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-                    app:cdibLeftSlotSrc="@drawable/ic_star"
+                    app:cdibLeftSlotSrc="@drawable/kit_ic_star"
                     app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
                     app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
                     app:cdibTitleText="Card Title"
@@ -127,7 +127,7 @@
                     app:cdibShowLeftSlot="false"
                     app:cdibShowDescription="true"
                     app:cdibIndicatorColor="?attr/colorForegroundWarningIntense"
-                    app:cdibLeftSlotSrc="@drawable/ic_star"
+                    app:cdibLeftSlotSrc="@drawable/kit_ic_star"
                     app:cdibLeftSlotBackgroundColor="?attr/colorForegroundWarningSubtle"
                     app:cdibLeftSlotTint="?attr/colorForegroundAccentPrimaryIntense"
                     app:cdibTitleText="Card Title"

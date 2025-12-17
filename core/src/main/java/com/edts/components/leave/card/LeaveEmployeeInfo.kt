@@ -46,7 +46,7 @@ class LeaveEmployeeInfo @JvmOverloads constructor(
         }
 
     init {
-        binding.ivInfoAction.setImageResource(R.drawable.ic_chevron_right)
+        binding.ivInfoAction.setImageResource(R.drawable.kit_ic_chevron_right)
         initAttrs(attrs)
     }
 
@@ -56,7 +56,7 @@ class LeaveEmployeeInfo @JvmOverloads constructor(
         try {
             employeeName = typedArray.getString(R.styleable.LeaveEmployeeInfo_employeeName)
             employeeRole = typedArray.getString(R.styleable.LeaveEmployeeInfo_employeeRole)
-            employeeImage = typedArray.getResourceId(R.styleable.LeaveEmployeeInfo_employeeImage, R.drawable.placeholder)
+            employeeImage = typedArray.getResourceId(R.styleable.LeaveEmployeeInfo_employeeImage, R.drawable.kit_ic_placeholder)
             employeeImageUrl = typedArray.getString(R.styleable.LeaveEmployeeInfo_employeeImageUrl)
         } finally {
             typedArray.recycle()

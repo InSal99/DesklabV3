@@ -33,10 +33,10 @@ class Toast @JvmOverloads constructor(
     var onToastClickListener: (() -> Unit)? = null
 
     enum class Type(@DrawableRes val iconRes: Int, val ColorAttr: Int, @ColorRes val colorRes: Int) {
-        SUCCESS(R.drawable.ic_success, R.attr.colorBackgroundSuccessIntense, R.color.kitColorGreen50),
-        ERROR(R.drawable.ic_attention, R.attr.colorBackgroundAttentionIntense, R.color.kitColorRed40),
-        INFO(R.drawable.ic_information, R.attr.colorBackgroundInfoIntense, R.color.kitColorBlue50),
-        GENERAL(R.drawable.placeholder, R.attr.colorBackgroundPrimaryInverse, R.color.kitColorNeutralBlack)
+        SUCCESS(R.drawable.kit_ic_success, R.attr.colorBackgroundSuccessIntense, R.color.kitColorGreen50),
+        ERROR(R.drawable.kit_ic_attention, R.attr.colorBackgroundAttentionIntense, R.color.kitColorRed40),
+        INFO(R.drawable.kit_ic_information, R.attr.colorBackgroundInfoIntense, R.color.kitColorBlue50),
+        GENERAL(R.drawable.kit_ic_placeholder, R.attr.colorBackgroundPrimaryInverse, R.color.kitColorNeutralBlack)
     }
 
     init {

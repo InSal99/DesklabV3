@@ -11,7 +11,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/avatar_placeholder"
+        android:src="@drawable/kit_im_avatar_placeholder"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CircleImageView"/>
 
     <com.google.android.material.textview.MaterialTextView
