@@ -333,7 +333,11 @@ class BottomTray : BottomSheetDialogFragment() {
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
 
-        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
+//        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
+        val bgColor = requireContext().resolveColorAttr(
+            com.google.android.material.R.attr.colorSurface,
+            R.color.kitColorNeutralWhite
+        )
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
             if (hasShadow) {
@@ -392,8 +396,17 @@ class BottomTray : BottomSheetDialogFragment() {
     }
 
     private fun applyTitleColor() {
+//        titleTextColor?.let { color ->
+//            binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
+//        }
+
         titleTextColor?.let { color ->
-            binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
+            binding.trayTitle.setTextColor(
+                requireContext().resolveColorAttr(
+                    com.google.android.material.R.attr.colorOnSurface,
+                    color
+                )
+            )
         }
     }
 
