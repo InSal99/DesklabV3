@@ -272,6 +272,10 @@
 
     <style name="ThemeOverlay.DesklabV3.UIKit.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/Widget.DesklabV3.UIKit.BottomSheet.Modal</item>
+
+        <item name="colorSurface">@color/kitColorYellow30</item>
+        <item name="colorOnSurface">@color/kitColorGreen50</item>
+        <item name="colorOutline">@color/kitColorNeutralGrayLightA30</item>
     </style>
 
     <style name="ShapeAppearance.DesklabV3.UIKit.BottomSheet" parent="ShapeAppearance.Material3.MediumComponent">
