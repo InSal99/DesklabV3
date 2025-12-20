@@ -93,7 +93,7 @@ class MonthlyPicker @JvmOverloads constructor(
     }
 
     private fun handleClick() {
-        if (type == PickerType.DISABLED) return
+        if (!isEnabled) return
 
         type = if (type == PickerType.SELECTED) {
             PickerType.UNSELECTED
@@ -105,9 +105,10 @@ class MonthlyPicker @JvmOverloads constructor(
     }
 
     private fun updateStyling() {
-        isEnabled = true
-        isClickable = true
-        isFocusable = (type != PickerType.DISABLED)
+        val enabled = type != PickerType.DISABLED
+        isEnabled = enabled
+        isClickable = enabled
+        isFocusable = enabled
 
         updateTextColor()
         updateBackground()
@@ -120,7 +121,7 @@ class MonthlyPicker @JvmOverloads constructor(
                 R.color.kitColorNeutralBlack
             )
             PickerType.SELECTED -> context.resolveColorAttribute(
-                R.attr.colorForegroundPrimaryInverse,
+                R.attr.colorForegroundWhite,
                 R.color.kitColorNeutralWhite
             )
             PickerType.DISABLED -> context.resolveColorAttribute(

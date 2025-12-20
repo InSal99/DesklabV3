@@ -10,6 +10,7 @@ import com.edts.components.R
 import com.edts.components.databinding.OptionCardBinding
 import com.edts.components.utils.dpToPx
 import com.edts.components.utils.resolveColorAttr
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 
 class OptionCard @JvmOverloads constructor(
@@ -80,13 +81,13 @@ class OptionCard @JvmOverloads constructor(
         cardElevation = 1f.dpToPx
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = context.resolveColorAttr(
-                R.attr.colorForegroundPrimary,
-                R.color.kitColorNeutralBlack
+            outlineAmbientShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralAmbient,
+                R.color.kitColorNeutralGrayDarkA5
             )
-            outlineSpotShadowColor = context.resolveColorAttr(
-                R.attr.colorForegroundPrimary,
-                R.color.kitColorNeutralBlack
+            outlineSpotShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralKey,
+                R.color.kitColorNeutralGrayDarkA10
             )
         }
         setupClickAnimation()

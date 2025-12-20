@@ -144,6 +144,7 @@ class Header @JvmOverloads constructor(
 
     private fun applyShadowState() {
         if (showShadow) {
+            cardElevation = (2 * Resources.getSystem().displayMetrics.density)
             binding.Header.cardElevation = (2 * Resources.getSystem().displayMetrics.density)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 outlineAmbientShadowColor = context.resolveColorAttr(
@@ -156,6 +157,7 @@ class Header @JvmOverloads constructor(
                 )
             }
         } else {
+            cardElevation = 0f
             binding.Header.cardElevation = 0f
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 outlineAmbientShadowColor = Color.TRANSPARENT
@@ -179,6 +181,12 @@ class Header @JvmOverloads constructor(
         if (context.theme.resolveAttribute(R.attr.h1SemiBold, typedValue, true)) {
             binding.tvSectionTitle.setTextAppearance(typedValue.resourceId)
         }
+        binding.tvSectionTitle.setTextColor(
+            getCachedColor(
+                R.attr.colorForegroundPrimary,
+                R.color.kitColorNeutralBlack
+            )
+        )
     }
 
     private fun setupClickListeners() {
