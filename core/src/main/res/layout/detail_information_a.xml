@@ -26,6 +26,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         style="?attr/l3Regular"
+        android:textColor="?attr/colorForegroundSecondary"
         android:layout_marginTop="@dimen/margin_12dp"
         app:layout_constraintStart_toEndOf="@id/ivInfoIcon"
         app:layout_constraintTop_toTopOf="parent"
