@@ -76,12 +76,14 @@ class DropdownFilterHorizontal @JvmOverloads constructor(
         this.rippleColor = ColorStateList.valueOf(rippleColor)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val shadowColor = context.resolveColorAttribute(
-                R.attr.colorForegroundPrimary,
-                R.color.kitColorNeutralBlack
+            outlineAmbientShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralAmbient,
+                R.color.kitColorNeutralGrayDarkA5
             )
-            outlineAmbientShadowColor = shadowColor
-            outlineSpotShadowColor = shadowColor
+            outlineSpotShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralKey,
+                R.color.kitColorNeutralGrayDarkA10
+            )
         }
     }
 }

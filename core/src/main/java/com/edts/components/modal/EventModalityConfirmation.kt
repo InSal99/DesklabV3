@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import androidx.core.content.withStyledAttributes
 import com.edts.components.R
 import com.edts.components.databinding.EventModalityConfirmationBinding
+import com.edts.components.utils.resolveColorAttribute
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.MaterialColors
 
@@ -58,13 +59,14 @@ class EventModalityConfirmation @JvmOverloads constructor(
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val shadowColor = MaterialColors.getColor(
-                context,
-                R.attr.colorForegroundPrimary,
-                Color.BLACK
+            outlineAmbientShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralAmbient,
+                R.color.kitColorNeutralGrayDarkA5
             )
-            outlineAmbientShadowColor = shadowColor
-            outlineSpotShadowColor = shadowColor
+            outlineSpotShadowColor = context.resolveColorAttribute(
+                R.attr.colorShadowNeutralKey,
+                R.color.kitColorNeutralGrayDarkA10
+            )
         }
 
 
