@@ -26,6 +26,8 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
+import androidx.appcompat.view.ContextThemeWrapper
+import androidx.core.view.setPadding
 import androidx.core.widget.doAfterTextChanged
 import com.edts.components.R
 import com.edts.components.checkbox.CheckBox
@@ -363,19 +365,21 @@ class InputField @JvmOverloads constructor(
             background = getCachedDrawable("rounded_normal") { createRoundedBackground() }
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(padding12dp, (2.pxToDp).toInt(), padding12dp, (2.pxToDp).toInt())
-            minimumHeight = minHeight48dp
+            setPadding(padding12dp, padding10dp, padding12dp, padding10dp)
+//            minimumHeight = minHeight48dp
             isFocusable = false
             isClickable = false
         }
         textInputContainer = container
 
-        val editText = EditText(context).apply {
+//        val editText = EditText(context).apply {
+        val editText = EditText(ContextThemeWrapper(context, R.style.EditTextCursorStyle), null, 0).apply {
             hint = config.hint
             setTextAppearance(R.style.TextRegular_Paragraph1)
             setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
             setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             background = null
+            setPadding(0, 0, 0, 0)
 
             inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_NORMAL
             imeOptions = EditorInfo.IME_ACTION_NEXT
@@ -526,19 +530,21 @@ class InputField @JvmOverloads constructor(
             background = getCachedDrawable("rounded_normal") { createRoundedBackground() }
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(padding12dp, (2 * density).toInt(), padding12dp, (2 * density).toInt())
-            minimumHeight = minHeight48dp
+            setPadding(padding12dp, padding10dp, padding12dp, padding10dp)
+//            minimumHeight = minHeight48dp
             isFocusable = false
             isClickable = false
         }
         textInputContainer = container
 
-        val editText = EditText(context).apply {
+//        val editText = EditText(context).apply {
+        val editText = EditText(ContextThemeWrapper(context, R.style.EditTextCursorStyle), null, 0).apply {
             hint = config.hint
             setTextAppearance(R.style.TextRegular_Paragraph1)
             setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
             setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             background = null
+            setPadding(0, 0, 0, 0)
 
             inputType = android.text.InputType.TYPE_CLASS_NUMBER or
                     android.text.InputType.TYPE_NUMBER_VARIATION_NORMAL
@@ -704,6 +710,7 @@ class InputField @JvmOverloads constructor(
             setHintTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             background = null
             gravity = Gravity.TOP
+            setPadding(0, 0, 0, 0)
 
             inputType = android.text.InputType.TYPE_CLASS_TEXT or
                     android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE or
@@ -738,6 +745,10 @@ class InputField @JvmOverloads constructor(
                     setError(lengthError)
                 } else if (currentErrorText?.contains("Minimum") == true ||
                     currentErrorText?.contains("Maksimum") == true) {
+                    clearError()
+                }
+
+                if (!text.isNullOrBlank() && currentErrorText != null) {
                     clearError()
                 }
 
@@ -859,6 +870,14 @@ class InputField @JvmOverloads constructor(
         return shape
     }
 
+    private fun createCursorDrawable(): Drawable {
+        val cursorDrawable = GradientDrawable()
+        cursorDrawable.shape = GradientDrawable.RECTANGLE
+        cursorDrawable.setSize((2.pxToDp), 0)
+        cursorDrawable.setColor(getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30))
+        return cursorDrawable
+    }
+
     private fun createDisabledBackground(): Drawable {
         val baseShape = GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
@@ -911,6 +930,7 @@ class InputField @JvmOverloads constructor(
             setTextAppearance(R.style.TextRegular_Paragraph1)
             setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             gravity = Gravity.CENTER_VERTICAL
+            setPadding(0,0,0,0)
 
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         }
