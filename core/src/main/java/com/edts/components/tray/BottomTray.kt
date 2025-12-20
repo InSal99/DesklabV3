@@ -335,7 +335,7 @@ class BottomTray : BottomSheetDialogFragment() {
 
 //        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
         val bgColor = requireContext().resolveColorAttr(
-            com.google.android.material.R.attr.colorSurface,
+            com.google.android.material.R.attr.errorTextColor,
             R.color.kitColorNeutralWhite
         )
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
