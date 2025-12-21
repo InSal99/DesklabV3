@@ -10,6 +10,7 @@ import android.graphics.drawable.InsetDrawable
 import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -102,7 +103,13 @@ class BottomTray : BottomSheetDialogFragment() {
             }
         }
 
-    override fun getTheme(): Int = R.style.ThemeOverlay_DesklabV3_UIKit_BottomSheetDialog
+//    override fun getTheme(): Int = R.style.ThemeOverlay_DesklabV3_UIKit_BottomSheetDialog
+
+    override fun getTheme(): Int {
+        val themeId = R.style.ThemeOverlay_DesklabV3_UIKit_BottomSheetDialog
+        Log.d("BottomTray", "Using theme ID: $themeId")
+        return themeId
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
@@ -136,6 +143,12 @@ class BottomTray : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
+        val isDark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+
+        Log.d("BottomTray", "Dark mode: $isDark, BG Color: #${Integer.toHexString(bgColor)}")
+
+
         setupRootView()
         setupViews()
         updateBackground()
@@ -166,13 +179,6 @@ class BottomTray : BottomSheetDialogFragment() {
             updateBackground()
             setupDragHandle()
             applyTitleColor()
-
-//            (dialog as? BottomSheetDialog)?.window?.let { window ->
-//                window.navigationBarColor = context.resolveColorAttr(
-//                    R.attr.colorForegroundWhite,
-//                    R.color.kitColorNeutralWhite
-//                )
-//            }
 
             (dialog as? BottomSheetDialog)?.window?.let { window ->
                 window.navigationBarColor = context.resolveColorAttr(
@@ -221,12 +227,8 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun setupEdgeToEdge(dialog: BottomSheetDialog) {
         dialog.window?.let { window ->
-//            window.statusBarColor = Color.TRANSPARENT
             window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
-            WindowInsetsControllerCompat(window, window.decorView).apply {
-//                isAppearanceLightNavigationBars = true
-//                isAppearanceLightStatusBars = true
-            }
+            WindowInsetsControllerCompat(window, window.decorView)
         }
     }
 
@@ -303,8 +305,8 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun updateBackground() {
         if (_binding == null) return
-//        val background = getBackgroundDrawable(hasShadow, hasStroke)
-        val background = createBackgroundDrawable(hasShadow, hasStroke)
+        val background = getBackgroundDrawable(hasShadow, hasStroke)
+//        val background = createBackgroundDrawable(hasShadow, hasStroke)
         binding.root.background = background
         val padding = if (hasShadow) (8.dpToPx) else 0
         binding.root.setPadding(0, padding, 0, 0)
@@ -333,11 +335,11 @@ class BottomTray : BottomSheetDialogFragment() {
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
 
-//        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
-        val bgColor = requireContext().resolveColorAttr(
-            com.google.android.material.R.attr.errorTextColor,
-            R.color.kitColorNeutralWhite
-        )
+        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
+
+        Log.d("BottomTray", "Resolved BG color: #${Integer.toHexString(bgColor)}")
+        Log.d("BottomTray", "Theme: ${requireContext().theme}")
+
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
             if (hasShadow) {
@@ -396,17 +398,8 @@ class BottomTray : BottomSheetDialogFragment() {
     }
 
     private fun applyTitleColor() {
-//        titleTextColor?.let { color ->
-//            binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
-//        }
-
         titleTextColor?.let { color ->
-            binding.trayTitle.setTextColor(
-                requireContext().resolveColorAttr(
-                    com.google.android.material.R.attr.colorOnSurface,
-                    color
-                )
-            )
+            binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
         }
     }
 
