@@ -1,6 +1,7 @@
 package com.edts.components.tray
 
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.content.res.Configuration
@@ -10,6 +11,7 @@ import android.graphics.drawable.InsetDrawable
 import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.StyleRes
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -102,7 +105,13 @@ class BottomTray : BottomSheetDialogFragment() {
             }
         }
 
-    override fun getTheme(): Int = R.style.ThemeOverlay_DesklabV3_UIKit_BottomSheetDialog
+//    override fun getTheme(): Int = R.style.ThemeOverlay_DesklabV3_UIKit_BottomSheetDialog
+
+    override fun getTheme(): Int {
+        val themeId = R.style.ThemeOverlay_DesklabV3_UIKit_BottomSheetDialog
+        Log.d("BottomTray", "Using theme ID: $themeId")
+        return themeId
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
@@ -117,7 +126,10 @@ class BottomTray : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = BottomTrayBinding.inflate(inflater, container, false)
+//        _binding = BottomTrayBinding.inflate(inflater, container, false)
+        val themedInflater = inflater.cloneInContext(ContextThemeWrapper(requireContext(), getTheme()))
+        _binding = BottomTrayBinding.inflate(themedInflater, container, false)
+
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -135,6 +147,14 @@ class BottomTray : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //v1.1.14
+//        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
+        val bgColor = getThemedContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
+        val isDark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+
+        Log.d("BottomTray", "Dark mode: $isDark, BG Color: #${Integer.toHexString(bgColor)}")
+
 
         setupRootView()
         setupViews()
@@ -158,6 +178,15 @@ class BottomTray : BottomSheetDialogFragment() {
 //        }
     }
 
+    //v1.1.14
+    override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+        val baseInflater = super.onGetLayoutInflater(savedInstanceState)
+        val themedContext = ContextThemeWrapper(requireContext(), getTheme())
+        return baseInflater.cloneInContext(themedContext)
+    }
+
+    private fun getThemedContext(): Context = _binding?.root?.context ?: ContextThemeWrapper(requireContext(), getTheme())
+
     private fun handleThemeChange() {
         cachedDrawables.clear()
         cachedColors.clear()
@@ -166,13 +195,6 @@ class BottomTray : BottomSheetDialogFragment() {
             updateBackground()
             setupDragHandle()
             applyTitleColor()
-
-//            (dialog as? BottomSheetDialog)?.window?.let { window ->
-//                window.navigationBarColor = context.resolveColorAttr(
-//                    R.attr.colorForegroundWhite,
-//                    R.color.kitColorNeutralWhite
-//                )
-//            }
 
             (dialog as? BottomSheetDialog)?.window?.let { window ->
                 window.navigationBarColor = context.resolveColorAttr(
@@ -220,13 +242,16 @@ class BottomTray : BottomSheetDialogFragment() {
     }
 
     private fun setupEdgeToEdge(dialog: BottomSheetDialog) {
+//        dialog.window?.let { window ->
+//            window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
+//            WindowInsetsControllerCompat(window, window.decorView)
+//        }
+
+        //v1.1.14
         dialog.window?.let { window ->
-//            window.statusBarColor = Color.TRANSPARENT
-            window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
-            WindowInsetsControllerCompat(window, window.decorView).apply {
-//                isAppearanceLightNavigationBars = true
-//                isAppearanceLightStatusBars = true
-            }
+            val ctx = getThemedContext()
+            window.navigationBarColor = ctx.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
+            WindowInsetsControllerCompat(window, window.decorView)
         }
     }
 
@@ -303,8 +328,8 @@ class BottomTray : BottomSheetDialogFragment() {
 
     private fun updateBackground() {
         if (_binding == null) return
-//        val background = getBackgroundDrawable(hasShadow, hasStroke)
-        val background = createBackgroundDrawable(hasShadow, hasStroke)
+        val background = getBackgroundDrawable(hasShadow, hasStroke)
+//        val background = createBackgroundDrawable(hasShadow, hasStroke)
         binding.root.background = background
         val padding = if (hasShadow) (8.dpToPx) else 0
         binding.root.setPadding(0, padding, 0, 0)
@@ -317,31 +342,49 @@ class BottomTray : BottomSheetDialogFragment() {
     }
 
     private fun getBackgroundDrawable(hasShadow: Boolean, hasStroke: Boolean): Drawable {
-        val cacheKey = "bg_shadow_${hasShadow}_stroke_$hasStroke"
+//        val cacheKey = "bg_shadow_${hasShadow}_stroke_$hasStroke"
+
+        //v1.1.14
+        val cacheKey = "bg_shadow_${hasShadow}_stroke_${hasStroke}_theme_${getThemedContext().theme.hashCode()}"
         return cachedDrawables.getOrPut(cacheKey) {
             createBackgroundDrawable(hasShadow, hasStroke)
         }
     }
 
     private fun createBackgroundDrawable(hasShadow: Boolean, hasStroke: Boolean): Drawable {
+//        val cornerRadius = TypedValue.applyDimension(
+//            TypedValue.COMPLEX_UNIT_DIP, 16f,
+//            requireContext().resources.displayMetrics
+//        )
+
+        //v1.1.14
+        val ctx = getThemedContext()
         val cornerRadius = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, 16f,
-            requireContext().resources.displayMetrics
+            ctx.resources.displayMetrics
         )
+
         val shapeAppearanceModel = ShapeAppearanceModel.builder()
             .setTopLeftCorner(CornerFamily.ROUNDED, cornerRadius)
             .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
             .build()
 
 //        val bgColor = requireContext().resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
-        val bgColor = requireContext().resolveColorAttr(
-            com.google.android.material.R.attr.errorTextColor,
-            R.color.kitColorNeutralWhite
-        )
+
+        //v1.1.14
+        val bgColor = ctx.resolveColorAttr(R.attr.colorBackgroundSurface, R.color.kitColorNeutralWhite)
+
+        Log.d("BottomTray", "Resolved BG color: #${Integer.toHexString(bgColor)}")
+        Log.d("BottomTray", "Theme: ${requireContext().theme}")
+
         val backgroundDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
             fillColor = ColorStateList.valueOf(bgColor)
             if (hasShadow) {
-                initializeElevationOverlay(requireContext())
+//                initializeElevationOverlay(requireContext())
+
+                //v1.1.14
+                initializeElevationOverlay(ctx)
+
                 elevation = TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP, 8f, requireContext().resources.displayMetrics
                 )
@@ -367,19 +410,33 @@ class BottomTray : BottomSheetDialogFragment() {
     }
 
     private fun getDragHandleDrawable(): Drawable {
-        return cachedDrawables.getOrPut("drag_handle") {
-            createDragHandleDrawable()
-        }
+//        return cachedDrawables.getOrPut("drag_handle") {
+//            createDragHandleDrawable()
+//        }
+
+        //v1.1.14
+        val key = "drag_handle_theme_${getThemedContext().theme.hashCode()}"
+        return cachedDrawables.getOrPut(key) { createDragHandleDrawable() }
     }
 
     private fun createDragHandleDrawable(): MaterialShapeDrawable {
-        val dragHandleCornerRadius = 2f * requireContext().resources.displayMetrics.density
+//        val dragHandleCornerRadius = 2f * requireContext().resources.displayMetrics.density
+
+        //v1.1.14
+        val ctx = getThemedContext()
+        val dragHandleCornerRadius = 2f * ctx.resources.displayMetrics.density
+
         val shapeAppearanceModel = ShapeAppearanceModel.builder()
             .setAllCorners(CornerFamily.ROUNDED, dragHandleCornerRadius)
             .build()
         return MaterialShapeDrawable(shapeAppearanceModel).apply {
+//            fillColor = ColorStateList.valueOf(
+//                requireContext().resolveColorAttr(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLightA50)
+//            )
+
+            //v1.1.14
             fillColor = ColorStateList.valueOf(
-                requireContext().resolveColorAttr(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLightA50)
+                ctx.resolveColorAttr(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLightA50)
             )
         }
     }
@@ -390,23 +447,18 @@ class BottomTray : BottomSheetDialogFragment() {
                 binding.trayTitle.setTextAppearance(appearance)
             } else {
                 @Suppress("DEPRECATION")
-                binding.trayTitle.setTextAppearance(requireContext(), appearance)
+//                binding.trayTitle.setTextAppearance(requireContext(), appearance)
+
+                //v1.1.14
+                binding.trayTitle.setTextColor(binding.trayTitle.context.resolveColorAttr(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
+
             }
         }
     }
 
     private fun applyTitleColor() {
-//        titleTextColor?.let { color ->
-//            binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
-//        }
-
         titleTextColor?.let { color ->
-            binding.trayTitle.setTextColor(
-                requireContext().resolveColorAttr(
-                    com.google.android.material.R.attr.colorOnSurface,
-                    color
-                )
-            )
+            binding.trayTitle.setTextColor(requireContext().resolveColorAttr(R.attr.colorForegroundPrimary, color))
         }
     }
 
