@@ -133,7 +133,6 @@ class Chip @JvmOverloads constructor(
                 val chipSizeValue = getInt(R.styleable.Chip_chipSize, 0)
                 chipSize = ChipSize.fromValue(chipSizeValue)
 
-                radius = 999.dpToPx.toFloat()
                 rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
 
                 chipText = getString(R.styleable.Chip_chipText)
@@ -164,6 +163,11 @@ class Chip @JvmOverloads constructor(
                 recycle()
             }
         }
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        radius = h / 2f
     }
 
     private fun isUsingDefaultActiveBg(): Boolean {
