@@ -158,5 +158,6 @@
     <!-- color modifier -->
     <color name="kitColorModifierElevated">#1B1D25</color>
     <color name="kitColorModifierSurface">#14161F</color>
+    <color name="kitColorModifierElevatedDisabled">#191919</color>
 
 </resources>

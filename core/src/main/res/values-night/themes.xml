@@ -19,6 +19,7 @@
         <item name="colorBackgroundOverlay">@color/kitColorNeutralGrayDarkA65</item>
         <item name="colorBackgroundDisabled">@color/kitColorNeutralGrayLightA5</item>
         <item name="colorBackgroundElevated">@color/kitColorModifierElevated</item>
+        <item name="colorBackgroundElevatedDisabled">@color/kitColorModifierElevatedDisabled</item>
         <item name="colorBackgroundSurface">@color/kitColorModifierSurface</item>
 
         <!-- Accent Background Colors -->
