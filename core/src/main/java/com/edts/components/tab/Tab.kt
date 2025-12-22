@@ -102,6 +102,7 @@ class Tab @JvmOverloads constructor(
         }.toMutableList()
 
         tabAdapter.updateSelectedPosition(position)
+        scrollToPositionIfNeeded(position)
 
         if (notifyListener) {
             onTabClickListener?.onTabClick(position, tabDataList[position].text)
@@ -112,6 +113,55 @@ class Tab @JvmOverloads constructor(
     fun getSelectedTabText(): String? = tabDataList.getOrNull(selectedPosition)?.text
     fun getTabCount(): Int = tabDataList.size
     fun isPositionSelected(position: Int): Boolean = position == selectedPosition
+
+    private fun scrollToPositionIfNeeded(position: Int) {
+        val lm = layoutManager as? LinearLayoutManager ?: return
+
+        val firstVisible = lm.findFirstVisibleItemPosition()
+        val lastVisible = lm.findLastVisibleItemPosition()
+
+        if (position < firstVisible || position > lastVisible) {
+            smoothScrollToPositionWithOffset(position, paddingStart)
+            return
+        }
+
+        val view = lm.findViewByPosition(position) ?: return
+
+        val left = view.left
+        val right = view.right
+        val parentLeft = paddingStart
+        val parentRight = width - paddingEnd
+
+        when {
+            left < parentLeft -> {
+                smoothScrollToPositionWithOffset(position, parentLeft)
+            }
+            right > parentRight -> {
+                val offset = parentRight - view.width
+                smoothScrollToPositionWithOffset(position, offset)
+            }
+        }
+    }
+
+    private fun smoothScrollToPositionWithOffset(position: Int, offset: Int) {
+        val lm = layoutManager as? LinearLayoutManager ?: return
+
+        val scroller = object : androidx.recyclerview.widget.LinearSmoothScroller(context) {
+            override fun getHorizontalSnapPreference(): Int =
+                SNAP_TO_START
+
+            override fun calculateTimeForDeceleration(dx: Int): Int {
+                return super.calculateTimeForDeceleration(dx) * 8
+            }
+        }
+
+        scroller.targetPosition = position
+        lm.startSmoothScroll(scroller)
+
+        post {
+            lm.scrollToPositionWithOffset(position, offset)
+        }
+    }
 
     private class TabSpaceItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
         private val space = context.resources.displayMetrics.density * 8
