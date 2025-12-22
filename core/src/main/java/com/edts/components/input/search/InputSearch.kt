@@ -61,6 +61,8 @@ class InputSearch @JvmOverloads constructor(
             }
         }
 
+    private var errorTextSnapshot: String? = null
+
     enum class CardState {
         REST,
         ON_PRESS
@@ -119,16 +121,26 @@ class InputSearch @JvmOverloads constructor(
             val oldState = _state
 
             if (hasFocus) {
-                if (_state != State.DISABLE && _state != State.ERROR) {
+                if (_state != State.DISABLE) {
                     _state = State.FOCUS
                     updateState()
                     delegate?.onFocusChange(this, true, _state, oldState)
                 }
             } else {
                 if (_state == State.FOCUS) {
-                    _state = previousState
-                    updateState()
-                    delegate?.onFocusChange(this, false, _state, State.FOCUS)
+                    val currentText = binding.etSearch.text?.toString()
+
+                    state = if (previousState == State.ERROR) {
+                        if (currentText == errorTextSnapshot) {
+                            State.ERROR
+                        } else {
+                            State.REST
+                        }
+                    } else {
+                        previousState
+                    }
+
+                    delegate?.onFocusChange(this, false, state, State.FOCUS)
                 }
             }
         }
@@ -146,6 +158,12 @@ class InputSearch @JvmOverloads constructor(
                 val text = s?.toString() ?: ""
                 delegate?.onSearchTextChange(this@InputSearch, text)
                 updateRightIconVisibility()
+
+                if (_state == State.FOCUS && previousState == State.ERROR) {
+                    if (text != errorTextSnapshot) {
+                        errorTextSnapshot = null
+                    }
+                }
             }
         })
     }
@@ -155,6 +173,8 @@ class InputSearch @JvmOverloads constructor(
             binding.etSearch.text?.clear()
             binding.etSearch.clearFocus()
             hideKeyboard()
+            errorTextSnapshot = null
+            state = State.REST
             delegate?.onCloseIconClick(this)
         }
 
@@ -222,6 +242,12 @@ class InputSearch @JvmOverloads constructor(
     }
 
     private fun handleSearchFieldClick() {
+        if (_state == State.ERROR) {
+            errorTextSnapshot = binding.etSearch.text?.toString()
+            previousState = State.ERROR
+            _state = State.FOCUS
+            updateState()
+        }
         binding.etSearch.requestFocus()
         delegate?.onSearchFieldClick(this)
     }

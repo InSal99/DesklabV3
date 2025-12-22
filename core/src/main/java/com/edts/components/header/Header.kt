@@ -144,8 +144,8 @@ class Header @JvmOverloads constructor(
 
     private fun applyShadowState() {
         if (showShadow) {
-            cardElevation = (16f * Resources.getSystem().displayMetrics.density)
-            binding.Header.cardElevation = (16f * Resources.getSystem().displayMetrics.density)
+            cardElevation = (20f * Resources.getSystem().displayMetrics.density)
+            binding.Header.cardElevation = (20f * Resources.getSystem().displayMetrics.density)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 binding.Header.outlineAmbientShadowColor = context.resolveColorAttr(
                     R.attr.colorShadowTintedKey,
