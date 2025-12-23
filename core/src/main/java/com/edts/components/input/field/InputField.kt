@@ -97,6 +97,7 @@ class InputField @JvmOverloads constructor(
     private var textInputEditText: EditText? = null
     private var dropdownContainer: LinearLayout? = null
     private var dropdownTextView: TextView? = null
+    private var dropdownIconView: ImageView? = null
     private var radioGroupComponent: RadioGroup? = null
     private var checkboxContainer: LinearLayout? = null
 
@@ -144,6 +145,7 @@ class InputField @JvmOverloads constructor(
         getCachedColor(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30)
         getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30)
         getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.kitColorRed50)
+        getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite)
     }
 
     private fun getCachedColor(@AttrRes attrRes: Int, @ColorRes fallbackColor: Int): Int {
@@ -325,12 +327,14 @@ class InputField @JvmOverloads constructor(
         }
     }
 
-    private fun updateDropdownColors(container: LinearLayout, textView: TextView, enabled: Boolean) {
+    private fun updateDropdownColors(container: LinearLayout, textView: TextView, iconView: ImageView, enabled: Boolean) {
         if (enabled) {
             textView.setTextColor(getCachedColor(R.attr.colorForegroundPrimary, R.color.kitColorNeutralBlack))
+            iconView.setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
             container.background = getCachedDrawable("rounded_normal") { createRoundedBackground() }
         } else {
             textView.setTextColor(getCachedColor(R.attr.colorForegroundDisabled, R.color.kitColorNeutralGrayLight20))
+            iconView.setColorFilter(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
             container.background = getCachedDrawable("rounded_disabled") { createDisabledBackground() }
         }
     }
@@ -865,7 +869,8 @@ class InputField @JvmOverloads constructor(
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
-        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+        shape.setColor(getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite))
+//        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         shape.setStroke(strokeWidth2dp, getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30))
         return shape
     }
@@ -882,7 +887,7 @@ class InputField @JvmOverloads constructor(
         val baseShape = GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
             this.cornerRadius = this@InputField.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundDisabled, R.color.kitColorNeutralGrayDarkA5))
+            setColor(getCachedColor(R.attr.colorBackgroundElevatedDisabled, R.color.kitColorModifierElevatedDisabled))
             setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30))
         }
 
@@ -908,7 +913,8 @@ class InputField @JvmOverloads constructor(
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
-        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+        shape.setColor(getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite))
+//        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         shape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.kitColorRed50))
         return shape
     }
@@ -920,8 +926,9 @@ class InputField @JvmOverloads constructor(
             gravity = Gravity.CENTER_VERTICAL
             setPadding(padding12dp, padding10dp, padding12dp, padding10dp)
             minimumHeight = minHeight40dp
-            isFocusable = true
-            isClickable = true
+            isEnabled = isFieldEnabled
+            isFocusable = isFieldEnabled
+            isClickable = isFieldEnabled
         }
         dropdownContainer = container
 
@@ -938,7 +945,14 @@ class InputField @JvmOverloads constructor(
 
         val iconView = ImageView(context).apply {
             setImageResource(R.drawable.kit_ic_chevron_down)
-            setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
+            if (isFieldEnabled) {
+                setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
+            } else {
+                // disabled icon should use placeholder color
+                setColorFilter(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
+//                getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40)
+            }
+//            setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
             scaleType = ImageView.ScaleType.CENTER
 
             layoutParams = FrameLayout.LayoutParams(
@@ -950,7 +964,9 @@ class InputField @JvmOverloads constructor(
         container.addView(textView)
         container.addView(iconView)
 
-        container.setOnClickListener {
+        container.setOnClickListener { view ->
+            if (!view.isEnabled) return@setOnClickListener
+
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             rootView.findFocus()?.let { focused ->
                 focused.clearFocus()
@@ -974,13 +990,15 @@ class InputField @JvmOverloads constructor(
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
-        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+        shape.setColor(getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite))
+//        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         shape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30))
 
         val focusedShape = GradientDrawable()
         focusedShape.shape = GradientDrawable.RECTANGLE
         focusedShape.cornerRadius = cornerRadius
-        focusedShape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
+        focusedShape.setColor(getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite))
+//        focusedShape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         focusedShape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30))
 
         val stateListDrawable = StateListDrawable()
@@ -1502,9 +1520,11 @@ class InputField @JvmOverloads constructor(
                 } else {
                     dropdownContainer?.let { container ->
                         dropdownTextView?.let { textView ->
-                            container.isEnabled = enabled
-                            container.isClickable = enabled
-                            updateDropdownColors(container, textView, enabled)
+                            dropdownIconView?.let { iconView ->
+                                container.isEnabled = enabled
+                                container.isClickable = enabled
+                                updateDropdownColors(container, textView, iconView, enabled)
+                            }
                         }
                     }
                 }

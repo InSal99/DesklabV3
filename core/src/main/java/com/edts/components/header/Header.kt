@@ -144,11 +144,19 @@ class Header @JvmOverloads constructor(
 
     private fun applyShadowState() {
         if (showShadow) {
-            cardElevation = (2 * Resources.getSystem().displayMetrics.density)
-            binding.Header.cardElevation = (2 * Resources.getSystem().displayMetrics.density)
+            cardElevation = (20f * Resources.getSystem().displayMetrics.density)
+            binding.Header.cardElevation = (20f * Resources.getSystem().displayMetrics.density)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                binding.Header.outlineAmbientShadowColor = context.resolveColorAttr(
+                    R.attr.colorShadowTintedKey,
+                    R.color.kitColorBrandPrimaryA10
+                )
+                binding.Header.outlineSpotShadowColor = context.resolveColorAttr(
+                    R.attr.colorShadowTintedKey,
+                    R.color.kitColorBrandPrimaryA20
+                )
                 outlineAmbientShadowColor = context.resolveColorAttr(
-                    R.attr.colorShadowTintedAmbient,
+                    R.attr.colorShadowTintedKey,
                     R.color.kitColorBrandPrimaryA10
                 )
                 outlineSpotShadowColor = context.resolveColorAttr(
@@ -160,6 +168,8 @@ class Header @JvmOverloads constructor(
             cardElevation = 0f
             binding.Header.cardElevation = 0f
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                binding.Header.outlineAmbientShadowColor = Color.TRANSPARENT
+                binding.Header.outlineSpotShadowColor = Color.TRANSPARENT
                 outlineAmbientShadowColor = Color.TRANSPARENT
                 outlineSpotShadowColor = Color.TRANSPARENT
             }

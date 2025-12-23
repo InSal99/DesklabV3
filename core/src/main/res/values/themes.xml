@@ -18,6 +18,7 @@
         <item name="colorBackgroundOverlay">@color/kitColorNeutralGrayDarkA50</item>
         <item name="colorBackgroundDisabled">@color/kitColorNeutralGrayDarkA5</item>
         <item name="colorBackgroundElevated">@color/kitColorNeutralWhite</item>
+        <item name="colorBackgroundElevatedDisabled">@color/kitColorModifierElevatedDisabled</item>
         <item name="colorBackgroundSurface">@color/kitColorNeutralWhite</item>
 
         <!-- Accent Background Colors -->
@@ -263,24 +264,5 @@
     <style name="circleImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
-    </style>
-
-    <style name="Widget.DesklabV3.UIKit.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
-        <item name="backgroundTint">@android:color/transparent</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.DesklabV3.UIKit.BottomSheet</item>
-    </style>
-
-    <style name="ThemeOverlay.DesklabV3.UIKit.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/Widget.DesklabV3.UIKit.BottomSheet.Modal</item>
-
-        <item name="colorSurface">@color/kitColorYellow30</item>
-        <item name="colorOnSurface">@color/kitColorGreen50</item>
-        <item name="colorOutline">@color/kitColorNeutralGrayLightA30</item>
-    </style>
-
-    <style name="ShapeAppearance.DesklabV3.UIKit.BottomSheet" parent="ShapeAppearance.Material3.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">@dimen/radius_16dp</item>
-        <item name="cornerSizeTopLeft">@dimen/radius_16dp</item>
     </style>
 </resources>
