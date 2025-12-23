@@ -25,6 +25,7 @@ class Toast @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
+    val themedContext = ContextThemeWrapper(context, R.style.Theme_Desklab_Kit)
     private val binding: LayoutToastViewBinding
     private var toastType: Type = Type.GENERAL
     private var toastMessage: String = ""
@@ -40,7 +41,6 @@ class Toast @JvmOverloads constructor(
     }
 
     init {
-        val themedContext = ContextThemeWrapper(context, R.style.Theme_Desklab_Kit)
         binding = LayoutToastViewBinding.inflate(LayoutInflater.from(themedContext), this, true)
 
         setupToast()
@@ -50,7 +50,7 @@ class Toast @JvmOverloads constructor(
 
     private fun applyAttrs(attrs: AttributeSet?) {
         attrs ?: return
-        context.theme.obtainStyledAttributes(
+        themedContext.theme.obtainStyledAttributes(
             attrs,
             R.styleable.CustomToast,
             0, 0
@@ -69,22 +69,22 @@ class Toast @JvmOverloads constructor(
         radius = context.resources.getDimensionPixelSize(R.dimen.radius_12dp).toFloat()
         cardElevation = 2f * context.resources.displayMetrics.density
         strokeWidth = context.resources.getDimensionPixelSize(R.dimen.stroke_weight_1dp)
-        strokeColor = context.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.kitColorNeutralGrayLightA20)
+        strokeColor = themedContext.resolveColorAttr(R.attr.colorStrokeInteractive, R.color.kitColorNeutralGrayLightA20)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            outlineAmbientShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralAmbient, R.color.kitColorNeutralGrayDarkA5)
-            outlineSpotShadowColor = context.resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.kitColorNeutralGrayDarkA10)
+            outlineAmbientShadowColor = themedContext.resolveColorAttr(R.attr.colorShadowNeutralAmbient, R.color.kitColorNeutralGrayDarkA5)
+            outlineSpotShadowColor = themedContext.resolveColorAttr(R.attr.colorShadowNeutralKey, R.color.kitColorNeutralGrayDarkA10)
         }
     }
 
     private fun applyToastStyle() {
-        setCardBackgroundColor(context.resolveColorAttr(toastType.ColorAttr, toastType.colorRes))
+        setCardBackgroundColor(themedContext.resolveColorAttr(toastType.ColorAttr, toastType.colorRes))
         if(toastType == Type.GENERAL){
-            binding.ivIcon.imageTintList = ColorStateList.valueOf(context.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
-            binding.tvMessage.setTextColor(context.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
+            binding.ivIcon.imageTintList = ColorStateList.valueOf(themedContext.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
+            binding.tvMessage.setTextColor(themedContext.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
         }else{
-            binding.ivIcon.imageTintList = ColorStateList.valueOf(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
-            binding.tvMessage.setTextColor(context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
+            binding.ivIcon.imageTintList = ColorStateList.valueOf(themedContext.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
+            binding.tvMessage.setTextColor(themedContext.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite))
         }
         binding.ivIcon.setImageResource(toastIcon ?: toastType.iconRes)
         binding.tvMessage.text = toastMessage
