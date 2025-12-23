@@ -2,9 +2,6 @@ package com.edts.components.input.search
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -61,6 +58,8 @@ class InputSearch @JvmOverloads constructor(
             }
         }
 
+    private var errorTextSnapshot: String? = null
+
     enum class CardState {
         REST,
         ON_PRESS
@@ -75,11 +74,13 @@ class InputSearch @JvmOverloads constructor(
 
     init {
         rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+        binding.inputSearch.rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+
         radius = 12f.dpToPx
         setCardBackgroundColor(
             context.resolveColorAttribute(
-                R.attr.colorBackgroundPrimary,
-                android.R.color.white
+                R.attr.colorBackgroundElevated,
+                R.color.kitColorNeutralWhite
             )
         )
 
@@ -119,16 +120,26 @@ class InputSearch @JvmOverloads constructor(
             val oldState = _state
 
             if (hasFocus) {
-                if (_state != State.DISABLE && _state != State.ERROR) {
+                if (_state != State.DISABLE) {
                     _state = State.FOCUS
                     updateState()
                     delegate?.onFocusChange(this, true, _state, oldState)
                 }
             } else {
                 if (_state == State.FOCUS) {
-                    _state = previousState
-                    updateState()
-                    delegate?.onFocusChange(this, false, _state, State.FOCUS)
+                    val currentText = binding.etSearch.text?.toString()
+
+                    state = if (previousState == State.ERROR) {
+                        if (currentText == errorTextSnapshot) {
+                            State.ERROR
+                        } else {
+                            State.REST
+                        }
+                    } else {
+                        previousState
+                    }
+
+                    delegate?.onFocusChange(this, false, state, State.FOCUS)
                 }
             }
         }
@@ -146,6 +157,12 @@ class InputSearch @JvmOverloads constructor(
                 val text = s?.toString() ?: ""
                 delegate?.onSearchTextChange(this@InputSearch, text)
                 updateRightIconVisibility()
+
+                if (_state == State.FOCUS && previousState == State.ERROR) {
+                    if (text != errorTextSnapshot) {
+                        errorTextSnapshot = null
+                    }
+                }
             }
         })
     }
@@ -155,6 +172,8 @@ class InputSearch @JvmOverloads constructor(
             binding.etSearch.text?.clear()
             binding.etSearch.clearFocus()
             hideKeyboard()
+            errorTextSnapshot = null
+            state = State.REST
             delegate?.onCloseIconClick(this)
         }
 
@@ -187,25 +206,9 @@ class InputSearch @JvmOverloads constructor(
         imm.hideSoftInputFromWindow(binding.etSearch.windowToken, 0)
     }
 
-    private fun createCardBackgroundDrawable(): Drawable {
-        val disabledModifierDrawable = GradientDrawable().apply {
-            cornerRadius = 12f.dpToPx
-            setColor(
-                context.resolveColorAttribute(
-                    R.attr.colorBackgroundDisabled,
-                    android.R.color.darker_gray
-                )
-            )
-        }
-
-        return LayerDrawable(arrayOf(disabledModifierDrawable))
-    }
-
-    private fun updateCardBackground() {
-        background = createCardBackgroundDrawable()
-    }
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (!isEnabled) return false
+
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 cardState = CardState.ON_PRESS
@@ -222,6 +225,12 @@ class InputSearch @JvmOverloads constructor(
     }
 
     private fun handleSearchFieldClick() {
+        if (_state == State.ERROR) {
+            errorTextSnapshot = binding.etSearch.text?.toString()
+            previousState = State.ERROR
+            _state = State.FOCUS
+            updateState()
+        }
         binding.etSearch.requestFocus()
         delegate?.onSearchFieldClick(this)
     }
@@ -233,99 +242,152 @@ class InputSearch @JvmOverloads constructor(
 
     private fun updateState() {
         val card: MaterialCardView = binding.inputSearch
+
+        isEnabled = true
+        isClickable = true
+        isFocusable = true
+
+        binding.etSearch.isEnabled = true
+        binding.etSearch.isFocusable = true
+        binding.etSearch.isFocusableInTouchMode = true
+
         when (_state) {
             State.REST -> {
                 card.setCardBackgroundColor(
                     context.resolveColorAttribute(
-                        R.attr.colorBackgroundPrimary,
-                        android.R.color.white
+                        R.attr.colorBackgroundElevated,
+                        R.color.kitColorNeutralWhite
                     )
                 )
                 card.strokeColor = context.resolveColorAttribute(
                     R.attr.colorStrokeSubtle,
-                    android.R.color.darker_gray
+                    R.color.kitColorNeutralGrayLight30
                 )
                 binding.etSearch.isEnabled = true
+
+                binding.ivLeftIcon.imageTintList = ColorStateList.valueOf(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundTertiary,
+                        R.color.kitColorNeutralGrayLight50
+                    )
+                )
+
                 binding.etSearch.setTextColor(
                     context.resolveColorAttribute(
                         R.attr.colorForegroundPrimary,
-                        android.R.color.black
+                        R.color.kitColorNeutralBlack
                     )
                 )
                 binding.etSearch.setHintTextColor(
                     context.resolveColorAttribute(
                         R.attr.colorForegroundPlaceholder,
-                        android.R.color.darker_gray
+                        R.color.kitColorNeutralGrayLight40
                     )
                 )
             }
             State.FOCUS -> {
                 card.setCardBackgroundColor(
                     context.resolveColorAttribute(
-                        R.attr.colorBackgroundPrimary,
-                        android.R.color.white
+                        R.attr.colorBackgroundElevated,
+                        R.color.kitColorNeutralWhite
                     )
                 )
                 card.strokeColor = context.resolveColorAttribute(
                     R.attr.colorStrokeAccent,
-                    android.R.color.holo_blue_dark
+                    R.color.kitColorBrandPrimary30
                 )
                 binding.etSearch.isEnabled = true
+
+                binding.ivLeftIcon.imageTintList = ColorStateList.valueOf(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundTertiary,
+                        R.color.kitColorNeutralGrayLight50
+                    )
+                )
+
                 binding.etSearch.setTextColor(
                     context.resolveColorAttribute(
                         R.attr.colorForegroundPrimary,
-                        android.R.color.black
+                        R.color.kitColorNeutralBlack
                     )
                 )
                 binding.etSearch.setHintTextColor(
                     context.resolveColorAttribute(
                         R.attr.colorForegroundPlaceholder,
-                        android.R.color.darker_gray
+                        R.color.kitColorNeutralGrayLight40
                     )
                 )
             }
             State.DISABLE -> {
-                updateCardBackground()
+                card.setCardBackgroundColor(
+                    context.resolveColorAttribute(
+                        R.attr.colorBackgroundElevatedDisabled,
+                        R.color.kitColorModifierElevatedDisabled
+                    )
+                )
                 card.strokeColor = context.resolveColorAttribute(
                     R.attr.colorStrokeSubtle,
-                    android.R.color.darker_gray
+                    R.color.kitColorNeutralGrayLight30
                 )
+
+                isEnabled = false
+                isClickable = false
+                isFocusable = false
+
                 binding.etSearch.isEnabled = false
+                binding.etSearch.isFocusable = false
+                binding.etSearch.isFocusableInTouchMode = false
+
+                binding.ivLeftIcon.imageTintList = ColorStateList.valueOf(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundDisabled,
+                        R.color.kitColorNeutralGrayDarkA20
+                    )
+                )
+
                 binding.etSearch.setTextColor(
                     context.resolveColorAttribute(
                         R.attr.colorForegroundDisabled,
-                        android.R.color.darker_gray
+                        R.color.kitColorNeutralGrayDarkA20
                     )
                 )
                 binding.etSearch.setHintTextColor(
                     context.resolveColorAttribute(
                         R.attr.colorForegroundDisabled,
-                        android.R.color.darker_gray
+                        R.color.kitColorNeutralGrayDarkA20
                     )
                 )
             }
             State.ERROR -> {
                 card.setCardBackgroundColor(
                     context.resolveColorAttribute(
-                        R.attr.colorBackgroundPrimary,
-                        android.R.color.white
+                        R.attr.colorBackgroundElevated,
+                        R.color.kitColorNeutralWhite
                     )
                 )
                 card.strokeColor = context.resolveColorAttribute(
                     R.attr.colorStrokeAttentionIntense,
-                    android.R.color.holo_red_dark
+                    R.color.kitColorRed50
                 )
                 binding.etSearch.isEnabled = true
+
+                binding.ivLeftIcon.imageTintList = ColorStateList.valueOf(
+                    context.resolveColorAttribute(
+                        R.attr.colorForegroundTertiary,
+                        R.color.kitColorNeutralGrayLight50
+                    )
+                )
+
                 binding.etSearch.setTextColor(
                     context.resolveColorAttribute(
                         R.attr.colorForegroundPrimary,
-                        android.R.color.black
+                        R.color.kitColorNeutralBlack
                     )
                 )
                 binding.etSearch.setHintTextColor(
                     context.resolveColorAttribute(
                         R.attr.colorForegroundPlaceholder,
-                        android.R.color.darker_gray
+                        R.color.kitColorNeutralGrayLight40
                     )
                 )
             }

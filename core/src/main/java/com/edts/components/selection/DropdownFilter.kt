@@ -73,7 +73,6 @@ class DropdownFilter @JvmOverloads constructor(
     var delegate: DropdownFilterDelegate? = null
 
     init {
-        radius = 999f.dpToPx
         isClickable = true
         isFocusable = true
 
@@ -117,6 +116,11 @@ class DropdownFilter @JvmOverloads constructor(
 
             post { updateWrapperWidth() }
         }
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        radius = h / 2f
     }
 
     private fun updateWrapperWidth() {
