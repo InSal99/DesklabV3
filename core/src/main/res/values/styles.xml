@@ -359,23 +359,18 @@
         <item name="cornerSize">16dp</item>
     </style>
 
-    <style name="EditTextCursorStyle" parent="Widget.AppCompat.EditText">
-        <item name="android:textCursorDrawable">@drawable/kit_cursor_accent</item>
-        <item name="android:background">@null</item>
+    <style name="Widget.DesklabV3.UIKit.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.DesklabV3.UIKit.BottomSheet</item>
     </style>
 
-<!--    <style name="Widget.DesklabV3.UIKit.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">-->
-<!--        <item name="backgroundTint">@android:color/transparent</item>-->
-<!--        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.DesklabV3.UIKit.BottomSheet</item>-->
-<!--    </style>-->
+    <style name="ThemeOverlay.DesklabV3.UIKit.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.DesklabV3.UIKit.BottomSheet.Modal</item>
+    </style>
 
-<!--    <style name="ThemeOverlay.DesklabV3.UIKit.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">-->
-<!--        <item name="bottomSheetStyle">@style/Widget.DesklabV3.UIKit.BottomSheet.Modal</item>-->
-<!--    </style>-->
-
-<!--    <style name="ShapeAppearance.DesklabV3.UIKit.BottomSheet" parent="ShapeAppearance.Material3.MediumComponent">-->
-<!--        <item name="cornerFamily">rounded</item>-->
-<!--        <item name="cornerSizeTopRight">@dimen/radius_16dp</item>-->
-<!--        <item name="cornerSizeTopLeft">@dimen/radius_16dp</item>-->
-<!--    </style>-->
+    <style name="ShapeAppearance.DesklabV3.UIKit.BottomSheet" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/radius_16dp</item>
+        <item name="cornerSizeTopLeft">@dimen/radius_16dp</item>
+    </style>
 </resources>
