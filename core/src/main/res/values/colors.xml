@@ -158,5 +158,6 @@
     <!-- color modifier -->
     <color name="kitColorModifierElevated">@color/kitColorNeutralWhite</color>
     <color name="kitColorModifierSurface">@color/kitColorNeutralWhite</color>
+    <color name="kitColorModifierElevatedDisabled">#EFEFEF</color>
 
 </resources>

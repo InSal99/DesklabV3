@@ -10,6 +10,7 @@
     <attr name="colorBackgroundOverlay" format="color|reference"/>
     <attr name="colorBackgroundDisabled" format="color|reference"/>
     <attr name="colorBackgroundElevated" format="color|reference"/>
+    <attr name="colorBackgroundElevatedDisabled" format="color|reference"/>
     <attr name="colorBackgroundSurface" format="color|reference"/>
 
     <!-- accent background color attrs-->
