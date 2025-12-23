@@ -75,6 +75,8 @@ class InputSearch @JvmOverloads constructor(
     init {
         rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
         binding.inputSearch.rippleColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+        foreground = ContextCompat.getDrawable(context, android.R.color.transparent)
+        binding.inputSearch.foreground = ContextCompat.getDrawable(context, android.R.color.transparent)
 
         radius = 12f.dpToPx
         setCardBackgroundColor(
