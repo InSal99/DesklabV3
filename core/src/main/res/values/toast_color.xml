@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="success_color">@color/kitColorGreen50</color>
-    <color name="error_color">@color/kitColorRed30</color>
-    <color name="info_color">@color/kitColorBrandPrimary30</color>
-    <color name="general_color">@color/kitColorNeutralBlack</color>
-    <color name="toast_stroke_color">@color/kitColorNeutralGrayDarkA20</color>
-</resources>
