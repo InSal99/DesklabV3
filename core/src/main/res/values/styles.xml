@@ -1,22 +1,26 @@
 <resources>
     <!-- Text Base style -->
-    <style name="TextRegular">
+    <style name="TextRegular" parent="Base.TextAppearance.AppCompat">
         <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
         <item name="android:textColor">@color/kitColorNeutralGrayLight70</item>
     </style>
 
-    <style name="TextMedium">
+    <style name="TextMedium" parent="Base.TextAppearance.AppCompat">
         <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
         <item name="android:textColor">@color/kitColorNeutralGrayLight70</item>
     </style>
 
-    <style name="TextSemiBold">
+    <style name="TextSemiBold" parent="Base.TextAppearance.AppCompat">
         <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
         <item name="android:textColor">@color/kitColorNeutralGrayLight70</item>
     </style>
 
-    <style name="TextBold">
+    <style name="TextBold" parent="Base.TextAppearance.AppCompat">
         <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
         <item name="android:textColor">@color/kitColorNeutralGrayLight70</item>
     </style>
 
@@ -75,11 +79,6 @@
     <style name="TextBold.Body3">
         <item name="android:textSize">@dimen/text_size_10sp</item>
     </style>
-
-<!--    <style name="NegativeButton.White">-->
-<!--        <item name="android:background">@drawable/bg_button_white</item>-->
-<!--        <item name="android:textColor">@color/colorBlack70</item>-->
-<!--    </style>-->
 
     <!-- Text Display Style -->
     <style name="TextSemiBold.Display1">
@@ -149,7 +148,6 @@
 
     <style name="TextBold.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
@@ -180,70 +178,58 @@
 
     <style name="TextSemiBold.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label4">
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextMedium.Label4">
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
-    <!-- add parent because error when changing event badge size in kotlin file-->
-    <style name="TextSemiBold.Label4" parent="@style/TextAppearance.MaterialComponents.Body2">
+    <style name="TextSemiBold.Label4">
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextRegular.Label5">
         <item name="android:textSize">@dimen/text_size_8sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextMedium.Label5">
         <item name="android:textSize">@dimen/text_size_8sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <style name="TextSemiBold.Label5">
         <item name="android:textSize">@dimen/text_size_8sp</item>
-        <item name="fontWeight">500</item>
         <item name="lineHeight">@dimen/line_height_100</item>
     </style>
 
     <!-- Text Paragraph Style -->
     <style name="TextRegular.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
     <style name="TextMedium.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
     <style name="TextSemiBold.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
     <!--New-->
     <style name="TextBold.Paragraph1">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="fontWeight">400</item>
         <item name="lineHeight">@dimen/line_height_20</item>
     </style>
 
