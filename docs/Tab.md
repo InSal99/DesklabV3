@@ -242,10 +242,12 @@ binding.tabContainer.apply {
 
 ## Performance Considerations
 
-- **RecyclerView Base** — Efficient view recycling for large tab sets with smooth horizontal scrolling
-- **ViewHolder Pattern** — Optimized TabAdapter implementation reduces view inflation overhead
-- **Automatic Item Decoration** — Built-in TabSpaceItemDecoration provides consistent 8dp spacing between tabs
-- **State Management** — Efficient position tracking and state updates without full adapter refreshes
+- **RecyclerView Base** — Built on RecyclerView with efficient view recycling for large tab sets
+- **ViewHolder Pattern** — TabAdapter uses optimized ViewHolder pattern to reduce view inflation
+- **Automatic Item Decoration** — TabSpaceItemDecoration provides consistent 8dp spacing with minimal overhead
+- **Smart Scrolling** — Custom LinearSmoothScroller with 8x deceleration time for smoother animations
+- **State Management** — Efficient position tracking with copy-based updates to prevent unnecessary refreshes
+- **Lazy Scrolling** — `scrollToPositionIfNeeded()` only scrolls when target tab is outside visible bounds
 
 ## Best Practices
 

@@ -1,17 +1,12 @@
 # Header 
 
-| Feature / Variation                           | Preview                                                                                                                                     |
-|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| Full Header (Left + Title + Subtitle + Right) | ![←  Title / Subtitle  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336011/h_full_header_left_title_subtitle_right_lv7cmp.gif) |
-| No Left Button                                | ![Title / Subtitle  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336011/h_no_left_button_ee3yx8.gif)                           |
-| No Left & Right Button                        | ![←  Title / Subtitle](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287624/h_no_left_right_button_cbzwwb.png)                     |
-| Title Only                                    | ![Large Title  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287625/h_title_only_a24xxo.png)                                                                                                                         |
-| Title With Left Button                        | ![←  Title](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336010/h_title_with_left_button_jq90ji.gif)                              |
-
-| **Text Style** | **Applied When** |
-| -------------- | ---------------- |
-| **h1SemiBold** | Default title style (with left button or subtitle) |
-| **d3SemiBold** | Large title style (no left button and no subtitle) |
+| Feature / Variation                             | Preview                                                                                                                                     |
+|-------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Full Header | ![←  Title / Subtitle  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336011/h_full_header_left_title_subtitle_right_lv7cmp.gif) |
+| No Left Button                                  | ![Title / Subtitle  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336011/h_no_left_button_ee3yx8.gif)                           |
+| No Left & Right Button                          | ![←  Title / Subtitle](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287624/h_no_left_right_button_cbzwwb.png)                     |
+| Title Only                                      | ![Large Title  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287625/h_title_only_a24xxo.png)                                                                                                                         |
+| Title With Left Button                          | ![←  Title](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336010/h_title_with_left_button_jq90ji.gif)                              |
 
 ## Overview
 
@@ -67,7 +62,6 @@ header.delegate = object : HeaderDelegate {
 header.apply {
     showLeftButton = false
     showSectionSubtitle = false
-    // Title automatically uses larger d3SemiBold style
 }
 ```
 
@@ -88,6 +82,9 @@ header.apply {
 | `showSectionTitle` | `Boolean` | `true` | Controls title text visibility |
 | `showSectionSubtitle` | `Boolean` | `true` | Controls subtitle text visibility |
 | `showRightButton` | `Boolean` | `true` | Controls right button visibility (typically actions) |
+| `app:showShadow` | `Boolean` | `false` | Controls elevated shadow appearance |
+| `app:showBackgroundColor` | `Boolean` | `false` | Controls background color visibility |
+| `app:showTab` | `Boolean` | `false` | Controls integrated tab component visibility |
 
 ### Icon Properties
 
@@ -172,6 +169,46 @@ fun updateHeader(title: String, hasBackButton: Boolean) {
         showLeftButton = hasBackButton
     }
 }
+
+// Header with integrated tabs
+binding.headerWithTabs.apply {
+    sectionTitleText = "Categories"
+    showSectionSubtitle = false
+    showLeftButton = true
+    showRightButton = false
+    showTab = true
+    showShadow = true
+    showBackgroundColor = true
+
+    // Configure the integrated tab component
+    tabView.setTabs(
+        listOf(
+            TabData("Electronics", null, false),
+            TabData("Clothing", "NEW", true),
+            TabData("Home", null, false)
+        )
+    )
+
+    tabView.setOnTabClickListener { position, text ->
+        loadCategoryContent(text)
+    }
+
+    delegate = object : HeaderDelegate {
+        override fun onLeftButtonClicked() {
+            finish()
+        }
+        override fun onRightButtonClicked() {}
+    }
+}
+
+// Header with shadow and background
+binding.headerElevated.apply {
+    sectionTitleText = "Featured Products"
+    showShadow = true
+    showBackgroundColor = true
+    showLeftButton = false
+    showRightButton = false
+}
 ```
 
 ## Customization Examples
@@ -234,6 +271,26 @@ fun updateHeader(title: String, hasBackButton: Boolean) {
     app:showRightButton="false"
     app:showSectionSubtitle="false"
     app:showSectionTitle="true" />
+    
+<!-- Header with shadow and background -->
+<com.edts.components.header.Header
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:sectionTitleText="Featured"
+    app:showShadow="true"
+    app:showBackgroundColor="true"
+    app:showLeftButton="false"
+    app:showRightButton="false" />
+
+<!-- Header with integrated tabs -->
+<com.edts.components.header.Header
+    android:id="@+id/headerWithTabs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:sectionTitleText="Categories"
+    app:showTab="true"
+    app:showShadow="true"
+    app:showBackgroundColor="true" />
 ```
 
 ### Programmatic Customization
@@ -256,16 +313,15 @@ if (isTopLevelScreen) {
     header.apply {
         showLeftButton = false
         showSectionSubtitle = false
-        // Title will automatically use larger d3SemiBold style
     }
 }
 ```
 
 ## Performance Considerations
 
-- **Smart Text Styling** — Automatically resolves and applies theme text styles based on visibility configuration
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
-- **Lazy Style Updates** — Text appearance only updates when visibility properties change
+- **Conditional Rendering** — Shadow and background calculations only performed when visibility states change
+- **Smart Property Setters** — Custom setters update only affected views, preventing unnecessary full layout passes
 
 ## Animation Details (If Applicable)
 
@@ -276,31 +332,13 @@ if (isTopLevelScreen) {
 
 ## Best Practices
 
-| ✅ Do | ❌ Don't |
-| ----- | ------- |
-| Keep titles concise (1-4 words) | Use long, multi-line titles |
-| Use subtitles for context, not repetition | Repeat title information in subtitle |
-| Implement HeaderDelegate for interactive headers | Leave buttons visible without click handlers |
-| Hide left button on top-level screens | Show back button on root navigation level |
-| Use appropriate right button icons for actions | Use ambiguous or unclear action icons |
-| Test all visibility combinations | Assume all configurations look good without testing |
-
-## Title Text Style Logic
-
-The Header component intelligently adjusts the title text style based on visible elements:
-
-```kotlin
-// Condition for large title style (d3SemiBold)
-val shouldUseLargerStyle = !showLeftButton && !showSectionSubtitle
-
-// When true: Uses d3SemiBold (larger, more prominent)
-// When false: Uses h1SemiBold (standard header size)
-```
-
-**Examples:**
-- ✅ **Large Style Applied**: No left button + No subtitle = Prominent title
-- ❌ **Standard Style**: Has left button OR has subtitle = Regular title
-
----
-
-> **⚠️ Note**: This component automatically manages text styling based on visibility configuration. The title text appearance switches between `h1SemiBold` and `d3SemiBold` styles from your theme attributes. Ensure these text appearances are properly defined in your theme for consistent styling across the app.
+| ✅ Do                                              | ❌ Don't |
+|---------------------------------------------------| ------- |
+| Keep titles concise (1-4 words)                   | Use long, multi-line titles |
+| Use subtitles for context, not repetition         | Repeat title information in subtitle |
+| Implement HeaderDelegate for interactive headers  | Leave buttons visible without click handlers |
+| Hide left button on top-level screens             | Show back button on root navigation level |
+| Use appropriate right button icons for actions    | Use ambiguous or unclear action icons |
+| Test all visibility combinations                  | Assume all configurations look good without testing |
+| Use `showShadow` for on-scroll state              | Apply shadow to all headers unnecessarily |
+| Access `tabView` property for tab configuration   | Try to add separate Tab components manually |
