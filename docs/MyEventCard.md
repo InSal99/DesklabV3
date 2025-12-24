@@ -188,28 +188,45 @@ val myEvent = MyEvent(
 
 
 ## Material Design Styling
-The component implements Material Design with:
 
-- **Card Layout**:
-  - 8dp corner radius for modern appearance
-  - 1dp elevation with dynamic shadows
-  - Subtle stroke border using `colorStrokeSubtle`
-  - Proper padding for content spacing
+The component implements Material Design 3 principles:
 
-- **Typography Hierarchy**:
-  - Event Location: Appropriate styling for location type
-  - Event Title: Primary event name with 2-line max
-  - Event Time: Time range display
+### Card Structure
+- **Corner Radius**: 8dp for modern, friendly appearance
+- **Elevation**: 1dp with neutral shadow colors (API 28+)
+- **Stroke**: 1dp subtle border using `colorStrokeSubtle`
+- **Background**: Elevated surface color from theme
+- **Padding**: 12dp all sides for content breathing room
 
-- **Calendar Card**:
-  - Fixed width for consistency
-  - Proper corner radius
-  - Vertical layout with centered text
+### Typography Hierarchy
+- **Event Location**: `l3Regular` style with secondary foreground color
+- **Event Title**: `p1SemiBold` style with primary foreground color, 2-line max with ellipsis
+- **Event Time**: `l3Regular` style with secondary foreground color
 
-- **Color Scheme**:
-  - Primary text: `colorForegroundPrimary`
-  - Secondary text: `colorForegroundTertiary`
-  - Proper background colors
+### Calendar Card Integration
+- **Fixed Width**: 56dp for visual consistency
+- **Vertical Layout**: Month/Date/Day stacked
+- **Constraint Layout**: Anchored to start, vertically centered
+
+### Badge System
+- **Dynamic Positioning**: End-aligned, vertically centered with location text
+- **Auto-Configuration**: Badge type, text, and size set based on event status
+- **Size Consistency**: Always uses SMALL size for compact display
+
+### Color System
+- **Primary Text**: `colorForegroundPrimary` (title)
+- **Secondary Text**: `colorForegroundSecondary` (location, time)
+- **Background**: `colorBackgroundElevated` (card surface)
+- **Stroke**: `colorStrokeSubtle` (card border)
+- **Shadows**: `colorShadowNeutralAmbient` (ambient), `colorShadowNeutralKey` (spot)
+
+### Shadow Behavior (API 28+)
+```kotlin
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+    outlineAmbientShadowColor = colorShadowNeutralAmbient  // A5 opacity
+    outlineSpotShadowColor = colorShadowNeutralKey         // A10 opacity
+}
+```
 
 
 ### Custom Styling
