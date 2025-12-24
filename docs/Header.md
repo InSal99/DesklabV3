@@ -1,12 +1,13 @@
 # Header 
 
-| Feature / Variation                             | Preview                                                                                                                                     |
-|-------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| Full Header | ![←  Title / Subtitle  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336011/h_full_header_left_title_subtitle_right_lv7cmp.gif) |
-| No Left Button                                  | ![Title / Subtitle  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336011/h_no_left_button_ee3yx8.gif)                           |
-| No Left & Right Button                          | ![←  Title / Subtitle](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287624/h_no_left_right_button_cbzwwb.png)                     |
-| Title Only                                      | ![Large Title  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287625/h_title_only_a24xxo.png)                                                                                                                         |
-| Title With Left Button                          | ![←  Title](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336010/h_title_with_left_button_jq90ji.gif)                              |
+| Feature / Variation    | Preview                                                                                                                                     |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Header                 | ![←  Title / Subtitle  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336011/h_full_header_left_title_subtitle_right_lv7cmp.gif) |
+| Header With Tab        | ![Title / Tab  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1766549959/ScreenRecording2025-12-24at11.04.22-ezgif.com-video-to-gif-converter_hbrvmv.gif)                           |
+| No Left Button         | ![Title / Subtitle  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336011/h_no_left_button_ee3yx8.gif)                           |
+| No Left & Right Button | ![←  Title / Subtitle](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287624/h_no_left_right_button_cbzwwb.png)                     |
+| Title Only             | ![Large Title  ⋮](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1759287625/h_title_only_a24xxo.png)                                                                                                                         |
+| Title With Left Button | ![←  Title](https://res.cloudinary.com/dacnnk5j4/image/upload/w_500,c_scale,q_auto,f_auto/v1760336010/h_title_with_left_button_jq90ji.gif)                              |
 
 ## Overview
 
