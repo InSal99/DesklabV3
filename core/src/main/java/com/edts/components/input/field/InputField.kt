@@ -107,13 +107,17 @@ class InputField @JvmOverloads constructor(
 
         titleTextView = TextView(context).apply {
             setTextAppearance(R.style.TextMedium_Label2)
-            setTextColor(getCachedColor(R.attr.colorForegroundSecondary, R.color.kitColorNeutralGrayLight60))
+            setTextColor(getCachedColor(R.attr.colorForegroundSecondary, R.color.kitColorNeutralGrayLight50))
+            includeFontPadding = false
+            setLineSpacing(0f, 1f)
             setPadding(0, 0, 0, padding4dp)
         }
 
         descriptionTextView = TextView(context).apply {
             setTextAppearance(R.style.TextRegular_Label4)
-            setTextColor(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
+            setTextColor(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight40))
+            includeFontPadding = false
+            setLineSpacing(0f, 1f)
             setPadding(0, 0, 0, padding8dp)
             visibility = View.GONE
         }
@@ -121,6 +125,8 @@ class InputField @JvmOverloads constructor(
         errorTextView = TextView(context).apply {
             setTextAppearance(R.style.TextRegular_Label4)
             setTextColor(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40))
+            includeFontPadding = false
+            setLineSpacing(0f, 1f)
             setPadding(0, padding4dp, 0, 0)
             visibility = View.GONE
         }
@@ -252,7 +258,7 @@ class InputField @JvmOverloads constructor(
                 if (supportingTextView != null && !supportingText.isNullOrEmpty()) {
                     supportingTextView.text = supportingText
                     val color = when {
-                        !isFieldEnabled -> getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40)
+                        !isFieldEnabled -> getCachedColor(R.attr.colorForegroundDisabled, R.color.kitColorNeutralGrayLightA20)
                         !currentErrorText.isNullOrEmpty() -> getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40)
                         else -> getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50)
                     }
@@ -370,13 +376,11 @@ class InputField @JvmOverloads constructor(
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
             setPadding(padding12dp, padding10dp, padding12dp, padding10dp)
-//            minimumHeight = minHeight48dp
             isFocusable = false
             isClickable = false
         }
         textInputContainer = container
 
-//        val editText = EditText(context).apply {
         val editText = EditText(ContextThemeWrapper(context, R.style.EditTextCursorStyle), null, 0).apply {
             hint = config.hint
             setTextAppearance(R.style.TextRegular_Paragraph1)
@@ -535,13 +539,11 @@ class InputField @JvmOverloads constructor(
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
             setPadding(padding12dp, padding10dp, padding12dp, padding10dp)
-//            minimumHeight = minHeight48dp
             isFocusable = false
             isClickable = false
         }
         textInputContainer = container
 
-//        val editText = EditText(context).apply {
         val editText = EditText(ContextThemeWrapper(context, R.style.EditTextCursorStyle), null, 0).apply {
             hint = config.hint
             setTextAppearance(R.style.TextRegular_Paragraph1)
@@ -870,7 +872,6 @@ class InputField @JvmOverloads constructor(
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
         shape.setColor(getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite))
-//        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         shape.setStroke(strokeWidth2dp, getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30))
         return shape
     }
@@ -914,7 +915,6 @@ class InputField @JvmOverloads constructor(
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
         shape.setColor(getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite))
-//        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         shape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeAttentionIntense, R.color.kitColorRed50))
         return shape
     }
@@ -948,11 +948,8 @@ class InputField @JvmOverloads constructor(
             if (isFieldEnabled) {
                 setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
             } else {
-                // disabled icon should use placeholder color
                 setColorFilter(getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40))
-//                getCachedColor(R.attr.colorForegroundPlaceholder, R.color.kitColorNeutralGrayLight40)
             }
-//            setColorFilter(getCachedColor(R.attr.colorForegroundTertiary, R.color.kitColorNeutralGrayLight50))
             scaleType = ImageView.ScaleType.CENTER
 
             layoutParams = FrameLayout.LayoutParams(
@@ -991,14 +988,12 @@ class InputField @JvmOverloads constructor(
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadius = cornerRadius
         shape.setColor(getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite))
-//        shape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         shape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30))
 
         val focusedShape = GradientDrawable()
         focusedShape.shape = GradientDrawable.RECTANGLE
         focusedShape.cornerRadius = cornerRadius
         focusedShape.setColor(getCachedColor(R.attr.colorBackgroundElevated, R.color.kitColorNeutralWhite))
-//        focusedShape.setColor(getCachedColor(R.attr.colorBackgroundPrimary, R.color.kitColorNeutralWhite))
         focusedShape.setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeAccent, R.color.kitColorBrandPrimary30))
 
         val stateListDrawable = StateListDrawable()
