@@ -102,6 +102,7 @@ detailInfo.delegate = object : DetailInformationADelegate {
 | `delegate`      | `DetailInformationADelegate?` | `null`  | Delegate for action button clicks. |
 
 ### Methods
+
 | Method                           | Parameters | Description                                                 |
 | -------------------------------- | ---------- | ----------------------------------------------------------- |
 | `updateDescriptionConstraints()` | –          | Updates constraints depending on whether actions are shown. |

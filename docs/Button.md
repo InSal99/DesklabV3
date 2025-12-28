@@ -3,7 +3,6 @@
 ## Overview
 A customizable `Button` component extending **MaterialButton**, supporting different sizes, states, types, icons, and destructive variations. It is designed for flexible use across UI contexts with consistent styling, animations, and accessibility.
 
-
 | Variation        | Default                                                                                                                           | Destructive | Disabled                                                                                                                          |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------| ------- |-----------------------------------------------------------------------------------------------------------------------------------|
 | Primary Button   | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759218901/Screenshot_2025-09-30_at_14.53.03_kyelw4.png) | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759219205/Screenshot_2025-09-30_at_14.59.37_pkilt5.png) | ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_200/v1759227287/Screenshot_2025-09-30_at_17.13.25_lz7p5z.png) |
@@ -80,7 +79,7 @@ button.apply {
 
 | Property | Type | Default | Description |
 | -------- | ---- | ------- | ----------- |
-| `isButtonDisabled` | `Boolean` | `false` | Makes the button unclickable |
+| `isButtonDisabled` | `Boolean` | `false` | Makes the button unclickable and applies disabled styling |
 | `isButtonDestructive` | `Boolean` | `false` | Applies destructive styling (red) |
 | `iconPlacement` | `Enum` (`LEFT`, `RIGHT`) | `LEFT` | Icon alignment relative to text |
 | `buttonDelegate` | `ButtonDelegate?` | `null` | Optional delegate for callbacks |
@@ -101,7 +100,7 @@ button.apply {
 | `setIcon()` | `@DrawableRes drawableRes: Int?, placement: IconPlacement` | Sets icon by resource |
 | `setIconPlacement()` | `placement: IconPlacement` | Moves icon left/right |
 | `clearIcon()` | – | Removes current icon |
-
+| `performClick()` | – | Calls `super.performClick()` and then `buttonDelegate?.onClick(this)` if a delegate is present | 
 ---
 
 ## Usage Examples
@@ -152,4 +151,4 @@ button.apply {
 
 ---
 
-⚠️ **Note**: This component leverages MaterialButton base but overrides default styling. Ensure your theme defines the required color attributes (`colorBackgroundDisabled`, `colorForegroundWhite`, etc.`).
+⚠️ **Note**: This component leverages MaterialButton base but overrides default styling. Ensure your theme defines the required color attributes (for example: `colorBackgroundDisabled`, `colorStrokeDisabled`, `colorForegroundDisabled`, `colorBackgroundAccentPrimaryIntense`, `colorStrokeAccent`, `colorForegroundAccentPrimaryIntense`, etc.).

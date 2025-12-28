@@ -1,11 +1,11 @@
 # CheckBox
 
 ## Overview
-A custom `CheckBox` component extending **AppCompatCheckBox**, providing:  
-- Custom text appearances for different states  
-- Animated checkmark scaling when toggled  
-- Error state handling with visual feedback  
-- Delegate support for state change callbacks  
+A custom `CheckBox` component extending **AppCompatCheckBox**, providing:
+- Custom text appearances for different states
+- Animated checkmark scaling when toggled
+- Error state handling with visual feedback
+- Delegate support for state change callbacks
 
 This component is styled consistently with app theme and offers enhanced UX over the default checkbox.
 
@@ -90,11 +90,16 @@ checkbox.apply {
 
 | Method | Parameters | Description |
 | ------ | --------- | ----------- |
-| `setErrorState()` | `error: Boolean` | Enables/disables error state |
+| `setErrorState()` | `error: Boolean` | Enables/disables error state (updates drawable state and text appearance) |
 | `isErrorState()` | – | Returns current error state |
 | `setCustomCheckBoxDelegate()` | `delegate: CheckboxDelegate?` | Sets delegate for state changes |
 | `setTextAppearances()` | Multiple `@StyleRes` | Configures custom styles for states |
-| `setChecked()` | `checked: Boolean` | Toggles checked state with animation |
+| `setChecked()` | `checked: Boolean` | Toggles checked state; if changed and the view is shown, animates the checkmark |
+| `performClick()` | – | Calls `super.performClick()`, clears error state (`setErrorState(false)`), then notifies delegate via `checkBoxDelegate?.onCheckChanged(this, isChecked)` |
+
+Notes:
+- `setChecked()` will animate the checkmark only if the previous value differs from the new value, the view is shown, and width > 0 (i.e., the view has been measured). If not measured/visible the animation is skipped but the checked state still updates.
+- The `performClick()` implementation clears the error state when the user interacts and then notifies any delegate.
 
 ---
 
@@ -106,7 +111,6 @@ checkbox.setChecked(true)
 
 // Show error state
 checkbox.setErrorState(true)
-
 ```
 
 ---
@@ -138,4 +142,4 @@ checkbox.setErrorState(true)
 
 ---
 
-⚠️ **Note**: Ensure `ic_checkbox` drawable supports layered checkmark rendering for proper animation.  
+⚠️ **Note**: Ensure `R.drawable.kit_ic_checkbox_states` (or your custom drawable) is a layered drawable with the checkmark on layer index 1. The animation manipulates that layer's bounds and tint — if your drawable doesn't follow this structure the animation will be skipped.

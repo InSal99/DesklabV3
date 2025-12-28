@@ -265,7 +265,6 @@ class BottomTray : BottomSheetDialogFragment() {
     private fun updateBackground() {
         if (_binding == null) return
         val background = getBackgroundDrawable(hasShadow, hasStroke)
-//        val background = createBackgroundDrawable(hasShadow, hasStroke)
         binding.root.background = background
         val padding = if (hasShadow) (8.dpToPx) else 0
         binding.root.setPadding(0, padding, 0, 0)
