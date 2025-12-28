@@ -32,7 +32,7 @@ class Toast @JvmOverloads constructor(
 
     var onToastClickListener: (() -> Unit)? = null
 
-    enum class Type(@DrawableRes val iconRes: Int, val ColorAttr: Int, @ColorRes val colorRes: Int) {
+    enum class Type(@DrawableRes val iconRes: Int, val colorAttr: Int, @ColorRes val colorRes: Int) {
         SUCCESS(R.drawable.kit_ic_success, R.attr.colorBackgroundSuccessIntense, R.color.kitColorGreen50),
         ERROR(R.drawable.kit_ic_attention, R.attr.colorBackgroundAttentionIntense, R.color.kitColorRed40),
         INFO(R.drawable.kit_ic_information, R.attr.colorBackgroundInfoIntense, R.color.kitColorBlue50),
@@ -78,7 +78,7 @@ class Toast @JvmOverloads constructor(
     }
 
     private fun applyToastStyle() {
-        setCardBackgroundColor(context.resolveColorAttr(toastType.ColorAttr, toastType.colorRes))
+        setCardBackgroundColor(context.resolveColorAttr(toastType.colorAttr, toastType.colorRes))
         if(toastType == Type.GENERAL){
             binding.ivIcon.imageTintList = ColorStateList.valueOf(context.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))
             binding.tvMessage.setTextColor(context.resolveColorAttr(R.attr.colorForegroundPrimaryInverse, R.color.kitColorNeutralWhite))

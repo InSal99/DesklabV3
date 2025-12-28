@@ -1,9 +1,9 @@
 # InfoBox
 
 ## Overview
-A custom `InfoBox` component extending **MaterialCardView**, used to display contextual information messages.  
+A custom `InfoBox` component extending **MaterialCardView**, used to display contextual information messages.
 
-It supports **variants** (`Information`, `Success`, `Error`, `General`), each with distinct background, text, and icon colors. The component also renders a **top shadow with elevation** and custom rounded corners.
+It supports four visual variants — `Information`, `Success`, `Error`, and `General` — each with distinct background, text, and icon colors. The component draws a top shadow (gradient) and uses custom rounded corners (rounded top corners, square bottom corners).
 
 | Variant     | Preview                    |
 |-------------|----------------------------|
@@ -36,7 +36,7 @@ val infoBox = findViewById<InfoBox>(R.id.infoBox)
 infoBox.apply {
     text = "Operation completed successfully"
     variant = InfoBox.InfoBoxVariant.SUCCESS
-    iconSRC = R.drawable.ic_success
+    iconSRC = R.drawable.kit_ic_success
 }
 ```
 
@@ -44,12 +44,12 @@ infoBox.apply {
 
 ## Display Modes
 
-| Variant | Value | Description | Default Icon |
-| ------- | ----- | ----------- | ------------- |
-| `INFORMATION` | `0` | Subtle background + intense info text | `ic_information` |
-| `SUCCESS` | `1` | Success background + green text | `ic_success` |
-| `ERROR` | `2` | Attention background + red text | `ic_error` |
-| `GENERAL` | `3` | Neutral/secondary background | `placeholder` |
+| Variant | Value | Description | Default Icon (resource) |
+| ------- | ----- | ----------- | ------------------------ |
+| `INFORMATION` | `0` | Subtle info background + intense info text | `R.drawable.kit_ic_information` |
+| `SUCCESS` | `1` | Success background + green text | `R.drawable.kit_ic_success` |
+| `ERROR` | `2` | Attention background + red text | `R.drawable.kit_ic_error` |
+| `GENERAL` | `3` | Neutral/secondary background + neutral icon tint | `R.drawable.kit_ic_placeholder` |
 
 ```kotlin
 infoBox.variant = InfoBox.InfoBoxVariant.ERROR
@@ -70,9 +70,9 @@ infoBox.variant = InfoBox.InfoBoxVariant.ERROR
 
 | Property | Type | Default | Description |
 | -------- | ---- | ------- | ----------- |
-| `text` | `CharSequence?` | `null` | Sets the message text |
-| `iconSRC` | `Int?` (drawable res) | `null` | Custom icon resource (overrides default) |
-| `variant` | `InfoBoxVariant` | `INFORMATION` | Controls style (colors, icon, text) |
+| `text` | `CharSequence?` | `null` | Sets the message text; updates `tvInfoText`. |
+| `iconSRC` | `Int?` (drawable res) | `null` | Programmatic override for the icon resource. If null, the variant default icon is used. |
+| `variant` | `InfoBoxVariant` | `INFORMATION` | Controls style (colors, icon, text). Setting this applies variant-specific colors and icon. |
 
 ---
 
@@ -93,11 +93,11 @@ infoBox.apply {
     variant = InfoBox.InfoBoxVariant.INFORMATION
 }
 
-// Error variant
+// Error variant with custom icon
 infoBox.apply {
     text = "Something went wrong"
     variant = InfoBox.InfoBoxVariant.ERROR
-    iconSRC = R.drawable.ic_custom_error
+    iconSRC = R.drawable.kit_ic_custom_error
 }
 ```
 
@@ -115,8 +115,9 @@ infoBox.apply {
 | ----- | ------- |
 | Use variants to match message context | Overload with too many variants |
 | Provide short, clear messages | Add long paragraphs inside InfoBox |
-| Customize icons only if needed | Override variant colors unnecessarily |
+| Customize icons only if needed via `iconSRC` | Change variant colors unless necessary |
 
 ---
 
-⚠️ **Note**: Requires theme attributes such as `colorBackgroundInfoSubtle`, `colorForegroundSuccessIntense`, etc. to be defined for proper styling.
+⚠️ **Note**: This component relies on theme attributes such as `colorBackgroundInfoSubtle`, `colorForegroundSuccessIntense`, `colorShadowTintedAmbient`, and `colorShadowTintedKey`. If these are missing the component falls back to color resources but visuals may deviate from intended design.
+```

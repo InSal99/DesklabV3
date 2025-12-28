@@ -2,11 +2,11 @@
 
 
 ## Overview
-A flexible `Footer` component extending **LinearLayout**, designed to display:  
-- Call-to-action footers with a single button  
-- Detailed CTAs with description text  
-- Dual-button layouts with support text  
-- Informational footers with status badges  
+A flexible `Footer` component extending **LinearLayout**, designed to display:
+- Call-to-action footers with a single button
+- Detailed CTAs with description text
+- Dual-button layouts with support text
+- Informational footers with status badges
 
 It supports delegates for handling button events, stroke customization, and dynamic text updates.
 
@@ -91,7 +91,7 @@ footer.setFooterType(Footer.FooterType.DUAL_BUTTON)
 | Property | Type | Default | Description |
 | -------- | ---- | ------- | ----------- |
 | `footerType` | `FooterType` | `CALL_TO_ACTION` | Determines footer layout |
-| `footerHasStroke` | `Boolean` | `false` | Adds top border stroke |
+| `footerHasStroke` | `Boolean` | `false` | Adds top border stroke (see stroke details) |
 | `primaryButtonEnabled` | `Boolean` | `true` | Enable/disable primary button |
 | `secondaryButtonEnabled` | `Boolean` | `true` | Enable/disable secondary button |
 | `delegate` | `FooterDelegate?` | `null` | Handles click events |
@@ -140,9 +140,9 @@ footer.apply {
 ---
 
 ## Performance Considerations
-- Uses **ViewBinding** for layout inflation per mode.  
-- Clears bindings to avoid memory leaks when switching footer types.  
-- Minimizes layout updates by only rebinding changed properties.  
+- Uses **ViewBinding** for layout inflation per mode.
+- Clears bindings to avoid memory leaks when switching footer types.
+- Minimizes layout updates by only rebinding changed properties.
 
 ---
 
@@ -156,4 +156,4 @@ footer.apply {
 
 ---
 
-⚠️ **Note**: Ensure `StatusBadge` component is implemented and styled consistently for use in `NO_ACTION` mode.  
+⚠️ **Note**: Ensure `StatusBadge` component is implemented and styled consistently for use in `NO_ACTION` mode. Also remember to implement all delegate callbacks you need — the Footer will call both generic (onPrimaryButtonClicked / onSecondaryButtonClicked) and mode-specific callbacks (onRegisterClicked, onContinueClicked, onCancelClicked).

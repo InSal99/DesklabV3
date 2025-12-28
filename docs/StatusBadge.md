@@ -2,7 +2,7 @@
 
 ## Overview
 
-StatusBadge is a custom Android view component that extends `AppCompatTextView` to display status indicators with predefined styles. It combines text, icons, and color-coded backgrounds to represent different states (Approved, Decline, Waiting, Cancel) with a consistent, badge-like appearance.
+StatusBadge is a custom Android view component that extends `MaterialTextView` to display status indicators with predefined styles. It combines text, icons, and color-coded backgrounds to represent different states (Approved, Decline, Waiting, Cancel) with a consistent, badge-like appearance.
 
 | Type         | Preview |
 |--------------| ------- |
@@ -83,10 +83,10 @@ statusBadge.chipType = StatusBadge.ChipType.APPROVED
 | `chipType.iconRes` | `@DrawableRes` | Varies by type | Left-aligned icon for the badge |
 
 **Icons by ChipType:**
-- **APPROVED**: `ic_success`
-- **DECLINE**: `ic_error`
-- **WAITING**: `ic_alarm`
-- **CANCEL**: `ic_close`
+- **APPROVED**: `kit_ic_success`
+- **DECLINE**: `kit_ic_error`
+- **WAITING**: `kit_ic_alarm`
+- **CANCEL**: `kit_ic_close`
 
 
 ## Methods Reference
@@ -137,7 +137,7 @@ class StatusViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 ## Performance Considerations
 
-- **View Recycling**: Extends `AppCompatTextView`, making it efficient for use in RecyclerViews
+- **View Recycling**: Extends `MaterialTextView`, making it efficient for use in RecyclerViews
 - **Drawable Mutation**: Uses `mutate()` on drawables to prevent shared state issues across multiple instances
 - **Attribute Caching**: Resolves theme attributes once during style application
 - **Memory Efficiency**: Reuses background drawable with color updates instead of creating new instances
@@ -173,11 +173,11 @@ Icons are:
 ## Required Resources
 
 ### Drawables
-- `bg_status_badge`: Background drawable (GradientDrawable with rounded corners)
-- `ic_success`: Success/approved icon
-- `ic_error`: Error/declined icon
-- `ic_alarm`: Alarm/waiting icon
-- `ic_close`: Close/cancel icon
+- `kit_bg_status_badge`: Background drawable (GradientDrawable with rounded corners)
+- `kit_ic_success`: Success/approved icon
+- `kit_ic_error`: Error/declined icon
+- `kit_ic_alarm`: Alarm/waiting icon
+- `kit_ic_close`: Close/cancel icon
 
 ### Dimensions
 - `margin_4dp`: Icon-text spacing
