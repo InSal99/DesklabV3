@@ -250,13 +250,13 @@ eventBadge.badgeSize = if (isCompactLayout) {
 
 ### Badge Type Color Mappings
 
-| Badge Type | Background Color Attribute | Text Color Attribute | Visual Description |
-| ---------- | -------------------------- | -------------------- | ------------------ |
+| Badge Type | Background Color Attribute | Text Color Attribute            | Visual Description |
+| ---------- | -------------------------- |---------------------------------| ------------------ |
 | `LIVE` | `colorBackgroundAttentionIntense` | `colorForegroundPrimaryInverse` | Red background, white text |
 | `INVITED` | `colorBackgroundWarningIntense` | `colorForegroundPrimaryInverse` | Yellow background, white text |
 | `REGISTERED` | `colorBackgroundSuccessIntense` | `colorForegroundPrimaryInverse` | Green background, white text |
-| `ATTENDED` | `colorBackgroundTertiary` | `colorForegroundTertiary` | Gray background, gray text |
-| `NOTATTENDED` | `colorBackgroundTertiary` | `colorForegroundTertiary` | Gray background, gray text |
+| `ATTENDED` | `colorBackgroundTertiary` | `colorForegroundSecondary`      | Gray background, gray text |
+| `NOTATTENDED` | `colorBackgroundTertiary` | `colorForegroundSecondary`       | Gray background, gray text |
 
 ### Text Appearance
 

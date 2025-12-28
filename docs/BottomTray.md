@@ -2,7 +2,7 @@
 
 ## Overview
 
-BottomTray is a highly customizable Android BottomSheetDialogFragment that provides a Material Design-compliant bottom sheet with advanced features including keyboard handling, snap points, edge-to-edge display, customizable styling, and footer actions. It extends `BottomSheetDialogFragment` to offer a flexible container for bottom sheet content with automatic window inset handling and smooth animations.
+BottomTray is a highly customizable Android BottomSheetDialogFragment that provides a Material Design-compliant bottom sheet, snap points, customizable styling, and footer actions. It extends `BottomSheetDialogFragment` to offer a flexible container for bottom sheet content with smooth animations.
 
 ### Preview
 ![HPTL](https://res.cloudinary.com/dpdbzlnhr/image/upload/c_scale,w_600/v1759228566/traygif_whtbkz.gif)
@@ -60,7 +60,7 @@ bottomTray.show(supportFragmentManager, "BottomTray")
 | `hasShadow` | `Boolean` | `true` | Enables 8dp elevation shadow |
 | `hasStroke` | `Boolean` | `true` | Enables 1dp border stroke |
 | `isCancelableOnTouchOutside` | `Boolean` | `true` | Allows dismissal by tapping outside |
-| `customAnimationsEnabled` | `Boolean` | `true` | Enables custom animations (extensible) |
+| `customAnimationsEnabled` | `Boolean` | `true` | Reserved for future animation customization |
 
 ### Styling Properties
 
@@ -73,7 +73,7 @@ bottomTray.show(supportFragmentManager, "BottomTray")
 
 | Property Name | Type | Default | Description |
 | ------------- | ---- | ------- | ----------- |
-| `snapPoints` | `IntArray` | `intArrayOf()` | Array of snap point heights in pixels |
+| `snapPoints` | `IntArray` | `intArrayOf()` | Approximate snap heights applied by dynamically adjusting peek height during slide gestures |
 | `delegate` | `BottomTrayDelegate?` | `null` | Callback delegate for lifecycle events |
 
 ### Dimension Properties
@@ -252,49 +252,8 @@ bottomTray.setTitle(R.string.new_title)
 ## Performance Considerations
 
 - **Drawable Caching**: Background and drag handle drawables are cached to prevent redundant creation
-- **Color Caching**: Resolved theme colors are cached in a map
 - **View Recycling**: Properly cleans up resources in `onDestroyView()`
-- **Window Insets**: Efficiently handles keyboard and system bar insets
-- **Edge-to-Edge**: Optimized for immersive display with proper inset handling
 - **Memory Management**: Nullifies binding and clears caches on destroy
-
-## Keyboard Handling
-
-The BottomTray automatically handles keyboard visibility:
-
-### Features
-- **Footer Translation**: Footer moves up with keyboard
-- **Content Padding**: Adds padding to scrollable content when keyboard appears
-- **Auto-Scroll**: Automatically scrolls to focused EditText fields
-- **ScrollView Detection**: Handles both `ScrollView` and `NestedScrollView`
-
-### Best Practices for Keyboard Handling
-- Wrap form content in `ScrollView` or `NestedScrollView`
-- Use `clipToPadding = false` is handled automatically
-- Focused field scrolls to upper 1/4 of visible area
-
-## Edge-to-Edge Support
-
-The component fully supports edge-to-edge display:
-
-- Transparent status and navigation bars
-- Automatic system bar inset handling
-- Light appearance for status and navigation bars
-- Soft input mode: `SOFT_INPUT_ADJUST_RESIZE`
-- Proper padding for system gesture areas
-
-## Best Practices
-
-| ✅ Do | ❌ Don't |
-| ----- | -------- |
-| Wrap scrollable content in ScrollView/NestedScrollView | Use fixed height content exceeding screen size |
-| Use `configureFooter()` for footer setup | Directly access footer binding |
-| Set content view before showing | Modify content after showing without updates |
-| Use snap points for multi-height sheets | Set snap points after showing |
-| Implement BottomTrayDelegate for callbacks | Poll for state changes |
-| Clean up delegates in onDestroy | Leave strong references |
-| Use `newInstance()` factory methods | Directly instantiate with constructor args |
-| Test with keyboard-visible scenarios | Ignore keyboard handling |
 
 ## Required Resources
 
@@ -312,7 +271,7 @@ The component fully supports edge-to-edge display:
 - `TextSemiBold_Heading1`: Default title text appearance
 
 ### Theme Attributes
-- `colorBackgroundPrimary`: Background color
+- `colorBackgroundSurface`: Background color
 - `colorForegroundTertiary`: Drag handle color
 - `colorShadowNeutralKey`: Shadow color
 - `colorStrokeSubtle`: Stroke border color
@@ -363,12 +322,6 @@ val bottomTray = BottomTray.newInstance(
 - Extends `BottomSheetDialogFragment` for proper lifecycle
 - Handles configuration changes automatically
 - Cleans up resources in `onDestroyView()`
-
-### Window Insets Handling
-- Uses `WindowInsetsCompat` for compatibility
-- Handles IME (keyboard) insets
-- Handles system bar insets (status/navigation)
-- Supports edge-to-edge display
 
 ### Material Design Compliance
 - Uses `MaterialShapeDrawable` for backgrounds

@@ -66,4 +66,4 @@ val currentName = speaker.getName()
 
 ---
 
-> **⚠️ Note**: Ensure speakerName is always set for accessibility and clarity. By default, if no speakerImage is provided, a placeholder avatar will be displayed. Use consistent image sizes across multiple speaker items to maintain a clean layout.
+> **⚠️ Note**: Ensure `speakerName` is set for accessibility and clarity. By default, if no `speakerImage` is provided, a placeholder avatar (`R.drawable.kit_im_avatar_placeholder`) will be used. Use consistent image sizes across multiple speaker items to maintain a clean layout.

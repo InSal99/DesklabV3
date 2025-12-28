@@ -17,14 +17,14 @@ Leave Card is a custom component that extends `MaterialCardView` to display empl
 
 ```xml
 <com.edts.components.leave.card.LeaveCard
-    android:id="@+id/leaveCard"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:employeeName="John Doe"
-    app:employeeRole="Software Engineer"
-    app:employeeImage="@drawable/avatar_john"
-    app:counterText="15 days remaining"
-    app:counterType="NORMAL" />
+        android:id="@+id/leaveCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:employeeName="John Doe"
+        app:employeeRole="Software Engineer"
+        app:employeeImage="@drawable/avatar_john"
+        app:counterText="15 days remaining"
+        app:counterType="NORMAL" />
 ```
 
 ### 2. Initialize in Code
@@ -32,21 +32,22 @@ Leave Card is a custom component that extends `MaterialCardView` to display empl
 ```kotlin
 val leaveCard = findViewById<LeaveCard>(R.id.leaveCard)
 
-// Set employee information
+// Set employee information (properties)
 leaveCard.employeeName = "John Doe"
 leaveCard.employeeRole = "Software Engineer"
 leaveCard.employeeImage = R.drawable.avatar_john
+leaveCard.employeeImageUrl = "https://example.com/avatar.jpg" // optional
 
 // Set counter information
 leaveCard.counterText = "15 days remaining"
 leaveCard.counterType = LeaveCounter.CounterType.NORMAL
 
-// Set click listener
+// Set click delegate
 leaveCard.leaveCardDelegate = object : LeaveCardDelegate {
-    override fun onClick(card: LeaveCard) {
-        // Handle card click
-        showLeaveDetails(card.employeeName)
-    }
+  override fun onClick(card: LeaveCard) {
+    // Handle card click
+    showLeaveDetails(card.employeeName)
+  }
 }
 ```
 
@@ -69,9 +70,13 @@ leaveCard.counterType = LeaveCounter.CounterType.CRITICAL
 
 | Property Name | Type | Default | Description |
 | ------------- | ---- | ------- | ----------- |
-| `employeeName` | `CharSequence?` | `null` | Employee's display name |
-| `employeeRole` | `CharSequence?` | `null` | Employee's job title/role |
-| `employeeImage` | `Int?` | `placeholder` | Employee profile image resource ID |
+| `employeeName` | `CharSequence?` | `null` | Employee's display name (backed by `lEmployeeInfo.employeeName`) |
+| `employeeRole` | `CharSequence?` | `null` | Employee's job title/role (backed by `lEmployeeInfo.employeeRole`) |
+| `employeeImage` | `Int?` | `R.drawable.kit_ic_placeholder` | Employee profile image resource ID (when set, assigned to `lEmployeeInfo.employeeImage`) |
+| `employeeImageUrl` | `String?` | `null` | Optional remote image URL (when set, assigned to `lEmployeeInfo.employeeImageUrl`) |
+
+Notes:
+- updateImageSrc() applies `employeeImageUrl` first (if present) then `employeeImage` resource.
 
 ### Counter Properties
 
@@ -84,18 +89,18 @@ leaveCard.counterType = LeaveCounter.CounterType.CRITICAL
 
 | Property Name | Type | Default | Description |
 | ------------- | ---- | ------- | ----------- |
-| `leaveCardDelegate` | `LeaveCardDelegate?` | `null` | Click event delegate |
+| `leaveCardDelegate` | `LeaveCardDelegate?` | `null` | Click event delegate; notified from `performClick()` |
 
-### Card Appearance Properties
+### Card Appearance & Sizing
 
-| Property Name | Type | Default | Description |
-| ------------- | ---- | ------- | ----------- |
-| `strokeColor` | `@ColorInt` | `colorStrokeSubtle` | Border stroke color |
-| `strokeWidth` | `Int` | `1dp` | Border stroke width |
-| `radius` | `Float` | `12dp` | Corner radius |
-| `cardBackgroundColor` | `@ColorInt` | `colorBackgroundPrimary` | Card background color |
-| `cardElevation` | `Float` | `2dp` | Card shadow elevation |
-| `rippleColor` | `ColorStateList` | `colorBackgroundModifierOnPress` | Ripple effect color |
+| Property Name | Source | Description |
+| ------------- | ------ | ----------- |
+| `strokeColor` | resolved via `R.attr.colorStrokeSubtle` (fallback `R.color.kitColorNeutralGrayLight30`) | Border stroke color |
+| `strokeWidth` | `R.dimen.stroke_weight_1dp` | Border stroke width (resource) |
+| `radius` | `R.dimen.radius_12dp` | Corner radius (resource) |
+| `cardBackgroundColor` | resolved via `R.attr.colorBackgroundElevated` (fallback `R.color.kitColorNeutralWhite`) | Card background color |
+| `cardElevation` | `2dp` (set using `2f.dpToPx`) | Card shadow elevation |
+| `rippleColor` | resolved via `R.attr.colorBackgroundModifierOnPress` (fallback `R.color.kitColorNeutralGrayDarkA5`) | Ripple effect color |
 
 ## LeaveCardDelegate Interface
 
@@ -186,18 +191,18 @@ viewModel.employeeLeave.observe(this) { leaveData ->
 
 ## Performance Considerations
 
-- **View Binding**: Uses ViewBinding for efficient view access
-- **Composition Pattern**: Delegates to `EmployeeInfo` and `LeaveCounter` sub-components
-- **Attribute Caching**: Resolves theme attributes once during initialization
-- **Material Ripple**: Hardware-accelerated ripple effect for smooth interactions
-- **RecyclerView Friendly**: Designed for efficient use in lists with view recycling
-- **Single Click Handling**: Overrides `performClick()` for proper accessibility support
+- **View Binding**: Uses ViewBinding (`LeaveCardBinding`) for efficient view access.
+- **Composition Pattern**: Delegates to `EmployeeInfo` and `LeaveCounter` sub-components.
+- **Attribute Resolution**: Theme attributes are resolved once during initialization.
+- **Material Ripple**: Hardware-accelerated ripple effect for smooth interactions.
+- **RecyclerView Friendly**: Designed for efficient use in lists with view recycling.
+- **Cache & Cleanup**: No internal caches in this component; it relies on subcomponents for their own cleanup.
 
 ## Implementation Details
 
 ### Layout Structure
 
-The LeaveCard uses `LeaveCardBinding` which contains:
+The LeaveCard uses `LeaveCardBinding`, which contains:
 - `lEmployeeInfo`: EmployeeInfo component (displays name, role, image)
 - `lDescription`: LeaveCounter component (displays counter with type-based styling)
 
@@ -205,35 +210,40 @@ The LeaveCard uses `LeaveCardBinding` which contains:
 
 #### EmployeeInfo Component
 Properties accessible through LeaveCard:
-- `employeeName`: String
-- `employeeRole`: String
-- `employeeImage`: Drawable resource ID
+- `employeeName`: CharSequence? (delegated to `lEmployeeInfo.employeeName`)
+- `employeeRole`: CharSequence? (delegated)
+- `employeeImage`: Int? (delegated)
+- `employeeImageUrl`: String? (delegated)
 
 #### LeaveCounter Component
 Properties accessible through LeaveCard:
-- `counterText`: String
+- `counterText`: CharSequence?
 - `counterType`: CounterType enum (NORMAL, CRITICAL)
 
-### Material Design Elements
+### Click & Ripple Behaviour
 
-- **Elevation**: 2dp shadow for depth
-- **Corner Radius**: 12dp for modern rounded appearance
-- **Stroke**: 1dp border for definition
-- **Ripple Effect**: Material ripple on press with theme-based color
-- **Shadow Colors**: API 28+ support for custom shadow colors
+- setupClickAnimation():
+  - Enables `isClickable = true` and `isFocusable = true` so the card responds to clicks.
+  - Resolves the active ripple color from `R.attr.colorBackgroundModifierOnPress` (fallback `R.color.kitColorNeutralGrayDarkA5`) and sets `rippleColor`.
+- `performClick()` calls `super.performClick()` then notifies `leaveCardDelegate?.onClick(this)`.
+
+### Shadow Colors (API 28+)
+- On API >= P the card sets:
+  - `outlineAmbientShadowColor` from `R.attr.colorShadowTintedAmbient` (fallback `R.color.kitColorBrandPrimaryA10`)
+  - `outlineSpotShadowColor` from `R.attr.colorShadowTintedKey` (fallback `R.color.kitColorBrandPrimaryA20`)
 
 ## Best Practices
 
 | ✅ Do | ❌ Don't |
 | ----- | -------- |
-| Use LeaveCardDelegate for click handling | Override `setOnClickListener()` directly |
+| Use LeaveCardDelegate for click handling | Override `setOnClickListener()` directly without considering accessibility |
 | Keep employee names concise | Display very long text without ellipsizing |
-| Set appropriate CounterType based on balance | Always use NORMAL regardless of data |
+| Set CounterType based on balance | Always use NORMAL regardless of data |
 | Test ripple effects on different themes | Assume ripple color works everywhere |
 | Provide accessible content descriptions | Ignore accessibility for screen readers |
 | Use in RecyclerView with proper ViewHolder | Create new instances for each scroll |
 | Handle null values gracefully | Assume properties are always set |
-| Test on different screen sizes | Design for single device only |
+| Test on different screen sizes | Design for a single device only |
 
 ## Required Resources
 
@@ -243,11 +253,11 @@ Properties accessible through LeaveCard:
   - `lDescription`: LeaveCounter custom view
 
 ### Sub-Components
-- **EmployeeInfo**: Custom view with `employeeName`, `employeeRole`, `employeeImage` properties
+- **EmployeeInfo**: Custom view with `employeeName`, `employeeRole`, `employeeImage`, `employeeImageUrl` properties
 - **LeaveCounter**: Custom view with `counterText`, `counterType` properties
 
 ### Drawables
-- `placeholder`: Default employee image placeholder
+- `R.drawable.kit_ic_placeholder` (default employee image placeholder)
 
 ### Dimensions
 - `stroke_weight_1dp`: Border stroke width
@@ -262,4 +272,4 @@ Properties accessible through LeaveCard:
 
 ---
 
-> **⚠️ Note**: This component requires `LeaveCardBinding` to be properly generated from `leave_card.xml`. The layout must contain `lEmployeeInfo` (EmployeeInfo component) and `lDescription` (LeaveCounter component) with matching IDs. Ensure both sub-components are properly implemented with their respective properties.
+> **⚠️ Note**: This component requires `LeaveCardBinding` to be generated from `leave_card.xml`. The layout must contain `lEmployeeInfo` (EmployeeInfo component) and `lDescription` (LeaveCounter component) with matching IDs. Ensure both sub-components are implemented with the expected properties (including support for `employeeImageUrl` if you plan to use remote images).

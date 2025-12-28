@@ -54,12 +54,14 @@ inputField.delegate = object : InputFieldDelegate {
     override fun onValueChange(fieldId: String, value: Any?) {
         // Handle value changes
     }
-    
+
     override fun onValidationChange(fieldId: String, isValid: Boolean) {
         // Handle validation state changes
     }
 }
 ```
+
+---
 
 ## Input Types
 
@@ -82,6 +84,8 @@ inputField.configure(
 )
 ```
 
+---
+
 ## Properties Reference
 
 ### XML Attributes
@@ -100,10 +104,10 @@ inputField.configure(
 | `minLines` | `Int` | `3` | Minimum lines for TextArea |
 | `options` | `String[]` | `null` | Options array for dropdown/radio/checkbox |
 | `supportingText` | `String` | `null` | Helper text below input |
-| `errorText` | `String` | `null` | Error message to display |
+| `errorText` | `String` | `null` | Error message to display on init |
 | `showError` | `Boolean` | `false` | Whether to show error on init |
-| `requiredColor` | `@ColorRes` | `colorRed30` | Color for required indicator |
-| `errorColor` | `@ColorRes` | `colorRed50` | Color for error messages |
+| `requiredColor` | `@ColorRes` | `R.color.kitColorRed40` | Color resource for required indicator (parsed, fallback kitColorRed40) |
+| `errorColor` | `@ColorRes` | `R.color.kitColorRed40` | Color resource for error styling (parsed, fallback kitColorRed40) |
 | `titleTextAppearance` | `@StyleRes` | - | Custom text appearance for title |
 | `descriptionTextAppearance` | `@StyleRes` | - | Custom text appearance for description |
 
@@ -114,14 +118,7 @@ inputField.configure(
 | `requiredColor` | `@ColorInt` | `colorRed30` | Asterisk color for required fields |
 | `errorColor` | `@ColorInt` | `colorRed50` | Error text and border color |
 
-Theme colors used internally:
-- `colorForegroundPrimary` - Main text color
-- `colorForegroundSecondary` - Label text color
-- `colorForegroundPlaceholder` - Hint text color
-- `colorForegroundDisabled` - Disabled state color
-- `colorStrokeSubtle` - Default border color
-- `colorStrokeAccent` - Focused border color
-- `colorStrokeAttentionIntense` - Error border color
+---
 
 ## Data Models
 
@@ -151,17 +148,19 @@ val config = InputFieldConfig(
 )
 ```
 
+---
+
 ## Methods Reference
 
 | Method Name | Parameters | Description |
 | ----------- | ---------- | ----------- |
-| `configure()` | `config: InputFieldConfig, id: String = ""` | Configure field with config object |
+| `configure()` | `config: InputFieldConfig, id: String = ""` | Configure field with config object (id sets `fieldId`) |
 | `getValue()` | - | Get current field value (returns `Any?`) |
 | `setValue()` | `value: Any?` | Set field value programmatically |
-| `setError()` | `errorText: String?` | Display error message |
+| `setError()` | `errorText: String?` | Display error message; behaviour differs by input type (inline vs TextInputLayout vs generic errorTextView) |
 | `clearError()` | - | Clear error state |
 | `getErrorText()` | - | Get current error text |
-| `isValid()` | - | Check if field passes validation |
+| `isValid()` | - | Check if field passes validation (sets errors if invalid) |
 | `isFieldEnabled()` | - | Check if field is enabled |
 | `setEnabled()` | `enabled: Boolean` | Enable/disable field |
 | `setSupportingText()` | `text: String?` | Set helper text |
@@ -291,7 +290,7 @@ inputField.delegate = object : InputFieldDelegate {
     override fun onValueChange(fieldId: String, value: Any?) {
         Log.d("InputField", "$fieldId changed to: $value")
     }
-    
+
     override fun onValidationChange(fieldId: String, isValid: Boolean) {
         submitButton.isEnabled = isValid
     }
@@ -381,7 +380,9 @@ inputField.setEnabled(true)
 | Test with different input scenarios | Assume all users follow expected patterns |
 | Clear errors when user corrects input | Keep stale error messages |
 | Use appropriate input types | Use TextInput for everything |
-| Provide immediate feedback | Delay validation until submission |
+| Provide immediate feedback | Delay validation until submission (only when appropriate) |
+
+---
 
 ## Common Patterns
 
@@ -398,8 +399,8 @@ submitButton.setOnClickListener {
     val allValid = fields.all { it.isValid() }
     if (allValid) {
         // Submit form
-        val formData = fields.associate { 
-            it.fieldId to it.getValue() 
+        val formData = fields.associate {
+            it.fieldId to it.getValue()
         }
         submitForm(formData)
     }
@@ -408,4 +409,4 @@ submitButton.setOnClickListener {
 
 ---
 
-> **⚠️ Note**: This component requires FragmentActivity context for dropdown functionality. Ensure your Activity extends FragmentActivity or AppCompatActivity. The component automatically manages focus and keyboard behavior for optimal user experience.
+> **⚠️ Note**: Dropdown functionality requires a FragmentActivity context (AppCompatActivity or other FragmentActivity) because the component locates a FragmentManager in the view context chain. If a FragmentManager cannot be found an IllegalStateException is thrown. Also, validation/error message strings in the implementation mix English and Indonesian in different paths — override with `setError()` for consistent localization.
