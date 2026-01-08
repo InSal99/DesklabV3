@@ -62,6 +62,25 @@
                     app:infoIcon="@drawable/kit_ic_placeholder"
                     app:hasAction="true"
                     android:layout_marginTop="@dimen/margin_12dp"/>
+
+                <com.edts.components.detail.information.DetailInformationA
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:infoTitle="Title"
+                    app:infoDescription="Description"
+                    app:infoIcon="@drawable/kit_ic_placeholder"
+                    app:hasDescIcon="true"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
+
+                <com.edts.components.detail.information.DetailInformationA
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:infoTitle="Title"
+                    app:infoDescription="Description with an extremely long text intended to test layout behavior, truncation, and spacing when the content exceeds the available width."
+                    app:infoIcon="@drawable/kit_ic_placeholder"
+                    app:hasDescIcon="true"
+                    app:descIcon="@drawable/ic_chevron_left"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

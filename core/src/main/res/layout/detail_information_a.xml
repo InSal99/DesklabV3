@@ -35,20 +35,37 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvDetailDescription"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginTop="@dimen/margin_2dp"
         android:text="Description"
-        android:maxLines="2"
+        android:maxLines="1"
         android:ellipsize="end"
         style="?attr/p1Medium"
         android:textColor="?attr/colorForegroundPrimary"
         android:layout_marginBottom="@dimen/margin_12dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constrainedWidth="true"
         app:layout_constraintStart_toStartOf="@id/tvInfoTitle"
         app:layout_constraintTop_toBottomOf="@id/tvInfoTitle"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivDescIcon"
         app:layout_constraintBottom_toTopOf="@id/btnDetailAction2"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivDescIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/kit_ic_placeholder"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginStart="@dimen/margin_4dp"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailDescription"
+        app:layout_constraintTop_toTopOf="@id/tvDetailDescription"
+        app:layout_constraintBottom_toBottomOf="@id/tvDetailDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="?attr/colorForegroundTertiary"/>
 
     <com.edts.components.button.Button
         android:id="@+id/btnDetailAction2"
