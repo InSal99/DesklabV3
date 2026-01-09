@@ -16,6 +16,9 @@ Detail Information A is a customizable information display component that shows 
 - Description text (optional)
 - Two optional action buttons (actionButton1, actionButton2)
 - Delegate callbacks for handling button clicks
+- Description icon (optional) with click handling
+- Clickable root container with ripple effect
+- Delegate callbacks for root and description icon clicks
 
 ---
 
@@ -31,6 +34,8 @@ Detail Information A is a customizable information display component that shows 
     app:infoTitle="Status Updated"
     app:infoDescription="Detailed description text goes here."
     app:hasAction="true"
+    app:hasDescIcon="true"
+    app:descIcon="@drawable/ic_help_24"
     />
 ```
 
@@ -42,13 +47,23 @@ detailInfo.apply {
     title = "Important Notice"
     description = "This is a detailed description of the information being displayed."
     hasAction = true
+    hasDescIcon = true
+    descIcon = ContextCompat.getDrawable(context, R.drawable.ic_help)
     delegate = object : DetailInformationADelegate {
         override fun onAction1Clicked(component: DetailInformationA) {
             // Handle first action button click
         }
-        
+
         override fun onAction2Clicked(component: DetailInformationA) {
             // Handle second action button click
+        }
+
+        override fun onItemClick(component: DetailInformationA) {
+            // Handle root container click
+        }
+
+        override fun onDescIconClick(component: DetailInformationA) {
+            // Handle description icon click
         }
     }
 }
@@ -58,7 +73,7 @@ detailInfo.apply {
 
 ## Example Usage
 ```xml
-<com.yourpackage.DetailInformationA
+<com.edts.components.detail.information.DetailInformationA
     android:id="@+id/detailInfo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -94,12 +109,15 @@ detailInfo.delegate = object : DetailInformationADelegate {
 | `title`         | `CharSequence?`               | `null`  | Title text displayed next to icon. |
 | `description`   | `CharSequence?`               | `null`  | Supporting description text.       |
 | `hasAction`     | `Boolean`                     | `false` | Whether action buttons are shown.  |
+| `hasDescIcon`   | `Boolean`                     | `false` | Whether description icon is shown. |
+| `descIcon`      | `Drawable?`                   | `null`  | Sets the description icon.         |
 
 ### Content Properties
 
 | `actionButton1` | `Button`                      | –       | First action button.               |
 | `actionButton2` | `Button`                      | –       | Second action button.              |
 | `delegate`      | `DetailInformationADelegate?` | `null`  | Delegate for action button clicks. |
+| `delegate`      | `DetailInformationADelegate?` | `null`  | Delegate for button, root, and icon clicks. |
 
 ### Methods
 
@@ -115,6 +133,8 @@ detailInfo.delegate = object : DetailInformationADelegate {
 | `infoTitle`       | `string`    | Sets the title text               |
 | `infoDescription` | `string`    | Sets the description text         |
 | `hasAction`       | `boolean`   | Shows or hides the action buttons |
+| `hasDescIcon`     | `boolean`   | Shows or hides the description icon |
+| `descIcon`        | `reference` | Sets the description icon drawable   |
 
 ---
 
@@ -166,6 +186,28 @@ detailInfo.icon = ContextCompat.getDrawable(context, R.drawable.ic_updated)
 
 // Show/hide actions based on state
 detailInfo.hasAction = shouldShowActions
+```
+
+### With Description Icon
+```kotlin
+detailInfo.apply {
+    title = "Help Information"
+    description = "Tap the icon for more details"
+    hasDescIcon = true
+    descIcon = ContextCompat.getDrawable(context, R.drawable.ic_info_circle)
+
+    delegate = object : DetailInformationADelegate {
+        override fun onDescIconClick(component: DetailInformationA) {
+            // Show help dialog or additional info
+        }
+
+        override fun onItemClick(component: DetailInformationA) {
+            // Handle container click
+        }
+
+        // Other delegate methods...
+    }
+}
 ```
 
 ---
