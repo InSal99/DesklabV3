@@ -28,10 +28,14 @@ class Footer @JvmOverloads constructor(
     private var statusType: StatusBadge.ChipType = StatusBadge.ChipType.APPROVED
     private var footerHasStroke: Boolean = false
     private var topStrokeView: View? = null
-    private var showDescription: Boolean = false
+    private var showTitle: Boolean = false
     private var dualButtonTitle: String = ""
     private var dualButtonSupportText1: String = ""
     private var dualButtonSupportText2: String = ""
+    private var hasDualButtonSupportText2: Boolean = true
+    private var hasCTASupportText2: Boolean = true
+    private var hasDualButtonSupportText1: Boolean = true
+    private var hasCTASupportText1: Boolean = true
     private var primaryButtonEnabled: Boolean = true
     private var secondaryButtonEnabled: Boolean = true
     private var primaryButton: Button? = null
@@ -112,8 +116,57 @@ class Footer @JvmOverloads constructor(
         }
 
         bindDataToViews()
+        applyCTASupportText2Visibility()
+        applyDualButtonSupportText2Visibility()
+        applyCTASupportText1Visibility()
+        applyDualButtonSupportText1Visibility()
         setupClickListeners()
         applyForegroundColors()
+    }
+
+    fun setTitleVisibility(showTitle: Boolean) {
+        this.showTitle = showTitle
+        val visibility = if (showTitle) View.VISIBLE else View.GONE
+        dualButtonBinding?.let { binding ->
+            binding.tvFooterDualButtonTitle.visibility = visibility
+        }
+        ctaBinding?.let { binding ->
+            binding.tvFooterCTATitle.visibility = visibility
+        }
+    }
+
+    private fun applyCTASupportText1Visibility() {
+        val visibility = if (hasCTASupportText1) View.VISIBLE else View.GONE
+
+        ctaBinding?.let { binding ->
+            binding.tvFooterCTATextDivider.visibility = if (hasCTASupportText2) View.VISIBLE else View.GONE
+            binding.tvFooterCTASupportText1.visibility = visibility
+        }
+    }
+    private fun applyDualButtonSupportText1Visibility() {
+        val visibility = if (hasDualButtonSupportText1) View.VISIBLE else View.GONE
+
+        dualButtonBinding?.let { binding ->
+            binding.tvFooterDualButtonTextDivider.visibility = if (hasDualButtonSupportText2) View.VISIBLE else View.GONE
+            binding.tvFooterDualButtonSupportText1.visibility = visibility
+        }
+    }
+
+    private fun applyCTASupportText2Visibility() {
+        val visibility = if (hasCTASupportText2) View.VISIBLE else View.GONE
+
+        ctaBinding?.let { binding ->
+            binding.tvFooterCTATextDivider.visibility = visibility
+            binding.tvFooterCTASupportText2.visibility = visibility
+        }
+    }
+    private fun applyDualButtonSupportText2Visibility() {
+        val visibility = if (hasDualButtonSupportText2) View.VISIBLE else View.GONE
+
+        dualButtonBinding?.let { binding ->
+            binding.tvFooterDualButtonTextDivider.visibility = visibility
+            binding.tvFooterDualButtonSupportText2.visibility = visibility
+        }
     }
 
     private fun applyForegroundColors() {
@@ -160,7 +213,7 @@ class Footer @JvmOverloads constructor(
                     binding.tvFooterCTATitle.text = dualButtonTitle
                     binding.tvFooterCTASupportText1.text = dualButtonSupportText1
                     binding.tvFooterCTASupportText2.text = dualButtonSupportText2
-                    setDescriptionVisibility(showDescription)
+                    setTitleVisibility(showTitle)
                     primaryButton = binding.btnFooterCTAPrimary.apply {
                         setLabel(primaryButtonText)
                         setButtonDisabled(!primaryButtonEnabled)
@@ -182,7 +235,7 @@ class Footer @JvmOverloads constructor(
                     binding.tvFooterDualButtonTitle.text = dualButtonTitle
                     binding.tvFooterDualButtonSupportText1.text = dualButtonSupportText1
                     binding.tvFooterDualButtonSupportText2.text = dualButtonSupportText2
-                    setDescriptionVisibility(showDescription)
+                    setTitleVisibility(showTitle)
                     secondaryButton = binding.btnFooterDualButtonSecondary.apply {
                         setLabel(secondaryButtonText)
                         setButtonDisabled(!secondaryButtonEnabled)
@@ -314,23 +367,6 @@ class Footer @JvmOverloads constructor(
         secondaryButton?.setButtonDisabled(!enabled)
     }
 
-    fun setDescriptionVisibility(showDescription: Boolean) {
-        this.showDescription = showDescription
-        val visibility = if (showDescription) View.VISIBLE else View.GONE
-        dualButtonBinding?.let { binding ->
-            binding.tvFooterDualButtonTitle.visibility = visibility
-            binding.tvFooterDualButtonSupportText1.visibility = visibility
-            binding.tvFooterDualButtonTextDivider.visibility = visibility
-            binding.tvFooterDualButtonSupportText2.visibility = visibility
-        }
-        ctaBinding?.let { binding ->
-            binding.tvFooterCTATitle.visibility = visibility
-            binding.tvFooterCTASupportText1.visibility = visibility
-            binding.tvFooterCTATextDivider.visibility = visibility
-            binding.tvFooterCTASupportText2.visibility = visibility
-        }
-    }
-
     fun setDualButtonDescription(title: String, supportText1: String, supportText2: String) {
         dualButtonTitle = title
         dualButtonSupportText1 = supportText1
@@ -354,10 +390,30 @@ class Footer @JvmOverloads constructor(
         }
     }
 
-    fun isDescriptionVisible(): Boolean = showDescription
+    fun isDescriptionVisible(): Boolean = showTitle
     fun getDualButtonTitle(): String = dualButtonTitle
     fun getDualButtonSupportText1(): String = dualButtonSupportText1
     fun getDualButtonSupportText2(): String = dualButtonSupportText2
+
+    fun setHasDualButtonSupportText2(hasSupportText2: Boolean) {
+        hasDualButtonSupportText2 = hasSupportText2
+        applyDualButtonSupportText2Visibility()
+    }
+
+    fun setHasCTASupportText2(hasSupportText2: Boolean) {
+        hasCTASupportText2 = hasSupportText2
+        applyCTASupportText2Visibility()
+    }
+
+    fun setHasDualButtonSupportText1(hasSupportText1: Boolean) {
+        hasDualButtonSupportText1 = hasSupportText1
+        applyDualButtonSupportText1Visibility()
+    }
+
+    fun setHasCTASupportText1(hasSupportText1: Boolean) {
+        hasCTASupportText1 = hasSupportText1
+        applyCTASupportText1Visibility()
+    }
 
     enum class FooterType(val value: Int) {
         CALL_TO_ACTION(0),

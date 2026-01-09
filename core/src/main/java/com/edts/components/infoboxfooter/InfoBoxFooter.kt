@@ -160,8 +160,8 @@ class InfoBoxFooter @JvmOverloads constructor(
         footer.setSecondaryButtonEnabled(enabled)
     }
 
-    fun setDescriptionVisibility(showDescription: Boolean) {
-        footer.setDescriptionVisibility(showDescription)
+    fun setDescriptionVisibility(showTitle: Boolean) {
+        footer.setTitleVisibility(showTitle)
     }
 
     fun setDualButtonDescription(title: String, supportText1: String, supportText2: String) {
