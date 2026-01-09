@@ -5,5 +5,7 @@
         <attr name="infoTitle" format="string" />
         <attr name="infoDescription" format="string" />
         <attr name="hasAction" format="boolean" />
+        <attr name="hasDescIcon" format="boolean" />
+        <attr name="descIcon" format="reference" />
     </declare-styleable>
 </resources>

@@ -1,19 +1,25 @@
 package com.edts.components.detail.information
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.edts.components.R
 import com.edts.components.databinding.DetailInformationABinding
+import com.edts.components.utils.dpToPx
+import com.edts.components.utils.resolveColorAttribute
+import com.google.android.material.card.MaterialCardView
 
 class DetailInformationA @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
+) : MaterialCardView(context, attrs, defStyleAttr) {
     private val binding = DetailInformationABinding.inflate(LayoutInflater.from(context), this, true)
 
     var delegate: DetailInformationADelegate? = null
@@ -53,9 +59,27 @@ class DetailInformationA @JvmOverloads constructor(
     val actionButton2: com.edts.components.button.Button
         get() = binding.btnDetailAction2
 
+    var hasDescIcon: Boolean = false
+        set(value) {
+            field = value
+            binding.ivDescIcon.isVisible = value
+            updateRootClickability()
+            updateDescriptionEndConstraint()
+        }
+
+    var descIcon: Drawable?
+        get() = binding.ivDescIcon.drawable
+        set(value) {
+            if (value != null) {
+                binding.ivDescIcon.setImageDrawable(value)
+            }
+            binding.ivDescIcon.isVisible = hasDescIcon
+        }
+
     init {
         initAttrs(context, attrs)
         setupClickListeners()
+        updateRootClickability()
         if (attrs == null) {
             hasAction = false
         }
@@ -64,8 +88,14 @@ class DetailInformationA @JvmOverloads constructor(
     private fun initAttrs(context: Context, attrs: AttributeSet?) {
         if (attrs == null) {
             hasAction = false
+            hasDescIcon = false
             return
         }
+
+        rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
+        elevation = 0f
+        strokeWidth = 0
+        setCardBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
 
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.DetailInformationA, 0, 0)
 
@@ -74,9 +104,38 @@ class DetailInformationA @JvmOverloads constructor(
             title = typedArray.getString(R.styleable.DetailInformationA_infoTitle)
             description = typedArray.getString(R.styleable.DetailInformationA_infoDescription)
             hasAction = typedArray.getBoolean(R.styleable.DetailInformationA_hasAction, false)
+            hasDescIcon = typedArray.getBoolean(R.styleable.DetailInformationA_hasDescIcon, false)
+            val descDrawable = typedArray.getDrawable(R.styleable.DetailInformationA_descIcon)
+            descIcon = descDrawable
         } finally {
             typedArray.recycle()
         }
+    }
+
+    private fun updateRootClickability() {
+        isClickable = hasDescIcon
+        isFocusable = hasDescIcon
+    }
+
+    private fun updateDescriptionEndConstraint() {
+        val layoutParams =
+            binding.tvDetailDescription.layoutParams as ConstraintLayout.LayoutParams
+
+        if (hasDescIcon) {
+            layoutParams.endToStart = R.id.ivDescIcon
+            layoutParams.endToEnd = ConstraintLayout.LayoutParams.UNSET
+
+            val rippleColor = ColorStateList.valueOf(context.resolveColorAttribute(R.attr.colorBackgroundModifierOnPress, R.color.kitColorNeutralGrayDarkA5))
+            val rippleDrawable = RippleDrawable(rippleColor, null, null)
+            rippleDrawable.radius = (16f.dpToPx).toInt()
+
+            binding.ivDescIcon.background = rippleDrawable
+        } else {
+            layoutParams.endToStart = ConstraintLayout.LayoutParams.UNSET
+            layoutParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+        }
+
+        binding.tvDetailDescription.layoutParams = layoutParams
     }
 
     private fun setupClickListeners() {
@@ -87,19 +146,30 @@ class DetailInformationA @JvmOverloads constructor(
         binding.btnDetailAction2.setOnClickListener {
             delegate?.onAction2Clicked(this)
         }
+
+        binding.ivDescIcon.setOnClickListener {
+            delegate?.onDescIconClick(this)
+        }
+
+        setOnClickListener {
+            delegate?.onItemClick(this)
+        }
     }
 
     private fun updateDescriptionConstraints() {
-        val layoutParams = binding.tvDetailDescription.layoutParams as LayoutParams
+        val layoutParams =
+            binding.tvDetailDescription.layoutParams as ConstraintLayout.LayoutParams
 
         if (hasAction) {
             layoutParams.bottomToTop = R.id.btnDetailAction2
-            layoutParams.bottomToBottom = LayoutParams.UNSET
-            layoutParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.margin_4dp)
+            layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.UNSET
+            layoutParams.bottomMargin =
+                resources.getDimensionPixelSize(R.dimen.margin_4dp)
         } else {
-            layoutParams.bottomToTop = LayoutParams.UNSET
-            layoutParams.bottomToBottom = LayoutParams.PARENT_ID
-            layoutParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.margin_12dp)
+            layoutParams.bottomToTop = ConstraintLayout.LayoutParams.UNSET
+            layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+            layoutParams.bottomMargin =
+                resources.getDimensionPixelSize(R.dimen.margin_12dp)
         }
 
         binding.tvDetailDescription.layoutParams = layoutParams
