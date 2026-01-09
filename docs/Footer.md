@@ -95,6 +95,11 @@ footer.setFooterType(Footer.FooterType.DUAL_BUTTON)
 | `primaryButtonEnabled` | `Boolean` | `true` | Enable/disable primary button |
 | `secondaryButtonEnabled` | `Boolean` | `true` | Enable/disable secondary button |
 | `delegate` | `FooterDelegate?` | `null` | Handles click events |
+| `hasDualButtonSupportText1` | `Boolean` | `true` | Shows/hides first support text in dual button mode |
+| `hasDualButtonSupportText2` | `Boolean` | `true` | Shows/hides second support text in dual button mode |
+| `hasCTASupportText1` | `Boolean` | `true` | Shows/hides first support text in CTA mode |
+| `hasCTASupportText2` | `Boolean` | `true` | Shows/hides second support text in CTA mode |
+| `showTitle` | `Boolean` | `false` | Shows/hides title text in CTA and dual button modes |
 
 ---
 
@@ -109,13 +114,17 @@ footer.setFooterType(Footer.FooterType.DUAL_BUTTON)
 | `setStatusBadge()` | `text: String, type: StatusBadge.ChipType` | Sets status badge label and style |
 | `setPrimaryButtonEnabled()` | `enabled: Boolean` | Enables/disables primary button |
 | `setSecondaryButtonEnabled()` | `enabled: Boolean` | Enables/disables secondary button |
-| `setDescriptionVisibility()` | `showDescription: Boolean` | Shows/hides support texts |
 | `setDualButtonDescription()` | `title: String, supportText1: String, supportText2: String` | Updates dual button texts |
 | `setStroke()` | `hasStroke: Boolean` | Toggles top stroke |
-| `isDescriptionVisible()` | – | Returns whether description is visible |
+| `isDescriptionVisible()` | – | Returns whether title is visible (note: actually returns `showTitle` value) |
 | `getDualButtonTitle()` | – | Returns current dual button title |
 | `getDualButtonSupportText1()` | – | Returns first support text |
 | `getDualButtonSupportText2()` | – | Returns second support text |
+| `setTitleVisibility()` | `showTitle: Boolean` | Shows/hides title in CTA and dual button modes |
+| `setHasDualButtonSupportText1()` | `hasSupportText1: Boolean` | Shows/hides first support text in dual button mode |
+| `setHasDualButtonSupportText2()` | `hasSupportText2: Boolean` | Shows/hides second support text in dual button mode |
+| `setHasCTASupportText1()` | `hasSupportText1: Boolean` | Shows/hides first support text in CTA mode |
+| `setHasCTASupportText2()` | `hasSupportText2: Boolean` | Shows/hides second support text in CTA mode |
 
 ---
 
@@ -126,6 +135,16 @@ footer.setFooterType(Footer.FooterType.DUAL_BUTTON)
 footer.apply {
     setFooterType(Footer.FooterType.CALL_TO_ACTION)
     setPrimaryButtonText("Sign Up")
+    setDualButtonDescription("Title", "Support text 1", "Support text 2")
+    setTitleVisibility(true)
+}
+
+// Call to action footer with selective support text
+footer.apply {
+    setFooterType(Footer.FooterType.CALL_TO_ACTION)
+    setDualButtonDescription("Title", "Main text", "Secondary text")
+    setHasCTASupportText1(true)
+    setHasCTASupportText2(false)  // Hide second support text and divider
 }
 
 // Dual button footer
@@ -134,8 +153,44 @@ footer.apply {
     setDualButtonDescription("Proceed?", "Continue your action", "Or cancel instead")
     setPrimaryButtonText("Continue")
     setSecondaryButtonText("Cancel")
+    setTitleVisibility(true)
+}
+
+// Dual button footer with selective support text
+footer.apply {
+    setFooterType(Footer.FooterType.DUAL_BUTTON)
+    setDualButtonDescription("Title", "Main option", "Alternative option")
+    setHasDualButtonSupportText1(true)
+    setHasDualButtonSupportText2(false)  // Hide second support text and divider
+}
+
+// Control title visibility
+footer.apply {
+    setTitleVisibility(false)  // Hide title in CTA or dual button mode
 }
 ```
+
+---
+
+## Important Behaviors
+
+### Shared Text Properties
+The `setDualButtonDescription(title, supportText1, supportText2)` method updates text for **both** footer types:
+- `CALL_TO_ACTION`: Updates title and support texts
+- `DUAL_BUTTON`: Updates title and support texts
+
+### Text Divider Behavior
+The text divider between `supportText1` and `supportText2` automatically:
+- Shows when `supportText2` visibility is enabled
+- Hides when `supportText2` visibility is disabled
+
+This applies to both CTA and Dual Button modes.
+
+### Title Visibility Scope
+`setTitleVisibility()` affects:
+- `CALL_TO_ACTION` mode: Controls title visibility
+- `DUAL_BUTTON` mode: Controls title visibility
+- Other modes: Has no effect
 
 ---
 
