@@ -888,7 +888,7 @@ class InputField @JvmOverloads constructor(
         val baseShape = GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
             this.cornerRadius = this@InputField.cornerRadius
-            setColor(getCachedColor(R.attr.colorBackgroundDisabled, R.color.kitColorNeutralGrayDarkA5))
+            setColor(getCachedColor(R.attr.colorBackgroundElevatedDisabled, R.color.kitColorModifierElevatedDisabled))
             setStroke(strokeWidth1dp, getCachedColor(R.attr.colorStrokeSubtle, R.color.kitColorNeutralGrayLight30))
         }
 

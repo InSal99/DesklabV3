@@ -108,6 +108,13 @@ inputSearch.state = InputSearch.State.FOCUS
 | `cardState` | `CardState` | `REST` | Touch press state (managed internally) |
 | `previousState` | `State` | `REST` | Previous state for focus restoration |
 
+### XML-only Attributes
+
+| Property Name | Type | Default | Description |
+| ------------- | ---- | ------- | ----------- |
+| `inputSearchHint` | `String` | `"Search Placeholder"` | Placeholder text displayed when empty |
+| `inputSearchState` | `enum` | `rest` | Initial state: rest(0), focus(1), disable(2), error(3) |
+
 ## Data Models 
 
 ### InputSearchDelegate Interface
@@ -254,6 +261,9 @@ fun updateSearchContext(category: String) {
 
 - **ViewBinding** — Uses ViewBinding for efficient view access and type safety
 - **Text Watching** — Optimized TextWatcher implementation for real-time search without excessive callbacks
+- **MaterialCardView** — Built on Material Design components with 2dp elevation and 12dp corner radius
+- **Dynamic Theming** — Uses theme attributes for colors, supporting light/dark modes automatically
+- **Ripple Effects** — Transparent ripple on card, custom 12dp radius ripple on close icon
 
 ## Best Practices
 

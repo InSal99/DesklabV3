@@ -61,7 +61,7 @@ class BottomTrayComponentView : Fragment() {
             footer.setPrimaryButtonText("Lanjutkan")
             footer.setSecondaryButtonText("Batal")
             footer.setDualButtonDescription("Total Amount", "Rp 500.000", "Rp 250.000 x 2")
-            footer.setDescriptionVisibility(true)
+            footer.setTitleVisibility(true)
             footer.setPrimaryButtonEnabled(true)
             footer.setSecondaryButtonEnabled(true)
 
