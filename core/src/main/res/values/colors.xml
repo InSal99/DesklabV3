@@ -159,5 +159,15 @@
     <color name="kitColorModifierElevated">@color/kitColorNeutralWhite</color>
     <color name="kitColorModifierSurface">@color/kitColorNeutralWhite</color>
     <color name="kitColorModifierElevatedDisabled">#EFEFEF</color>
+    <color name="kitColorModifierUtilityLiburSubtleElevated">#FFF5F6</color>
+    <color name="kitColorModifierUtilityLiburIntenseElevated">#F25555</color>
+    <color name="kitColorModifierUtilityCutiSubtleElevated">#D6EAF7</color>
+    <color name="kitColorModifierUtilityCutiIntenseElevated">#3598D8</color>
+    <color name="kitColorModifierUtilityKerjaKhususSubtleElevated">#EDF7F9</color>
+    <color name="kitColorModifierUtilityKerjaKhususIntenseElevated">#97D5DF</color>
+    <color name="kitColorModifierUtilityUlangTahunSubtleElevated">#F4FCF4</color>
+    <color name="kitColorModifierUtilityUlangTahunIntenseElevated">#54B954</color>
+    <color name="kitColorModifierUtilityEventSubtleElevated">#FFF5E9</color>
+    <color name="kitColorModifierUtilityEventIntenseElevated">#E78129</color>
 
 </resources>

@@ -38,17 +38,17 @@ class FooterComponentView : Fragment(), FooterDelegate {
             delegate = this@FooterComponentView
 
             setFooterType(Footer.FooterType.CALL_TO_ACTION)
-            setPrimaryButtonText("Daftar Sekarang")
+            setPrimaryButtonText("Bayar Sekarang")
 
             setDualButtonDescription(
                 title = "Total Pembayaran",
                 supportText1 = "Rp 120.000",
-                supportText2 = ""
+                supportText2 = "Rp 150.000"
             )
 
-            setTitleVisibility(false)
-            setHasCTASupportText2(false)
-            setHasCTASupportText1(false)
+            setTitleVisibility(true)
+            setSupportText1Visibility(true)
+            setSupportText2Visibility(true)
 
             setPrimaryButtonEnabled(true)
             setStroke(true)
@@ -70,9 +70,9 @@ class FooterComponentView : Fragment(), FooterDelegate {
                 supportText2 = "BCA"
             )
 
-            setTitleVisibility(false)
-            setHasDualButtonSupportText2(false)
-            setHasDualButtonSupportText1(false)
+            setTitleVisibility(true)
+            setSupportText1Visibility(true)
+            setSupportText2Visibility(true)
 
             setPrimaryButtonEnabled(true)
             setSecondaryButtonEnabled(true)

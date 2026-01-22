@@ -10,6 +10,7 @@
     <attr name="colorBackgroundOverlay" format="color|reference"/>
     <attr name="colorBackgroundDisabled" format="color|reference"/>
     <attr name="colorBackgroundElevated" format="color|reference"/>
+    <attr name="colorBackgroundElevatedInverse" format="color|reference"/>
     <attr name="colorBackgroundElevatedDisabled" format="color|reference"/>
     <attr name="colorBackgroundSurface" format="color|reference"/>
 
@@ -47,22 +48,32 @@
     <!-- libur -->
     <attr name="colorBackgroundUtilityLiburSubtle" format="color|reference"/>
     <attr name="colorBackgroundUtilityLiburIntense" format="color|reference"/>
+    <attr name="colorBackgroundUtilityLiburSubtleElevated" format="color|reference"/>
+    <attr name="colorBackgroundUtilityLiburIntenseElevated" format="color|reference"/>
 
     <!-- cuti -->
     <attr name="colorBackgroundUtilityCutiSubtle" format="color|reference"/>
     <attr name="colorBackgroundUtilityCutiIntense" format="color|reference"/>
+    <attr name="colorBackgroundUtilityCutiSubtleElevated" format="color|reference"/>
+    <attr name="colorBackgroundUtilityCutiIntenseElevated" format="color|reference"/>
 
     <!-- kerja khusus -->
     <attr name="colorBackgroundUtilityKerjaKhususSubtle" format="color|reference"/>
     <attr name="colorBackgroundUtilityKerjaKhususIntense" format="color|reference"/>
+    <attr name="colorBackgroundUtilityKerjaKhususSubtleElevated" format="color|reference"/>
+    <attr name="colorBackgroundUtilityKerjaKhususIntenseElevated" format="color|reference"/>
 
     <!-- ulang tahun -->
     <attr name="colorBackgroundUtilityUlangTahunSubtle" format="color|reference"/>
     <attr name="colorBackgroundUtilityUlangTahunIntense" format="color|reference"/>
+    <attr name="colorBackgroundUtilityUlangTahunSubtleElevated" format="color|reference"/>
+    <attr name="colorBackgroundUtilityUlangTahunIntenseElevated" format="color|reference"/>
 
     <!-- event -->
     <attr name="colorBackgroundUtilityEventSubtle" format="color|reference"/>
     <attr name="colorBackgroundUtilityEventIntense" format="color|reference"/>
+    <attr name="colorBackgroundUtilityEventSubtleElevated" format="color|reference"/>
+    <attr name="colorBackgroundUtilityEventIntenseElevated" format="color|reference"/>
 
     <!-- foreground color attrs-->
     <attr name="colorForegroundPrimary" format="color|reference"/>
