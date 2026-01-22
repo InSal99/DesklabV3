@@ -18,6 +18,7 @@
         <item name="colorBackgroundOverlay">@color/kitColorNeutralGrayDarkA50</item>
         <item name="colorBackgroundDisabled">@color/kitColorNeutralGrayDarkA5</item>
         <item name="colorBackgroundElevated">@color/kitColorNeutralWhite</item>
+        <item name="colorBackgroundElevatedInverse">@color/kitColorModifierElevated</item>
         <item name="colorBackgroundElevatedDisabled">@color/kitColorModifierElevatedDisabled</item>
         <item name="colorBackgroundSurface">@color/kitColorNeutralWhite</item>
 
@@ -55,22 +56,32 @@
         <!-- libur -->
         <item name="colorBackgroundUtilityLiburSubtle">@color/kitColorRed10</item>
         <item name="colorBackgroundUtilityLiburIntense">@color/kitColorRed30</item>
+        <item name="colorBackgroundUtilityLiburSubtleElevated">@color/kitColorModifierUtilityLiburSubtleElevated</item>
+        <item name="colorBackgroundUtilityLiburIntenseElevated">@color/kitColorModifierUtilityLiburIntenseElevated</item>
 
         <!-- cuti -->
         <item name="colorBackgroundUtilityCutiSubtle">@color/kitColorBrandPrimary10</item>
         <item name="colorBackgroundUtilityCutiIntense">@color/kitColorBrandPrimary30</item>
+        <item name="colorBackgroundUtilityCutiSubtleElevated">@color/kitColorModifierUtilityCutiSubtleElevated</item>
+        <item name="colorBackgroundUtilityCutiIntenseElevated">@color/kitColorModifierUtilityCutiIntenseElevated</item>
 
         <!-- kerja khusus -->
         <item name="colorBackgroundUtilityKerjaKhususSubtle">@color/kitColorBrandSecondary10</item>
         <item name="colorBackgroundUtilityKerjaKhususIntense">@color/kitColorBrandSecondary30</item>
+        <item name="colorBackgroundUtilityKerjaKhususSubtleElevated">@color/kitColorModifierUtilityKerjaKhususSubtleElevated</item>
+        <item name="colorBackgroundUtilityKerjaKhususIntenseElevated">@color/kitColorModifierUtilityKerjaKhususIntenseElevated</item>
 
         <!-- ulang tahun -->
         <item name="colorBackgroundUtilityUlangTahunSubtle">@color/kitColorGreen10</item>
         <item name="colorBackgroundUtilityUlangTahunIntense">@color/kitColorGreen40</item>
+        <item name="colorBackgroundUtilityUlangTahunSubtleElevated">@color/kitColorModifierUtilityUlangTahunSubtleElevated</item>
+        <item name="colorBackgroundUtilityUlangTahunIntenseElevated">@color/kitColorModifierUtilityUlangTahunIntenseElevated</item>
 
         <!-- event -->
         <item name="colorBackgroundUtilityEventSubtle">@color/kitColorOrange10</item>
         <item name="colorBackgroundUtilityEventIntense">@color/kitColorOrange40</item>
+        <item name="colorBackgroundUtilityEventSubtleElevated">@color/kitColorModifierUtilityEventSubtleElevated</item>
+        <item name="colorBackgroundUtilityEventIntenseElevated">@color/kitColorModifierUtilityEventIntenseElevated</item>
 
         <!-- Basic Foreground Colors -->
         <item name="colorForegroundPrimary">@color/kitColorNeutralBlack</item>

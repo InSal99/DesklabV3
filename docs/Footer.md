@@ -95,10 +95,8 @@ footer.setFooterType(Footer.FooterType.DUAL_BUTTON)
 | `primaryButtonEnabled` | `Boolean` | `true` | Enable/disable primary button |
 | `secondaryButtonEnabled` | `Boolean` | `true` | Enable/disable secondary button |
 | `delegate` | `FooterDelegate?` | `null` | Handles click events |
-| `hasDualButtonSupportText1` | `Boolean` | `true` | Shows/hides first support text in dual button mode |
-| `hasDualButtonSupportText2` | `Boolean` | `true` | Shows/hides second support text in dual button mode |
-| `hasCTASupportText1` | `Boolean` | `true` | Shows/hides first support text in CTA mode |
-| `hasCTASupportText2` | `Boolean` | `true` | Shows/hides second support text in CTA mode |
+| `supportText1Visible` | `Boolean` | `true` | Shows/hides first support text in CTA and Dual Button modes |
+| `supportText2Visible` | `Boolean` | `true` | Shows/hides second support text in CTA and Dual Button modes |
 | `showTitle` | `Boolean` | `false` | Shows/hides title text in CTA and dual button modes |
 
 ---
@@ -121,10 +119,8 @@ footer.setFooterType(Footer.FooterType.DUAL_BUTTON)
 | `getDualButtonSupportText1()` | – | Returns first support text |
 | `getDualButtonSupportText2()` | – | Returns second support text |
 | `setTitleVisibility()` | `showTitle: Boolean` | Shows/hides title in CTA and dual button modes |
-| `setHasDualButtonSupportText1()` | `hasSupportText1: Boolean` | Shows/hides first support text in dual button mode |
-| `setHasDualButtonSupportText2()` | `hasSupportText2: Boolean` | Shows/hides second support text in dual button mode |
-| `setHasCTASupportText1()` | `hasSupportText1: Boolean` | Shows/hides first support text in CTA mode |
-| `setHasCTASupportText2()` | `hasSupportText2: Boolean` | Shows/hides second support text in CTA mode |
+| `setSupportText1Visibility()` | `showSupportText1: Boolean` | Shows/hides first support text (affects both CTA and Dual Button modes) |
+| `setSupportText2Visibility()` | `showSupportText2: Boolean` | Shows/hides second support text (affects both CTA and Dual Button modes) |
 
 ---
 
@@ -143,8 +139,9 @@ footer.apply {
 footer.apply {
     setFooterType(Footer.FooterType.CALL_TO_ACTION)
     setDualButtonDescription("Title", "Main text", "Secondary text")
-    setHasCTASupportText1(true)
-    setHasCTASupportText2(false)  // Hide second support text and divider
+    setTitleVisibility(true)
+    setSupportText1Visibility(true)
+    setSupportText2Visibility(false)  // Hide second support text and divider
 }
 
 // Dual button footer
@@ -160,8 +157,9 @@ footer.apply {
 footer.apply {
     setFooterType(Footer.FooterType.DUAL_BUTTON)
     setDualButtonDescription("Title", "Main option", "Alternative option")
-    setHasDualButtonSupportText1(true)
-    setHasDualButtonSupportText2(false)  // Hide second support text and divider
+    setTitleVisibility(true)
+    setSupportText1Visibility(true)
+    setSupportText2Visibility(false)  // Hide second support text and divider
 }
 
 // Control title visibility
@@ -191,6 +189,22 @@ This applies to both CTA and Dual Button modes.
 - `CALL_TO_ACTION` mode: Controls title visibility
 - `DUAL_BUTTON` mode: Controls title visibility
 - Other modes: Has no effect
+
+### Support Text Visibility Dependency
+Support texts (`supportText1` and `supportText2`) are only visible when **BOTH conditions are met**:
+1. Title visibility is enabled via `setTitleVisibility(true)`
+2. AND the respective support text visibility is enabled via `setSupportText1Visibility(true)` or `setSupportText2Visibility(true)`
+
+This means calling `setSupportText1Visibility(true)` has no effect unless `setTitleVisibility(true)` is also called first.
+
+**Example:**
+```kotlin
+footer.setTitleVisibility(false)
+footer.setSupportText1Visibility(true)  // ❌ Support text won't show because title is hidden
+
+footer.setTitleVisibility(true)
+footer.setSupportText1Visibility(true)  // ✅ Support text will now show
+```
 
 ---
 
