@@ -19,6 +19,7 @@ Detail Information A is a customizable information display component that shows 
 - Description icon (optional) with click handling
 - Clickable root container with ripple effect
 - Delegate callbacks for root and description icon clicks
+- Optional URL support for automatic external navigation on root click
 
 ---
 
@@ -36,6 +37,7 @@ Detail Information A is a customizable information display component that shows 
     app:hasAction="true"
     app:hasDescIcon="true"
     app:descIcon="@drawable/ic_help_24"
+    app:urlInfo="https://google.com"
     />
 ```
 
@@ -64,6 +66,10 @@ detailInfo.apply {
 
         override fun onDescIconClick(component: DetailInformationA) {
             // Handle description icon click
+        }
+        
+        override fun onUrlClicked(component: DetailInformationA, url: String) {
+            // Custom handling (analytics, in-app browser, etc.)
         }
     }
 }
@@ -103,20 +109,20 @@ detailInfo.delegate = object : DetailInformationADelegate {
 
 ### Content Properties
 
-| Property        | Type                          | Default | Description                        |
-| --------------- | ----------------------------- | ------- | ---------------------------------- |
-| `icon`          | `Drawable?`                   | `null`  | Sets the start icon.               |
-| `title`         | `CharSequence?`               | `null`  | Title text displayed next to icon. |
-| `description`   | `CharSequence?`               | `null`  | Supporting description text.       |
-| `hasAction`     | `Boolean`                     | `false` | Whether action buttons are shown.  |
-| `hasDescIcon`   | `Boolean`                     | `false` | Whether description icon is shown. |
-| `descIcon`      | `Drawable?`                   | `null`  | Sets the description icon.         |
+| Property      | Type                          | Default | Description                        |
+|---------------| ----------------------------- | ------- | ---------------------------------- |
+| `icon`        | `Drawable?`                   | `null`  | Sets the start icon.               |
+| `title`       | `CharSequence?`               | `null`  | Title text displayed next to icon. |
+| `description` | `CharSequence?`               | `null`  | Supporting description text.       |
+| `hasAction`   | `Boolean`                     | `false` | Whether action buttons are shown.  |
+| `hasDescIcon` | `Boolean`                     | `false` | Whether description icon is shown. |
+| `descIcon`    | `Drawable?`                   | `null`  | Sets the description icon.         |
+| `urlInfo`     | `String?`                   | `null`  | Optional URL. When set, the component becomes clickable and opens the link on tap.         |
 
 ### Content Properties
 
 | `actionButton1` | `Button`                      | –       | First action button.               |
 | `actionButton2` | `Button`                      | –       | Second action button.              |
-| `delegate`      | `DetailInformationADelegate?` | `null`  | Delegate for action button clicks. |
 | `delegate`      | `DetailInformationADelegate?` | `null`  | Delegate for button, root, and icon clicks. |
 
 ### Methods
@@ -135,6 +141,7 @@ detailInfo.delegate = object : DetailInformationADelegate {
 | `hasAction`       | `boolean`   | Shows or hides the action buttons |
 | `hasDescIcon`     | `boolean`   | Shows or hides the description icon |
 | `descIcon`        | `reference` | Sets the description icon drawable   |
+| `urlInfo`        | `string` | Optional URL. When set, the component opens this link on tap   |
 
 ---
 
@@ -157,6 +164,7 @@ detailInfo.apply {
     title = "Update Available"
     description = "A new version of the app is available. Would you like to update now?"
     hasAction = true
+    urlInfo = "https://google.com"
     
     // Configure action buttons
     actionButton1.text = "Update Now"
