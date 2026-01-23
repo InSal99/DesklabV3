@@ -78,6 +78,7 @@
                     app:infoTitle="Title"
                     app:infoDescription="Description with an extremely long text intended to test layout behavior, truncation, and spacing when the content exceeds the available width."
                     app:infoIcon="@drawable/kit_ic_placeholder"
+                    app:urlInfo="https://google.com/"
                     app:hasDescIcon="true"
                     app:descIcon="@drawable/ic_chevron_right"
                     android:layout_marginTop="@dimen/margin_12dp"/>

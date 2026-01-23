@@ -7,5 +7,6 @@
         <attr name="hasAction" format="boolean" />
         <attr name="hasDescIcon" format="boolean" />
         <attr name="descIcon" format="reference" />
+        <attr name="urlInfo" format="string" />
     </declare-styleable>
 </resources>
