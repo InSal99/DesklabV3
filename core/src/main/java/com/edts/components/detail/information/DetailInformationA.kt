@@ -1,9 +1,11 @@
 package com.edts.components.detail.information
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.RippleDrawable
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -76,6 +78,12 @@ class DetailInformationA @JvmOverloads constructor(
             binding.ivDescIcon.isVisible = hasDescIcon
         }
 
+    var urlInfo: String? = null
+        set(value) {
+            field = value
+            updateRootClickability()
+        }
+
     init {
         initAttrs(context, attrs)
         setupClickListeners()
@@ -107,14 +115,15 @@ class DetailInformationA @JvmOverloads constructor(
             hasDescIcon = typedArray.getBoolean(R.styleable.DetailInformationA_hasDescIcon, false)
             val descDrawable = typedArray.getDrawable(R.styleable.DetailInformationA_descIcon)
             descIcon = descDrawable
+            urlInfo = typedArray.getString(R.styleable.DetailInformationA_urlInfo)
         } finally {
             typedArray.recycle()
         }
     }
 
     private fun updateRootClickability() {
-        isClickable = hasDescIcon
-        isFocusable = hasDescIcon
+        isClickable = hasDescIcon || !urlInfo.isNullOrEmpty()
+        isFocusable = isClickable
     }
 
     private fun updateDescriptionEndConstraint() {
@@ -152,7 +161,10 @@ class DetailInformationA @JvmOverloads constructor(
         }
 
         setOnClickListener {
-            delegate?.onItemClick(this)
+            urlInfo?.let {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+                context.startActivity(intent)
+            }
         }
     }
 
