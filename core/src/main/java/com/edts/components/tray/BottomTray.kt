@@ -105,7 +105,6 @@ class BottomTray : BottomSheetDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
         dialog.setCanceledOnTouchOutside(isCancelableOnTouchOutside)
-        setupEdgeToEdge(dialog)
         setupDialogShowListener(dialog)
         return dialog
     }
@@ -178,17 +177,6 @@ class BottomTray : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         cleanup()
-    }
-
-    private fun setupEdgeToEdge(dialog: BottomSheetDialog) {
-        dialog.window?.let { window ->
-            window.statusBarColor = Color.TRANSPARENT
-            window.navigationBarColor = context.resolveColorAttr(R.attr.colorForegroundWhite, R.color.kitColorNeutralWhite)
-            WindowInsetsControllerCompat(window, window.decorView).apply {
-                isAppearanceLightNavigationBars = true
-                isAppearanceLightStatusBars = true
-            }
-        }
     }
 
     private fun setupDialogShowListener(dialog: BottomSheetDialog) {
