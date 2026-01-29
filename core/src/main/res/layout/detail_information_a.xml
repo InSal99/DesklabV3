@@ -65,7 +65,7 @@
         app:layout_constraintTop_toTopOf="@id/tvDetailDescription"
         app:layout_constraintBottom_toBottomOf="@id/tvDetailDescription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="?attr/colorForegroundTertiary"/>
+        app:tint="?attr/colorForegroundAccentPrimaryIntense"/>
 
     <com.edts.components.button.Button
         android:id="@+id/btnDetailAction2"
