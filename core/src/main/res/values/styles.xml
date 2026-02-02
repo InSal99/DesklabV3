@@ -138,77 +138,77 @@
     <!-- Text Label Style -->
     <style name="TextRegular.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_16</item>
     </style>
 
     <style name="TextMedium.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_16</item>
     </style>
 
     <style name="TextBold.Label1">
         <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_16</item>
     </style>
 
     <style name="TextRegular.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_14</item>
     </style>
 
     <style name="TextMedium.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_14</item>
     </style>
 
     <style name="TextSemiBold.Label2">
         <item name="android:textSize">@dimen/text_size_14sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_14</item>
     </style>
 
     <style name="TextRegular.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_12</item>
     </style>
 
     <style name="TextMedium.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_12</item>
     </style>
 
     <style name="TextSemiBold.Label3">
         <item name="android:textSize">@dimen/text_size_12sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_12</item>
     </style>
 
     <style name="TextRegular.Label4">
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_10</item>
     </style>
 
     <style name="TextMedium.Label4">
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_10</item>
     </style>
 
     <style name="TextSemiBold.Label4">
         <item name="android:textSize">@dimen/text_size_10sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_10</item>
     </style>
 
     <style name="TextRegular.Label5">
         <item name="android:textSize">@dimen/text_size_8sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_8</item>
     </style>
 
     <style name="TextMedium.Label5">
         <item name="android:textSize">@dimen/text_size_8sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_8</item>
     </style>
 
     <style name="TextSemiBold.Label5">
         <item name="android:textSize">@dimen/text_size_8sp</item>
-        <item name="lineHeight">@dimen/line_height_100</item>
+        <item name="lineHeight">@dimen/line_height_8</item>
     </style>
 
     <!-- Text Paragraph Style -->

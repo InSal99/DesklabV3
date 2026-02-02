@@ -24,7 +24,7 @@ class Toast @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : MaterialCardView(context, attrs, defStyleAttr) {
+) : MaterialCardView(ContextThemeWrapper(context, R.style.Theme_Desklab_Kit), attrs, defStyleAttr) {
     private val binding: LayoutToastViewBinding
     private var toastType: Type = Type.GENERAL
     private var toastMessage: String = ""
@@ -40,8 +40,8 @@ class Toast @JvmOverloads constructor(
     }
 
     init {
-        val themedContext = ContextThemeWrapper(context, R.style.Theme_Desklab_Kit)
-        binding = LayoutToastViewBinding.inflate(LayoutInflater.from(themedContext), this, true)
+//        val themedContext = ContexthemeWrapper(context, R.style.Theme_Desklab_Kit)
+        binding = LayoutToastViewBinding.inflate(LayoutInflater.from(context), this, true)
 
         setupToast()
         applyAttrs(attrs)

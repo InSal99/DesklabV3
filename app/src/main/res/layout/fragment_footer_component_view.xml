@@ -95,10 +95,9 @@
                     android:layout_marginTop="@dimen/margin_12dp"
                     app:infoboxType="information"
                     app:showInfoBox="true"
-                    app:footerType="CALL_TO_ACTION_DETAIL"
-                    app:primaryButtonText="Register Now"
+                    app:footerType="CALL_TO_ACTION"
+                    app:footerTitle="This is title"
                     app:primaryButtonEnabled="true"
-                    app:footerTitle="Welcome"
                     app:footerHasStroke="false"
                     app:footerDescription="Please complete registration"/>
             </LinearLayout>
