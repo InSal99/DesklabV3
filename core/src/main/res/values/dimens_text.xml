@@ -10,6 +10,8 @@
     <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="text_size_28sp">28sp</dimen>
 
+    <dimen name="line_height_8">8sp</dimen>
+    <dimen name="line_height_10">10sp</dimen>
     <dimen name="line_height_12">12sp</dimen>
     <dimen name="line_height_14">14sp</dimen>
     <dimen name="line_height_16">16sp</dimen>
@@ -18,5 +20,4 @@
     <dimen name="line_height_24">24sp</dimen>
     <dimen name="line_height_26">26sp</dimen>
     <dimen name="line_height_30">30sp</dimen>
-    <dimen name="line_height_100">10sp</dimen>
 </resources>
