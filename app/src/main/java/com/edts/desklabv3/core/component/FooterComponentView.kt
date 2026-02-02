@@ -31,6 +31,11 @@ class FooterComponentView : Fragment(), FooterDelegate {
 
         setupFooterSimple()
         setupFooterDualButton()
+
+        binding.infoboxFooter.getFooter().setSupportText2Visibility(false)
+        binding.infoboxFooter.setDualButtonDescription("This is title", "1", "10")
+        binding.infoboxFooter.setPrimaryButtonText("Continue")
+        binding.infoboxFooter.setDescriptionVisibility(true)
     }
 
     private fun setupFooterSimple() {

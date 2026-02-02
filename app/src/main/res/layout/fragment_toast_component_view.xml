@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_12dp"
                     app:toastType="error"
-                    app:toastMessage="Label"/>
+                    app:toastMessage="This is success toast with a very very very very very very very very very very very very very very very veru long text!"/>
 
                 <com.edts.components.toast.Toast
                     android:layout_width="match_parent"
