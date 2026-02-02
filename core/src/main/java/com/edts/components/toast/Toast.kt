@@ -40,7 +40,6 @@ class Toast @JvmOverloads constructor(
     }
 
     init {
-//        val themedContext = ContexthemeWrapper(context, R.style.Theme_Desklab_Kit)
         binding = LayoutToastViewBinding.inflate(LayoutInflater.from(context), this, true)
 
         setupToast()
