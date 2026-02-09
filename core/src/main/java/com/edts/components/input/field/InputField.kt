@@ -7,9 +7,11 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.StateListDrawable
+import android.os.Build
 import android.text.InputFilter
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.Gravity
@@ -111,6 +113,9 @@ class InputField @JvmOverloads constructor(
             includeFontPadding = false
             setLineSpacing(0f, 1f)
             setPadding(0, 0, 0, padding4dp)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_AUTO
+            }
         }
 
         descriptionTextView = TextView(context).apply {
@@ -299,17 +304,23 @@ class InputField @JvmOverloads constructor(
         } else {
             titleTextView.visibility = View.VISIBLE
             if (!isInEditMode) {
-                titleTextView.text = if (isFieldRequired) {
-                    val spannableTitle = SpannableString("$title *")
+                if (isFieldRequired) {
+                    val spannableTitle = SpannableStringBuilder("$title *")
                     spannableTitle.setSpan(
                         ForegroundColorSpan(getCachedColor(R.attr.colorForegroundAttentionIntense, R.color.kitColorRed40)),
                         title.length + 1,
                         spannableTitle.length,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
-                    spannableTitle
+                    titleTextView.text = spannableTitle
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        titleTextView.importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_NO
+                    }
                 } else {
-                    title
+                    titleTextView.text = title
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        titleTextView.importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_AUTO
+                    }
                 }
             } else {
                 titleTextView.text = title
