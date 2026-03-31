@@ -35,6 +35,10 @@ class TabItem @JvmOverloads constructor(
         }
     }
 
+    // FIX: Track the currently running animator set so we can cancel it
+    private var currentAnimatorSet: AnimatorSet? = null
+    private var currentColorAnimator: ValueAnimator? = null
+
     var tabText: String? = null
         set(value) {
             field = value
@@ -141,6 +145,8 @@ class TabItem @JvmOverloads constructor(
     }
 
     private fun applyTabStateImmediately() {
+        cancelRunningAnimations()
+
         when (tabState) {
             TabState.ACTIVE -> {
                 val activeColor = context.resolveColorAttribute(
@@ -171,6 +177,9 @@ class TabItem @JvmOverloads constructor(
     }
 
     private fun animateToActive() {
+        // FIX: Cancel any running animations first
+        cancelRunningAnimations()
+
         val activeColor = context.resolveColorAttribute(
             R.attr.colorForegroundAccentPrimaryIntense,
             R.color.kitColorBrandPrimary30
@@ -186,25 +195,28 @@ class TabItem @JvmOverloads constructor(
             }
         }
 
+        // FIX: Set indicator visible and scaleX=0 immediately, then animate scaleX to 1.
+        // Original code used post{} which caused a race condition.
         binding.tabIndicator.visibility = View.VISIBLE
         binding.tabIndicator.scaleX = 0f
+        binding.tabIndicator.pivotX = binding.tabIndicator.width.toFloat() / 2f
 
-        binding.tabIndicator.post {
-            binding.tabIndicator.pivotX = binding.tabIndicator.width / 2f
-
-            val indicatorAnimator = ObjectAnimator.ofFloat(binding.tabIndicator, "scaleX", 0f, 1f).apply {
-                duration = INDICATOR_ANIMATION_DURATION
-                interpolator = AccelerateDecelerateInterpolator()
-            }
-
-            AnimatorSet().apply {
-                playTogether(textColorAnimator, indicatorAnimator)
-                start()
-            }
+        val scaleAnimator = ObjectAnimator.ofFloat(binding.tabIndicator, "scaleX", 0f, 1f).apply {
+            duration = INDICATOR_ANIMATION_DURATION
+            interpolator = AccelerateDecelerateInterpolator()
         }
+
+        // FIX: Use AnimatorSet and track it for cancellation
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(textColorAnimator, scaleAnimator)
+        currentAnimatorSet = animatorSet
+        currentColorAnimator = textColorAnimator
+        animatorSet.start()
     }
 
     private fun animateToInactive() {
+        cancelRunningAnimations()
+
         val inactiveColor = context.resolveColorAttribute(
             R.attr.colorForegroundTertiary,
             R.color.kitColorNeutralGrayLight50
@@ -220,20 +232,50 @@ class TabItem @JvmOverloads constructor(
             }
         }
 
-        val indicatorAnimator = ObjectAnimator.ofFloat(binding.tabIndicator, "scaleX", 1f, 0f).apply {
+        // Scale animation for indicator (shrink from 1 to 0)
+        val scaleAnimator = ObjectAnimator.ofFloat(binding.tabIndicator, "scaleX", 1f, 0f).apply {
             duration = INDICATOR_ANIMATION_DURATION
             interpolator = AccelerateDecelerateInterpolator()
-            addUpdateListener { animation ->
-                if (animation.animatedFraction == 1f) {
-                    binding.tabIndicator.visibility = View.GONE
+            // FIX: Use AnimatorListener instead of checking animatedFraction == 1.0f
+            // The original code only hid the indicator when animatedFraction was exactly 1.0f,
+            // which could be missed if the animation was interrupted.
+            addListener(object : android.animation.AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: android.animation.Animator) {
+                    // Only hide if we're still in INACTIVE state (animation wasn't cancelled
+                    // because user clicked another tab that made this one active again)
+                    if (tabState == TabState.INACTIVE) {
+                        binding.tabIndicator.visibility = View.GONE
+                    }
                 }
-            }
+
+                override fun onAnimationCancel(animation: android.animation.Animator) {
+                    // If cancelled, apply the final state immediately
+                    // This prevents the indicator from being stuck in an intermediate state
+                    if (tabState == TabState.INACTIVE) {
+                        binding.tabIndicator.visibility = View.GONE
+                        binding.tabIndicator.scaleX = 0f
+                    } else if (tabState == TabState.ACTIVE) {
+                        binding.tabIndicator.visibility = View.VISIBLE
+                        binding.tabIndicator.scaleX = 1f
+                    }
+                }
+            })
         }
 
-        AnimatorSet().apply {
-            playTogether(textColorAnimator, indicatorAnimator)
-            start()
-        }
+        // FIX: Use AnimatorSet and track it for cancellation
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(textColorAnimator, scaleAnimator)
+        currentAnimatorSet = animatorSet
+        currentColorAnimator = textColorAnimator
+        animatorSet.start()
+    }
+
+    // FIX: Cancel all running animations to prevent overlapping animation states
+    private fun cancelRunningAnimations() {
+        currentAnimatorSet?.cancel()
+        currentAnimatorSet = null
+        currentColorAnimator?.cancel()
+        currentColorAnimator = null
     }
 
     fun setTabState(state: TabState, triggerDelegate: Boolean = false) {
