@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.edts.components"
-version = "v1.1.25"
+version = "v1.1.26"
 afterEvaluate {
     publishing {
         publications {
@@ -14,7 +14,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.edts.components"
                 artifactId = "components"
-                version = "v1.1.25"
+                version = "v1.1.26"
 
                 pom {
                     name.set("Desklab Components Library")
